@@ -1,0 +1,22 @@
+CREATE TABLE PMIS_HS.WorkingPlaces(WorkingPlaceID number NOT NULL,
+                                   MilitaryUnitID number NOT NULL,
+                                   WorkingPlace varchar2(500)
+                                  );
+
+ALTER TABLE PMIS_HS.WorkingPlaces ADD CONSTRAINT WorkingPlaces_PK PRIMARY KEY(WorkingPlaceID);
+ALTER TABLE PMIS_HS.WorkingPlaces ADD CONSTRAINT WorkingPlaces_MIR_FK FOREIGN KEY (MilitaryUnitID) REFERENCES UKAZ_OWNER.MIR (KOD_MIR);
+
+ALTER TABLE PMIS_HS.WorkingPlaces ADD CONSTRAINT WorkingPlaces_UNQ UNIQUE (MilitaryUnitID, WorkingPlace);
+
+CREATE SEQUENCE PMIS_HS.WorkingPlaces_ID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+CREATE TRIGGER PMIS_HS.TRG_WorkingPlaces_INSERT
+BEFORE INSERT ON PMIS_HS.WorkingPlaces
+FOR EACH ROW
+BEGIN
+   SELECT PMIS_HS.WorkingPlaces_ID_SEQ.nextval INTO :new.WorkingPlaceID FROM dual;
+END;
+/

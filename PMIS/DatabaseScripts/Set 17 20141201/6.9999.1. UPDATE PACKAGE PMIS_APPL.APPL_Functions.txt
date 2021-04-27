@@ -1,0 +1,165 @@
+﻿CREATE OR REPLACE PACKAGE PMIS_APPL.APPL_Functions AS
+   FUNCTION GetCombinedApplicantStatus (P_ApplPostitionID IN number) RETURN varchar2;
+   FUNCTION GetCombinedApplicantStatusKey (P_ApplPostitionID IN number) RETURN varchar2;
+   FUNCTION GetServiceTypesPerPotAppl (P_PotencialApplicantID IN number) RETURN varchar2;
+   
+   PROCEDURE SetVacancyAnnounceStatusDocs;
+   PROCEDURE SetVacancyAnnounceStatusFlow (P_VacancyAnnounceID IN NUMBER, P_ChangeFrom_VacAnnStatusKey IN varchar2);
+END;
+/
+
+CREATE OR REPLACE PACKAGE BODY PMIS_APPL.APPL_Functions AS
+   FUNCTION GetCombinedApplicantStatus (P_ApplPostitionID IN number) RETURN varchar2 IS 
+      combinedApplStatus varchar2(500) := '';
+   BEGIN
+      SELECT CASE WHEN a.StatusKey = 'PARTICIPATIONALLOWED' THEN NVL(a.ApplicantExamStatusName, a.StatusName)
+                  ELSE a.StatusName
+             END CASE
+      INTO combinedApplStatus
+      FROM (
+          SELECT a.ApplicantID, a.ApplicantPositionID, b.StatusName, b.StatusKey, f.ApplicantExamStatusname
+          FROM PMIS_APPL.ApplicantPositions a
+          LEFT OUTER JOIN PMIS_APPL.ApplicantPositionStatus b ON b.StatusID = a.ApplicantStatusID
+          LEFT OUTER JOIN PMIS_APPL.VacancyAnnouncePositions c ON c.VacancyAnnouncePositionID = a.VacancyAnnouncePositionID
+          LEFT OUTER JOIN PMIS_APPL.VacancyAnnounces d ON d.VacancyAnnounceID = c.VacancyAnnounceID
+          LEFT OUTER JOIN PMIS_APPL.ApplicantExamStatus e ON e.ApplicantID = a.ApplicantID AND 
+                                                             e.ResponsibleMilitaryUnitID = c.ResponsibleMilitaryUnitID AND 
+                                                             e.VacancyAnnounceID = d.VacancyAnnounceID
+          LEFT OUTER JOIN PMIS_APPL.ApplicantExamStatuses f on f.ApplicantExamStatusID = e.Status
+          WHERE a.ApplicantPositionid = P_ApplPostitionID
+          ) a;
+          
+      RETURN combinedApplStatus;
+   END;
+   
+   FUNCTION GetCombinedApplicantStatusKey (P_ApplPostitionID IN number) RETURN varchar2 IS 
+      combinedApplStatusKey varchar2(500) := '';
+   BEGIN
+      SELECT CASE WHEN a.StatusKey = 'PARTICIPATIONALLOWED' THEN NVL(a.ApplicantExamStatusKey, a.StatusKey)
+                  ELSE a.StatusKey
+             END CASE
+      INTO combinedApplStatusKey
+      FROM (
+          SELECT a.ApplicantID, a.ApplicantPositionID, b.StatusKey, f.ApplicantExamStatusKey
+          FROM PMIS_APPL.ApplicantPositions a
+          LEFT OUTER JOIN PMIS_APPL.ApplicantPositionStatus b ON b.StatusID = a.ApplicantStatusID
+          LEFT OUTER JOIN PMIS_APPL.VacancyAnnouncePositions c ON c.VacancyAnnouncePositionID = a.VacancyAnnouncePositionID
+          LEFT OUTER JOIN PMIS_APPL.VacancyAnnounces d ON d.VacancyAnnounceID = c.VacancyAnnounceID
+          LEFT OUTER JOIN PMIS_APPL.ApplicantExamStatus e ON e.ApplicantID = a.ApplicantID AND 
+                                                             e.ResponsibleMilitaryUnitID = c.ResponsibleMilitaryUnitID AND 
+                                                             e.VacancyAnnounceID = d.VacancyAnnounceID
+          LEFT OUTER JOIN PMIS_APPL.ApplicantExamStatuses f on f.ApplicantExamStatusID = e.Status
+          WHERE a.ApplicantPositionid = P_ApplPostitionID
+          ) a;
+          
+      RETURN combinedApplStatusKey;
+   END;
+      
+   FUNCTION GetServiceTypesPerPotAppl (P_PotencialApplicantID IN number) RETURN varchar2 IS
+                               
+      ST varchar2(4000);
+      
+      CURSOR ServiceTypeCUR is
+      SELECT b.ServiceTypeName as DisplayName
+	  FROM PMIS_APPL.PotApplServiceTypes a
+      INNER JOIN PMIS_APPL.ServiceTypes b ON b.ServiceTypeID = a.ServiceTypeID
+	  WHERE a.PotApplID = P_PotencialApplicantID
+      ORDER BY b.ServiceTypeName;
+   BEGIN
+      FOR CurRec IN ServiceTypeCUR
+      LOOP 
+         IF (ST IS NULL OR LENGTH(ST) < 3600) THEN
+	     IF (ST IS NOT NULL) THEN
+		ST := ST || ', ';
+	     END IF;
+
+             ST := ST || CurRec.DisplayName;
+         END IF;
+      END LOOP;
+      
+      RETURN ST;
+   END;
+     
+   PROCEDURE SetVacancyAnnounceStatusDocs IS
+   
+      CURSOR VacancyAnnouncesCursor IS 
+      SELECT a.VacancyAnnounceID,  b.VacancyAnnouncesStatusID  
+      FROM PMIS_APPL.VacancyAnnounces a 
+      INNER JOIN PMIS_APPL.VacancyAnnouncesStatuses b ON b.VacancyAnnouncesStatusID = a.VacannStatusID
+      WHERE b.VacannStatusKey = 'DOCUMENTS' AND 
+            a.EndDate < ROUND(SYSDATE)
+      FOR UPDATE OF a.VacancyAnnounceID;
+      
+      VacancyAnnounceRow VacancyAnnouncesCursor%ROWTYPE;
+      
+   BEGIN
+   
+      FOR VacancyAnnounceRow IN VacancyAnnouncesCursor
+      LOOP
+         UPDATE PMIS_APPL.VacancyAnnounces
+         SET VacannStatusID = (SELECT VacancyAnnouncesStatusId
+                               FROM PMIS_APPL.VacancyAnnouncesStatuses
+                               WHERE VacannStatusKey = 'ALLOWANCE')
+         WHERE CURRENT OF VacancyAnnouncesCursor;
+      END LOOP;
+      
+      COMMIT;
+      
+   END;
+   
+   
+   PROCEDURE SetVacancyAnnounceStatusFlow (P_VacancyAnnounceID IN NUMBER, P_ChangeFrom_VacAnnStatusKey IN varchar2) IS
+   
+      CurentStatusKey varchar2(500);
+      NewStatusKey varchar2(500);
+      FoundPositionsWithLowerStatus number := 0;
+      CombinedPositionStatusKey varchar2(500);
+      
+      CURSOR ApplPositionsCursor IS 
+      SELECT a.ApplicantPositionID
+      FROM PMIS_APPL.ApplicantPositions a 
+      INNER JOIN PMIS_APPL.VacancyAnnouncePositions b ON b.VacancyAnnouncePositionID = a.VacancyAnnouncePositionID
+      WHERE b.VacancyAnnounceID = P_VacancyAnnounceID;
+   BEGIN
+   
+      SELECT b.VacAnnStatusKey INTO CurentStatusKey
+      FROM PMIS_APPL.VacancyAnnounces a
+      INNER JOIN PMIS_APPL.VacancyAnnouncesStatuses b ON a.VacAnnStatusID = b.VacancyAnnouncesStatusID
+      WHERE a.VacancyAnnounceID = P_VacancyAnnounceID;
+   
+      /*Only update the Status if the current status is of this type*/
+      IF (CurentStatusKey = P_ChangeFrom_VacAnnStatusKey) THEN
+          FOR ApplPositionsRec IN ApplPositionsCursor
+          LOOP
+             CombinedPositionStatusKey := GetCombinedApplicantStatusKey(ApplPositionsRec.ApplicantPositionID);
+             
+             IF ( (P_ChangeFrom_VacAnnStatusKey = 'ALLOWANCE' AND CombinedPositionStatusKey IN ('DOCUMENTSAPPLIED')) OR
+                  (P_ChangeFrom_VacAnnStatusKey = 'EXAM' AND CombinedPositionStatusKey IN ('DOCUMENTSAPPLIED', 'PARTICIPATIONALLOWED')) OR
+                  (P_ChangeFrom_VacAnnStatusKey = 'RANK' AND CombinedPositionStatusKey IN ('DOCUMENTSAPPLIED', 'PARTICIPATIONALLOWED', 'RATED')) OR
+                  (P_ChangeFrom_VacAnnStatusKey = 'NOMINATION' AND CombinedPositionStatusKey IN ('DOCUMENTSAPPLIED', 'PARTICIPATIONALLOWED', 'RATED', 'APPOINTED', 'RESERVE'))
+                )THEN
+                FoundPositionsWithLowerStatus := FoundPositionsWithLowerStatus + 1;
+             END IF;
+          END LOOP;
+          
+          IF FoundPositionsWithLowerStatus = 0 THEN
+             IF (P_ChangeFrom_VacAnnStatusKey = 'ALLOWANCE') THEN
+                NewStatusKey := 'EXAM';
+             ELSIF (P_ChangeFrom_VacAnnStatusKey = 'EXAM') THEN
+                NewStatusKey := 'RANK';
+             ELSIF (P_ChangeFrom_VacAnnStatusKey = 'RANK') THEN
+                NewStatusKey := 'NOMINATION';
+             ELSIF (P_ChangeFrom_VacAnnStatusKey = 'NOMINATION') THEN
+                NewStatusKey := 'FINISHED';
+             END IF;
+             
+             UPDATE PMIS_APPL.VacancyAnnounces SET
+                VacAnnStatusID = (SELECT VacancyAnnouncesStatusID FROM PMIS_APPL.VacancyAnnouncesStatuses WHERE VacAnnStatusKey = NewStatusKey)
+             WHERE VacancyAnnounceID = P_VacancyAnnounceID;
+             
+             COMMIT;
+          END IF;
+      END IF; 
+   END;
+END;
+/

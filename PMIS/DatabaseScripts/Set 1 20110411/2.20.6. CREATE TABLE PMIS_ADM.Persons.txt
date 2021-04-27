@@ -1,0 +1,67 @@
+﻿CREATE TABLE PMIS_ADM.Persons(PersonID number NOT NULL,
+                              GenderID number,
+                              CurrAddrCityID number,
+                              CurrAddress varchar2(1500),
+                              MobilePhone varchar2(50),
+                              BusinessPhone varchar2(50),
+                              Email varchar2(500),
+                              MilitaryService number, /*1=Yes, 2=No*/
+                              Initials varchar2(10),
+                              IDCardNumber varchar2(50),
+                              IDCardIssuedBy varchar2(100),
+                              IDCardIssueDate date,
+                              BirthCountryID varchar2(3),
+                              BirthCityIfAbroad varchar2(200),
+                              MilitaryTraining number, /*1=Has training, 2=Doesn't have training*/
+                              RecordOfServiceSeries varchar2(20),
+                              RecordOfServiceNumber nvarchar2(100),
+                              RecordOfServiceCopy number(1) CHECK (RecordOfServiceCopy BETWEEN 0 AND 1),
+                              PermAddrDistrictID number,
+                              CurrAddrDistrictID number,
+                              ParentsContact varchar2(2000),
+                              WorkPositionTitle varchar2(250), 
+                              EducationCode varchar2(1),
+                              ChildCount number,
+                              SizeClothingID number, /*GTable*/
+                              SizeHatID number, /*GTable*/
+                              SizeShoesID number, /*GTable*/
+                              PersonHeight number,
+                              IsAbroad number(1) CHECK (IsAbroad BETWEEN 0 AND 1),
+                              AbroadCountryID varchar2(3),
+                              AbroadSince date,
+                              AbroadPeriod number,
+                              AdministrationID number,
+                              ClInformationAccLevelBG number,
+                              ClInformationAccLevelBGExpDate date,
+                              MedCert_Date date,
+                              MedCert_ProtNum varchar2(250),
+                              MedCert_ConclusionID number,
+                              PsychCert_Date date,
+                              PsychCert_ProtNum varchar2(250),
+                              PsychCert_ConclusionID number,                              
+
+                              CreatedBy number,
+                              CreatedDate date,
+                              LastModifiedBy number,
+                              LastModifiedDate date,
+                              
+                              
+                              MilitaryServiceМunicipalityID number,
+                              WorkCompanyID number                              
+                             );
+
+ALTER TABLE PMIS_ADM.Persons ADD CONSTRAINT Persons_PK PRIMARY KEY(PersonID);
+ALTER TABLE PMIS_ADM.Persons ADD CONSTRAINT Persons_Persons_FK FOREIGN KEY (PersonID) REFERENCES VS_OWNER.VS_LS (PersonID);
+ALTER TABLE PMIS_ADM.Persons ADD CONSTRAINT Persons_Gender_FK FOREIGN KEY (GenderID) REFERENCES PMIS_ADM.Gender (GenderID);
+ALTER TABLE PMIS_ADM.Persons ADD CONSTRAINT Persons_CurrAddrCity_FK FOREIGN KEY (CurrAddrCityID) REFERENCES UKAZ_OWNER.KL_NMA (KOD_NMA);
+ALTER TABLE PMIS_ADM.Persons ADD CONSTRAINT Persons_BirthCountry_FK FOREIGN KEY (BirthCountryID) REFERENCES VS_OWNER.KLV_DJJ (DJJ_KOD);
+ALTER TABLE PMIS_ADM.Persons ADD CONSTRAINT Persons_PermAddrDistrict_FK FOREIGN KEY (PermAddrDistrictID) REFERENCES PMIS_ADM.Districts (DistrictID);
+ALTER TABLE PMIS_ADM.Persons ADD CONSTRAINT Persons_CurrAddrDistrict_FK FOREIGN KEY (CurrAddrDistrictID) REFERENCES PMIS_ADM.Districts (DistrictID);
+ALTER TABLE PMIS_ADM.Persons ADD CONSTRAINT Persons_AbroadCountry_FK FOREIGN KEY (AbroadCountryID) REFERENCES VS_OWNER.KLV_DJJ (DJJ_KOD);
+ALTER TABLE PMIS_ADM.Persons ADD CONSTRAINT Persons_Administration_FK FOREIGN KEY (AdministrationID) REFERENCES PMIS_ADM.ADMINISTRATIONS (AdministrationID);
+ALTER TABLE PMIS_ADM.Persons ADD CONSTRAINT Persons_CreatedBy_FK FOREIGN KEY (CreatedBy) REFERENCES PMIS_ADM.Users (UserID);
+ALTER TABLE PMIS_ADM.Persons ADD CONSTRAINT Persons_LastModifiedBy_FK FOREIGN KEY (LastModifiedBy) REFERENCES PMIS_ADM.Users (UserID);
+ALTER TABLE PMIS_ADM.Persons ADD CONSTRAINT Persons_MedCert_FK FOREIGN KEY (MedCert_ConclusionID) REFERENCES PMIS_ADM.MilitaryMedicalConclusions (MilitaryMedicalConclusionID);
+ALTER TABLE PMIS_ADM.Persons ADD CONSTRAINT Persons_PsychCert_FK FOREIGN KEY (PsychCert_ConclusionID) REFERENCES PMIS_ADM.MilitaryMedicalConclusions (MilitaryMedicalConclusionID);
+
+/

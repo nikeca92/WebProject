@@ -1,0 +1,181 @@
+﻿<%@ Master Language="C#" AutoEventWireup="True" CodeBehind="MasterPage.master.cs" Inherits="PMIS.PMISReports.MasterPages.MasterPage" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<%@ Register Assembly="System.Web.Extensions, Version=1.0.61025.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35"
+    Namespace="System.Web.UI" TagPrefix="aspex" %>
+
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head id="Head1" runat="server">
+    <title>Справки</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=8" />
+    
+    <link href="../StyleSheets/Main.css" rel="StyleSheet" type="text/css" />    
+    <link href="../StyleSheets/HoverMenu.css" rel="StyleSheet" type="text/css" />    
+    <link href="../StyleSheets/datepicker.css" rel="StyleSheet" type="text/css" />       
+    
+    <asp:ContentPlaceHolder ID="head" runat="server">
+        <script type="text/javascript">       
+    
+           var DecimalPoint = '<%= GetDecimalPoint() %>';
+           var hdnDisabledClientControls = '<%= hdnDisabledClientControls.ClientID %>';
+           var hdnHiddenClientControls = '<%= hdnHiddenClientControls.ClientID %>';
+           var hdnLocationHashClientID = '<%= LocationHashClientID %>';
+           var hdnClientTime = '<%= hdnClientTime.ClientID %>';
+           var confTimeBeforeSessionExpires = '<%= ConfigurationManager.AppSettings["TimeBeforeSessionExpires"] %>';
+           var hdnSessionTimeout = "<%= hdnSessionTimeout.ClientID %>";
+           var sessionTimeout = <%= Session.Timeout %> ;
+           var dateTimeNow = '<%= DateTime.Now.ToString(new System.Globalization.CultureInfo("en-US")) %>';
+           var hdnInitialTime = "<%=hdnInitialTime.ClientID%>";     
+           var hdnSavedChangesID = null;
+           var hdnSavedChangesContainerID = null;  
+           
+           function NavigateTo(url) 
+           {
+               CustomCheckFormSave(function(){TmpFunction(url);});
+               
+               function TmpFunction(url)
+               {
+                  var path = '<% Response.Write(ResolveUrl("~/")); %>';
+                  location.href = path + url;
+               }
+           }
+        </script>
+
+        <script type="text/javascript" src='<% Response.Write(ResolveUrl("~")); %>Scripts/CheckFormSave.js'></script>
+        <script type="text/javascript" src='<% Response.Write(ResolveUrl("~")); %>Scripts/Timeout.js'></script>    
+        <script type="text/javascript" src='<% Response.Write(ResolveUrl("~")); %>Scripts/MasterPage.js'></script>
+        <script type="text/javascript" src='<% Response.Write(ResolveUrl("~")); %>Scripts/Common.js'></script>
+        <script type="text/javascript" src='<% Response.Write(ResolveUrl("~")); %>Scripts/DatePicker/datepicker.js'></script>
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+    
+    <aspex:ScriptManager ID="ScriptManager1" runat="server">
+    </aspex:ScriptManager>
+    
+    <input type="hidden" id="hdnInitialTime" runat="server" />
+    <input type="hidden" id="hdnClientTime" runat="server" />
+	<input type="hidden" id="hdnSessionTimeout" runat="server" />
+	<input type="hidden" id="ShowPopupForSaveChanges" value="<% Response.Write(ShowPopupForSaveChanges); %>" />
+    
+    <div class="HeaderPanel">
+       <div class="LogoSection"  onclick="NavigateTo('');" style="cursor: pointer; z-index: 2;" title="Начало"></div>
+       <div class="MasterHeader1">АСУ на човешките ресурси</div>
+       <div class="MasterHeader2">Справки</div>
+    </div>
+    
+    <div id="spanSessionTime" style="display: none; border: solid 1px #888888; background: white; position: fixed; font-size:medium; top: 10px; z-index: 100; padding-right: 5px;">
+	    <img id="Img1" alt="" style="background: white;" src="../Images/warning_icon_small.gif" runat="server" />
+		<span style="background: white; vertical-align: top;">
+		    <label id="lblSessionTime" style="color: Red;font-family: Verdana;font-size: 12px; vertical-align: middle;"></label>
+       </span>
+    </div>
+    
+    <table style="width: 100%;">
+       <tr>
+          <td style="text-align: center;">
+          
+            <div class="ContentPanel">
+                <div style="height: 5px;"></div>
+                <div class="ShadowContainer">
+                    <div>
+                      <div runat="server" id="divDemoHoverMenu" style="width:100%;">
+                          <div style="margin:0 auto;" runat="server" id="HoverExtenderCont">
+                          </div>
+                       </div>
+                       
+                       <div runat="server" id="divHoverMenuItems">
+                           <table runat="server" id="tblMenuItems" cellspacing="0">
+                               <tr runat="server" id="rowMenuItems">
+                               </tr>
+                           </table>
+                       </div>
+                       
+                       <div runat="server" id="HoverPanelsCont">
+                       </div>              
+                       
+                       <div class="MasterFullName">
+                          <span runat="server" id="lblMasterFullName" style="vertical-align: top;"></span>
+                          <div runat="server" id="imgEditUserProfile" class="ImgEditUserProfile" 
+                               onclick="NavigateTo('/ContentPages/EditUserProfile.aspx');" title="Редактиране на профил"></div>
+                       </div>
+                    </div>
+                
+                    <div style="height: 5px;"></div>
+                
+                    <div style="position: relative; left: 3px;">
+                        <div class="Shadow1">
+                            <div class="Shadow2">
+                                <div class="Shadow3">
+                                    <div class="PageContentArea">
+                                       <div id="HidePage" class="HidePage" style="display:none;"></div>
+                               <div id="HidePageYesNo" class="HidePageYesNo" style="display:none;"></div>
+                                       <asp:HiddenField ID="hdnDisabledClientControls" runat="server" />
+                                       <asp:HiddenField ID="hdnHiddenClientControls" runat="server" />
+                                       <div id="divContent" style="display: none;">
+                                          <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                                          </asp:ContentPlaceHolder>
+                                       </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div style="height: 5px;"></div>
+            </div>
+          </td>
+       </tr>
+    </table>
+    
+    <div class="FooterPanel"></div>
+    
+    <div id="divGTableLightBox" class="GTibleLightBox" style="padding: 10px; display: none; text-align: center;">
+        <img border='0' src='../Images/close.png' onclick="javascript:HideGTableLightBox();" style="cursor: pointer; float: right;" alt='Затвори' title='Затвори' /><br />
+        <div id="divGTableLightBoxContent"></div>
+    </div>
+    
+    <div id="divAjaxLoading" style="display: none;">
+       <img src="../Images/ajax-loader.gif" alt="Loading" title="Изпълнение на заявка до сървъра" />
+    </div>
+    
+    <div id="divYesNoDialog" class="YesNoLightBox" style="padding: 10px; display: none; text-align: center;">
+        <div style="height: 20px;"></div>
+        <div id="lblYesNoDialogMessage"></div>
+        <div style="height: 30px;"></div>
+        <div id='btnYesAnswer' class='Button' onclick="YesAnswer();"><i></i><div style='width:70px; padding-left:5px;'>Да</div><b></b></div>
+        <div id='btnNoAnswer' class='Button' onclick="NoAnswer();"><i></i><div style='width:70px; padding-left:5px;'>Не</div><b></b></div>
+    </div>
+    
+    </form>
+    
+    <script type="text/javascript">
+        window.addEventListener ? window.addEventListener('load', MasterPageLoad, false) : window.attachEvent('onload', MasterPageLoad);   
+        Sys.WebForms.PageRequestManager.getInstance().add_endRequest(EndRequestHandler);  
+        Sys.WebForms.PageRequestManager.getInstance().add_beginRequest(BeginRequestHandler);
+        
+        window.onbeforeunload = checkFormSave_; // check for changes in the page controls on unloading page
+    	   
+	    function checkFormSave_() 
+        {
+            return checkFormSave();
+        }
+        
+        function MasterPageLoad() 
+        {
+            CheckDisabledClientControls();
+            CheckHiddenClientControls();
+            
+            LoadOriginalValues(); // stores original values of page controls on load page
+            //FixLinks(); // fix <a href> elements, to prevent double firing check for changes
+            FixDropDowns();
+            
+            SessionTimeoutOnLoad();
+            
+            CheckHash();
+        }   
+    </script>
+</body>
+</html>

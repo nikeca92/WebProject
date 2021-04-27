@@ -1,0 +1,47 @@
+﻿ALTER TABLE PMIS_ADM.Administrations ADD AdministrationGroup varchar2(300);
+
+UPDATE PMIS_ADM.Administrations SET 
+   AdministrationGroup = AdministrationName;
+ 
+UPDATE PMIS_ADM.Administrations SET 
+   AdministrationGroup = '"НРС и НСО"'
+WHERE AdministrationName IN ('НРС', 'НСО');
+
+UPDATE PMIS_ADM.Administrations SET 
+   AdministrationGroup = 'други министерства и ведомства'
+WHERE AdministrationName IN ('ДАНС', 'Други');
+
+
+
+ALTER TABLE PMIS_ADM.Administrations ADD AdministrationGroupSeq number;
+
+UPDATE PMIS_ADM.Administrations SET 
+   AdministrationGroupSeq = 1
+WHERE AdministrationGroup = 'МВР';
+
+UPDATE PMIS_ADM.Administrations SET 
+   AdministrationGroupSeq = 2
+WHERE AdministrationGroup = 'Министерство на правосъдието';
+
+UPDATE PMIS_ADM.Administrations SET 
+   AdministrationGroupSeq = 3
+WHERE AdministrationGroup = '"НРС и НСО"';
+
+UPDATE PMIS_ADM.Administrations SET 
+   AdministrationGroupSeq = 4
+WHERE AdministrationGroup = 'други министерства и ведомства';
+
+
+ALTER TABLE PMIS_ADM.Administrations ADD IsMinistryOfDefence number(1) CHECK (IsMinistryOfDefence BETWEEN 0 AND 1);
+
+UPDATE PMIS_ADM.Administrations SET 
+   IsMinistryOfDefence = 1
+WHERE AdministrationName IN ('МО', 'Министерство на отбраната');
+
+UPDATE PMIS_ADM.Administrations SET
+   AdministrationGroup = NULL,
+   AdministrationGroupSeq = NULL
+WHERE IsMinistryOfDefence = 1;
+
+COMMIT;
+/

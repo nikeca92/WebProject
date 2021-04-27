@@ -1,0 +1,19 @@
+﻿ALTER TABLE PMIS_RES.TechnicsMilRepStatus ADD Voluntary_ContractNumber varchar2(250);
+ALTER TABLE PMIS_RES.TechnicsMilRepStatus ADD Voluntary_ContractDate date;
+ALTER TABLE PMIS_RES.TechnicsMilRepStatus ADD Voluntary_DurationMonths number;
+ALTER TABLE PMIS_RES.TechnicsMilRepStatus ADD Voluntary_ContractToDate date;
+ALTER TABLE PMIS_RES.TechnicsMilRepStatus ADD Voluntary_FulfilPlace varchar2(250);
+
+ALTER TABLE PMIS_RES.TechnicsMilRepStatus ADD Removed_Date date;
+ALTER TABLE PMIS_RES.TechnicsMilRepStatus ADD Removed_ReasonID number; /*GTable*/
+
+ALTER TABLE PMIS_RES.TechnicsMilRepStatus ADD TemporaryRemoved_ReasonID number; /*GTable*/
+ALTER TABLE PMIS_RES.TechnicsMilRepStatus ADD TemporaryRemoved_Date date;
+ALTER TABLE PMIS_RES.TechnicsMilRepStatus ADD TemporaryRemoved_Duration number;
+										  
+ALTER TABLE PMIS_RES.TechnicsMilRepStatus ADD TechnicsPostpone_TypeID number;
+ALTER TABLE PMIS_RES.TechnicsMilRepStatus ADD TechnicsPostpone_Year number;
+
+ALTER TABLE PMIS_RES.TechnicsMilRepStatus ADD CONSTRAINT TechMilRepStatuses_PostType_FK FOREIGN KEY (TechnicsPostpone_TypeID) REFERENCES PMIS_RES.TechnicsPostponeTypes (TechnicsPostponeTypeID);
+
+/

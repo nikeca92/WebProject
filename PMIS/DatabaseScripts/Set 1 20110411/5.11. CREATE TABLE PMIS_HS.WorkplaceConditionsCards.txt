@@ -1,0 +1,31 @@
+﻿CREATE TABLE PMIS_HS.WorkplaceConditionsCards(WorkplaceConditionsCardID number NOT NULL,
+                                              MilitaryUnitID number,
+                                              CardNumber varchar2(250),
+                                              JobType varchar2(250),
+                                              WorkersCount number,
+                                              ComplexAssessment number(30,10),
+                                              ComplexAssessmentPointValue number(30,10),
+                                              AdditionalReward number(30,2),
+                                              CreatedBy number,
+                                              CreatedDate date,
+                                              LastModifiedBy number,
+                                              LastModifiedDate date
+                                             );
+
+ALTER TABLE PMIS_HS.WorkplaceConditionsCards ADD CONSTRAINT WConditionsCards_PK PRIMARY KEY(WorkplaceConditionsCardID);
+ALTER TABLE PMIS_HS.WorkplaceConditionsCards ADD CONSTRAINT WConditionsCards_MIR_FK FOREIGN KEY (MilitaryUnitID) REFERENCES UKAZ_OWNER.MIR (KOD_MIR);
+ALTER TABLE PMIS_HS.WorkplaceConditionsCards ADD CONSTRAINT WCondCards_CreatedBy_FK FOREIGN KEY (CreatedBy) REFERENCES PMIS_ADM.Users (UserID);
+ALTER TABLE PMIS_HS.WorkplaceConditionsCards ADD CONSTRAINT WCondCards_LastModifiedBy_FK FOREIGN KEY (LastModifiedBy) REFERENCES PMIS_ADM.Users (UserID);
+
+CREATE SEQUENCE PMIS_HS.WConditionsCards_ID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+CREATE TRIGGER PMIS_HS.TRG_WConditionsCards_INSERT
+BEFORE INSERT ON PMIS_HS.WorkplaceConditionsCards
+FOR EACH ROW
+BEGIN
+   SELECT PMIS_HS.WConditionsCards_ID_SEQ.nextval INTO :new.WorkplaceConditionsCardID FROM dual;
+END;
+/

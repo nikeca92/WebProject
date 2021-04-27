@@ -1,0 +1,14 @@
+﻿INSERT INTO PMIS_ADM.Maintenance(MaintKey, HeaderTitle, DataTable, GTableTableName,
+   FldList, UpdtList, KeyFld, CanDelete, CanAdd, MasterTable, MasterField,
+   ChangeTypeKey, InsertChangeEventTypeKey, UpdateChangeEventTypeKey, DeleteChangeEventTypeKey,
+   MenuItemKey, UIKeyMaintenance, UIKeyDelete, UIKeyEdit, UIKeyAdd, ModuleID)
+VALUES ('RES_TrailerBodyKind', 'Видове каросерии на ремаркета', 'PMIS_RES.GTable', 'TrailerBodyKind', 
+ 'TableKey[HIDDEN], TableSeq, TableValue', 'TableSeq, TableValue', 'TableKey', 1, 1, 'PMIS_RES.Trailers', 'PMIS_RES.Trailers.TrailerBodyKindID',
+ 'RES_Lists_TrailerBodyKind', 'RES_Lists_TrailerBodyKind_AddTrailerBodyKind', 'RES_Lists_TrailerBodyKind_EditTrailerBodyKind', 'RES_Lists_TrailerBodyKind_DeleteTrailerBodyKind',
+ 'Lists_RES_TrailerBodyKind', 'RES_LISTMAINT_TRAILERBODYKIND', 'RES_LISTMAINT_TRAILERBODYKIND_DELETE', 'RES_LISTMAINT_TRAILERBODYKIND_EDIT', 'RES_LISTMAINT_TRAILERBODYKIND_ADD',
+ (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'));
+
+ 
+ 
+COMMIT;
+/

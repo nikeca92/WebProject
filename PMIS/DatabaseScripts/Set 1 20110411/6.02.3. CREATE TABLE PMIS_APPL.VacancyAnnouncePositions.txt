@@ -1,0 +1,39 @@
+﻿CREATE TABLE PMIS_APPL.VacancyAnnouncePositions(VacancyAnnouncePositionID number NOT NULL,
+                                                VacancyAnnounceID number NOT NULL,
+                                                MandatoryRequirements varchar2(1000),
+                                                AdditionalRequirements varchar2(1000),
+                                                SpecificRequirements varchar2(1000),
+                                                ResponsibleMilitaryUnitID number,
+                                                CompetitionPlaceAndDate varchar2(2000),
+                                                ContactPhone varchar2(50),
+                                                PositionStatusID number,
+                                                /*Vacant Position*/
+                                                MilitaryUnitID number,
+                                                PositionName varchar2(300),
+                                                PositionCode varchar2(200),
+                                                EducationID number,
+                                                ClInformationAccLevelNATO varchar2(300),
+                                                ClInformationAccLevelBG varchar2(300),
+                                                ClInformationAccLevelEU varchar2(300),
+                                                PositionsCnt number
+                                               );
+
+ALTER TABLE PMIS_APPL.VacancyAnnouncePositions ADD CONSTRAINT VacancyAnnouncePositions_PK PRIMARY KEY(VacancyAnnouncePositionID);
+ALTER TABLE PMIS_APPL.VacancyAnnouncePositions ADD CONSTRAINT VacAnnPositions_VacAnn_FK FOREIGN KEY (VacancyAnnounceID) REFERENCES PMIS_APPL.VacancyAnnounces (VacancyAnnounceID);
+ALTER TABLE PMIS_APPL.VacancyAnnouncePositions ADD CONSTRAINT VacAnnPositions_PosStatus_FK FOREIGN KEY (PositionStatusID) REFERENCES PMIS_APPL.VacancyAnnouncePosStatuses (VacancyAnnouncePosStatusID);
+ALTER TABLE PMIS_APPL.VacancyAnnouncePositions ADD CONSTRAINT VacAnnPositions_EduID_FK FOREIGN KEY (EducationID) REFERENCES PMIS_APPL.Educations (EducationID);
+
+
+
+CREATE SEQUENCE PMIS_APPL.VacAnnouncePositions_ID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+CREATE TRIGGER PMIS_APPL.TRG_VacAnnPositions_INSERT
+BEFORE INSERT ON PMIS_APPL.VacancyAnnouncePositions
+FOR EACH ROW
+BEGIN
+   SELECT PMIS_APPL.VacAnnouncePositions_ID_SEQ.nextval INTO :new.VacancyAnnouncePositionID FROM dual;
+END;
+/

@@ -1,0 +1,33 @@
+﻿CREATE TABLE PMIS_APPL.ServiceTypes(ServiceTypeID number NOT NULL,
+                                    ServiceTypeName varchar(500),
+                                    Active number(1) NOT NULL CHECK(Active BETWEEN 0 AND 1));
+                                    
+ALTER TABLE PMIS_APPL.ServiceTypes ADD CONSTRAINT ServiceTypes_PK PRIMARY KEY(ServiceTypeID);                                    
+
+CREATE SEQUENCE PMIS_APPL.ServiceTypes_ID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+CREATE TRIGGER PMIS_APPL.TRG_ServiceTypes_INSERT
+BEFORE INSERT ON PMIS_APPL.ServiceTypes
+FOR EACH ROW
+BEGIN
+   SELECT PMIS_APPL.ServiceTypes_ID_SEQ.nextval INTO :new.ServiceTypeID FROM dual;
+END;
+/
+
+INSERT INTO PMIS_APPL.ServiceTypes (ServiceTypeName, Active)
+VALUES ('Доброволен резерв', 1);
+
+INSERT INTO PMIS_APPL.ServiceTypes (ServiceTypeName, Active)
+VALUES ('Военна служба', 1);
+
+INSERT INTO PMIS_APPL.ServiceTypes (ServiceTypeName, Active)
+VALUES ('Начална военна подготовка', 1);
+
+INSERT INTO PMIS_APPL.ServiceTypes (ServiceTypeName, Active)
+VALUES ('Специална военна подготовка', 1);
+
+COMMIT;
+/

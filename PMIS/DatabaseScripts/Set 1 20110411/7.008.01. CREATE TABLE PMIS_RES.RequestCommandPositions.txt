@@ -1,0 +1,25 @@
+﻿CREATE TABLE PMIS_RES.RequestCommandPositions (RequestCommandPositionID number NOT NULL,
+                                               RequestsCommandID number NOT NULL,
+                                               Position varchar2(250),
+                                               MilitaryRankID varchar2(2),
+                                               ReservistsCount number NOT NULL,
+                                               PositionType number NOT NULL CHECK (PositionType IN (1, 2)) /*1 = Manually added; 2 = Imported from Vacant Positions*/
+                                              );
+
+ALTER TABLE PMIS_RES.RequestCommandPositions ADD CONSTRAINT RequestCommandPositions_PK PRIMARY KEY (RequestCommandPositionID);
+ALTER TABLE PMIS_RES.RequestCommandPositions ADD CONSTRAINT ReqCmdPositions_ReqCommands_FK FOREIGN KEY (RequestsCommandID) REFERENCES PMIS_RES.RequestsCommands (RequestsCommandID);
+ALTER TABLE PMIS_RES.RequestCommandPositions ADD CONSTRAINT ReqCmdPositions_MilRank_FK FOREIGN KEY (MilitaryRankID) REFERENCES VS_OWNER.KLV_ZVA (ZVA_KOD);
+
+
+CREATE SEQUENCE PMIS_RES.RequestCommandPositions_ID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+CREATE TRIGGER PMIS_RES.TRG_ReqCommandPositions_INSERT
+BEFORE INSERT ON PMIS_RES.RequestCommandPositions
+FOR EACH ROW
+BEGIN
+   SELECT PMIS_RES.RequestCommandPositions_ID_SEQ.nextval INTO :new.RequestCommandPositionID FROM dual;
+END;
+/

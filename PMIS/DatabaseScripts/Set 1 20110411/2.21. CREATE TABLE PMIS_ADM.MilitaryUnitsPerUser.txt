@@ -1,0 +1,14 @@
+﻿CREATE TABLE PMIS_ADM.MilitaryUnitsPerUser(UserID number NOT NULL,
+                                           MilitaryUnitID number NOT NULL
+                                          );
+
+ALTER TABLE PMIS_ADM.MilitaryUnitsPerUser ADD CONSTRAINT MilitaryUnitsPerUser_PK PRIMARY KEY(UserID, MilitaryUnitID);
+ALTER TABLE PMIS_ADM.MilitaryUnitsPerUser ADD CONSTRAINT MilitaryUnitsPerUser_Users_FK FOREIGN KEY (UserID) REFERENCES PMIS_ADM.Users (UserID);
+ALTER TABLE PMIS_ADM.MilitaryUnitsPerUser ADD CONSTRAINT MilitaryUnitsPerUser_MUnits_FK FOREIGN KEY (MilitaryUnitID) REFERENCES UKAZ_OWNER.MIR (KOD_MIR);
+/
+
+INSERT INTO PMIS_ADM.MilitaryUnitsPerUser(UserID, MilitaryUnitID)
+VALUES (1, (SELECT KOD_MIR FROM UKAZ_OWNER.STRM WHERE STR_KOD_MIR IS NULL));
+
+COMMIT;
+/

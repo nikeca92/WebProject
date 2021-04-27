@@ -1,0 +1,7 @@
+﻿
+UPDATE PMIS_RES.VEHICLES
+SET regnumber = Upper(regnumber),
+    inventorynumber = Upper(inventorynumber);
+
+COMMIT;    
+/

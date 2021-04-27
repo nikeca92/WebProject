@@ -1,0 +1,1280 @@
+﻿create or replace PACKAGE BODY                 VS_OWNER.VS_SPR AS
+
+  --	Длъжност		Ниво	В справка	Признак	В2Обобщена
+	--	Други				0			10				6				  
+  --	КВ					1			12				1				1
+  --	ЗКР					2			13				1				2
+  --	КР					3			14				1				3
+	--	ЩБ					4			 2				2				
+  --	ЗКБ,НЩБ 		5			15				1				4
+  --	КБ					6			16				1				5
+  --	ЩП					7			 3				3				
+  --	НЩП,ЗКП,КП	8			17				1				7
+  --	ЩС					9			 4				4				
+  --	ЩО			 	 10			 5				5		
+  
+-- Към справка СДД - връща е ли от този тип длъжност
+  		--    nDl   - Обобщена длъжност N (модифициран признак на дл.);
+  		--    nTip  - Тип 1-по отчет, 2-по назначение;
+  		--    nObr  - Обработка 1-всички, 2-без Вр.снети,Отсрочени,Огвс;
+  -- Връща: Y-е на такава длъжност, NULL-не е;
+FUNCTION TDl(cEGN IN VarChar2, nDl IN Number, nTip IN Number, nObr IN Number) 
+    	Return VarChar2
+  IS
+      xPDl VarChar2(1);
+      xDl  VarChar2(5);
+      i Number;
+  BEGIN
+  	IF nObr=2 THEN  --без Вр.снети,Отсрочени,Огвс
+  		SELECT DECODE(ZVR_SNET||ZOTSR||ZOGVS,'NNN',0,1)
+     		INTO   i
+    		FROM   VS_LS
+    		WHERE  EGN = cEGN;
+    	IF i=1 THEN
+    		RETURN(NULL);
+    	END IF;
+  	END IF;
+    SELECT DECODE(nTip,1,ZPR_DL,ZPPR_DL) PRIZNAK, DECODE(nTip,1,ZKOD_DLO, ZPDLO) DLJ
+     	INTO   xPDl, xDl
+    	FROM   VS_LS
+    	WHERE  EGN = cEGN;
+    IF nDl < 10 THEN     -- Щабни длъжности
+    	IF nDl = TO_NUMBER(xPDl) THEN
+    		RETURN('Y');
+    	ELSE
+    		RETURN(NULL);
+    	END IF;
+  	ELSIF nDL = 10 THEN      -- Други длъжности
+    	Select Count(*) 
+      	Into i
+      	from v2obdl 
+      	where obdl_kodv = xDl;  
+    	IF (xPDl = '6' or (xPDl = '1' and i<1) or xPDl IS NULL) THEN    		
+    		RETURN('Y');
+    	ELSE 
+    		RETURN(NULL);
+    	END IF;
+    ELSE							 	 -- Командирски длъжности
+    	IF xPDl = '1' THEN
+	    	Select OBDL 
+      		Into i
+      		from v2obdl 
+      		where obdl_kodv = xDl;  
+    		IF (nDL = 12 and i=1) THEN   		-- Командир на взвод
+    			RETURN('Y');
+    		ELSIF (nDL = 13 and i=2) THEN	  -- Зам. Командир на рота
+    			RETURN('Y');		
+    		ELSIF (nDL = 14 and i=3) THEN   -- Командир на рота
+    			RETURN('Y');		
+    		ELSIF (nDL = 15 and i=4) THEN   -- Зам. Командир и НЩ на батальон
+    			RETURN('Y');
+    		ELSIF (nDL = 16 and i=5) THEN   -- Командир на батальон
+    			RETURN('Y');		
+    		ELSIF (nDL = 17 and i=7) THEN   -- Командир, зам. к-р и НЩ на полк
+    			RETURN('Y');		
+    		ELSE  -- Командир ама на друго нещо!!! - към другите 
+    			RETURN(NULL);    			
+    		END IF;	
+    	ELSE	
+				RETURN(NULL);    			        			
+    	END IF;
+    END IF;
+  END Tdl;     
+  
+-- Към справка СДД - Минал ли е освежаване когато е трябвало (към текуща дата)
+  FUNCTION Osv(cEGN IN VarChar2) 
+    	Return VarChar2
+  IS
+      dLastKurs Date;
+      dLastOsv  Date;
+      i Number;
+  BEGIN
+  	BEGIN
+  		Select Max(VZPREP_OTKOGA)
+  			Into dLastKurs
+  			From VS_ZPREP
+  			Where (VZPREP_TIP='К' or VZPREP_TIP='О') and VZPREP_EGNLS = cEGN;
+  	EXCEPTION
+  		WHEN NO_DATA_FOUND THEN 
+  					RETURN('Y');  -- Няма ни курс ни освежаване, не му се полага нищо 
+  												--(може би си е свеж :1:2:3)
+  	END;
+  	IF 60 >= Months_Between(dLastKurs,SYSDATE) THEN   -- Преди по-малко от 5 години,Не му се полага
+			RETURN('Y');  -- Свеж си е
+  	ELSE
+			RETURN('N');  -- Няма освежаване или курс в изминалите 5 години  (не е освежен)
+   	END IF;
+	END Osv;
+
+-- Към справка СДД - има ли курс за длъжността на която е подаден
+  FUNCTION Kurs(cODl IN VarChar2, nOPr IN Number, cPDl IN VarChar2, nPPr IN Number, nV_KOM IN Number) 
+    	Return VarChar2
+  IS
+  BEGIN		
+  	IF (nV_KOM=NULL or nV_KOM=10) THEN   -- Нема МН - Нема смисъл
+  		RETURN(NULL);
+  	END IF;
+  	IF NivoDl(cODl, nOPr) < NivoDl(cPDl, nPPr) THEN
+			RETURN('N');  
+  	END IF;        
+  	RETURN('Y');  
+  END Kurs;
+  
+  -- За справка СДД (Връща на кое ниво е длъжността)
+  FUNCTION NivoDl(cDl IN VarChar2, nPr IN Number) 
+    	Return Number
+  IS
+      i Number;
+  BEGIN
+  	IF nPr = 1 THEN		-- Командирска длъжност
+  	   BEGIN
+  		   i:=0;
+			   Select OBDL 
+      	     	Into i
+      				from v2obdl 
+      				where obdl_kodv = cDl;  
+  		EXCEPTION
+  			WHEN NO_DATA_FOUND THEN 
+  					i:=0;
+      END;		
+    	IF i = 1 THEN   		-- Командир на взвод
+    			RETURN(1);
+    	ELSIF i = 2 THEN	  -- Зам. Командир на рота
+    			RETURN(2);		
+    	ELSIF i = 3 THEN   -- Командир на рота
+    			RETURN(3);		
+    	ELSIF i = 4 THEN   -- Зам. Командир и НЩ на батальон
+    			RETURN(5);
+    	ELSIF i = 5 THEN   -- Командир на батальон
+    			RETURN(6);		
+    	ELSIF i = 7 THEN   -- Командир, зам. к-р и НЩ на полк
+    			RETURN(8);		
+    	END IF;	
+  	ELSIF nPr = 2 THEN 	-- Щабна в батальон
+			RETURN(4);    		
+  	ELSIF nPr = 3 THEN 	-- Щабна в полк
+			RETURN(7);    		  		
+  	ELSIF nPr = 4 THEN 	-- Щабна в съединение
+			RETURN(9);    		  		
+  	ELSIF nPr = 5 THEN 	-- Щабна в обединение
+			RETURN(10);    		  		
+  	END IF;
+  	-- Други и неясно какви
+		RETURN(0);    			
+END NivoDl;
+  
+/*
+FUNCTION STAJ_DNES(pEGN IN VarChar2, nTip IN Number) 
+    RETURN VarChar2 IS
+      p_vba1 date;
+      p_ofzv date;      
+      p_pstg number(2);
+      p_pstm number(2);
+      p_pstd number(2);
+      p_brm number(5);
+      p_brg number(5);--3
+      p_brmes number(3);
+      p_dni number(6);
+BEGIN
+  	Select  v_ba,   pstg,   pstm,   pstd,   ofzv 
+  	   Into p_vba1, p_pstg, p_pstm, p_pstd, p_ofzv
+  	   From vs_ls 
+  	   Where egn=pEGN;
+  	p_brm := MONTHS_BETWEEN(sysdate,greatest(p_vba1,NVL(p_ofzv,p_vba1)));  -- общ брой месеци
+    p_brg:=Floor(p_brm/12);                                    -- брой години  
+    p_brmes:=(p_brm-(p_brg*12));                               -- брой месеци     
+    p_dni:=(sysdate-greatest(p_vba1,NVL(p_ofzv,p_vba1)));                  -- общ брой дни
+    p_dni:=p_dni-(p_brg*365+p_brmes*30);                   -- брой дни
+    p_dni:=p_dni+NVL(p_pstd,0);     -- дни + приравнени
+    if p_dni>29 then
+    	p_dni:=p_dni-30;
+    	p_brmes:=p_brmes+1;
+    end if;	
+    if p_dni<0 then
+    	p_dni:=0;
+    end if;	    
+   	p_brmes:=p_brmes+NVL(p_pstm,0); -- месеци + приравнени   
+    if p_brmes>11 then
+    	p_brmes:=p_brmes-12;
+    	p_brg:=p_brg+1;    	
+    end if;	
+    p_brg:=p_brg + NVL(p_pstg,0);   -- години + приравнени
+    if (p_brg+p_brmes+p_dni)>0 then
+      if nTip=0 then
+    	   RETURN('(към '||to_char(sysdate,'DD.MM.YYYY')||') - '||To_Char(p_brg)||'г. '||To_Char(p_brmes)||'м.');
+      elsif nTip=1 then
+      	 RETURN('(към '||to_char(sysdate,'DD.MM.YYYY')||') - '||To_Char(p_brg)||'г. '||To_Char(p_brmes)||'м. '||To_Char(p_dni)||'д.');    	
+    	else
+      	 RETURN(LPad(p_brg,3,'0')||LPad(p_brmes,2,'0')||LPad(p_dni,2,'0'));  	
+    	end if;
+    else
+       if nTip=0 or nTip=1 then
+          Return('Няма данни');
+       else
+          Return('0000000');
+       end if;
+    end if;
+END;
+
+FUNCTION STAJ_DNES(pEGN IN VarChar2, nTip IN Number, dDate IN Date, sPriravneni IN Number) 
+    RETURN VarChar2 IS
+      p_vba1 date;
+      p_ofzv date;      
+      p_pstg number(2);
+      p_pstm number(2);
+      p_pstd number(2);
+      p_brm number(5);
+      p_brg number(5);--3
+      p_brmes number(3);
+      p_dni number(6);
+BEGIN
+  	Select  v_ba,   pstg,   pstm,   pstd,   ofzv 
+  	   Into p_vba1, p_pstg, p_pstm, p_pstd, p_ofzv
+  	   From vs_ls 
+  	   Where egn=pEGN;
+  	p_brm := MONTHS_BETWEEN(dDate,greatest(p_vba1,NVL(p_ofzv,p_vba1)));  -- общ брой месеци
+    p_brg:=Floor(p_brm/12);                                    -- брой години  
+    p_brmes:=(p_brm-(p_brg*12));                               -- брой месеци     
+    p_dni:=(dDate-greatest(p_vba1,NVL(p_ofzv,p_vba1)));                  -- общ брой дни
+    p_dni:=p_dni-(p_brg*365+p_brmes*30);                   -- брой дни
+    if sPriravneni=1 Then
+       p_dni:=p_dni+NVL(p_pstd,0);     -- дни + приравнени
+    end if;
+    if p_dni>29 then
+    	p_dni:=p_dni-30;
+    	p_brmes:=p_brmes+1;
+    end if;	
+    if p_dni<0 then
+    	p_dni:=0;
+    end if;
+    if sPriravneni=1 Then    	    
+     	 p_brmes:=p_brmes+NVL(p_pstm,0); -- месеци + приравнени   
+    end if;
+    if p_brmes>11 then
+    	p_brmes:=p_brmes-12;
+    	p_brg:=p_brg+1;    	
+    end if;
+    if sPriravneni=1 Then	
+       p_brg:=p_brg + NVL(p_pstg,0);   -- години + приравнени
+    end if;
+    if (p_brg+p_brmes+p_dni)>0 then
+      if nTip=0 then
+    	   RETURN('(към '||to_char(dDate,'DD.MM.YYYY')||') - '||To_Char(p_brg)||'г. '||To_Char(p_brmes)||'м.');
+      elsif nTip=1 then
+      	 RETURN('(към '||to_char(dDate,'DD.MM.YYYY')||') - '||To_Char(p_brg)||'г. '||To_Char(p_brmes)||'м. '||To_Char(p_dni)||'д.');    	
+    	else
+      	 RETURN(LPad(p_brg,3,'0')||LPad(p_brmes,2,'0')||LPad(p_dni,2,'0'));  	
+    	end if;
+    else
+       if nTip=0 or nTip=1 then
+          Return('Няма данни');
+       else
+          Return('0000000');
+       end if;
+    end if;
+END;
+*/
+-- ТРУДОВ СТАЖ - към днешна дата с форматиран изход (nTip)
+FUNCTION STAJ_DNES(pEGN IN VarChar2, nTip IN Number) 
+    RETURN VarChar2 IS
+      p_vba1 date;
+      p_ofzv date;      
+      p_pstg number(2);
+      p_pstm number(2);
+      p_pstd number(2);
+      p_ostg number(2);
+      p_ostm number(2);
+      p_ostd number(2);
+      p_brm number(5);
+      p_brg number(5);--3
+      p_brmes number(3);
+      p_dni number(6);
+      T number;
+BEGIN
+  	Select  v_ba,   pstg,   pstm,   pstd,   ostg,   ostm,   ostd,   ofzv 
+  	   Into p_vba1, p_pstg, p_pstm, p_pstd, p_ostg, p_ostm, p_ostd, p_ofzv
+  	   From vs_ls 
+  	   Where egn=pEGN;
+  	p_brm := MONTHS_BETWEEN(sysdate,greatest(p_vba1,NVL(p_ofzv,p_vba1)));  -- общ брой месеци
+    p_brg:=Floor(p_brm/12);                                    -- брой години  
+    p_brmes:=(p_brm-(p_brg*12));                               -- брой месеци     
+    p_dni:=(sysdate-greatest(p_vba1,NVL(p_ofzv,p_vba1)));                  -- общ брой дни
+    p_dni:=p_dni-(p_brg*365.25+p_brmes*30.4375);                   -- брой дни
+    if nTip>9 then
+      p_pstg := p_ostg;
+      p_pstm := p_ostm;
+      p_pstd := p_ostd;
+      T := nTip-10;
+    else T := nTip;
+    end if;
+    p_dni:=p_dni+NVL(p_pstd,0);     -- дни + (приравнени/общ тр.стаж)
+    if p_dni>29 then
+    	p_dni:=p_dni-30;
+    	p_brmes:=p_brmes+1;
+    end if;	
+    if p_dni<0 then
+    	p_dni:=0;
+    end if;	    
+   	p_brmes:=p_brmes+NVL(p_pstm,0); -- месеци + (приравнени/общ тр.стаж)   
+    if p_brmes>11 then
+    	p_brmes:=p_brmes-12;
+    	p_brg:=p_brg+1;    	
+    end if;	
+    p_brg:=p_brg + NVL(p_pstg,0);   -- години + (приравнени/общ тр.стаж)
+    if (p_brg+p_brmes+p_dni)>0 then
+      if T=0 then
+    	   RETURN('(към '||to_char(sysdate,'DD.MM.YYYY')||') - '||To_Char(p_brg)||'г. '||To_Char(p_brmes)||'м.');
+      elsif T=1 then
+      	 RETURN('(към '||to_char(sysdate,'DD.MM.YYYY')||') - '||To_Char(p_brg)||'г. '||To_Char(p_brmes)||'м. '||To_Char(p_dni)||'д.');    	
+    	else
+      	 RETURN(LPad(p_brg,3,'0')||LPad(p_brmes,2,'0')||LPad(p_dni,2,'0'));  	
+    	end if;
+    else
+       if T=0 or T=1 then
+          Return('Няма данни');
+       else
+          Return('0000000');
+       end if;
+    end if;
+END;
+
+-- ТРУДОВ СТАЖ - към зададена дата с форматиран изход (nTip)
+FUNCTION STAJ_DNES(pEGN IN VarChar2, nTip IN Number, dDate IN Date, VidStaj IN Number) 
+    RETURN VarChar2 IS
+      p_vba1 date;
+      p_ofzv date;      
+      p_pstg number(2);
+      p_pstm number(2);
+      p_pstd number(2);
+      p_ostg number(2);
+      p_ostm number(2);
+      p_ostd number(2);
+      p_brm number(5);
+      p_brg number(5);--3
+      p_brmes number(3);
+      p_dni number(6);
+BEGIN
+  	Select  v_ba,   pstg,   pstm,   pstd,   ostg,   ostm,   ostd,   ofzv 
+  	   Into p_vba1, p_pstg, p_pstm, p_pstd, p_ostg, p_ostm, p_ostd, p_ofzv
+  	   From vs_ls 
+  	   Where egn=pEGN;
+  	p_brm := MONTHS_BETWEEN(dDate,greatest(p_vba1,NVL(p_ofzv,p_vba1)));  -- общ брой месеци
+    p_brg:=Floor(p_brm/12);                                    -- брой години  
+    p_brmes:=(p_brm-(p_brg*12));                               -- брой месеци     
+    p_dni:=(dDate-greatest(p_vba1,NVL(p_ofzv,p_vba1)));                  -- общ брой дни
+    p_dni:=p_dni-(p_brg*365.25+p_brmes*30.4375);                   -- брой дни
+    if VidStaj=1 then
+       p_dni:=p_dni+NVL(p_pstd,0);     -- дни + приравнени
+    elsif VidStaj=2 then
+       p_dni:=p_dni+NVL(p_ostd,0);     -- дни + общ тр. стаж
+    end if;
+    if p_dni>29 then
+    	p_dni:=p_dni-30;
+    	p_brmes:=p_brmes+1;
+    end if;	
+    if p_dni<0 then
+    	p_dni:=0;
+    end if;
+    if VidStaj=1 then    	    
+     	 p_brmes:=p_brmes+NVL(p_pstm,0); -- месеци + приравнени   
+    elsif VidStaj=2 then
+     	 p_brmes:=p_brmes+NVL(p_ostm,0); -- месеци + общ тр. стаж   
+    end if;
+    if p_brmes>11 then
+    	p_brmes:=p_brmes-12;
+    	p_brg:=p_brg+1;    	
+    end if;
+    if VidStaj=1 then	
+       p_brg:=p_brg + NVL(p_pstg,0);   -- години + приравнени
+    elsif VidStaj=2 then   
+       p_brg:=p_brg + NVL(p_ostg,0);   -- години + общ тр. стаж   
+    end if;
+    if (p_brg+p_brmes+p_dni)>0 then
+      if nTip=0 then
+    	   RETURN('(към '||to_char(dDate,'DD.MM.YYYY')||') - '||To_Char(p_brg)||'г. '||To_Char(p_brmes)||'м.');
+      elsif nTip=1 then
+      	 RETURN('(към '||to_char(dDate,'DD.MM.YYYY')||') - '||To_Char(p_brg)||'г. '||To_Char(p_brmes)||'м. '||To_Char(p_dni)||'д.');    	
+    	else
+      	 RETURN(LPad(p_brg,3,'0')||LPad(p_brmes,2,'0')||LPad(p_dni,2,'0'));  	
+    	end if;
+    else
+       if nTip=0 or nTip=1 then
+          Return('Няма данни');
+       else
+          Return('0000000');
+       end if;
+    end if;
+END;
+
+-- За справка (е ли на годините във вилката)
+FUNCTION IsNaStaj(cEGN IN VarChar2, OtGod IN VarChar2, DoGod IN VarChar2, dDate IN Date, sPriravneni IN Number) Return VarChar2 IS
+BEGIN
+		IF cEGN IS NULL Then
+	  	 RETURN(NULL);
+  	END IF;			
+  	IF staj_dnes(cEgn, 2, dDate, sPriravneni)>OtGod and vs_spr.staj_dnes(cEgn, 2, dDate, sPriravneni)<=DoGod Then
+     	RETURN('Y');
+  	END IF;
+  	RETURN(NULL);
+END;
+
+FUNCTION GET_OES( pEGN IN VARCHAR2 ) RETURN VARCHAR2 IS
+   sKod VarChar2(60);
+   vMSTR_ID Number;
+   vKOD_MIR Number;
+   vMSTR_IME VS_MSTR.MSTR_IMEED%TYPE;   
+   pKodPod VarChar2(200);
+   RetVal VarChar2(1000);
+   nKodLen Number(3);      
+BEGIN
+    IF Substr(pEGN,1,1)='S' THEN
+  	-- Тук вече сме в ракурсия ...
+  	vKOD_MIR := TO_NUMBER(Trim(Substr(pEGN,2,10)));
+    pKodPod := Substr(pEGN,12);
+    Select MSTR_IMEED
+      Into RetVal
+      From VS_MSTR
+      Where MSTR_KOD_MIR = vKOD_MIR
+        and F_KP(MSTR_KODPOD)  = pKodPod;
+  ELSE
+  	-- Първо извикване с ЕГН или ИД на Длъжност (=10 e EGN)
+  	IF Length(pEGN)<10 Then
+      vMSTR_ID := TO_NUMBER(pEGN);
+    ELSE 
+      Select MSST_MSTR_ID 
+        Into vMSTR_ID
+        From VS_MSST
+        Where MSST_EGN = pEGN;
+    END IF;
+    Select MSTR_IMEED, F_KP(MSTR_KODPOD), MSTR_KOD_MIR
+      Into RetVal,     pKodPod,           vKOD_MIR  
+      From VS_MSTR
+      Where MSTR_ID = vMSTR_ID;
+  END IF;
+  null;
+ 	nKodLen := Length(pKodPod);
+ 	-- Махам всички шпации :1:2:3
+ 	RetVal := LTrim(RTrim(RetVal));
+	IF nKodLen=3 THEN         -- това е най-главното звено (от 1-во ниво)
+		 RETURN(RetVal);
+	END IF;
+	-- Търсим по главно звено
+  sKod := SubStr(pKodPod,1,nKodLen-3);
+--  RetVal := GET_OES('S'||RPad(TO_CHAR(vKOD_MIR),10)||sKod)||', '||RetVal;
+  RetVal := RetVal||', '||GET_OES('S'||RPad(TO_CHAR(vKOD_MIR),10)||sKod);  	
+  RETURN(RetVal);
+END;
+
+-- Пари словом
+FUNCTION Cifri(i in Number) Return VarChar2 IS 
+begin
+	IF i=1 then	Return('ЕДИН');	end if;
+ 	IF i=2 then	Return('ДВА'); end if;
+ 	IF i=3 then	Return('ТРИ'); end if;
+ 	IF i=4 then	Return('ЧЕТИРИ'); end if;
+ 	IF i=5 then	Return('ПЕТ'); end if;
+ 	IF i=6 then	Return('ШЕСТ'); end if;
+ 	IF i=7 then	Return('СЕДЕМ'); end if;
+ 	IF i=8 then	Return('ОСЕМ'); end if;
+ 	IF i=9 then	Return('ДЕВЕТ'); end if;
+END;
+ 
+function Do1000(tString in VarChar2) return varchar2 IS 
+	cRet VarChar2(1000) := '';
+	nBuf Number;
+	ttString VarChar2(1000);
+BEGIN
+	ttString := tString;
+  IF TO_NUMBER( ttString ) > 99 THEN
+     nBuf := TO_NUMBER( SubStr( ttString, 1, 1 ) );
+     IF nBuf = 1 THEN
+        cRet := cRet || ' СТО';
+     ELSIF nBuf = 2 THEN 
+        cRet := cRet || ' ДВЕСТА';
+     ELSIF nBuf = 3 THEN
+        cRet := cRet || ' ТРИСТА';
+     ELSE
+        cRet := cRet || ' ' || Cifri(nBuf) || 'СТОТИН';
+     END IF;
+     ttString := SubStr( ttString, -2, 2 );
+     IF (TO_NUMBER( ttString ) > 0 and TO_NUMBER( ttString ) < 20) or
+        (TO_NUMBER( ttString ) > 0 and SubStr( ttString, -1, 1 ) = '0') THEN
+        cRet := cRet || ' И';
+     END IF;
+  END IF;
+  ttString := SubStr( ttString, -2, 2 );
+  IF TO_NUMBER( ttString ) > 9 THEN
+     nBuf := TO_NUMBER( SubStr( ttString, 1, 1 ) );
+     IF nBuf = 1 THEN
+        IF TO_NUMBER( ttString ) = 10 THEN
+           cRet := cRet || ' ДЕСЕТ';
+        ELSIF TO_NUMBER( ttString ) = 11  THEN
+           cRet := cRet || ' ЕДИНАДЕСЕТ';
+        ELSE
+           cRet := cRet || ' ' || Cifri(TO_NUMBER( SubStr( ttString, -1, 1 ) )) || 'НАДЕСЕТ';
+        END IF;
+     ELSE
+        cRet := cRet || ' ' || Cifri(nBuf) || 'ДЕСЕТ';
+        IF TO_NUMBER( SubStr( ttString, 2, 1 ) )>0 THEN
+           cRet := cRet || ' И';
+        END IF;
+     END IF;
+  END IF;
+  IF (TO_NUMBER( ttString ) < 10 or TO_NUMBER( ttString ) > 19) and
+      TO_NUMBER( SubStr( ttString, -1, 1 ) ) > 0 THEN
+     cRet := cRet || ' ' || Cifri( To_Number( SubStr( tString, -1, 1 ) ) );
+  END IF;
+  RETURN( cRet );
+END;
+
+function PariSlovom( Suma in number) return varchar2 IS
+  sString VarChar2(1000) := '';
+  tString VarChar2(1000) := LTrim(TO_CHAR(Suma, '99999999.99'));
+BEGIN
+      IF TO_NUMBER( tString ) >= 1000000 THEN
+         sString := sString || Do1000( SubStr( tString, 1, Length(tString)-9));
+         IF TO_NUMBER( SubStr( tString, 1, Length(tString)-9))=1 THEN
+            sString := sString || ' МИЛИОН';
+         ELSE
+            sString := sString || ' МИЛИОНА';
+         END IF;
+         tString :=  SubStr( tString,-9, 9 );
+         IF (TO_NUMBER( SubStr(tString,1,3) )>0 and TO_NUMBER( Substr(tString,4,3) )=0) or
+            (TO_NUMBER( SubStr(tString,1,3) )=0 and TO_NUMBER( Substr(tString,4,3) )>0)  THEN
+            sString := sString || ' И';
+         END IF;
+      END IF;
+
+      IF TO_NUMBER( tString ) >= 1000 THEN
+         IF TO_NUMBER( SubStr( tString, 1, Length(tString)-6))>0 THEN
+            IF TO_NUMBER( SubStr( tString, 1, Length(tString)-6))=1 THEN
+               sString := sString || ' ХИЛЯДА';
+            ELSIF TO_NUMBER( SubStr( tString, 1, Length(tString)-6))=2 THEN
+               sString := sString || ' ДВЕ ХИЛЯДИ';
+            ELSE
+               sString := sString || Do1000( SubStr( tString, 1, Length(tString)-6));
+               sString := sString || ' ХИЛЯДИ';
+            END IF;
+         END IF;
+         tString :=  SubStr( tString, -6, 6 );
+         IF TO_NUMBER( SubStr(tString, 1, 3) ) > 0 THEN
+            sString := sString || ' И';
+         END IF;
+      END IF;
+      tString :=  SubStr( tString, -6, 6 );
+      sString := sString || Do1000( SubStr( tString, 1, Length(tString)-3) );
+      sString := sString || ' ЛВ.';
+      IF TO_NUMBER( SubStr( tString, -2, 2 ) ) > 0 THEN
+         sString := sString || ' И ' || SubStr( tString, -2, 2 ) || ' СТ.';
+      END IF;
+			RETURN(sString);
+END;
+
+-- Tip na zwanie
+FUNCTION SHTAT_OF_ZVA(sst_id IN Number) RETURN VarChar2 IS
+	CURSOR c1 IS Select Substr(mszap_zapkod,1,1) KOD
+									From rj_sst_zap 
+									Where mszap_msst_id=sst_id
+									Order By mszap_zapkod DESC;
+	s1 VarChar2(1);
+	s2 VarChar2(1);	
+BEGIN
+	OPEN c1;
+	Fetch c1 into s1;
+	IF c1%NOTFOUND THEN
+     CLOSE c1;
+     RETURN(NULL);
+	END IF;
+	Fetch c1 into s2;
+	IF c1%NOTFOUND THEN
+     s2 := ' ';
+	END IF;
+  CLOSE c1;
+  IF s1='O' THEN RETURN('110'); END IF; --Мл.лейт.
+  IF s1='P' THEN RETURN('100'); END IF; --Лейт.
+  IF s1='Q' THEN RETURN('090'); END IF; --Ст.лейт.
+  --
+  IF s1='R' THEN RETURN('082'); END IF; --К-н лейт.
+  IF s1='S' and s2='R' THEN RETURN('080'); END IF; --Капитан/К-н лейт.
+  IF s1='S' THEN RETURN('081'); END IF; --Капитан
+  --
+  IF s1='T' THEN RETURN('072'); END IF; --К-н III р.
+  IF s1='U' and s2='T' THEN RETURN('070'); END IF; --Майор/К-н III р.
+  IF s1='U' THEN RETURN('071'); END IF; --Майор
+  --
+	IF s1='V' THEN RETURN('062'); END IF; --К-н II р.
+  IF s1='W' and s2='V' THEN RETURN('060'); END IF; --Подполк./К-н II р.
+  IF s1='W' THEN RETURN('061'); END IF; --Подполк.
+  
+	IF s1='X' THEN RETURN('052'); END IF; --К-н I р.
+  IF s1='Y' and s2='X' THEN RETURN('050'); END IF; --Полковник/К-н I р.
+  IF s1='Y' THEN RETURN('051'); END IF; --Полковник
+  --
+	IF s1='a' THEN RETURN('042'); END IF; --Бриг. ад-л
+  IF s1='b' and s2='a' THEN RETURN('040'); END IF; --Бриг. г-л/Бриг. ад-л
+  IF s1='b' THEN RETURN('041'); END IF; --Бриг. г-л
+  
+	IF s1='c' THEN RETURN('032'); END IF; --Контраадм.
+  IF s1='d' and s2='c' THEN RETURN('030'); END IF; --Г-л майор/Контраадм.
+  IF s1='d' THEN RETURN('031'); END IF; --Г-л майор
+  --
+	IF s1='e' THEN RETURN('022'); END IF; --Вицеадм.
+  IF s1='f' and s2='e' THEN RETURN('020'); END IF; --Г-л лейт./Вицеадм.
+  IF s1='f' THEN RETURN('021'); END IF; --Г-л лейт.
+  --
+	IF s1='g' THEN RETURN('012'); END IF; --Адмирал
+  IF s1='h' and s2='g' THEN RETURN('010'); END IF; --Генерал/Адмирал
+  IF s1='h' THEN RETURN('011'); END IF; --Генерал
+  RETURN(Null);
+END;
+
+PROCEDURE SPR_RV_ZAP_INS 
+IS
+BEGIN
+--  DELETE FROM SPR_RV_ZAP_OFT;	
+  DELETE FROM SPR_RV_ZAP_OF;
+/*for i in (select sht.st_NOM                  ST_NOM
+     , sht.st_KODV                  ST_KODV
+     , f_kp(str.mstr_kodpod)      KOD_POD
+     , sht.st_vid                   VID_SHTAT
+     , str.mstr_br                  BR_ZVENA
+     , str.mstr_vid                 VID_ZVENO
+     , sst.msst_samom             SAMO_M
+     , (Select Max(Substr(k.ZAP_IME,1,4))
+    From rj_sst_zap z, klv_zap k
+    Where z.MSZAP_MSST_ID=sst.msst_id
+        and z.MSZAP_ZAPKOD=k.ZAP_KOD)               ZAP
+     , (Select Min(k.VSO_ROD_KOD)
+    From RJ_SST_VOS z, klv_vso k
+    Where z.MSVOS_MSST_ID=sst.msst_id
+        and z.MSVOS_VSOKOD=k.VSO_KOD)               ROD
+     , sst.msst_brm        BR_M
+from rj_shtat sht
+   , rj_str str
+   , rj_sst sst
+where sht.st_kodv=str.mstr_kod_mir
+  and str.mstr_id=sst.msst_mstr_id
+  and sst.msst_kzvkod = 'К' and sst.msst_katkod IN ('60','73')
+and sht.st_NOM='М-1310') LOOP
+	INSERT INTO SPR_RV_ZAP_OFT (ST_NOM,ST_KODV,KOD_POD,VID_SHTAT,BR_ZVENA
+                            ,VID_ZVENO,SAMO_M,ZAP,ROD,BR_M) VALUES
+    (i.ST_NOM,i.ST_KODV,i.KOD_POD,i.VID_SHTAT,i.BR_ZVENA
+                            ,i.VID_ZVENO,i.SAMO_M,i.ZAP,i.ROD,i.BR_M);
+END LOOP;*/
+INSERT into spr_rv_zap_of (
+       ST_NOM
+     , ZAP
+     , MOTOP
+     , GRANV
+     , VATRV
+     , VREB
+     , NPOLIC
+     , NSIGUR
+     , TANK
+     , RACET
+     , ZART
+     , PVO_V
+     , ING
+     , HIMIC
+     , SVARZ
+     , AVTO
+     , RAV
+     , PVO
+     , VTOPOGR
+     , AUV
+     , TIL
+     , GSM
+     , VTO
+     , VMT
+     , STROIT
+     , MEDICI
+     , VVS_AV
+     , VVS_ZRV
+     , VVS_RTV
+     , VMS
+     , VSICHKI
+     , NEIZV)
+   Select SS.St_Nom, DECODE(SS.ZAP,NULL,'нев.',SS.ZAP) ZAP
+       ,SUM(DECODE(SS.ROD,'03',SS.SBR_M,0)) MOTOP
+       ,SUM(DECODE(SS.ROD,'06',SS.SBR_M,0)) GRANV
+       ,SUM(DECODE(SS.ROD,'09',SS.SBR_M,0)) VATRV
+       ,SUM(DECODE(SS.ROD,'12',SS.SBR_M,0)) VREB
+       ,SUM(DECODE(SS.ROD,'15',SS.SBR_M,0)) NPOLIC
+       ,SUM(DECODE(SS.ROD,'18',SS.SBR_M,0)) NSIGUR
+       ,SUM(DECODE(SS.ROD,'21',SS.SBR_M,0)) TANK
+       ,SUM(DECODE(SS.ROD,'24',SS.SBR_M,0)) RACET
+       ,SUM(DECODE(SS.ROD,'27',SS.SBR_M,0)) ZART
+       ,SUM(DECODE(SS.ROD,'30',SS.SBR_M,0)) PVO_V
+       ,SUM(DECODE(SS.ROD,'33',SS.SBR_M,0)) ING
+       ,SUM(DECODE(SS.ROD,'36',SS.SBR_M,0)) HIMIC
+       ,SUM(DECODE(SS.ROD,'39',SS.SBR_M,0)) SVARZ
+       ,SUM(DECODE(SS.ROD,'42',SS.SBR_M,0)) AVTO
+       ,SUM(DECODE(SS.ROD,'45',SS.SBR_M,0)) RAV
+       ,SUM(DECODE(SS.ROD,'48',SS.SBR_M,0)) PVO
+       ,SUM(DECODE(SS.ROD,'51',SS.SBR_M,0)) VTOPOGR
+       ,SUM(DECODE(SS.ROD,'54',SS.SBR_M,0)) AUV
+       ,SUM(DECODE(SS.ROD,'60',SS.SBR_M,0)) TIL
+       ,SUM(DECODE(SS.ROD,'63',SS.SBR_M,0)) GSM
+       ,SUM(DECODE(SS.ROD,'66',SS.SBR_M,0)) VTO
+       ,SUM(DECODE(SS.ROD,'69',SS.SBR_M,0)) VMT
+       ,SUM(DECODE(SS.ROD,'72',SS.SBR_M,0)) STROIT
+       ,SUM(DECODE(SS.ROD,'75',SS.SBR_M,0)) MEDICI
+       ,SUM(DECODE(SS.ROD,'78',SS.SBR_M,0)) VVS_AV
+       ,SUM(DECODE(SS.ROD,'81',SS.SBR_M,0)) VVS_ZRV
+       ,SUM(DECODE(SS.ROD,'84',SS.SBR_M,0)) VVS_RTV
+       ,SUM(DECODE(SS.ROD,'87',SS.SBR_M,0)) VMS
+       ,SUM(DECODE(SS.ROD,'95',SS.SBR_M,0)) VSICHKI
+       ,SUM(DECODE(SS.ROD,NULL,SS.SBR_M,0)) NEIZV
+   FROM (Select RR.St_Nom, ZAP, ROD
+          ,SUM(DECODE(RR.VID_SHTAT,2,0,
+                 DECODE(RR.VID_ZVENO,2,0,br_prior(RR.st_kodv,RR.KOD_POD,'M')*RR.BR_ZVENA*RR.BR_M))
+              ) SBR_M
+      FROM (
+            select TT.ST_NOM
+              ,TT.ST_KODV
+              ,TT.KOD_POD
+              ,TT.VID_SHTAT
+              ,TT.BR_ZVENA
+              ,TT.VID_ZVENO
+              ,TT.SAMO_M
+              ,TT.ZAP
+              ,TT.ROD
+              ,SUM(TT.BR_M) BR_M
+           FROM SPR_RV_ZAP_OFT TT
+           GROUP BY TT.ST_NOM
+                 ,TT.ST_KODV
+                 ,TT.KOD_POD
+                 ,TT.VID_SHTAT
+                 ,TT.BR_ZVENA
+                 ,TT.VID_ZVENO
+                 ,TT.SAMO_M
+                 ,TT.ZAP
+                 ,TT.ROD
+                 )         RR
+       GROUP BY RR.St_Nom, ZAP, ROD) SS
+  GROUP BY SS.St_Nom, SS.ZAP;
+	COMMIT;
+END;
+
+-- Ниво на обр. ценз за офицери
+FUNCTION NIVO_OF_Obr_CENZ(vEGN IN VarChar2, vVU IN VarChar2, vVA IN VarChar2) Return NUMBER
+ IS
+ i Integer :=0;
+BEGIN
+	IF vEGN IS NULL THEN RETURN(0); END IF;
+  IF vVA = 'Y' Then    -- Има ВА
+     select count(*) 
+          Into i
+          from vs_obrva
+          where obrva_egnls=vEgn
+            and obrva_gstkod='Y';
+     IF i>0     Then RETURN(7); End If;    -- ВА ГЩФ
+     IF vVU='N' Then RETURN(2); End If;    -- ШЗО с ВА (няма ВУ)
+     select count(*) 
+     			Into i
+     			from vs_obrv
+          where obrv_egnls=vEgn 
+	          and obrv_vvokod in ('4','5');
+     IF i>0     Then RETURN(6); End If;	   -- ВУ 4,5г. с ВА
+     RETURN(4);                            -- ВУ под 4г. с ВА
+  ELSE               -- Няма ВА
+     IF vVU='N' Then RETURN(1); End If;    -- Вероятно > с Висше гражданско :1:2:3
+     select count(*) 
+          Into i
+          from vs_obrv
+	        where obrv_egnls=vEgn 
+	          and obrv_vvokod in ('4','5');
+     IF i>0     Then RETURN(5); End If;	   -- ВУ 4,5г. 
+     RETURN(3);                            -- ВУ под 4г.  
+  END IF;
+END NIVO_OF_Obr_CENZ;
+
+-- Ще навърши пределна възраст към ... дата
+ FUNCTION Predelna_Vazrast(vEGN IN VarChar2, vZVA IN VarChar2, vKZV IN VarChar2) Return DATE
+  IS
+  pv Integer(2);
+  tc VarChar2(1);
+  hb Integer(1) := 0;
+ BEGIN
+ 		IF vKZV<>'К' THEN Return Null; END IF;     -- Не е кадрови!
+ 		Select ZVT_PREDEL, ZVT_KOD
+ 			Into pv, tc
+ 			From KLV_ZVT, KLV_ZVA
+ 			Where ZVT_KOD = ZVA_ZVT_KOD
+ 			  and ZVA_KOD = vZVA;
+ 		IF tc in ('2','3','4','5','6','7','8') Then  -- Хабилитиран ли е ?
+       Select Count(*) 
+          Into hb
+          From VS_LS
+          Where EGN = vEGN
+            and (EXISTS (Select 1              -- доктор на науките
+ 														From VS_NST
+ 														Where NST_EGNLS = vEGN
+ 			  			  							and NST_NSTKOD   = '2')      
+ 							or EXISTS (Select 1              -- старши н.с. и т.н.
+ 														From VS_NZV
+ 														Where NZV_EGNLS = vEGN
+ 			  			  							and NZV_NZVKOD   IN ('8','9','A','B','C','D'))
+ 			  			   );
+ 			 IF hb>0 Then pv := 54; END IF;     -- хабилитиран е
+ 		END IF;
+ 		RETURN( Add_months(TO_DATE(BIRTHDAY(vEGN),'DD-MM-YYYY'),pv*12) );
+ END Predelna_Vazrast; 
+ 
+ -- Ще навърши ли години за пенсия през ... година (за гр. лица по чл.68 от КСО)
+ FUNCTION PensiaGL68(vEGN IN VarChar2, vGodina IN VarChar2)   Return VARCHAR2
+  IS
+  vM Number :=62;
+  vJ Number :=57;
+  vJena Integer;
+  vPGodina Integer;
+ BEGIN
+      Select Count(*)  
+       Into vJena
+       From VS_LS Where EGN=vEGN and (IME Like '%а %' or IME Like '%а' or FAM Like '%а');
+     IF vGodina<'2004' Then   -- Тези които вече са прескочили години за пенсия!
+        IF vJena>0 Then  -- жена е!
+          IF MONTHS_BETWEEN(TO_DATE('01-01-2003','DD-MM-YYYY'),TO_DATE(BirthDay(vEGN),'DD-MM-YYYY'))/12>vJ Then
+             RETURN 'Y';
+          ELSE
+             RETURN Null;
+          END IF;
+        ELSE
+          IF MONTHS_BETWEEN(TO_DATE('01-01-2003','DD-MM-YYYY'),TO_DATE(BirthDay(vEGN),'DD-MM-YYYY'))/12>vM Then
+             RETURN 'Y';
+          ELSE
+             RETURN Null;
+          END IF;
+        
+        END IF;
+     ELSIF vGodina='2004' Then     
+        vM := 62.5;
+        vJ := 57.5;
+     ELSIF vGodina='2005' Then
+        vM := 63;
+        vJ := 58;
+     ELSIF vGodina='2006' Then
+        vM := 63;
+        vJ := 58.5;     
+     ELSIF vGodina='2007' Then     
+        vM := 63;
+        vJ := 59;     
+     ELSIF vGodina='2008' Then          
+        vM := 63;
+        vJ := 59.5;     
+     ELSIF vGodina>'2008' Then          
+        vM := 63;
+        vJ := 60;     
+     END IF;
+     IF vJena>0 Then  -- жена е!
+        -- Гадост - за жени 2004 до 2009 вкл. се проверява и предната година!
+        IF vGodina<='2009' and vGodina>'2004' Then
+            vPGodina := TO_CHAR(TO_NUMBER(vGodina)-1);
+            IF    (MONTHS_BETWEEN(TO_DATE('01-01-'||vPGodina,'DD-MM-YYYY'),TO_DATE(BirthDay(vEGN),'DD-MM-YYYY'))/12<vJ-.5 
+               and MONTHS_BETWEEN(TO_DATE('31-12-'||vPGodina,'DD-MM-YYYY'),TO_DATE(BirthDay(vEGN),'DD-MM-YYYY'))/12>vJ-.5) Then
+               RETURN(Null); 
+            END IF;
+        END IF;
+        IF    (MONTHS_BETWEEN(TO_DATE('01-01-'||vGodina,'DD-MM-YYYY'),TO_DATE(BirthDay(vEGN),'DD-MM-YYYY'))/12<vJ 
+           and MONTHS_BETWEEN(TO_DATE('31-12-'||vGodina,'DD-MM-YYYY'),TO_DATE(BirthDay(vEGN),'DD-MM-YYYY'))/12>vJ) Then
+           RETURN('Y'); 
+        END IF;
+     ELSE              -- мъж е!
+        -- Пак Гадост - за мъже 2005 се проверява и предната 2004 година!
+        IF vGodina='2005' Then
+            vPGodina := TO_CHAR(TO_NUMBER(vGodina)-1);
+            IF    (MONTHS_BETWEEN(TO_DATE('01-01-'||vPGodina,'DD-MM-YYYY'),TO_DATE(BirthDay(vEGN),'DD-MM-YYYY'))/12<vM-.5 
+               and MONTHS_BETWEEN(TO_DATE('31-12-'||vPGodina,'DD-MM-YYYY'),TO_DATE(BirthDay(vEGN),'DD-MM-YYYY'))/12>vM-.5) Then
+               RETURN(Null); 
+            END IF;
+        END IF;
+        IF    (MONTHS_BETWEEN(TO_DATE('01-01-'||vGodina,'DD-MM-YYYY'),TO_DATE(BirthDay(vEGN),'DD-MM-YYYY'))/12<vM 
+           and MONTHS_BETWEEN(TO_DATE('31-12-'||vGodina,'DD-MM-YYYY'),TO_DATE(BirthDay(vEGN),'DD-MM-YYYY'))/12>vM) Then
+           RETURN('Y'); 
+        END IF; 
+     END IF;
+     RETURN(Null); 
+ END PensiaGL68;
+ -- Връща "пол" по зададени ЕГН, име и фамилия ->'0'-'мъж', '1'-'жена'
+ FUNCTION Pol( vEGN IN VARCHAR2, vIME IN VARCHAR2, vFAM  IN VARCHAR2) 
+ Return VARCHAR2
+ IS
+ BEGIN
+  BEGIN
+        IF  (vIME Like '%в' and vFAM Like '%в') then    
+             RETURN( '0');
+        END IF;     
+        IF  (vIME Like '%в' and vFAM Like '%и') then    
+             RETURN( '0');
+        END IF;     
+        IF  (vIME Like '%в' and vFAM Like '%н') then    
+             RETURN( '0');
+        END IF;     
+        IF  (vIME Like '%н' and vFAM Like '%в') then    
+             RETURN( '0');
+        END IF;     
+        IF  (vIME Like '%а' and vFAM Like '%а') then    
+             RETURN( '1');
+        END IF;     
+        IF  (SUBSTR(vEGN, 9, 1) IN ('0','2','4','6','8')) THEN
+            RETURN( '0');
+        ELSE
+            RETURN( '1');
+        END IF;     
+  END;
+ END POL;
+ 
+ -- Връща ИМА/НЯМА РДКИ по зададени ЕГН, Ниво '1'-'има точно', '2'-'има повече', Null-'няма или има по-малко'
+ FUNCTION HasRDKI( vEGN IN VARCHAR2, vNivo IN VARCHAR2) Return VARCHAR2
+ IS
+   N Number :=0;
+ BEGIN
+	SELECT COUNT(RDKI_EGNLS) 
+	      INTO N
+				FROM VS_RDKI
+				WHERE RDKI_EGNLS = vEGN
+					AND RDKI_NIVO = vNivo
+					AND SYSDATE < RDKI_DVALID
+					AND RDKI_DSTOP IS NULL;
+	IF N>0 THEN 
+	   RETURN('1');
+	ELSE 
+	  -- Тук да се допише за ЕС ...!!!
+  	SELECT COUNT(RDKI_EGNLS) 
+	      INTO N
+				FROM VS_RDKI
+				WHERE RDKI_EGNLS = vEGN
+					AND RDKI_NIVO > vNivo
+					AND SYSDATE < RDKI_DVALID
+					AND RDKI_DSTOP IS NULL;
+	  IF N>0 THEN 
+	     RETURN('2');
+    END IF; 
+	END IF;
+  RETURN(Null);
+ END HasRDKI;  
+ 
+ --връща разни данни за човека
+ /*FUNCTION GET_INFO(pEGN IN Varchar2, pInfo IN Varchar2) RETURN VARCHAR2 IS
+ BEGIN
+	-- 2. Образование:
+	IF pInfo='1' or pInfo='OBR' Then
+	DECLARE
+    cursor c2 is Select  DECODE(O.OBRG_KOD,'1','висше','2','висше','4','средно специално',obr.OBR_IME) OBR_IME
+								  	From VS_OBRG O, KLV_OBR OBR
+			 							Where	O.OBRG_KOD=OBR.OBR_KOD(+)
+       								and O.OBRG_EGNLS=pEGN
+			 							Order By O.OBRG_KOD;
+  	p_obrime varchar2(50);
+  BEGIN
+		open c2;
+		fetch c2 into p_obrime;
+		close c2;
+		RETURN(p_obrime);
+  END;
+	END IF;
+	
+  -- 3. Образователно - квалификационна степен:
+  IF pInfo='2' or pInfo='OKS' Then
+	DECLARE 
+		cursor c3 is Select  DECODE(Min(O.OBRG_KOD),'1',' магистър','2',' бакалавър','4',' специалист',' ')
+    								From VS_OBRG O, KLV_OBR OBR
+    								Where  O.OBRG_KOD=OBR.OBR_KOD(+)
+         							and O.OBRG_EGNLS=pEGN
+    						 UNION
+								 Select  '- Специалност: '||SPE.SPE_IME||'( от '|| obr.OBR_IME||' )'||';'
+							 			From VS_OBRG O, KLV_SPE SPE, KLV_OBR OBR
+							 			Where  O.OBRG_SPEKOD   = SPE.SPE_KOD(+)
+    									and O.OBRG_KOD      = OBR.OBR_KOD(+)
+    									and O.OBRG_EGNLS    = pEGN
+							 		UNION
+							 		Select '- '||NZV.NZV_IME||';' 
+							 			From VS_NZV Z, KLV_NZV NZV
+							 			Where   Z.NZV_NZVKOD   = NZV.NZV_KOD(+)
+    					 				and Z.NZV_KOGA     = (SELECT MAX(NZV_KOGA) FROM VS_NZV
+                      								        WHERE NZV_EGNLS =pEGN)
+    					 				and Z.NZV_EGNLS    =pEGN
+							 		UNION
+							 		Select '- '||NST.NST_IME||';' 
+							 			From VS_NST Z, KLV_NST NST
+							 			Where   Z.NST_NSTKOD   = NST.NST_KOD(+)
+    					 				and Z.NST_KOGA     = (SELECT MAX(NST_KOGA) FROM VS_NST
+                      								        WHERE NST_EGNLS =pEGN)
+    					 				and Z.NST_EGNLS    =pEGN;
+		p_obrstep varchar2(1000);
+		p_obr varchar2(3000) := '';		   		   
+	BEGIN
+		open c3;
+		LOOP
+			fetch c3 into p_obrstep;
+		  exit when c3%NOTFOUND;
+		  p_obr := p_obr || p_obrstep || chr(10) ;
+  	end loop;
+  	close c3;	
+  	RETURN(p_obr);
+	END;	
+  END IF;
+  
+  -- 4. Военна квалификация:
+  IF pInfo='3' or pInfo='VK' Then
+  DECLARE 
+  	cursor c4 is Select '- '||VVO.VVO_IME||', '||' Специалност: '||VSP.VSP_IME||', '||
+                        VVU.VVU_IME||' - '||TO_CHAR(O.OBRV_KOGA)||' г., '||
+                        DJJ.DJJ_IME||', '||REF.RV_MEANING||';' 
+               			From VS_OBRV O, KLV_VVO VVO, KLV_VSP VSP, KLV_VVU VVU
+                   			,KLV_DJJ DJJ, CG_REF_CODES REF
+               			Where  O.OBRV_VVOKOD     = VVO.VVO_KOD(+)
+                			and O.OBRV_VSPKOD    = VSP.VSP_KOD(+)
+                			and O.OBRV_VVUKOD    = VVU.VVU_KOD(+)
+                			and O.OBRV_DJJKOD    = DJJ.DJJ_KOD(+)
+                			and O.OBRV_VZOKOD    = REF.RV_LOW_VALUE(+)
+                			and REF.RV_DOMAIN    = 'FORMA_OBUCHENIE'
+                			and O.OBRV_EGNLS    =pEGN
+               			UNION
+               			Select   '- ВА -'||TO_CHAR(O.OBRVA_PROD)||'год., '||
+                    			   'специалност: '||SVA.SVA_IME||', '||
+                        		 VVA.VVA_IME||' - '||TO_CHAR(O.OBRVA_KOGA)||' г., '||
+                        		 DJJ.DJJ_IME||', '||REF.RV_MEANING||';' 
+               				From VS_OBRVA O, KLV_VVA VVA, KLV_SVA SVA
+                    			,KLV_DJJ DJJ, CG_REF_CODES REF
+               				Where   O.OBRVA_VVAKOD   = VVA.VVA_KOD(+)
+                				and O.OBRVA_SVAKOD   = SVA.SVA_KOD(+)
+                				and O.OBRVA_DJJKOD    = DJJ.DJJ_KOD(+)
+                				and O.OBRVA_VZOKOD    = REF.RV_LOW_VALUE(+)
+                				and REF.RV_DOMAIN    = 'FORMA_OBUCHENIE'
+                				and O.OBRVA_EGNLS    =pEGN
+               			UNION
+               			Select   '- '||KUS.KUS_IME||', '||TO_CHAR(O.KURS_KOGA,'DD.MM.YYYY')||' г. - '||
+                    			   TO_CHAR(O.KURS_PROD)||' мес., '||
+	                   				DECODE(O.KURS_NIVO,0,NULL,NULL,NULL,O.KURS_NIVO||' ниво, ')||
+	                   				DECODE(O.KURS_NIVO,0,NULL,NULL,NULL,EZK.EZK_IME||', ')||
+                     				DECODE(VVU.VVU_IME,NULL,NULL,VVU.VVU_IME||', ')||
+                     				DECODE(O.KURS_IMEK,NULL,NULL,O.KURS_IMEK||', ')||DJJ.DJJ_IME||';' 
+               				From VS_KURS O, KLV_KUS KUS, KLV_EZK EZK
+                     			,KLV_DJJ DJJ, KLV_VVU VVU
+               				Where   O.KURS_KUSKOD   = KUS.KUS_KOD(+)
+                				and O.KURS_EZKKOD   = EZK.EZK_KOD(+)
+                				and O.KURS_DJJKOD    = DJJ.DJJ_KOD(+)
+                				and O.KURS_VVUKOD    = VVU.VVU_KOD(+)
+                				and O.KURS_EGNLS    =pEGN;
+	  p_vkval varchar2(1000);
+	  p_obr varchar2(3000) := '';		   		   
+  BEGIN
+		open c4;
+		LOOP
+			fetch c4 into p_vkval;
+		  exit when c4%NOTFOUND;
+		  p_obr := p_obr || p_vkval || chr(10) ;
+		end loop;
+  	close c4;
+	  RETURN(p_obr);
+	END;	
+  END IF;  	
+  
+  -- Степен на владеене на чужди езици:
+  IF pInfo='4' or pInfo='EZK' Then
+  DECLARE 
+ 		cursor c9 is Select '- '||EZK.EZK_IME||', '||
+	       								RFF.RV_MEANING||', '||RFS.RV_MEANING||
+  	     								DECODE(E.EZIK_STANAG,NULL,NULL,', STANAG: '||E.EZIK_STANAG)||';' 
+										From VS_EZIK E, KLV_EZK EZK, CG_REF_CODES RFF, CG_REF_CODES RFS
+										Where   E.EZIK_EZKKOD   = EZK.EZK_KOD(+)
+    									and E.EZIK_FVLKOD    = RFF.RV_LOW_VALUE(+)
+    									and RFF.RV_DOMAIN    = 'FORMA_VL_EZIK'
+    									and E.EZIK_SVEKOD    = RFS.RV_LOW_VALUE(+)
+    									and RFS.RV_DOMAIN    = 'STEPEN_VL_EZIK'
+    									and E.EZIK_EGNLS    =pEGN;
+		p_ezici varchar2(500);  
+	  p_obr varchar2(3000) := '';		   		   
+  BEGIN
+ 		open c9;
+		LOOP
+			fetch c9 into p_ezici;
+		  exit when c9%NOTFOUND;
+		  p_obr := p_obr || p_ezici || chr(10) ;
+  	end loop;
+  	close c9;	
+	  RETURN(p_obr);
+	END;	
+  END IF;  	
+            
+  -- 10. Средна атестационна оценка и атестационна група:
+  IF pInfo='5' or pInfo='ATS' Then
+  DECLARE 
+	  p_obr varchar2(100) := '';		   		   
+  BEGIN
+  	select VS.ATES||',  '||GRATES(VS.ATES)||' група от '||GDAT||' г.' 
+ 			into p_obr
+ 			From VS_LS VS
+ 			Where EGN=pEGN;	
+	  RETURN(p_obr); 			
+	END;	
+  END IF;  	            
+
+  -- 13. Поощрения
+  IF pInfo='6' or pInfo='NGR' Then
+  DECLARE 
+ 	  cursor c13 is Select ngr_ime, to_char(ngr_koga,'DD.MM.YYYY') 
+  									from vs_ngr, klv_ngr 
+  									where ngr_ngrkod=ngr_kod(+)
+  										and ngr_egnls=pEGN;
+  	p_ngr varchar2(1000);
+  	p_ngrkoga varchar2(15);
+	  p_obr varchar2(3000) := '';		   		   
+  BEGIN
+  	open c13;
+		LOOP
+			fetch c13 into p_obr, p_ngrkoga;
+			if c13%ROWCOUNT = 0 then
+			   p_obr := 'няма';
+			end if;	
+		  exit when c13%NOTFOUND;
+		  p_obr := p_obr || p_ngr||' - '||p_ngrkoga || chr(10) ;
+  	end loop;
+  	close c13;	
+	  RETURN(p_obr); 			
+	END;	
+  END IF;  	            
+
+  -- 14. Наказания
+  IF pInfo='7' or pInfo='NKZ' Then
+  DECLARE 
+  	cursor c14 is Select nkz_ime 
+  									From vs_nkz, klv_nkz 
+  									Where nkz_nkzkod=nkz_kod(+)
+  										and nkz_egnls=pEGN;
+  	p_nkz varchar2(1000);  
+	  p_obr varchar2(3000) := '';		   		   
+  BEGIN
+  		open c14;
+		LOOP
+			fetch c14 into p_nkz;
+			if c14%ROWCOUNT = 0 then
+			   p_obr := 'няма';
+			end if;	
+		  exit when c14%NOTFOUND;
+      p_obr := p_obr || p_nkz|| chr(10) ;
+  	end loop;
+  	close c14;
+	  RETURN(p_obr); 			
+	END;	
+  END IF;  	            
+
+  -- 15. Служебен стаж:
+  IF pInfo='8' or pInfo='STAJ' Then
+  DECLARE 
+    cursor c15 is Select  DECODE(ARDLO_ZAPIME,NULL,'','Неизв.','',' ('||ARDLO_ZAPIME||') ')||TO_CHAR(D.ARDLO_KOGA,'DD.MM.YYYY'),'- '||D.ARDLO_TEXTDL||', '||NMA.IMEED||', '|| VS_PACK.Staj_Ar_DLO(D.ARDLO_EGNLS,D.ARDLO_KOGA,D.ARDLO_ZPVD)
+										From VS_AR_DLO D, KL_NMAW NMA
+										Where D.ARDLO_NMAKOD   = NMA.KOD_NMA(+)
+    									and D.ARDLO_EGNLS=pEGN
+										ORDER BY ARDLO_KOGA;
+  	p_slstaj varchar2(1000);
+  	p_godstaj varchar2(55);
+	  p_obr varchar2(3000) := '';		   		   
+  BEGIN
+  	open c15;
+		LOOP
+			fetch c15 into p_godstaj, p_slstaj;
+		  exit when c15%NOTFOUND;
+		        p_obr := p_obr ||p_slstaj||',  '||p_godstaj|| chr(10) ;
+  	end loop;
+  	close c15;
+	  RETURN(p_obr); 			
+	END;	
+  END IF;  	            
+  
+ END GET_INFO;*/
+ 
+  FUNCTION GET_UP_LS_VOS ( vEGN IN VARCHAR2) RETURN VARCHAR2 IS
+BEGIN
+DECLARE
+    CURSOR C91 IS SELECT obrv_vos from vs_owner.vs_obrv where obrv_egnls = vEGN and obrv_vos is not null;
+    CURSOR C92 IS SELECT obrva_vos from vs_owner.vs_obrva where obrva_egnls = vEGN and obrva_vos is not null;    
+    CURSOR C93 IS SELECT kurs_vos from vs_owner.vs_kurs where kurs_egnls = vEGN and kurs_vos is not null;    
+    p_rvos varchar2(6);  
+    p_vos varchar2(6) := '';
+    v_Count1 INTEGER;
+
+BEGIN
+
+  select kod_vsv into p_rvos
+  from vs_owner.vs_ls
+  where egn = vEGN;
+  
+  if p_rvos is not null
+    then p_vos := p_rvos;
+  end if;
+  
+  select kod_vss into p_rvos
+  from vs_owner.vs_ls
+  where egn = vEGN;
+  
+  if p_rvos is not null
+    then p_vos := VS_OWNER.COMPARE_LS_VOS(p_vos,p_rvos);
+  end if;  
+  
+  select kod_vso into p_rvos
+  from vs_owner.vs_ls
+  where egn = vEGN;
+  
+  if p_rvos is not null
+    then p_vos := VS_OWNER.COMPARE_LS_VOS(p_vos,p_rvos);
+  end if;   
+
+  select kod_vsa into p_rvos
+  from vs_owner.vs_ls
+  where egn = vEGN;
+  
+  if p_rvos is not null
+    then p_vos := VS_OWNER.COMPARE_LS_VOS(p_vos,p_rvos);
+  end if; 
+
+  SELECT count(e.milreportingspecialitycode) into v_Count1
+  FROM vs_owner.vs_ls a 
+  left outer join pmis_adm.personmilrepspec v ON a.personid = v.personid AND v.ISPRIMARY = 1
+  left outer join pmis_adm.militaryreportspecialities e on e.milreportspecialityid = v.milreportspecialityid
+  where a.egn = vEGN
+  and e.type in (1,2,3,4);  -- само актуални ВОС МО
+
+if v_Count1 > 0 then
+  SELECT e.milreportingspecialitycode into p_rvos
+  FROM vs_owner.vs_ls a 
+  left outer join pmis_adm.personmilrepspec v ON a.personid = v.personid AND v.ISPRIMARY = 1
+  left outer join pmis_adm.militaryreportspecialities e on e.milreportspecialityid = v.milreportspecialityid
+  where a.egn = vEGN
+  and e.type in (1,2,3,4);  -- само актуални ВОС МО
+  
+  if p_rvos is not null
+    then p_vos := VS_OWNER.COMPARE_LS_VOS(p_vos,p_rvos);
+  end if; 
+end if;
+
+  open c91;
+  LOOP
+    fetch c91 into p_rvos;
+    exit when c91%NOTFOUND;
+    p_vos := VS_OWNER.COMPARE_LS_VOS(p_vos,p_rvos);
+  end loop;
+  close c91;
+
+  open c92;
+  LOOP
+    fetch c92 into p_rvos;
+    exit when c92%NOTFOUND;
+    p_vos := VS_OWNER.COMPARE_LS_VOS(p_vos,p_rvos);
+  end loop;
+  close c92;
+
+  open c93;
+  LOOP
+    fetch c93 into p_rvos;
+    exit when c93%NOTFOUND;
+    p_vos := VS_OWNER.COMPARE_LS_VOS(p_vos,p_rvos);
+  end loop;
+  close c93; 
+
+  RETURN(p_vos);
+END; 
+END GET_UP_LS_VOS;
+ 
+END VS_SPR;

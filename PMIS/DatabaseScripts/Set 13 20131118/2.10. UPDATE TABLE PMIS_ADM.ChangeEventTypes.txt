@@ -1,0 +1,319 @@
+﻿INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_MilitaryReportPerson_AddMilRepPersonSpeciality', 'Добавяне на специалност за ВОЛ', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_MilitaryReportPerson_EditMilRepPersonSpeciality', 'Редактиране на специалност за ВОЛ', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_MilitaryReportPerson_DeleteMilRepPersonSpeciality', 'Изтриване на специалност за ВОЛ', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 3);
+
+
+UPDATE PMIS_ADM.ChangeEventTypes SET
+   ChangeEventType = 'Добавяне на ремарке и полуремарке към заявка за окомплектоване с техника от резерва'
+WHERE ChangeEventTypeKey = 'RES_EquipTechRequests_AddTrailer';
+
+UPDATE PMIS_ADM.ChangeEventTypes SET
+   ChangeEventType = 'Изтриване на ремарке и полуремарке от заявка за окомплектоване с техника от резерва'
+WHERE ChangeEventTypeKey = 'RES_EquipTechRequests_DeleteTrailer';
+
+UPDATE PMIS_ADM.ChangeEventTypes SET
+   ChangeEventType = 'Редактиране на запис от техника (Ремаркета и полуремаркета)'
+WHERE ChangeEventTypeKey = 'RES_Technics_TRAILERS_Edit';
+
+UPDATE PMIS_ADM.ChangeEventTypes SET
+   ChangeEventType = 'Добавяне на запис в техника (Ремаркета и полуремаркета)'
+WHERE ChangeEventTypeKey = 'RES_Technics_TRAILERS_Add';
+
+UPDATE PMIS_ADM.ChangeEventTypes SET
+   ChangeEventType = 'Добавяне на вид ремарке и полуремарке'
+WHERE ChangeEventTypeKey = 'RES_Lists_TrailerKind_AddTrailerKind';
+
+UPDATE PMIS_ADM.ChangeEventTypes SET
+   ChangeEventType = 'Редактиране на вид ремарке и полуремарке'
+WHERE ChangeEventTypeKey = 'RES_Lists_TrailerKind_EditTrailerKind';
+
+UPDATE PMIS_ADM.ChangeEventTypes SET
+   ChangeEventType = 'Изтриване на вид ремарке и полуремарке'
+WHERE ChangeEventTypeKey = 'RES_Lists_TrailerKind_DeleteTrailerKind';
+
+UPDATE PMIS_ADM.ChangeEventTypes SET
+   ChangeEventType = 'Добавяне на тип ремарке и полуремарке'
+WHERE ChangeEventTypeKey = 'RES_Lists_TrailerType_AddTrailerType';
+
+UPDATE PMIS_ADM.ChangeEventTypes SET
+   ChangeEventType = 'Редактиране на тип ремарке и полуремарке'
+WHERE ChangeEventTypeKey = 'RES_Lists_TrailerType_EditTrailerType';
+
+UPDATE PMIS_ADM.ChangeEventTypes SET
+   ChangeEventType = 'Изтриване на тип ремарке и полуремарке'
+WHERE ChangeEventTypeKey = 'RES_Lists_TrailerType_DeleteTrailerType';
+
+UPDATE PMIS_ADM.ChangeEventTypes SET
+   ChangeEventType = 'Добавяне на вид каросерия на ремарке и полуремарке'
+WHERE ChangeEventTypeKey = 'RES_Lists_TrailerBodyKind_AddTrailerBodyKind';
+
+UPDATE PMIS_ADM.ChangeEventTypes SET
+   ChangeEventType = 'Редактиране на вид каросерия на ремарке и полуремарке'
+WHERE ChangeEventTypeKey = 'RES_Lists_TrailerBodyKind_EditTrailerBodyKind';
+
+UPDATE PMIS_ADM.ChangeEventTypes SET
+   ChangeEventType = 'Изтриване на вид каросерия на ремарке и полуремарке'
+WHERE ChangeEventTypeKey = 'RES_Lists_TrailerBodyKind_DeleteTrailerBodyKind';
+
+
+
+UPDATE PMIS_ADM.ChangeEventTypes SET
+   ChangeEventType = 'Добавяне на инж. машина към заявка за окомплектоване с техника от резерва'
+WHERE ChangeEventTypeKey = 'RES_EquipTechRequests_AddEngEquip';
+
+UPDATE PMIS_ADM.ChangeEventTypes SET
+   ChangeEventType = 'Изтриване на инж. машина от заявка за окомплектоване с техника от резерва'
+WHERE ChangeEventTypeKey = 'RES_EquipTechRequests_DeleteEngEquip';
+
+UPDATE PMIS_ADM.ChangeEventTypes SET
+   ChangeEventType = 'Редактиране на запис от техника (Инж. машини)'
+WHERE ChangeEventTypeKey = 'RES_Technics_ENG_EQUIP_Edit';
+
+UPDATE PMIS_ADM.ChangeEventTypes SET
+   ChangeEventType = 'Добавяне на запис в техника (Инж. машини)'
+WHERE ChangeEventTypeKey = 'RES_Technics_ENG_EQUIP_Add';
+
+UPDATE PMIS_ADM.ChangeEventTypes SET
+   ChangeEventType = 'Добавяне на вид инж. машини'
+WHERE ChangeEventTypeKey = 'RES_Lists_EngEquipKind_AddEngEquipKind';
+
+UPDATE PMIS_ADM.ChangeEventTypes SET
+   ChangeEventType = 'Редактиране на вид инж. машини'
+WHERE ChangeEventTypeKey = 'RES_Lists_EngEquipKind_EditEngEquipKind';
+
+UPDATE PMIS_ADM.ChangeEventTypes SET
+   ChangeEventType = 'Изтриване на вид инж. машини'
+WHERE ChangeEventTypeKey = 'RES_Lists_EngEquipKind_DeleteEngEquipKind';
+
+UPDATE PMIS_ADM.ChangeEventTypes SET
+   ChangeEventType = 'Добавяне на тип инж. машини'
+WHERE ChangeEventTypeKey = 'RES_Lists_EngEquipType_AddEngEquipType';
+
+UPDATE PMIS_ADM.ChangeEventTypes SET
+   ChangeEventType = 'Редактиране на тип инж. машини'
+WHERE ChangeEventTypeKey = 'RES_Lists_EngEquipType_EditEngEquipType';
+
+UPDATE PMIS_ADM.ChangeEventTypes SET
+   ChangeEventType = 'Изтриване на тип инж. машини'
+WHERE ChangeEventTypeKey = 'RES_Lists_EngEquipType_DeleteEngEquipType';
+
+UPDATE PMIS_ADM.ChangeEventTypes SET
+   ChangeEventType = 'Добавяне на вид базова машина (инж. машини)'
+WHERE ChangeEventTypeKey = 'RES_Lists_EngEquipBaseKind_AddEngEquipBaseKind';
+
+UPDATE PMIS_ADM.ChangeEventTypes SET
+   ChangeEventType = 'Редактиране на вид базова машина (инж. машини)'
+WHERE ChangeEventTypeKey = 'RES_Lists_EngEquipBaseKind_EditEngEquipBaseKind';
+
+UPDATE PMIS_ADM.ChangeEventTypes SET
+   ChangeEventType = 'Изтриване на вид базова машина (инж. машини)'
+WHERE ChangeEventTypeKey = 'RES_Lists_EngEquipBaseKind_DeleteEngEquipBaseKind';
+
+UPDATE PMIS_ADM.ChangeEventTypes SET
+   ChangeEventType = 'Добавяне на тип базова машина (инж. машини)'
+WHERE ChangeEventTypeKey = 'RES_Lists_EngEquipBaseType_AddEngEquipBaseType';
+
+UPDATE PMIS_ADM.ChangeEventTypes SET
+   ChangeEventType = 'Редактиране на тип базова машина (инж. машини)'
+WHERE ChangeEventTypeKey = 'RES_Lists_EngEquipBaseType_EditEngEquipBaseType';
+
+UPDATE PMIS_ADM.ChangeEventTypes SET
+   ChangeEventType = 'Изтриване на тип базова машина (инж. машини)'
+WHERE ChangeEventTypeKey = 'RES_Lists_EngEquipBaseType_DeleteEngEquipBaseType';
+
+UPDATE PMIS_ADM.ChangeEventTypes SET
+   ChangeEventType = 'Добавяне на вид гориво за базова машина (инж. машини)'
+WHERE ChangeEventTypeKey = 'RES_Lists_EngEquipBaseEngineType_AddEngEquipBaseEngineType';
+
+UPDATE PMIS_ADM.ChangeEventTypes SET
+   ChangeEventType = 'Редактиране на вид гориво за базова машина (инж. машини)'
+WHERE ChangeEventTypeKey = 'RES_Lists_EngEquipBaseEngineType_EditEngEquipBaseEngineType';
+
+UPDATE PMIS_ADM.ChangeEventTypes SET
+   ChangeEventType = 'Изтриване на вид гориво за базова машина (инж. машини)'
+WHERE ChangeEventTypeKey = 'RES_Lists_EngEquipBaseEngineType_DeleteEngEquipBaseEngineType';
+
+UPDATE PMIS_ADM.ChangeEventTypes SET
+   ChangeEventType = 'Добавяне на вид работен орган (инж. машини)'
+WHERE ChangeEventTypeKey = 'RES_Lists_EngEquipWorkingBodyKind_AddEngEquipWorkingBodyKind';
+
+UPDATE PMIS_ADM.ChangeEventTypes SET
+   ChangeEventType = 'Редактиране на вид работен орган (инж. машини)'
+WHERE ChangeEventTypeKey = 'RES_Lists_EngEquipWorkingBodyKind_EditEngEquipWorkingBodyKind';
+
+UPDATE PMIS_ADM.ChangeEventTypes SET
+   ChangeEventType = 'Изтриване на вид работен орган (инж. машини)'
+WHERE ChangeEventTypeKey = 'RES_Lists_EngEquipWorkingBodyKind_DeleteEngEquipWorkingBodyKind';
+
+UPDATE PMIS_ADM.ChangeEventTypes SET
+   ChangeEventType = 'Добавяне на вид гориво за работен орган (инж. машини)'
+WHERE ChangeEventTypeKey = 'RES_Lists_EngEquipWorkBodyEngineType_AddEngEquipWorkBodyEngineType';
+
+UPDATE PMIS_ADM.ChangeEventTypes SET
+   ChangeEventType = 'Редактиране на вид гориво за работен орган (инж. машини)'
+WHERE ChangeEventTypeKey = 'RES_Lists_EngEquipWorkBodyEngineType_EditEngEquipWorkBodyEngineType';
+
+UPDATE PMIS_ADM.ChangeEventTypes SET
+   ChangeEventType = 'Изтриване на вид гориво за работен орган (инж. машини)'
+WHERE ChangeEventTypeKey = 'RES_Lists_EngEquipWorkBodyEngineType_DeleteEngEquipWorkBodyEngineType';
+
+UPDATE PMIS_ADM.ChangeEventTypes SET
+   ChangeEventType = 'Редактиране на марка инж. машини'
+WHERE ChangeEventTypeKey = 'RES_Lists_EngEquipBaseMakes_EditEngEquipBaseMakeName';
+
+UPDATE PMIS_ADM.ChangeEventTypes SET
+   ChangeEventType = 'Добавяне на марка инж. машини'
+WHERE ChangeEventTypeKey = 'RES_Lists_EngEquipBaseMakes_AddEngEquipBaseMakeName';
+
+UPDATE PMIS_ADM.ChangeEventTypes SET
+   ChangeEventType = 'Изтриване на марка инж. машини'
+WHERE ChangeEventTypeKey = 'RES_Lists_EngEquipBaseMakes_DeleteEngEquipBaseMakeName';
+
+UPDATE PMIS_ADM.ChangeEventTypes SET
+   ChangeEventType = 'Редактиране на модел инж. машини'
+WHERE ChangeEventTypeKey = 'RES_Lists_EngEquipBaseModels_Edit';
+
+UPDATE PMIS_ADM.ChangeEventTypes SET
+   ChangeEventType = 'Добавяне на модел инж. машини'
+WHERE ChangeEventTypeKey = 'RES_Lists_EngEquipBaseModels_Add';
+
+UPDATE PMIS_ADM.ChangeEventTypes SET
+   ChangeEventType = 'Изтриване на модел инж. машини'
+WHERE ChangeEventTypeKey = 'RES_Lists_EngEquipBaseModels_Delete';
+
+
+
+UPDATE PMIS_ADM.ChangeEventTypes SET
+   ChangeEventType = 'Добавяне на самоходна машина към заявка за окомплектоване с техника от резерва'
+WHERE ChangeEventTypeKey = 'RES_EquipTechRequests_AddMobLiftEquip';
+
+UPDATE PMIS_ADM.ChangeEventTypes SET
+   ChangeEventType = 'Изтриване на самоходна машина от заявка за окомплектоване с техника от резерва'
+WHERE ChangeEventTypeKey = 'RES_EquipTechRequests_DeleteMobLiftEquip';
+
+UPDATE PMIS_ADM.ChangeEventTypes SET
+   ChangeEventType = 'Редактиране на запис от техника (Самоходни машини)'
+WHERE ChangeEventTypeKey = 'RES_Technics_MOB_LIFT_EQUIP_Edit';
+
+UPDATE PMIS_ADM.ChangeEventTypes SET
+   ChangeEventType = 'Добавяне на запис в техника (Самоходни машини)'
+WHERE ChangeEventTypeKey = 'RES_Technics_MOB_LIFT_EQUIP_Add';
+
+UPDATE PMIS_ADM.ChangeEventTypes SET
+   ChangeEventType = 'Добавяне на вид самоходни машини'
+WHERE ChangeEventTypeKey = 'RES_Lists_MobileLiftingEquipKind_AddMobileLiftingEquipKind';
+
+UPDATE PMIS_ADM.ChangeEventTypes SET
+   ChangeEventType = 'Редактиране на вид самоходни машини'
+WHERE ChangeEventTypeKey = 'RES_Lists_MobileLiftingEquipKind_EditMobileLiftingEquipKind';
+
+UPDATE PMIS_ADM.ChangeEventTypes SET
+   ChangeEventType = 'Изтриване на вид самоходни машини'
+WHERE ChangeEventTypeKey = 'RES_Lists_MobileLiftingEquipKind_DeleteMobileLiftingEquipKind';
+
+UPDATE PMIS_ADM.ChangeEventTypes SET
+   ChangeEventType = 'Добавяне на тип самоходни машини'
+WHERE ChangeEventTypeKey = 'RES_Lists_MobileLiftingEquipType_AddMobileLiftingEquipType';
+
+UPDATE PMIS_ADM.ChangeEventTypes SET
+   ChangeEventType = 'Редактиране на тип самоходни машини'
+WHERE ChangeEventTypeKey = 'RES_Lists_MobileLiftingEquipType_EditMobileLiftingEquipType';
+
+UPDATE PMIS_ADM.ChangeEventTypes SET
+   ChangeEventType = 'Изтриване на тип самоходни машини'
+WHERE ChangeEventTypeKey = 'RES_Lists_MobileLiftingEquipType_DeleteMobileLiftingEquipType';
+
+
+
+
+UPDATE PMIS_ADM.ChangeEventTypes SET
+   ChangeEventType = 'Добавяне на инж. и самолетообслужваща техника техника към заявка за окомплектоване с техника от резерва'
+WHERE ChangeEventTypeKey = 'RES_EquipTechRequests_AddAviationEquip';
+
+UPDATE PMIS_ADM.ChangeEventTypes SET
+   ChangeEventType = 'Изтриване на инж. и самолетообслужваща техника от заявка за окомплектоване с техника от резерва'
+WHERE ChangeEventTypeKey = 'RES_EquipTechRequests_DeleteAviationEquip';
+
+UPDATE PMIS_ADM.ChangeEventTypes SET
+   ChangeEventType = 'Редактиране на запис от техника (Инж. и самолетообслужваща техника)'
+WHERE ChangeEventTypeKey = 'RES_Technics_AVIATION_EQUIP_Edit';
+
+UPDATE PMIS_ADM.ChangeEventTypes SET
+   ChangeEventType = 'Добавяне на запис в техника (Инж. и самолетообслужваща техника)'
+WHERE ChangeEventTypeKey = 'RES_Technics_AVIATION_EQUIP_Add';
+
+UPDATE PMIS_ADM.ChangeEventTypes SET
+   ChangeEventType = 'Редактиране на марка базова машина (спец. инж. и самолетообслужваща техника)'
+WHERE ChangeEventTypeKey = 'RES_Lists_AviationOtherBaseMachineMakes_EditAviationOtherBaseMachineMakeName';
+
+UPDATE PMIS_ADM.ChangeEventTypes SET
+   ChangeEventType = 'Добавяне на марка базова машина (спец. инж. и самолетообслужваща техника)'
+WHERE ChangeEventTypeKey = 'RES_Lists_AviationOtherBaseMachineMakes_AddAviationOtherBaseMachineMakeName';
+
+UPDATE PMIS_ADM.ChangeEventTypes SET
+   ChangeEventType = 'Изтриване на марка базова машина (спец. инж. и самолетообслужваща техника)'
+WHERE ChangeEventTypeKey = 'RES_Lists_AviationOtherBaseMachineMakes_DeleteAviationOtherBaseMachineMakeName';
+
+UPDATE PMIS_ADM.ChangeEventTypes SET
+   ChangeEventType = 'Редактиране на модел базова машина (спец. инж. и самолетообслужваща техника)'
+WHERE ChangeEventTypeKey = 'RES_Lists_AviationOtherBaseMachineModels_Edit';
+
+UPDATE PMIS_ADM.ChangeEventTypes SET
+   ChangeEventType = 'Добавяне на модел базова машина (спец. инж. и самолетообслужваща техника)'
+WHERE ChangeEventTypeKey = 'RES_Lists_AviationOtherBaseMachineModels_Add';
+
+UPDATE PMIS_ADM.ChangeEventTypes SET
+   ChangeEventType = 'Изтриване на модел базова машина (спец. инж. и самолетообслужваща техника)'
+WHERE ChangeEventTypeKey = 'RES_Lists_AviationOtherBaseMachineModels_Delete';
+
+UPDATE PMIS_ADM.ChangeEventTypes SET
+   ChangeEventType = 'Добавяне на вид базова машина (спец. инж. и самолетообслужваща техника)'
+WHERE ChangeEventTypeKey = 'RES_Lists_AviationOtherBaseMachineKind_AddAviationOtherBaseMachineKind';
+
+UPDATE PMIS_ADM.ChangeEventTypes SET
+   ChangeEventType = 'Редактиране на вид базова машина (спец. инж. и самолетообслужваща техника)'
+WHERE ChangeEventTypeKey = 'RES_Lists_AviationOtherBaseMachineKind_EditAviationOtherBaseMachineKind';
+
+UPDATE PMIS_ADM.ChangeEventTypes SET
+   ChangeEventType = 'Изтриване на вид базова машина (спец. инж. и самолетообслужваща техника)'
+WHERE ChangeEventTypeKey = 'RES_Lists_AviationOtherBaseMachineKind_DeleteAviationOtherBaseMachineKind';
+
+UPDATE PMIS_ADM.ChangeEventTypes SET
+   ChangeEventType = 'Добавяне на тип базова машина (спец. инж. и самолетообслужваща техника)'
+WHERE ChangeEventTypeKey = 'RES_Lists_AviationOtherBaseMachineType_AddAviationOtherBaseMachineType';
+
+UPDATE PMIS_ADM.ChangeEventTypes SET
+   ChangeEventType = 'Редактиране на тип базова машина (спец. инж. и самолетообслужваща техника)'
+WHERE ChangeEventTypeKey = 'RES_Lists_AviationOtherBaseMachineType_EditAviationOtherBaseMachineType';
+
+UPDATE PMIS_ADM.ChangeEventTypes SET
+   ChangeEventType = 'Изтриване на тип базова машина (спец. инж. и самолетообслужваща техника)'
+WHERE ChangeEventTypeKey = 'RES_Lists_AviationOtherBaseMachineType_DeleteAviationOtherBaseMachineType';
+
+UPDATE PMIS_ADM.ChangeEventTypes SET
+   ChangeEventType = 'Добавяне на вид оборудване (спец. инж. и самолетообслужваща техника)'
+WHERE ChangeEventTypeKey = 'RES_Lists_AviationOtherEquipmentKind_AddAviationOtherEquipmentKind';
+
+UPDATE PMIS_ADM.ChangeEventTypes SET
+   ChangeEventType = 'Редактиране на вид оборудване (спец. инж. и самолетообслужваща техника)'
+WHERE ChangeEventTypeKey = 'RES_Lists_AviationOtherEquipmentKind_EditAviationOtherEquipmentKind';
+
+UPDATE PMIS_ADM.ChangeEventTypes SET
+   ChangeEventType = 'Изтриване на вид оборудване (спец. инж. и самолетообслужваща техника)'
+WHERE ChangeEventTypeKey = 'RES_Lists_AviationOtherEquipmentKind_DeleteAviationOtherEquipmentKind';
+
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('APPL_VacAnn_AddPositionManually', 'Добавяне на длъжност', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'APPL'), 2);
+
+UPDATE PMIS_ADM.ChangeEventTypes SET
+   ChangeEventType = 'Добавяне на избрана вакантна длъжност'
+WHERE ChangeEventTypeKey = 'APPL_VacAnn_AddPosition';
+
+COMMIT;
+/

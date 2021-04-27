@@ -1,0 +1,52 @@
+﻿CREATE TABLE PMIS_RES.TechnicsTypes(TechnicsTypeID number NOT NULL,
+                                    TechnicsTypeKey varchar2(300),
+                                    TechnicsTypeName varchar2(300)
+                                    );
+
+ALTER TABLE PMIS_RES.TechnicsTypes ADD CONSTRAINT TechnicsTypes_PK PRIMARY KEY (TechnicsTypeID);
+ALTER TABLE PMIS_RES.TechnicsTypes ADD CONSTRAINT TechnicsTypes_UNQ UNIQUE (TechnicsTypeKey);
+
+CREATE SEQUENCE PMIS_RES.TechnicsTypes_ID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+CREATE TRIGGER PMIS_RES.TRG_TechnicsTypes_INSERT
+BEFORE INSERT ON PMIS_RES.TechnicsTypes
+FOR EACH ROW
+BEGIN
+   SELECT PMIS_RES.TechnicsTypes_ID_SEQ.nextval INTO :new.TechnicsTypeID FROM dual;
+END;
+/
+
+INSERT INTO PMIS_RES.TechnicsTypes (TechnicsTypeKey, TechnicsTypeName)
+VALUES ('VEHICLES', 'Автомобили');
+
+INSERT INTO PMIS_RES.TechnicsTypes (TechnicsTypeKey, TechnicsTypeName)
+VALUES ('TRAILERS', 'Ремаркета');
+
+INSERT INTO PMIS_RES.TechnicsTypes (TechnicsTypeKey, TechnicsTypeName)
+VALUES ('TRACTORS', 'Трактори');
+
+INSERT INTO PMIS_RES.TechnicsTypes (TechnicsTypeKey, TechnicsTypeName)
+VALUES ('ENG_EQUIP', 'Инженерна техника');
+
+INSERT INTO PMIS_RES.TechnicsTypes (TechnicsTypeKey, TechnicsTypeName)
+VALUES ('MOB_LIFT_EQUIP', 'Подемно-транспортна техника');
+
+INSERT INTO PMIS_RES.TechnicsTypes (TechnicsTypeKey, TechnicsTypeName)
+VALUES ('RAILWAY_EQUIP', 'Специализиран железопътен състав');
+
+INSERT INTO PMIS_RES.TechnicsTypes (TechnicsTypeKey, TechnicsTypeName)
+VALUES ('AVIATION_EQUIP', 'Авиационна техника');
+
+INSERT INTO PMIS_RES.TechnicsTypes (TechnicsTypeKey, TechnicsTypeName)
+VALUES ('VESSELS', 'Кораби');
+
+INSERT INTO PMIS_RES.TechnicsTypes (TechnicsTypeKey, TechnicsTypeName)
+VALUES ('FUEL_CONTAINERS', 'Съдове за ГСМ');
+
+COMMIT;
+/
+
+

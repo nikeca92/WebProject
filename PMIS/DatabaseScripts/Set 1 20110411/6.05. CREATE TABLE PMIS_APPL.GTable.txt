@@ -1,0 +1,50 @@
+﻿CREATE TABLE PMIS_APPL.GTable(GTableID number NOT NULL,
+                              TableName varchar2(500),
+                              TableKey number NOT NULL,
+                              TableSeq number,
+                              TableValue varchar2(4000)
+                              );
+
+ALTER TABLE PMIS_APPL.GTable ADD CONSTRAINT APPL_GTable_PK PRIMARY KEY(GTableID);
+ALTER TABLE PMIS_APPL.GTable ADD CONSTRAINT APPL_GTable_UNQ UNIQUE (TableName, TableKey);
+
+CREATE SEQUENCE PMIS_APPL.GTable_ID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+CREATE TRIGGER PMIS_APPL.TRG_GTable_INSERT
+BEFORE INSERT ON PMIS_APPL.GTable
+FOR EACH ROW
+DECLARE
+   TableKey number;
+BEGIN
+   SELECT PMIS_APPL.GTable_ID_SEQ.nextval INTO :new.GTableID FROM dual;
+   
+   IF :new.TableKey IS NULL THEN
+      SELECT MAX(TableKey) INTO TableKey
+      FROM PMIS_APPL.GTable
+      WHERE TableName = :new.TableName;
+      
+      :new.TableKey := TableKey + 1;
+   END IF;
+END;
+/
+
+INSERT INTO PMIS_APPL.GTable(TableName, TableKey, TableSeq, TableValue)
+VALUES ('ValuationLevel', '1', '1', 'Слабо');
+
+INSERT INTO PMIS_APPL.GTable(TableName, TableKey, TableSeq, TableValue)
+VALUES ('ValuationLevel', '2', '2', 'Средно');
+
+INSERT INTO PMIS_APPL.GTable(TableName, TableKey, TableSeq, TableValue)
+VALUES ('ValuationLevel', '3', '3', 'Добро');
+
+INSERT INTO PMIS_APPL.GTable(TableName, TableKey, TableSeq, TableValue)
+VALUES ('ValuationLevel', '4', '4', 'Много добро');
+
+INSERT INTO PMIS_APPL.GTable(TableName, TableKey, TableSeq, TableValue)
+VALUES ('ValuationLevel', '5', '5', 'Отлично');
+
+
+COMMIT;

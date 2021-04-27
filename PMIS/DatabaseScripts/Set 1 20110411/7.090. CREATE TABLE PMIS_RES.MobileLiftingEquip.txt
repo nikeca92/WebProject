@@ -1,0 +1,27 @@
+﻿CREATE TABLE PMIS_RES.MobileLiftingEquip(MobileLiftingEquipID number NOT NULL,
+                                         TechnicsID number NOT NULL,
+                                         RegNumber varchar2(20),
+                                         InventoryNumber varchar2(50),                                         
+                                         MobileLiftingEquipKindID number, /*GTable*/
+                                         MobileLiftingEquipTypeID number, /*GTable*/
+                                         LoadingCapacity number
+                                         );
+
+ALTER TABLE PMIS_RES.MobileLiftingEquip ADD CONSTRAINT MobLiftEquip_PK PRIMARY KEY(MobileLiftingEquipID);
+ALTER TABLE PMIS_RES.MobileLiftingEquip ADD CONSTRAINT MobLiftEquip_TechnicsID_UNQ UNIQUE (TechnicsID);
+ALTER TABLE PMIS_RES.MobileLiftingEquip ADD CONSTRAINT MobLiftEquip_RegNum_UNQ UNIQUE (RegNumber);
+ALTER TABLE PMIS_RES.MobileLiftingEquip ADD CONSTRAINT MobLiftEquip_Technics_FK FOREIGN KEY (TechnicsID) REFERENCES PMIS_RES.Technics (TechnicsID);
+
+
+CREATE SEQUENCE PMIS_RES.MobileLiftingEquip_ID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+CREATE TRIGGER PMIS_RES.TRG_MobileLiftingEquip_INSERT
+BEFORE INSERT ON PMIS_RES.MobileLiftingEquip
+FOR EACH ROW
+BEGIN
+   SELECT PMIS_RES.MobileLiftingEquip_ID_SEQ.nextval INTO :new.MobileLiftingEquipID FROM dual;
+END;
+/

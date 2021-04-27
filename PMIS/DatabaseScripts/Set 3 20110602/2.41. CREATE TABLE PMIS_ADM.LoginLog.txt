@@ -1,0 +1,29 @@
+﻿CREATE TABLE PMIS_ADM.LoginLog(	LoginLogID number NOT NULL,
+								ModuleID number NOT NULL,
+								UserID number NOT NULL,
+								IP varchar2(50),
+								UserAgent varchar2(1000),
+								SessionID varchar2(500),
+								AuthID varchar2(500),
+								LoginDateTime date
+							  );
+
+ALTER TABLE PMIS_ADM.LoginLog ADD CONSTRAINT LoginLog_PK PRIMARY KEY(LoginLogID);
+ALTER TABLE PMIS_ADM.LoginLog ADD CONSTRAINT LoginLog_Modules_FK FOREIGN KEY (ModuleID) REFERENCES PMIS_ADM.Modules (ModuleID);
+ALTER TABLE PMIS_ADM.LoginLog ADD CONSTRAINT LoginLog_Users_FK FOREIGN KEY (UserID) REFERENCES PMIS_ADM.Users (UserID);
+
+
+CREATE SEQUENCE PMIS_ADM.LoginLog_ID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+CREATE TRIGGER PMIS_ADM.TRG_LoginLog_INSERT
+BEFORE INSERT ON PMIS_ADM.LoginLog
+FOR EACH ROW
+BEGIN
+   SELECT PMIS_ADM.LoginLog_ID_SEQ.nextval INTO :new.LoginLogID FROM dual;
+END;
+/
+
+COMMIT;

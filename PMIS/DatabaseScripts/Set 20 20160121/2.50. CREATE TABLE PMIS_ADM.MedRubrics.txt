@@ -1,0 +1,35 @@
+﻿CREATE TABLE PMIS_ADM.MedRubrics(MedRubricID number NOT NULL,
+                                 MedRubricTitle varchar2(200),
+                                 IsActive number(1) CHECK (IsActive BETWEEN 0 AND 1)
+                                 );
+
+ALTER TABLE PMIS_ADM.MedRubrics ADD CONSTRAINT MedRubrics_PK PRIMARY KEY (MedRubricID);
+
+CREATE SEQUENCE PMIS_ADM.MedRubrics_ID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+CREATE TRIGGER PMIS_ADM.TRG_MedRubrics_INSERT
+BEFORE INSERT ON PMIS_ADM.MedRubrics
+FOR EACH ROW
+BEGIN
+   SELECT PMIS_ADM.MedRubrics_ID_SEQ.nextval INTO :new.MedRubricID FROM dual;
+END;
+/
+
+INSERT INTO PMIS_ADM.MedRubrics (MedRubricTitle, IsActive)
+VALUES ('Рубрика #1', 1);
+
+INSERT INTO PMIS_ADM.MedRubrics (MedRubricTitle, IsActive)
+VALUES ('Рубрика #2', 1);
+
+INSERT INTO PMIS_ADM.MedRubrics (MedRubricTitle, IsActive)
+VALUES ('Рубрика #3', 1);
+
+INSERT INTO PMIS_ADM.MedRubrics (MedRubricTitle, IsActive)
+VALUES ('Рубрика #4', 1);
+
+INSERT INTO PMIS_ADM.MedRubrics (MedRubricTitle, IsActive)
+VALUES ('Рубрика #5', 1);
+/

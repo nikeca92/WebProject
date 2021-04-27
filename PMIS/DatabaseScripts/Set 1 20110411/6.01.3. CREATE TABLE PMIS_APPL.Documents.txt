@@ -1,0 +1,44 @@
+﻿
+CREATE TABLE PMIS_APPL.Documents (DocumentID number NOT NULL,
+                                          DocumentName varchar2(300)
+                                         );
+
+ALTER TABLE PMIS_APPL.Documents ADD CONSTRAINT DocumentID_PK PRIMARY KEY(DocumentID);
+
+CREATE SEQUENCE PMIS_APPL.Documents_ID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+CREATE TRIGGER PMIS_APPL.Documents_INSERT
+BEFORE INSERT ON PMIS_APPL.Documents
+FOR EACH ROW
+BEGIN
+   SELECT PMIS_APPL.Documents_ID_SEQ.nextval INTO :new.DocumentID FROM dual;
+END;
+/
+
+
+INSERT INTO PMIS_APPL.Documents (DocumentName)
+VALUES ('Автобиография');
+
+INSERT INTO PMIS_APPL.Documents (DocumentName)
+VALUES ('Копие от дипломата за завършено образование');
+
+INSERT INTO PMIS_APPL.Documents (DocumentName)
+VALUES ('Експертно решение за психологическа пригодност');
+
+INSERT INTO PMIS_APPL.Documents (DocumentName)
+VALUES ('Експертно решение за годност за военна служба');
+
+INSERT INTO PMIS_APPL.Documents (DocumentName)
+VALUES ('Документ за трудов стаж');
+
+INSERT INTO PMIS_APPL.Documents (DocumentName)
+VALUES ('Свидетелство за съдимост');
+
+INSERT INTO PMIS_APPL.Documents (DocumentName)
+VALUES ('Декларация, че няма друго гражданство, освен българско');
+
+COMMIT;
+

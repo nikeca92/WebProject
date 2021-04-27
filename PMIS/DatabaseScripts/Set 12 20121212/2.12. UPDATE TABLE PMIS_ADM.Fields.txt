@@ -1,0 +1,51 @@
+﻿INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Reservist_MilServ_Conscription_MilitaryUnit', 'Военно формирование', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Reservist_MilServ_Conscription_Position', 'Длъжност', 2);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('date', 'RES_Reservist_MilServ_Conscription_DateFrom', 'От', 3);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('date', 'RES_Reservist_MilServ_Conscription_DateTo', 'До', 4);
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Technics_MilRepStatus_VoluntaryContractNumber', 'Договор №', 9);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('date', 'RES_Technics_MilRepStatus_VoluntaryContractDate', 'от дата', 10);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('number', 'RES_Technics_MilRepStatus_VoluntaryDurationMonths', 'Срок', 11);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('date', 'RES_Technics_MilRepStatus_VoluntaryContractToDate', 'до дата', 12);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Technics_MilRepStatus_VoluntaryFulfilPlace', 'Място на изпълнение', 13);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('date', 'RES_Technics_MilRepStatus_RemovedDate', 'Изключен от отчет', 14);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Technics_MilRepStatus_RemovedReason', 'Причина за изключване', 15);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Technics_MilRepStatus_TemporaryRemovedReason', 'Причина за временно снемане', 16);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('date', 'RES_Technics_MilRepStatus_TemporaryRemovedDate', 'Начална дата', 17);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('number', 'RES_Technics_MilRepStatus_TemporaryRemovedDuration', 'Продължителност', 18);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Technics_MilRepStatus_TechnicsPostponeType', 'Вид отсрочване', 19);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('number', 'RES_Technics_MilRepStatus_TechnicsPostponeYear', 'За коя година', 20);
+
+
+COMMIT;

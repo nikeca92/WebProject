@@ -1,0 +1,25 @@
+﻿CREATE TABLE PMIS_ADM.PersonPositionTitles(PersonPositionTitleID number NOT NULL,
+                                           PersonID number NOT NULL,
+                                           PositionTitleID number,
+                                           IsPrimary number(1) CHECK (IsPrimary BETWEEN 0 AND 1)
+                                          );
+
+ALTER TABLE PMIS_ADM.PersonPositionTitles ADD CONSTRAINT PersonPosTitles_PK PRIMARY KEY (PersonPositionTitleID);
+ALTER TABLE PMIS_ADM.PersonPositionTitles ADD CONSTRAINT PersonPosTitles_PK_Persons_FK FOREIGN KEY (PersonID) REFERENCES VS_OWNER.VS_LS (PersonID);
+ALTER TABLE PMIS_ADM.PersonPositionTitles ADD CONSTRAINT PersonPosTitles_PK_Pos_FK FOREIGN KEY (PositionTitleID) REFERENCES PMIS_ADM.PositionTitles (PositionTitleID);
+
+CREATE SEQUENCE PMIS_ADM.PersonPositionTitles_ID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+CREATE TRIGGER PMIS_ADM.TRG_PersonPosTitles_INSERT
+BEFORE INSERT ON PMIS_ADM.PersonPositionTitles
+FOR EACH ROW
+BEGIN
+   SELECT PMIS_ADM.PersonPositionTitles_ID_SEQ.nextval INTO :new.PersonPositionTitleID FROM dual;
+END;
+/
+
+COMMIT;
+/

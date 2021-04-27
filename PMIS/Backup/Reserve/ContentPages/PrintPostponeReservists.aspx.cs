@@ -1,0 +1,464 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Configuration;
+using System.Data;
+using System.Linq;
+using System.Web;
+using System.Web.Security;
+using System.Web.UI;
+using System.Web.UI.HtmlControls;
+using System.Web.UI.WebControls;
+using System.Web.UI.WebControls.WebParts;
+using System.Xml.Linq;
+using System.Drawing;
+using System.Collections;
+using System.Text;
+
+using PMIS.Common;
+using PMIS.Reserve.Common;
+
+namespace PMIS.Reserve.ContentPages
+{
+    public partial class PrintPostponeReservists : RESPage
+    {
+        private int pageLength = int.Parse(Config.GetWebSetting("RowsPerPageOnPrintScreens"));
+        private PrintPostponeReservistsResult Result;
+
+        private int MaxPage
+        {
+            get { return pageLength == 0 ? 1 : Result.AllRecordsCount / pageLength + (Result.AllRecordsCount != 0 && Result.AllRecordsCount % pageLength == 0 ? 0 : 1); }
+        }
+
+        //This specifies which part of the UI items tree is for this specific screen
+        public override string PageUIKey
+        {
+            get
+            {
+                return "RES_PRINT_POSTPONE_RESERVISTS";
+            }
+        }
+
+
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            if (this.GetUIItemAccessLevel("RES_PRINT") == UIAccessLevel.Hidden ||
+                this.GetUIItemAccessLevel("RES_PRINT_POSTPONE_RESERVISTS") == UIAccessLevel.Hidden)
+            {
+                RedirectAccessDenied();
+            }            
+
+            //Hilight the current page in the menu bar
+            HighlightMenuItems("Print", "PrintPostponeReservists");
+
+            //Hide any nvaigation buttons (e.g. Back) that should not be visible when the screen is loaded from the menu bar
+            HideNavigationControls(btnBack);
+
+            //Setup some basic styles on the screen
+            SetupStyle();
+
+            Result = new PrintPostponeReservistsResult(pageLength, CurrentUser); 
+
+            //When the page is loaded for the first time
+            if (!IsPostBack)
+            {
+                //Populate any drop-downs and list-boxes
+                PopulateLists();
+
+                //Set the default order
+                if (string.IsNullOrEmpty(hdnSortBy.Value))
+                    hdnSortBy.Value = "1";
+
+                //Do not 'Simulate clicking the Refresh button to load the grid initially' to prevent slow loading
+                //btnRefresh_Click(btnRefresh, new EventArgs());
+            }
+
+            lblMessage.Text = "";
+            lblGridMessage.Text = "";
+
+            btnPickListMilitaryDepartmentsChanged.Style.Add("display", "none");
+            btnRefresh.Attributes.Add("onclick", "SetPickListsSelection();");
+            btnPrintUOSrv.Style.Add("display", "none");            
+        }
+
+        //Populate all listboxes on the screen
+        private void PopulateLists()
+        {
+            PopulateMilitaryDepartments();
+            PopulateAdministrations();
+            PopulateCompanies();
+        }
+
+        private void PopulateMilitaryDepartments()
+        {
+            string result = "";
+
+            List<MilitaryDepartment> militaryDepartments = MilitaryDepartmentUtil.GetAllMilitaryDepartments(CurrentUser);
+
+            foreach (MilitaryDepartment militaryDepartment in militaryDepartments)
+            {
+                string pickListItem = "{value : '" + militaryDepartment.MilitaryDepartmentId.ToString() + "' , label : '" + militaryDepartment.MilitaryDepartmentName.Replace("'", "\\'") + "'}";
+                result += (result == "" ? "" : ",") + pickListItem;
+            }
+
+            if (result != "")
+                result = "[" + result + "]";
+
+            hdnMilitaryDepartmentJson.Value = result;
+        }
+
+        protected void btnPickListMilitaryDepartmentsChanged_Clicked(object sender, EventArgs e)
+        {
+            PopulateCompanies();
+        }
+
+        private void PopulateAdministrations()
+        {
+            ddAdministrations.Items.Clear();
+            ddAdministrations.Items.Add(ListItems.GetOptionAll());
+
+            List<Administration> administrations = AdministrationUtil.GetAllAdministrations(CurrentUser);
+
+            foreach (Administration administration in administrations)
+            {
+                ListItem li = new ListItem();
+                li.Text = administration.AdministrationName;
+                li.Value = administration.AdministrationId.ToString();
+
+                ddAdministrations.Items.Add(li);
+            }
+        }
+
+        protected void ddAdministrations_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            PopulateCompanies();
+        }
+
+        private void PopulateCompanies()
+        {
+            hdnCompanySelected.Value = "";
+            string result = "";
+
+            PrintPostponeReservistsFilter filter = CollectFilterData();
+            List<Company> companies = PrintPostponeReservistsUtil.GetCompaniesList(CurrentUser, filter);
+
+            foreach (Company company in companies)
+            {
+                string pickListItem = "{value : '" + company.CompanyId.ToString() + "' , label : '" + company.CompanyName.Replace("'", "\\'") + "'}";
+                result += (result == "" ? "" : ",") + pickListItem;
+            }
+
+            if (result != "")
+                result = "[" + result + "]";
+
+            hdnCompanyJson.Value = result;
+        }
+
+        
+
+        //Setup some styling on the page
+        private void SetupStyle()
+        {
+            lblMilitaryDepartment.Style.Add("vertical-align", "middle");
+        }
+
+        //Validate some field on the screen
+        private bool ValidateData()
+        {
+            bool isDataValid = true;
+            string errMsg = "";
+
+            if (!isDataValid)
+            {
+                lblMessage.CssClass = "ErrorText";
+                lblMessage.Text = errMsg;
+            }
+
+            return isDataValid;
+        }
+
+        //Refresh the data grid
+        private void RefreshResults()
+        {
+            if (this.GetUIItemAccessLevel("RES_PRINT_POSTPONE_RESERVISTS") == UIAccessLevel.Hidden)
+                return;
+
+            pnlPaging.Visible = true;
+
+            StringBuilder html = new StringBuilder();
+            string selectedRecordsMessageHtml = "";
+
+            //Collect the filters, the order control and the paging control data from the page
+            int orderBy;
+            if (!int.TryParse(hdnSortBy.Value, out orderBy))
+                orderBy = 0;
+
+            int pageIdx;
+            if (!int.TryParse(hdnPageIdx.Value, out pageIdx))
+                pageIdx = 0;
+
+            hdnSelectedReservistIDs.Value = "";
+
+            if (Result.OverallResult != null)
+            {
+                string headerStyle = "vertical-align: bottom;";
+                int orderCol = (orderBy > 100 ? orderBy - 100 : orderBy);
+                string img = orderBy > 100 ? "../Images/desc.gif" : "../Images/asc.gif";
+                string[] arrOrderCol = { "", "", "" };
+                arrOrderCol[orderCol - 1] = @"<div style='Position: relative;'><div class='SortImgDiv'><img src=""" + img + @""" /></div></div>";
+
+                string cellStyle = "vertical-align: top;";
+
+                html.Append(@"<table class='CommonHeaderTable' style='margin: 0 auto; text-align: left;'>
+                                 <thead>
+                                    <tr>
+                                       <th style='width: 20px;" + headerStyle + @"'><input type='checkbox' id='chkAll' checked='checked' onclick='CheckAll();' title='Премахни всички' /></th>
+                                       <th style='width: 20px;" + headerStyle + @"'>№</th>
+                                       <th style='width: 100px; cursor: pointer;" + headerStyle + @"' onclick='SortTableBy(1);'>ЕГН" + arrOrderCol[0] + @"</th>
+                                       <th style='width: 200px; cursor: pointer;" + headerStyle + @"' onclick='SortTableBy(2);'>Име" + arrOrderCol[1] + @"</th>
+                                       <th style='width: 170px; cursor: pointer;" + headerStyle + @"' onclick='SortTableBy(3);'>Звание" + arrOrderCol[2] + @"</th>
+                                    </tr> 
+                                 </thead>");
+
+                int counter = 0;
+
+                foreach (PrintPostponeReservistsResultBlock block in Result.OverallResult)
+                {
+                    counter++;
+
+                    string onClickCheckbox = "onclick='Checkbox_Clicked(" + counter.ToString() + @");'";
+                    string onClickRow = "onclick='Row_Clicked(" + counter.ToString() + @");'";
+
+                    html.Append(@"<tr id='row" + counter.ToString() + @"' class='" + (counter % 2 == 0 ? "DataTableEvenRow" : "DataTableOddRow") + @"'>                                
+                                     <td style='" + cellStyle + @" text-align: left;'>
+                                        <input type='checkbox' id='chkRow" + counter.ToString() + @"' " + onClickCheckbox + @" checked='checked'  />
+                                        <input type='hidden' id='hdnReservistId" + counter.ToString() + @"' value='" + block.ReservistId.ToString() + @"'/> 
+                                     </td>
+                                     <td style='" + cellStyle + @" text-align: left; cursor: pointer;' " + onClickRow + @">" + ((pageIdx - 1) * pageLength + counter).ToString() + @"</td>
+                                     <td style='" + cellStyle + @" text-align: left; cursor: pointer;' " + onClickRow + @">" + block.IdentityNumber + @"</td>
+                                     <td style='" + cellStyle + @" text-align: left; cursor: pointer;' " + onClickRow + @">" + block.FullName + @"</td>
+                                     <td style='" + cellStyle + @" text-align: left; cursor: pointer;' " + onClickRow + @">" + block.MilitaryRankName + @"</td>
+                                  </tr>");
+
+                    hdnSelectedReservistIDs.Value += (String.IsNullOrEmpty(hdnSelectedReservistIDs.Value) ? "" : ",") + block.ReservistId.ToString();
+                }
+
+                html.Append("</table>");
+                html.Append("<input type='hidden' id='hdnRowsCount' value='" + counter.ToString() + "' />");
+
+                selectedRecordsMessageHtml = "<div style='width: 530px; text-align: left; margin: 0 auto; padding-bottom: 10px;'>Избрани са <span id='lblSelectedRowsCount'>" + counter.ToString() + "</span> записа</div>";
+            }
+
+            this.pnlResultsGrid.InnerHtml = selectedRecordsMessageHtml + html.ToString();
+
+            //Refresh the paging button according to the current position
+            SetImgBtns();
+            lblPagination.Text = " | " + hdnPageIdx.Value + " от " + MaxPage.ToString() + " | ";
+            txtGotoPage.Text = "";
+        }
+
+        //Refresh the data grid
+        protected void btnRefresh_Click(object sender, EventArgs e)
+        {
+            pnlSearchHint.Visible = false;
+            if (ValidateData())
+            {
+                Result.Filter = CollectFilterData();
+
+                if (sender != Page ||
+                   (!String.IsNullOrEmpty(hdnPageIdx.Value) && int.Parse(hdnPageIdx.Value) > MaxPage))
+                {
+                    hdnPageIdx.Value = "1";
+                    Result.Filter = CollectFilterData();
+                }
+
+                RefreshResults();
+            }
+        }
+
+        //Go to the first page and refresh the grid
+        protected void btnFirst_Click(object sender, EventArgs e)
+        {
+            if (ValidateData())
+            {
+                hdnPageIdx.Value = "1";
+                Result.Filter = CollectFilterData();
+                RefreshResults();
+            }
+        }
+
+        //Go to the previous page and refresh the grid
+        protected void btnPrev_Click(object sender, EventArgs e)
+        {
+            if (ValidateData())
+            {
+                int page = int.Parse(hdnPageIdx.Value);
+
+                if (page > 1)
+                {
+                    page--;
+                    hdnPageIdx.Value = page.ToString();
+
+                    Result.Filter = CollectFilterData();
+                    RefreshResults();
+                }
+            }
+        }
+
+        //Go to the next page and refresh the grid
+        protected void btnNext_Click(object sender, EventArgs e)
+        {
+            if (ValidateData())
+            {
+                Result.Filter = CollectFilterData();
+                int page = int.Parse(hdnPageIdx.Value);
+
+                if (page < MaxPage)
+                {
+                    page++;
+                    hdnPageIdx.Value = page.ToString();
+
+                    Result.Filter = CollectFilterData();
+
+                    RefreshResults();
+                }
+            }
+        }
+
+        //Go to the last page and refresh the grid
+        protected void btnLast_Click(object sender, EventArgs e)
+        {
+            if (ValidateData())
+            {
+                Result.Filter = CollectFilterData();
+                hdnPageIdx.Value = MaxPage.ToString();
+                Result.Filter = CollectFilterData();
+
+                RefreshResults();
+            }
+        }
+
+        //Go to a specific page (entered by the user) and refresh the grid
+        protected void btnGoto_Click(object sender, EventArgs e)
+        {
+            if (ValidateData())
+            {
+                int gotoPage;
+                Result.Filter = CollectFilterData();
+                if (int.TryParse(txtGotoPage.Text, out gotoPage) && gotoPage > 0 && gotoPage <= MaxPage)
+                {
+                    hdnPageIdx.Value = gotoPage.ToString();
+                    Result.Filter = CollectFilterData();
+                    RefreshResults();
+                }
+            }
+        }
+
+        //Refresh the paging image buttons
+        private void SetImgBtns()
+        {
+            int page = int.Parse(hdnPageIdx.Value);
+
+            btnFirst.Enabled = true;
+            btnPrev.Enabled = true;
+            btnLast.Enabled = true;
+            btnNext.Enabled = true;
+            btnFirst.ImageUrl = "../Images/ButtonFirst.png";
+            btnPrev.ImageUrl = "../Images/ButtonPrev.png";
+            btnLast.ImageUrl = "../Images/ButtonLast.png";
+            btnNext.ImageUrl = "../Images/ButtonNext.png";
+
+            if (page == 1)
+            {
+                btnFirst.Enabled = false;
+                btnPrev.Enabled = false;
+                btnFirst.ImageUrl = "../Images/ButtonFirstDisabled.png";
+                btnPrev.ImageUrl = "../Images/ButtonPrevDisabled.png";
+            }
+
+            if (page == MaxPage)
+            {
+                btnLast.Enabled = false;
+                btnNext.Enabled = false;
+                btnLast.ImageUrl = "../Images/ButtonLastDisabled.png";
+                btnNext.ImageUrl = "../Images/ButtonNextDisabled.png";
+            }
+        }
+
+        //Navigate back to the home screen
+        protected void btnBack_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/ContentPages/Home.aspx");
+        }
+
+        protected void btnClear_Click(object sender, EventArgs e)
+        {
+            hdnMilitaryDepartmentSelected.Value = "";
+            ddAdministrations.SelectedValue = ListItems.GetOptionAll().Value;
+            hdnCompanySelected.Value = "";
+            hdnCompanyJson.Value = "";
+            pnlResultsGrid.InnerHtml = "";
+            pnlSearchHint.Visible = true;
+        }
+
+        private PrintPostponeReservistsFilter CollectFilterData()
+        {
+            int orderBy;
+            if (!int.TryParse(hdnSortBy.Value, out orderBy))
+                orderBy = 0;
+
+            int pageIdx;
+            if (!int.TryParse(hdnPageIdx.Value, out pageIdx))
+                pageIdx = 0;
+
+            PrintPostponeReservistsFilter filter = new PrintPostponeReservistsFilter();
+
+            string administration = "";
+            if (ddAdministrations.SelectedValue != ListItems.GetOptionAll().Value)
+            {
+                administration = ddAdministrations.SelectedValue;
+            }
+
+            filter.MilitaryDepartmentIds = hdnMilitaryDepartmentSelected.Value;
+            hdnMilitaryDepartmentId.Value = hdnMilitaryDepartmentSelected.Value;
+
+            filter.AdministrationId = administration;
+            filter.CompanyIds = hdnCompanySelected.Value;
+
+            filter.OrderBy = orderBy;
+            filter.PageIdx = pageIdx;
+
+            return filter;             
+        }
+
+        protected void btnPrintUO_Click(object sender, EventArgs e)
+        {
+            string result = PrintUO();
+
+            Response.Clear();
+            Response.AppendHeader("content-disposition", "attachment;filename=UO.doc");
+            Response.ContentType = "application/vnd.ms-word";
+
+            Response.ContentEncoding = System.Text.Encoding.Unicode;
+            Response.BinaryWrite(System.Text.Encoding.Unicode.GetPreamble());
+
+            Response.Write(result);
+            Response.End();
+        }
+
+        private string PrintUO()
+        {
+            List<int> reservistIDs = new List<int>();
+
+            if (!String.IsNullOrEmpty(hdnSelectedReservistIDs.Value))
+            {
+                string[] seletedReservistIDs = hdnSelectedReservistIDs.Value.Split(new char[] { ',' });
+                foreach (string reservistId in seletedReservistIDs)
+                    reservistIDs.Add(int.Parse(reservistId));
+            }
+
+            string result = GeneratePrintReservistsUtil.PrintUO(reservistIDs, CurrentUser);
+            return result;
+        }
+
+    }
+}

@@ -1,0 +1,26 @@
+﻿CREATE TABLE PMIS_HS.WorkplaceConditionsCardItems(WorkplaceConditionsCardItemID number NOT NULL,
+                                                  WorkplaceConditionsCardID number NOT NULL,
+                                                  IndicatorTypeID number,
+						  IndicatorTypeName varchar2(500),
+						  IndicatorID number,
+						  IndicatorName varchar2(500),
+                                                  Value number(30,10),
+                                                  Rate number(30,10),
+                                                  Assessment number(30,10)
+                                                  );
+
+ALTER TABLE PMIS_HS.WorkplaceConditionsCardItems ADD CONSTRAINT WConditionsCardItems_PK PRIMARY KEY(WorkplaceConditionsCardItemID);
+ALTER TABLE PMIS_HS.WorkplaceConditionsCardItems ADD CONSTRAINT WCondCardItems_WCondCards_FK FOREIGN KEY (WorkplaceConditionsCardID) REFERENCES PMIS_HS.WorkplaceConditionsCards (WorkplaceConditionsCardID);
+
+CREATE SEQUENCE PMIS_HS.WConditionsCardItems_ID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+CREATE TRIGGER PMIS_HS.TRG_WCondCardItems_INSERT
+BEFORE INSERT ON PMIS_HS.WorkplaceConditionsCardItems
+FOR EACH ROW
+BEGIN
+   SELECT PMIS_HS.WConditionsCardItems_ID_SEQ.nextval INTO :new.WorkplaceConditionsCardItemID FROM dual;
+END;
+/

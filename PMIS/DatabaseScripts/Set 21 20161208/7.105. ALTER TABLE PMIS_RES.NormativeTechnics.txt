@@ -1,0 +1,8 @@
+ALTER TABLE PMIS_RES.NormativeTechnics ADD (Sort number);
+
+UPDATE PMIS_RES.NormativeTechnics
+SET Sort = TO_NUMBER(NormativeCode);
+
+COMMIT;
+
+/

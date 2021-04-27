@@ -1,0 +1,31 @@
+﻿CREATE TABLE PMIS_ADM.MilitaryForceTypes(MilitaryForceTypeID number NOT NULL,
+                                   MilitaryForceTypeName varchar2(500)
+                                  );
+
+ALTER TABLE PMIS_ADM.MilitaryForceTypes ADD CONSTRAINT MilitaryForceTypes_PK PRIMARY KEY(MilitaryForceTypeID);
+
+CREATE SEQUENCE PMIS_ADM.MilitaryForceTypes_ID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+CREATE TRIGGER PMIS_ADM.TRG_MilitaryForceTypes_INSERT
+BEFORE INSERT ON PMIS_ADM.MilitaryForceTypes
+FOR EACH ROW
+BEGIN
+   SELECT PMIS_ADM.MilitaryForceTypes_ID_SEQ.nextval INTO :new.MilitaryForceTypeID FROM dual;
+END;
+/
+
+
+INSERT INTO PMIS_ADM.MilitaryForceTypes(MilitaryForceTypeName)
+VALUES ('Военновъздушни сили');
+
+INSERT INTO PMIS_ADM.MilitaryForceTypes(MilitaryForceTypeName)
+VALUES ('Военноморски сили');
+
+INSERT INTO PMIS_ADM.MilitaryForceTypes(MilitaryForceTypeName)
+VALUES ('Сухопътни войски');
+
+
+COMMIT;

@@ -1,0 +1,95 @@
+﻿INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('number', 'RES_Reservist_MilServ_Discharge_Year', 'Година', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Reservist_MilServ_Discharge_DischargeReason', 'Причина за снемане от отчет', 2);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Reservist_MilServ_Discharge_DischargeDestination', 'Къде отива при снемане от отчет', 3);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Reservist_MilServ_Discharge_Order', 'Заповед', 4);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('date', 'RES_Reservist_MilServ_Discharge_OrderDate', 'Дата', 5);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('date', 'RES_Reservist_MilServ_Discharge_OrderEffectiveDate', 'Считано от', 6);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Reservist_MilServ_Discharge_MilitaryCommanderRank', 'Подписал заповедта', 7);
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'ADM_Lists_PositionTitles_PositionTitle', 'Длъжност', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('bool', 'ADM_Lists_PositionTitles_IsActive', 'Активна', 2);
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Reservist_PositionTitles_PositionTitle', 'Длъжност', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('bool', 'RES_Reservist_PositionTitles_IsPrimary', 'Основна длъжност', 2);
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_ResAppointment_AppointmentIsDelivered', 'Връчено МН', 9);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_TechAppointment_AppointmentIsDelivered', 'Връчено МН', 7);
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'ADM_Lists_MedRubrics_MedRubricTitle', 'Медицинска рубрика', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('bool', 'ADM_Lists_MedRubrics_IsActive', 'Активна', 2);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Reservist_MilRepStatus_MedCertMedRubric', 'Медицинска рубрика', 1);
+
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'ADM_Lists_MilitaryStructures_MilitaryStructureName', 'Структура', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('bool', 'ADM_Lists_MilitaryStructures_IsActive', 'Активна', 2);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('number', 'ADM_Lists_MilitaryStructures_Seq', 'Номер за подредба', 3);
+
+
+UPDATE PMIS_ADM.Fields SET
+    FieldName = 'Вид войски'
+WHERE FieldKey = 'ADM_Lists_MilitaryForceTypes_MilitaryForceTypeName';
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('bool', 'ADM_Lists_MilitaryForceTypes_IsActive', 'Активен', 2);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('number', 'ADM_Lists_MilitaryForceTypes_Seq', 'Номер за подредба', 3);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'ADM_Lists_MilitaryForceTypes_MilitaryStructure', 'Структура', 4);
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'ADM_Lists_MilitaryForceSort_MilitaryForceSortCode', 'Код', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'ADM_Lists_MilitaryForceSort_MilitaryForceSortName', 'Род войски', 2);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('bool', 'ADM_Lists_MilitaryForceSort_IsActive', 'Активен', 3);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('number', 'ADM_Lists_MilitaryForceSort_Seq', 'Номер за подредба', 4);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'ADM_Lists_MilitaryForceSort_MilitaryForceType', 'Вид войски', 5);
+
+COMMIT;
+/

@@ -1,0 +1,2432 @@
+--Резерв -> Човешки ресурси -> Военно-отчетни лица -> Редактиране на военно-отчетно лице -> Професия и специалност
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_HUMANRES_EDITMILITARYREPORTPERSON_SPECIALITY', 'Професия и специалност', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_HUMANRES_EDITMILITARYREPORTPERSON'));
+
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_EQUIPTECHREQUESTS_EDIT_COMMANDS_EDIT_POSITIONS_NORMATIVETECHNICS', 'Нормативна категория', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_EQUIPTECHREQUESTS_EDIT_COMMANDS_EDIT_POSITIONS'));
+
+--Резерв -> Заявки за окомплектоване с техника от резерва -> Определяне на ВО на заявка за окомплектоване с техника от резерва -> Данни за позицията -> Нормативна категория
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_EQUIPTECHREQUESTS_MILDEPT_POSITION_NORMATIVETECHNICS', 'Нормативна категория', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_EQUIPTECHREQUESTS_MILDEPT_POSITION'));
+
+--Резерв -> Заявки за окомплектоване с техника от резерва -> Изпълнение на заявки за окомплектоване с техника от резерва -> Команда -> Позиции -> Нормативна категория
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_EQUIPTECHREQUESTS_FULFIL_MILCOMMAND_POSITIONS_NORMATIVETECHNICS', 'Нормативна категория', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_EQUIPTECHREQUESTS_FULFIL_MILCOMMAND_POSITIONS'));
+
+--Резерв -> Справки -> Списък на техниката с МН по определена заявка -> Детайли - нормативна категория
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_LISTTECHWITHAPPOINTMENTS_DETAILS_NORMATIVETECHNICS', 'Детайли - нормативна категория', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_LISTTECHWITHAPPOINTMENTS'));
+
+
+--Change some technics types names depending on the new normative document:
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Търсене на ремарке и полуремарке'
+WHERE UIKey = 'RES_EQUIPTECHREQUESTS_FULFIL_MILCOMMAND_POSITIONS_FULFIL_SEARCHTRAILER';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Ремаркета и полуремаркета'
+WHERE UIKey = 'RES_TECHNICS_TRAILERS';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Видове ремаркета и полуремаркета'
+WHERE UIKey = 'RES_LISTMAINT_TRAILERKIND';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Добавяне на вид ремарке и полуремарке'
+WHERE UIKey = 'RES_LISTMAINT_TRAILERKIND_ADD';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Редактиране на вид ремарке и полуремарке'
+WHERE UIKey = 'RES_LISTMAINT_TRAILERKIND_EDIT';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Изтриване на вид ремарке и полуремарке'
+WHERE UIKey = 'RES_LISTMAINT_TRAILERKIND_DELETE';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Типове ремаркета и полуремаркета'
+WHERE UIKey = 'RES_LISTMAINT_TRAILERTYPE';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Добавяне на тип ремарке и полуремарке'
+WHERE UIKey = 'RES_LISTMAINT_TRAILERTYPE_ADD';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Редактиране на тип ремарке и полуремарке'
+WHERE UIKey = 'RES_LISTMAINT_TRAILERTYPE_EDIT';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Изтриване на тип ремарке и полуремарке'
+WHERE UIKey = 'RES_LISTMAINT_TRAILERTYPE_DELETE';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Списък на техниката на военен отчет - Ремаркета и полуремаркета'
+WHERE UIKey = 'RES_REPORTS_TRAILERS';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Видове каросерии на ремаркета и полуремаркета'
+WHERE UIKey = 'RES_LISTMAINT_TRAILERBODYKIND';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Добавяне на вид каросерия на ремарке и полуремарке'
+WHERE UIKey = 'RES_LISTMAINT_TRAILERBODYKIND_ADD';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Редактиране на вид каросерия на ремарке и полуремарке'
+WHERE UIKey = 'RES_LISTMAINT_TRAILERBODYKIND_EDIT';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Изтриване на вид каросерия на ремарке и полуремарке'
+WHERE UIKey = 'RES_LISTMAINT_TRAILERBODYKIND_DELETE';
+
+
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Инженерни машини'
+WHERE UIKey = 'RES_TECHNICS_ENG_EQUIP';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Марки инж. машини'
+WHERE UIKey = 'RES_LISTMAINT_ENGEQUIPBASEMAKENAMES';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Добавяне на марка инж. машини'
+WHERE UIKey = 'RES_LISTMAINT_ENGEQUIPBASEMAKENAMES_ADD';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Марка инж. машини'
+WHERE UIKey = 'RES_LISTMAINT_ENGEQUIPBASEMAKES_ADD_ENGEQUIPMAKESNAME';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Редактиране на марка инж. машини'
+WHERE UIKey = 'RES_LISTMAINT_ENGEQUIPBASEMAKENAMES_EDIT';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Марка инж. машини'
+WHERE UIKey = 'RES_LISTMAINT_ENGEQUIPMAKES_EDIT_ENGEQUIPMAKESNAME';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Изтриване на марка инж. машини'
+WHERE UIKey = 'RES_LISTMAINT_ENGEQUIPBASEMAKENAMES_DELETE';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Модели инж. машини'
+WHERE UIKey = 'RES_LISTMAINT_ENGEQUIPBASEMODELS';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Добавяне на модел инж. машини'
+WHERE UIKey = 'RES_LISTMAINT_ENGEQUIPBASEMODELS_ADD';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Редактиране на модел инж. машини'
+WHERE UIKey = 'RES_LISTMAINT_ENGEQUIPBASEMODELS_EDIT';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Изтриване на модел инж. машини'
+WHERE UIKey = 'RES_LISTMAINT_ENGEQUIPBASEMODELS_DELETE';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Видове инж. машини'
+WHERE UIKey = 'RES_LISTMAINT_ENGEQUIPKIND';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Добавяне на вид инж. машини'
+WHERE UIKey = 'RES_LISTMAINT_ENGEQUIPKIND_ADD';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Редактиране на вид инж. машини'
+WHERE UIKey = 'RES_LISTMAINT_ENGEQUIPKIND_EDIT';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Изтриване на вид инж. машини'
+WHERE UIKey = 'RES_LISTMAINT_ENGEQUIPKIND_DELETE';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Типове инж. машини'
+WHERE UIKey = 'RES_LISTMAINT_ENGEQUIPTYPE';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Добавяне на тип инж. машини'
+WHERE UIKey = 'RES_LISTMAINT_ENGEQUIPTYPE_ADD';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Редактиране на тип инж. машини'
+WHERE UIKey = 'RES_LISTMAINT_ENGEQUIPTYPE_EDIT';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Изтриване на тип инж. машини'
+WHERE UIKey = 'RES_LISTMAINT_ENGEQUIPTYPE_DELETE';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Видове базови машини (инж. машини)'
+WHERE UIKey = 'RES_LISTMAINT_ENGEQUIPBASEKIND';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Добавяне на вид базова машина (инж. машини)'
+WHERE UIKey = 'RES_LISTMAINT_ENGEQUIPBASEKIND_ADD';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Редактиране на вид базова машина (инж. машини)'
+WHERE UIKey = 'RES_LISTMAINT_ENGEQUIPBASEKIND_EDIT';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Изтриване на вид базова машина (инж. машини)'
+WHERE UIKey = 'RES_LISTMAINT_ENGEQUIPBASEKIND_DELETE';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Типове базови машини (инж. машини)'
+WHERE UIKey = 'RES_LISTMAINT_ENGEQUIPBASETYPE';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Добавяне на тип базова машина (инж. машини)'
+WHERE UIKey = 'RES_LISTMAINT_ENGEQUIPBASETYPE_ADD';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Редактиране на тип базова машина (инж. машини)'
+WHERE UIKey = 'RES_LISTMAINT_ENGEQUIPBASETYPE_EDIT';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Изтриване на тип базова машина (инж. машини)'
+WHERE UIKey = 'RES_LISTMAINT_ENGEQUIPBASETYPE_DELETE';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Видове гориво за базова машина (инж. машини)'
+WHERE UIKey = 'RES_LISTMAINT_ENGEQUIPBASEENGINETYPE';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Добавяне на вид гориво за базова машина (инж. машини)'
+WHERE UIKey = 'RES_LISTMAINT_ENGEQUIPBASEENGINETYPE_ADD';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Редактиране на вид гориво за базова машина (инж. машини)'
+WHERE UIKey = 'RES_LISTMAINT_ENGEQUIPBASEENGINETYPE_EDIT';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Изтриване на вид гориво за базова машина (инж. машини)'
+WHERE UIKey = 'RES_LISTMAINT_ENGEQUIPBASEENGINETYPE_DELETE';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Видове работни органи (инж. машини)'
+WHERE UIKey = 'RES_LISTMAINT_ENGEQUIPWORKINGBODYKIND';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Добавяне на вид работен орган (инж. машини)'
+WHERE UIKey = 'RES_LISTMAINT_ENGEQUIPWORKINGBODYKIND_ADD';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Редактиране на вид работен орган (инж. машини)'
+WHERE UIKey = 'RES_LISTMAINT_ENGEQUIPWORKINGBODYKIND_EDIT';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Изтриване на вид работен орган (инж. машини)'
+WHERE UIKey = 'RES_LISTMAINT_ENGEQUIPWORKINGBODYKIND_DELETE';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Видове гориво за работен орган (инж. машини)'
+WHERE UIKey = 'RES_LISTMAINT_ENGEQUIPWORKBODYENGINETYPE';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Добавяне на вид гориво за работен орган (инж. машини)'
+WHERE UIKey = 'RES_LISTMAINT_ENGEQUIPWORKBODYENGINETYPE_ADD';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Редактиране на вид гориво за работен орган (инж. машини)'
+WHERE UIKey = 'RES_LISTMAINT_ENGEQUIPWORKBODYENGINETYPE_EDIT';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Изтриване на вид гориво за работен орган (инж. машини)'
+WHERE UIKey = 'RES_LISTMAINT_ENGEQUIPWORKBODYENGINETYPE_DELETE';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Търсене на Инженерни машини'
+WHERE UIKey = 'RES_EQUIPTECHREQUESTS_FULFIL_MILCOMMAND_POSITIONS_FULFIL_SEARCHENG_EQUIP';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Списък на техниката на военен отчет - Инженерни машини'
+WHERE UIKey = 'RES_REPORTS_ENG_EQUIP';
+
+
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Самоходни машини'
+WHERE UIKey = 'RES_TECHNICS_MOB_LIFT_EQUIP';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Видове самоходни машини'
+WHERE UIKey = 'RES_LISTMAINT_MOBILELIFTINGEQUIPKIND';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Добавяне на вид самоходна машина'
+WHERE UIKey = 'RES_LISTMAINT_MOBILELIFTINGEQUIPKIND_ADD';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Редактиране на вид самоходна машина'
+WHERE UIKey = 'RES_LISTMAINT_MOBILELIFTINGEQUIPKIND_EDIT';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Изтриване на вид самоходна машина'
+WHERE UIKey = 'RES_LISTMAINT_MOBILELIFTINGEQUIPKIND_DELETE';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Типове самоходни машини'
+WHERE UIKey = 'RES_LISTMAINT_MOBILELIFTINGEQUIPTYPE';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Добавяне на тип самоходна машина'
+WHERE UIKey = 'RES_LISTMAINT_MOBILELIFTINGEQUIPTYPE_ADD';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Редактиране на тип самоходна машина'
+WHERE UIKey = 'RES_LISTMAINT_MOBILELIFTINGEQUIPTYPE_EDIT';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Изтриване на тип самоходна машина'
+WHERE UIKey = 'RES_LISTMAINT_MOBILELIFTINGEQUIPTYPE_DELETE';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Търсене на самоходна машина'
+WHERE UIKey = 'RES_EQUIPTECHREQUESTS_FULFIL_MILCOMMAND_POSITIONS_FULFIL_SEARCHMOB_LIFT_EQUIP';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Списък на техниката на военен отчет - Самоходни машини'
+WHERE UIKey = 'RES_REPORTS_MOB_LIFT_EQUIP';
+
+
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Инженерна и самолетообслужваща техника'
+WHERE UIKey = 'RES_TECHNICS_AVIATION_EQUIP';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Марки базови машини (спец. инж. и самолетообслужваща техника)'
+WHERE UIKey = 'RES_LISTMAINT_AVIATIONOTHERBASEMACHINEMAKENAMES';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Добавяне на марка базова машина (спец. инж. и самолетообслужваща техника)'
+WHERE UIKey = 'RES_LISTMAINT_AVIATIONOTHERBASEMACHINEMAKENAMES_ADD';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Марка базова машина (спец. инж. и самолетообслужваща техника)'
+WHERE UIKey = 'RES_LISTMAINT_AVIATIONOTHERBASEMACHINEMAKES_ADD_AVIATIONOTHERBASEMACHINEMAKESNAME';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Редактиране на марка базова машина (спец. инж. и самолетообслужваща техника)'
+WHERE UIKey = 'RES_LISTMAINT_AVIATIONOTHERBASEMACHINEMAKENAMES_EDIT';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Марка базова машина (спец. инж. и самолетообслужваща техника)'
+WHERE UIKey = 'RES_LISTMAINT_AVIATIONOTHERBASEMACHINEMAKES_EDIT_AVIATIONOTHERBASEMACHINEMAKESNAME';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Изтриване на марка базова машина (спец. инж. и самолетообслужваща техника)'
+WHERE UIKey = 'RES_LISTMAINT_AVIATIONOTHERBASEMACHINEMAKENAMES_DELETE';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Модели базови машини (спец. инж. и самолетообслужваща техника)'
+WHERE UIKey = 'RES_LISTMAINT_AVIATIONOTHERBASEMACHINEMODELS';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Добавяне на модел базова машина (спец. инж. и самолетообслужваща техника)'
+WHERE UIKey = 'RES_LISTMAINT_AVIATIONOTHERBASEMACHINEMODELS_ADD';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Редактиране на модел базова машина (спец. инж. и самолетообслужваща техника)'
+WHERE UIKey = 'RES_LISTMAINT_AVIATIONOTHERBASEMACHINEMODELS_EDIT';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Изтриване на модел базова машина (спец. инж. и самолетообслужваща техника)'
+WHERE UIKey = 'RES_LISTMAINT_AVIATIONOTHERBASEMACHINEMODELS_DELETE';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Видове специализирана инж. и самолетообслужваща техника'
+WHERE UIKey = 'RES_LISTMAINT_AVIATIONOTHERKIND';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Типове специализирана инж. и самолетообслужваща техника'
+WHERE UIKey = 'RES_LISTMAINT_AVIATIONOTHERTYPE';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Добавяне на тип специализирана инж. и самолетообслужваща техника'
+WHERE UIKey = 'RES_LISTMAINT_AVIATIONOTHERTYPE_ADD';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Редактиране на тип специализирана инж. и самолетообслужваща техника'
+WHERE UIKey = 'RES_LISTMAINT_AVIATIONOTHERTYPE_EDIT';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Изтриване на тип специализирана инж. и самолетообслужваща техника'
+WHERE UIKey = 'RES_LISTMAINT_AVIATIONOTHERTYPE_DELETE';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Видове базови машини (спец. инж. и самолетообслужваща техника)'
+WHERE UIKey = 'RES_LISTMAINT_AVIATIONOTHERBASEMACHINEKIND';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Добавяне на вид базова машина (спец. инж. и самолетообслужваща техника)'
+WHERE UIKey = 'RES_LISTMAINT_AVIATIONOTHERBASEMACHINEKIND_ADD';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Редактиране на вид базова машина (спец. инж. и самолетообслужваща техника)'
+WHERE UIKey = 'RES_LISTMAINT_AVIATIONOTHERBASEMACHINEKIND_EDIT';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Изтриване на вид базова машина (спец. инж. и самолетообслужваща техника)'
+WHERE UIKey = 'RES_LISTMAINT_AVIATIONOTHERBASEMACHINEKIND_DELETE';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Типове базови машини (спец. инж. и самолетообслужваща техника)'
+WHERE UIKey = 'RES_LISTMAINT_AVIATIONOTHERBASEMACHINETYPE';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Добавяне на тип базова машина (спец. инж. и самолетообслужваща техника)'
+WHERE UIKey = 'RES_LISTMAINT_AVIATIONOTHERBASEMACHINETYPE_ADD';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Редактиране на тип базова машина (спец. инж. и самолетообслужваща техника)'
+WHERE UIKey = 'RES_LISTMAINT_AVIATIONOTHERBASEMACHINETYPE_EDIT';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Изтриване на тип базова машина (спец. инж. и самолетообслужваща техника)'
+WHERE UIKey = 'RES_LISTMAINT_AVIATIONOTHERBASEMACHINETYPE_DELETE';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Видове оборудване (спец. инж. и самолетообслужваща техника)'
+WHERE UIKey = 'RES_LISTMAINT_AVIATIONOTHEREQUIPMENTKIND';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Добавяне на вид оборудване (спец. инж. и самолетообслужваща техника)'
+WHERE UIKey = 'RES_LISTMAINT_AVIATIONOTHEREQUIPMENTKIND_ADD';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Редактиране на вид оборудване (спец. инж. и самолетообслужваща техника)'
+WHERE UIKey = 'RES_LISTMAINT_AVIATIONOTHEREQUIPMENTKIND_EDIT';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Изтриване на вид оборудване (спец. инж. и самолетообслужваща техника)'
+WHERE UIKey = 'RES_LISTMAINT_AVIATIONOTHEREQUIPMENTKIND_DELETE';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Търсене на Инженерна и самолетообслужваща техника'
+WHERE UIKey = 'RES_EQUIPTECHREQUESTS_FULFIL_MILCOMMAND_POSITIONS_FULFIL_SEARCHAVIATION_EQUIP';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Списък на техниката на военен отчет - Инженерна и самолетообслужваща техника'
+WHERE UIKey = 'RES_REPORTS_AVIATION_EQUIP';
+
+
+
+--Резерв -> Справки -> Списък на техниката на военен отчет - Автомобили
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_VEHICLES_NORMATIVETECHNICS', 'Нормативна категория', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_VEHICLES'));
+
+--Резерв -> Справки -> Списък на техниката на военен отчет - Ремаркета
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_TRAILERS_NORMATIVETECHNICS', 'Нормативна категория', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_TRAILERS'));
+
+--Резерв -> Справки -> Списък на техниката на военен отчет - Трактори
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_TRACTORS_NORMATIVETECHNICS', 'Нормативна категория', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_TRACTORS'));
+
+--Резерв -> Справки -> Списък на техниката на военен отчет - Инженерна техника
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_ENG_EQUIP_NORMATIVETECHNICS', 'Нормативна категория', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_ENG_EQUIP'));
+
+--Резерв -> Справки -> Списък на техниката на военен отчет - Подемно-транспортна техника
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_MOB_LIFT_EQUIP_NORMATIVETECHNICS', 'Нормативна категория', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_MOB_LIFT_EQUIP'));
+
+--Резерв -> Справки -> Списък на техниката на военен отчет - Авиационна техника
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_AVIATION_EQUIP_NORMATIVETECHNICS', 'Нормативна категория', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_AVIATION_EQUIP'));
+
+--Резерв -> Справки -> Списък на техниката на военен отчет - Специализиран железопътен състав
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_RAILWAY_EQUIP_NORMATIVETECHNICS', 'Нормативна категория', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_RAILWAY_EQUIP'));
+
+--Резерв -> Справки -> Списък на техниката на военен отчет - Кораби
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_VESSELS_NORMATIVETECHNICS', 'Нормативна категория', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_VESSELS'));
+
+--Резерв -> Справки -> Списък на техниката на военен отчет - Съдове за ГСМ
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_FUEL_CONTAINERS_NORMATIVETECHNICS', 'Нормативна категория', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_FUEL_CONTAINERS'));
+
+
+
+--Резерв -> Заявки за окомплектоване с техника от резерва -> Изпълнение на заявки за окомплектоване с техника от резерва -> Команда -> Изпълнени -> Търсене на автомобил
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_EQUIPTECHREQUESTS_FULFIL_MILCOMMAND_POSITIONS_FULFIL_SEARCHVEHICLE_NORMATIVETECHNICS', 'Нормативна категория', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_EQUIPTECHREQUESTS_FULFIL_MILCOMMAND_POSITIONS_FULFIL_SEARCHVEHICLE'));
+
+--Резерв -> Заявки за окомплектоване с техника от резерва -> Изпълнение на заявки за окомплектоване с техника от резерва -> Команда -> Изпълнени -> Търсене на ремарке
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_EQUIPTECHREQUESTS_FULFIL_MILCOMMAND_POSITIONS_FULFIL_SEARCHTRAILER_NORMATIVETECHNICS', 'Нормативна категория', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_EQUIPTECHREQUESTS_FULFIL_MILCOMMAND_POSITIONS_FULFIL_SEARCHTRAILER'));
+
+--Резерв -> Заявки за окомплектоване с техника от резерва -> Изпълнение на заявки за окомплектоване с техника от резерва -> Команда -> Изпълнени -> Търсене на трактор
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_EQUIPTECHREQUESTS_FULFIL_MILCOMMAND_POSITIONS_FULFIL_SEARCHTRACTOR_NORMATIVETECHNICS', 'Нормативна категория', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_EQUIPTECHREQUESTS_FULFIL_MILCOMMAND_POSITIONS_FULFIL_SEARCHTRACTOR'));
+
+--Резерв -> Заявки за окомплектоване с техника от резерва -> Изпълнение на заявки за окомплектоване с техника от резерва -> Команда -> Изпълнени -> Търсене на Инженерна техника
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_EQUIPTECHREQUESTS_FULFIL_MILCOMMAND_POSITIONS_FULFIL_SEARCHENG_EQUIP_NORMATIVETECHNICS', 'Нормативна категория', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_EQUIPTECHREQUESTS_FULFIL_MILCOMMAND_POSITIONS_FULFIL_SEARCHENG_EQUIP'));
+
+--Резерв -> Заявки за окомплектоване с техника от резерва -> Изпълнение на заявки за окомплектоване с техника от резерва -> Команда -> Изпълнени -> Търсене на Подемно-транспортна техника
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_EQUIPTECHREQUESTS_FULFIL_MILCOMMAND_POSITIONS_FULFIL_SEARCHMOB_LIFT_EQUIP_NORMATIVETECHNICS', 'Нормативна категория', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_EQUIPTECHREQUESTS_FULFIL_MILCOMMAND_POSITIONS_FULFIL_SEARCHMOB_LIFT_EQUIP'));
+
+--Резерв -> Заявки за окомплектоване с техника от резерва -> Изпълнение на заявки за окомплектоване с техника от резерва -> Команда -> Изпълнени -> Търсене на Авиационна техника
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_EQUIPTECHREQUESTS_FULFIL_MILCOMMAND_POSITIONS_FULFIL_SEARCHAVIATION_EQUIP_NORMATIVETECHNICS', 'Нормативна категория', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_EQUIPTECHREQUESTS_FULFIL_MILCOMMAND_POSITIONS_FULFIL_SEARCHAVIATION_EQUIP'));
+
+--Резерв -> Заявки за окомплектоване с техника от резерва -> Изпълнение на заявки за окомплектоване с техника от резерва -> Команда -> Изпълнени -> Търсене на специализиран железопътен състав
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_EQUIPTECHREQUESTS_FULFIL_MILCOMMAND_POSITIONS_FULFIL_SEARCHRAILWAYEQUIP_NORMATIVETECHNICS', 'Нормативна категория', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_EQUIPTECHREQUESTS_FULFIL_MILCOMMAND_POSITIONS_FULFIL_SEARCHRAILWAYEQUIP'));
+
+--Резерв -> Заявки за окомплектоване с техника от резерва -> Изпълнение на заявки за окомплектоване с техника от резерва -> Команда -> Изпълнени -> Търсене на Кораб
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_EQUIPTECHREQUESTS_FULFIL_MILCOMMAND_POSITIONS_FULFIL_SEARCHVESSELS_NORMATIVETECHNICS', 'Нормативна категория', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_EQUIPTECHREQUESTS_FULFIL_MILCOMMAND_POSITIONS_FULFIL_SEARCHVESSELS'));
+
+--Резерв -> Заявки за окомплектоване с техника от резерва -> Изпълнение на заявки за окомплектоване с техника от резерва -> Команда -> Изпълнени -> Търсене на съдове за ГСМ
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_EQUIPTECHREQUESTS_FULFIL_MILCOMMAND_POSITIONS_FULFIL_SEARCHFUELCONTAINER_NORMATIVETECHNICS', 'Нормативна категория', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_EQUIPTECHREQUESTS_FULFIL_MILCOMMAND_POSITIONS_FULFIL_SEARCHFUELCONTAINER'));
+
+
+
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_EQUIPTECHREQUESTS_EDIT_COMMANDS_EDIT_POSITIONS_DRIVERSCOUNT', 'Водачи', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_EQUIPTECHREQUESTS_EDIT_COMMANDS_EDIT_POSITIONS'));
+
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Брой, Водачи'
+WHERE UIKey = 'RES_EQUIPTECHREQUESTS_MILDEPT_POSITION_COUNT';
+
+
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_LISTMAINT_MILITARYREADINESSES_EDIT_MILITARYREADINESSCMDTYPE', 'Вид команда', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_LISTMAINT_MILITARYREADINESSNAMES_EDIT'));
+
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_LISTMAINT_MILITARYREADINESSES_ADD_MILITARYREADINESSCMDTYPE', 'Вид команда', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_LISTMAINT_MILITARYREADINESSNAMES_ADD'));
+
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Сведение за планираните за доставяне запасни и техника - запас'
+WHERE UIKey = 'RES_REPORTS_REPORTA31';
+
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_REPORTA33v2', 'Сведение-анализ за състоянието на ресурсите от резерва', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS'));
+
+
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('ADM_LISTMAINT_ADMINISTRATIONS_EDIT_ADMINISTRATIONGROUP', 'Група', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'ADM_LISTMAINT_ADMINISTRATIONS_EDIT'));
+
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('ADM_LISTMAINT_ADMINISTRATIONS_ADD_ADMINISTRATIONGROUP', 'Група', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'ADM_LISTMAINT_ADMINISTRATIONS_ADD'));
+
+UPDATE PMIS_ADM.UIItems SET
+   UIKey = 'ADM_LISTMAINT_ADMINISTRATIONS_ADD_ADMINISTRATIONNAME'
+WHERE UIKey = 'ADM_LISTMAINT_ADMINISTRATIONS_ADD_MILITARYDEPARTMENTNAME';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIKey = 'ADM_LISTMAINT_ADMINISTRATIONS_EDIT_ADMINISTRATIONNAME'
+WHERE UIKey = 'ADM_LISTMAINT_ADMINISTRATIONS_EDIT_MILITARYDEPARTMENTNAME';
+
+
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('ADM_LISTMAINT_ADMINISTRATIONS_EDIT_ADMINISTRATIONGROUPSEQ', 'Подредба на група', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'ADM_LISTMAINT_ADMINISTRATIONS_EDIT'));
+
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('ADM_LISTMAINT_ADMINISTRATIONS_ADD_ADMINISTRATIONGROUPSEQ', 'Подредба на група', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'ADM_LISTMAINT_ADMINISTRATIONS_ADD'));
+
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Отчетна ведомост за състоянието на ресурсите'
+WHERE UIKey = 'RES_REPORTS_REPORTSV1';
+
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_REPORTANALYZETECHCOMMAND', 'Сведение-анализ за комплектуване на команда с техника-запас', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS'));
+
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_REPORTNORMATIVETECHNICS', 'Отчетна ведомост за състоянието на техниката', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS'));
+
+
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID, CanSetAccessOnlyOwnData)
+VALUES ('APPL_REPORTS_REPORT_RATED_APPLICANTS_SUMMARY', 'Сведение за класираните кандидати', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'APPL_REPORTS'), 1);
+
+
+COMMIT;
+/
+UPDATE PMIS_ADM.ChangeTypes SET
+   ChangeType = 'Резерв - Техника (Ремаркета и полуремаркета)'
+WHERE ChangeTypeKey = 'RES_Technics_TRAILERS';
+
+UPDATE PMIS_ADM.ChangeTypes SET
+   ChangeType = 'Класификатор "Видове ремаркета и полуремаркета"'
+WHERE ChangeTypeKey = 'RES_Lists_TrailerKind';
+
+UPDATE PMIS_ADM.ChangeTypes SET
+   ChangeType = 'Класификатор "Типове ремаркета и полуремаркета"'
+WHERE ChangeTypeKey = 'RES_Lists_TrailerType';
+
+UPDATE PMIS_ADM.ChangeTypes SET
+   ChangeType = 'Класификатор "Видове каросерии на ремаркета и полуремаркета"'
+WHERE ChangeTypeKey = 'RES_Lists_TrailerBodyKind';
+
+
+
+UPDATE PMIS_ADM.ChangeTypes SET
+   ChangeType = 'Резерв - Техника (Инженерни машини)'
+WHERE ChangeTypeKey = 'RES_Technics_ENG_EQUIP';
+
+UPDATE PMIS_ADM.ChangeTypes SET
+   ChangeType = 'Класификатор "Видове инж. машини"'
+WHERE ChangeTypeKey = 'RES_Lists_EngEquipKind';
+
+UPDATE PMIS_ADM.ChangeTypes SET
+   ChangeType = 'Класификатор "Типове инж. машини"'
+WHERE ChangeTypeKey = 'RES_Lists_EngEquipType';
+
+UPDATE PMIS_ADM.ChangeTypes SET
+   ChangeType = 'Класификатор "Видове базови машини (инж. машини)"'
+WHERE ChangeTypeKey = 'RES_Lists_EngEquipBaseKind';
+
+UPDATE PMIS_ADM.ChangeTypes SET
+   ChangeType = 'Класификатор "Типове базови машини (инж. машини)"'
+WHERE ChangeTypeKey = 'RES_Lists_EngEquipBaseType';
+
+UPDATE PMIS_ADM.ChangeTypes SET
+   ChangeType = 'Класификатор "Видове гориво за базова машина (инж. машини)"'
+WHERE ChangeTypeKey = 'RES_Lists_EngEquipBaseEngineType';
+
+UPDATE PMIS_ADM.ChangeTypes SET
+   ChangeType = 'Класификатор "Видове работни органи (инж. машини)"'
+WHERE ChangeTypeKey = 'RES_Lists_EngEquipWorkingBodyKind';
+
+UPDATE PMIS_ADM.ChangeTypes SET
+   ChangeType = 'Класификатор "Видове гориво за работен орган (инж. машини)"'
+WHERE ChangeTypeKey = 'RES_Lists_EngEquipWorkBodyEngineType';
+
+UPDATE PMIS_ADM.ChangeTypes SET
+   ChangeType = 'Класификатор "Марки инж. машини"'
+WHERE ChangeTypeKey = 'RES_Lists_EngEquipBaseMakeName';
+
+UPDATE PMIS_ADM.ChangeTypes SET
+   ChangeType = 'Класификатор "Модели инж. машини"'
+WHERE ChangeTypeKey = 'RES_Lists_EngEquipBaseModels';
+
+
+
+UPDATE PMIS_ADM.ChangeTypes SET
+   ChangeType = 'Резерв - Техника (Самоходни машини)'
+WHERE ChangeTypeKey = 'RES_Technics_MOB_LIFT_EQUIP';
+
+UPDATE PMIS_ADM.ChangeTypes SET
+   ChangeType = 'Класификатор "Видове самоходни машини"'
+WHERE ChangeTypeKey = 'RES_Lists_MobileLiftingEquipKind';
+
+UPDATE PMIS_ADM.ChangeTypes SET
+   ChangeType = 'Класификатор "Типове самоходни машини"'
+WHERE ChangeTypeKey = 'RES_Lists_MobileLiftingEquipType';
+
+
+
+
+UPDATE PMIS_ADM.ChangeTypes SET
+   ChangeType = 'Резерв - Техника (Инж. и самолетообслужваща техника)'
+WHERE ChangeTypeKey = 'RES_Technics_AVIATION_EQUIP';
+
+UPDATE PMIS_ADM.ChangeTypes SET
+   ChangeType = 'Класификатор "Марки базови машини (спец. инж. и самолетообслужваща техника)"'
+WHERE ChangeTypeKey = 'RES_Lists_AviationOtherBaseMachineMakeName';
+
+UPDATE PMIS_ADM.ChangeTypes SET
+   ChangeType = 'Класификатор "Модели базови машини (спец. инж. и самолетообслужваща техника)"'
+WHERE ChangeTypeKey = 'RES_Lists_AviationOtherBaseMachineModels';
+
+UPDATE PMIS_ADM.ChangeTypes SET
+   ChangeType = 'Класификатор "Видове спец. инж. и самолетообслужваща техника"'
+WHERE ChangeTypeKey = 'RES_Lists_AviationOtherKind';
+
+UPDATE PMIS_ADM.ChangeTypes SET
+   ChangeType = 'Класификатор "Видове базови машини (спец. инж. и самолетообслужваща техника)"'
+WHERE ChangeTypeKey = 'RES_Lists_AviationOtherBaseMachineKind';
+
+UPDATE PMIS_ADM.ChangeTypes SET
+   ChangeType = 'Класификатор "Типове базови машини (спец. инж. и самолетообслужваща техника)"'
+WHERE ChangeTypeKey = 'RES_Lists_AviationOtherBaseMachineType';
+
+UPDATE PMIS_ADM.ChangeTypes SET
+   ChangeType = 'Класификатор "Видове оборудване (спец. инж. и самолетообслужваща техника)"'
+WHERE ChangeTypeKey = 'RES_Lists_AviationOtherEquipmentKind';
+
+
+COMMIT;
+/
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_MilitaryReportPerson_AddMilRepPersonSpeciality', 'Добавяне на специалност за ВОЛ', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_MilitaryReportPerson_EditMilRepPersonSpeciality', 'Редактиране на специалност за ВОЛ', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_MilitaryReportPerson_DeleteMilRepPersonSpeciality', 'Изтриване на специалност за ВОЛ', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 3);
+
+
+UPDATE PMIS_ADM.ChangeEventTypes SET
+   ChangeEventType = 'Добавяне на ремарке и полуремарке към заявка за окомплектоване с техника от резерва'
+WHERE ChangeEventTypeKey = 'RES_EquipTechRequests_AddTrailer';
+
+UPDATE PMIS_ADM.ChangeEventTypes SET
+   ChangeEventType = 'Изтриване на ремарке и полуремарке от заявка за окомплектоване с техника от резерва'
+WHERE ChangeEventTypeKey = 'RES_EquipTechRequests_DeleteTrailer';
+
+UPDATE PMIS_ADM.ChangeEventTypes SET
+   ChangeEventType = 'Редактиране на запис от техника (Ремаркета и полуремаркета)'
+WHERE ChangeEventTypeKey = 'RES_Technics_TRAILERS_Edit';
+
+UPDATE PMIS_ADM.ChangeEventTypes SET
+   ChangeEventType = 'Добавяне на запис в техника (Ремаркета и полуремаркета)'
+WHERE ChangeEventTypeKey = 'RES_Technics_TRAILERS_Add';
+
+UPDATE PMIS_ADM.ChangeEventTypes SET
+   ChangeEventType = 'Добавяне на вид ремарке и полуремарке'
+WHERE ChangeEventTypeKey = 'RES_Lists_TrailerKind_AddTrailerKind';
+
+UPDATE PMIS_ADM.ChangeEventTypes SET
+   ChangeEventType = 'Редактиране на вид ремарке и полуремарке'
+WHERE ChangeEventTypeKey = 'RES_Lists_TrailerKind_EditTrailerKind';
+
+UPDATE PMIS_ADM.ChangeEventTypes SET
+   ChangeEventType = 'Изтриване на вид ремарке и полуремарке'
+WHERE ChangeEventTypeKey = 'RES_Lists_TrailerKind_DeleteTrailerKind';
+
+UPDATE PMIS_ADM.ChangeEventTypes SET
+   ChangeEventType = 'Добавяне на тип ремарке и полуремарке'
+WHERE ChangeEventTypeKey = 'RES_Lists_TrailerType_AddTrailerType';
+
+UPDATE PMIS_ADM.ChangeEventTypes SET
+   ChangeEventType = 'Редактиране на тип ремарке и полуремарке'
+WHERE ChangeEventTypeKey = 'RES_Lists_TrailerType_EditTrailerType';
+
+UPDATE PMIS_ADM.ChangeEventTypes SET
+   ChangeEventType = 'Изтриване на тип ремарке и полуремарке'
+WHERE ChangeEventTypeKey = 'RES_Lists_TrailerType_DeleteTrailerType';
+
+UPDATE PMIS_ADM.ChangeEventTypes SET
+   ChangeEventType = 'Добавяне на вид каросерия на ремарке и полуремарке'
+WHERE ChangeEventTypeKey = 'RES_Lists_TrailerBodyKind_AddTrailerBodyKind';
+
+UPDATE PMIS_ADM.ChangeEventTypes SET
+   ChangeEventType = 'Редактиране на вид каросерия на ремарке и полуремарке'
+WHERE ChangeEventTypeKey = 'RES_Lists_TrailerBodyKind_EditTrailerBodyKind';
+
+UPDATE PMIS_ADM.ChangeEventTypes SET
+   ChangeEventType = 'Изтриване на вид каросерия на ремарке и полуремарке'
+WHERE ChangeEventTypeKey = 'RES_Lists_TrailerBodyKind_DeleteTrailerBodyKind';
+
+
+
+UPDATE PMIS_ADM.ChangeEventTypes SET
+   ChangeEventType = 'Добавяне на инж. машина към заявка за окомплектоване с техника от резерва'
+WHERE ChangeEventTypeKey = 'RES_EquipTechRequests_AddEngEquip';
+
+UPDATE PMIS_ADM.ChangeEventTypes SET
+   ChangeEventType = 'Изтриване на инж. машина от заявка за окомплектоване с техника от резерва'
+WHERE ChangeEventTypeKey = 'RES_EquipTechRequests_DeleteEngEquip';
+
+UPDATE PMIS_ADM.ChangeEventTypes SET
+   ChangeEventType = 'Редактиране на запис от техника (Инж. машини)'
+WHERE ChangeEventTypeKey = 'RES_Technics_ENG_EQUIP_Edit';
+
+UPDATE PMIS_ADM.ChangeEventTypes SET
+   ChangeEventType = 'Добавяне на запис в техника (Инж. машини)'
+WHERE ChangeEventTypeKey = 'RES_Technics_ENG_EQUIP_Add';
+
+UPDATE PMIS_ADM.ChangeEventTypes SET
+   ChangeEventType = 'Добавяне на вид инж. машини'
+WHERE ChangeEventTypeKey = 'RES_Lists_EngEquipKind_AddEngEquipKind';
+
+UPDATE PMIS_ADM.ChangeEventTypes SET
+   ChangeEventType = 'Редактиране на вид инж. машини'
+WHERE ChangeEventTypeKey = 'RES_Lists_EngEquipKind_EditEngEquipKind';
+
+UPDATE PMIS_ADM.ChangeEventTypes SET
+   ChangeEventType = 'Изтриване на вид инж. машини'
+WHERE ChangeEventTypeKey = 'RES_Lists_EngEquipKind_DeleteEngEquipKind';
+
+UPDATE PMIS_ADM.ChangeEventTypes SET
+   ChangeEventType = 'Добавяне на тип инж. машини'
+WHERE ChangeEventTypeKey = 'RES_Lists_EngEquipType_AddEngEquipType';
+
+UPDATE PMIS_ADM.ChangeEventTypes SET
+   ChangeEventType = 'Редактиране на тип инж. машини'
+WHERE ChangeEventTypeKey = 'RES_Lists_EngEquipType_EditEngEquipType';
+
+UPDATE PMIS_ADM.ChangeEventTypes SET
+   ChangeEventType = 'Изтриване на тип инж. машини'
+WHERE ChangeEventTypeKey = 'RES_Lists_EngEquipType_DeleteEngEquipType';
+
+UPDATE PMIS_ADM.ChangeEventTypes SET
+   ChangeEventType = 'Добавяне на вид базова машина (инж. машини)'
+WHERE ChangeEventTypeKey = 'RES_Lists_EngEquipBaseKind_AddEngEquipBaseKind';
+
+UPDATE PMIS_ADM.ChangeEventTypes SET
+   ChangeEventType = 'Редактиране на вид базова машина (инж. машини)'
+WHERE ChangeEventTypeKey = 'RES_Lists_EngEquipBaseKind_EditEngEquipBaseKind';
+
+UPDATE PMIS_ADM.ChangeEventTypes SET
+   ChangeEventType = 'Изтриване на вид базова машина (инж. машини)'
+WHERE ChangeEventTypeKey = 'RES_Lists_EngEquipBaseKind_DeleteEngEquipBaseKind';
+
+UPDATE PMIS_ADM.ChangeEventTypes SET
+   ChangeEventType = 'Добавяне на тип базова машина (инж. машини)'
+WHERE ChangeEventTypeKey = 'RES_Lists_EngEquipBaseType_AddEngEquipBaseType';
+
+UPDATE PMIS_ADM.ChangeEventTypes SET
+   ChangeEventType = 'Редактиране на тип базова машина (инж. машини)'
+WHERE ChangeEventTypeKey = 'RES_Lists_EngEquipBaseType_EditEngEquipBaseType';
+
+UPDATE PMIS_ADM.ChangeEventTypes SET
+   ChangeEventType = 'Изтриване на тип базова машина (инж. машини)'
+WHERE ChangeEventTypeKey = 'RES_Lists_EngEquipBaseType_DeleteEngEquipBaseType';
+
+UPDATE PMIS_ADM.ChangeEventTypes SET
+   ChangeEventType = 'Добавяне на вид гориво за базова машина (инж. машини)'
+WHERE ChangeEventTypeKey = 'RES_Lists_EngEquipBaseEngineType_AddEngEquipBaseEngineType';
+
+UPDATE PMIS_ADM.ChangeEventTypes SET
+   ChangeEventType = 'Редактиране на вид гориво за базова машина (инж. машини)'
+WHERE ChangeEventTypeKey = 'RES_Lists_EngEquipBaseEngineType_EditEngEquipBaseEngineType';
+
+UPDATE PMIS_ADM.ChangeEventTypes SET
+   ChangeEventType = 'Изтриване на вид гориво за базова машина (инж. машини)'
+WHERE ChangeEventTypeKey = 'RES_Lists_EngEquipBaseEngineType_DeleteEngEquipBaseEngineType';
+
+UPDATE PMIS_ADM.ChangeEventTypes SET
+   ChangeEventType = 'Добавяне на вид работен орган (инж. машини)'
+WHERE ChangeEventTypeKey = 'RES_Lists_EngEquipWorkingBodyKind_AddEngEquipWorkingBodyKind';
+
+UPDATE PMIS_ADM.ChangeEventTypes SET
+   ChangeEventType = 'Редактиране на вид работен орган (инж. машини)'
+WHERE ChangeEventTypeKey = 'RES_Lists_EngEquipWorkingBodyKind_EditEngEquipWorkingBodyKind';
+
+UPDATE PMIS_ADM.ChangeEventTypes SET
+   ChangeEventType = 'Изтриване на вид работен орган (инж. машини)'
+WHERE ChangeEventTypeKey = 'RES_Lists_EngEquipWorkingBodyKind_DeleteEngEquipWorkingBodyKind';
+
+UPDATE PMIS_ADM.ChangeEventTypes SET
+   ChangeEventType = 'Добавяне на вид гориво за работен орган (инж. машини)'
+WHERE ChangeEventTypeKey = 'RES_Lists_EngEquipWorkBodyEngineType_AddEngEquipWorkBodyEngineType';
+
+UPDATE PMIS_ADM.ChangeEventTypes SET
+   ChangeEventType = 'Редактиране на вид гориво за работен орган (инж. машини)'
+WHERE ChangeEventTypeKey = 'RES_Lists_EngEquipWorkBodyEngineType_EditEngEquipWorkBodyEngineType';
+
+UPDATE PMIS_ADM.ChangeEventTypes SET
+   ChangeEventType = 'Изтриване на вид гориво за работен орган (инж. машини)'
+WHERE ChangeEventTypeKey = 'RES_Lists_EngEquipWorkBodyEngineType_DeleteEngEquipWorkBodyEngineType';
+
+UPDATE PMIS_ADM.ChangeEventTypes SET
+   ChangeEventType = 'Редактиране на марка инж. машини'
+WHERE ChangeEventTypeKey = 'RES_Lists_EngEquipBaseMakes_EditEngEquipBaseMakeName';
+
+UPDATE PMIS_ADM.ChangeEventTypes SET
+   ChangeEventType = 'Добавяне на марка инж. машини'
+WHERE ChangeEventTypeKey = 'RES_Lists_EngEquipBaseMakes_AddEngEquipBaseMakeName';
+
+UPDATE PMIS_ADM.ChangeEventTypes SET
+   ChangeEventType = 'Изтриване на марка инж. машини'
+WHERE ChangeEventTypeKey = 'RES_Lists_EngEquipBaseMakes_DeleteEngEquipBaseMakeName';
+
+UPDATE PMIS_ADM.ChangeEventTypes SET
+   ChangeEventType = 'Редактиране на модел инж. машини'
+WHERE ChangeEventTypeKey = 'RES_Lists_EngEquipBaseModels_Edit';
+
+UPDATE PMIS_ADM.ChangeEventTypes SET
+   ChangeEventType = 'Добавяне на модел инж. машини'
+WHERE ChangeEventTypeKey = 'RES_Lists_EngEquipBaseModels_Add';
+
+UPDATE PMIS_ADM.ChangeEventTypes SET
+   ChangeEventType = 'Изтриване на модел инж. машини'
+WHERE ChangeEventTypeKey = 'RES_Lists_EngEquipBaseModels_Delete';
+
+
+
+UPDATE PMIS_ADM.ChangeEventTypes SET
+   ChangeEventType = 'Добавяне на самоходна машина към заявка за окомплектоване с техника от резерва'
+WHERE ChangeEventTypeKey = 'RES_EquipTechRequests_AddMobLiftEquip';
+
+UPDATE PMIS_ADM.ChangeEventTypes SET
+   ChangeEventType = 'Изтриване на самоходна машина от заявка за окомплектоване с техника от резерва'
+WHERE ChangeEventTypeKey = 'RES_EquipTechRequests_DeleteMobLiftEquip';
+
+UPDATE PMIS_ADM.ChangeEventTypes SET
+   ChangeEventType = 'Редактиране на запис от техника (Самоходни машини)'
+WHERE ChangeEventTypeKey = 'RES_Technics_MOB_LIFT_EQUIP_Edit';
+
+UPDATE PMIS_ADM.ChangeEventTypes SET
+   ChangeEventType = 'Добавяне на запис в техника (Самоходни машини)'
+WHERE ChangeEventTypeKey = 'RES_Technics_MOB_LIFT_EQUIP_Add';
+
+UPDATE PMIS_ADM.ChangeEventTypes SET
+   ChangeEventType = 'Добавяне на вид самоходни машини'
+WHERE ChangeEventTypeKey = 'RES_Lists_MobileLiftingEquipKind_AddMobileLiftingEquipKind';
+
+UPDATE PMIS_ADM.ChangeEventTypes SET
+   ChangeEventType = 'Редактиране на вид самоходни машини'
+WHERE ChangeEventTypeKey = 'RES_Lists_MobileLiftingEquipKind_EditMobileLiftingEquipKind';
+
+UPDATE PMIS_ADM.ChangeEventTypes SET
+   ChangeEventType = 'Изтриване на вид самоходни машини'
+WHERE ChangeEventTypeKey = 'RES_Lists_MobileLiftingEquipKind_DeleteMobileLiftingEquipKind';
+
+UPDATE PMIS_ADM.ChangeEventTypes SET
+   ChangeEventType = 'Добавяне на тип самоходни машини'
+WHERE ChangeEventTypeKey = 'RES_Lists_MobileLiftingEquipType_AddMobileLiftingEquipType';
+
+UPDATE PMIS_ADM.ChangeEventTypes SET
+   ChangeEventType = 'Редактиране на тип самоходни машини'
+WHERE ChangeEventTypeKey = 'RES_Lists_MobileLiftingEquipType_EditMobileLiftingEquipType';
+
+UPDATE PMIS_ADM.ChangeEventTypes SET
+   ChangeEventType = 'Изтриване на тип самоходни машини'
+WHERE ChangeEventTypeKey = 'RES_Lists_MobileLiftingEquipType_DeleteMobileLiftingEquipType';
+
+
+
+
+UPDATE PMIS_ADM.ChangeEventTypes SET
+   ChangeEventType = 'Добавяне на инж. и самолетообслужваща техника техника към заявка за окомплектоване с техника от резерва'
+WHERE ChangeEventTypeKey = 'RES_EquipTechRequests_AddAviationEquip';
+
+UPDATE PMIS_ADM.ChangeEventTypes SET
+   ChangeEventType = 'Изтриване на инж. и самолетообслужваща техника от заявка за окомплектоване с техника от резерва'
+WHERE ChangeEventTypeKey = 'RES_EquipTechRequests_DeleteAviationEquip';
+
+UPDATE PMIS_ADM.ChangeEventTypes SET
+   ChangeEventType = 'Редактиране на запис от техника (Инж. и самолетообслужваща техника)'
+WHERE ChangeEventTypeKey = 'RES_Technics_AVIATION_EQUIP_Edit';
+
+UPDATE PMIS_ADM.ChangeEventTypes SET
+   ChangeEventType = 'Добавяне на запис в техника (Инж. и самолетообслужваща техника)'
+WHERE ChangeEventTypeKey = 'RES_Technics_AVIATION_EQUIP_Add';
+
+UPDATE PMIS_ADM.ChangeEventTypes SET
+   ChangeEventType = 'Редактиране на марка базова машина (спец. инж. и самолетообслужваща техника)'
+WHERE ChangeEventTypeKey = 'RES_Lists_AviationOtherBaseMachineMakes_EditAviationOtherBaseMachineMakeName';
+
+UPDATE PMIS_ADM.ChangeEventTypes SET
+   ChangeEventType = 'Добавяне на марка базова машина (спец. инж. и самолетообслужваща техника)'
+WHERE ChangeEventTypeKey = 'RES_Lists_AviationOtherBaseMachineMakes_AddAviationOtherBaseMachineMakeName';
+
+UPDATE PMIS_ADM.ChangeEventTypes SET
+   ChangeEventType = 'Изтриване на марка базова машина (спец. инж. и самолетообслужваща техника)'
+WHERE ChangeEventTypeKey = 'RES_Lists_AviationOtherBaseMachineMakes_DeleteAviationOtherBaseMachineMakeName';
+
+UPDATE PMIS_ADM.ChangeEventTypes SET
+   ChangeEventType = 'Редактиране на модел базова машина (спец. инж. и самолетообслужваща техника)'
+WHERE ChangeEventTypeKey = 'RES_Lists_AviationOtherBaseMachineModels_Edit';
+
+UPDATE PMIS_ADM.ChangeEventTypes SET
+   ChangeEventType = 'Добавяне на модел базова машина (спец. инж. и самолетообслужваща техника)'
+WHERE ChangeEventTypeKey = 'RES_Lists_AviationOtherBaseMachineModels_Add';
+
+UPDATE PMIS_ADM.ChangeEventTypes SET
+   ChangeEventType = 'Изтриване на модел базова машина (спец. инж. и самолетообслужваща техника)'
+WHERE ChangeEventTypeKey = 'RES_Lists_AviationOtherBaseMachineModels_Delete';
+
+UPDATE PMIS_ADM.ChangeEventTypes SET
+   ChangeEventType = 'Добавяне на вид базова машина (спец. инж. и самолетообслужваща техника)'
+WHERE ChangeEventTypeKey = 'RES_Lists_AviationOtherBaseMachineKind_AddAviationOtherBaseMachineKind';
+
+UPDATE PMIS_ADM.ChangeEventTypes SET
+   ChangeEventType = 'Редактиране на вид базова машина (спец. инж. и самолетообслужваща техника)'
+WHERE ChangeEventTypeKey = 'RES_Lists_AviationOtherBaseMachineKind_EditAviationOtherBaseMachineKind';
+
+UPDATE PMIS_ADM.ChangeEventTypes SET
+   ChangeEventType = 'Изтриване на вид базова машина (спец. инж. и самолетообслужваща техника)'
+WHERE ChangeEventTypeKey = 'RES_Lists_AviationOtherBaseMachineKind_DeleteAviationOtherBaseMachineKind';
+
+UPDATE PMIS_ADM.ChangeEventTypes SET
+   ChangeEventType = 'Добавяне на тип базова машина (спец. инж. и самолетообслужваща техника)'
+WHERE ChangeEventTypeKey = 'RES_Lists_AviationOtherBaseMachineType_AddAviationOtherBaseMachineType';
+
+UPDATE PMIS_ADM.ChangeEventTypes SET
+   ChangeEventType = 'Редактиране на тип базова машина (спец. инж. и самолетообслужваща техника)'
+WHERE ChangeEventTypeKey = 'RES_Lists_AviationOtherBaseMachineType_EditAviationOtherBaseMachineType';
+
+UPDATE PMIS_ADM.ChangeEventTypes SET
+   ChangeEventType = 'Изтриване на тип базова машина (спец. инж. и самолетообслужваща техника)'
+WHERE ChangeEventTypeKey = 'RES_Lists_AviationOtherBaseMachineType_DeleteAviationOtherBaseMachineType';
+
+UPDATE PMIS_ADM.ChangeEventTypes SET
+   ChangeEventType = 'Добавяне на вид оборудване (спец. инж. и самолетообслужваща техника)'
+WHERE ChangeEventTypeKey = 'RES_Lists_AviationOtherEquipmentKind_AddAviationOtherEquipmentKind';
+
+UPDATE PMIS_ADM.ChangeEventTypes SET
+   ChangeEventType = 'Редактиране на вид оборудване (спец. инж. и самолетообслужваща техника)'
+WHERE ChangeEventTypeKey = 'RES_Lists_AviationOtherEquipmentKind_EditAviationOtherEquipmentKind';
+
+UPDATE PMIS_ADM.ChangeEventTypes SET
+   ChangeEventType = 'Изтриване на вид оборудване (спец. инж. и самолетообслужваща техника)'
+WHERE ChangeEventTypeKey = 'RES_Lists_AviationOtherEquipmentKind_DeleteAviationOtherEquipmentKind';
+
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('APPL_VacAnn_AddPositionManually', 'Добавяне на длъжност', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'APPL'), 2);
+
+UPDATE PMIS_ADM.ChangeEventTypes SET
+   ChangeEventType = 'Добавяне на избрана вакантна длъжност'
+WHERE ChangeEventTypeKey = 'APPL_VacAnn_AddPosition';
+
+COMMIT;
+/
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_MilitaryReportPerson_MilRepPersonSpeciality_Profession', 'Професия', 10);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_MilitaryReportPerson_MilRepPersonSpeciality_Speciality', 'Специалност', 11);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_EquipTechReq_Command_Position_NormativeTechnics', 'Нормативна категория', 2);
+
+UPDATE PMIS_ADM.Fields SET
+   Seq = 3
+WHERE FieldKey = 'RES_EquipTechReq_Command_Position_Comment';
+
+UPDATE PMIS_ADM.Fields SET
+   Seq = 4
+WHERE FieldKey = 'RES_EquipTechReq_Command_Position_Count';
+
+
+
+UPDATE PMIS_ADM.Fields SET
+   FieldName = 'Вид ремарке и полуремарке'
+WHERE FieldKey = 'RES_Lists_TrailerKind_TableValue';
+
+UPDATE PMIS_ADM.Fields SET
+   FieldName = 'Тип ремарке и полуремарке'
+WHERE FieldKey = 'RES_Lists_TrailerType_TableValue';
+
+UPDATE PMIS_ADM.Fields SET
+   FieldName = 'Вид каросерия на ремарке и полуремарке'
+WHERE FieldKey = 'RES_Lists_TrailerBodyKind_TableValue';
+
+
+
+UPDATE PMIS_ADM.Fields SET
+   FieldName = 'Марка инж. машина'
+WHERE FieldKey = 'RES_Lists_EngEquipBaseMakes_EngEquipBaseMakeName';
+
+UPDATE PMIS_ADM.Fields SET
+   FieldName = 'Вид инж. машина'
+WHERE FieldKey = 'RES_Lists_EngEquipKind_TableValue';
+
+UPDATE PMIS_ADM.Fields SET
+   FieldName = 'Тип инж. машина'
+WHERE FieldKey = 'RES_Lists_EngEquipType_TableValue';
+
+UPDATE PMIS_ADM.Fields SET
+   FieldName = 'Вид базова машина (инж. машини)'
+WHERE FieldKey = 'RES_Lists_EngEquipBaseKind_TableValue';
+
+UPDATE PMIS_ADM.Fields SET
+   FieldName = 'Тип базова машина (инж. машини)'
+WHERE FieldKey = 'RES_Lists_EngEquipBaseType_TableValue';
+
+UPDATE PMIS_ADM.Fields SET
+   FieldName = 'Вид гориво за базова машина (инж. машини)'
+WHERE FieldKey = 'RES_Lists_EngEquipBaseEngineType_TableValue';
+
+UPDATE PMIS_ADM.Fields SET
+   FieldName = 'Вид работен орган (инж. машини)'
+WHERE FieldKey = 'RES_Lists_EngEquipWorkingBodyKind_TableValue';
+
+UPDATE PMIS_ADM.Fields SET
+   FieldName = 'Вид гориво за работен орган (инж. машини)'
+WHERE FieldKey = 'RES_Lists_EngEquipWorkBodyEngineType_TableValue';
+
+UPDATE PMIS_ADM.Fields SET
+   FieldName = 'Модел инж. машина'
+WHERE FieldKey = 'RES_Lists_EngEquipBaseModels_EngEquipBaseModelName';
+
+
+
+UPDATE PMIS_ADM.Fields SET
+   FieldName = 'Вид самоходни машина'
+WHERE FieldKey = 'RES_Lists_MobileLiftingEquipKind_TableValue';
+
+UPDATE PMIS_ADM.Fields SET
+   FieldName = 'Тип самоходни машина'
+WHERE FieldKey = 'RES_Lists_MobileLiftingEquipType_TableValue';
+
+
+
+UPDATE PMIS_ADM.Fields SET
+   FieldName = 'Марка базова машина (спец. инж. и самолетообслужваща техника)'
+WHERE FieldKey = 'RES_Lists_AviationOtherBaseMachineMakes_AviationOtherBaseMachineMakeName';
+
+UPDATE PMIS_ADM.Fields SET
+   FieldName = 'Модел базова машина (спец. инж. и самолетообслужваща техника)'
+WHERE FieldKey = 'RES_Lists_AviationOtherBaseMachineModels_AviationOtherBaseMachineModelName';
+
+UPDATE PMIS_ADM.Fields SET
+   FieldName = 'Вид базова машина (спец. инж. и самолетообслужваща техника)'
+WHERE FieldKey = 'RES_Lists_AviationOtherBaseMachineKind_TableValue';
+
+UPDATE PMIS_ADM.Fields SET
+   FieldName = 'Тип базова машина (спец. инж. и самолетообслужваща техника)'
+WHERE FieldKey = 'RES_Lists_AviationOtherBaseMachineType_TableValue';
+
+UPDATE PMIS_ADM.Fields SET
+   FieldName = 'Вид оборудване (спец. инж. и самолетообслужваща техника)'
+WHERE FieldKey = 'RES_Lists_AviationOtherEquipmentKind_TableValue';
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('number', 'RES_EquipTechReq_Command_Position_DriversCount', 'Водачи', 5);
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_EquipTechReq_MilitaryDepartment_DriversCount', 'Водачи', 3);
+
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Lists_MilitaryReadinesses_MilitaryReadinessCmdType', 'Вид команда', 2);
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'ADM_Lists_Administrations_AdministrationGroup', 'Група', 2);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('number', 'ADM_Lists_Administrations_AdministrationGroupSeq', 'Подредба на група', 3);
+
+COMMIT;
+/
+
+
+UPDATE PMIS_ADM.Maintenance SET
+   HeaderTitle = 'Видове каросерии на ремаркета и полуремаркета'
+WHERE MaintKey = 'RES_TrailerBodyKind';
+
+UPDATE PMIS_ADM.Maintenance SET
+   HeaderTitle = 'Видове ремаркета и полуремаркета'
+WHERE MaintKey = 'RES_TrailerKind';
+
+UPDATE PMIS_ADM.Maintenance SET
+   HeaderTitle = 'Типове ремаркета и полуремаркета'
+WHERE MaintKey = 'RES_TrailerType';
+ 
+
+
+UPDATE PMIS_ADM.Maintenance SET
+   HeaderTitle = 'Видове базови машини (инж. машини)'
+WHERE MaintKey = 'RES_EngEquipBaseKind';
+
+UPDATE PMIS_ADM.Maintenance SET
+   HeaderTitle = 'Типове базови машини (инж. машини)'
+WHERE MaintKey = 'RES_EngEquipBaseType';
+
+UPDATE PMIS_ADM.Maintenance SET
+   HeaderTitle = 'Видове гориво за базова машина (инж. машини)'
+WHERE MaintKey = 'RES_EngEquipBaseEngineType';
+
+UPDATE PMIS_ADM.Maintenance SET
+   HeaderTitle = 'Видове работни органи (инж. машини)'
+WHERE MaintKey = 'RES_EngEquipWorkingBodyKind';
+
+UPDATE PMIS_ADM.Maintenance SET
+   HeaderTitle = 'Видове гориво за работен орган (инж. машини)'
+WHERE MaintKey = 'RES_EngEquipWorkBodyEngineType';
+
+UPDATE PMIS_ADM.Maintenance SET
+   HeaderTitle = 'Марки инж. машини'
+WHERE MaintKey = 'RES_EngEquipBaseMakeNames';
+
+UPDATE PMIS_ADM.Maintenance SET
+   HeaderTitle = 'Видове инж. машини'
+WHERE MaintKey = 'RES_EngEquipKind';
+
+UPDATE PMIS_ADM.Maintenance SET
+   HeaderTitle = 'Типове инж. машини'
+WHERE MaintKey = 'RES_EngEquipType';
+
+
+
+UPDATE PMIS_ADM.Maintenance SET
+   HeaderTitle = 'Видове самоходни машини'
+WHERE MaintKey = 'RES_MobileLiftingEquipKind';
+
+UPDATE PMIS_ADM.Maintenance SET
+   HeaderTitle = 'Типове самоходни машини'
+WHERE MaintKey = 'RES_MobileLiftingEquipType';
+
+
+
+UPDATE PMIS_ADM.Maintenance SET
+   HeaderTitle = 'Марки базови машини (спец. инж. и самолетообслужваща техника)'
+WHERE MaintKey = 'RES_AviationOtherBaseMachineMakeNames';
+
+UPDATE PMIS_ADM.Maintenance SET
+   HeaderTitle = 'Видове спец. инж. и самолетообслужваща техника'
+WHERE MaintKey = 'RES_AviationOtherKind';
+
+UPDATE PMIS_ADM.Maintenance SET
+   HeaderTitle = 'Видове базови машини (спец. инж. и самолетообслужваща техника)'
+WHERE MaintKey = 'RES_AviationOtherBaseMachineKind';
+
+UPDATE PMIS_ADM.Maintenance SET
+   HeaderTitle = 'Типове базови машини (спец. инж. и самолетообслужваща техника)'
+WHERE MaintKey = 'RES_AviationOtherBaseMachineType';
+
+UPDATE PMIS_ADM.Maintenance SET
+   HeaderTitle = 'Видове оборудване (спец. инж. и самолетообслужваща техника)'
+WHERE MaintKey = 'RES_AviationOtherEquipmentKind';
+
+UPDATE PMIS_ADM.Maintenance SET
+   HeaderTitle = 'Типове спец. инж. и самолетообслужваща техника'
+WHERE MaintKey = 'RES_AviationOtherType';      
+
+ 
+UPDATE PMIS_ADM.Maintenance SET
+   FldList = 'MilReadinessID[HIDDEN], MilReadinessName, MilReadinessCmdType',
+   UpdtList = 'MilReadinessName, MilReadinessCmdType'
+WHERE MaintKey = 'RES_MilitaryReadinessNames';
+
+
+UPDATE PMIS_ADM.Maintenance SET
+   FldList = 'AdministrationID[HIDDEN], AdministrationName, AdministrationGroup, AdministrationGroupSeq',
+   UpdtList = 'AdministrationName, AdministrationGroup, AdministrationGroupSeq'
+WHERE MaintKey = 'ADM_Administrations';
+ 
+ 
+COMMIT;
+/
+
+UPDATE PMIS_ADM.MaintFields SET
+   FieldLabel = 'Вид каросерия на ремарке и полуремарке'
+WHERE TableName = 'PMIS_RES.GTable.TrailerBodyKind' AND TableColumn = 'TableValue';
+
+UPDATE PMIS_ADM.MaintFields SET
+   FieldLabel = 'Вид ремарке и полуремарке'
+WHERE TableName = 'PMIS_RES.GTable.TrailerKind' AND TableColumn = 'TableValue';
+
+UPDATE PMIS_ADM.MaintFields SET
+   FieldLabel = 'Тип ремарке и полуремарке'
+WHERE TableName = 'PMIS_RES.GTable.TrailerType' AND TableColumn = 'TableValue';
+
+
+
+UPDATE PMIS_ADM.MaintFields SET
+   FieldLabel = 'Вид инж. машина'
+WHERE TableName = 'PMIS_RES.GTable.EngEquipKind' AND TableColumn = 'TableValue';
+
+UPDATE PMIS_ADM.MaintFields SET
+   FieldLabel = 'Тип инж. машина'
+WHERE TableName = 'PMIS_RES.GTable.EngEquipType' AND TableColumn = 'TableValue';
+
+UPDATE PMIS_ADM.MaintFields SET
+   FieldLabel = 'Вид базова машина (инж. машини)'
+WHERE TableName = 'PMIS_RES.GTable.EngEquipBaseKind' AND TableColumn = 'TableValue';
+
+UPDATE PMIS_ADM.MaintFields SET
+   FieldLabel = 'Тип базова машина (инж. машини)'
+WHERE TableName = 'PMIS_RES.GTable.EngEquipBaseType' AND TableColumn = 'TableValue';
+
+UPDATE PMIS_ADM.MaintFields SET
+   FieldLabel = 'Вид гориво за базова машина (инж. машини)'
+WHERE TableName = 'PMIS_RES.GTable.EngEquipBaseEngineType' AND TableColumn = 'TableValue';
+
+UPDATE PMIS_ADM.MaintFields SET
+   FieldLabel = 'Вид работен орган (инж. машини)'
+WHERE TableName = 'PMIS_RES.GTable.EngEquipWorkingBodyKind' AND TableColumn = 'TableValue';
+
+UPDATE PMIS_ADM.MaintFields SET
+   FieldLabel = 'Вид гориво за работен орган (инж. машини)'
+WHERE TableName = 'PMIS_RES.GTable.EngEquipWorkBodyEngineType' AND TableColumn = 'TableValue';
+
+UPDATE PMIS_ADM.MaintFields SET
+   FieldLabel = 'Марка инж. машина'
+WHERE TableName = 'PMIS_RES.EngEquipBaseMakes' AND TableColumn = 'EngEquipBaseMakeName';
+
+
+
+UPDATE PMIS_ADM.MaintFields SET
+   FieldLabel = 'Вид самоходна машина'
+WHERE TableName = 'PMIS_RES.GTable.MobileLiftingEquipKind' AND TableColumn = 'TableValue';
+
+UPDATE PMIS_ADM.MaintFields SET
+   FieldLabel = 'Тип самоходни машина'
+WHERE TableName = 'PMIS_RES.GTable.MobileLiftingEquipType' AND TableColumn = 'TableValue';
+
+
+
+UPDATE PMIS_ADM.MaintFields SET
+   FieldLabel = 'Вид спец. инж. и самолетообслужваща техника'
+WHERE TableName = 'PMIS_RES.GTable.AviationOtherKind' AND TableColumn = 'TableValue';
+
+UPDATE PMIS_ADM.MaintFields SET
+   FieldLabel = 'Тип спец. инж. и самолетообслужваща техника'
+WHERE TableName = 'PMIS_RES.GTable.AviationOtherType' AND TableColumn = 'TableValue';
+
+UPDATE PMIS_ADM.MaintFields SET
+   FieldLabel = 'Вид базова машина (спец. инж. и самолетообслужваща техника)'
+WHERE TableName = 'PMIS_RES.GTable.AviationOtherBaseMachineKind' AND TableColumn = 'TableValue';
+
+UPDATE PMIS_ADM.MaintFields SET
+   FieldLabel = 'Тип базова машина (спец. инж. и самолетообслужваща техника)'
+WHERE TableName = 'PMIS_RES.GTable.AviationOtherBaseMachineType' AND TableColumn = 'TableValue';
+
+UPDATE PMIS_ADM.MaintFields SET
+   FieldLabel = 'Вид оборудване (спец. инж. и самолетообслужваща техника)'
+WHERE TableName = 'PMIS_RES.GTable.AviationOtherEquipmentKind' AND TableColumn = 'TableValue';
+
+UPDATE PMIS_ADM.MaintFields SET
+   FieldLabel = 'Марка базова машина (друга спец. инж. и самолетообслужваща техника)'
+WHERE TableName = 'PMIS_RES.AviationOtherBaseMachineMakes' AND TableColumn = 'AviationOtherBaseMachineMake';
+
+
+UPDATE PMIS_ADM.MaintFields SET 
+   WidthPixels = 250
+WHERE TableName = 'PMIS_RES.MilReadiness' AND TableColumn = 'MilReadinessName';
+
+INSERT INTO PMIS_ADM.MaintFields(TableName, TableColumn, FieldLabel, WidthPixels, FieldKey, UIItemEditKey, UIItemAddKey, IsMandatory, ValidateDataType, IsUnique)
+VALUES ('PMIS_RES.MilReadiness', 'MilReadinessCmdType', 'Тип команда', 250, 'RES_Lists_MilitaryReadinesses_MilitaryReadinessCmdType', 'RES_LISTMAINT_MILITARYREADINESSES_EDIT_MILITARYREADINESSCMDTYPE', 'RES_LISTMAINT_MILITARYREADINESSES_ADD_MILITARYREADINESSNAME', 1, 'string', 0);
+
+
+UPDATE PMIS_ADM.MaintFields SET 
+   WidthPixels = 250
+WHERE TableName = 'PMIS_ADM.Administrations' AND TableColumn = 'AdministrationName';
+
+INSERT INTO PMIS_ADM.MaintFields(TableName, TableColumn, FieldLabel, WidthPixels, FieldKey, UIItemEditKey, UIItemAddKey, IsMandatory, ValidateDataType, IsUnique)
+VALUES ('PMIS_ADM.Administrations', 'AdministrationGroup', 'Група', 250, 'ADM_Lists_Administrations_AdministrationGroup', 'ADM_LISTMAINT_ADMINISTRATIONS_EDIT_ADMINISTRATIONGROUP', 'ADM_LISTMAINT_ADMINISTRATIONS_ADD_ADMINISTRATIONGROUP', 0, 'string', 0);
+
+INSERT INTO PMIS_ADM.MaintFields(TableName, TableColumn, FieldLabel, WidthPixels, FieldKey, UIItemEditKey, UIItemAddKey, IsMandatory, ValidateDataType, IsUnique)
+VALUES ('PMIS_ADM.Administrations', 'AdministrationGroupSeq', 'Подредба на група', 100, 'ADM_Lists_Administrations_AdministrationGroupSeq', 'ADM_LISTMAINT_ADMINISTRATIONS_EDIT_ADMINISTRATIONGROUPSEQ', 'ADM_LISTMAINT_ADMINISTRATIONS_ADD_ADMINISTRATIONGROUPSEQ', 0, 'integer', 0);
+
+
+
+COMMIT;
+/
+ALTER TABLE PMIS_ADM.Administrations ADD AdministrationGroup varchar2(300);
+
+UPDATE PMIS_ADM.Administrations SET 
+   AdministrationGroup = AdministrationName;
+ 
+UPDATE PMIS_ADM.Administrations SET 
+   AdministrationGroup = '"НРС и НСО"'
+WHERE AdministrationName IN ('НРС', 'НСО');
+
+UPDATE PMIS_ADM.Administrations SET 
+   AdministrationGroup = 'други министерства и ведомства'
+WHERE AdministrationName IN ('ДАНС', 'Други');
+
+
+
+ALTER TABLE PMIS_ADM.Administrations ADD AdministrationGroupSeq number;
+
+UPDATE PMIS_ADM.Administrations SET 
+   AdministrationGroupSeq = 1
+WHERE AdministrationGroup = 'МВР';
+
+UPDATE PMIS_ADM.Administrations SET 
+   AdministrationGroupSeq = 2
+WHERE AdministrationGroup = 'Министерство на правосъдието';
+
+UPDATE PMIS_ADM.Administrations SET 
+   AdministrationGroupSeq = 3
+WHERE AdministrationGroup = '"НРС и НСО"';
+
+UPDATE PMIS_ADM.Administrations SET 
+   AdministrationGroupSeq = 4
+WHERE AdministrationGroup = 'други министерства и ведомства';
+
+
+ALTER TABLE PMIS_ADM.Administrations ADD IsMinistryOfDefence number(1) CHECK (IsMinistryOfDefence BETWEEN 0 AND 1);
+
+UPDATE PMIS_ADM.Administrations SET 
+   IsMinistryOfDefence = 1
+WHERE AdministrationName IN ('МО', 'Министерство на отбраната');
+
+UPDATE PMIS_ADM.Administrations SET
+   AdministrationGroup = NULL,
+   AdministrationGroupSeq = NULL
+WHERE IsMinistryOfDefence = 1;
+
+COMMIT;
+/
+/* run if necessary
+UPDATE PMIS_ADM.Persons SET
+   WorkCompanyID = NULL
+WHERE WorkCompanyID IS NOT NULL AND WorkCompanyID NOT IN (SELECT CompanyID FROM PMIS_ADM.Companies);
+*/
+
+ALTER TABLE PMIS_ADM.Persons ADD CONSTRAINT Persons_WorkCompany_FK FOREIGN KEY (WorkCompanyID) REFERENCES PMIS_ADM.Companies (CompanyID);
+
+/
+
+
+UPDATE PMIS_ADM.MilitaryRankCategories SET
+   MilitaryRankSubCategory = 3
+WHERE ZVA_KAT_KOD = '55';
+
+COMMIT;
+/
+CREATE TABLE PMIS_ADM.Professions(ProfessionID number NOT NULL,
+                                  ProfessionName varchar2(200)
+								 );
+
+ALTER TABLE PMIS_ADM.Professions ADD CONSTRAINT Professions_PK PRIMARY KEY (ProfessionID);
+
+CREATE SEQUENCE PMIS_ADM.Professions_ID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+CREATE TRIGGER PMIS_ADM.TRG_Professions_INSERT
+BEFORE INSERT ON PMIS_ADM.Professions
+FOR EACH ROW
+BEGIN
+   SELECT PMIS_ADM.Professions_ID_SEQ.nextval INTO :new.ProfessionID FROM dual;
+END;
+/
+
+INSERT INTO PMIS_ADM.Professions (ProfessionName)
+VALUES ('Лекари');
+
+INSERT INTO PMIS_ADM.Professions (ProfessionName)
+VALUES ('Фармацевт');
+
+INSERT INTO PMIS_ADM.Professions (ProfessionName)
+VALUES ('Рехабилитатор');
+
+INSERT INTO PMIS_ADM.Professions (ProfessionName)
+VALUES ('Лаборант');
+
+INSERT INTO PMIS_ADM.Professions (ProfessionName)
+VALUES ('Медицински сестри');
+
+INSERT INTO PMIS_ADM.Professions (ProfessionName)
+VALUES ('Лекари ветеринари');
+
+INSERT INTO PMIS_ADM.Professions (ProfessionName)
+VALUES ('Психолози');
+
+INSERT INTO PMIS_ADM.Professions (ProfessionName)
+VALUES ('Строителни инженери/техници');
+
+COMMIT;
+/
+CREATE TABLE PMIS_ADM.Specialities(SpecialityID number NOT NULL,
+                                  ProfessionID number NOT NULL,
+                                  SpecialityName varchar2(200)
+								 );
+
+ALTER TABLE PMIS_ADM.Specialities ADD CONSTRAINT Specialities_PK PRIMARY KEY (SpecialityID);
+ALTER TABLE PMIS_ADM.Specialities ADD CONSTRAINT Specialities_ProfessionID_FK FOREIGN KEY (ProfessionID) REFERENCES PMIS_ADM.Professions (ProfessionID);
+
+CREATE SEQUENCE PMIS_ADM.Specialities_ID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+CREATE TRIGGER PMIS_ADM.TRG_Specialities_INSERT
+BEFORE INSERT ON PMIS_ADM.Specialities
+FOR EACH ROW
+BEGIN
+   SELECT PMIS_ADM.Specialities_ID_SEQ.nextval INTO :new.SpecialityID FROM dual;
+END;
+/
+
+INSERT INTO PMIS_ADM.Specialities (SpecialityName, ProfessionID)
+VALUES ('Обща медицина', (SELECT ProfessionID FROM PMIS_ADM.Professions WHERE ProfessionName = 'Лекари'));
+
+INSERT INTO PMIS_ADM.Specialities (SpecialityName, ProfessionID)
+VALUES ('Спешна медицина', (SELECT ProfessionID FROM PMIS_ADM.Professions WHERE ProfessionName = 'Лекари'));
+
+INSERT INTO PMIS_ADM.Specialities (SpecialityName, ProfessionID)
+VALUES ('Вътрешни болести', (SELECT ProfessionID FROM PMIS_ADM.Professions WHERE ProfessionName = 'Лекари'));
+
+INSERT INTO PMIS_ADM.Specialities (SpecialityName, ProfessionID)
+VALUES ('Хирургия', (SELECT ProfessionID FROM PMIS_ADM.Professions WHERE ProfessionName = 'Лекари'));
+
+INSERT INTO PMIS_ADM.Specialities (SpecialityName, ProfessionID)
+VALUES ('Гръдна хирургия', (SELECT ProfessionID FROM PMIS_ADM.Professions WHERE ProfessionName = 'Лекари'));
+
+INSERT INTO PMIS_ADM.Specialities (SpecialityName, ProfessionID)
+VALUES ('Ортопедия и травматология', (SELECT ProfessionID FROM PMIS_ADM.Professions WHERE ProfessionName = 'Лекари'));
+
+INSERT INTO PMIS_ADM.Specialities (SpecialityName, ProfessionID)
+VALUES ('Урология', (SELECT ProfessionID FROM PMIS_ADM.Professions WHERE ProfessionName = 'Лекари'));
+
+INSERT INTO PMIS_ADM.Specialities (SpecialityName, ProfessionID)
+VALUES ('Неврохирургия', (SELECT ProfessionID FROM PMIS_ADM.Professions WHERE ProfessionName = 'Лекари'));
+
+INSERT INTO PMIS_ADM.Specialities (SpecialityName, ProfessionID)
+VALUES ('Лицево-челюстна хирургия', (SELECT ProfessionID FROM PMIS_ADM.Professions WHERE ProfessionName = 'Лекари'));
+
+INSERT INTO PMIS_ADM.Specialities (SpecialityName, ProfessionID)
+VALUES ('Съдова хирургия', (SELECT ProfessionID FROM PMIS_ADM.Professions WHERE ProfessionName = 'Лекари'));
+
+INSERT INTO PMIS_ADM.Specialities (SpecialityName, ProfessionID)
+VALUES ('Анестезиология и интензивно лечение', (SELECT ProfessionID FROM PMIS_ADM.Professions WHERE ProfessionName = 'Лекари'));
+
+INSERT INTO PMIS_ADM.Specialities (SpecialityName, ProfessionID)
+VALUES ('Акушерство и гинекология', (SELECT ProfessionID FROM PMIS_ADM.Professions WHERE ProfessionName = 'Лекари'));
+
+INSERT INTO PMIS_ADM.Specialities (SpecialityName, ProfessionID)
+VALUES ('Педиатрия', (SELECT ProfessionID FROM PMIS_ADM.Professions WHERE ProfessionName = 'Лекари'));
+
+INSERT INTO PMIS_ADM.Specialities (SpecialityName, ProfessionID)
+VALUES ('Очни болести', (SELECT ProfessionID FROM PMIS_ADM.Professions WHERE ProfessionName = 'Лекари'));
+
+INSERT INTO PMIS_ADM.Specialities (SpecialityName, ProfessionID)
+VALUES ('Ушно-носно-гърлени болести', (SELECT ProfessionID FROM PMIS_ADM.Professions WHERE ProfessionName = 'Лекари'));
+
+INSERT INTO PMIS_ADM.Specialities (SpecialityName, ProfessionID)
+VALUES ('Инфекциозни болести', (SELECT ProfessionID FROM PMIS_ADM.Professions WHERE ProfessionName = 'Лекари'));
+
+INSERT INTO PMIS_ADM.Specialities (SpecialityName, ProfessionID)
+VALUES ('Кожно-венерически болести', (SELECT ProfessionID FROM PMIS_ADM.Professions WHERE ProfessionName = 'Лекари'));
+
+INSERT INTO PMIS_ADM.Specialities (SpecialityName, ProfessionID)
+VALUES ('Нервни болести', (SELECT ProfessionID FROM PMIS_ADM.Professions WHERE ProfessionName = 'Лекари'));
+
+INSERT INTO PMIS_ADM.Specialities (SpecialityName, ProfessionID)
+VALUES ('Психиатрия', (SELECT ProfessionID FROM PMIS_ADM.Professions WHERE ProfessionName = 'Лекари'));
+
+INSERT INTO PMIS_ADM.Specialities (SpecialityName, ProfessionID)
+VALUES ('Физикална и рехабилитационна медицина', (SELECT ProfessionID FROM PMIS_ADM.Professions WHERE ProfessionName = 'Лекари'));
+
+INSERT INTO PMIS_ADM.Specialities (SpecialityName, ProfessionID)
+VALUES ('Клинична лаборатория', (SELECT ProfessionID FROM PMIS_ADM.Professions WHERE ProfessionName = 'Лекари'));
+
+INSERT INTO PMIS_ADM.Specialities (SpecialityName, ProfessionID)
+VALUES ('Токсикология', (SELECT ProfessionID FROM PMIS_ADM.Professions WHERE ProfessionName = 'Лекари'));
+
+INSERT INTO PMIS_ADM.Specialities (SpecialityName, ProfessionID)
+VALUES ('Лъчелечение', (SELECT ProfessionID FROM PMIS_ADM.Professions WHERE ProfessionName = 'Лекари'));
+
+INSERT INTO PMIS_ADM.Specialities (SpecialityName, ProfessionID)
+VALUES ('Дентална медицина, орална хирургия', (SELECT ProfessionID FROM PMIS_ADM.Professions WHERE ProfessionName = 'Лекари'));
+
+INSERT INTO PMIS_ADM.Specialities (SpecialityName, ProfessionID)
+VALUES ('Медицинска паразитология', (SELECT ProfessionID FROM PMIS_ADM.Professions WHERE ProfessionName = 'Лекари'));
+
+INSERT INTO PMIS_ADM.Specialities (SpecialityName, ProfessionID)
+VALUES ('Образна диагностика', (SELECT ProfessionID FROM PMIS_ADM.Professions WHERE ProfessionName = 'Лекари'));
+
+INSERT INTO PMIS_ADM.Specialities (SpecialityName, ProfessionID)
+VALUES ('Микробиология', (SELECT ProfessionID FROM PMIS_ADM.Professions WHERE ProfessionName = 'Лекари'));
+
+INSERT INTO PMIS_ADM.Specialities (SpecialityName, ProfessionID)
+VALUES ('Обща и клинична патология', (SELECT ProfessionID FROM PMIS_ADM.Professions WHERE ProfessionName = 'Лекари'));
+
+INSERT INTO PMIS_ADM.Specialities (SpecialityName, ProfessionID)
+VALUES ('Съдебна медицина', (SELECT ProfessionID FROM PMIS_ADM.Professions WHERE ProfessionName = 'Лекари'));
+
+INSERT INTO PMIS_ADM.Specialities (SpecialityName, ProfessionID)
+VALUES ('Вирусология', (SELECT ProfessionID FROM PMIS_ADM.Professions WHERE ProfessionName = 'Лекари'));
+
+INSERT INTO PMIS_ADM.Specialities (SpecialityName, ProfessionID)
+VALUES ('Радиобиология', (SELECT ProfessionID FROM PMIS_ADM.Professions WHERE ProfessionName = 'Лекари'));
+
+
+INSERT INTO PMIS_ADM.Specialities (SpecialityName, ProfessionID)
+VALUES ('Фармакология', (SELECT ProfessionID FROM PMIS_ADM.Professions WHERE ProfessionName = 'Фармацевт'));
+
+
+INSERT INTO PMIS_ADM.Specialities (SpecialityName, ProfessionID)
+VALUES ('Медицинска рехабилитация', (SELECT ProfessionID FROM PMIS_ADM.Professions WHERE ProfessionName = 'Рехабилитатор'));
+
+
+INSERT INTO PMIS_ADM.Specialities (SpecialityName, ProfessionID)
+VALUES ('Клинична лаборатория', (SELECT ProfessionID FROM PMIS_ADM.Professions WHERE ProfessionName = 'Лаборант'));
+
+INSERT INTO PMIS_ADM.Specialities (SpecialityName, ProfessionID)
+VALUES ('Образна диагностика', (SELECT ProfessionID FROM PMIS_ADM.Professions WHERE ProfessionName = 'Лаборант'));
+
+
+INSERT INTO PMIS_ADM.Specialities (SpecialityName, ProfessionID)
+VALUES ('Всички специалности', (SELECT ProfessionID FROM PMIS_ADM.Professions WHERE ProfessionName = 'Медицински сестри'));
+
+
+INSERT INTO PMIS_ADM.Specialities (SpecialityName, ProfessionID)
+VALUES ('Ветеринарен лекар', (SELECT ProfessionID FROM PMIS_ADM.Professions WHERE ProfessionName = 'Лекари ветеринари'));
+
+
+INSERT INTO PMIS_ADM.Specialities (SpecialityName, ProfessionID)
+VALUES ('Психолог', (SELECT ProfessionID FROM PMIS_ADM.Professions WHERE ProfessionName = 'Психолози'));
+
+
+INSERT INTO PMIS_ADM.Specialities (SpecialityName, ProfessionID)
+VALUES ('Геодезисти, картографи', (SELECT ProfessionID FROM PMIS_ADM.Professions WHERE ProfessionName = 'Строителни инженери/техници'));
+
+COMMIT;
+/
+CREATE TABLE PMIS_ADM.MilRepPersonSpecialities(MilRepPersonSpecialityID number NOT NULL,
+                                               MilitaryReportPersonID number NOT NULL,
+                                               ProfessionID number,
+                                               SpecialityID number
+                                              );
+
+ALTER TABLE PMIS_ADM.MilRepPersonSpecialities ADD CONSTRAINT MilRepPersonSpecialities_PK PRIMARY KEY (MilRepPersonSpecialityID);
+ALTER TABLE PMIS_ADM.MilRepPersonSpecialities ADD CONSTRAINT MilRepPersonSpec_MilRepPers_FK FOREIGN KEY (MilitaryReportPersonID) REFERENCES PMIS_ADM.MilitaryReportPersons (MilitaryReportPersonID);
+ALTER TABLE PMIS_ADM.MilRepPersonSpecialities ADD CONSTRAINT MilRepPersonSpec_Profession_FK FOREIGN KEY (ProfessionID) REFERENCES PMIS_ADM.Professions (ProfessionID);
+ALTER TABLE PMIS_ADM.MilRepPersonSpecialities ADD CONSTRAINT MilRepPersonSpec_Speciality_FK FOREIGN KEY (SpecialityID) REFERENCES PMIS_ADM.Specialities (SpecialityID);
+
+CREATE SEQUENCE PMIS_ADM.MilRepPersonSpec_ID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+CREATE TRIGGER PMIS_ADM.TRG_MilRepPersonSpec_INSERT
+BEFORE INSERT ON PMIS_ADM.MilRepPersonSpecialities
+FOR EACH ROW
+BEGIN
+   SELECT PMIS_ADM.MilRepPersonSpec_ID_SEQ.nextval INTO :new.MilRepPersonSpecialityID FROM dual;
+END;
+/
+
+CREATE OR REPLACE PACKAGE PMIS_ADM.CommonFunctions AS
+   TYPE PMIS_CURSOR IS REF CURSOR;
+
+
+   
+   PROCEDURE GetUIItemAndChilds (P_UIItemID IN PMIS_ADM.UIItems.UIItemID%TYPE, 
+                                 P_RoleID IN PMIS_ADM.UserRoles.RoleID%TYPE, 
+                                 P_UIItems OUT PMIS_ADM.CommonFunctions.PMIS_CURSOR);
+ 
+   FUNCTION GetUIItemsTreeIDs (P_ParentUIItems IN SQL_ListOfIDs, 
+                               P_RoleID IN PMIS_ADM.UserRoles.RoleID%TYPE) RETURN SQL_ListOfIDs;
+
+
+
+   FUNCTION GetMilitaryUnitIDsPerUser (P_UserID IN PMIS_ADM.Users.UserID%TYPE) RETURN SQL_ListOfIDs;
+   
+   FUNCTION GetMilitaryUnitChilds (P_MilitaryUnitIDs IN SQL_ListOfIDs) RETURN SQL_ListOfIDs;
+   
+   FUNCTION GetMRSPerVSSTRecordHTML (P_VSST_ID IN number) RETURN varchar2;
+   FUNCTION GetMRSIdsPerVSSTRecord (P_VSST_ID IN number) RETURN varchar2;
+
+   FUNCTION GetMRSPerPersonHTML (P_PersonID IN number, P_MaxLength IN number) RETURN varchar2;
+   FUNCTION GetLanguagesPerPerson (P_PersonID IN number) RETURN varchar2;
+   FUNCTION GetDrivingLicensesPerPerson (P_PersonID IN number) RETURN varchar2;
+   FUNCTION GetSpecialitiesPerPerson (P_PersonID IN number) RETURN varchar2;
+   FUNCTION GetAgeFromEGN (P_EGN IN varchar2) RETURN number;
+   FUNCTION GetAgeFromEGNbyDate (P_EGN IN varchar2, ToDate IN date) RETURN number;
+  FUNCTION IsMilitaryUnitActual(P_KOD_MIR IN number) RETURN number;
+   
+   PROCEDURE CallURL(P_URL IN varchar2);
+   PROCEDURE CallGenerateOfflineReports;
+   
+   FUNCTION GetInitials (P_FULLNAME IN varchar2) RETURN varchar2;
+   FUNCTION GetFullAddress (P_CityID IN number, P_DistrictID IN number, P_Address varchar2) RETURN varchar2;
+   
+   FUNCTION GetMilitaryUnitAndChildren (P_MilitaryUnitID IN UKAZ_OWNER.MIR.KOD_MIR%TYPE) RETURN SQL_ListOfIDs;
+   
+   FUNCTION GetSpecialitiesPerMRPHTML (P_MilitaryReportingPersonID IN number) RETURN varchar2;
+END;
+/
+
+CREATE OR REPLACE PACKAGE BODY PMIS_ADM.CommonFunctions AS
+   PROCEDURE GetUIItemAndChilds (P_UIItemID IN PMIS_ADM.UIItems.UIItemID%TYPE,
+                                 P_RoleID IN PMIS_ADM.UserRoles.RoleID%TYPE,
+                                 P_UIItems OUT PMIS_ADM.CommonFunctions.PMIS_CURSOR) IS
+
+        UIItemIDs SQL_ListOfIDs := SQL_ListOfIDs();
+        ParentUIItemID SQL_ListOfIDs := SQL_ListOfIDs();
+   BEGIN
+      ParentUIItemID.extend();
+      ParentUIItemID(1) := P_UIItemID;
+      
+      UIItemIDs := GetUIItemsTreeIDs(ParentUIItemID, P_RoleID);
+      
+      OPEN P_UIItems FOR
+      SELECT a.UIItemID, a.UIKey, a.UIName, a.ParentUIItemID, b.AccessLevel,
+             a.CanSetAccessOnlyOwnData, b.AccessOnlyOwnData
+      FROM PMIS_ADM.UIItems a
+      LEFT OUTER JOIN PMIS_ADM.UIItemsPerRole b ON a.UIItemID = b.UIItemID AND b.RoleID = P_RoleID
+      LEFT OUTER JOIN PMIS_ADM.UIItems c ON a.ParentUIItemID = c.UIItemID
+      WHERE a.UIItemID IN (SELECT * FROM TABLE(UIItemIDs));
+   END;
+   
+   FUNCTION GetUIItemsTreeIDs (P_ParentUIItems IN SQL_ListOfIDs, 
+                               P_RoleID IN PMIS_ADM.UserRoles.RoleID%TYPE) RETURN SQL_ListOfIDs IS
+                               
+      UIItemIDs SQL_ListOfIDs := SQL_ListOfIDs();
+      tmp SQL_ListOfIDs := SQL_ListOfIDs();
+      
+      CURSOR UIItemsCUR is
+      SELECT a.UIItemID
+      FROM PMIS_ADM.UIItems a
+      LEFT OUTER JOIN PMIS_ADM.UIItemsPerRole b ON a.UIItemID = b.UIItemID AND b.RoleID = P_RoleID
+      WHERE a.ParentUIItemID IN (SELECT * FROM TABLE(P_ParentUIItems)) OR ((SELECT COUNT(*) FROM TABLE(P_ParentUIItems)) = 0 AND a.ParentUIItemID IS NULL);
+   BEGIN
+      OPEN UIItemsCUR;
+      
+      LOOP
+         FETCH UIItemsCUR BULK COLLECT INTO UIItemIDs;
+         EXIT WHEN UIItemsCUR%notfound;
+      END LOOP;
+      
+      CLOSE UIItemsCUR;
+      
+      IF UIItemIDs.COUNT > 0 THEN
+         tmp := GetUIItemsTreeIDs(UIItemIDs, P_RoleID);
+      
+         IF tmp.COUNT > 0 THEN
+            UIItemIDs := UIItemIDs MULTISET UNION tmp;
+         END IF;
+      END IF;
+      
+      RETURN UIItemIDs;
+   END;
+   
+   
+   
+   FUNCTION GetMilitaryUnitIDsPerUser (P_UserID IN PMIS_ADM.Users.UserID%TYPE) RETURN SQL_ListOfIDs  IS
+                               
+      MilitaryUnitIDs SQL_ListOfIDs := SQL_ListOfIDs();
+      tmp SQL_ListOfIDs := SQL_ListOfIDs();
+      
+      CURSOR MilitaryUnitsCUR is
+      SELECT a.MilitaryUnitID
+      FROM PMIS_ADM.MilitaryUnitsPerUser a
+      WHERE a.UserID = P_UserID;
+   BEGIN      
+      OPEN MilitaryUnitsCUR;
+      
+      LOOP
+         FETCH MilitaryUnitsCUR BULK COLLECT INTO MilitaryUnitIDs;
+         EXIT WHEN MilitaryUnitsCUR%notfound;
+      END LOOP;
+      
+      CLOSE MilitaryUnitsCUR;
+      
+      IF MilitaryUnitIDs.COUNT > 0 THEN
+         tmp := GetMilitaryUnitChilds(MilitaryUnitIDs);
+      
+         IF tmp.COUNT > 0 THEN
+            MilitaryUnitIDs := MilitaryUnitIDs MULTISET UNION tmp;
+         END IF;
+      END IF;
+   
+      RETURN MilitaryUnitIDs;
+   END;
+   
+   
+   FUNCTION GetMilitaryUnitChilds (P_MilitaryUnitIDs IN SQL_ListOfIDs) RETURN SQL_ListOfIDs IS
+                               
+      MilitaryUnitIDs SQL_ListOfIDs := SQL_ListOfIDs();
+      tmp SQL_ListOfIDs := SQL_ListOfIDs();
+      
+      CURSOR MilitaryUnitsCUR is
+      SELECT a.KOD_MIR as MilitaryUnitID
+      FROM UKAZ_OWNER.STRM a
+      WHERE a.STR_KOD_MIR IN (SELECT * FROM TABLE(P_MilitaryUnitIDs)) OR ((SELECT COUNT(*) FROM TABLE(P_MilitaryUnitIDs)) = 0 AND a.STR_KOD_MIR IS NULL) ;
+   BEGIN
+      OPEN MilitaryUnitsCUR;
+      
+      LOOP
+         FETCH MilitaryUnitsCUR BULK COLLECT INTO MilitaryUnitIDs;
+         EXIT WHEN MilitaryUnitsCUR%notfound;
+      END LOOP;
+      
+      CLOSE MilitaryUnitsCUR;
+      
+      IF MilitaryUnitIDs.COUNT > 0 THEN
+         tmp := GetMilitaryUnitChilds(MilitaryUnitIDs);
+         
+         IF tmp.COUNT > 0 THEN
+            MilitaryUnitIDs := MilitaryUnitIDs MULTISET UNION tmp;
+         END IF;
+      END IF;
+      
+      RETURN MilitaryUnitIDs;
+   END;
+   
+   FUNCTION GetMRSPerVSSTRecordHTML (P_VSST_ID IN number) RETURN varchar2 IS
+                               
+      MRS varchar2(4000);
+      
+      CURSOR MilitaryReportSpecialitiesCUR is
+      SELECT c.MilReportingSpecialityCode || ' ' || c.MilReportingSpecialityName as DisplayName
+      FROM VS_OWNER.VS_VSST a
+      LEFT OUTER JOIN VS_OWNER.VS_VSST_VOS b ON a.VSST_ID = b.VSVOS_VSST_ID
+      LEFT OUTER JOIN PMIS_ADM.MilitaryReportSpecialities c ON CASE WHEN b.VSVOS_VSOKOD IS NOT NULL
+                                                                    THEN b.VSVOS_VSOKOD
+                                                                    ELSE b.VSVOS_VSSKOD
+                                                               END = c.MilReportingSpecialityCode
+      WHERE a.VSST_ID = P_VSST_ID
+      ORDER BY c.MilReportingSpecialityCode;
+   BEGIN
+      FOR CurRec IN MilitaryReportSpecialitiesCUR
+      LOOP 
+         IF (MRS IS NULL OR LENGTH(MRS) < 3600) THEN
+             MRS := MRS || '<div title="' || CurRec.DisplayName || '" style="cursor: arrow;">' || 
+                              SUBSTR(CurRec.DisplayName, 1, 20) || 
+                              CASE WHEN LENGTH (CurRec.DisplayName) > 20 THEN '...' ELSE '' END || 
+                           '</div>';
+         END IF;
+      END LOOP;
+      
+      RETURN MRS;
+   END;
+   
+   FUNCTION GetMRSIdsPerVSSTRecord (P_VSST_ID IN number) RETURN varchar2 IS
+                               
+      MRSIds varchar2(4000);
+      
+      CURSOR MilitaryReportSpecialitiesCUR is
+      SELECT c.MilReportSpecialityID
+      FROM VS_OWNER.VS_VSST a
+      LEFT OUTER JOIN VS_OWNER.VS_VSST_VOS b ON a.VSST_ID = b.VSVOS_VSST_ID
+      LEFT OUTER JOIN PMIS_ADM.MilitaryReportSpecialities c ON CASE WHEN b.VSVOS_VSOKOD IS NOT NULL
+                                                                    THEN b.VSVOS_VSOKOD
+                                                                    ELSE b.VSVOS_VSSKOD
+                                                               END = c.MilReportingSpecialityCode
+      WHERE a.VSST_ID = P_VSST_ID
+      ORDER BY c.MilReportSpecialityID;
+   BEGIN
+      FOR CurRec IN MilitaryReportSpecialitiesCUR
+      LOOP 
+         IF (MRSIds IS NULL OR LENGTH(MRSIds) < 3900) THEN
+             MRSIds :=MRSIds || CASE WHEN MRSIds IS NULL THEN '' ELSE ',' END || TO_CHAR(CurRec.MilReportSpecialityID);
+         END IF;
+      END LOOP;
+      
+      RETURN MRSIds;
+   END;
+
+   FUNCTION GetMRSPerPersonHTML (P_PersonID IN number, P_MaxLength IN number) RETURN varchar2 IS
+                               
+      MRS varchar2(4000);
+      
+      CURSOR MilitaryReportSpecialitiesCUR is
+      SELECT b.MilReportingSpecialityCode || ' ' || b.MilReportingSpecialityName as DisplayName
+      FROM PMIS_ADM.PersonMilRepSpec a
+      LEFT OUTER JOIN PMIS_ADM.MilitaryReportSpecialities b ON a.MilReportSpecialityID = b.MilReportSpecialityID
+      WHERE a.PersonID = P_PersonID
+      ORDER BY a.MilReportSpecialityID;
+   BEGIN
+      FOR CurRec IN MilitaryReportSpecialitiesCUR
+      LOOP 
+         IF (MRS IS NULL OR LENGTH(MRS) < 3600) THEN
+             MRS := MRS || '<div title="' || CurRec.DisplayName || '" style="cursor: arrow;">' || 
+                              SUBSTR(CurRec.DisplayName, 1, P_MaxLength) || 
+                              CASE WHEN LENGTH (CurRec.DisplayName) > P_MaxLength THEN '...' ELSE '' END || 
+                           '</div>';
+         END IF;
+      END LOOP;
+      
+      RETURN MRS;
+   END;
+
+   FUNCTION GetLanguagesPerPerson (P_PersonID IN number) RETURN varchar2 IS
+                               
+      Lang varchar2(4000);
+      
+      CURSOR LanguagesCUR is
+      SELECT c.EZK_IME as DisplayName
+      FROM VS_OWNER.VS_LS a
+      LEFT OUTER JOIN VS_OWNER.VS_EZIK b ON a.EGN = b.EZIK_EGNLS
+      LEFT OUTER JOIN VS_OWNER.KLV_EZK c ON b.EZIK_EZKKOD = c.EZK_KOD
+      WHERE a.PersonID = P_PersonID
+      ORDER BY b.EZIK_EZKKOD;
+   BEGIN
+      FOR CurRec IN LanguagesCUR
+      LOOP 
+         IF (Lang IS NULL OR LENGTH(Lang) < 3600) THEN
+	     IF (Lang IS NOT NULL) THEN
+		Lang := Lang || ', ';
+	     END IF;
+
+             Lang := Lang || CurRec.DisplayName;
+         END IF;
+      END LOOP;
+      
+      RETURN Lang;
+   END;
+   
+   FUNCTION GetDrivingLicensesPerPerson (P_PersonID IN number) RETURN varchar2 IS
+                               
+      DL varchar2(4000);
+      
+      CURSOR DrivingLicenseCUR is
+      SELECT b.DrivingLicenseCategoryName as DisplayName
+      FROM PMIS_ADM.PersonDrivingLicenseCategories a
+      INNER JOIN PMIS_ADM.DrivingLicenseCategories b ON a.DrivingLicenseCategoryID = b.DrivingLicenseCategoryID      
+      WHERE a.PersonID = P_PersonID
+      ORDER BY b.Seq;
+   BEGIN
+      FOR CurRec IN DrivingLicenseCUR
+      LOOP 
+         IF (DL IS NULL OR LENGTH(DL) < 3600) THEN
+	     IF (DL IS NOT NULL) THEN
+		DL := DL || ', ';
+	     END IF;
+
+             DL := DL || CurRec.DisplayName;
+         END IF;
+      END LOOP;
+      
+      RETURN DL;
+   END;
+
+   FUNCTION GetSpecialitiesPerPerson (P_PersonID IN number) RETURN varchar2 IS
+                               
+      Specs varchar2(4000);
+      
+      CURSOR SpecsCUR is
+      SELECT c.OBR_IME as DisplayName
+      FROM VS_OWNER.VS_LS a
+      LEFT OUTER JOIN VS_OWNER.VS_OBRG b ON a.EGN = b.OBRG_EGNLS
+      LEFT OUTER JOIN VS_OWNER.KLV_OBR c ON b.OBRG_KOD = c.OBR_KOD
+      WHERE a.PersonID = P_PersonID
+      ORDER BY b.OBRG_KOD;
+   BEGIN
+      FOR CurRec IN SpecsCUR
+      LOOP 
+         IF (Specs IS NULL OR LENGTH(Specs) < 3600) THEN
+	     IF (Specs IS NOT NULL) THEN
+		Specs := Specs || ', ';
+	     END IF;
+
+             Specs := Specs || CurRec.DisplayName;
+         END IF;
+      END LOOP;
+      
+      RETURN Specs;
+   END;
+
+   FUNCTION GetAgeFromEGN (P_EGN IN varchar2) RETURN number IS
+      Year number;
+      Month number;
+      Day number;
+      Age number;
+
+   BEGIN
+      Year := TO_NUMBER(SUBSTR(P_EGN, 1, 2));
+      Month := TO_NUMBER(SUBSTR(P_EGN, 3, 2));
+      Day := TO_NUMBER(SUBSTR(P_EGN, 5, 2));
+
+      Year := Year + 1900;
+
+      IF (Month > 40) THEN
+         Year := Year + 100;
+         Month := Month - 40;
+      END IF;
+
+      Age := TO_NUMBER(TO_CHAR(SYSDATE, 'YYYY')) - Year; 
+
+      IF (Month > TO_NUMBER(TO_CHAR(SYSDATE, 'MM'))) THEN
+         Age := Age - 1;
+      END IF;
+
+      IF (Month = TO_NUMBER(TO_CHAR(SYSDATE, 'MM'))) THEN
+         IF (Day > TO_NUMBER(TO_CHAR(SYSDATE, 'DD'))) THEN
+            Age := Age - 1;
+         END IF;
+      END IF;
+
+      RETURN Age;
+   END;
+ 
+    FUNCTION GetAgeFromEGNbyDate (P_EGN IN varchar2, ToDate IN date) RETURN number IS
+      Year number;
+      Month number;
+      Day number;
+      Age number;
+   BEGIN
+     Year := TO_NUMBER(SUBSTR(P_EGN, 1, 2));
+      Month := TO_NUMBER(SUBSTR(P_EGN, 3, 2));
+      Day := TO_NUMBER(SUBSTR(P_EGN, 5, 2));
+
+      Year := Year + 1900;
+
+      IF (Month > 40) THEN
+         Year := Year + 100;
+         Month := Month - 40;
+      END IF;
+
+      Age := TO_NUMBER(TO_CHAR(ToDate, 'YYYY')) - Year; 
+
+      IF (Month > TO_NUMBER(TO_CHAR(ToDate, 'MM'))) THEN
+         Age := Age - 1;
+      END IF;
+
+      IF (Month = TO_NUMBER(TO_CHAR(ToDate, 'MM'))) THEN
+         IF (Day > TO_NUMBER(TO_CHAR(ToDate, 'DD'))) THEN
+            Age := Age - 1;
+         END IF;
+      END IF;
+
+      RETURN Age;
+   END;
+  
+   FUNCTION IsMilitaryUnitActual(P_KOD_MIR IN number) RETURN number IS
+	ParentID number;
+	Actual number;
+   BEGIN    
+    SELECT AKTUAL INTO Actual FROM UKAZ_OWNER.MIR WHERE KOD_MIR = P_KOD_MIR;
+    SELECT STR_KOD_MIR INTO ParentID FROM UKAZ_OWNER.STRM WHERE KOD_MIR = P_KOD_MIR;
+	
+	
+	LOOP
+		IF ParentID IS NULL OR Actual = 0 THEN
+			EXIT;
+		END IF;
+		
+		SELECT AKTUAL INTO Actual FROM UKAZ_OWNER.MIR WHERE KOD_MIR = ParentID;
+		SELECT STR_KOD_MIR INTO ParentID FROM UKAZ_OWNER.STRM WHERE KOD_MIR = ParentID;		
+	END LOOP;
+	
+	RETURN Actual;
+   END;
+
+   PROCEDURE CallURL(P_URL IN varchar2) IS
+	req       utl_http.req;
+    resp      utl_http.resp;
+    name      VARCHAR2(256);
+    value     VARCHAR2(1024);
+    data      VARCHAR2(255);
+    my_scheme VARCHAR2(256);
+    my_realm  VARCHAR2(256);
+    my_proxy  BOOLEAN;
+	BEGIN
+	-- Ask UTL_HTTP not to raise an exception for 4xx and 5xx status codes,
+	-- rather than just returning the text of the error page.
+	  utl_http.set_response_error_check(FALSE);
+
+	-- Begin retrieving this web page.
+	  req := utl_http.begin_request(P_URL);
+
+	-- Identify ourselves. Some sites serve special pages for particular browsers.
+	  utl_http.set_header(req, 'User-Agent', 'Mozilla/4.0');
+	  
+
+	  BEGIN
+		resp := utl_http.get_response(req); 
+		
+		utl_http.end_response(resp);    
+	  END;
+
+	END;
+
+	PROCEDURE CallGenerateOfflineReports IS
+	BEGIN
+		CallURL('http://127.0.0.1/PMISAdmin/PublicPages/GenerateOfflineReports.aspx');
+	END;
+	
+	FUNCTION GetInitials (P_FULLNAME IN varchar2) RETURN varchar2 IS
+      Initials varchar2(50);
+      FullName varchar2(500);
+   BEGIN
+      FullName := P_FULLNAME;
+	  FullName := TRIM(p_fullname);
+	   
+	  FullName := REPLACE(FullName, '-', ' ');
+	  FullName := REPLACE(FullName, ',', ' ');
+	   
+	  Initials := SUBSTR(FullName, 1, 1);
+	   
+	  WHILE (INSTR(FullName, ' ') > 0) LOOP
+		 Initials := Initials || SUBSTR(FullName, INSTR(FullName, ' ') + 1, 1);
+		 FullName := SUBSTR(FullName, INSTR(FullName, ' ') + 1, LENGTH(FullName) - INSTR(FullName, ' '));
+	  END LOOP;
+
+      RETURN UPPER(Initials);
+   END;
+   
+   FUNCTION GetFullAddress (P_CityID IN number, P_DistrictID IN number, P_Address varchar2) RETURN varchar2 IS
+     FullAddress varchar2(2000);
+   BEGIN
+     SELECT c.Ime_Obl || ', ' || 
+			b.Ime_Obs || ', ' || 
+			a.Ime_Nma ||  
+			CASE WHEN P_DistrictID IS NULL THEN ''
+				 ELSE ', ' || d.DistrictName
+			END || ', ' || CHR(13) || CHR(10) ||
+			P_Address
+	 INTO FullAddress 
+	 FROM UKAZ_OWNER.KL_NMA a
+	 INNER JOIN UKAZ_OWNER.KL_OBS b ON a.KOD_OBS = b.KOD_OBS
+	 INNER JOIN UKAZ_OWNER.KL_OBL c ON a.KOD_OBL = c.KOD_OBL
+	 LEFT OUTER JOIN PMIS_ADM.Districts d ON d.DistrictID = P_DistrictID
+     WHERE a.Kod_Nma = P_CityID;
+	 
+	 RETURN FullAddress;
+   END;
+   
+   FUNCTION GetMilitaryUnitAndChildren (P_MilitaryUnitID IN UKAZ_OWNER.MIR.KOD_MIR%TYPE) RETURN SQL_ListOfIDs  IS
+                               
+      MilitaryUnitIDs SQL_ListOfIDs := SQL_ListOfIDs();
+      tmp SQL_ListOfIDs := SQL_ListOfIDs();
+      
+   BEGIN      
+      MilitaryUnitIDs.EXTEND(1);
+	  MilitaryUnitIDs(1) := P_MilitaryUnitID;
+      
+      IF MilitaryUnitIDs.COUNT > 0 THEN
+         tmp := GetMilitaryUnitChilds(MilitaryUnitIDs);
+      
+         IF tmp.COUNT > 0 THEN
+            MilitaryUnitIDs := MilitaryUnitIDs MULTISET UNION tmp;
+         END IF;
+      END IF;
+   
+      RETURN MilitaryUnitIDs;
+   END;
+
+   FUNCTION GetSpecialitiesPerMRPHTML (P_MilitaryReportingPersonID IN number) RETURN varchar2 IS
+                               
+      SpecialitiesHTML varchar2(4000);
+      
+      CURSOR SpecialitiesCUR is
+      SELECT b.ProfessionName, c.SpecialityName
+      FROM PMIS_ADM.MilRepPersonSpecialities a
+      LEFT OUTER JOIN PMIS_ADM.Professions b ON a.ProfessionID = b.ProfessionID
+      LEFT OUTER JOIN PMIS_ADM.Specialities c ON a.SpecialityID = c.SpecialityID
+      WHERE a.MilitaryReportPersonID = P_MilitaryReportingPersonID
+      ORDER BY b.ProfessionName, c.SpecialityName;
+   BEGIN
+      FOR CurRec IN SpecialitiesCUR
+      LOOP 
+         IF (SpecialitiesHTML IS NULL OR LENGTH(SpecialitiesHTML) < 3600) THEN
+             SpecialitiesHTML := SpecialitiesHTML || '<div>' || 
+                              CurRec.ProfessionName || 
+                              CASE WHEN CurRec.SpecialityName IS NOT NULL THEN ', ' || CurRec.SpecialityName ELSE '' END || 
+                           '</div>';
+         END IF;
+      END LOOP;
+      
+      RETURN SpecialitiesHTML;
+   END;
+   
+END;
+/
+GRANT ALL ON PMIS_ADM.MilitaryDepartments TO PMIS_RES WITH GRANT OPTION;
+
+/
+ALTER TABLE PMIS_RES.MilReadiness ADD MilReadinessCmdType varchar2(300);
+
+UPDATE PMIS_RES.MilReadiness SET 
+   MilReadinessCmdType = MilReadinessName;
+
+UPDATE PMIS_RES.MilReadiness SET 
+   MilReadinessCmdType = 'Мобилизационно ядро'
+WHERE MilReadinessName = 'Повишена';
+ 
+UPDATE PMIS_RES.MilReadiness SET 
+   MilReadinessCmdType = 'Основно попълнение'
+WHERE MilReadinessName = 'Пълна';
+ 
+COMMIT;
+/
+ALTER TABLE PMIS_RES.TechnicsTypes ADD Seq int;
+ALTER TABLE PMIS_RES.TechnicsTypes ADD Active number(1) CHECK (Active BETWEEN 0 AND 1);
+
+UPDATE PMIS_RES.TechnicsTypes SET
+   Seq = 1,
+   Active = 1
+WHERE TechnicsTypeKey = 'VEHICLES';
+
+UPDATE PMIS_RES.TechnicsTypes SET
+   Seq = 2,
+   Active = 1,
+   TechnicsTypeName = 'Ремаркета и полуремаркета'
+WHERE TechnicsTypeKey = 'TRAILERS';
+
+UPDATE PMIS_RES.TechnicsTypes SET
+   Seq = 3,
+   Active = 1
+WHERE TechnicsTypeKey = 'TRACTORS';
+
+UPDATE PMIS_RES.TechnicsTypes SET
+   Seq = 4,
+   Active = 1,
+   TechnicsTypeName = 'Инженерни машини'
+WHERE TechnicsTypeKey = 'ENG_EQUIP';
+
+UPDATE PMIS_RES.TechnicsTypes SET
+   Seq = 5,
+   Active = 1,
+   TechnicsTypeName = 'Самоходни машини'
+WHERE TechnicsTypeKey = 'MOB_LIFT_EQUIP';
+
+UPDATE PMIS_RES.TechnicsTypes SET
+   Seq = 6,
+   Active = 1,
+   TechnicsTypeName = 'Инженерна и самолетообслужваща техника'
+WHERE TechnicsTypeKey = 'AVIATION_EQUIP';
+
+
+UPDATE PMIS_RES.TechnicsTypes SET
+   Active = 0
+WHERE TechnicsTypeKey = 'RAILWAY_EQUIP';
+
+UPDATE PMIS_RES.TechnicsTypes SET
+   Active = 0
+WHERE TechnicsTypeKey = 'VESSELS';
+
+UPDATE PMIS_RES.TechnicsTypes SET
+   Active = 0
+WHERE TechnicsTypeKey = 'FUEL_CONTAINERS';
+
+COMMIT;
+/
+ALTER TABLE PMIS_RES.TechnicsRequestCmdPositions ADD (NormativeTechnicsID number);
+
+ALTER TABLE PMIS_RES.TechnicsRequestCmdPositions ADD CONSTRAINT TechReqCmdPos_NormativeTech_FK FOREIGN KEY (NormativeTechnicsID) REFERENCES PMIS_RES.NormativeTechnics (NormativeTechnicsID);
+
+ALTER TABLE PMIS_RES.TechnicsRequestCmdPositions ADD (DriversCount number);
+/
+
+ALTER TABLE PMIS_RES.TechRequestCmdPositionsMilDept ADD (DriversCount number);
+/
+
+CREATE OR REPLACE VIEW PMIS_RES.ViewA31
+AS 
+  SELECT MilitaryDepartmentId, MilitaryDepartmentName, MilReadinessID, MilReadiness, KOD_VVR, Command, CommandSuffix  FROM
+  (
+    SELECT d.MilitaryDepartmentId as MilitaryDepartmentId, f.MilitaryDepartmentName as MilitaryDepartmentName,
+           e.MilReadinessID as MilReadinessID, e.MilReadinessCmdType as MilReadiness, 
+           a.KOD_VVR as KOD_VVR, a.NK as Command, b.MilitaryCommandSuffix as CommandSuffix
+    FROM UKAZ_OWNER.VVR a
+    INNER JOIN PMIS_RES.REQUESTSCOMMANDS b ON b.MilitaryCommandId = a.KOD_VVR
+    INNER JOIN PMIS_RES.REQUESTCOMMANDPOSITIONS c ON c.RequestsCommandID = b.RequestsCommandID
+    INNER JOIN PMIS_RES.FILLRESERVISTSREQUEST d ON d.RequestCommandPositionId = c.RequestCommandPositionId
+    INNER JOIN PMIS_RES.MILREADINESS e ON b.MilReadinessID = e.MilReadinessID
+    INNER JOIN PMIS_ADM.MilitaryDepartments f ON d.MilitaryDepartmentId = f.MilitaryDepartmentId
+	
+    UNION ALL
+    
+    SELECT d.MilitaryDepartmentId as MilitaryDepartmentId, f.MilitaryDepartmentName as MilitaryDepartmentName,
+           e.MilReadinessID as MilReadinessID, e.MilReadinessCmdType as MilReadiness, 
+           a.KOD_VVR as KOD_VVR, a.NK as Command, b.MilitaryCommandSuffix as CommandSuffix 
+    FROM UKAZ_OWNER.VVR a
+    INNER JOIN PMIS_RES.TECHNICSREQUESTCOMMANDS b ON b.MilitaryCommandId = a.KOD_VVR
+    INNER JOIN PMIS_RES.TECHNICSREQUESTCMDPOSITIONS c ON c.TechRequestsCommandID = b.TechRequestsCommandID
+    INNER JOIN PMIS_RES.FULFILTECHNICSREQUEST d ON d.TechnicsRequestCmdPositionID = c.TechnicsRequestCmdPositionID	
+    INNER JOIN PMIS_RES.MILREADINESS e ON b.MilReadinessID = e.MilReadinessID
+    INNER JOIN PMIS_ADM.MilitaryDepartments f ON d.MilitaryDepartmentId = f.MilitaryDepartmentId
+  )
+  GROUP BY MilitaryDepartmentId, MilitaryDepartmentName, MilReadinessID, MilReadiness, KOD_VVR, Command, CommandSuffix
+;
+/
+CREATE OR REPLACE VIEW PMIS_RES.ViewA33v2
+AS 
+	SELECT 1 as StatusID,
+		   'ВОДЯТ СЕ НА ОТЧЕТ' as StatusName,
+		   1 as StatusOrder,
+		   0 as MilReadinessID,
+		   TO_CHAR('') as AdministrationGroup,
+		   '1.' as RowNumber,
+           0 as IsEmptyRow
+	FROM dual
+
+	UNION ALL
+
+	SELECT 2 as StatusID,
+		   'Доброволен резерв' as StatusName,
+		   2 as StatusOrder,
+		   0 as MilReadinessID,
+		   TO_CHAR('') as AdministrationGroup,
+		   '2.' as RowNumber,
+           0 as IsEmptyRow
+	FROM dual
+
+	UNION ALL
+    
+    SELECT 3 as StatusID,
+		   'Запасни на военен отчет' as StatusName,
+		   3 as StatusOrder,
+		   0 as MilReadinessID,
+		   TO_CHAR('') as AdministrationGroup,
+		   '3.' as RowNumber,
+           0 as IsEmptyRow
+	FROM dual
+
+	UNION ALL
+    
+    SELECT 4 as StatusID,
+		   'С мобилизационно назначение за в.ф. на ВС' as StatusName,
+		   4 as StatusOrder,
+		   0 as MilReadinessID,
+		   TO_CHAR('') as AdministrationGroup,
+		   '3.1.' as RowNumber,
+           1 as IsEmptyRow
+	FROM dual
+    
+    UNION ALL
+
+	SELECT 4 + DENSE_RANK() OVER (ORDER BY a.MilReadinessCmdType, a.MilReadinessID) as StatusID,
+		   'С мобилизационно назначение – ' || LOWER(a.MilReadinessCmdType) as StatusName,
+		   4 + DENSE_RANK() OVER (ORDER BY a.MilReadinessCmdType, a.MilReadinessID) as StatusOrder,
+		   a.MilReadinessID,
+		   TO_CHAR('') as AdministrationGroup,
+		   '3.1.' || TO_CHAR(RANK() OVER (ORDER BY a.MilReadinessCmdType, a.MilReadinessID)) || '.' as RowNumber,
+           0 as IsEmptyRow
+	FROM PMIS_RES.MilReadiness a
+    WHERE a.MilReadinessCmdType IS NOT NULL
+
+	UNION ALL
+    
+	SELECT 5 + (SELECT COUNT(*) FROM PMIS_RES.MilReadiness WHERE MilReadinessCmdType IS NOT NULL) as StatusID,
+		   'Процент резерв с МН /брой/' as StatusName,
+		   5 + (SELECT COUNT(*) FROM PMIS_RES.MilReadiness WHERE MilReadinessCmdType IS NOT NULL) as StatusOrder,
+		   0 as MilReadinessID,
+		   TO_CHAR('') as AdministrationGroup,
+		   '3.1.' || TO_CHAR((SELECT COUNT(*) FROM PMIS_RES.MilReadiness WHERE MilReadinessCmdType IS NOT NULL) + 1) || '.' as RowNumber,
+           0 as IsEmptyRow
+	FROM dual
+    
+    UNION ALL
+    
+	SELECT 6 + (SELECT COUNT(*) FROM PMIS_RES.MilReadiness WHERE MilReadinessCmdType IS NOT NULL) as StatusID,
+		   'Доставят се направо (община-ППЗ)' as StatusName,
+		   6 + (SELECT COUNT(*) FROM PMIS_RES.MilReadiness WHERE MilReadinessCmdType IS NOT NULL) as StatusOrder,
+		   0 as MilReadinessID,
+		   TO_CHAR('') as AdministrationGroup,
+		   '3.1.' || TO_CHAR((SELECT COUNT(*) FROM PMIS_RES.MilReadiness WHERE MilReadinessCmdType IS NOT NULL) + 2) || '.' as RowNumber,
+           0 as IsEmptyRow
+	FROM dual
+    
+    UNION ALL
+    
+	SELECT 7 + (SELECT COUNT(*) FROM PMIS_RES.MilReadiness WHERE MilReadinessCmdType IS NOT NULL) as StatusID,
+		   'Доставят се чрез сборен пункт (сборен пукт на ОВО - ППЗ)' as StatusName,
+		   7 + (SELECT COUNT(*) FROM PMIS_RES.MilReadiness WHERE MilReadinessCmdType IS NOT NULL) as StatusOrder,
+		   0 as MilReadinessID,
+		   TO_CHAR('') as AdministrationGroup,
+		   '3.1.' || TO_CHAR((SELECT COUNT(*) FROM PMIS_RES.MilReadiness WHERE MilReadinessCmdType IS NOT NULL) + 3) || '.' as RowNumber,
+           0 as IsEmptyRow
+	FROM dual
+    
+    UNION ALL
+    
+	SELECT 8 + (SELECT COUNT(*) FROM PMIS_RES.MilReadiness WHERE MilReadinessCmdType IS NOT NULL) as StatusID,
+		   'Всичко с МН за в.ф. на въоръжените сили' as StatusName,
+		   8 + (SELECT COUNT(*) FROM PMIS_RES.MilReadiness WHERE MilReadinessCmdType IS NOT NULL) as StatusOrder,
+		   0 as MilReadinessID,
+		   TO_CHAR('') as AdministrationGroup,
+		   '' as RowNumber,
+           0 as IsEmptyRow
+	FROM dual
+    
+    UNION ALL
+    
+	SELECT 9 + (SELECT COUNT(*) FROM PMIS_RES.MilReadiness WHERE MilReadinessCmdType IS NOT NULL) as StatusID,
+		   'С МН за силите от системата за национална сигурност' as StatusName,
+		   9 + (SELECT COUNT(*) FROM PMIS_RES.MilReadiness WHERE MilReadinessCmdType IS NOT NULL) as StatusOrder,
+		   0 as MilReadinessID,
+		   TO_CHAR('') as AdministrationGroup,
+		   '3.2.' as RowNumber,
+           1 as IsEmptyRow
+	FROM dual
+   
+	UNION ALL
+
+	SELECT 9 + (SELECT COUNT(*) FROM PMIS_RES.MilReadiness WHERE MilReadinessCmdType IS NOT NULL) + (DENSE_RANK() OVER (ORDER BY a.AdministrationGroupSeq, a.AdministrationGroup)) as StatusID,
+		   'С МН за ' || a.AdministrationGroup as StatusName,
+		   9 + (SELECT COUNT(*) FROM PMIS_RES.MilReadiness) + (DENSE_RANK() OVER (ORDER BY a.AdministrationGroupSeq, a.AdministrationGroup)) as StatusOrder,
+		   0 as MilReadinessID,
+		   a.AdministrationGroup,
+		   '3.2.' || TO_CHAR((DENSE_RANK() OVER (ORDER BY a.AdministrationGroupSeq, a.AdministrationGroup))) || '.' as RowNumber,
+           0 as IsEmtpyRow
+	FROM PMIS_ADM.Administrations a
+    WHERE a.AdministrationGroup IS NOT NULL AND NVL(a.IsMinistryOfDefence, 0) = 0
+    GROUP BY a.AdministrationGroupSeq, a.AdministrationGroup
+    
+	UNION ALL
+
+	SELECT 10 + (SELECT COUNT(*) FROM PMIS_RES.MilReadiness WHERE MilReadinessCmdType IS NOT NULL) + (SELECT COUNT(*) FROM PMIS_ADM.Administrations WHERE AdministrationGroup IS NOT NULL AND NVL(IsMinistryOfDefence, 0) = 0) as StatusID,
+		   'Процент резерв с МН /брой/' as StatusName,
+		   10 + (SELECT COUNT(*) FROM PMIS_RES.MilReadiness WHERE MilReadinessCmdType IS NOT NULL) + (SELECT COUNT(*) FROM PMIS_ADM.Administrations WHERE AdministrationGroup IS NOT NULL AND NVL(IsMinistryOfDefence, 0) = 0) as StatusOrder,
+		   0 as MilReadinessID,
+		   TO_CHAR('') as AdministrationGroup,
+           '3.2.' || TO_CHAR((SELECT COUNT(DISTINCT AdministrationGroup) FROM PMIS_ADM.Administrations WHERE AdministrationGroup IS NOT NULL AND NVL(IsMinistryOfDefence, 0) = 0) + 1) || '.' as RowNumber,
+           0 as IsEmtpyRow
+	FROM dual
+    
+    UNION ALL
+
+	SELECT 11 + (SELECT COUNT(*) FROM PMIS_RES.MilReadiness WHERE MilReadinessCmdType IS NOT NULL) + (SELECT COUNT(*) FROM PMIS_ADM.Administrations WHERE AdministrationGroup IS NOT NULL AND NVL(IsMinistryOfDefence, 0) = 0) as StatusID,
+		   'Доставят се направо (община-ППЗ)' as StatusName,
+		   11 + (SELECT COUNT(*) FROM PMIS_RES.MilReadiness WHERE MilReadinessCmdType IS NOT NULL) + (SELECT COUNT(*) FROM PMIS_ADM.Administrations WHERE AdministrationGroup IS NOT NULL AND NVL(IsMinistryOfDefence, 0) = 0) as StatusOrder,
+		   0 as MilReadinessID,
+		   TO_CHAR('') as AdministrationGroup,
+           '3.2.' || TO_CHAR((SELECT COUNT(DISTINCT AdministrationGroup) FROM PMIS_ADM.Administrations WHERE AdministrationGroup IS NOT NULL AND NVL(IsMinistryOfDefence, 0) = 0) + 2) || '.' as RowNumber,
+           0 as IsEmtpyRow
+	FROM dual
+    
+    UNION ALL
+
+	SELECT 12 + (SELECT COUNT(*) FROM PMIS_RES.MilReadiness WHERE MilReadinessCmdType IS NOT NULL) + (SELECT COUNT(*) FROM PMIS_ADM.Administrations WHERE AdministrationGroup IS NOT NULL AND NVL(IsMinistryOfDefence, 0) = 0) as StatusID,
+		   'Доставят се чрез сборен пункт (сборен пукт на ОВО ППЗ)' as StatusName,
+		   12 + (SELECT COUNT(*) FROM PMIS_RES.MilReadiness WHERE MilReadinessCmdType IS NOT NULL) + (SELECT COUNT(*) FROM PMIS_ADM.Administrations WHERE AdministrationGroup IS NOT NULL AND NVL(IsMinistryOfDefence, 0) = 0) as StatusOrder,
+		   0 as MilReadinessID,
+		   TO_CHAR('') as AdministrationGroup,
+           '3.2.' || TO_CHAR((SELECT COUNT(DISTINCT AdministrationGroup) FROM PMIS_ADM.Administrations WHERE AdministrationGroup IS NOT NULL AND NVL(IsMinistryOfDefence, 0) = 0) + 3) || '.' as RowNumber,
+           0 as IsEmtpyRow
+	FROM dual
+    
+    UNION ALL
+
+	SELECT 13 + (SELECT COUNT(*) FROM PMIS_RES.MilReadiness WHERE MilReadinessCmdType IS NOT NULL) + (SELECT COUNT(*) FROM PMIS_ADM.Administrations WHERE AdministrationGroup IS NOT NULL AND NVL(IsMinistryOfDefence, 0) = 0) as StatusID,
+		   'Всичко с МН за силите от системата за национална сигурност' as StatusName,
+		   13 + (SELECT COUNT(*) FROM PMIS_RES.MilReadiness WHERE MilReadinessCmdType IS NOT NULL) + (SELECT COUNT(*) FROM PMIS_ADM.Administrations WHERE AdministrationGroup IS NOT NULL AND NVL(IsMinistryOfDefence, 0) = 0) as StatusOrder,
+		   0 as MilReadinessID,
+		   TO_CHAR('') as AdministrationGroup,
+           '' as RowNumber,
+           0 as IsEmtpyRow
+	FROM dual
+    
+    UNION ALL
+
+	SELECT 14 + (SELECT COUNT(*) FROM PMIS_RES.MilReadiness WHERE MilReadinessCmdType IS NOT NULL) + (SELECT COUNT(*) FROM PMIS_ADM.Administrations WHERE AdministrationGroup IS NOT NULL AND NVL(IsMinistryOfDefence, 0) = 0) as StatusID,
+		   'Отсрочени' as StatusName,
+		   14 + (SELECT COUNT(*) FROM PMIS_RES.MilReadiness WHERE MilReadinessCmdType IS NOT NULL) + (SELECT COUNT(*) FROM PMIS_ADM.Administrations WHERE AdministrationGroup IS NOT NULL AND NVL(IsMinistryOfDefence, 0) = 0) as StatusOrder,
+		   0 as MilReadinessID,
+		   TO_CHAR('') as AdministrationGroup,
+           '3.3.' as RowNumber,
+           0 as IsEmtpyRow
+	FROM dual
+    
+    UNION ALL
+
+	SELECT 15 + (SELECT COUNT(*) FROM PMIS_RES.MilReadiness WHERE MilReadinessCmdType IS NOT NULL) + (SELECT COUNT(*) FROM PMIS_ADM.Administrations WHERE AdministrationGroup IS NOT NULL AND NVL(IsMinistryOfDefence, 0) = 0) as StatusID,
+		   'Временно отписани' as StatusName,
+		   15 + (SELECT COUNT(*) FROM PMIS_RES.MilReadiness WHERE MilReadinessCmdType IS NOT NULL) + (SELECT COUNT(*) FROM PMIS_ADM.Administrations WHERE AdministrationGroup IS NOT NULL AND NVL(IsMinistryOfDefence, 0) = 0) as StatusOrder,
+		   0 as MilReadinessID,
+		   TO_CHAR('') as AdministrationGroup,
+           '3.4.' as RowNumber,
+           0 as IsEmtpyRow
+	FROM dual
+    
+    UNION ALL
+
+	SELECT 16 + (SELECT COUNT(*) FROM PMIS_RES.MilReadiness WHERE MilReadinessCmdType IS NOT NULL) + (SELECT COUNT(*) FROM PMIS_ADM.Administrations WHERE AdministrationGroup IS NOT NULL AND NVL(IsMinistryOfDefence, 0) = 0) as StatusID,
+		   'Свободни' as StatusName,
+		   16 + (SELECT COUNT(*) FROM PMIS_RES.MilReadiness WHERE MilReadinessCmdType IS NOT NULL) + (SELECT COUNT(*) FROM PMIS_ADM.Administrations WHERE AdministrationGroup IS NOT NULL AND NVL(IsMinistryOfDefence, 0) = 0) as StatusOrder,
+		   0 as MilReadinessID,
+		   TO_CHAR('') as AdministrationGroup,
+           '3.5.' as RowNumber,
+           0 as IsEmtpyRow
+	FROM dual
+;
+/
+GRANT ALL ON PMIS_ADM.Professions TO PMIS_USER_ROLE;
+GRANT ALL ON PMIS_ADM.Professions_ID_SEQ TO PMIS_USER_ROLE;
+
+GRANT ALL ON PMIS_ADM.Specialities TO PMIS_USER_ROLE;
+GRANT ALL ON PMIS_ADM.Specialities_ID_SEQ TO PMIS_USER_ROLE;
+
+GRANT ALL ON PMIS_ADM.MilRepPersonSpecialities TO PMIS_USER_ROLE;
+GRANT ALL ON PMIS_ADM.MilRepPersonSpec_ID_SEQ TO PMIS_USER_ROLE;
+
+GRANT ALL ON PMIS_RES.ViewA31 TO PMIS_USER_ROLE;
+
+GRANT ALL ON PMIS_RES.ViewA33v2 TO PMIS_USER_ROLE;
+/

@@ -1,0 +1,1581 @@
+﻿<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{0C81457A-AB29-47BF-B411-E9C3C64707AF}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PMIS.Reserve</RootNamespace>
+    <AssemblyName>Reserve</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AjaxControlToolkit, Version=1.0.20229.20821, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Common\External\AjaxContorlsToolkit\AjaxControlToolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.OracleClient" />
+    <Reference Include="System.Web.Extensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Web.Mobile" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ContentPages\EditUserProfile.aspx" />
+    <Content Include="ContentPages\Home.aspx" />
+    <Content Include="ContentPages\Login.aspx" />
+    <Content Include="ContentPages\Logout.aspx" />
+    <Content Include="Images\asc.gif" />
+    <Content Include="Images\BlueButtonCenter.png" />
+    <Content Include="Images\BlueButtonLeftNoArrow.png" />
+    <Content Include="Images\BlueButtonRightNoArrow.png" />
+    <Content Include="Images\bmod_logo.png" />
+    <Content Include="Images\ButtonFirst.png" />
+    <Content Include="Images\ButtonFirstDisabled.png" />
+    <Content Include="Images\ButtonGoto.png" />
+    <Content Include="Images\ButtonLast.png" />
+    <Content Include="Images\ButtonLastDisabled.png" />
+    <Content Include="Images\ButtonNext.png" />
+    <Content Include="Images\ButtonNextDisabled.png" />
+    <Content Include="Images\ButtonPrev.png" />
+    <Content Include="Images\ButtonPrevDisabled.png" />
+    <Content Include="Images\DatePicker\backstripes.gif" />
+    <Content Include="Images\DatePicker\bg_header.jpg" />
+    <Content Include="Images\DatePicker\bullet1.gif" />
+    <Content Include="Images\DatePicker\bullet2.gif" />
+    <Content Include="Images\DatePicker\cal-grey.gif" />
+    <Content Include="Images\DatePicker\cal.gif" />
+    <Content Include="Images\DatePicker\calendar.png" />
+    <Content Include="Images\DatePicker\gradient-e5e5e5-ffffff.gif" />
+    <Content Include="Images\delete.png" />
+    <Content Include="Images\desc.gif" />
+    <Content Include="Images\edit.png" />
+    <Content Include="Images\footer.png" />
+    <Content Include="Images\header.png" />
+    <Content Include="Images\tableHeader.png" />
+    <Content Include="Images\tab_active_left.PNG" />
+    <Content Include="Images\tab_active_right.PNG" />
+    <Content Include="Images\tab_active_right2.PNG" />
+    <Content Include="Images\tab_hover_left.PNG" />
+    <Content Include="Images\tab_hover_right.PNG" />
+    <Content Include="Images\tab_left.PNG" />
+    <Content Include="Images\tab_right.PNG" />
+    <Content Include="Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_GlobalResources\Labels.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Labels.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Common\GeneratePrintTechnics.cs" />
+    <Compile Include="Common\GeneratePrint.cs" />
+    <Compile Include="Common\GeneratePrintReservists.cs" />
+    <Compile Include="Common\RESPage.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\AddEditEquipmentReservistsRequest.aspx.cs">
+      <DependentUpon>AddEditEquipmentReservistsRequest.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\AddEditEquipmentReservistsRequest.aspx.designer.cs">
+      <DependentUpon>AddEditEquipmentReservistsRequest.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\AddEditReservist.aspx.cs">
+      <DependentUpon>AddEditReservist.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\AddEditReservist.aspx.designer.cs">
+      <DependentUpon>AddEditReservist.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\AddEditReservist_PersonalData.aspx.cs">
+      <DependentUpon>AddEditReservist_PersonalData.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\AddEditReservist_PersonalData.aspx.designer.cs">
+      <DependentUpon>AddEditReservist_PersonalData.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\AddEditReservist_EducationWork.aspx.cs">
+      <DependentUpon>AddEditReservist_EducationWork.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\AddEditReservist_EducationWork.aspx.designer.cs">
+      <DependentUpon>AddEditReservist_EducationWork.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\AddEditReservist_MilitaryReport.aspx.cs">
+      <DependentUpon>AddEditReservist_MilitaryReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\AddEditReservist_MilitaryReport.aspx.designer.cs">
+      <DependentUpon>AddEditReservist_MilitaryReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\AddEditReservist_MilitaryService.aspx.cs">
+      <DependentUpon>AddEditReservist_MilitaryService.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\AddEditReservist_MilitaryService.aspx.designer.cs">
+      <DependentUpon>AddEditReservist_MilitaryService.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\AddEditReservist_OtherInfo.aspx.cs">
+      <DependentUpon>AddEditReservist_OtherInfo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\AddEditReservist_OtherInfo.aspx.designer.cs">
+      <DependentUpon>AddEditReservist_OtherInfo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\AddEditEquipmentTechnicsRequest.aspx.cs">
+      <DependentUpon>AddEditEquipmentTechnicsRequest.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\AddEditEquipmentTechnicsRequest.aspx.designer.cs">
+      <DependentUpon>AddEditEquipmentTechnicsRequest.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\AddEditTechnics.aspx.cs">
+      <DependentUpon>AddEditTechnics.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\AddEditTechnics.aspx.designer.cs">
+      <DependentUpon>AddEditTechnics.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\AddEditTechnics_AVIATION_EQUIP.aspx.cs">
+      <DependentUpon>AddEditTechnics_AVIATION_EQUIP.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\AddEditTechnics_AVIATION_EQUIP.aspx.designer.cs">
+      <DependentUpon>AddEditTechnics_AVIATION_EQUIP.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\AddEditTechnics_RAILWAY_EQUIP.aspx.cs">
+      <DependentUpon>AddEditTechnics_RAILWAY_EQUIP.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\AddEditTechnics_RAILWAY_EQUIP.aspx.designer.cs">
+      <DependentUpon>AddEditTechnics_RAILWAY_EQUIP.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\AddEditTechnics_TRACTORS.aspx.cs">
+      <DependentUpon>AddEditTechnics_TRACTORS.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\AddEditTechnics_TRACTORS.aspx.designer.cs">
+      <DependentUpon>AddEditTechnics_TRACTORS.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\AddEditTechnics_TRAILERS.aspx.cs">
+      <DependentUpon>AddEditTechnics_TRAILERS.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\AddEditTechnics_TRAILERS.aspx.designer.cs">
+      <DependentUpon>AddEditTechnics_TRAILERS.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\AddEditTechnics_VEHICLES.aspx.cs">
+      <DependentUpon>AddEditTechnics_VEHICLES.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\AddEditTechnics_VEHICLES.aspx.designer.cs">
+      <DependentUpon>AddEditTechnics_VEHICLES.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\AddEditTechnics_BasicInfo.aspx.cs">
+      <DependentUpon>AddEditTechnics_BasicInfo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\AddEditTechnics_BasicInfo.aspx.designer.cs">
+      <DependentUpon>AddEditTechnics_BasicInfo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\AddEditTechnics_MilitaryReport.aspx.cs">
+      <DependentUpon>AddEditTechnics_MilitaryReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\AddEditTechnics_MilitaryReport.aspx.designer.cs">
+      <DependentUpon>AddEditTechnics_MilitaryReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\AddEditTechnics_Owner.aspx.cs">
+      <DependentUpon>AddEditTechnics_Owner.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\AddEditTechnics_Owner.aspx.designer.cs">
+      <DependentUpon>AddEditTechnics_Owner.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\AddEditTechnics_OtherInfo.aspx.cs">
+      <DependentUpon>AddEditTechnics_OtherInfo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\AddEditTechnics_OtherInfo.aspx.designer.cs">
+      <DependentUpon>AddEditTechnics_OtherInfo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\AddEditTechnics_MOB_LIFT_EQUIP.aspx.cs">
+      <DependentUpon>AddEditTechnics_MOB_LIFT_EQUIP.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\AddEditTechnics_MOB_LIFT_EQUIP.aspx.designer.cs">
+      <DependentUpon>AddEditTechnics_MOB_LIFT_EQUIP.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\AddEditTechnics_FUEL_CONTAINERS.aspx.cs">
+      <DependentUpon>AddEditTechnics_FUEL_CONTAINERS.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\AddEditTechnics_FUEL_CONTAINERS.aspx.designer.cs">
+      <DependentUpon>AddEditTechnics_FUEL_CONTAINERS.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\AddEditCompany.aspx.cs">
+      <DependentUpon>AddEditCompany.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\AddEditCompany.aspx.designer.cs">
+      <DependentUpon>AddEditCompany.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\CivilEducationSelectorHandlers.aspx.cs">
+      <DependentUpon>CivilEducationSelectorHandlers.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\CivilEducationSelectorHandlers.aspx.designer.cs">
+      <DependentUpon>CivilEducationSelectorHandlers.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\CompanySelectorHandlers.aspx.cs">
+      <DependentUpon>CompanySelectorHandlers.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\CompanySelectorHandlers.aspx.designer.cs">
+      <DependentUpon>CompanySelectorHandlers.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\DischargeReasonSelectorHandlers.aspx.cs">
+      <DependentUpon>DischargeReasonSelectorHandlers.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\DischargeReasonSelectorHandlers.aspx.designer.cs">
+      <DependentUpon>DischargeReasonSelectorHandlers.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\PrintPostponeTechnics.aspx.cs">
+      <DependentUpon>PrintPostponeTechnics.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\PrintPostponeTechnics.aspx.designer.cs">
+      <DependentUpon>PrintPostponeTechnics.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\ReportA33v2_BENCHMARK.aspx.cs">
+      <DependentUpon>ReportA33v2_BENCHMARK.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\ReportA33v2_BENCHMARK.aspx.designer.cs">
+      <DependentUpon>ReportA33v2_BENCHMARK.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\ReportPostpone.aspx.cs">
+      <DependentUpon>ReportPostpone.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\ReportPostpone.aspx.designer.cs">
+      <DependentUpon>ReportPostpone.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\ReportStaffPositionsList.aspx.cs">
+      <DependentUpon>ReportStaffPositionsList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\ReportStaffPositionsList.aspx.designer.cs">
+      <DependentUpon>ReportStaffPositionsList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\ReportAnalyzeResFulfilment.aspx.cs">
+      <DependentUpon>ReportAnalyzeResFulfilment.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\ReportAnalyzeResFulfilment.aspx.designer.cs">
+      <DependentUpon>ReportAnalyzeResFulfilment.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\ResFulfilmentRemovalHandlers.aspx.cs">
+      <DependentUpon>ResFulfilmentRemovalHandlers.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\ResFulfilmentRemovalHandlers.aspx.designer.cs">
+      <DependentUpon>ResFulfilmentRemovalHandlers.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\TechFulfilmentRemovalHandlers.aspx.cs">
+      <DependentUpon>TechFulfilmentRemovalHandlers.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\TechFulfilmentRemovalHandlers.aspx.designer.cs">
+      <DependentUpon>TechFulfilmentRemovalHandlers.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\TechParams.aspx.cs">
+      <DependentUpon>TechParams.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\TechParams.aspx.designer.cs">
+      <DependentUpon>TechParams.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\ReportPostponeTechByAdministration.aspx.cs">
+      <DependentUpon>ReportPostponeTechByAdministration.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\ReportPostponeTechByAdministration.aspx.designer.cs">
+      <DependentUpon>ReportPostponeTechByAdministration.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\ReportPostponeResByAdministration.aspx.cs">
+      <DependentUpon>ReportPostponeResByAdministration.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\ReportPostponeResByAdministration.aspx.designer.cs">
+      <DependentUpon>ReportPostponeResByAdministration.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\ReportPostponeTech.aspx.cs">
+      <DependentUpon>ReportPostponeTech.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\ReportPostponeTech.aspx.designer.cs">
+      <DependentUpon>ReportPostponeTech.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\ReportPostponeRes.aspx.cs">
+      <DependentUpon>ReportPostponeRes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\ReportPostponeRes.aspx.designer.cs">
+      <DependentUpon>ReportPostponeRes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\PostponeTech.aspx.cs">
+      <DependentUpon>PostponeTech.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\PostponeTech.aspx.designer.cs">
+      <DependentUpon>PostponeTech.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\PostponeRes.aspx.cs">
+      <DependentUpon>PostponeRes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\PostponeRes.aspx.designer.cs">
+      <DependentUpon>PostponeRes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\PrintTechnics.aspx.cs">
+      <DependentUpon>PrintTechnics.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\PrintTechnics.aspx.designer.cs">
+      <DependentUpon>PrintTechnics.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\PrintReservists.aspx.cs">
+      <DependentUpon>PrintReservists.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\PrintReservists.aspx.designer.cs">
+      <DependentUpon>PrintReservists.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\ReportAnalyzeTechCommand.aspx.cs">
+      <DependentUpon>ReportAnalyzeTechCommand.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\ReportAnalyzeTechCommand.aspx.designer.cs">
+      <DependentUpon>ReportAnalyzeTechCommand.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\ReportA33v2.aspx.cs">
+      <DependentUpon>ReportA33v2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\ReportA33v2.aspx.designer.cs">
+      <DependentUpon>ReportA33v2.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\ReportNormativeTechnics.aspx.cs">
+      <DependentUpon>ReportNormativeTechnics.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\ReportNormativeTechnics.aspx.designer.cs">
+      <DependentUpon>ReportNormativeTechnics.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\ReportListTechnicsFromCommand.aspx.cs">
+      <DependentUpon>ReportListTechnicsFromCommand.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\ReportListTechnicsFromCommand.aspx.designer.cs">
+      <DependentUpon>ReportListTechnicsFromCommand.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\ReportListReservistsFromCommand.aspx.cs">
+      <DependentUpon>ReportListReservistsFromCommand.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\ReportListReservistsFromCommand.aspx.designer.cs">
+      <DependentUpon>ReportListReservistsFromCommand.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\FulfilTechnicsMilCommand.aspx.cs">
+      <DependentUpon>FulfilTechnicsMilCommand.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\FulfilTechnicsMilCommand.aspx.designer.cs">
+      <DependentUpon>FulfilTechnicsMilCommand.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\FulfilReservistsMilCommand.aspx.cs">
+      <DependentUpon>FulfilReservistsMilCommand.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\FulfilReservistsMilCommand.aspx.designer.cs">
+      <DependentUpon>FulfilReservistsMilCommand.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\ReportA33.aspx.cs">
+      <DependentUpon>ReportA33.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\ReportA33.aspx.designer.cs">
+      <DependentUpon>ReportA33.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\ReportA31.aspx.cs">
+      <DependentUpon>ReportA31.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\ReportA31.aspx.designer.cs">
+      <DependentUpon>ReportA31.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\ReportAnalyzeCommand.aspx.cs">
+      <DependentUpon>ReportAnalyzeCommand.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\ReportAnalyzeCommand.aspx.designer.cs">
+      <DependentUpon>ReportAnalyzeCommand.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\ReportSV1.aspx.cs">
+      <DependentUpon>ReportSV1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\ReportSV1.aspx.designer.cs">
+      <DependentUpon>ReportSV1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\GroupTakingDown.aspx.cs">
+      <DependentUpon>GroupTakingDown.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\GroupTakingDown.aspx.designer.cs">
+      <DependentUpon>GroupTakingDown.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\ReportListTechnicsWithAppointDetails.aspx.cs">
+      <DependentUpon>ReportListTechnicsWithAppointDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\ReportListTechnicsWithAppointDetails.aspx.designer.cs">
+      <DependentUpon>ReportListTechnicsWithAppointDetails.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\ReportListTechnicsWithAppointments.aspx.cs">
+      <DependentUpon>ReportListTechnicsWithAppointments.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\ReportListTechnicsWithAppointments.aspx.designer.cs">
+      <DependentUpon>ReportListTechnicsWithAppointments.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\ManageCompanies.aspx.cs">
+      <DependentUpon>ManageCompanies.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\ManageCompanies.aspx.designer.cs">
+      <DependentUpon>ManageCompanies.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\ImportPersonsData.aspx.cs">
+      <DependentUpon>ImportPersonsData.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\ImportPersonsData.aspx.designer.cs">
+      <DependentUpon>ImportPersonsData.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\NoAccessToPerson.aspx.cs">
+      <DependentUpon>NoAccessToPerson.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\NoAccessToPerson.aspx.designer.cs">
+      <DependentUpon>NoAccessToPerson.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\PasswordExpired.aspx.cs">
+      <DependentUpon>PasswordExpired.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\PasswordExpired.aspx.designer.cs">
+      <DependentUpon>PasswordExpired.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\ReportTechnics_FUEL_CONTAINERS.aspx.cs">
+      <DependentUpon>ReportTechnics_FUEL_CONTAINERS.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\ReportTechnics_FUEL_CONTAINERS.aspx.designer.cs">
+      <DependentUpon>ReportTechnics_FUEL_CONTAINERS.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\ReportTechnics_VESSELS.aspx.cs">
+      <DependentUpon>ReportTechnics_VESSELS.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\ReportTechnics_VESSELS.aspx.designer.cs">
+      <DependentUpon>ReportTechnics_VESSELS.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\ReportTechnics_AVIATION_EQUIP.aspx.cs">
+      <DependentUpon>ReportTechnics_AVIATION_EQUIP.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\ReportTechnics_AVIATION_EQUIP.aspx.designer.cs">
+      <DependentUpon>ReportTechnics_AVIATION_EQUIP.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\ReportTechnics_RAILWAY_EQUIP.aspx.cs">
+      <DependentUpon>ReportTechnics_RAILWAY_EQUIP.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\ReportTechnics_RAILWAY_EQUIP.aspx.designer.cs">
+      <DependentUpon>ReportTechnics_RAILWAY_EQUIP.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\ReportTechnics_MOB_LIFT_EQUIP.aspx.cs">
+      <DependentUpon>ReportTechnics_MOB_LIFT_EQUIP.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\ReportTechnics_MOB_LIFT_EQUIP.aspx.designer.cs">
+      <DependentUpon>ReportTechnics_MOB_LIFT_EQUIP.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\ReportTechnics_ENG_EQUIP.aspx.cs">
+      <DependentUpon>ReportTechnics_ENG_EQUIP.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\ReportTechnics_ENG_EQUIP.aspx.designer.cs">
+      <DependentUpon>ReportTechnics_ENG_EQUIP.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\ReportTechnics_TRACTORS.aspx.cs">
+      <DependentUpon>ReportTechnics_TRACTORS.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\ReportTechnics_TRACTORS.aspx.designer.cs">
+      <DependentUpon>ReportTechnics_TRACTORS.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\ReportTechnics_TRAILERS.aspx.cs">
+      <DependentUpon>ReportTechnics_TRAILERS.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\ReportTechnics_TRAILERS.aspx.designer.cs">
+      <DependentUpon>ReportTechnics_TRAILERS.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\ReportTechnics_VEHICLES.aspx.cs">
+      <DependentUpon>ReportTechnics_VEHICLES.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\ReportTechnics_VEHICLES.aspx.designer.cs">
+      <DependentUpon>ReportTechnics_VEHICLES.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\ReportListReservistsWithAppointDetails.aspx.cs">
+      <DependentUpon>ReportListReservistsWithAppointDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\ReportListReservistsWithAppointDetails.aspx.designer.cs">
+      <DependentUpon>ReportListReservistsWithAppointDetails.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\ReportListReservistsWithAppointments.aspx.cs">
+      <DependentUpon>ReportListReservistsWithAppointments.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\ReportListReservistsWithAppointments.aspx.designer.cs">
+      <DependentUpon>ReportListReservistsWithAppointments.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\SearchTechnics_AVIATION_EQUIP.aspx.cs">
+      <DependentUpon>SearchTechnics_AVIATION_EQUIP.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\SearchTechnics_AVIATION_EQUIP.aspx.designer.cs">
+      <DependentUpon>SearchTechnics_AVIATION_EQUIP.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\ManageTechnics_AVIATION_EQUIP.aspx.cs">
+      <DependentUpon>ManageTechnics_AVIATION_EQUIP.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\ManageTechnics_AVIATION_EQUIP.aspx.designer.cs">
+      <DependentUpon>ManageTechnics_AVIATION_EQUIP.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\SearchTechnics_VESSELS.aspx.cs">
+      <DependentUpon>SearchTechnics_VESSELS.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\SearchTechnics_VESSELS.aspx.designer.cs">
+      <DependentUpon>SearchTechnics_VESSELS.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\SearchTechnics_FUEL_CONTAINERS.aspx.cs">
+      <DependentUpon>SearchTechnics_FUEL_CONTAINERS.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\SearchTechnics_FUEL_CONTAINERS.aspx.designer.cs">
+      <DependentUpon>SearchTechnics_FUEL_CONTAINERS.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\ManageTechnics_FUEL_CONTAINERS.aspx.cs">
+      <DependentUpon>ManageTechnics_FUEL_CONTAINERS.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\ManageTechnics_FUEL_CONTAINERS.aspx.designer.cs">
+      <DependentUpon>ManageTechnics_FUEL_CONTAINERS.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\ManageAviationOtherBaseMachineModels.aspx.cs">
+      <DependentUpon>ManageAviationOtherBaseMachineModels.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\ManageAviationOtherBaseMachineModels.aspx.designer.cs">
+      <DependentUpon>ManageAviationOtherBaseMachineModels.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\ManageEngEquipBaseModels.aspx.cs">
+      <DependentUpon>ManageEngEquipBaseModels.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\ManageEngEquipBaseModels.aspx.designer.cs">
+      <DependentUpon>ManageEngEquipBaseModels.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\SearchTechnics_RAILWAY_EQUIP.aspx.cs">
+      <DependentUpon>SearchTechnics_RAILWAY_EQUIP.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\SearchTechnics_RAILWAY_EQUIP.aspx.designer.cs">
+      <DependentUpon>SearchTechnics_RAILWAY_EQUIP.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\ManageTechnics_RAILWAY_EQUIP.aspx.cs">
+      <DependentUpon>ManageTechnics_RAILWAY_EQUIP.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\ManageTechnics_RAILWAY_EQUIP.aspx.designer.cs">
+      <DependentUpon>ManageTechnics_RAILWAY_EQUIP.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\AddEditTechnics_VESSELS.aspx.cs">
+      <DependentUpon>AddEditTechnics_VESSELS.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\AddEditTechnics_VESSELS.aspx.designer.cs">
+      <DependentUpon>AddEditTechnics_VESSELS.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\ManageTechnics_VESSELS.aspx.cs">
+      <DependentUpon>ManageTechnics_VESSELS.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\ManageTechnics_VESSELS.aspx.designer.cs">
+      <DependentUpon>ManageTechnics_VESSELS.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\SearchTechnics_MOB_LIFT_EQUIP.aspx.cs">
+      <DependentUpon>SearchTechnics_MOB_LIFT_EQUIP.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\SearchTechnics_MOB_LIFT_EQUIP.aspx.designer.cs">
+      <DependentUpon>SearchTechnics_MOB_LIFT_EQUIP.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\SearchTechnics_ENG_EQUIP.aspx.cs">
+      <DependentUpon>SearchTechnics_ENG_EQUIP.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\SearchTechnics_ENG_EQUIP.aspx.designer.cs">
+      <DependentUpon>SearchTechnics_ENG_EQUIP.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\ManageTechnics_MOB_LIFT_EQUIP.aspx.cs">
+      <DependentUpon>ManageTechnics_MOB_LIFT_EQUIP.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\ManageTechnics_MOB_LIFT_EQUIP.aspx.designer.cs">
+      <DependentUpon>ManageTechnics_MOB_LIFT_EQUIP.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\AddEditTechnics_ENG_EQUIP.aspx.cs">
+      <DependentUpon>AddEditTechnics_ENG_EQUIP.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\AddEditTechnics_ENG_EQUIP.aspx.designer.cs">
+      <DependentUpon>AddEditTechnics_ENG_EQUIP.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\SearchTechnics_TRAILERS.aspx.cs">
+      <DependentUpon>SearchTechnics_TRAILERS.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\SearchTechnics_TRAILERS.aspx.designer.cs">
+      <DependentUpon>SearchTechnics_TRAILERS.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\ManageTechnics_ENG_EQUIP.aspx.cs">
+      <DependentUpon>ManageTechnics_ENG_EQUIP.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\ManageTechnics_ENG_EQUIP.aspx.designer.cs">
+      <DependentUpon>ManageTechnics_ENG_EQUIP.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\ManageTechnics_TRAILERS.aspx.cs">
+      <DependentUpon>ManageTechnics_TRAILERS.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\ManageTechnics_TRAILERS.aspx.designer.cs">
+      <DependentUpon>ManageTechnics_TRAILERS.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\ManageTractorModels.aspx.cs">
+      <DependentUpon>ManageTractorModels.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\ManageTractorModels.aspx.designer.cs">
+      <DependentUpon>ManageTractorModels.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\SearchTechnics_TRACTORS.aspx.cs">
+      <DependentUpon>SearchTechnics_TRACTORS.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\SearchTechnics_TRACTORS.aspx.designer.cs">
+      <DependentUpon>SearchTechnics_TRACTORS.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\ManageTechnics_TRACTORS.aspx.cs">
+      <DependentUpon>ManageTechnics_TRACTORS.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\ManageTechnics_TRACTORS.aspx.designer.cs">
+      <DependentUpon>ManageTechnics_TRACTORS.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\ManageVehicleModels.aspx.cs">
+      <DependentUpon>ManageVehicleModels.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\ManageVehicleModels.aspx.designer.cs">
+      <DependentUpon>ManageVehicleModels.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\SearchTechnics_VEHICLES.aspx.cs">
+      <DependentUpon>SearchTechnics_VEHICLES.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\SearchTechnics_VEHICLES.aspx.designer.cs">
+      <DependentUpon>SearchTechnics_VEHICLES.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\FulfilEquipmentTechnicsRequest.aspx.cs">
+      <DependentUpon>FulfilEquipmentTechnicsRequest.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\FulfilEquipmentTechnicsRequest.aspx.designer.cs">
+      <DependentUpon>FulfilEquipmentTechnicsRequest.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\ManageTechnics_VEHICLES.aspx.cs">
+      <DependentUpon>ManageTechnics_VEHICLES.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\ManageTechnics_VEHICLES.aspx.designer.cs">
+      <DependentUpon>ManageTechnics_VEHICLES.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\ManageEquipmentTechnicsRequestsFulfilment.aspx.cs">
+      <DependentUpon>ManageEquipmentTechnicsRequestsFulfilment.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\ManageEquipmentTechnicsRequestsFulfilment.aspx.designer.cs">
+      <DependentUpon>ManageEquipmentTechnicsRequestsFulfilment.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\EquipmentTechnicsRequestMilitaryDepartment.aspx.cs">
+      <DependentUpon>EquipmentTechnicsRequestMilitaryDepartment.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\EquipmentTechnicsRequestMilitaryDepartment.aspx.designer.cs">
+      <DependentUpon>EquipmentTechnicsRequestMilitaryDepartment.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\ManageEquipmentTechnicsRequests.aspx.cs">
+      <DependentUpon>ManageEquipmentTechnicsRequests.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\ManageEquipmentTechnicsRequests.aspx.designer.cs">
+      <DependentUpon>ManageEquipmentTechnicsRequests.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\ManageReservists.aspx.cs">
+      <DependentUpon>ManageReservists.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\ManageReservists.aspx.designer.cs">
+      <DependentUpon>ManageReservists.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\SearchReservists.aspx.cs">
+      <DependentUpon>SearchReservists.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\SearchReservists.aspx.designer.cs">
+      <DependentUpon>SearchReservists.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\FulfilEquipmentReservistsRequest.aspx.cs">
+      <DependentUpon>FulfilEquipmentReservistsRequest.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\FulfilEquipmentReservistsRequest.aspx.designer.cs">
+      <DependentUpon>FulfilEquipmentReservistsRequest.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\ManageEquipmentReservistsRequestsFulfilment.aspx.cs">
+      <DependentUpon>ManageEquipmentReservistsRequestsFulfilment.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\ManageEquipmentReservistsRequestsFulfilment.aspx.designer.cs">
+      <DependentUpon>ManageEquipmentReservistsRequestsFulfilment.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\EquipmentReservistRequestMilitaryDepartment.aspx.cs">
+      <DependentUpon>EquipmentReservistRequestMilitaryDepartment.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\EquipmentReservistRequestMilitaryDepartment.aspx.designer.cs">
+      <DependentUpon>EquipmentReservistRequestMilitaryDepartment.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\DataSource.aspx.cs">
+      <DependentUpon>DataSource.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\DataSource.aspx.designer.cs">
+      <DependentUpon>DataSource.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\EditUserProfile.aspx.cs">
+      <DependentUpon>EditUserProfile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\EditUserProfile.aspx.designer.cs">
+      <DependentUpon>EditUserProfile.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\GTableMaintanceHandlers.aspx.cs">
+      <DependentUpon>GTableMaintanceHandlers.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\GTableMaintanceHandlers.aspx.designer.cs">
+      <DependentUpon>GTableMaintanceHandlers.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\ManageEquipmentReservistsRequests.aspx.cs">
+      <DependentUpon>ManageEquipmentReservistsRequests.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\ManageEquipmentReservistsRequests.aspx.designer.cs">
+      <DependentUpon>ManageEquipmentReservistsRequests.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\AviationEquip.cs" />
+    <Compile Include="DAL\AviationOtherBaseMachineMake.cs" />
+    <Compile Include="DAL\AviationOtherBaseMachineModel.cs" />
+    <Compile Include="DAL\PrintPostponeReservists.cs" />
+    <Compile Include="DAL\PrintPostponeTechnics.cs" />
+    <Compile Include="DAL\PrintReservistsASK.cs" />
+    <Compile Include="DAL\PrintReservistsAK.cs" />
+    <Compile Include="DAL\PrintReservistsUO.cs" />
+    <Compile Include="DAL\PrintTechnicsOK.cs" />
+    <Compile Include="DAL\PrintTechnicsTO.cs" />
+    <Compile Include="DAL\ReportA33v2_BENCHMARK.cs" />
+    <Compile Include="DAL\ReportPostpone.cs" />
+    <Compile Include="DAL\ReportStaffPositionsList.cs" />
+    <Compile Include="DAL\ReportAnalyzeResFulfilment.cs" />
+    <Compile Include="DAL\ReportPostponeTechByAdministration.cs" />
+    <Compile Include="DAL\ReportPostponeResByAdministration.cs" />
+    <Compile Include="DAL\ReportPostponeRes.cs" />
+    <Compile Include="DAL\PostponeTech.cs" />
+    <Compile Include="DAL\PostponeTechCompany.cs" />
+    <Compile Include="DAL\ReportPostponeTech.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DAL\ReservistPersonsDataImporter.cs" />
+    <Compile Include="DAL\TechnicsSubType.cs" />
+    <Compile Include="DAL\PostponeTechItem.cs" />
+    <Compile Include="DAL\PostponeResItem.cs" />
+    <Compile Include="DAL\PostponeResCompany.cs" />
+    <Compile Include="DAL\PostponeRes.cs" />
+    <Compile Include="DAL\PrintTechnicsPZ.cs" />
+    <Compile Include="DAL\PrintTechnicsMK.cs" />
+    <Compile Include="DAL\PrintTechnics.cs" />
+    <Compile Include="DAL\PrintReservistsPZ.cs" />
+    <Compile Include="DAL\PrintReservistsMK.cs" />
+    <Compile Include="DAL\PrintReservists.cs" />
+    <Compile Include="DAL\ReportAnalyzeTechCommand.cs" />
+    <Compile Include="DAL\ReportA33v2.cs" />
+    <Compile Include="DAL\TechnicsPostponeType.cs" />
+    <Compile Include="DAL\ReportNormativeTechnics.cs" />
+    <Compile Include="DAL\ReportListTechnicsFromCommandBlock.cs" />
+    <Compile Include="DAL\ReportListReservistsFromCommandBlock.cs" />
+    <Compile Include="DAL\ReportA33.cs" />
+    <Compile Include="DAL\NormativeTechnics.cs" />
+    <Compile Include="DAL\ReportA31.cs" />
+    <Compile Include="DAL\ReportAnalyzeCommand.cs" />
+    <Compile Include="DAL\ReportSV1.cs" />
+    <Compile Include="DAL\ReportListTechnicsWithAppointmentsBlock.cs" />
+    <Compile Include="DAL\PostponeType.cs" />
+    <Compile Include="DAL\ReportFuelContainer.cs" />
+    <Compile Include="DAL\ReportVessel.cs" />
+    <Compile Include="DAL\ReportAviationEquip.cs" />
+    <Compile Include="DAL\ReportRailwayЕquip.cs" />
+    <Compile Include="DAL\ReportMobileLiftingEquip.cs" />
+    <Compile Include="DAL\ReportEngEquip.cs" />
+    <Compile Include="DAL\ReportTractor.cs" />
+    <Compile Include="DAL\ReportTrailer.cs" />
+    <Compile Include="DAL\ReportVehicle.cs" />
+    <Compile Include="DAL\Readiness.cs" />
+    <Compile Include="DAL\ReportListReservistsWithAppointmentsBlock.cs" />
+    <Compile Include="DAL\VesselCrew.cs" />
+    <Compile Include="DAL\FuelContainer.cs" />
+    <Compile Include="DAL\Vessel.cs" />
+    <Compile Include="DAL\MobileLiftingEquip.cs" />
+    <Compile Include="DAL\EngEquipModel.cs" />
+    <Compile Include="DAL\EngEquipMake.cs" />
+    <Compile Include="DAL\EngEquip.cs" />
+    <Compile Include="DAL\RailwayЕquip.cs" />
+    <Compile Include="DAL\TechnicsAppointment.cs" />
+    <Compile Include="DAL\ReservistMilRepStatus.cs" />
+    <Compile Include="DAL\TechMilitaryReportStatus.cs" />
+    <Compile Include="DAL\TechnicsRequestCommandPunkt.cs" />
+    <Compile Include="DAL\FillTechnicsRequest.cs" />
+    <Compile Include="DAL\Technics.cs" />
+    <Compile Include="DAL\TechnicsCategory.cs" />
+    <Compile Include="DAL\TechnicsReqCmdPositionMilDept.cs" />
+    <Compile Include="DAL\TechnicsRequestCommandPosition.cs" />
+    <Compile Include="DAL\TechnicsRequestCommand.cs" />
+    <Compile Include="DAL\EquipmentTechnicsRequest.cs" />
+    <Compile Include="DAL\EquipWithTechRequestsStatus.cs" />
+    <Compile Include="DAL\TechnicsType.cs" />
+    <Compile Include="DAL\ReservistAppointment.cs" />
+    <Compile Include="DAL\MilitaryReadiness.cs" />
+    <Compile Include="DAL\MilitaryReportStatus.cs" />
+    <Compile Include="DAL\TechnicsMilRepStatus.cs" />
+    <Compile Include="DAL\FillReservistsRequest.cs" />
+    <Compile Include="DAL\RequestCommandPunkt.cs" />
+    <Compile Include="DAL\Reservist.cs" />
+    <Compile Include="DAL\RequestCommandPositionMilDept.cs" />
+    <Compile Include="DAL\RequestCommandPosition.cs" />
+    <Compile Include="DAL\RequestCommand.cs" />
+    <Compile Include="DAL\EquipmentReservistsRequest.cs" />
+    <Compile Include="DAL\EquipWithResRequestsStatus.cs" />
+    <Compile Include="DAL\Tractor.cs" />
+    <Compile Include="DAL\TractorMake.cs" />
+    <Compile Include="DAL\TractorModel.cs" />
+    <Compile Include="DAL\Trailer.cs" />
+    <Compile Include="DAL\VacantPosition.cs" />
+    <Compile Include="DAL\Vehicle.cs" />
+    <Compile Include="DAL\VehicleMake.cs" />
+    <Compile Include="DAL\VehicleModel.cs" />
+    <Compile Include="DAL\VoluntaryReserveAnnex.cs" />
+    <Compile Include="MasterPages\PrintMasterPage.Master.cs">
+      <DependentUpon>PrintMasterPage.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MasterPages\PrintMasterPage.Master.designer.cs">
+      <DependentUpon>PrintMasterPage.Master</DependentUpon>
+    </Compile>
+    <Compile Include="PrintContentPages\PrintReportStaffPositionsList.aspx.cs">
+      <DependentUpon>PrintReportStaffPositionsList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PrintContentPages\PrintReportStaffPositionsList.aspx.designer.cs">
+      <DependentUpon>PrintReportStaffPositionsList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PrintContentPages\PrintReportAnalyzeResFulfilment.aspx.cs">
+      <DependentUpon>PrintReportAnalyzeResFulfilment.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PrintContentPages\PrintReportAnalyzeResFulfilment.aspx.designer.cs">
+      <DependentUpon>PrintReportAnalyzeResFulfilment.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PrintContentPages\PrintReportAnalyzeTechCommand.aspx.cs">
+      <DependentUpon>PrintReportAnalyzeTechCommand.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PrintContentPages\PrintReportAnalyzeTechCommand.aspx.designer.cs">
+      <DependentUpon>PrintReportAnalyzeTechCommand.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PrintContentPages\PrintReportA33v2.aspx.cs">
+      <DependentUpon>PrintReportA33v2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PrintContentPages\PrintReportA33v2.aspx.designer.cs">
+      <DependentUpon>PrintReportA33v2.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PrintContentPages\PrintReportNormativeTechnics.aspx.cs">
+      <DependentUpon>PrintReportNormativeTechnics.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PrintContentPages\PrintReportNormativeTechnics.aspx.designer.cs">
+      <DependentUpon>PrintReportNormativeTechnics.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PrintContentPages\PrintReportAnalyzeCommand.aspx.cs">
+      <DependentUpon>PrintReportAnalyzeCommand.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PrintContentPages\PrintReportAnalyzeCommand.aspx.designer.cs">
+      <DependentUpon>PrintReportAnalyzeCommand.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PrintContentPages\PrintReportListTechnicsFromCommand.aspx.cs">
+      <DependentUpon>PrintReportListTechnicsFromCommand.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PrintContentPages\PrintReportListTechnicsFromCommand.aspx.designer.cs">
+      <DependentUpon>PrintReportListTechnicsFromCommand.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PrintContentPages\PrintReportListReservistsFromCommand.aspx.cs">
+      <DependentUpon>PrintReportListReservistsFromCommand.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PrintContentPages\PrintReportListReservistsFromCommand.aspx.designer.cs">
+      <DependentUpon>PrintReportListReservistsFromCommand.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PrintContentPages\PrintReportA33.aspx.cs">
+      <DependentUpon>PrintReportA33.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PrintContentPages\PrintReportA33.aspx.designer.cs">
+      <DependentUpon>PrintReportA33.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PrintContentPages\PrintReportA31.aspx.cs">
+      <DependentUpon>PrintReportA31.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PrintContentPages\PrintReportA31.aspx.designer.cs">
+      <DependentUpon>PrintReportA31.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PrintContentPages\PrintReportSV1.aspx.cs">
+      <DependentUpon>PrintReportSV1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PrintContentPages\PrintReportSV1.aspx.designer.cs">
+      <DependentUpon>PrintReportSV1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PrintContentPages\PrintCheckMobileAppointment.aspx.cs">
+      <DependentUpon>PrintCheckMobileAppointment.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PrintContentPages\PrintCheckMobileAppointment.aspx.designer.cs">
+      <DependentUpon>PrintCheckMobileAppointment.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PrintContentPages\PrintGroupTakingDown.aspx.cs">
+      <DependentUpon>PrintGroupTakingDown.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PrintContentPages\PrintGroupTakingDown.aspx.designer.cs">
+      <DependentUpon>PrintGroupTakingDown.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PrintContentPages\PrintReportListTechnicsWithAppointDetails.aspx.cs">
+      <DependentUpon>PrintReportListTechnicsWithAppointDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PrintContentPages\PrintReportListTechnicsWithAppointDetails.aspx.designer.cs">
+      <DependentUpon>PrintReportListTechnicsWithAppointDetails.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PrintContentPages\PrintReportListTechnicsWithAppointments.aspx.cs">
+      <DependentUpon>PrintReportListTechnicsWithAppointments.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PrintContentPages\PrintReportListTechnicsWithAppointments.aspx.designer.cs">
+      <DependentUpon>PrintReportListTechnicsWithAppointments.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PrintContentPages\PrintReportListReservistsWithAppointDetails.aspx.cs">
+      <DependentUpon>PrintReportListReservistsWithAppointDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PrintContentPages\PrintReportListReservistsWithAppointDetails.aspx.designer.cs">
+      <DependentUpon>PrintReportListReservistsWithAppointDetails.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PrintContentPages\PrintReportListReservistsWithAppointments.aspx.cs">
+      <DependentUpon>PrintReportListReservistsWithAppointments.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PrintContentPages\PrintReportListReservistsWithAppointments.aspx.designer.cs">
+      <DependentUpon>PrintReportListReservistsWithAppointments.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PrintContentPages\PrintReportAllFuelContainers.aspx.cs">
+      <DependentUpon>PrintReportAllFuelContainers.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PrintContentPages\PrintReportAllFuelContainers.aspx.designer.cs">
+      <DependentUpon>PrintReportAllFuelContainers.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PrintContentPages\PrintReportAllVessels.aspx.cs">
+      <DependentUpon>PrintReportAllVessels.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PrintContentPages\PrintReportAllVessels.aspx.designer.cs">
+      <DependentUpon>PrintReportAllVessels.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PrintContentPages\PrintReportAllAviationEquips.aspx.cs">
+      <DependentUpon>PrintReportAllAviationEquips.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PrintContentPages\PrintReportAllAviationEquips.aspx.designer.cs">
+      <DependentUpon>PrintReportAllAviationEquips.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PrintContentPages\PrintReportAllRailwayEquips.aspx.cs">
+      <DependentUpon>PrintReportAllRailwayEquips.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PrintContentPages\PrintReportAllRailwayEquips.aspx.designer.cs">
+      <DependentUpon>PrintReportAllRailwayEquips.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PrintContentPages\PrintReportAllMobileLiftingEquips.aspx.cs">
+      <DependentUpon>PrintReportAllMobileLiftingEquips.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PrintContentPages\PrintReportAllMobileLiftingEquips.aspx.designer.cs">
+      <DependentUpon>PrintReportAllMobileLiftingEquips.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PrintContentPages\PrintReportAllEngEquips.aspx.cs">
+      <DependentUpon>PrintReportAllEngEquips.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PrintContentPages\PrintReportAllEngEquips.aspx.designer.cs">
+      <DependentUpon>PrintReportAllEngEquips.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PrintContentPages\PrintReportAllTractors.aspx.cs">
+      <DependentUpon>PrintReportAllTractors.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PrintContentPages\PrintReportAllTractors.aspx.designer.cs">
+      <DependentUpon>PrintReportAllTractors.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PrintContentPages\PrintReportAllTrailers.aspx.cs">
+      <DependentUpon>PrintReportAllTrailers.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PrintContentPages\PrintReportAllTrailers.aspx.designer.cs">
+      <DependentUpon>PrintReportAllTrailers.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PrintContentPages\PrintReportAllVehicles.aspx.cs">
+      <DependentUpon>PrintReportAllVehicles.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PrintContentPages\PrintReportAllVehicles.aspx.designer.cs">
+      <DependentUpon>PrintReportAllVehicles.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PrintContentPages\PrintAllFuelContainers.aspx.cs">
+      <DependentUpon>PrintAllFuelContainers.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PrintContentPages\PrintAllFuelContainers.aspx.designer.cs">
+      <DependentUpon>PrintAllFuelContainers.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PrintContentPages\PrintAllVessels.aspx.cs">
+      <DependentUpon>PrintAllVessels.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PrintContentPages\PrintAllVessels.aspx.designer.cs">
+      <DependentUpon>PrintAllVessels.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PrintContentPages\PrintAllAviationEquips.aspx.cs">
+      <DependentUpon>PrintAllAviationEquips.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PrintContentPages\PrintAllAviationEquips.aspx.designer.cs">
+      <DependentUpon>PrintAllAviationEquips.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PrintContentPages\PrintAllMobileLiftingEquips.aspx.cs">
+      <DependentUpon>PrintAllMobileLiftingEquips.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PrintContentPages\PrintAllMobileLiftingEquips.aspx.designer.cs">
+      <DependentUpon>PrintAllMobileLiftingEquips.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PrintContentPages\PrintAllEngEquips.aspx.cs">
+      <DependentUpon>PrintAllEngEquips.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PrintContentPages\PrintAllEngEquips.aspx.designer.cs">
+      <DependentUpon>PrintAllEngEquips.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PrintContentPages\PrintAllRailwayEquips.aspx.cs">
+      <DependentUpon>PrintAllRailwayEquips.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PrintContentPages\PrintAllRailwayEquips.aspx.designer.cs">
+      <DependentUpon>PrintAllRailwayEquips.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PrintContentPages\PrintAllTractors.aspx.cs">
+      <DependentUpon>PrintAllTractors.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PrintContentPages\PrintAllTractors.aspx.designer.cs">
+      <DependentUpon>PrintAllTractors.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PrintContentPages\PrintAllTrailers.aspx.cs">
+      <DependentUpon>PrintAllTrailers.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PrintContentPages\PrintAllTrailers.aspx.designer.cs">
+      <DependentUpon>PrintAllTrailers.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PrintContentPages\PrintAllVehicles.aspx.cs">
+      <DependentUpon>PrintAllVehicles.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PrintContentPages\PrintAllVehicles.aspx.designer.cs">
+      <DependentUpon>PrintAllVehicles.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PrintContentPages\PrintAllEquipmentTechnicsRequests.aspx.cs">
+      <DependentUpon>PrintAllEquipmentTechnicsRequests.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PrintContentPages\PrintAllEquipmentTechnicsRequests.aspx.designer.cs">
+      <DependentUpon>PrintAllEquipmentTechnicsRequests.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PrintContentPages\PrintAllEquipReservistsRequests.aspx.cs">
+      <DependentUpon>PrintAllEquipReservistsRequests.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PrintContentPages\PrintAllEquipReservistsRequests.aspx.designer.cs">
+      <DependentUpon>PrintAllEquipReservistsRequests.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PrintContentPages\PrintAllReservists.aspx.cs">
+      <DependentUpon>PrintAllReservists.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PrintContentPages\PrintAllReservists.aspx.designer.cs">
+      <DependentUpon>PrintAllReservists.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\PrintPostponeReservists.aspx.cs">
+      <DependentUpon>PrintPostponeReservists.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\PrintPostponeReservists.aspx.designer.cs">
+      <DependentUpon>PrintPostponeReservists.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PublicPages\Error.aspx.cs">
+      <DependentUpon>Error.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PublicPages\Error.aspx.designer.cs">
+      <DependentUpon>Error.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\Home.aspx.cs">
+      <DependentUpon>Home.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\Home.aspx.designer.cs">
+      <DependentUpon>Home.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\Logout.aspx.cs">
+      <DependentUpon>Logout.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\Logout.aspx.designer.cs">
+      <DependentUpon>Logout.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\Maintenance.aspx.cs">
+      <DependentUpon>Maintenance.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\Maintenance.aspx.designer.cs">
+      <DependentUpon>Maintenance.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MasterPages\MasterPage.Master.cs">
+      <DependentUpon>MasterPage.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MasterPages\MasterPage.Master.designer.cs">
+      <DependentUpon>MasterPage.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ContentPages\GTableMaintanceHandlers.aspx" />
+    <Content Include="Images\add_new.png" />
+    <Content Include="Images\cancel.png" />
+    <Content Include="Images\close.png" />
+    <Content Include="Images\list_edit.png" />
+    <Content Include="Images\save.png" />
+    <Content Include="PublicPages\Error.aspx" />
+    <Content Include="ContentPages\Maintenance.aspx" />
+    <Content Include="Default.aspx" />
+    <Content Include="MasterPages\MasterPage.Master" />
+    <Content Include="Scripts\Ajax.js" />
+    <Content Include="Scripts\CheckFormSave.js" />
+    <Content Include="Scripts\Common.js" />
+    <Content Include="Scripts\DatePicker\datepicker.js" />
+    <Content Include="Scripts\DatePicker\lang\bg.js" />
+    <Content Include="Scripts\DatePicker\lang\en.js" />
+    <Content Include="Scripts\GTable.js" />
+    <Content Include="Scripts\HomePage.js" />
+    <Content Include="Scripts\MasterPage.js" />
+    <Content Include="Scripts\Timeout.js" />
+    <Content Include="Stylesheets\datepicker.css" />
+    <Content Include="Stylesheets\HoverMenu.css" />
+    <Content Include="Stylesheets\Main.css" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{0F621ED7-5AC9-4AA4-800A-D67DD2F361FE}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ExceptionHandler\ExceptionHandler.csproj">
+      <Project>{55B239DD-A064-4333-91EC-8B04273D4808}</Project>
+      <Name>ExceptionHandler</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ItemSelector\ItemSelector.csproj">
+      <Project>{06E5BF16-FE82-490D-9745-95240E166C31}</Project>
+      <Name>ItemSelector</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MilitaryUnitSelector\MilitaryUnitSelector.csproj">
+      <Project>{1C07F0CA-06FE-4C87-94E5-225B9B773DDD}</Project>
+      <Name>MilitaryUnitSelector</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_GlobalResources\Labels.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>Labels.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="ContentPages\AddEditReservist.aspx" />
+    <Content Include="ContentPages\AddEditReservist_PersonalData.aspx" />
+    <Content Include="ContentPages\AddEditReservist_EducationWork.aspx" />
+    <Content Include="ContentPages\AddEditReservist_MilitaryReport.aspx" />
+    <Content Include="ContentPages\AddEditReservist_MilitaryService.aspx" />
+    <Content Include="ContentPages\AddEditReservist_OtherInfo.aspx" />
+    <Content Include="ContentPages\AddEditEquipmentTechnicsRequest.aspx" />
+    <Content Include="ContentPages\AddEditTechnics.aspx" />
+    <Content Include="ContentPages\AddEditTechnics_AVIATION_EQUIP.aspx" />
+    <Content Include="ContentPages\AddEditTechnics_RAILWAY_EQUIP.aspx" />
+    <Content Include="ContentPages\AddEditTechnics_TRACTORS.aspx" />
+    <Content Include="ContentPages\AddEditTechnics_TRAILERS.aspx" />
+    <Content Include="ContentPages\AddEditTechnics_VEHICLES.aspx" />
+    <Content Include="ContentPages\AddEditTechnics_BasicInfo.aspx" />
+    <Content Include="ContentPages\AddEditTechnics_MilitaryReport.aspx" />
+    <Content Include="ContentPages\AddEditTechnics_Owner.aspx" />
+    <Content Include="ContentPages\AddEditTechnics_OtherInfo.aspx" />
+    <Content Include="ContentPages\AddEditTechnics_MOB_LIFT_EQUIP.aspx" />
+    <Content Include="ContentPages\AddEditTechnics_FUEL_CONTAINERS.aspx" />
+    <Content Include="ContentPages\ReportTechnics_FUEL_CONTAINERS.aspx" />
+    <Content Include="ContentPages\ReportTechnics_VESSELS.aspx" />
+    <Content Include="ContentPages\ReportTechnics_AVIATION_EQUIP.aspx" />
+    <Content Include="ContentPages\ReportTechnics_RAILWAY_EQUIP.aspx" />
+    <Content Include="ContentPages\ReportTechnics_MOB_LIFT_EQUIP.aspx" />
+    <Content Include="ContentPages\ReportTechnics_ENG_EQUIP.aspx" />
+    <Content Include="ContentPages\ReportTechnics_TRACTORS.aspx" />
+    <Content Include="ContentPages\ReportTechnics_TRAILERS.aspx" />
+    <Content Include="ContentPages\ReportTechnics_VEHICLES.aspx" />
+    <Content Include="ContentPages\ReportListReservistsWithAppointDetails.aspx" />
+    <Content Include="ContentPages\ReportListReservistsWithAppointments.aspx" />
+    <Content Include="ContentPages\SearchTechnics_AVIATION_EQUIP.aspx" />
+    <Content Include="ContentPages\ManageTechnics_AVIATION_EQUIP.aspx" />
+    <Content Include="ContentPages\SearchTechnics_VESSELS.aspx" />
+    <Content Include="ContentPages\SearchTechnics_FUEL_CONTAINERS.aspx" />
+    <Content Include="ContentPages\ManageTechnics_FUEL_CONTAINERS.aspx" />
+    <Content Include="ContentPages\ManageAviationOtherBaseMachineModels.aspx" />
+    <Content Include="ContentPages\ManageEngEquipBaseModels.aspx" />
+    <Content Include="ContentPages\SearchTechnics_RAILWAY_EQUIP.aspx" />
+    <Content Include="ContentPages\ManageTechnics_RAILWAY_EQUIP.aspx" />
+    <Content Include="ContentPages\AddEditTechnics_VESSELS.aspx" />
+    <Content Include="ContentPages\ManageTechnics_VESSELS.aspx" />
+    <Content Include="ContentPages\SearchTechnics_MOB_LIFT_EQUIP.aspx" />
+    <Content Include="ContentPages\SearchTechnics_ENG_EQUIP.aspx" />
+    <Content Include="ContentPages\ManageTechnics_MOB_LIFT_EQUIP.aspx" />
+    <Content Include="ContentPages\AddEditTechnics_ENG_EQUIP.aspx" />
+    <Content Include="ContentPages\SearchTechnics_TRAILERS.aspx" />
+    <Content Include="ContentPages\ManageTechnics_ENG_EQUIP.aspx" />
+    <Content Include="ContentPages\ManageTechnics_TRAILERS.aspx" />
+    <Content Include="ContentPages\ManageTractorModels.aspx" />
+    <Content Include="ContentPages\SearchTechnics_TRACTORS.aspx" />
+    <Content Include="ContentPages\ManageTechnics_TRACTORS.aspx" />
+    <Content Include="ContentPages\ManageVehicleModels.aspx" />
+    <Content Include="ContentPages\SearchTechnics_VEHICLES.aspx" />
+    <Content Include="ContentPages\FulfilEquipmentTechnicsRequest.aspx" />
+    <Content Include="ContentPages\ManageTechnics_VEHICLES.aspx" />
+    <Content Include="ContentPages\ManageEquipmentTechnicsRequestsFulfilment.aspx" />
+    <Content Include="ContentPages\EquipmentTechnicsRequestMilitaryDepartment.aspx" />
+    <Content Include="ContentPages\ManageEquipmentTechnicsRequests.aspx" />
+    <Content Include="ContentPages\ManageReservists.aspx" />
+    <Content Include="ContentPages\SearchReservists.aspx" />
+    <Content Include="ContentPages\FulfilEquipmentReservistsRequest.aspx" />
+    <Content Include="ContentPages\ManageEquipmentReservistsRequestsFulfilment.aspx" />
+    <Content Include="ContentPages\EquipmentReservistRequestMilitaryDepartment.aspx" />
+    <Content Include="ContentPages\DataSource.aspx" />
+    <Content Include="ContentPages\ManageEquipmentReservistsRequests.aspx" />
+    <Content Include="Scripts\AddEditEquipmentReservistsRequest.js" />
+    <Content Include="Scripts\AddEditMilitaryReportPerson.js" />
+    <Content Include="Scripts\AddEditReservist.js" />
+    <Content Include="Scripts\AddEditReservist_PersonalData.js" />
+    <Content Include="Scripts\AddEditReservist_EducationWork.js" />
+    <Content Include="Scripts\AddEditReservist_MilitaryReport.js" />
+    <Content Include="Scripts\AddEditReservist_MilitaryService.js" />
+    <Content Include="Scripts\AddEditReservist_OtherInfo.js" />
+    <Content Include="Scripts\AddEditEquipmentTechnicsRequest.js" />
+    <Content Include="Scripts\AddEditTechnics.js" />
+    <Content Include="Scripts\AddEditTechnics_AVIATION_EQUIP.js" />
+    <Content Include="Scripts\AddEditTechnics_TRACTORS.js" />
+    <Content Include="Scripts\AddEditTechnics_TRAILERS.js" />
+    <Content Include="Scripts\AddEditTechnics_VEHICLES.js" />
+    <Content Include="Scripts\AddEditTechnics_MilitaryReport.js" />
+    <Content Include="Scripts\AddEditTechnics_Owner.js" />
+    <Content Include="Scripts\AddEditTechnics_OtherInfo.js" />
+    <Content Include="Scripts\AddEditTechnics_BasicInfo.js" />
+    <Content Include="Scripts\AddEditTechnics_ENG_EQUIP.js" />
+    <Content Include="Scripts\AddEditTechnics_MOB_LIFT_EQUIP.js" />
+    <Content Include="Scripts\AddEditTechnics_RAILWAY_EQUIP.js" />
+    <Content Include="Scripts\AddEditTechnics_VESSELS.js" />
+    <Content Include="Scripts\AddEditTechnics_FUEL_CONTAINERS.js" />
+    <Content Include="Scripts\ManageAviationOtherBaseMachineModels.js" />
+    <Content Include="Scripts\ManageEngEquipBaseModels.js" />
+    <Content Include="Scripts\ManageTractorModels.js" />
+    <Content Include="Scripts\FulfilEquipmentTechnicsRequest.js" />
+    <Content Include="Scripts\FulfilEquipmentReservistsRequest.js" />
+    <Content Include="Scripts\ManageVehicleModels.js" />
+    <Content Include="Scripts\PickList.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ContentPages\AddEditCompany.aspx" />
+    <Content Include="ContentPages\AddEditEquipmentReservistsRequest.aspx" />
+    <Content Include="ContentPages\CivilEducationSelectorHandlers.aspx" />
+    <Content Include="ContentPages\CompanySelectorHandlers.aspx" />
+    <Content Include="ContentPages\DischargeReasonSelectorHandlers.aspx" />
+    <Content Include="ContentPages\PrintPostponeTechnics.aspx" />
+    <Content Include="ContentPages\ReportA33v2_BENCHMARK.aspx" />
+    <Content Include="ContentPages\ReportPostpone.aspx" />
+    <Content Include="ContentPages\ReportStaffPositionsList.aspx" />
+    <Content Include="ContentPages\ReportAnalyzeResFulfilment.aspx" />
+    <Content Include="ContentPages\ResFulfilmentRemovalHandlers.aspx" />
+    <Content Include="ContentPages\TechFulfilmentRemovalHandlers.aspx" />
+    <Content Include="ContentPages\TechParams.aspx" />
+    <Content Include="ContentPages\ReportPostponeTechByAdministration.aspx" />
+    <Content Include="ContentPages\ReportPostponeResByAdministration.aspx" />
+    <Content Include="ContentPages\ReportPostponeTech.aspx" />
+    <Content Include="ContentPages\ReportPostponeRes.aspx" />
+    <Content Include="ContentPages\PostponeTech.aspx" />
+    <Content Include="ContentPages\PostponeRes.aspx" />
+    <Content Include="ContentPages\PrintTechnics.aspx" />
+    <Content Include="ContentPages\PrintReservists.aspx" />
+    <Content Include="ContentPages\ReportAnalyzeTechCommand.aspx" />
+    <Content Include="ContentPages\ReportA33v2.aspx" />
+    <Content Include="ContentPages\ReportNormativeTechnics.aspx" />
+    <Content Include="ContentPages\ReportListTechnicsFromCommand.aspx" />
+    <Content Include="ContentPages\ReportListReservistsFromCommand.aspx" />
+    <Content Include="ContentPages\FulfilTechnicsMilCommand.aspx" />
+    <Content Include="ContentPages\FulfilReservistsMilCommand.aspx" />
+    <Content Include="ContentPages\ReportA33.aspx" />
+    <Content Include="ContentPages\ReportA31.aspx" />
+    <Content Include="ContentPages\ReportAnalyzeCommand.aspx" />
+    <Content Include="ContentPages\ReportSV1.aspx" />
+    <Content Include="ContentPages\GroupTakingDown.aspx" />
+    <Content Include="ContentPages\ReportListTechnicsWithAppointDetails.aspx" />
+    <Content Include="ContentPages\ReportListTechnicsWithAppointments.aspx" />
+    <Content Include="ContentPages\ManageCompanies.aspx" />
+    <Content Include="ContentPages\ImportPersonsData.aspx" />
+    <Content Include="ContentPages\NoAccessToPerson.aspx" />
+    <Content Include="ContentPages\PasswordExpired.aspx" />
+    <Content Include="Images\ajax-loader.gif" />
+    <Content Include="Images\excel.png" />
+    <Content Include="Images\print.png" />
+    <Content Include="MasterPages\PrintMasterPage.Master" />
+    <Content Include="PrintContentPages\PrintReportStaffPositionsList.aspx" />
+    <Content Include="PrintContentPages\PrintReportAnalyzeResFulfilment.aspx" />
+    <Content Include="PrintContentPages\PrintReportAnalyzeTechCommand.aspx" />
+    <Content Include="PrintContentPages\PrintReportA33v2.aspx" />
+    <Content Include="PrintContentPages\PrintReportNormativeTechnics.aspx" />
+    <Content Include="PrintContentPages\PrintReportAnalyzeCommand.aspx" />
+    <Content Include="PrintContentPages\PrintReportListTechnicsFromCommand.aspx" />
+    <Content Include="PrintContentPages\PrintReportListReservistsFromCommand.aspx" />
+    <Content Include="PrintContentPages\PrintReportA33.aspx" />
+    <Content Include="PrintContentPages\PrintReportA31.aspx" />
+    <Content Include="PrintContentPages\PrintReportSV1.aspx" />
+    <Content Include="PrintContentPages\PrintCheckMobileAppointment.aspx" />
+    <Content Include="PrintContentPages\PrintGroupTakingDown.aspx" />
+    <Content Include="PrintContentPages\PrintReportListTechnicsWithAppointDetails.aspx" />
+    <Content Include="PrintContentPages\PrintReportListTechnicsWithAppointments.aspx" />
+    <Content Include="PrintContentPages\PrintReportListReservistsWithAppointDetails.aspx" />
+    <Content Include="PrintContentPages\PrintReportListReservistsWithAppointments.aspx" />
+    <Content Include="PrintContentPages\PrintReportAllFuelContainers.aspx" />
+    <Content Include="PrintContentPages\PrintReportAllVessels.aspx" />
+    <Content Include="PrintContentPages\PrintReportAllAviationEquips.aspx" />
+    <Content Include="PrintContentPages\PrintReportAllRailwayEquips.aspx" />
+    <Content Include="PrintContentPages\PrintReportAllMobileLiftingEquips.aspx" />
+    <Content Include="PrintContentPages\PrintReportAllEngEquips.aspx" />
+    <Content Include="PrintContentPages\PrintReportAllTractors.aspx" />
+    <Content Include="PrintContentPages\PrintReportAllTrailers.aspx" />
+    <Content Include="PrintContentPages\PrintReportAllVehicles.aspx" />
+    <Content Include="PrintContentPages\PrintAllFuelContainers.aspx" />
+    <Content Include="PrintContentPages\PrintAllVessels.aspx" />
+    <Content Include="PrintContentPages\PrintAllAviationEquips.aspx" />
+    <Content Include="PrintContentPages\PrintAllMobileLiftingEquips.aspx" />
+    <Content Include="PrintContentPages\PrintAllEngEquips.aspx" />
+    <Content Include="PrintContentPages\PrintAllRailwayEquips.aspx" />
+    <Content Include="PrintContentPages\PrintAllTractors.aspx" />
+    <Content Include="PrintContentPages\PrintAllTrailers.aspx" />
+    <Content Include="PrintContentPages\PrintAllVehicles.aspx" />
+    <Content Include="PrintContentPages\PrintAllEquipmentTechnicsRequests.aspx" />
+    <Content Include="PrintContentPages\PrintAllEquipReservistsRequests.aspx" />
+    <Content Include="PrintContentPages\PrintAllReservists.aspx" />
+    <Content Include="ContentPages\PrintPostponeReservists.aspx" />
+    <Content Include="PrintTemplates\ReservistAK_Body.html" />
+    <Content Include="PrintTemplates\ReservistAK_End.html" />
+    <Content Include="PrintTemplates\ReservistAK_Start.html" />
+    <Content Include="PrintTemplates\ReservistASK_Body.html" />
+    <Content Include="PrintTemplates\ReservistASK_End.html" />
+    <Content Include="PrintTemplates\ReservistASK_Start.html" />
+    <Content Include="PrintTemplates\ReservistPZ_Body.html" />
+    <Content Include="PrintTemplates\ReservistPZ_End.html" />
+    <Content Include="PrintTemplates\ReservistPZ_Start.html" />
+    <Content Include="PrintTemplates\ReservistMK_Body.html" />
+    <Content Include="PrintTemplates\ReservistMK_End.html" />
+    <Content Include="PrintTemplates\ReservistMK_Start.html" />
+    <Content Include="PrintTemplates\ReservistUO_Body.html" />
+    <Content Include="PrintTemplates\ReservistUO_End.html" />
+    <Content Include="PrintTemplates\ReservistUO_Start.html" />
+    <Content Include="PrintTemplates\TechnicsMK_Body.html" />
+    <Content Include="PrintTemplates\TechnicsMK_End.html" />
+    <Content Include="PrintTemplates\TechnicsMK_Start.html" />
+    <Content Include="PrintTemplates\TechnicsOK_Body.html" />
+    <Content Include="PrintTemplates\TechnicsOK_End.html" />
+    <Content Include="PrintTemplates\TechnicsOK_Start.html" />
+    <Content Include="PrintTemplates\TechnicsPZ_Body.html" />
+    <Content Include="PrintTemplates\TechnicsPZ_End.html" />
+    <Content Include="PrintTemplates\TechnicsPZ_Start.html" />
+    <Content Include="PrintTemplates\TechnicsTO_Body.html" />
+    <Content Include="PrintTemplates\TechnicsTO_End.html" />
+    <Content Include="PrintTemplates\TechnicsTO_Start.html" />
+    <Content Include="Scripts\AddEditCompany.js" />
+    <Content Include="Scripts\CivilEducationSelector.js" />
+    <Content Include="Scripts\CompanySelector.js" />
+    <Content Include="Scripts\DischargeReasonSelector.js" />
+    <Content Include="Scripts\ImportPersonsData.js" />
+    <Content Include="Scripts\FulfilTechnicsMilCommand.js" />
+    <Content Include="Scripts\FulfilReservistsMilCommand.js" />
+    <Content Include="Scripts\ResFulfilmentRemoval.js" />
+    <Content Include="Scripts\TechFulfilmentRemoval.js" />
+    <Content Include="Stylesheets\PrintMain.css" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="BusinessLogic\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v9.0\WebApplications\Microsoft.WebApplication.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>57971</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost/Test_Reserve</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

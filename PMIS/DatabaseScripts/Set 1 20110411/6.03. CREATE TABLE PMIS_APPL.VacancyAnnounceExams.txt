@@ -1,0 +1,21 @@
+﻿CREATE TABLE PMIS_APPL.VacancyAnnounceExams(VacancyAnnounceExamID number NOT NULL,
+                                            VacancyAnnounceID number NOT NULL,
+                                            ApplicantExamID number
+                                            );
+
+ALTER TABLE PMIS_APPL.VacancyAnnounceExams ADD CONSTRAINT VacancyAnnounceExams_PK PRIMARY KEY(VacancyAnnounceExamID);
+ALTER TABLE PMIS_APPL.VacancyAnnounceExams ADD CONSTRAINT VacAnnExams_VacAnn_FK FOREIGN KEY (VacancyAnnounceID) REFERENCES PMIS_APPL.VacancyAnnounces (VacancyAnnounceID);
+ALTER TABLE PMIS_APPL.VacancyAnnounceExams ADD CONSTRAINT VacAnnExams_VacExams_FK FOREIGN KEY (ApplicantExamID) REFERENCES PMIS_APPL.Exams (ExamID);
+
+CREATE SEQUENCE PMIS_APPL.VacancyAnnounceExams_ID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+CREATE TRIGGER PMIS_APPL.TRG_VacAnnounceExams_INSERT
+BEFORE INSERT ON PMIS_APPL.VacancyAnnounceExams
+FOR EACH ROW
+BEGIN
+   SELECT PMIS_APPL.VacancyAnnounceExams_ID_SEQ.nextval INTO :new.VacancyAnnounceExamID FROM dual;
+END;
+/

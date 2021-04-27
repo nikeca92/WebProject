@@ -1,0 +1,30 @@
+﻿
+INSERT INTO PMIS_ADM.ChangeTypes (ChangeTypeKey, ChangeType, ModuleID)
+VALUES ('HS_Lists_Probabilities', 'Класификатор "Вероятност"', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'));
+
+INSERT INTO PMIS_ADM.ChangeTypes (ChangeTypeKey, ChangeType, ModuleID)
+VALUES ('HS_Lists_Exposure', 'Класификатор "Експозиция"', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'));
+
+INSERT INTO PMIS_ADM.ChangeTypes (ChangeTypeKey, ChangeType, ModuleID)
+VALUES ('HS_Lists_EffectWeight', 'Класификатор "Тежест (последици)"', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'));
+
+INSERT INTO PMIS_ADM.ChangeTypes (ChangeTypeKey, ChangeType, ModuleID)
+VALUES ('HS_Lists_RiskRank', 'Класификатор "Риск"', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'));
+
+INSERT INTO PMIS_ADM.ChangeTypes (ChangeTypeKey, ChangeType, ModuleID)
+VALUES ('HS_Lists_RiskFactorTypes', 'Видове фактори при оценка на риска', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'));
+
+INSERT INTO PMIS_ADM.ChangeTypes (ChangeTypeKey, ChangeType, ModuleID)
+VALUES ('HS_Lists_RiskFactors', 'Фактори при оценка на риска', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'));
+
+INSERT INTO PMIS_ADM.ChangeTypes (ChangeTypeKey, ChangeType, ModuleID)
+VALUES ('HS_Lists_Hazards', 'Потенциални опасности при оценка на риска', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'));
+
+INSERT INTO PMIS_ADM.ChangeTypes (ChangeTypeKey, ChangeType, ModuleID)
+VALUES ('HS_MilitaryUnitPositions', 'Класификация на длъжностите', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'));
+
+INSERT INTO PMIS_ADM.ChangeTypes (ChangeTypeKey, ChangeType, ModuleID)
+VALUES ('HS_RiskCard', 'Карта за оценка на риска', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'));
+
+COMMIT;
+/

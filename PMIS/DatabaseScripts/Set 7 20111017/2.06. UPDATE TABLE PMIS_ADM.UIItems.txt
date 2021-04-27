@@ -1,0 +1,267 @@
+﻿--Резерв -> Човешки ресурси -> Групово снемане от отчет
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_HUMANRES_GROUPTAKINGDOWN', 'Групово снемане от отчет', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_HUMANRES'));
+
+--Резерв -> Човешки ресурси -> Добавяне на ново военно-отчетно лице -> Лични данни
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_HUMANRES_ADDMILITARYREPORTPERSON_PERSONALDATA_BIRTHPLACE', 'Месторождение', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_HUMANRES_ADDMILITARYREPORTPERSON_PERSONALDATA'));
+
+--Резерв -> Човешки ресурси -> Редактиране на военно-отчетно лице -> Лични данни
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_HUMANRES_EDITMILITARYREPORTPERSON_PERSONALDATA_BIRTHPLACE', 'Месторождение', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_HUMANRES_EDITMILITARYREPORTPERSON_PERSONALDATA'));
+
+--Резерв -> Справки -> Списък на техниката на военен отчет - Автомобили
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_VEHICLES_BODYTYPE', 'Каросерия', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_VEHICLES'));
+
+--Резерв -> Справки -> Списък на техниката на военен отчет - Автомобили
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_VEHICLES_ADDRESS', 'Адрес', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_VEHICLES'));
+
+--Резерв -> Справки -> Списък на техниката на военен отчет - Ремаркета
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_TRAILERS_BODYTYPE', 'Каросерия', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_TRAILERS'));
+
+--Резерв -> Справки -> Списък на техниката на военен отчет - Ремаркета
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_TRAILERS_ADDRESS', 'Адрес', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_TRAILERS'));
+
+--Резерв -> Справки -> Списък на техниката на военен отчет - Трактори
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_TRACTORS_ADDRESS', 'Адрес', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_TRACTORS'));
+
+--Резерв -> Справки -> Списък на техниката на военен отчет - Инженерна техника
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_ENG_EQUIP_ADDRESS', 'Адрес', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_ENG_EQUIP'));
+
+--Резерв -> Справки -> Списък на техниката на военен отчет - Подемно-транспортна техника
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_MOB_LIFT_EQUIP_ADDRESS', 'Адрес', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_MOB_LIFT_EQUIP'));
+
+--Резерв -> Справки -> Списък на техниката на военен отчет - Специализиран железопътен състав
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_RAILWAY_EQUIP_ADDRESS', 'Адрес', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_RAILWAY_EQUIP'));
+
+--Резерв -> Справки -> Списък на техниката на военен отчет - Авиационна техника
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_AVIATION_EQUIP_ADDRESS', 'Адрес', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_AVIATION_EQUIP'));
+
+--Резерв -> Справки -> Списък на техниката на военен отчет - Кораби
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_VESSELS_ADDRESS', 'Адрес', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_VESSELS'));
+
+--Резерв -> Справки -> Списък на техниката на военен отчет - Съдове за ГСМ
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_FUEL_CONTAINERS_ADDRESS', 'Адрес', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_FUEL_CONTAINERS'));
+
+
+--Безопасност на труда -> Класификатори -> Вероятности
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('HS_LISTMAINT_PROBABILITIES', 'Вероятности', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'HS_LISTMAINT'));
+
+--Безопасност на труда -> Класификатори -> Вероятности -> Добавяне
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('HS_LISTMAINT_PROBABILITIES_ADD', 'Добавяне на вероятност', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'HS_LISTMAINT_PROBABILITIES'));
+
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('HS_LISTMAINT_PROBABILITIES_ADD_PROBABILITYNAME', 'Описание на вероятността', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'HS_LISTMAINT_PROBABILITIES_ADD'));
+
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('HS_LISTMAINT_PROBABILITIES_ADD_PROBABILITYFACTOR', 'Коефициент', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'HS_LISTMAINT_PROBABILITIES_ADD'));
+
+--Безопасност на труда -> Класификатори -> Вероятности -> Редактиране
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('HS_LISTMAINT_PROBABILITIES_EDIT', 'Редактиране на вероятност', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'HS_LISTMAINT_PROBABILITIES'));
+
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('HS_LISTMAINT_PROBABILITIES_EDIT_PROBABILITYNAME', 'Описание на вероятността', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'HS_LISTMAINT_PROBABILITIES_EDIT'));
+
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('HS_LISTMAINT_PROBABILITIES_EDIT_PROBABILITYFACTOR', 'Коефициент', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'HS_LISTMAINT_PROBABILITIES_EDIT'));
+
+
+--Безопасност на труда -> Класификатори -> Експозиция
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('HS_LISTMAINT_EXPOSURE', 'Експозиция', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'HS_LISTMAINT'));
+
+--Безопасност на труда -> Класификатори -> Експозиция -> Добавяне
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('HS_LISTMAINT_EXPOSURE_ADD', 'Добавяне на експозиция', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'HS_LISTMAINT_EXPOSURE'));
+
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('HS_LISTMAINT_EXPOSURE_ADD_EXPOSURENAME', 'Описание на експозицията', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'HS_LISTMAINT_EXPOSURE_ADD'));
+
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('HS_LISTMAINT_EXPOSURE_ADD_EXPOSUREFACTOR', 'Коефициент', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'HS_LISTMAINT_EXPOSURE_ADD'));
+
+--Безопасност на труда -> Класификатори -> Експозиция -> Редактиране
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('HS_LISTMAINT_EXPOSURE_EDIT', 'Редактиране на експозиция', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'HS_LISTMAINT_EXPOSURE'));
+
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('HS_LISTMAINT_EXPOSURE_EDIT_EXPOSURENAME', 'Описание на експозицията', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'HS_LISTMAINT_EXPOSURE_EDIT'));
+
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('HS_LISTMAINT_EXPOSURE_EDIT_EXPOSUREFACTOR', 'Коефициент', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'HS_LISTMAINT_EXPOSURE_EDIT'));
+
+
+
+
+--Безопасност на труда -> Класификатори -> Тежест (последици)
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('HS_LISTMAINT_EFFECTWEIGHT', 'Тежест (последици)', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'HS_LISTMAINT'));
+
+--Безопасност на труда -> Класификатори -> Тежест (последици) -> Добавяне
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('HS_LISTMAINT_EFFECTWEIGHT_ADD', 'Добавяне на тежест', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'HS_LISTMAINT_EFFECTWEIGHT'));
+
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('HS_LISTMAINT_EFFECTWEIGHT_ADD_EFFECTWEIGHTNAME', 'Описание на тежестта', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'HS_LISTMAINT_EFFECTWEIGHT_ADD'));
+
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('HS_LISTMAINT_EFFECTWEIGHT_ADD_EFFECTWEIGHTDESC', 'Описание (дълго) на тежестта', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'HS_LISTMAINT_EFFECTWEIGHT_ADD'));
+
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('HS_LISTMAINT_EFFECTWEIGHT_ADD_EFFECTWEIGHTFACTOR', 'Коефициент', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'HS_LISTMAINT_EFFECTWEIGHT_ADD'));
+
+--Безопасност на труда -> Класификатори -> Тежест (последици) -> Редактиране
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('HS_LISTMAINT_EFFECTWEIGHT_EDIT', 'Редактиране на тежест', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'HS_LISTMAINT_EFFECTWEIGHT'));
+
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('HS_LISTMAINT_EFFECTWEIGHT_EDIT_EFFECTWEIGHTNAME', 'Описание на тежестта', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'HS_LISTMAINT_EFFECTWEIGHT_EDIT'));
+
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('HS_LISTMAINT_EFFECTWEIGHT_EDIT_EFFECTWEIGHTDESC', 'Описание на тежестта (дълго)', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'HS_LISTMAINT_EFFECTWEIGHT_EDIT'));
+
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('HS_LISTMAINT_EFFECTWEIGHT_EDIT_EFFECTWEIGHTFACTOR', 'Коефициент', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'HS_LISTMAINT_EFFECTWEIGHT_EDIT'));
+
+
+
+--Безопасност на труда -> Класификатори -> Риск
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('HS_LISTMAINT_RISKRANK', 'Риск', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'HS_LISTMAINT'));
+
+--Безопасност на труда -> Класификатори -> Риск -> Добавяне
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('HS_LISTMAINT_RISKRANK_ADD', 'Добавяне на риск', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'HS_LISTMAINT_RISKRANK'));
+
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('HS_LISTMAINT_RISKRANK_ADD_RISKRANKNAME', 'Описание на риска', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'HS_LISTMAINT_RISKRANK_ADD'));
+
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('HS_LISTMAINT_RISKRANK_ADD_RISKRANKFROM', 'Рангово число ОТ', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'HS_LISTMAINT_RISKRANK_ADD'));
+
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('HS_LISTMAINT_RISKRANK_ADD_RISKRANKTO', 'Рангово число ДО', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'HS_LISTMAINT_RISKRANK_ADD'));
+
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('HS_LISTMAINT_RISKRANK_ADD_RISKRANK', 'Степен', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'HS_LISTMAINT_RISKRANK_ADD'));
+
+--Безопасност на труда -> Класификатори -> Риск -> Редактиране
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('HS_LISTMAINT_RISKRANK_EDIT', 'Редактиране на тежест', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'HS_LISTMAINT_RISKRANK'));
+
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('HS_LISTMAINT_RISKRANK_EDIT_RISKRANKNAME', 'Описание на риска', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'HS_LISTMAINT_RISKRANK_EDIT'));
+
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('HS_LISTMAINT_RISKRANK_EDIT_RISKRANKFROM', 'Рангово число ОТ', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'HS_LISTMAINT_RISKRANK_EDIT'));
+
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('HS_LISTMAINT_RISKRANK_EDIT_RISKRANKTO', 'Рангово число ДО', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'HS_LISTMAINT_RISKRANK_EDIT'));
+
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('HS_LISTMAINT_RISKRANK_EDIT_RISKRANK', 'Степен', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'HS_LISTMAINT_RISKRANK_EDIT'));
+
+
+
+
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('HS_LIST_RISKFACTORTYPES', 'Видове фактори при оценка на риска', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'HS_LISTMAINT'));
+
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('HS_LIST_ADDRISKFACTORTYPE', 'Добавяне на вид фактор при оценка на риска', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'HS_LIST_RISKFACTORTYPES'));
+
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('HS_LIST_EDITRISKFACTORTYPE', 'Редактиране на вид фактор при оценка на риска', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'HS_LIST_RISKFACTORTYPES'));
+
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('HS_LIST_DELETERISKFACTORTYPE', 'Изтриване на вид фактор при оценка на риска', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'HS_LIST_RISKFACTORTYPES'));
+
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('HS_LIST_RISKFACTORS', 'Фактори при оценка на риска', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'HS_LIST_RISKFACTORTYPES'));
+
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('HS_LIST_ADDRISKFACTOR', 'Добавяне на фактор при оценка на риска', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'HS_LIST_RISKFACTORS'));
+
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('HS_LIST_EDITRISKFACTOR', 'Редактиране на фактор при оценка на риска', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'HS_LIST_RISKFACTORS'));
+
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('HS_LIST_DELETERISKFACTOR', 'Изтриване на фактор при оценка на риска', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'HS_LIST_RISKFACTORS'));
+
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('HS_LIST_HAZARDS', 'Потенциални опасности при оценка на риска', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'HS_LIST_RISKFACTORS'));
+
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('HS_LIST_ADDHAZARD', 'Добавяне на потенциална опасност при оценка на риска', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'HS_LIST_HAZARDS'));
+
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('HS_LIST_EDITHAZARD', 'Редактиране на потенциална опасност при оценка на риска', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'HS_LIST_HAZARDS'));
+
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('HS_LIST_DELETEHAZARD', 'Изтриване на потенциална опасност при оценка на риска', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'HS_LIST_HAZARDS'));
+
+
+
+--Безопасност на труда -> Оценки на риска -> Класификация на дейностите
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('HS_MILITARYUNITPOSITIONS', 'Класификация на дейностите', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'HS_RISKASSESSMENTS'));
+
+--Безопасност на труда -> Оценки на риска -> Класификация на дейностите -> Подразделение/обект
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('HS_SUBDEV', 'Подразделение/обект', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'HS_MILITARYUNITPOSITIONS'));
+
+--Безопасност на труда -> Оценки на риска -> Класификация на дейностите -> Подразделение/обект -> Длъжност
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('HS_SUBDEV_POSITION', 'Длъжност', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'HS_SUBDEV'));
+
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('HS_SUBDEV_POSITION_POSNAME', 'Наименование', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'HS_SUBDEV_POSITION'));
+
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('HS_SUBDEV_POSITION_POSACTIVITIES', 'Извършвани дейности', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'HS_SUBDEV_POSITION'));
+
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('HS_SUBDEV_POSITION_POSTOTALPERSONSCNT', 'Общ брой лица', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'HS_SUBDEV_POSITION'));
+
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('HS_SUBDEV_POSITION_POSFEMALECNT', 'Жени', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'HS_SUBDEV_POSITION'));
+
+
+
+--Безопасност на труда -> Оценки на риска -> Карта за оценка на риска
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('HS_RISKCARD', 'Карта за оценка на риска', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'HS_RISKASSESSMENTS'));
+
+--Безопасност на труда -> Оценки на риска -> Карта за оценка на риска -> Опасност
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('HS_RISKCARD_HAZARD', 'Опасност', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'HS_RISKCARD'));
+
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('HS_RISKCARD_HAZARD_PROBABILITY', 'Вероятност', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'HS_RISKCARD_HAZARD'));
+
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('HS_RISKCARD_HAZARD_EXPOSURE', 'Експозиция', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'HS_RISKCARD_HAZARD'));
+
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('HS_RISKCARD_HAZARD_EFFECTWEIGHT', 'Тежест', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'HS_RISKCARD_HAZARD'));
+
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('HS_RISKCARD_HAZARD_HAZARD', 'Риск', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'HS_RISKCARD_HAZARD'));
+
+
+COMMIT;
+/

@@ -1,0 +1,30 @@
+﻿CREATE TABLE PMIS_HS.RiskAssessments(RiskAssessmentID number NOT NULL,
+                              PreparationDate date,
+                              RegNumber varchar2(200),
+                              MilitaryForceTypeID number,
+                              MilitaryUnitID number,
+                              Comments varchar2(4000),
+                              CreatedBy number,
+                              CreatedDate date,
+                              LastModifiedBy number,
+                              LastModifiedDate date
+                              );
+
+ALTER TABLE PMIS_HS.RiskAssessments ADD CONSTRAINT RiskAssessments_PK PRIMARY KEY(RiskAssessmentID);
+ALTER TABLE PMIS_HS.RiskAssessments ADD CONSTRAINT RiskAssessments_MIR_FK FOREIGN KEY (MilitaryUnitID) REFERENCES UKAZ_OWNER.MIR (KOD_MIR);
+ALTER TABLE PMIS_HS.RiskAssessments ADD CONSTRAINT RiskA_CreatedBy_FK FOREIGN KEY (CreatedBy) REFERENCES PMIS_ADM.Users (UserID);
+ALTER TABLE PMIS_HS.RiskAssessments ADD CONSTRAINT RiskA_LastModifiedBy_FK FOREIGN KEY (LastModifiedBy) REFERENCES PMIS_ADM.Users (UserID);
+ALTER TABLE PMIS_HS.RiskAssessments ADD CONSTRAINT RiskA_MilitForceTypes_FK FOREIGN KEY (MilitaryForceTypeID) REFERENCES PMIS_ADM.MilitaryForceTypes (MilitaryForceTypeID);
+
+CREATE SEQUENCE PMIS_HS.RiskAssessments_ID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+CREATE TRIGGER PMIS_HS.TRG_RiskAssessments_INSERT
+BEFORE INSERT ON PMIS_HS.RiskAssessments
+FOR EACH ROW
+BEGIN
+   SELECT PMIS_HS.RiskAssessments_ID_SEQ.nextval INTO :new.RiskAssessmentID FROM dual;
+END;
+/

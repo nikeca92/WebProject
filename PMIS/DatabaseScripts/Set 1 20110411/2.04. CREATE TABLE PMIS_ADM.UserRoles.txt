@@ -1,0 +1,36 @@
+﻿CREATE TABLE PMIS_ADM.UserRoles(UserID number NOT NULL,
+                                RoleID number NOT NULL);
+
+ALTER TABLE PMIS_ADM.UserRoles ADD CONSTRAINT USERROLES_PK PRIMARY KEY(UserID, RoleID);
+ALTER TABLE PMIS_ADM.UserRoles ADD CONSTRAINT USERROLES_USERS_FK FOREIGN KEY (UserID) REFERENCES PMIS_ADM.Users (UserID);
+ALTER TABLE PMIS_ADM.UserRoles ADD CONSTRAINT USERROLES_ROLES_FK FOREIGN KEY (RoleID) REFERENCES PMIS_ADM.Roles (RoleID);
+
+INSERT INTO PMIS_ADM.UserRoles (UserID, RoleID)
+VALUES ((SELECT UserID FROM PMIS_ADM.Users WHERE UPPER(Username) = UPPER('devel')), 
+        (SELECT a.RoleID 
+         FROM PMIS_ADM.Roles a 
+         INNER JOIN PMIS_ADM.Modules b ON a.ModuleID = b.ModuleID
+         WHERE b.ModuleKey = 'HS' AND a.RoleName = 'Потребител'));
+         
+INSERT INTO PMIS_ADM.UserRoles (UserID, RoleID)
+VALUES ((SELECT UserID FROM PMIS_ADM.Users WHERE UPPER(Username) = UPPER('devel')), 
+        (SELECT a.RoleID 
+         FROM PMIS_ADM.Roles a 
+         INNER JOIN PMIS_ADM.Modules b ON a.ModuleID = b.ModuleID
+         WHERE b.ModuleKey = 'ADM' AND a.RoleName = 'Администратор'));
+         
+INSERT INTO PMIS_ADM.UserRoles (UserID, RoleID)
+VALUES ((SELECT UserID FROM PMIS_ADM.Users WHERE UPPER(Username) = UPPER('devel')), 
+        (SELECT a.RoleID 
+         FROM PMIS_ADM.Roles a 
+         INNER JOIN PMIS_ADM.Modules b ON a.ModuleID = b.ModuleID
+         WHERE b.ModuleKey = 'APPL' AND a.RoleName = 'Потребител'));
+         
+INSERT INTO PMIS_ADM.UserRoles (UserID, RoleID)
+VALUES ((SELECT UserID FROM PMIS_ADM.Users WHERE UPPER(Username) = UPPER('devel')), 
+        (SELECT a.RoleID 
+         FROM PMIS_ADM.Roles a 
+         INNER JOIN PMIS_ADM.Modules b ON a.ModuleID = b.ModuleID
+         WHERE b.ModuleKey = 'RES' AND a.RoleName = 'Потребител'));
+
+COMMIT;

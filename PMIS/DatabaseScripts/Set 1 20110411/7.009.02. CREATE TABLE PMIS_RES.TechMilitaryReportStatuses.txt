@@ -1,0 +1,43 @@
+﻿CREATE TABLE PMIS_RES.TechMilitaryReportStatuses(TechMilitaryReportStatusID number NOT NULL,
+                                                 TechMilitaryReportStatusKey varchar2(100),
+                                                 TechMilitaryReportStatusName varchar2(250)
+                                                );
+
+ALTER TABLE PMIS_RES.TechMilitaryReportStatuses ADD CONSTRAINT TechMilitaryReportStatuses_PK PRIMARY KEY(TechMilitaryReportStatusID);
+
+CREATE SEQUENCE PMIS_RES.TechMilReportStatuses_ID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+CREATE TRIGGER PMIS_RES.TRG_TechMilRepStatuses_INSERT
+BEFORE INSERT ON PMIS_RES.TechMilitaryReportStatuses
+FOR EACH ROW
+BEGIN
+   SELECT PMIS_RES.TechMilReportStatuses_ID_SEQ.nextval INTO :new.TechMilitaryReportStatusID FROM dual;
+END;
+/
+
+INSERT INTO PMIS_RES.TechMilitaryReportStatuses (TechMilitaryReportStatusKey, TechMilitaryReportStatusName)
+VALUES ('EXEMPT', 'Неподлежащ');
+
+INSERT INTO PMIS_RES.TechMilitaryReportStatuses (TechMilitaryReportStatusKey, TechMilitaryReportStatusName)
+VALUES ('NOTRECEIVED', 'Неполучаващ МН по указание');
+
+INSERT INTO PMIS_RES.TechMilitaryReportStatuses (TechMilitaryReportStatusKey, TechMilitaryReportStatusName)
+VALUES ('POSTPONED', 'Отсрочен');
+
+INSERT INTO PMIS_RES.TechMilitaryReportStatuses (TechMilitaryReportStatusKey, TechMilitaryReportStatusName)
+VALUES ('RESERVE', 'Резерв');
+
+INSERT INTO PMIS_RES.TechMilitaryReportStatuses (TechMilitaryReportStatusKey, TechMilitaryReportStatusName)
+VALUES ('MOBILE_APPOINTMENT', 'С мобилизационно назначение');
+
+INSERT INTO PMIS_RES.TechMilitaryReportStatuses (TechMilitaryReportStatusKey, TechMilitaryReportStatusName)
+VALUES ('FREE', 'Свободен');
+
+INSERT INTO PMIS_RES.TechMilitaryReportStatuses (TechMilitaryReportStatusKey, TechMilitaryReportStatusName)
+VALUES ('CONTRACT', 'С договор');
+
+COMMIT;
+/

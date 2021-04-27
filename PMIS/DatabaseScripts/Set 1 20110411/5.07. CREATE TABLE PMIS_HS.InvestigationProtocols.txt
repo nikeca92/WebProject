@@ -1,0 +1,46 @@
+CREATE TABLE PMIS_HS.InvestigationProtocols(InvestigaitonProtocolID number NOT NULL,
+                                            InvestigaitonProtocolNumber varchar2(100),
+                                            InvProtDate date,
+                                            DeclarationID number,
+                                            DateFrom date,
+                                            DateTo date,
+                                            LegalReason varchar2(500),
+                                            OrderNum varchar2(100),
+                                            CommissionChairman varchar2(250),
+                                            CommissionMember1 varchar2(2000),
+                                            CommissionMember2 varchar2(2000),
+                                            Injured varchar2(4000),
+                                            AccidentDateAndPlace varchar2(4000),
+                                            Witnesses varchar2(4000),
+                                            JobGeneralDesc varchar2(4000),
+                                            SpecificTaskActivity varchar2(4000),
+                                            DeviationOfNormalActivity varchar2(4000),
+                                            InjuryDetails varchar2(4000),
+                                            AnalysisOfAccidentCauses varchar2(4000),
+                                            LegalViolations varchar2(4000),
+                                            Itruders varchar2(4000),
+                                            ActionsToAvoid varchar2(4000),
+                                            Enclosures varchar2(4000),
+                                            CreatedBy number,
+                                            CreatedDate date,
+                                            LastModifiedBy number,
+                                            LastModifiedDate date
+                                            );
+
+ALTER TABLE PMIS_HS.InvestigationProtocols ADD CONSTRAINT InvestigationProtocols_PK PRIMARY KEY(InvestigaitonProtocolID);
+ALTER TABLE PMIS_HS.InvestigationProtocols ADD CONSTRAINT InvProtocols_DeclOfAcc_FK FOREIGN KEY (DeclarationID) REFERENCES PMIS_HS.DeclarationsOfAccident (DeclarationID);
+ALTER TABLE PMIS_HS.InvestigationProtocols ADD CONSTRAINT InvProtocols_CreatedBy_FK FOREIGN KEY (CreatedBy) REFERENCES PMIS_ADM.Users (UserID);
+ALTER TABLE PMIS_HS.InvestigationProtocols ADD CONSTRAINT InvProtocols_LastModifiedBy_FK FOREIGN KEY (LastModifiedBy) REFERENCES PMIS_ADM.Users (UserID);
+
+CREATE SEQUENCE PMIS_HS.InvProtocols_ID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+CREATE TRIGGER PMIS_HS.TRG_InvProtocols_INSERT
+BEFORE INSERT ON PMIS_HS.InvestigationProtocols
+FOR EACH ROW
+BEGIN
+   SELECT PMIS_HS.InvProtocols_ID_SEQ.nextval INTO :new.InvestigaitonProtocolID FROM dual;
+END;
+/

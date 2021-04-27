@@ -1,0 +1,23 @@
+﻿CREATE TABLE PMIS_ADM.DocumentTypes(DocumentTypeKey varchar2(10),
+                                      DocumentTypeName varchar2(100)
+                                     );
+
+ALTER TABLE PMIS_ADM.DocumentTypes ADD CONSTRAINT DocumentTypes_PK PRIMARY KEY (DocumentTypeKey);
+
+INSERT INTO PMIS_ADM.DocumentTypes (DocumentTypeKey, DocumentTypeName)
+VALUES ('П', 'Редовно');
+
+
+INSERT INTO PMIS_ADM.DocumentTypes (DocumentTypeKey, DocumentTypeName)
+VALUES ('З', 'Заповед за осв');
+
+
+INSERT INTO PMIS_ADM.DocumentTypes (DocumentTypeKey, DocumentTypeName)
+VALUES ('С', 'Доп. споразумение');
+
+INSERT INTO PMIS_ADM.DocumentTypes (DocumentTypeKey, DocumentTypeName)
+VALUES ('Д', 'Договор за КВС');
+
+
+COMMIT;
+/

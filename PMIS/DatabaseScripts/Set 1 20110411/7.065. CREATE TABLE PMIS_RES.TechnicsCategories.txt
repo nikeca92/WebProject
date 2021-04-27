@@ -1,0 +1,33 @@
+﻿CREATE TABLE PMIS_RES.TechnicsCategories(TechnicsCategoryID number NOT NULL,
+                                         TechnicsCategoryName varchar2(300)
+                                         );
+
+ALTER TABLE PMIS_RES.TechnicsCategories ADD CONSTRAINT TechnicsCategories_PK PRIMARY KEY (TechnicsCategoryID);
+ALTER TABLE PMIS_RES.TechnicsCategories ADD CONSTRAINT TechnicsCategories_UNQ UNIQUE (TechnicsCategoryName);
+
+CREATE SEQUENCE PMIS_RES.TechnicsCategories_ID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+CREATE TRIGGER PMIS_RES.TRG_TechnicsCategories_INSERT
+BEFORE INSERT ON PMIS_RES.TechnicsCategories
+FOR EACH ROW
+BEGIN
+   SELECT PMIS_RES.TechnicsCategories_ID_SEQ.nextval INTO :new.TechnicsCategoryID FROM dual;
+END;
+/
+
+INSERT INTO PMIS_RES.TechnicsCategories (TechnicsCategoryName)
+VALUES ('I категория');
+
+INSERT INTO PMIS_RES.TechnicsCategories (TechnicsCategoryName)
+VALUES ('II категория');
+
+INSERT INTO PMIS_RES.TechnicsCategories (TechnicsCategoryName)
+VALUES ('Спрени/За брак и търг');
+
+COMMIT;
+/
+
+

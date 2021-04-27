@@ -1,0 +1,12 @@
+﻿INSERT INTO PMIS_ADM.ChangeTypes (ChangeTypeKey, ChangeType, ModuleID)
+VALUES ('ADM_PasswordPolicy', 'Пароли', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'ADM'));
+
+INSERT INTO PMIS_ADM.ChangeTypes (ChangeTypeKey, ChangeType, ModuleID)
+VALUES ('RES_Lists_TrailerBodyKind', 'Класификатор "Видове каросерии на ремаркета"', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'));
+
+INSERT INTO PMIS_ADM.ChangeTypes (ChangeTypeKey, ChangeType, ModuleID)
+VALUES ('RES_Company', 'Фирми', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'));
+
+
+COMMIT;
+/

@@ -1,0 +1,30 @@
+﻿CREATE TABLE PMIS_RES.MilReadiness(MilReadinessID number NOT NULL,
+                                   MilReadinessName varchar2(300)
+                                  );
+
+ALTER TABLE PMIS_RES.MilReadiness ADD CONSTRAINT MilReadiness_PK PRIMARY KEY(MilReadinessID);
+
+CREATE SEQUENCE PMIS_RES.MilReadiness_ID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+CREATE TRIGGER PMIS_RES.TRG_MilReadiness_INSERT
+BEFORE INSERT ON PMIS_RES.MilReadiness
+FOR EACH ROW
+BEGIN
+   SELECT PMIS_RES.MilReadiness_ID_SEQ.nextval INTO :new.MilReadinessID FROM dual;
+END;
+/
+
+INSERT INTO PMIS_RES.MilReadiness (MilReadinessName)
+VALUES ('Готовност #1');
+
+INSERT INTO PMIS_RES.MilReadiness (MilReadinessName)
+VALUES ('Готовност #2');
+
+INSERT INTO PMIS_RES.MilReadiness (MilReadinessName)
+VALUES ('Готовност #3');
+
+COMMIT;
+/

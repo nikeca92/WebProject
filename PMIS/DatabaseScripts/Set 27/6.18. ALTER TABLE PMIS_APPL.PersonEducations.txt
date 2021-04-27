@@ -1,0 +1,1 @@
+﻿ALTER TABLE PMIS_APPL.PersonEducations RENAME TO PersonEducations_;

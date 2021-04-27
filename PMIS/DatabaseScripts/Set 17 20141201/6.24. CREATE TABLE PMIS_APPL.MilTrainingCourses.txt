@@ -1,0 +1,27 @@
+﻿CREATE TABLE PMIS_APPL.MilTrainingCourses(MilTrainingCourseID number  NOT NULL,
+                                          MilTrainingCourseName varchar(500),
+                                          Active number(1) NOT NULL CHECK(Active BETWEEN 0 AND 1));
+                                    
+ALTER TABLE PMIS_APPL.MilTrainingCourses ADD CONSTRAINT MilTrainingCourses_PK PRIMARY KEY(MilTrainingCourseID);                                    
+
+CREATE SEQUENCE PMIS_APPL.MilTrainingCourses_ID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+CREATE TRIGGER PMIS_APPL.TRG_MilTrainingCourses_INSERT
+BEFORE INSERT ON PMIS_APPL.MilTrainingCourses
+FOR EACH ROW
+BEGIN
+   SELECT PMIS_APPL.MilTrainingCourses_ID_SEQ.nextval INTO :new.MilTrainingCourseID FROM dual;
+END;
+/
+
+INSERT INTO PMIS_APPL.MilTrainingCourses (MilTrainingCourseName, Active)
+VALUES ('Примерен курс 1', 1);
+
+INSERT INTO PMIS_APPL.MilTrainingCourses (MilTrainingCourseName, Active)
+VALUES ('Примерен курс 2', 1);
+
+COMMIT;
+/

@@ -1,0 +1,35 @@
+﻿CREATE TABLE PMIS_HS.Measures(MeasureID number NOT NULL,
+                              MeasureName varchar2(500),
+                              Threshold decimal(30, 10));
+
+ALTER TABLE PMIS_HS.Measures ADD CONSTRAINT Measures_PK PRIMARY KEY(MeasureID);
+
+CREATE SEQUENCE PMIS_HS.Measures_ID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+CREATE TRIGGER PMIS_HS.TRG_Measures_INSERT
+BEFORE INSERT ON PMIS_HS.Measures
+FOR EACH ROW
+BEGIN
+   SELECT PMIS_HS.Measures_ID_SEQ.nextval INTO :new.MeasureID FROM dual;
+END;
+/
+
+INSERT INTO PMIS_HS.Measures(MeasureName, Threshold)
+VALUES ('Температура на въздуха', 0);
+
+INSERT INTO PMIS_HS.Measures(MeasureName, Threshold)
+VALUES ('Относителна влажност', 0);
+
+INSERT INTO PMIS_HS.Measures(MeasureName, Threshold)
+VALUES ('Скорост на движение на въздуха', 0);
+
+INSERT INTO PMIS_HS.Measures(MeasureName, Threshold)
+VALUES ('Комунален шум Leq', 0);
+
+INSERT INTO PMIS_HS.Measures(MeasureName, Threshold)
+VALUES ('Комунален шум Lmax', 0);
+
+COMMIT;

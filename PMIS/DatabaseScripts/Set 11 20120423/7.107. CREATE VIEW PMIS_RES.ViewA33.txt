@@ -1,0 +1,121 @@
+﻿CREATE OR REPLACE VIEW PMIS_RES.ViewA33
+AS 
+	SELECT 1 as StatusID,
+		   'Водят се на отчет' as StatusName,
+		   1 as StatusOrder,
+		   0 as MilReadinessID,
+		   0 as AdministrationID,
+		   'А' as Section
+	FROM dual
+
+	UNION ALL
+
+	SELECT 2 as StatusID,
+		   'С МН-осн.попълнение' as StatusName,
+		   2 as StatusOrder,
+		   0 as MilReadinessID,
+		   0 as AdministrationID,
+		   'А' as Section
+	FROM dual
+
+	UNION ALL
+
+	SELECT 2 + RANK() OVER (ORDER BY a.MilReadinessName, a.MilReadinessID) as StatusID,
+		   '   ' || a.MilReadinessName as StatusName,
+		   2 + RANK() OVER (ORDER BY a.MilReadinessName, a.MilReadinessID) as StatusOrder,
+		   a.MilReadinessID,
+		   0 as AdministrationID,
+		   'А' as Section
+	FROM PMIS_RES.MilReadiness a
+
+	UNION ALL
+
+	SELECT 3 + (SELECT COUNT(*) FROM PMIS_RES.MilReadiness) as StatusID,
+		   'Резерв' as StatusName,
+		   3 + (SELECT COUNT(*) FROM PMIS_RES.MilReadiness) as StatusOrder,
+		   0 as MilReadinessID,
+		   0 as AdministrationID,
+		   'А' as Section
+	FROM dual
+
+	UNION ALL
+
+	SELECT 4 + (SELECT COUNT(*) FROM PMIS_RES.MilReadiness) as StatusID,
+		   'Отсрочени/неподлеж.' as StatusName,
+		   4 + (SELECT COUNT(*) FROM PMIS_RES.MilReadiness) as StatusOrder,
+		   0 as MilReadinessID,
+		   0 as AdministrationID,
+		   'А' as Section
+	FROM dual
+
+	UNION ALL
+
+	SELECT 5 + (SELECT COUNT(*) FROM PMIS_RES.MilReadiness) as StatusID,
+		   'Временно снети' as StatusName,
+		   5 + (SELECT COUNT(*) FROM PMIS_RES.MilReadiness) as StatusOrder,
+		   0 as MilReadinessID,
+		   0 as AdministrationID,
+		   'А' as Section
+	FROM dual
+
+	UNION ALL
+
+	SELECT 6 + (SELECT COUNT(*) FROM PMIS_RES.MilReadiness) as StatusID,
+		   'Свободни' as StatusName,
+		   6 + (SELECT COUNT(*) FROM PMIS_RES.MilReadiness) as StatusOrder,
+		   0 as MilReadinessID,
+		   0 as AdministrationID,
+		   'А' as Section
+	FROM dual
+
+	UNION ALL
+
+	SELECT 7 + (SELECT COUNT(*) FROM PMIS_RES.MilReadiness) as StatusID,
+		   '   НГВС за мирно време' as StatusName,
+		   7 + (SELECT COUNT(*) FROM PMIS_RES.MilReadiness) as StatusOrder,
+		   0 as MilReadinessID,
+		   0 as AdministrationID,
+		   'А' as Section
+	FROM dual
+
+	UNION ALL
+
+	SELECT 8 + (SELECT COUNT(*) FROM PMIS_RES.MilReadiness) as StatusID,
+		   '   получили МН с ТНС' as StatusName,
+		   8 + (SELECT COUNT(*) FROM PMIS_RES.MilReadiness) as StatusOrder,
+		   0 as MilReadinessID,
+		   0 as AdministrationID,
+		   'А' as Section
+	FROM dual
+	
+	UNION ALL
+
+	SELECT 8 + (SELECT COUNT(*) FROM PMIS_RES.MilReadiness) + (DENSE_RANK() OVER (ORDER BY a.AdministrationName)) as StatusID,
+		   a.AdministrationName as StatusName,
+		   8 + (SELECT COUNT(*) FROM PMIS_RES.MilReadiness) + (DENSE_RANK() OVER (ORDER BY a.AdministrationName)) as StatusOrder,
+		   0 as MilReadinessID,
+		   a.AdministrationID,
+		   'Б' as Section
+	FROM PMIS_ADM.Administrations a
+	
+	UNION ALL
+
+	SELECT 9 + (SELECT COUNT(*) FROM PMIS_RES.MilReadiness) + (SELECT COUNT(*) FROM PMIS_ADM.Administrations) as StatusID,
+		   'Доставят се направо' as StatusName,
+		   9 + (SELECT COUNT(*) FROM PMIS_RES.MilReadiness) + (SELECT COUNT(*) FROM PMIS_ADM.Administrations) as StatusOrder,
+		   0 as MilReadinessID,
+		   0 as AdministrationID,
+		   'В' as Section
+	FROM dual
+	
+	UNION ALL
+
+	SELECT 10 + (SELECT COUNT(*) FROM PMIS_RES.MilReadiness) + (SELECT COUNT(*) FROM PMIS_ADM.Administrations) as StatusID,
+		   'Доставят се чрез ПИз' as StatusName,
+		   10 + (SELECT COUNT(*) FROM PMIS_RES.MilReadiness) + (SELECT COUNT(*) FROM PMIS_ADM.Administrations) as StatusOrder,
+		   0 as MilReadinessID,
+		   0 as AdministrationID,
+		   'В' as Section
+	FROM dual
+;
+/

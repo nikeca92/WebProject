@@ -1,0 +1,57 @@
+﻿CREATE TABLE PMIS_RES.Technics(TechnicsID number NOT NULL,
+                               TechnicsTypeID number NOT NULL,
+                               TechnicsCategoryID number,
+                               ItemsCount number NOT NULL,
+                               ResidenceCityID number,
+                               ResidenceDistrictID number,
+                               ResidenceAddress varchar2(1500),
+                               OtherInfo varchar2(4000),
+                               DriverReservistID number,
+                               OwnershipTypeID number,
+                               OwnershipLeasing number(1) CHECK (OwnershipLeasing BETWEEN 0 AND 1),
+                               OwnershipCompanyID number,
+                               OwnershipIdentNumber varchar2(10),
+                               OwnershipFullName varchar2(500),
+                               OwnershipCityID number,
+                               OwnershipDistrictID number,
+                               OwnershipAddress varchar2(1500),
+                               OwnershipPhone varchar2(50),
+
+                               GroupManagementSection varchar2(20),
+                               Section varchar2(20),
+                               Deliverer varchar2(250),
+                               PunktID number,
+                               
+                               SourceTechnicsID number,
+                               
+                               CreatedBy number,
+                               CreatedDate date,
+                               LastModifiedBy number,
+                               LastModifiedDate date
+                              );
+
+ALTER TABLE PMIS_RES.Technics ADD CONSTRAINT Technics_PK PRIMARY KEY (TechnicsID);
+ALTER TABLE PMIS_RES.Technics ADD CONSTRAINT Technics_TechnicsTypes_FK FOREIGN KEY (TechnicsTypeID) REFERENCES PMIS_RES.TechnicsTypes (TechnicsTypeID);
+ALTER TABLE PMIS_RES.Technics ADD CONSTRAINT Technics_SourceTechnics_FK FOREIGN KEY (SourceTechnicsID) REFERENCES PMIS_RES.Technics (TechnicsID);
+ALTER TABLE PMIS_RES.Technics ADD CONSTRAINT Technics_TechnicsCategory_FK FOREIGN KEY (TechnicsCategoryID) REFERENCES PMIS_RES.TechnicsCategories (TechnicsCategoryID);
+ALTER TABLE PMIS_RES.Technics ADD CONSTRAINT Technics_ResCity_FK FOREIGN KEY (ResidenceCityID) REFERENCES UKAZ_OWNER.KL_NMA (KOD_NMA);
+ALTER TABLE PMIS_RES.Technics ADD CONSTRAINT Technics_ResDistrict_FK FOREIGN KEY (ResidenceDistrictID) REFERENCES PMIS_ADM.Districts (DistrictID);
+ALTER TABLE PMIS_RES.Technics ADD CONSTRAINT Technics_DriverReservist_FK FOREIGN KEY (DriverReservistID) REFERENCES PMIS_RES.Reservists (ReservistID);
+ALTER TABLE PMIS_RES.Technics ADD CONSTRAINT Technics_OwnerType_FK FOREIGN KEY (OwnershipTypeID) REFERENCES PMIS_ADM.OwnershipTypes (OwnershipTypeID);
+ALTER TABLE PMIS_RES.Technics ADD CONSTRAINT Technics_OwnerCompany_FK FOREIGN KEY (OwnershipCompanyID) REFERENCES PMIS_ADM.Companies (CompanyID);
+ALTER TABLE PMIS_RES.Technics ADD CONSTRAINT Technics_OwnerCity_FK FOREIGN KEY (OwnershipCityID) REFERENCES UKAZ_OWNER.KL_NMA (KOD_NMA);
+ALTER TABLE PMIS_RES.Technics ADD CONSTRAINT Technics_OwnerDistrict_FK FOREIGN KEY (OwnershipDistrictID) REFERENCES PMIS_ADM.Districts (DistrictID);
+
+CREATE SEQUENCE PMIS_RES.Technics_ID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+CREATE TRIGGER PMIS_RES.TRG_Technics_INSERT
+BEFORE INSERT ON PMIS_RES.Technics
+FOR EACH ROW
+BEGIN
+   SELECT PMIS_RES.Technics_ID_SEQ.nextval INTO :new.TechnicsID FROM dual;
+END;
+/
+

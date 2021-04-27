@@ -1,0 +1,41 @@
+﻿CREATE TABLE PMIS_ADM.PsychCert(PsychCertID number NOT NULL,
+							    PersonID number NOT NULL,
+							    PsychCertDate date,
+							    ProtNum varchar2(250),
+	                            ConclusionID number,
+							    ExpirationDate date
+                             );
+
+ALTER TABLE PMIS_ADM.PsychCert ADD CONSTRAINT PsychCert_PK PRIMARY KEY (PsychCertID);
+ALTER TABLE PMIS_ADM.PsychCert ADD CONSTRAINT PsychCert_Persons_FK FOREIGN KEY (PersonID) REFERENCES VS_OWNER.VS_LS (PersonID);
+ALTER TABLE PMIS_ADM.PsychCert ADD CONSTRAINT PsychCert_Concl_FK FOREIGN KEY (ConclusionID) REFERENCES PMIS_ADM.MilitaryMedicalConclusions (MilitaryMedicalConclusionID);
+
+CREATE SEQUENCE PMIS_ADM.PsychCert_ID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+CREATE TRIGGER PMIS_ADM.TRG_PsychCert_INSERT
+BEFORE INSERT ON PMIS_ADM.PsychCert
+FOR EACH ROW
+BEGIN
+   SELECT PMIS_ADM.PsychCert_ID_SEQ.nextval INTO :new.PsychCertID FROM dual;
+END;
+/
+
+INSERT INTO PMIS_ADM.PsychCert (PersonID,
+								PsychCertDate,
+								ProtNum,
+								ConclusionID,
+								ExpirationDate)
+SELECT a.PersonID, a.PsychCert_Date, a.PsychCert_ProtNum, a.PsychCert_ConclusionID, NULL as ExpirationDate
+FROM PMIS_ADM.Persons a
+WHERE a.PersonID NOT IN (SELECT PersonID FROM PMIS_ADM.PsychCert) AND
+      (a.PsychCert_Date IS NOT NULL OR a.PsychCert_ProtNum IS NOT NULL OR a.PsychCert_ConclusionID IS NOT NULL);
+
+ALTER TABLE PMIS_ADM.Persons RENAME COLUMN PsychCert_Date TO PsychCert_Date_;
+ALTER TABLE PMIS_ADM.Persons RENAME COLUMN PsychCert_ProtNum TO PsychCert_ProtNum_;
+ALTER TABLE PMIS_ADM.Persons RENAME COLUMN PsychCert_ConclusionID TO PsychCert_ConclusionID_;
+
+COMMIT;
+/

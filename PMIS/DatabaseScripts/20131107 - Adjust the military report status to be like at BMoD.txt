@@ -1,0 +1,12 @@
+DELETE FROM PMIS_RES.MilitaryReportStatuses WHERE MilitaryReportStatusKey = 'AUXILIARY';
+
+
+DELETE FROM PMIS_RES.TechMilitaryReportStatuses WHERE TechMilitaryReportStatusKey = 'EXEMPT';
+DELETE FROM PMIS_RES.TechMilitaryReportStatuses WHERE TechMilitaryReportStatusKey = 'NOTRECEIVED';
+DELETE FROM PMIS_RES.TechMilitaryReportStatuses WHERE TechMilitaryReportStatusKey = 'RESERVE';
+DELETE FROM PMIS_RES.TechMilitaryReportStatuses WHERE TechMilitaryReportStatusKey = 'CONTRACT';
+
+
+INSERT INTO PMIS_RES.TechMilitaryReportStatuses (TechMilitaryReportStatusKey, TechMilitaryReportStatusName) VALUES ('VOLUNTARY_RESERVE', 'Доброволен резерв');
+INSERT INTO PMIS_RES.TechMilitaryReportStatuses (TechMilitaryReportStatusKey, TechMilitaryReportStatusName) VALUES ('REMOVED', 'Изключен');
+INSERT INTO PMIS_RES.TechMilitaryReportStatuses (TechMilitaryReportStatusKey, TechMilitaryReportStatusName) VALUES ('TEMPORARY_REMOVED', 'Временно снет');

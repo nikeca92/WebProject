@@ -1,0 +1,3049 @@
+--Резерв -> Човешки ресурси -> Групово снемане от отчет
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_HUMANRES_GROUPTAKINGDOWN', 'Групово снемане от отчет', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_HUMANRES'));
+
+--Резерв -> Човешки ресурси -> Добавяне на ново военно-отчетно лице -> Лични данни
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_HUMANRES_ADDMILITARYREPORTPERSON_PERSONALDATA_BIRTHPLACE', 'Месторождение', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_HUMANRES_ADDMILITARYREPORTPERSON_PERSONALDATA'));
+
+--Резерв -> Човешки ресурси -> Редактиране на военно-отчетно лице -> Лични данни
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_HUMANRES_EDITMILITARYREPORTPERSON_PERSONALDATA_BIRTHPLACE', 'Месторождение', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_HUMANRES_EDITMILITARYREPORTPERSON_PERSONALDATA'));
+
+--Резерв -> Справки -> Списък на техниката на военен отчет - Автомобили
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_VEHICLES_BODYTYPE', 'Каросерия', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_VEHICLES'));
+
+--Резерв -> Справки -> Списък на техниката на военен отчет - Автомобили
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_VEHICLES_ADDRESS', 'Адрес', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_VEHICLES'));
+
+--Резерв -> Справки -> Списък на техниката на военен отчет - Ремаркета
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_TRAILERS_BODYTYPE', 'Каросерия', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_TRAILERS'));
+
+--Резерв -> Справки -> Списък на техниката на военен отчет - Ремаркета
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_TRAILERS_ADDRESS', 'Адрес', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_TRAILERS'));
+
+--Резерв -> Справки -> Списък на техниката на военен отчет - Трактори
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_TRACTORS_ADDRESS', 'Адрес', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_TRACTORS'));
+
+--Резерв -> Справки -> Списък на техниката на военен отчет - Инженерна техника
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_ENG_EQUIP_ADDRESS', 'Адрес', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_ENG_EQUIP'));
+
+--Резерв -> Справки -> Списък на техниката на военен отчет - Подемно-транспортна техника
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_MOB_LIFT_EQUIP_ADDRESS', 'Адрес', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_MOB_LIFT_EQUIP'));
+
+--Резерв -> Справки -> Списък на техниката на военен отчет - Специализиран железопътен състав
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_RAILWAY_EQUIP_ADDRESS', 'Адрес', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_RAILWAY_EQUIP'));
+
+--Резерв -> Справки -> Списък на техниката на военен отчет - Авиационна техника
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_AVIATION_EQUIP_ADDRESS', 'Адрес', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_AVIATION_EQUIP'));
+
+--Резерв -> Справки -> Списък на техниката на военен отчет - Кораби
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_VESSELS_ADDRESS', 'Адрес', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_VESSELS'));
+
+--Резерв -> Справки -> Списък на техниката на военен отчет - Съдове за ГСМ
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_FUEL_CONTAINERS_ADDRESS', 'Адрес', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_FUEL_CONTAINERS'));
+
+
+--Безопасност на труда -> Класификатори -> Вероятности
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('HS_LISTMAINT_PROBABILITIES', 'Вероятности', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'HS_LISTMAINT'));
+
+--Безопасност на труда -> Класификатори -> Вероятности -> Добавяне
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('HS_LISTMAINT_PROBABILITIES_ADD', 'Добавяне на вероятност', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'HS_LISTMAINT_PROBABILITIES'));
+
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('HS_LISTMAINT_PROBABILITIES_ADD_PROBABILITYNAME', 'Описание на вероятността', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'HS_LISTMAINT_PROBABILITIES_ADD'));
+
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('HS_LISTMAINT_PROBABILITIES_ADD_PROBABILITYFACTOR', 'Коефициент', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'HS_LISTMAINT_PROBABILITIES_ADD'));
+
+--Безопасност на труда -> Класификатори -> Вероятности -> Редактиране
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('HS_LISTMAINT_PROBABILITIES_EDIT', 'Редактиране на вероятност', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'HS_LISTMAINT_PROBABILITIES'));
+
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('HS_LISTMAINT_PROBABILITIES_EDIT_PROBABILITYNAME', 'Описание на вероятността', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'HS_LISTMAINT_PROBABILITIES_EDIT'));
+
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('HS_LISTMAINT_PROBABILITIES_EDIT_PROBABILITYFACTOR', 'Коефициент', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'HS_LISTMAINT_PROBABILITIES_EDIT'));
+
+
+--Безопасност на труда -> Класификатори -> Експозиция
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('HS_LISTMAINT_EXPOSURE', 'Експозиция', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'HS_LISTMAINT'));
+
+--Безопасност на труда -> Класификатори -> Експозиция -> Добавяне
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('HS_LISTMAINT_EXPOSURE_ADD', 'Добавяне на експозиция', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'HS_LISTMAINT_EXPOSURE'));
+
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('HS_LISTMAINT_EXPOSURE_ADD_EXPOSURENAME', 'Описание на експозицията', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'HS_LISTMAINT_EXPOSURE_ADD'));
+
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('HS_LISTMAINT_EXPOSURE_ADD_EXPOSUREFACTOR', 'Коефициент', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'HS_LISTMAINT_EXPOSURE_ADD'));
+
+--Безопасност на труда -> Класификатори -> Експозиция -> Редактиране
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('HS_LISTMAINT_EXPOSURE_EDIT', 'Редактиране на експозиция', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'HS_LISTMAINT_EXPOSURE'));
+
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('HS_LISTMAINT_EXPOSURE_EDIT_EXPOSURENAME', 'Описание на експозицията', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'HS_LISTMAINT_EXPOSURE_EDIT'));
+
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('HS_LISTMAINT_EXPOSURE_EDIT_EXPOSUREFACTOR', 'Коефициент', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'HS_LISTMAINT_EXPOSURE_EDIT'));
+
+
+
+
+--Безопасност на труда -> Класификатори -> Тежест (последици)
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('HS_LISTMAINT_EFFECTWEIGHT', 'Тежест (последици)', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'HS_LISTMAINT'));
+
+--Безопасност на труда -> Класификатори -> Тежест (последици) -> Добавяне
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('HS_LISTMAINT_EFFECTWEIGHT_ADD', 'Добавяне на тежест', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'HS_LISTMAINT_EFFECTWEIGHT'));
+
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('HS_LISTMAINT_EFFECTWEIGHT_ADD_EFFECTWEIGHTNAME', 'Описание на тежестта', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'HS_LISTMAINT_EFFECTWEIGHT_ADD'));
+
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('HS_LISTMAINT_EFFECTWEIGHT_ADD_EFFECTWEIGHTDESC', 'Описание (дълго) на тежестта', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'HS_LISTMAINT_EFFECTWEIGHT_ADD'));
+
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('HS_LISTMAINT_EFFECTWEIGHT_ADD_EFFECTWEIGHTFACTOR', 'Коефициент', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'HS_LISTMAINT_EFFECTWEIGHT_ADD'));
+
+--Безопасност на труда -> Класификатори -> Тежест (последици) -> Редактиране
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('HS_LISTMAINT_EFFECTWEIGHT_EDIT', 'Редактиране на тежест', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'HS_LISTMAINT_EFFECTWEIGHT'));
+
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('HS_LISTMAINT_EFFECTWEIGHT_EDIT_EFFECTWEIGHTNAME', 'Описание на тежестта', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'HS_LISTMAINT_EFFECTWEIGHT_EDIT'));
+
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('HS_LISTMAINT_EFFECTWEIGHT_EDIT_EFFECTWEIGHTDESC', 'Описание на тежестта (дълго)', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'HS_LISTMAINT_EFFECTWEIGHT_EDIT'));
+
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('HS_LISTMAINT_EFFECTWEIGHT_EDIT_EFFECTWEIGHTFACTOR', 'Коефициент', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'HS_LISTMAINT_EFFECTWEIGHT_EDIT'));
+
+
+
+--Безопасност на труда -> Класификатори -> Риск
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('HS_LISTMAINT_RISKRANK', 'Риск', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'HS_LISTMAINT'));
+
+--Безопасност на труда -> Класификатори -> Риск -> Добавяне
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('HS_LISTMAINT_RISKRANK_ADD', 'Добавяне на риск', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'HS_LISTMAINT_RISKRANK'));
+
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('HS_LISTMAINT_RISKRANK_ADD_RISKRANKNAME', 'Описание на риска', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'HS_LISTMAINT_RISKRANK_ADD'));
+
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('HS_LISTMAINT_RISKRANK_ADD_RISKRANKFROM', 'Рангово число ОТ', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'HS_LISTMAINT_RISKRANK_ADD'));
+
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('HS_LISTMAINT_RISKRANK_ADD_RISKRANKTO', 'Рангово число ДО', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'HS_LISTMAINT_RISKRANK_ADD'));
+
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('HS_LISTMAINT_RISKRANK_ADD_RISKRANK', 'Степен', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'HS_LISTMAINT_RISKRANK_ADD'));
+
+--Безопасност на труда -> Класификатори -> Риск -> Редактиране
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('HS_LISTMAINT_RISKRANK_EDIT', 'Редактиране на тежест', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'HS_LISTMAINT_RISKRANK'));
+
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('HS_LISTMAINT_RISKRANK_EDIT_RISKRANKNAME', 'Описание на риска', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'HS_LISTMAINT_RISKRANK_EDIT'));
+
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('HS_LISTMAINT_RISKRANK_EDIT_RISKRANKFROM', 'Рангово число ОТ', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'HS_LISTMAINT_RISKRANK_EDIT'));
+
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('HS_LISTMAINT_RISKRANK_EDIT_RISKRANKTO', 'Рангово число ДО', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'HS_LISTMAINT_RISKRANK_EDIT'));
+
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('HS_LISTMAINT_RISKRANK_EDIT_RISKRANK', 'Степен', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'HS_LISTMAINT_RISKRANK_EDIT'));
+
+
+
+
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('HS_LIST_RISKFACTORTYPES', 'Видове фактори при оценка на риска', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'HS_LISTMAINT'));
+
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('HS_LIST_ADDRISKFACTORTYPE', 'Добавяне на вид фактор при оценка на риска', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'HS_LIST_RISKFACTORTYPES'));
+
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('HS_LIST_EDITRISKFACTORTYPE', 'Редактиране на вид фактор при оценка на риска', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'HS_LIST_RISKFACTORTYPES'));
+
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('HS_LIST_DELETERISKFACTORTYPE', 'Изтриване на вид фактор при оценка на риска', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'HS_LIST_RISKFACTORTYPES'));
+
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('HS_LIST_RISKFACTORS', 'Фактори при оценка на риска', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'HS_LIST_RISKFACTORTYPES'));
+
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('HS_LIST_ADDRISKFACTOR', 'Добавяне на фактор при оценка на риска', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'HS_LIST_RISKFACTORS'));
+
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('HS_LIST_EDITRISKFACTOR', 'Редактиране на фактор при оценка на риска', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'HS_LIST_RISKFACTORS'));
+
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('HS_LIST_DELETERISKFACTOR', 'Изтриване на фактор при оценка на риска', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'HS_LIST_RISKFACTORS'));
+
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('HS_LIST_HAZARDS', 'Потенциални опасности при оценка на риска', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'HS_LIST_RISKFACTORS'));
+
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('HS_LIST_ADDHAZARD', 'Добавяне на потенциална опасност при оценка на риска', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'HS_LIST_HAZARDS'));
+
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('HS_LIST_EDITHAZARD', 'Редактиране на потенциална опасност при оценка на риска', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'HS_LIST_HAZARDS'));
+
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('HS_LIST_DELETEHAZARD', 'Изтриване на потенциална опасност при оценка на риска', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'HS_LIST_HAZARDS'));
+
+
+
+--Безопасност на труда -> Оценки на риска -> Класификация на дейностите
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('HS_MILITARYUNITPOSITIONS', 'Класификация на дейностите', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'HS_RISKASSESSMENTS'));
+
+--Безопасност на труда -> Оценки на риска -> Класификация на дейностите -> Подразделение/обект
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('HS_SUBDEV', 'Подразделение/обект', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'HS_MILITARYUNITPOSITIONS'));
+
+--Безопасност на труда -> Оценки на риска -> Класификация на дейностите -> Подразделение/обект -> Длъжност
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('HS_SUBDEV_POSITION', 'Длъжност', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'HS_SUBDEV'));
+
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('HS_SUBDEV_POSITION_POSNAME', 'Наименование', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'HS_SUBDEV_POSITION'));
+
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('HS_SUBDEV_POSITION_POSACTIVITIES', 'Извършвани дейности', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'HS_SUBDEV_POSITION'));
+
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('HS_SUBDEV_POSITION_POSTOTALPERSONSCNT', 'Общ брой лица', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'HS_SUBDEV_POSITION'));
+
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('HS_SUBDEV_POSITION_POSFEMALECNT', 'Жени', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'HS_SUBDEV_POSITION'));
+
+
+
+--Безопасност на труда -> Оценки на риска -> Карта за оценка на риска
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('HS_RISKCARD', 'Карта за оценка на риска', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'HS_RISKASSESSMENTS'));
+
+--Безопасност на труда -> Оценки на риска -> Карта за оценка на риска -> Опасност
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('HS_RISKCARD_HAZARD', 'Опасност', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'HS_RISKCARD'));
+
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('HS_RISKCARD_HAZARD_PROBABILITY', 'Вероятност', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'HS_RISKCARD_HAZARD'));
+
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('HS_RISKCARD_HAZARD_EXPOSURE', 'Експозиция', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'HS_RISKCARD_HAZARD'));
+
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('HS_RISKCARD_HAZARD_EFFECTWEIGHT', 'Тежест', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'HS_RISKCARD_HAZARD'));
+
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('HS_RISKCARD_HAZARD_HAZARD', 'Риск', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'HS_RISKCARD_HAZARD'));
+
+
+COMMIT;
+/
+
+INSERT INTO PMIS_ADM.ChangeTypes (ChangeTypeKey, ChangeType, ModuleID)
+VALUES ('HS_Lists_Probabilities', 'Класификатор "Вероятност"', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'));
+
+INSERT INTO PMIS_ADM.ChangeTypes (ChangeTypeKey, ChangeType, ModuleID)
+VALUES ('HS_Lists_Exposure', 'Класификатор "Експозиция"', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'));
+
+INSERT INTO PMIS_ADM.ChangeTypes (ChangeTypeKey, ChangeType, ModuleID)
+VALUES ('HS_Lists_EffectWeight', 'Класификатор "Тежест (последици)"', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'));
+
+INSERT INTO PMIS_ADM.ChangeTypes (ChangeTypeKey, ChangeType, ModuleID)
+VALUES ('HS_Lists_RiskRank', 'Класификатор "Риск"', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'));
+
+INSERT INTO PMIS_ADM.ChangeTypes (ChangeTypeKey, ChangeType, ModuleID)
+VALUES ('HS_Lists_RiskFactorTypes', 'Видове фактори при оценка на риска', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'));
+
+INSERT INTO PMIS_ADM.ChangeTypes (ChangeTypeKey, ChangeType, ModuleID)
+VALUES ('HS_Lists_RiskFactors', 'Фактори при оценка на риска', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'));
+
+INSERT INTO PMIS_ADM.ChangeTypes (ChangeTypeKey, ChangeType, ModuleID)
+VALUES ('HS_Lists_Hazards', 'Потенциални опасности при оценка на риска', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'));
+
+INSERT INTO PMIS_ADM.ChangeTypes (ChangeTypeKey, ChangeType, ModuleID)
+VALUES ('HS_MilitaryUnitPositions', 'Класификация на длъжностите', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'));
+
+INSERT INTO PMIS_ADM.ChangeTypes (ChangeTypeKey, ChangeType, ModuleID)
+VALUES ('HS_RiskCard', 'Карта за оценка на риска', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'));
+
+COMMIT;
+/
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Reservist_GroupTakeDown', 'Групово снемане от отчет', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 2);
+
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('HS_Lists_Probabilities_AddProbability', 'Добавяне на вероятност', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('HS_Lists_Probabilities_EditProbability', 'Редактиране на вероятност', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('HS_Lists_Probabilities_DeleteProbability', 'Изтриване на вероятност', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'), 3);
+
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('HS_Lists_Exposure_AddExposure', 'Добавяне на експозиция', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('HS_Lists_Exposure_EditExposure', 'Редактиране на експозиция', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('HS_Lists_Exposure_DeleteExposure', 'Изтриване на експозиция', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'), 3);
+
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('HS_Lists_EffectWeight_AddEffectWeight', 'Добавяне на тежест (последици)', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('HS_Lists_EffectWeight_EditEffectWeight', 'Редактиране на тежест (последици)', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('HS_Lists_EffectWeight_DeleteEffectWeight', 'Изтриване на тежест (последици)', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'), 3);
+
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('HS_Lists_RiskRank_AddRiskRank', 'Добавяне на риск', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('HS_Lists_RiskRank_EditRiskRank', 'Редактиране на риск', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('HS_Lists_RiskRank_DeleteRiskRank', 'Изтриване на риск', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'), 3);
+
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('HS_Lists_RiskFactorTypes_AddRiskFactorType', 'Добавяне на вид фактор при оценка на риска', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('HS_Lists_RiskFactorTypes_EditRiskFactorType', 'Редактиране на вид фактор при оценка на риска', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('HS_Lists_RiskFactorTypes_DeleteRiskFactorType', 'Изтриване на вид фактор при оценка на риска', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'), 3);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('HS_Lists_RiskFactors_AddRiskFactor', 'Добавяне на фактор при оценка на риска', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('HS_Lists_RiskFactors_EditRiskFactor', 'Редактиране на фактор при оценка на риска', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('HS_Lists_RiskFactors_DeleteRiskFactor', 'Изтриване на фактор при оценка на риска', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'), 3);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('HS_Lists_Hazards_AddHazard', 'Добавяне на потенциална опасност при оценка на риска', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('HS_Lists_Hazards_EditHazard', 'Редактиране на потенциална опасност при оценка на риска', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('HS_Lists_Hazards_DeleteHazard', 'Изтриване на потенциална опасност при оценка на риска', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'), 3);
+
+
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('HS_Subdivisions_AddSubdivision', 'Добавяне на подразделение/обект', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('HS_Subdivisions_EditSubdivision', 'Редактиране на подразделение/обект', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('HS_Subdivisions_DeleteSubdivision', 'Изтриване на подразделение/обект', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'), 3);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('HS_Positions_AddPosition', 'Добавяне на длъжност', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('HS_Positions_EditPosition', 'Редактиране на длъжност', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('HS_Positions_DeletePosition', 'Изтриване на длъжност', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'), 3);
+
+
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('HS_RiskCard_AddRiskCardItem', 'Добавяне на опасност', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('HS_RiskCard_EditRiskCardItem', 'Редактиране на опасност', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('HS_RiskCard_DeleteRiskCardItem', 'Изтриване на опасност', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'), 3);
+
+
+
+COMMIT;
+/
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('bool', 'RES_Reservist_MilRepSpec_IsPrimary', 'Основна ВОС', 2);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_MilitaryReportPersonDetails_BirthCountry', 'Месторождение - държава', 13);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_MilitaryReportPersonDetails_BirthCity', 'Месторождение - населено място', 14);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('number', 'HS_Lists_Probabilities_ProbabilityFactor', 'Коефициент', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_Lists_Probabilities_ProbabilityName', 'Описание на вероятността', 2);
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('number', 'HS_Lists_Exposure_ExposureFactor', 'Коефициент', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_Lists_Exposure_ExposureName', 'Описание на експозицията', 2);
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('number', 'HS_Lists_EffectWeight_EffectWeightFactor', 'Коефициент', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_Lists_EffectWeight_EffectWeightName', 'Описание на тежестта', 2);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_Lists_EffectWeight_EffectWeightDesc', 'Описание на тежестта (дълго)', 3);
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_Lists_RiskRank_RiskRank', 'Степен', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('number', 'HS_Lists_RiskRank_RiskRankFrom', 'Рангово число ОТ', 2);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('number', 'HS_Lists_RiskRank_RiskRankTo', 'Рангово число ДО', 3);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_Lists_RiskRank_RiskRankName', 'Описание на риска', 4);
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_Lists_RiskFactorTypes_RiskFactorTypeName', 'Наименование', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('number', 'HS_Lists_RiskFactorTypes_Seq', 'Подредба', 2);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_Lists_RiskFactors_RiskFactorName', 'Наименование', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('number', 'HS_Lists_RiskFactors_Seq', 'Подредба', 2);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('bool', 'HS_Lists_RiskFactors_AllowAddManually', 'Позволява ръчно добавяне на опасности', 3);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_Lists_Hazards_HazardName', 'Наименование', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('number', 'HS_Lists_Hazards_Seq', 'Подредба', 2);
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_Subdivisions_SubdivisionName', 'Наименование', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_Subdivisions_MilitaryUnit', 'ВПН/Структура', 2);
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_Positions_PositionName', 'Наименование', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_Positions_Activities', 'Извършвани дейности', 2);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('number', 'HS_Positions_TotalPersonsCnt', 'Общи брой лица', 3);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('number', 'HS_Positions_FemaleCnt', 'Жени', 4);
+
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('number', 'HS_RiskCard_Probability', 'Вероятност', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('number', 'HS_RiskCard_Exposure', 'Експозиция', 2);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('number', 'HS_RiskCard_EffectWeight', 'Тежест', 3);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_RiskCard_OtherHazard', 'Друга опасност', 4);
+
+
+COMMIT;
+/
+INSERT INTO PMIS_ADM.Maintenance(MaintKey, HeaderTitle, DataTable, GTableTableName,
+   FldList, UpdtList, KeyFld, CanDelete, CanAdd, MasterTable, MasterField,
+   ChangeTypeKey, InsertChangeEventTypeKey, UpdateChangeEventTypeKey, DeleteChangeEventTypeKey,
+   MenuItemKey, UIKeyMaintenance, UIKeyDelete, UIKeyEdit, UIKeyAdd, ModuleID)
+VALUES ('HS_Probabilities', 'Определяне (класифициране) на вероятността - В', 'PMIS_HS.Probabilities', NULL, 
+ 'ProbabilityID[HIDDEN], ProbabilityFactor, ProbabilityName', 'ProbabilityFactor, ProbabilityName', 'ProbabilityID', 1, 1, '', '',
+ 'HS_Lists_Probabilities', 'HS_Lists_Probabilities_AddProbability', 'HS_Lists_Probabilities_EditProbability', 'HS_Lists_Probabilities_DeleteProbability',
+ 'Lists_HS_Probabilities', 'HS_LISTMAINT_PROBABILITIES', 'HS_LISTMAINT_PROBABILITIES_DELETE', 'HS_LISTMAINT_PROBABILITIES_EDIT', 'HS_LISTMAINT_PROBABILITIES_ADD',
+ (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'));
+
+INSERT INTO PMIS_ADM.Maintenance(MaintKey, HeaderTitle, DataTable, GTableTableName,
+   FldList, UpdtList, KeyFld, CanDelete, CanAdd, MasterTable, MasterField,
+   ChangeTypeKey, InsertChangeEventTypeKey, UpdateChangeEventTypeKey, DeleteChangeEventTypeKey,
+   MenuItemKey, UIKeyMaintenance, UIKeyDelete, UIKeyEdit, UIKeyAdd, ModuleID)
+VALUES ('HS_Exposure', 'Определяне (класифициране) на честотата, продължителността (експозицията) и спецификата на излагане - Е', 'PMIS_HS.Exposure', NULL, 
+ 'ExposureID[HIDDEN], ExposureFactor, ExposureName', 'ExposureFactor, ExposureName', 'ExposureID', 1, 1, '', '',
+ 'HS_Lists_Exposure', 'HS_Lists_Exposure_AddExposure', 'HS_Lists_Exposure_EditExposure', 'HS_Lists_Exposure_DeleteExposure',
+ 'Lists_HS_Exposure', 'HS_LISTMAINT_EXPOSURE', 'HS_LISTMAINT_EXPOSURE_DELETE', 'HS_LISTMAINT_EXPOSURE_EDIT', 'HS_LISTMAINT_EXPOSURE_ADD',
+ (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'));
+ 
+INSERT INTO PMIS_ADM.Maintenance(MaintKey, HeaderTitle, DataTable, GTableTableName,
+   FldList, UpdtList, KeyFld, CanDelete, CanAdd, MasterTable, MasterField,
+   ChangeTypeKey, InsertChangeEventTypeKey, UpdateChangeEventTypeKey, DeleteChangeEventTypeKey,
+   MenuItemKey, UIKeyMaintenance, UIKeyDelete, UIKeyEdit, UIKeyAdd, ModuleID)
+VALUES ('HS_EffectWeight', 'Определяне (класифициране) на тежестта (последиците) - Т', 'PMIS_HS.EffectWeight', NULL, 
+ 'EffectWeightID[HIDDEN], EffectWeightFactor, EffectWeightName, EffectWeightDesc', 'EffectWeightFactor, EffectWeightName, EffectWeightDesc', 'EffectWeightID', 1, 1, '', '',
+ 'HS_Lists_EffectWeight', 'HS_Lists_EffectWeight_AddEffectWeight', 'HS_Lists_EffectWeight_EditEffectWeight', 'HS_Lists_EffectWeight_DeleteEffectWeight',
+ 'Lists_HS_EffectWeight', 'HS_LISTMAINT_EFFECTWEIGHT', 'HS_LISTMAINT_EFFECTWEIGHT_DELETE', 'HS_LISTMAINT_EFFECTWEIGHT_EDIT', 'HS_LISTMAINT_EFFECTWEIGHT_ADD',
+ (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'));
+ 
+INSERT INTO PMIS_ADM.Maintenance(MaintKey, HeaderTitle, DataTable, GTableTableName,
+   FldList, UpdtList, KeyFld, CanDelete, CanAdd, MasterTable, MasterField,
+   ChangeTypeKey, InsertChangeEventTypeKey, UpdateChangeEventTypeKey, DeleteChangeEventTypeKey,
+   MenuItemKey, UIKeyMaintenance, UIKeyDelete, UIKeyEdit, UIKeyAdd, ModuleID)
+VALUES ('HS_RiskRank', 'Класифициране на риска', 'PMIS_HS.RiskRank', NULL, 
+ 'RiskRankID[HIDDEN], RiskRank, RiskRankFrom, RiskRankTo, RiskRankName', 'RiskRank, RiskRankFrom, RiskRankTo, RiskRankName', 'RiskRankID', 1, 1, '', '',
+ 'HS_Lists_RiskRank', 'HS_Lists_RiskRank_AddRiskRank', 'HS_Lists_RiskRank_EditRiskRank', 'HS_Lists_RiskRank_DeleteRiskRank',
+ 'Lists_HS_RiskRank', 'HS_LISTMAINT_RISKRANK', 'HS_LISTMAINT_RISKRANK_DELETE', 'HS_LISTMAINT_RISKRANK_EDIT', 'HS_LISTMAINT_RISKRANK_ADD',
+ (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'));
+ 
+COMMIT;
+/
+
+INSERT INTO PMIS_ADM.MaintFields(TableName, TableColumn, FieldLabel, WidthPixels, FieldKey, UIItemEditKey, UIItemAddKey, IsMandatory, ValidateDataType, IsUnique)
+VALUES ('PMIS_HS.Probabilities', 'ProbabilityName', 'Описание на вероятността', 350, 'HS_Lists_Probabilities_ProbabilityName', 'HS_LISTMAINT_PROBABILITIES_EDIT_PROBABILITYNAME', 'HS_LISTMAINT_PROBABILITIES_ADD_PROBABILITYNAME', 1, 'string', 0);
+
+INSERT INTO PMIS_ADM.MaintFields(TableName, TableColumn, FieldLabel, WidthPixels, FieldKey, UIItemEditKey, UIItemAddKey, IsMandatory, ValidateDataType, IsUnique)
+VALUES ('PMIS_HS.Probabilities', 'ProbabilityFactor', 'Коефициент', 100, 'HS_Lists_Probabilities_ProbabilityFactor', 'HS_LISTMAINT_PROBABILITIES_EDIT_PROBABILITYFACTOR', 'HS_LISTMAINT_PROBABILITIES_ADD_PROBABILITYFACTOR', 1, 'number', 0);
+
+
+INSERT INTO PMIS_ADM.MaintFields(TableName, TableColumn, FieldLabel, WidthPixels, FieldKey, UIItemEditKey, UIItemAddKey, IsMandatory, ValidateDataType, IsUnique)
+VALUES ('PMIS_HS.Exposure', 'ExposureName', 'Описание на експозицията', 350, 'HS_Lists_Exposure_ExposureName', 'HS_LISTMAINT_EXPOSURE_EDIT_EXPOSURENAME', 'HS_LISTMAINT_EXPOSURE_ADD_EXPOSURENAME', 1, 'string', 0);
+
+INSERT INTO PMIS_ADM.MaintFields(TableName, TableColumn, FieldLabel, WidthPixels, FieldKey, UIItemEditKey, UIItemAddKey, IsMandatory, ValidateDataType, IsUnique)
+VALUES ('PMIS_HS.Exposure', 'ExposureFactor', 'Коефициент', 100, 'HS_Lists_Exposure_ExposureFactor', 'HS_LISTMAINT_EXPOSURE_EDIT_EXPOSUREFACTOR', 'HS_LISTMAINT_EXPOSURE_ADD_EXPOSUREFACTOR', 1, 'number', 0);
+
+
+INSERT INTO PMIS_ADM.MaintFields(TableName, TableColumn, FieldLabel, WidthPixels, FieldKey, UIItemEditKey, UIItemAddKey, IsMandatory, ValidateDataType, IsUnique)
+VALUES ('PMIS_HS.EffectWeight', 'EffectWeightName', 'Описание на тежестта', 200, 'HS_Lists_EffectWeight_EffectWeightName', 'HS_LISTMAINT_EFFECTWEIGHT_EDIT_EFFECTWEIGHTNAME', 'HS_LISTMAINT_EFFECTWEIGHT_ADD_EFFECTWEIGHTNAME', 1, 'string', 0);
+
+INSERT INTO PMIS_ADM.MaintFields(TableName, TableColumn, FieldLabel, WidthPixels, FieldKey, UIItemEditKey, UIItemAddKey, IsMandatory, ValidateDataType, IsUnique)
+VALUES ('PMIS_HS.EffectWeight', 'EffectWeightDesc', 'Описание на тежестта (дълго)', 350, 'HS_Lists_EffectWeight_EffectWeightDesc', 'HS_LISTMAINT_EFFECTWEIGHT_EDIT_EFFECTWEIGHTDESC', 'HS_LISTMAINT_EFFECTWEIGHT_ADD_EFFECTWEIGHTDESC', 1, 'string', 0);
+
+INSERT INTO PMIS_ADM.MaintFields(TableName, TableColumn, FieldLabel, WidthPixels, FieldKey, UIItemEditKey, UIItemAddKey, IsMandatory, ValidateDataType, IsUnique)
+VALUES ('PMIS_HS.EffectWeight', 'EffectWeightFactor', 'Коефициент', 100, 'HS_Lists_EffectWeight_EffectWeightFactor', 'HS_LISTMAINT_EFFECTWEIGHT_EDIT_EFFECTWEIGHTFACTOR', 'HS_LISTMAINT_EFFECTWEIGHT_ADD_EFFECTWEIGHTFACTOR', 1, 'number', 0);
+
+
+INSERT INTO PMIS_ADM.MaintFields(TableName, TableColumn, FieldLabel, WidthPixels, FieldKey, UIItemEditKey, UIItemAddKey, IsMandatory, ValidateDataType, IsUnique)
+VALUES ('PMIS_HS.RiskRank', 'RiskRankName', 'Описание на риска', 450, 'HS_Lists_RiskRank_RiskRankName', 'HS_LISTMAINT_RISKRANK_EDIT_RISKRANKNAME', 'HS_LISTMAINT_RISKRANK_ADD_RISKRANKNAME', 1, 'string', 0);
+
+INSERT INTO PMIS_ADM.MaintFields(TableName, TableColumn, FieldLabel, WidthPixels, FieldKey, UIItemEditKey, UIItemAddKey, IsMandatory, ValidateDataType, IsUnique)
+VALUES ('PMIS_HS.RiskRank', 'RiskRank', 'Степен', 80, 'HS_Lists_RiskRank_RiskRank', 'HS_LISTMAINT_RISKRANK_EDIT_RISKRANK', 'HS_LISTMAINT_RISKRANK_ADD_RISKRANK', 1, 'string', 0);
+
+INSERT INTO PMIS_ADM.MaintFields(TableName, TableColumn, FieldLabel, WidthPixels, FieldKey, UIItemEditKey, UIItemAddKey, IsMandatory, ValidateDataType, IsUnique)
+VALUES ('PMIS_HS.RiskRank', 'RiskRankFrom', 'Рангово число ОТ', 80, 'HS_Lists_RiskRank_RiskRankFrom', 'HS_LISTMAINT_RISKRANK_EDIT_RISKRANKFROM', 'HS_LISTMAINT_RISKRANK_ADD_RISKRANKFROM', 1, 'number', 0);
+
+INSERT INTO PMIS_ADM.MaintFields(TableName, TableColumn, FieldLabel, WidthPixels, FieldKey, UIItemEditKey, UIItemAddKey, IsMandatory, ValidateDataType, IsUnique)
+VALUES ('PMIS_HS.RiskRank', 'RiskRankTo', 'Рангово число ДО', 80, 'HS_Lists_RiskRank_RiskRankTo', 'HS_LISTMAINT_RISKRANK_EDIT_RISKRANKTO', 'HS_LISTMAINT_RISKRANK_ADD_RISKRANKTO', 1, 'number', 0);
+
+
+COMMIT;
+/
+DECLARE
+   FirstDistrictID number;
+   SecondDistrictID number;
+   Cnt number;
+BEGIN
+   SELECT COUNT(*) INTO Cnt
+   FROM PMIS_ADM.Districts a
+   WHERE DistrictName = 'Оборище' AND CityID = (SELECT KOD_NMA FROM UKAZ_OWNER.KL_NMA WHERE IME_NMA = 'София');
+   
+   IF Cnt = 2 THEN
+      SELECT MIN(DistrictID) INTO FirstDistrictID
+	  FROM PMIS_ADM.Districts a
+      WHERE DistrictName = 'Оборище' AND CityID = (SELECT KOD_NMA FROM UKAZ_OWNER.KL_NMA WHERE IME_NMA = 'София');
+	  
+	  SELECT MAX(DistrictID) INTO SecondDistrictID
+	  FROM PMIS_ADM.Districts a
+      WHERE DistrictName = 'Оборище' AND CityID = (SELECT KOD_NMA FROM UKAZ_OWNER.KL_NMA WHERE IME_NMA = 'София');
+	  
+	  UPDATE PMIS_ADM.MILITARYREPORTPERSONS SET
+	     CURRADDRDISTRICTID = FirstDistrictID
+	  WHERE CURRADDRDISTRICTID = SecondDistrictID;
+	  
+	  UPDATE PMIS_ADM.MILITARYREPORTPERSONS SET
+	     PERMADDRDISTRICTID = FirstDistrictID
+	  WHERE PERMADDRDISTRICTID = SecondDistrictID;
+	  
+	  UPDATE PMIS_ADM.PERSONS SET
+	     CURRADDRDISTRICTID = FirstDistrictID
+	  WHERE CURRADDRDISTRICTID = SecondDistrictID;
+	  
+	  UPDATE PMIS_ADM.PERSONS SET
+	     PERMADDRDISTRICTID = FirstDistrictID
+	  WHERE PERMADDRDISTRICTID = SecondDistrictID;
+	  
+	  UPDATE PMIS_ADM.COMPANIES SET
+	     DISTRICTID = FirstDistrictID
+	  WHERE DISTRICTID = SecondDistrictID;
+   END IF;
+   
+   DELETE FROM PMIS_ADM.Districts 
+   WHERE DistrictID = SecondDistrictID;
+END;
+/
+							   
+COMMIT;
+/
+UPDATE PMIS_ADM.PersonMilRepSpec SET
+   IsPrimary = 0;
+
+UPDATE PMIS_ADM.PersonMilRepSpec SET
+   IsPrimary = 1
+WHERE PersonMilRepSpecID IN (SELECT MIN(PersonMilRepSpecID) FROM PMIS_ADM.PersonMilRepSpec GROUP BY PersonID);
+
+COMMIT;
+
+/
+ALTER TABLE PMIS_ADM.MilitaryReportPersons ADD (BirthCountryID varchar2(3));
+ALTER TABLE PMIS_ADM.MilitaryReportPersons ADD (BirthCityIfAbroad varchar2(200));
+ALTER TABLE PMIS_ADM.MilitaryReportPersons ADD (BirthCityID number);
+
+ALTER TABLE PMIS_ADM.MilitaryReportPersons ADD CONSTRAINT MilRepPersons_BirthCountry_FK FOREIGN KEY (BirthCountryID) REFERENCES VS_OWNER.KLV_DJJ (DJJ_KOD);
+ALTER TABLE PMIS_ADM.MilitaryReportPersons ADD CONSTRAINT MilRepPersons_BirthCity_FK FOREIGN KEY (BirthCityID) REFERENCES UKAZ_OWNER.KL_NMA (KOD_NMA);
+
+/
+
+CREATE OR REPLACE PACKAGE PMIS_ADM.CommonFunctions AS
+   TYPE PMIS_CURSOR IS REF CURSOR;
+
+
+   
+   PROCEDURE GetUIItemAndChilds (P_UIItemID IN PMIS_ADM.UIItems.UIItemID%TYPE, 
+                                 P_RoleID IN PMIS_ADM.UserRoles.RoleID%TYPE, 
+                                 P_UIItems OUT PMIS_ADM.CommonFunctions.PMIS_CURSOR);
+ 
+   FUNCTION GetUIItemsTreeIDs (P_ParentUIItems IN SQL_ListOfIDs, 
+                               P_RoleID IN PMIS_ADM.UserRoles.RoleID%TYPE) RETURN SQL_ListOfIDs;
+
+
+
+   FUNCTION GetMilitaryUnitIDsPerUser (P_UserID IN PMIS_ADM.Users.UserID%TYPE) RETURN SQL_ListOfIDs;
+   
+   FUNCTION GetMilitaryUnitChilds (P_MilitaryUnitIDs IN SQL_ListOfIDs) RETURN SQL_ListOfIDs;
+   
+   FUNCTION GetMRSPerVSSTRecordHTML (P_VSST_ID IN number) RETURN varchar2;
+   FUNCTION GetMRSIdsPerVSSTRecord (P_VSST_ID IN number) RETURN varchar2;
+
+   FUNCTION GetMRSPerPersonHTML (P_PersonID IN number, P_MaxLength IN number) RETURN varchar2;
+   FUNCTION GetLanguagesPerPerson (P_PersonID IN number) RETURN varchar2;
+   FUNCTION GetDrivingLicensesPerPerson (P_PersonID IN number) RETURN varchar2;
+   FUNCTION GetSpecialitiesPerPerson (P_PersonID IN number) RETURN varchar2;
+   FUNCTION GetAgeFromEGN (P_EGN IN varchar2) RETURN number;
+   FUNCTION IsMilitaryUnitActual(P_KOD_MIR IN number) RETURN number;
+   
+   PROCEDURE CallURL(P_URL IN varchar2);
+   PROCEDURE CallGenerateOfflineReports;
+   
+   FUNCTION GetInitials (P_FULLNAME IN varchar2) RETURN varchar2;
+   FUNCTION GetFullAddress (P_CityID IN number, P_DistrictID IN number, P_Address varchar2) RETURN varchar2;
+END;
+/
+
+CREATE OR REPLACE PACKAGE BODY PMIS_ADM.CommonFunctions AS
+   PROCEDURE GetUIItemAndChilds (P_UIItemID IN PMIS_ADM.UIItems.UIItemID%TYPE,
+                                 P_RoleID IN PMIS_ADM.UserRoles.RoleID%TYPE,
+                                 P_UIItems OUT PMIS_ADM.CommonFunctions.PMIS_CURSOR) IS
+
+        UIItemIDs SQL_ListOfIDs := SQL_ListOfIDs();
+        ParentUIItemID SQL_ListOfIDs := SQL_ListOfIDs();
+   BEGIN
+      ParentUIItemID.extend();
+      ParentUIItemID(1) := P_UIItemID;
+      
+      UIItemIDs := GetUIItemsTreeIDs(ParentUIItemID, P_RoleID);
+      
+      OPEN P_UIItems FOR
+      SELECT a.UIItemID, a.UIKey, a.UIName, a.ParentUIItemID, b.AccessLevel,
+             a.CanSetAccessOnlyOwnData, b.AccessOnlyOwnData
+      FROM PMIS_ADM.UIItems a
+      LEFT OUTER JOIN PMIS_ADM.UIItemsPerRole b ON a.UIItemID = b.UIItemID AND b.RoleID = P_RoleID
+      LEFT OUTER JOIN PMIS_ADM.UIItems c ON a.ParentUIItemID = c.UIItemID
+      WHERE a.UIItemID IN (SELECT * FROM TABLE(UIItemIDs));
+   END;
+   
+   FUNCTION GetUIItemsTreeIDs (P_ParentUIItems IN SQL_ListOfIDs, 
+                               P_RoleID IN PMIS_ADM.UserRoles.RoleID%TYPE) RETURN SQL_ListOfIDs IS
+                               
+      UIItemIDs SQL_ListOfIDs := SQL_ListOfIDs();
+      tmp SQL_ListOfIDs := SQL_ListOfIDs();
+      
+      CURSOR UIItemsCUR is
+      SELECT a.UIItemID
+      FROM PMIS_ADM.UIItems a
+      LEFT OUTER JOIN PMIS_ADM.UIItemsPerRole b ON a.UIItemID = b.UIItemID AND b.RoleID = P_RoleID
+      WHERE a.ParentUIItemID IN (SELECT * FROM TABLE(P_ParentUIItems)) OR ((SELECT COUNT(*) FROM TABLE(P_ParentUIItems)) = 0 AND a.ParentUIItemID IS NULL);
+   BEGIN
+      OPEN UIItemsCUR;
+      
+      LOOP
+         FETCH UIItemsCUR BULK COLLECT INTO UIItemIDs;
+         EXIT WHEN UIItemsCUR%notfound;
+      END LOOP;
+      
+      CLOSE UIItemsCUR;
+      
+      IF UIItemIDs.COUNT > 0 THEN
+         tmp := GetUIItemsTreeIDs(UIItemIDs, P_RoleID);
+      
+         IF tmp.COUNT > 0 THEN
+            UIItemIDs := UIItemIDs MULTISET UNION tmp;
+         END IF;
+      END IF;
+      
+      RETURN UIItemIDs;
+   END;
+   
+   
+   
+   FUNCTION GetMilitaryUnitIDsPerUser (P_UserID IN PMIS_ADM.Users.UserID%TYPE) RETURN SQL_ListOfIDs  IS
+                               
+      MilitaryUnitIDs SQL_ListOfIDs := SQL_ListOfIDs();
+      tmp SQL_ListOfIDs := SQL_ListOfIDs();
+      
+      CURSOR MilitaryUnitsCUR is
+      SELECT a.MilitaryUnitID
+      FROM PMIS_ADM.MilitaryUnitsPerUser a
+      WHERE a.UserID = P_UserID;
+   BEGIN      
+      OPEN MilitaryUnitsCUR;
+      
+      LOOP
+         FETCH MilitaryUnitsCUR BULK COLLECT INTO MilitaryUnitIDs;
+         EXIT WHEN MilitaryUnitsCUR%notfound;
+      END LOOP;
+      
+      CLOSE MilitaryUnitsCUR;
+      
+      IF MilitaryUnitIDs.COUNT > 0 THEN
+         tmp := GetMilitaryUnitChilds(MilitaryUnitIDs);
+      
+         IF tmp.COUNT > 0 THEN
+            MilitaryUnitIDs := MilitaryUnitIDs MULTISET UNION tmp;
+         END IF;
+      END IF;
+   
+      RETURN MilitaryUnitIDs;
+   END;
+   
+   
+   FUNCTION GetMilitaryUnitChilds (P_MilitaryUnitIDs IN SQL_ListOfIDs) RETURN SQL_ListOfIDs IS
+                               
+      MilitaryUnitIDs SQL_ListOfIDs := SQL_ListOfIDs();
+      tmp SQL_ListOfIDs := SQL_ListOfIDs();
+      
+      CURSOR MilitaryUnitsCUR is
+      SELECT a.KOD_MIR as MilitaryUnitID
+      FROM UKAZ_OWNER.STRM a
+      WHERE a.STR_KOD_MIR IN (SELECT * FROM TABLE(P_MilitaryUnitIDs)) OR ((SELECT COUNT(*) FROM TABLE(P_MilitaryUnitIDs)) = 0 AND a.STR_KOD_MIR IS NULL) ;
+   BEGIN
+      OPEN MilitaryUnitsCUR;
+      
+      LOOP
+         FETCH MilitaryUnitsCUR BULK COLLECT INTO MilitaryUnitIDs;
+         EXIT WHEN MilitaryUnitsCUR%notfound;
+      END LOOP;
+      
+      CLOSE MilitaryUnitsCUR;
+      
+      IF MilitaryUnitIDs.COUNT > 0 THEN
+         tmp := GetMilitaryUnitChilds(MilitaryUnitIDs);
+         
+         IF tmp.COUNT > 0 THEN
+            MilitaryUnitIDs := MilitaryUnitIDs MULTISET UNION tmp;
+         END IF;
+      END IF;
+      
+      RETURN MilitaryUnitIDs;
+   END;
+   
+   FUNCTION GetMRSPerVSSTRecordHTML (P_VSST_ID IN number) RETURN varchar2 IS
+                               
+      MRS varchar2(4000);
+      
+      CURSOR MilitaryReportSpecialitiesCUR is
+      SELECT c.MilReportingSpecialityCode || ' ' || c.MilReportingSpecialityName as DisplayName
+      FROM VS_OWNER.VS_VSST a
+      LEFT OUTER JOIN VS_OWNER.VS_VSST_VOS b ON a.VSST_ID = b.VSVOS_VSST_ID
+      LEFT OUTER JOIN PMIS_ADM.MilitaryReportSpecialities c ON CASE WHEN b.VSVOS_VSOKOD IS NOT NULL
+                                                                    THEN b.VSVOS_VSOKOD
+                                                                    ELSE b.VSVOS_VSSKOD
+                                                               END = c.MilReportingSpecialityCode
+      WHERE a.VSST_ID = P_VSST_ID
+      ORDER BY c.MilReportingSpecialityCode;
+   BEGIN
+      FOR CurRec IN MilitaryReportSpecialitiesCUR
+      LOOP 
+         IF (MRS IS NULL OR LENGTH(MRS) < 3600) THEN
+             MRS := MRS || '<div title="' || CurRec.DisplayName || '" style="cursor: arrow;">' || 
+                              SUBSTR(CurRec.DisplayName, 1, 20) || 
+                              CASE WHEN LENGTH (CurRec.DisplayName) > 20 THEN '...' ELSE '' END || 
+                           '</div>';
+         END IF;
+      END LOOP;
+      
+      RETURN MRS;
+   END;
+   
+   FUNCTION GetMRSIdsPerVSSTRecord (P_VSST_ID IN number) RETURN varchar2 IS
+                               
+      MRSIds varchar2(4000);
+      
+      CURSOR MilitaryReportSpecialitiesCUR is
+      SELECT c.MilReportSpecialityID
+      FROM VS_OWNER.VS_VSST a
+      LEFT OUTER JOIN VS_OWNER.VS_VSST_VOS b ON a.VSST_ID = b.VSVOS_VSST_ID
+      LEFT OUTER JOIN PMIS_ADM.MilitaryReportSpecialities c ON CASE WHEN b.VSVOS_VSOKOD IS NOT NULL
+                                                                    THEN b.VSVOS_VSOKOD
+                                                                    ELSE b.VSVOS_VSSKOD
+                                                               END = c.MilReportingSpecialityCode
+      WHERE a.VSST_ID = P_VSST_ID
+      ORDER BY c.MilReportSpecialityID;
+   BEGIN
+      FOR CurRec IN MilitaryReportSpecialitiesCUR
+      LOOP 
+         IF (MRSIds IS NULL OR LENGTH(MRSIds) < 3900) THEN
+             MRSIds :=MRSIds || CASE WHEN MRSIds IS NULL THEN '' ELSE ',' END || TO_CHAR(CurRec.MilReportSpecialityID);
+         END IF;
+      END LOOP;
+      
+      RETURN MRSIds;
+   END;
+
+   FUNCTION GetMRSPerPersonHTML (P_PersonID IN number, P_MaxLength IN number) RETURN varchar2 IS
+                               
+      MRS varchar2(4000);
+      
+      CURSOR MilitaryReportSpecialitiesCUR is
+      SELECT b.MilReportingSpecialityCode || ' ' || b.MilReportingSpecialityName as DisplayName
+      FROM PMIS_ADM.PersonMilRepSpec a
+      LEFT OUTER JOIN PMIS_ADM.MilitaryReportSpecialities b ON a.MilReportSpecialityID = b.MilReportSpecialityID
+      WHERE a.PersonID = P_PersonID
+      ORDER BY a.MilReportSpecialityID;
+   BEGIN
+      FOR CurRec IN MilitaryReportSpecialitiesCUR
+      LOOP 
+         IF (MRS IS NULL OR LENGTH(MRS) < 3600) THEN
+             MRS := MRS || '<div title="' || CurRec.DisplayName || '" style="cursor: arrow;">' || 
+                              SUBSTR(CurRec.DisplayName, 1, P_MaxLength) || 
+                              CASE WHEN LENGTH (CurRec.DisplayName) > P_MaxLength THEN '...' ELSE '' END || 
+                           '</div>';
+         END IF;
+      END LOOP;
+      
+      RETURN MRS;
+   END;
+
+   FUNCTION GetLanguagesPerPerson (P_PersonID IN number) RETURN varchar2 IS
+                               
+      Lang varchar2(4000);
+      
+      CURSOR LanguagesCUR is
+      SELECT c.EZK_IME as DisplayName
+      FROM VS_OWNER.VS_LS a
+      LEFT OUTER JOIN VS_OWNER.VS_EZIK b ON a.EGN = b.EZIK_EGNLS
+      LEFT OUTER JOIN VS_OWNER.KLV_EZK c ON b.EZIK_EZKKOD = c.EZK_KOD
+      WHERE a.PersonID = P_PersonID
+      ORDER BY b.EZIK_EZKKOD;
+   BEGIN
+      FOR CurRec IN LanguagesCUR
+      LOOP 
+         IF (Lang IS NULL OR LENGTH(Lang) < 3600) THEN
+	     IF (Lang IS NOT NULL) THEN
+		Lang := Lang || ', ';
+	     END IF;
+
+             Lang := Lang || CurRec.DisplayName;
+         END IF;
+      END LOOP;
+      
+      RETURN Lang;
+   END;
+   
+   FUNCTION GetDrivingLicensesPerPerson (P_PersonID IN number) RETURN varchar2 IS
+                               
+      DL varchar2(4000);
+      
+      CURSOR DrivingLicenseCUR is
+      SELECT b.DrivingLicenseCategoryName as DisplayName
+      FROM PMIS_ADM.PersonDrivingLicenseCategories a
+      INNER JOIN PMIS_ADM.DrivingLicenseCategories b ON a.DrivingLicenseCategoryID = b.DrivingLicenseCategoryID      
+      WHERE a.PersonID = P_PersonID
+      ORDER BY b.Seq;
+   BEGIN
+      FOR CurRec IN DrivingLicenseCUR
+      LOOP 
+         IF (DL IS NULL OR LENGTH(DL) < 3600) THEN
+	     IF (DL IS NOT NULL) THEN
+		DL := DL || ', ';
+	     END IF;
+
+             DL := DL || CurRec.DisplayName;
+         END IF;
+      END LOOP;
+      
+      RETURN DL;
+   END;
+
+   FUNCTION GetSpecialitiesPerPerson (P_PersonID IN number) RETURN varchar2 IS
+                               
+      Specs varchar2(4000);
+      
+      CURSOR SpecsCUR is
+      SELECT c.OBR_IME as DisplayName
+      FROM VS_OWNER.VS_LS a
+      LEFT OUTER JOIN VS_OWNER.VS_OBRG b ON a.EGN = b.OBRG_EGNLS
+      LEFT OUTER JOIN VS_OWNER.KLV_OBR c ON b.OBRG_KOD = c.OBR_KOD
+      WHERE a.PersonID = P_PersonID
+      ORDER BY b.OBRG_KOD;
+   BEGIN
+      FOR CurRec IN SpecsCUR
+      LOOP 
+         IF (Specs IS NULL OR LENGTH(Specs) < 3600) THEN
+	     IF (Specs IS NOT NULL) THEN
+		Specs := Specs || ', ';
+	     END IF;
+
+             Specs := Specs || CurRec.DisplayName;
+         END IF;
+      END LOOP;
+      
+      RETURN Specs;
+   END;
+
+   FUNCTION GetAgeFromEGN (P_EGN IN varchar2) RETURN number IS
+      Year number;
+      Month number;
+      Day number;
+      Age number;
+
+   BEGIN
+      Year := TO_NUMBER(SUBSTR(P_EGN, 1, 2));
+      Month := TO_NUMBER(SUBSTR(P_EGN, 3, 2));
+      Day := TO_NUMBER(SUBSTR(P_EGN, 5, 2));
+
+      Year := Year + 1900;
+
+      IF (Month > 40) THEN
+         Year := Year + 100;
+         Month := Month - 40;
+      END IF;
+
+      Age := TO_NUMBER(TO_CHAR(SYSDATE, 'YYYY')) - Year; 
+
+      IF (Month > TO_NUMBER(TO_CHAR(SYSDATE, 'MM'))) THEN
+         Age := Age - 1;
+      END IF;
+
+      IF (Month = TO_NUMBER(TO_CHAR(SYSDATE, 'MM'))) THEN
+         IF (Day > TO_NUMBER(TO_CHAR(SYSDATE, 'DD'))) THEN
+            Age := Age - 1;
+         END IF;
+      END IF;
+
+      RETURN Age;
+   END;
+   
+   FUNCTION IsMilitaryUnitActual(P_KOD_MIR IN number) RETURN number IS
+	ParentID number;
+	Actual number;
+   BEGIN    
+    SELECT AKTUAL INTO Actual FROM UKAZ_OWNER.MIR WHERE KOD_MIR = P_KOD_MIR;
+    SELECT STR_KOD_MIR INTO ParentID FROM UKAZ_OWNER.STRM WHERE KOD_MIR = P_KOD_MIR;
+	
+	
+	LOOP
+		IF ParentID IS NULL OR Actual = 0 THEN
+			EXIT;
+		END IF;
+		
+		SELECT AKTUAL INTO Actual FROM UKAZ_OWNER.MIR WHERE KOD_MIR = ParentID;
+		SELECT STR_KOD_MIR INTO ParentID FROM UKAZ_OWNER.STRM WHERE KOD_MIR = ParentID;		
+	END LOOP;
+	
+	RETURN Actual;
+   END;
+
+   PROCEDURE CallURL(P_URL IN varchar2) IS
+	req       utl_http.req;
+    resp      utl_http.resp;
+    name      VARCHAR2(256);
+    value     VARCHAR2(1024);
+    data      VARCHAR2(255);
+    my_scheme VARCHAR2(256);
+    my_realm  VARCHAR2(256);
+    my_proxy  BOOLEAN;
+	BEGIN
+	-- Ask UTL_HTTP not to raise an exception for 4xx and 5xx status codes,
+	-- rather than just returning the text of the error page.
+	  utl_http.set_response_error_check(FALSE);
+
+	-- Begin retrieving this web page.
+	  req := utl_http.begin_request(P_URL);
+
+	-- Identify ourselves. Some sites serve special pages for particular browsers.
+	  utl_http.set_header(req, 'User-Agent', 'Mozilla/4.0');
+	  
+
+	  BEGIN
+		resp := utl_http.get_response(req); 
+		
+		utl_http.end_response(resp);    
+	  END;
+
+	END;
+
+	PROCEDURE CallGenerateOfflineReports IS
+	BEGIN
+		CallURL('http://127.0.0.1/PMISAdmin/PublicPages/GenerateOfflineReports.aspx');
+	END;
+	
+	FUNCTION GetInitials (P_FULLNAME IN varchar2) RETURN varchar2 IS
+      Initials varchar2(50);
+      FullName varchar2(500);
+   BEGIN
+      FullName := P_FULLNAME;
+	  FullName := TRIM(p_fullname);
+	   
+	  FullName := REPLACE(FullName, '-', ' ');
+	  FullName := REPLACE(FullName, ',', ' ');
+	   
+	  Initials := SUBSTR(FullName, 1, 1);
+	   
+	  WHILE (INSTR(FullName, ' ') > 0) LOOP
+		 Initials := Initials || SUBSTR(FullName, INSTR(FullName, ' ') + 1, 1);
+		 FullName := SUBSTR(FullName, INSTR(FullName, ' ') + 1, LENGTH(FullName) - INSTR(FullName, ' '));
+	  END LOOP;
+
+      RETURN UPPER(Initials);
+   END;
+   
+   FUNCTION GetFullAddress (P_CityID IN number, P_DistrictID IN number, P_Address varchar2) RETURN varchar2 IS
+     FullAddress varchar2(2000);
+   BEGIN
+     SELECT c.Ime_Obl || ', ' || 
+			b.Ime_Obs || ', ' || 
+			a.Ime_Nma ||  
+			CASE WHEN P_DistrictID IS NULL THEN ''
+				 ELSE ', ' || d.DistrictName
+			END || ', ' || CHR(13) || CHR(10) ||
+			P_Address
+	 INTO FullAddress 
+	 FROM UKAZ_OWNER.KL_NMA a
+	 INNER JOIN UKAZ_OWNER.KL_OBS b ON a.KOD_OBS = b.KOD_OBS
+	 INNER JOIN UKAZ_OWNER.KL_OBL c ON a.KOD_OBL = c.KOD_OBL
+	 LEFT OUTER JOIN PMIS_ADM.Districts d ON d.DistrictID = P_DistrictID
+     WHERE a.Kod_Nma = P_CityID;
+	 
+	 RETURN FullAddress;
+   END;
+
+END;
+/
+
+CREATE TABLE PMIS_HS.Probabilities(ProbabilityID number NOT NULL,
+                                   ProbabilityName varchar2(500),
+                                   ProbabilityFactor decimal(30, 10));
+
+ALTER TABLE PMIS_HS.Probabilities ADD CONSTRAINT Probabilities_PK PRIMARY KEY(ProbabilityID);
+
+CREATE SEQUENCE PMIS_HS.Probabilities_ID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+CREATE TRIGGER PMIS_HS.TRG_Probabilities_INSERT
+BEFORE INSERT ON PMIS_HS.Probabilities
+FOR EACH ROW
+BEGIN
+   SELECT PMIS_HS.Probabilities_ID_SEQ.nextval INTO :new.ProbabilityID FROM dual;
+END;
+/
+
+INSERT INTO PMIS_HS.Probabilities(ProbabilityName, ProbabilityFactor)
+VALUES ('практически невъзможна', 0.2);
+
+INSERT INTO PMIS_HS.Probabilities(ProbabilityName, ProbabilityFactor)
+VALUES ('малко вероятно', 0.5);
+
+INSERT INTO PMIS_HS.Probabilities(ProbabilityName, ProbabilityFactor)
+VALUES ('възможна в определени случаи', 1.0);
+
+INSERT INTO PMIS_HS.Probabilities(ProbabilityName, ProbabilityFactor)
+VALUES ('вероятността е под средната', 3.0);
+
+INSERT INTO PMIS_HS.Probabilities(ProbabilityName, ProbabilityFactor)
+VALUES ('вероятността е средна', 5.0);
+
+INSERT INTO PMIS_HS.Probabilities(ProbabilityName, ProbabilityFactor)
+VALUES ('вероятността е над средната', 7.0);
+
+INSERT INTO PMIS_HS.Probabilities(ProbabilityName, ProbabilityFactor)
+VALUES ('висока', 10.0);
+
+COMMIT;
+/
+CREATE TABLE PMIS_HS.Exposure(ExposureID number NOT NULL,
+                              ExposureName varchar2(500),
+                              ExposureFactor decimal(30, 10));
+
+ALTER TABLE PMIS_HS.Exposure ADD CONSTRAINT Exposure_PK PRIMARY KEY(ExposureID);
+
+CREATE SEQUENCE PMIS_HS.Exposure_ID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+CREATE TRIGGER PMIS_HS.TRG_Exposure_INSERT
+BEFORE INSERT ON PMIS_HS.Exposure
+FOR EACH ROW
+BEGIN
+   SELECT PMIS_HS.Exposure_ID_SEQ.nextval INTO :new.ExposureID FROM dual;
+END;
+/
+
+INSERT INTO PMIS_HS.Exposure(ExposureName, ExposureFactor)
+VALUES ('твърде ниска, много рядко – под 1 път месечно', 0.5);
+
+INSERT INTO PMIS_HS.Exposure(ExposureName, ExposureFactor)
+VALUES ('много ниска – до 1 час седмично', 1);
+
+INSERT INTO PMIS_HS.Exposure(ExposureName, ExposureFactor)
+VALUES ('ниска – до 1 час дневно', 2);
+
+INSERT INTO PMIS_HS.Exposure(ExposureName, ExposureFactor)
+VALUES ('средна – до 1/3 от работното време', 3);
+
+INSERT INTO PMIS_HS.Exposure(ExposureName, ExposureFactor)
+VALUES ('достатъчно висока –1/2 от работното време', 6);
+
+INSERT INTO PMIS_HS.Exposure(ExposureName, ExposureFactor)
+VALUES ('много висока – над 1/2 от работното време', 8);
+
+INSERT INTO PMIS_HS.Exposure(ExposureName, ExposureFactor)
+VALUES ('непрекъснато през цялото работно време', 10);
+
+COMMIT;
+/
+CREATE TABLE PMIS_HS.EffectWeight(EffectWeightID number NOT NULL,
+								  EffectWeightName varchar2(500),
+								  EffectWeightDesc varchar2(500),
+								  EffectWeightFactor decimal(30, 10));
+
+ALTER TABLE PMIS_HS.EffectWeight ADD CONSTRAINT EffectWeight_PK PRIMARY KEY(EffectWeightID);
+
+CREATE SEQUENCE PMIS_HS.EffectWeight_ID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+CREATE TRIGGER PMIS_HS.TRG_EffectWeight_INSERT
+BEFORE INSERT ON PMIS_HS.EffectWeight
+FOR EACH ROW
+BEGIN
+   SELECT PMIS_HS.EffectWeight_ID_SEQ.nextval INTO :new.EffectWeightID FROM dual;
+END;
+/
+
+INSERT INTO PMIS_HS.EffectWeight(EffectWeightName, EffectWeightDesc, EffectWeightFactor)
+VALUES ('малки', 'наранявания без загуби – без болничен лист', 1);
+
+INSERT INTO PMIS_HS.EffectWeight(EffectWeightName, EffectWeightDesc, EffectWeightFactor)
+VALUES ('значителни', 'наранявания със загуби – с болничен лист', 3);
+
+INSERT INTO PMIS_HS.EffectWeight(EffectWeightName, EffectWeightDesc, EffectWeightFactor)
+VALUES ('сериозни', 'инвалидност, необратими наранявания', 7);
+
+INSERT INTO PMIS_HS.EffectWeight(EffectWeightName, EffectWeightDesc, EffectWeightFactor)
+VALUES ('опасни', '1 смъртен случай', 15);
+
+INSERT INTO PMIS_HS.EffectWeight(EffectWeightName, EffectWeightDesc, EffectWeightFactor)
+VALUES ('катастрофални', 'много смъртни случаи', 40);
+
+
+COMMIT;
+/
+CREATE TABLE PMIS_HS.RiskRank(RiskRankID number NOT NULL,
+						      RiskRankName varchar2(500),
+							  RiskRankFrom decimal(30, 10),
+							  RiskRankTo decimal(30, 10),
+							  RiskRank varchar2(10));
+
+ALTER TABLE PMIS_HS.RiskRank ADD CONSTRAINT RiskRank_PK PRIMARY KEY(RiskRankID);
+
+CREATE SEQUENCE PMIS_HS.RiskRank_ID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+CREATE TRIGGER PMIS_HS.TRG_RiskRank_INSERT
+BEFORE INSERT ON PMIS_HS.RiskRank
+FOR EACH ROW
+BEGIN
+   SELECT PMIS_HS.RiskRank_ID_SEQ.nextval INTO :new.RiskRankID FROM dual;
+END;
+/
+
+INSERT INTO PMIS_HS.RiskRank(RiskRankName, RiskRankFrom, RiskRankTo, RiskRank)
+VALUES ('Незначителен, твърде ограничен риск', 0, 20, 'I');
+
+INSERT INTO PMIS_HS.RiskRank(RiskRankName, RiskRankFrom, RiskRankTo, RiskRank)
+VALUES ('Приемлив, неголям риск, необходимо е внимание', 21, 70, 'II');
+
+INSERT INTO PMIS_HS.RiskRank(RiskRankName, RiskRankFrom, RiskRankTo, RiskRank)
+VALUES ('Умерен, необходими са мерки за намаляване на риска', 71, 200, 'III');
+
+INSERT INTO PMIS_HS.RiskRank(RiskRankName, RiskRankFrom, RiskRankTo, RiskRank)
+VALUES ('Сериозен, необходимо е незабавно подобряване условията на труд', 201, 400, 'IV');
+
+INSERT INTO PMIS_HS.RiskRank(RiskRankName, RiskRankFrom, RiskRankTo, RiskRank)
+VALUES ('Висок, прекратяване на дейността до отстраняване на риска', 401, 9999, 'V');
+
+COMMIT;
+/
+CREATE TABLE PMIS_HS.RiskFactorTypes(RiskFactorTypeID number NOT NULL,
+                                   	 RiskFactorTypeName varchar2(500),
+									 Seq number NOT NULL
+                                    );
+
+ALTER TABLE PMIS_HS.RiskFactorTypes ADD CONSTRAINT RiskFactorTypes_PK PRIMARY KEY(RiskFactorTypeID);
+
+CREATE SEQUENCE PMIS_HS.RiskFactorTypes_ID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+CREATE TRIGGER PMIS_HS.TRG_RiskFactorTypes_INSERT
+BEFORE INSERT ON PMIS_HS.RiskFactorTypes
+FOR EACH ROW
+BEGIN
+   SELECT PMIS_HS.RiskFactorTypes_ID_SEQ.nextval INTO :new.RiskFactorTypeID FROM dual;
+END;
+/
+
+COMMIT;
+CREATE TABLE PMIS_HS.RiskFactors(RiskFactorID number NOT NULL,
+								 RiskFactorTypeID number NOT NULL,
+                                 RiskFactorName varchar2(500),
+								 AllowAddManually number(1) NOT NULL CHECK (AllowAddManually BETWEEN 0 AND 1),
+								 Seq number NOT NULL
+                                );
+
+ALTER TABLE PMIS_HS.RiskFactors ADD CONSTRAINT RiskFactors_PK PRIMARY KEY(RiskFactorID);
+ALTER TABLE PMIS_HS.RiskFactors ADD CONSTRAINT RiskFactors_RiskFactorTypes_FK FOREIGN KEY (RiskFactorTypeID) REFERENCES PMIS_HS.RiskFactorTypes (RiskFactorTypeID);
+
+CREATE SEQUENCE PMIS_HS.RiskFactors_ID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+CREATE TRIGGER PMIS_HS.TRG_RiskFactors_INSERT
+BEFORE INSERT ON PMIS_HS.RiskFactors
+FOR EACH ROW
+BEGIN
+   SELECT PMIS_HS.RiskFactors_ID_SEQ.nextval INTO :new.RiskFactorID FROM dual;
+END;
+/
+
+COMMIT;
+CREATE TABLE PMIS_HS.Hazards(HazardID number NOT NULL,
+							 RiskFactorID number NOT NULL,
+                             HazardName varchar2(500),
+							 Seq number NOT NULL
+                            );
+
+ALTER TABLE PMIS_HS.Hazards ADD CONSTRAINT Hazards_PK PRIMARY KEY(HazardID);
+ALTER TABLE PMIS_HS.Hazards ADD CONSTRAINT Hazards_RiskFactors_FK FOREIGN KEY (RiskFactorID) REFERENCES PMIS_HS.RiskFactors (RiskFactorID);
+
+CREATE SEQUENCE PMIS_HS.Hazards_ID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+CREATE TRIGGER PMIS_HS.TRG_Hazards_INSERT
+BEFORE INSERT ON PMIS_HS.Hazards
+FOR EACH ROW
+BEGIN
+   SELECT PMIS_HS.Hazards_ID_SEQ.nextval INTO :new.HazardID FROM dual;
+END;
+/
+
+INSERT INTO PMIS_HS.RiskFactorTypes (RiskFactorTypeName, Seq)
+VALUES ('РАБОТНО  ОБОРУДВАНЕ', 1);
+
+INSERT INTO PMIS_HS.RiskFactors (RiskFactorTypeID, RiskFactorName, AllowAddManually, Seq)
+VALUES ((SELECT RiskFactorTypeID FROM PMIS_HS.RiskFactorTypes 
+         WHERE RiskFactorTypeName = 'РАБОТНО  ОБОРУДВАНЕ'), 
+        'МАШИНИ (РАЗПОЛОЖЕНИЕ, ОБЕЗОПАСЯВАНЕ,ИЗПРАВНОСТ,  ПОДДРЪЖКА В ГРАФИК ПО ТЕХНОЛОГИЧНИТЕ ПРЕДПИСАНИЯ)', 0, 1);
+
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'МАШИНИ (РАЗПОЛОЖЕНИЕ, ОБЕЗОПАСЯВАНЕ,ИЗПРАВНОСТ,  ПОДДРЪЖКА В ГРАФИК ПО ТЕХНОЛОГИЧНИТЕ ПРЕДПИСАНИЯ)'), 
+        'Несъответно обезопасени въртящи се или предавателни движещи се части, които могат да травмират (притиснат, смачкат, охлузят, набодат, ударят, захванат или увлекат)', 1);
+
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'МАШИНИ (РАЗПОЛОЖЕНИЕ, ОБЕЗОПАСЯВАНЕ,ИЗПРАВНОСТ,  ПОДДРЪЖКА В ГРАФИК ПО ТЕХНОЛОГИЧНИТЕ ПРЕДПИСАНИЯ)'), 
+        'Свободно движение на части от материала, което може да нарани ( падане, търкаляне, плъзгане, потапяне, излитане, люлеене, колабиране).', 2);
+
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'МАШИНИ (РАЗПОЛОЖЕНИЕ, ОБЕЗОПАСЯВАНЕ,ИЗПРАВНОСТ,  ПОДДРЪЖКА В ГРАФИК ПО ТЕХНОЛОГИЧНИТЕ ПРЕДПИСАНИЯ)'), 
+        'Движение на елементи на автоматизирани технологични линии, конвейри, транспортни ленти и др.', 3);	
+		
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'МАШИНИ (РАЗПОЛОЖЕНИЕ, ОБЕЗОПАСЯВАНЕ,ИЗПРАВНОСТ,  ПОДДРЪЖКА В ГРАФИК ПО ТЕХНОЛОГИЧНИТЕ ПРЕДПИСАНИЯ)'), 
+        'Опасност от пожар и експлозия (напр. от триене, съдове под налягани и др.)', 4);
+		
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'МАШИНИ (РАЗПОЛОЖЕНИЕ, ОБЕЗОПАСЯВАНЕ,ИЗПРАВНОСТ,  ПОДДРЪЖКА В ГРАФИК ПО ТЕХНОЛОГИЧНИТЕ ПРЕДПИСАНИЯ)'), 
+        'Затваряне в машина или в инсталация.', 5);
+		
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'МАШИНИ (РАЗПОЛОЖЕНИЕ, ОБЕЗОПАСЯВАНЕ,ИЗПРАВНОСТ,  ПОДДРЪЖКА В ГРАФИК ПО ТЕХНОЛОГИЧНИТЕ ПРЕДПИСАНИЯ)'), 
+        'Неудобно и лошо разположени органи за управление.', 6);
+		
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'МАШИНИ (РАЗПОЛОЖЕНИЕ, ОБЕЗОПАСЯВАНЕ,ИЗПРАВНОСТ,  ПОДДРЪЖКА В ГРАФИК ПО ТЕХНОЛОГИЧНИТЕ ПРЕДПИСАНИЯ)'), 
+        'Обезопасеност, изправност, поддръжка.', 7);
+		
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'МАШИНИ (РАЗПОЛОЖЕНИЕ, ОБЕЗОПАСЯВАНЕ,ИЗПРАВНОСТ,  ПОДДРЪЖКА В ГРАФИК ПО ТЕХНОЛОГИЧНИТЕ ПРЕДПИСАНИЯ)'), 
+        'Наличие на колективни и лични защитни средства – изправност, ползване, съответствие и период на подмяна.', 8);
+		
+INSERT INTO PMIS_HS.RiskFactors (RiskFactorTypeID, RiskFactorName, AllowAddManually, Seq)
+VALUES ((SELECT RiskFactorTypeID FROM PMIS_HS.RiskFactorTypes 
+         WHERE RiskFactorTypeName = 'РАБОТНО  ОБОРУДВАНЕ'), 
+        'РЪЧНИ ИНСТРУМЕНТИ', 0, 2);
+	
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'РЪЧНИ ИНСТРУМЕНТИ'), 
+        'Рязане – горещи частици, микротравми, травми от падащи части', 1);
+
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'РЪЧНИ ИНСТРУМЕНТИ'), 
+        'Обработка, монтажни и демонтажни операции – нараняване, травми', 2);
+		
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'РЪЧНИ ИНСТРУМЕНТИ'), 
+        'Медицински инструментариум', 3);
+		
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'РЪЧНИ ИНСТРУМЕНТИ'), 
+        'Наличие на колективни и лични защитни средства – изправност, ползване, съответствие и период на подмяна', 4);
+		
+INSERT INTO PMIS_HS.RiskFactors (RiskFactorTypeID, RiskFactorName, AllowAddManually, Seq)
+VALUES ((SELECT RiskFactorTypeID FROM PMIS_HS.RiskFactorTypes 
+         WHERE RiskFactorTypeName = 'РАБОТНО  ОБОРУДВАНЕ'), 
+        'ДРУГО ТЕХНОЛОГИЧНО ОБОРУДВАНЕ', 0, 3);
+		
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'ДРУГО ТЕХНОЛОГИЧНО ОБОРУДВАНЕ'), 
+        'Злополуки с транспортно оборудване (теглене на ремаркета, прицепи, ел. агрегати, работа с верижна и тежка техника, пътуване с МПС и др.)', 1);
+
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'ДРУГО ТЕХНОЛОГИЧНО ОБОРУДВАНЕ'), 
+        'Злополуки с кранове (травми, аварии, работа в кабината).', 2);
+		
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'ДРУГО ТЕХНОЛОГИЧНО ОБОРУДВАНЕ'), 
+        'Злополуки с хаспели', 3);
+		
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'ДРУГО ТЕХНОЛОГИЧНО ОБОРУДВАНЕ'), 
+        'Злополуки при работа с повдигателни съоръжения', 4);
+
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'ДРУГО ТЕХНОЛОГИЧНО ОБОРУДВАНЕ'), 
+        'Обезопасеност, изправност, поддръжка', 5);
+		
+INSERT INTO PMIS_HS.RiskFactors (RiskFactorTypeID, RiskFactorName, AllowAddManually, Seq)
+VALUES ((SELECT RiskFactorTypeID FROM PMIS_HS.RiskFactorTypes 
+         WHERE RiskFactorTypeName = 'РАБОТНО  ОБОРУДВАНЕ'), 
+        'ВЪТРЕШЕН ТРАНСПОРТ И ТРАФИК', 0, 4);
+		
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'ВЪТРЕШЕН ТРАНСПОРТ И ТРАФИК'), 
+        'Злополуки по пътищата за транспорт', 1);
+
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'ВЪТРЕШЕН ТРАНСПОРТ И ТРАФИК'), 
+        'Хоризонтални и вертикални опасности – асансьори и др.', 2);		
+		
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'ВЪТРЕШЕН ТРАНСПОРТ И ТРАФИК'), 
+        'Злополуки по пътищата за достъп.', 3);	
+
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'ВЪТРЕШЕН ТРАНСПОРТ И ТРАФИК'), 
+        'Злополуки при буксиране на самолет, кораб.', 4);				
+
+		
+INSERT INTO PMIS_HS.RiskFactors (RiskFactorTypeID, RiskFactorName, AllowAddManually, Seq)
+VALUES ((SELECT RiskFactorTypeID FROM PMIS_HS.RiskFactorTypes 
+         WHERE RiskFactorTypeName = 'РАБОТНО  ОБОРУДВАНЕ'), 
+        'МАНИПУЛИРАНЕ', 0, 5);
+		
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'МАНИПУЛИРАНЕ'), 
+        'Злополуки при работа с конструкции', 1);
+		
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'МАНИПУЛИРАНЕ'), 
+        'Злополуки при работа със заготовки', 2);
+		
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'МАНИПУЛИРАНЕ'), 
+        'Злополуки при работа с материали', 3);
+		
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'МАНИПУЛИРАНЕ'), 
+        'Медицински манипулации (инжекции, включване на системи с инфузионни разтвори, кръвопреливане, стоматологични манипулации, подготовка на препарати за микроскопиране, пробовземане и подготовка на проби за провеждане на изследвания и др.)', 4);
+		
+INSERT INTO PMIS_HS.RiskFactors (RiskFactorTypeID, RiskFactorName, AllowAddManually, Seq)
+VALUES ((SELECT RiskFactorTypeID FROM PMIS_HS.RiskFactorTypes 
+         WHERE RiskFactorTypeName = 'РАБОТНО  ОБОРУДВАНЕ'), 
+        'ОПАСНОСТ ОТ ЕКСПЛОЗИЯ, ПОЖАР И ДРУГИ АВАРИИ', 0, 6);
+		
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'ОПАСНОСТ ОТ ЕКСПЛОЗИЯ, ПОЖАР И ДРУГИ АВАРИИ'), 
+        'Злополуки при доставка, съхранение и подготовка за използване на експлозиви', 1);
+
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'ОПАСНОСТ ОТ ЕКСПЛОЗИЯ, ПОЖАР И ДРУГИ АВАРИИ'), 
+        'Злополуки при доставка, съхранение и подготовка за използване на запалими материали', 2);
+
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'ОПАСНОСТ ОТ ЕКСПЛОЗИЯ, ПОЖАР И ДРУГИ АВАРИИ'), 
+        'Злополуки при доставка, съхранение и подготовка за използване на отровни вещества', 3);
+
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'ОПАСНОСТ ОТ ЕКСПЛОЗИЯ, ПОЖАР И ДРУГИ АВАРИИ'), 
+        'Злополуки при боравене и обезвреждане на боеприпаси', 4);
+
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'ОПАСНОСТ ОТ ЕКСПЛОЗИЯ, ПОЖАР И ДРУГИ АВАРИИ'), 
+        'Наличие и състояние на противопожарните средства', 5);
+		
+INSERT INTO PMIS_HS.RiskFactors (RiskFactorTypeID, RiskFactorName, AllowAddManually, Seq)
+VALUES ((SELECT RiskFactorTypeID FROM PMIS_HS.RiskFactorTypes 
+         WHERE RiskFactorTypeName = 'РАБОТНО  ОБОРУДВАНЕ'), 
+        'ДРУГИ СПЕЦИФИЧНИ ФАКТОРИ', 1, 7);
+		
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'ДРУГИ СПЕЦИФИЧНИ ФАКТОРИ'), 
+        'Боравене с огнестрелно оръжие и даване на въоръжен наряд', 1);
+
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'ДРУГИ СПЕЦИФИЧНИ ФАКТОРИ'), 
+        'Парашутни скокове', 2);
+		
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'ДРУГИ СПЕЦИФИЧНИ ФАКТОРИ'), 
+        'Водолазни дейности', 3);
+
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'ДРУГИ СПЕЦИФИЧНИ ФАКТОРИ'), 
+        'Размагнитване на кораб', 4);
+		
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'ДРУГИ СПЕЦИФИЧНИ ФАКТОРИ'), 
+        'Тралене с контактни и неконтактни тралове', 5);
+		
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'ДРУГИ СПЕЦИФИЧНИ ФАКТОРИ'), 
+        'Артилерийска стрелба', 6);
+
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'ДРУГИ СПЕЦИФИЧНИ ФАКТОРИ'), 
+        'Извършване на взривни дейности', 7);
+		
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'ДРУГИ СПЕЦИФИЧНИ ФАКТОРИ'), 
+        'Товарене на боеприпаси', 8);
+		
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'ДРУГИ СПЕЦИФИЧНИ ФАКТОРИ'), 
+        'Злополуки при работа с летателен и катапултен тренажор', 9);
+		
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'ДРУГИ СПЕЦИФИЧНИ ФАКТОРИ'), 
+        'Тренировъчно напускане през торпеден апарат', 10);
+		
+		
+		
+INSERT INTO PMIS_HS.RiskFactorTypes (RiskFactorTypeName, Seq)
+VALUES ('ЕЛЕКТРООБОРУДВАНЕ', 2);
+
+INSERT INTO PMIS_HS.RiskFactors (RiskFactorTypeID, RiskFactorName, AllowAddManually, Seq)
+VALUES ((SELECT RiskFactorTypeID FROM PMIS_HS.RiskFactorTypes 
+         WHERE RiskFactorTypeName = 'ЕЛЕКТРООБОРУДВАНЕ'), 
+        'ОБОРУДВАНЕ, РАБОТЕЩО С ЕЛЕКТРОЕНЕРГИЯ (ЕЛЕКТРИЧЕСКИ ИНСТАЛАЦИИ И ВРЪЗКИ, ИЗОЛИРАНЕ, АПАРАТУРА ЗА УПРАВЛЕНИЕИ КОНТРОЛ)', 0, 1);
+
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'ОБОРУДВАНЕ, РАБОТЕЩО С ЕЛЕКТРОЕНЕРГИЯ (ЕЛЕКТРИЧЕСКИ ИНСТАЛАЦИИ И ВРЪЗКИ, ИЗОЛИРАНЕ, АПАРАТУРА ЗА УПРАВЛЕНИЕИ КОНТРОЛ)'), 
+        'Електрошок', 1);
+		
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'ОБОРУДВАНЕ, РАБОТЕЩО С ЕЛЕКТРОЕНЕРГИЯ (ЕЛЕКТРИЧЕСКИ ИНСТАЛАЦИИ И ВРЪЗКИ, ИЗОЛИРАНЕ, АПАРАТУРА ЗА УПРАВЛЕНИЕИ КОНТРОЛ)'), 
+        'Изгаряне при късо съединение', 2);
+		
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'ОБОРУДВАНЕ, РАБОТЕЩО С ЕЛЕКТРОЕНЕРГИЯ (ЕЛЕКТРИЧЕСКИ ИНСТАЛАЦИИ И ВРЪЗКИ, ИЗОЛИРАНЕ, АПАРАТУРА ЗА УПРАВЛЕНИЕИ КОНТРОЛ)'), 
+        'Злополуки при самовключване', 3);
+		
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'ОБОРУДВАНЕ, РАБОТЕЩО С ЕЛЕКТРОЕНЕРГИЯ (ЕЛЕКТРИЧЕСКИ ИНСТАЛАЦИИ И ВРЪЗКИ, ИЗОЛИРАНЕ, АПАРАТУРА ЗА УПРАВЛЕНИЕИ КОНТРОЛ)'), 
+        'Злополуки при внезапно спиране', 4);
+		
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'ОБОРУДВАНЕ, РАБОТЕЩО С ЕЛЕКТРОЕНЕРГИЯ (ЕЛЕКТРИЧЕСКИ ИНСТАЛАЦИИ И ВРЪЗКИ, ИЗОЛИРАНЕ, АПАРАТУРА ЗА УПРАВЛЕНИЕИ КОНТРОЛ)'), 
+        'Обезопасеност, изправност, поддръжка', 5);
+		
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'ОБОРУДВАНЕ, РАБОТЕЩО С ЕЛЕКТРОЕНЕРГИЯ (ЕЛЕКТРИЧЕСКИ ИНСТАЛАЦИИ И ВРЪЗКИ, ИЗОЛИРАНЕ, АПАРАТУРА ЗА УПРАВЛЕНИЕИ КОНТРОЛ)'), 
+        'Наличие на колективни и лични защитни средства – изправност, ползване, съответствие и период на подмяна.', 6);
+		
+INSERT INTO PMIS_HS.RiskFactors (RiskFactorTypeID, RiskFactorName, AllowAddManually, Seq)
+VALUES ((SELECT RiskFactorTypeID FROM PMIS_HS.RiskFactorTypes 
+         WHERE RiskFactorTypeName = 'ЕЛЕКТРООБОРУДВАНЕ'), 
+        'ИЗПОЛЗВАНЕ НА ПРЕНОСИМИ  ЕЛЕКТРИЧЕСКИ ПРИБОРИ И ИНСТРУМЕНТИ', 0, 2);
+
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'ИЗПОЛЗВАНЕ НА ПРЕНОСИМИ  ЕЛЕКТРИЧЕСКИ ПРИБОРИ И ИНСТРУМЕНТИ'), 
+        'Електрошок', 1);
+		
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'ИЗПОЛЗВАНЕ НА ПРЕНОСИМИ  ЕЛЕКТРИЧЕСКИ ПРИБОРИ И ИНСТРУМЕНТИ'), 
+        'Изгаряне при късо съединение', 2);
+		
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'ИЗПОЛЗВАНЕ НА ПРЕНОСИМИ  ЕЛЕКТРИЧЕСКИ ПРИБОРИ И ИНСТРУМЕНТИ'), 
+        'Злополуки при самовключване', 3);
+		
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'ИЗПОЛЗВАНЕ НА ПРЕНОСИМИ  ЕЛЕКТРИЧЕСКИ ПРИБОРИ И ИНСТРУМЕНТИ'), 
+        'Злополуки при внезапно спиране', 4);
+		
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'ИЗПОЛЗВАНЕ НА ПРЕНОСИМИ  ЕЛЕКТРИЧЕСКИ ПРИБОРИ И ИНСТРУМЕНТИ'), 
+        'Обезопасеност, изправност, поддръжка', 5);
+		
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'ИЗПОЛЗВАНЕ НА ПРЕНОСИМИ  ЕЛЕКТРИЧЕСКИ ПРИБОРИ И ИНСТРУМЕНТИ'), 
+        'Наличие на колективни и лични защитни средства – изправност, ползване, съответствие и период на подмяна.', 6);
+		
+INSERT INTO PMIS_HS.RiskFactors (RiskFactorTypeID, RiskFactorName, AllowAddManually, Seq)
+VALUES ((SELECT RiskFactorTypeID FROM PMIS_HS.RiskFactorTypes 
+         WHERE RiskFactorTypeName = 'ЕЛЕКТРООБОРУДВАНЕ'), 
+        'ПОЖАР И ЕКСПЛОЗИЯ, ПРЕДИЗВИКАНИ ОТ ЕЛЕКТРОЕНЕРГИЯ', 0, 3);
+
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'ПОЖАР И ЕКСПЛОЗИЯ, ПРЕДИЗВИКАНИ ОТ ЕЛЕКТРОЕНЕРГИЯ'), 
+        'Прегряване на електрически проводници', 1);
+		
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'ПОЖАР И ЕКСПЛОЗИЯ, ПРЕДИЗВИКАНИ ОТ ЕЛЕКТРОЕНЕРГИЯ'), 
+        'Възникване на електрически искри и дъги, повреждащи и запалващи изолацията и близката горима среда', 2);
+		
+INSERT INTO PMIS_HS.RiskFactors (RiskFactorTypeID, RiskFactorName, AllowAddManually, Seq)
+VALUES ((SELECT RiskFactorTypeID FROM PMIS_HS.RiskFactorTypes 
+         WHERE RiskFactorTypeName = 'ЕЛЕКТРООБОРУДВАНЕ'), 
+        'ВЪЗДУШНИ ЕЛЕКТРИЧЕСКИ ЛИНИИ', 0, 4);
+		
+INSERT INTO PMIS_HS.RiskFactors (RiskFactorTypeID, RiskFactorName, AllowAddManually, Seq)
+VALUES ((SELECT RiskFactorTypeID FROM PMIS_HS.RiskFactorTypes 
+         WHERE RiskFactorTypeName = 'ЕЛЕКТРООБОРУДВАНЕ'), 
+        'СТАТИЧНО   ЕЛЕКТРИЧЕСТВО', 0, 5);
+		
+INSERT INTO PMIS_HS.RiskFactors (RiskFactorTypeID, RiskFactorName, AllowAddManually, Seq)
+VALUES ((SELECT RiskFactorTypeID FROM PMIS_HS.RiskFactorTypes 
+         WHERE RiskFactorTypeName = 'ЕЛЕКТРООБОРУДВАНЕ'), 
+        'ДРУГИ СПЕЦИФИЧНИ ФАКТОРИ', 1, 6);
+		
+
+		
+INSERT INTO PMIS_HS.RiskFactorTypes (RiskFactorTypeName, Seq)
+VALUES ('КОНФИГУРАЦИЯ НА РАБОТНИТЕ ПОМЕЩЕНИЯ И РАБОТНИТЕ МЕСТА', 3);
+
+INSERT INTO PMIS_HS.RiskFactors (RiskFactorTypeID, RiskFactorName, AllowAddManually, Seq)
+VALUES ((SELECT RiskFactorTypeID FROM PMIS_HS.RiskFactorTypes 
+         WHERE RiskFactorTypeName = 'КОНФИГУРАЦИЯ НА РАБОТНИТЕ ПОМЕЩЕНИЯ И РАБОТНИТЕ МЕСТА'), 
+        'ПОВЪРХНОСТИ', 0, 1);
+
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'ПОВЪРХНОСТИ'), 
+        'Нараняване от опасни повърхности и остри ръбове', 1);
+		
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'ПОВЪРХНОСТИ'), 
+        'Охлузване от грапави повърхности', 2);
+		
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'ПОВЪРХНОСТИ'), 
+        'Удар в издаващи се части', 3);
+		
+INSERT INTO PMIS_HS.RiskFactors (RiskFactorTypeID, RiskFactorName, AllowAddManually, Seq)
+VALUES ((SELECT RiskFactorTypeID FROM PMIS_HS.RiskFactorTypes 
+         WHERE RiskFactorTypeName = 'КОНФИГУРАЦИЯ НА РАБОТНИТЕ ПОМЕЩЕНИЯ И РАБОТНИТЕ МЕСТА'), 
+        'ПОДОВЕ', 0, 2);
+
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'ПОДОВЕ'), 
+        'Плъзгане, падане или нараняване поради мокри и хлъзгави подове', 1);
+		
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'ПОДОВЕ'), 
+        'Спъване, падане и нараняване поради неравности на пода', 2);
+		
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'ПОДОВЕ'), 
+        'Навехване, падане при неправилно стъпване при неравен под', 3);
+		
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'ПОДОВЕ'), 
+        'Злополуки по стълбища в сгради', 4);
+		
+INSERT INTO PMIS_HS.RiskFactors (RiskFactorTypeID, RiskFactorName, AllowAddManually, Seq)
+VALUES ((SELECT RiskFactorTypeID FROM PMIS_HS.RiskFactorTypes 
+         WHERE RiskFactorTypeName = 'КОНФИГУРАЦИЯ НА РАБОТНИТЕ ПОМЕЩЕНИЯ И РАБОТНИТЕ МЕСТА'), 
+        'НИВА', 0, 3);
+
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'НИВА'), 
+        'Злополуки поради работа на височина (външни стълби на резервоари, бойни машини, вишки, сигнални постове и др).', 1);		
+
+		INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'НИВА'), 
+        'Злополуки при труден достъп и лошо обезопасяване', 2);
+		
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'НИВА'), 
+        'Падания поради лошо обезопасяване на високо нива', 3);
+		
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'НИВА'), 
+        'Злополуки при работа на преносими стълби', 4);
+		
+INSERT INTO PMIS_HS.RiskFactors (RiskFactorTypeID, RiskFactorName, AllowAddManually, Seq)
+VALUES ((SELECT RiskFactorTypeID FROM PMIS_HS.RiskFactorTypes 
+         WHERE RiskFactorTypeName = 'КОНФИГУРАЦИЯ НА РАБОТНИТЕ ПОМЕЩЕНИЯ И РАБОТНИТЕ МЕСТА'), 
+        'СТАБИЛНОСТ НА РАБОТНИТЕ МЕСТА', 0, 4);
+
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'СТАБИЛНОСТ НА РАБОТНИТЕ МЕСТА'), 
+        'Злополуки при работа на скеле, наблюдателни вишки.', 1);
+		
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'СТАБИЛНОСТ НА РАБОТНИТЕ МЕСТА'), 
+        'Злополуки при работа в кабини на автокранове, кулокранове, кабини на МПС и др.', 2);
+		
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'СТАБИЛНОСТ НА РАБОТНИТЕ МЕСТА'), 
+        'Злополуки при работа по полагане на понтони или подвижни преносими секции.', 3);
+
+
+INSERT INTO PMIS_HS.RiskFactors (RiskFactorTypeID, RiskFactorName, AllowAddManually, Seq)
+VALUES ((SELECT RiskFactorTypeID FROM PMIS_HS.RiskFactorTypes 
+         WHERE RiskFactorTypeName = 'КОНФИГУРАЦИЯ НА РАБОТНИТЕ ПОМЕЩЕНИЯ И РАБОТНИТЕ МЕСТА'), 
+        'ДОСТЪП И РАБОТНА ЗОНА', 0, 5);
+
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'ДОСТЪП И РАБОТНА ЗОНА'), 
+        'Инциденти при много тесни места за преминаване.', 1);
+		
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'ДОСТЪП И РАБОТНА ЗОНА'), 
+        'Инциденти поради препятствия.', 2);
+		
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'ДОСТЪП И РАБОТНА ЗОНА'), 
+        'Проблеми поради работа в ограничено пространство (например между фиксирани части).', 3);
+		
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'ДОСТЪП И РАБОТНА ЗОНА'), 
+        'Проблеми поради работа в затворени пространства (например клаустрофобия).', 4);
+		
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'ДОСТЪП И РАБОТНА ЗОНА'), 
+        'Проблеми при влизане и излизане от затворени съдове.', 5);
+		
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'ДОСТЪП И РАБОТНА ЗОНА'), 
+        'Инциденти при учебни тренировки и бойна дейност с бойна и друга техника.', 6);
+		
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'ДОСТЪП И РАБОТНА ЗОНА'), 
+        'Инциденти при учебни тренировки и бойна дейност в окопи, открити фортификационни съоръжения, стени, препятствия, ровове и др. на полигони и в полеви условия.', 7);
+		
+INSERT INTO PMIS_HS.RiskFactors (RiskFactorTypeID, RiskFactorName, AllowAddManually, Seq)
+VALUES ((SELECT RiskFactorTypeID FROM PMIS_HS.RiskFactorTypes 
+         WHERE RiskFactorTypeName = 'КОНФИГУРАЦИЯ НА РАБОТНИТЕ ПОМЕЩЕНИЯ И РАБОТНИТЕ МЕСТА'), 
+        'ОБОРУДВАНЕ И ОРГАНИЗАЦИЯ НА РАБОТНИТЕ МЕСТА', 0, 6);
+
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'ОБОРУДВАНЕ И ОРГАНИЗАЦИЯ НА РАБОТНИТЕ МЕСТА'), 
+        'Претрупани с работни места помещения.', 1);
+		
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'ОБОРУДВАНЕ И ОРГАНИЗАЦИЯ НА РАБОТНИТЕ МЕСТА'), 
+        'Неергономични работни мебели.', 2);
+		
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'ОБОРУДВАНЕ И ОРГАНИЗАЦИЯ НА РАБОТНИТЕ МЕСТА'), 
+        'Неправилно разположение на мониторите спрямо източниците на светлина.', 3);
+		
+INSERT INTO PMIS_HS.RiskFactors (RiskFactorTypeID, RiskFactorName, AllowAddManually, Seq)
+VALUES ((SELECT RiskFactorTypeID FROM PMIS_HS.RiskFactorTypes 
+         WHERE RiskFactorTypeName = 'КОНФИГУРАЦИЯ НА РАБОТНИТЕ ПОМЕЩЕНИЯ И РАБОТНИТЕ МЕСТА'), 
+        'САНИТАРНО-БИТОВИ ПОМЕЩЕНИЯ (СЪБЛЕКАЛНИ, БАНИ, СТАИ ЗА ОТДИХ, СТАИ ЗА ЖЕНАТА, УСЛОВИЯ ЗА ХРАНЕНЕ И ДР.)', 0, 7);
+
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'САНИТАРНО-БИТОВИ ПОМЕЩЕНИЯ (СЪБЛЕКАЛНИ, БАНИ, СТАИ ЗА ОТДИХ, СТАИ ЗА ЖЕНАТА, УСЛОВИЯ ЗА ХРАНЕНЕ И ДР.)'), 
+        'Настаняване при казармени и полеви условия.', 1);
+		
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'САНИТАРНО-БИТОВИ ПОМЕЩЕНИЯ (СЪБЛЕКАЛНИ, БАНИ, СТАИ ЗА ОТДИХ, СТАИ ЗА ЖЕНАТА, УСЛОВИЯ ЗА ХРАНЕНЕ И ДР.)'), 
+        'Наличие и състояние на водоснабдяването (студена, топла вода), канализация и др.', 2);
+		
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'САНИТАРНО-БИТОВИ ПОМЕЩЕНИЯ (СЪБЛЕКАЛНИ, БАНИ, СТАИ ЗА ОТДИХ, СТАИ ЗА ЖЕНАТА, УСЛОВИЯ ЗА ХРАНЕНЕ И ДР.)'), 
+        'Банно-перално обслужване при казармени и полеви условия.', 3);
+		
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'САНИТАРНО-БИТОВИ ПОМЕЩЕНИЯ (СЪБЛЕКАЛНИ, БАНИ, СТАИ ЗА ОТДИХ, СТАИ ЗА ЖЕНАТА, УСЛОВИЯ ЗА ХРАНЕНЕ И ДР.)'), 
+        'Организация на хранене – фирмено или индивидуално хранене.', 4);
+		
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'САНИТАРНО-БИТОВИ ПОМЕЩЕНИЯ (СЪБЛЕКАЛНИ, БАНИ, СТАИ ЗА ОТДИХ, СТАИ ЗА ЖЕНАТА, УСЛОВИЯ ЗА ХРАНЕНЕ И ДР.)'), 
+        'Управление на отпадъците – битови, производствени, опасни (от проби кръв и екскременти).', 5);
+		
+INSERT INTO PMIS_HS.RiskFactors (RiskFactorTypeID, RiskFactorName, AllowAddManually, Seq)
+VALUES ((SELECT RiskFactorTypeID FROM PMIS_HS.RiskFactorTypes 
+         WHERE RiskFactorTypeName = 'КОНФИГУРАЦИЯ НА РАБОТНИТЕ ПОМЕЩЕНИЯ И РАБОТНИТЕ МЕСТА'), 
+        'ДРУГИ СПЕЦИФИЧНИ ФАКТОРИ', 1, 8);
+
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'ДРУГИ СПЕЦИФИЧНИ ФАКТОРИ' AND
+		       RiskFactorTypeID = (SELECT RiskFactorTypeID FROM PMIS_HS.RiskFactorTypes 
+			                       WHERE RiskFactorTypeName = 'КОНФИГУРАЦИЯ НА РАБОТНИТЕ ПОМЕЩЕНИЯ И РАБОТНИТЕ МЕСТА')), 
+        'Работа в  подземни фортификационни съоръжения.', 1);
+		
+
+		
+INSERT INTO PMIS_HS.RiskFactorTypes (RiskFactorTypeName, Seq)
+VALUES ('ФИЗИОЛОГИЧНИ, ПСИХОЛОГИЧНИ И СОЦИАЛНИ ФАКТОРИ', 4);
+
+INSERT INTO PMIS_HS.RiskFactors (RiskFactorTypeID, RiskFactorName, AllowAddManually, Seq)
+VALUES ((SELECT RiskFactorTypeID FROM PMIS_HS.RiskFactorTypes 
+         WHERE RiskFactorTypeName = 'ФИЗИОЛОГИЧНИ, ПСИХОЛОГИЧНИ И СОЦИАЛНИ ФАКТОРИ'), 
+        'ФИЗИЧЕСКО НАТОВАРВАНЕ – ТЕЖЕСТ НА ТРУДА', 0, 1);
+
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'ФИЗИЧЕСКО НАТОВАРВАНЕ – ТЕЖЕСТ НА ТРУДА'), 
+        'Физически тежка работа – нарушения поради прекомерни усилия', 1);
+
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'ФИЗИЧЕСКО НАТОВАРВАНЕ – ТЕЖЕСТ НА ТРУДА'), 
+        'Вдигане и носене на тежки товари – тегло, времетрае-не, разстояние', 2);
+		
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'ФИЗИЧЕСКО НАТОВАРВАНЕ – ТЕЖЕСТ НА ТРУДА'), 
+        'Повтарящи се вдигания', 3);
+		
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'ФИЗИЧЕСКО НАТОВАРВАНЕ – ТЕЖЕСТ НА ТРУДА'), 
+        'Теглене и бутане на тежки предмети', 4);
+		
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'ФИЗИЧЕСКО НАТОВАРВАНЕ – ТЕЖЕСТ НА ТРУДА'), 
+        'Наличие и състояние на помощни съоръжения и техника', 5);
+		
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'ФИЗИЧЕСКО НАТОВАРВАНЕ – ТЕЖЕСТ НА ТРУДА'), 
+        'Натоварване при физическа подготовка, бойни и учебни занятия', 6);
+		
+INSERT INTO PMIS_HS.RiskFactors (RiskFactorTypeID, RiskFactorName, AllowAddManually, Seq)
+VALUES ((SELECT RiskFactorTypeID FROM PMIS_HS.RiskFactorTypes 
+         WHERE RiskFactorTypeName = 'ФИЗИОЛОГИЧНИ, ПСИХОЛОГИЧНИ И СОЦИАЛНИ ФАКТОРИ'), 
+        'ПОВТОРЯЕМОСТ И ТЕМП НА РАБОТНИТЕ ОПЕРАЦИИ', 0, 2);
+
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'ПОВТОРЯЕМОСТ И ТЕМП НА РАБОТНИТЕ ОПЕРАЦИИ'), 
+        'Често повтаряне на еднакви работни операции', 1);
+		
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'ПОВТОРЯЕМОСТ И ТЕМП НА РАБОТНИТЕ ОПЕРАЦИИ'), 
+        'Еднообразен работен цикъл', 2);
+		
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'ПОВТОРЯЕМОСТ И ТЕМП НА РАБОТНИТЕ ОПЕРАЦИИ'), 
+        'Висок темп на работа', 3);
+		
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'ПОВТОРЯЕМОСТ И ТЕМП НА РАБОТНИТЕ ОПЕРАЦИИ'), 
+        'Работни движения – клас, обем, темп и др', 4);
+				
+INSERT INTO PMIS_HS.RiskFactors (RiskFactorTypeID, RiskFactorName, AllowAddManually, Seq)
+VALUES ((SELECT RiskFactorTypeID FROM PMIS_HS.RiskFactorTypes 
+         WHERE RiskFactorTypeName = 'ФИЗИОЛОГИЧНИ, ПСИХОЛОГИЧНИ И СОЦИАЛНИ ФАКТОРИ'), 
+        'РАБОТНА ПОЗА', 0, 3);
+
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'РАБОТНА ПОЗА'), 
+        'Продължителна (задължителна) седяща, ходеща, изправена, легнала поза – умора', 1);
+
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'РАБОТНА ПОЗА'), 
+        'Увреждания при работа на колене, в неправилна поза, с трудни движения, с извивания', 2);
+		
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'РАБОТНА ПОЗА'), 
+        'Увреждания при неправилна принудителна поза', 3);
+		
+INSERT INTO PMIS_HS.RiskFactors (RiskFactorTypeID, RiskFactorName, AllowAddManually, Seq)
+VALUES ((SELECT RiskFactorTypeID FROM PMIS_HS.RiskFactorTypes 
+         WHERE RiskFactorTypeName = 'ФИЗИОЛОГИЧНИ, ПСИХОЛОГИЧНИ И СОЦИАЛНИ ФАКТОРИ'), 
+        'ПОВИШЕНИ ИЗИСКВАНИЯ КЪМ ВНИМАНИЕТО', 0, 4);	
+
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'ПОВИШЕНИ ИЗИСКВАНИЯ КЪМ ВНИМАНИЕТО'), 
+        'Продължително наблюдение на екрани и индикаторни устройства', 1);
+
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'ПОВИШЕНИ ИЗИСКВАНИЯ КЪМ ВНИМАНИЕТО'), 
+        'Наблюдение на видеодисплеи', 2);
+		
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'ПОВИШЕНИ ИЗИСКВАНИЯ КЪМ ВНИМАНИЕТО'), 
+        'Микроскопиране', 3);
+		
+INSERT INTO PMIS_HS.RiskFactors (RiskFactorTypeID, RiskFactorName, AllowAddManually, Seq)
+VALUES ((SELECT RiskFactorTypeID FROM PMIS_HS.RiskFactorTypes 
+         WHERE RiskFactorTypeName = 'ФИЗИОЛОГИЧНИ, ПСИХОЛОГИЧНИ И СОЦИАЛНИ ФАКТОРИ'), 
+        'ПРЕРАБОТКА НА ИНФОРМАЦИЯ И ВЗИМАНЕ НА РЕШЕНИЕ (НЕДОСТИГ НА ВРЕМЕ И ИНФОРМАЦИЯ)', 0, 5);
+
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'ПРЕРАБОТКА НА ИНФОРМАЦИЯ И ВЗИМАНЕ НА РЕШЕНИЕ (НЕДОСТИГ НА ВРЕМЕ И ИНФОРМАЦИЯ)'), 
+        'Закъсняваща или неправилна информация – погрешни решения', 1);
+		
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'ПРЕРАБОТКА НА ИНФОРМАЦИЯ И ВЗИМАНЕ НА РЕШЕНИЕ (НЕДОСТИГ НА ВРЕМЕ И ИНФОРМАЦИЯ)'), 
+        'Злополуки', 2);
+		
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'ПРЕРАБОТКА НА ИНФОРМАЦИЯ И ВЗИМАНЕ НА РЕШЕНИЕ (НЕДОСТИГ НА ВРЕМЕ И ИНФОРМАЦИЯ)'), 
+        'Аварии', 3);		
+		
+INSERT INTO PMIS_HS.RiskFactors (RiskFactorTypeID, RiskFactorName, AllowAddManually, Seq)
+VALUES ((SELECT RiskFactorTypeID FROM PMIS_HS.RiskFactorTypes 
+         WHERE RiskFactorTypeName = 'ФИЗИОЛОГИЧНИ, ПСИХОЛОГИЧНИ И СОЦИАЛНИ ФАКТОРИ'), 
+        'РЕЖИМ НА ТРУД И ПОЧИВКА, РАБОТНО ВРЕМЕ И СМЕННА РАБОТА (ОГРАНИЧЕНИ ВЪЗ-МОЖНОСТИ ЗА АДАПТАЦИЯ)', 0, 6);
+	
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'РЕЖИМ НА ТРУД И ПОЧИВКА, РАБОТНО ВРЕМЕ И СМЕННА РАБОТА (ОГРАНИЧЕНИ ВЪЗ-МОЖНОСТИ ЗА АДАПТАЦИЯ)'), 
+        'Удължено работно време – 12-часови работни смени, ненормирано работно време', 1);
+
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'РЕЖИМ НА ТРУД И ПОЧИВКА, РАБОТНО ВРЕМЕ И СМЕННА РАБОТА (ОГРАНИЧЕНИ ВЪЗ-МОЖНОСТИ ЗА АДАПТАЦИЯ)'), 
+        'Неподходящ ритъм на труд и почивка – нерационален график на работните смени', 2);
+
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'РЕЖИМ НА ТРУД И ПОЧИВКА, РАБОТНО ВРЕМЕ И СМЕННА РАБОТА (ОГРАНИЧЕНИ ВЪЗ-МОЖНОСТИ ЗА АДАПТАЦИЯ)'), 
+        'Смущения в адаптацията при сменни режими и нощни смени', 3);
+
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'РЕЖИМ НА ТРУД И ПОЧИВКА, РАБОТНО ВРЕМЕ И СМЕННА РАБОТА (ОГРАНИЧЕНИ ВЪЗ-МОЖНОСТИ ЗА АДАПТАЦИЯ)'), 
+        'Честа смяна на работните места', 4);
+
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'РЕЖИМ НА ТРУД И ПОЧИВКА, РАБОТНО ВРЕМЕ И СМЕННА РАБОТА (ОГРАНИЧЕНИ ВЪЗ-МОЖНОСТИ ЗА АДАПТАЦИЯ)'), 
+        'Непостоянни работни места', 5); 
+		
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'РЕЖИМ НА ТРУД И ПОЧИВКА, РАБОТНО ВРЕМЕ И СМЕННА РАБОТА (ОГРАНИЧЕНИ ВЪЗ-МОЖНОСТИ ЗА АДАПТАЦИЯ)'), 
+        '24-часови дежурства на кадровите военнослужещи', 6);
+				
+INSERT INTO PMIS_HS.RiskFactors (RiskFactorTypeID, RiskFactorName, AllowAddManually, Seq)
+VALUES ((SELECT RiskFactorTypeID FROM PMIS_HS.RiskFactorTypes 
+         WHERE RiskFactorTypeName = 'ФИЗИОЛОГИЧНИ, ПСИХОЛОГИЧНИ И СОЦИАЛНИ ФАКТОРИ'), 
+        'ОТРИЦАТЕЛНО ВЛИЯНИЕ НА ИЗПОЛЗВАНИТЕ ЛИЧНИ ПРЕДПАЗНИ СРЕДСТВА  И  РАБОТНО ОБЛЕКЛО ВЪРХУ РАБОТЕЩИТЕ', 0, 7);
+
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'ОТРИЦАТЕЛНО ВЛИЯНИЕ НА ИЗПОЛЗВАНИТЕ ЛИЧНИ ПРЕДПАЗНИ СРЕДСТВА  И  РАБОТНО ОБЛЕКЛО ВЪРХУ РАБОТЕЩИТЕ'), 
+        'Ограничена подвижност', 1);
+
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'ОТРИЦАТЕЛНО ВЛИЯНИЕ НА ИЗПОЛЗВАНИТЕ ЛИЧНИ ПРЕДПАЗНИ СРЕДСТВА  И  РАБОТНО ОБЛЕКЛО ВЪРХУ РАБОТЕЩИТЕ'), 
+        'Нарушен комфорт (прегряване, потене, охлаждане, притискане и др.)', 2);	
+
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'ОТРИЦАТЕЛНО ВЛИЯНИЕ НА ИЗПОЛЗВАНИТЕ ЛИЧНИ ПРЕДПАЗНИ СРЕДСТВА  И  РАБОТНО ОБЛЕКЛО ВЪРХУ РАБОТЕЩИТЕ'), 
+        'Затруднена комуникация', 3);		
+		
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'ОТРИЦАТЕЛНО ВЛИЯНИЕ НА ИЗПОЛЗВАНИТЕ ЛИЧНИ ПРЕДПАЗНИ СРЕДСТВА  И  РАБОТНО ОБЛЕКЛО ВЪРХУ РАБОТЕЩИТЕ'), 
+        'Неудобства от общоизползваните (антифони, каски, маски и др.) и специфични (противогази, бронежилетки, очила за нощно виждане, лъчезащитни костюми, защитни химически облекла и др.) лични предпазни средства (ЛПС)', 4);		
+		
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'ОТРИЦАТЕЛНО ВЛИЯНИЕ НА ИЗПОЛЗВАНИТЕ ЛИЧНИ ПРЕДПАЗНИ СРЕДСТВА  И  РАБОТНО ОБЛЕКЛО ВЪРХУ РАБОТЕЩИТЕ'), 
+        'Увреждания от състояние и несъответни по размер и тип ЛПС', 5);
+
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'ОТРИЦАТЕЛНО ВЛИЯНИЕ НА ИЗПОЛЗВАНИТЕ ЛИЧНИ ПРЕДПАЗНИ СРЕДСТВА  И  РАБОТНО ОБЛЕКЛО ВЪРХУ РАБОТЕЩИТЕ'), 
+        'Режим на подмяна на ЛПС и работното и специално защитно облекло', 6);		
+				
+INSERT INTO PMIS_HS.RiskFactors (RiskFactorTypeID, RiskFactorName, AllowAddManually, Seq)
+VALUES ((SELECT RiskFactorTypeID FROM PMIS_HS.RiskFactorTypes 
+         WHERE RiskFactorTypeName = 'ФИЗИОЛОГИЧНИ, ПСИХОЛОГИЧНИ И СОЦИАЛНИ ФАКТОРИ'), 
+        'СПЕЦИФИЧНИ ТЕХНИКИ И МЕТОДИ НА РАБОТА', 0, 8);
+
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'СПЕЦИФИЧНИ ТЕХНИКИ И МЕТОДИ НА РАБОТА'), 
+        '', 1);
+		
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'СПЕЦИФИЧНИ ТЕХНИКИ И МЕТОДИ НА РАБОТА'), 
+        'Нарушаване изискванията на инструкциите и другите регламентиращи документи във видовете въоръжени сили в БА (курс за стрелбите в БА, наставление за кормуване и др.)', 1);		
+		
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'СПЕЦИФИЧНИ ТЕХНИКИ И МЕТОДИ НА РАБОТА'), 
+        'Напрягане на гласните връзки по време на учебния процес и при занятия и учения на открито.', 2);				
+		
+INSERT INTO PMIS_HS.RiskFactors (RiskFactorTypeID, RiskFactorName, AllowAddManually, Seq)
+VALUES ((SELECT RiskFactorTypeID FROM PMIS_HS.RiskFactorTypes 
+         WHERE RiskFactorTypeName = 'ФИЗИОЛОГИЧНИ, ПСИХОЛОГИЧНИ И СОЦИАЛНИ ФАКТОРИ'), 
+        'ЛИПСА НА СВОБОДА В ОРГАНИЗАЦИЯТА НА РАБОТНОТО ВРЕМЕ', 0, 9);	
+
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'ЛИПСА НА СВОБОДА В ОРГАНИЗАЦИЯТА НА РАБОТНОТО ВРЕМЕ'), 
+        'Неритмични и нежелани работни графици.', 1);
+		
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'ЛИПСА НА СВОБОДА В ОРГАНИЗАЦИЯТА НА РАБОТНОТО ВРЕМЕ'), 
+        'Чести и внезапни, без предварително планиране, командировки, занятия и др', 2);
+
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'ЛИПСА НА СВОБОДА В ОРГАНИЗАЦИЯТА НА РАБОТНОТО ВРЕМЕ'), 
+        'Невъзможност за напускане на работното място без нарушаване на технологичния (учебния) процес', 3);		
+		
+INSERT INTO PMIS_HS.RiskFactors (RiskFactorTypeID, RiskFactorName, AllowAddManually, Seq)
+VALUES ((SELECT RiskFactorTypeID FROM PMIS_HS.RiskFactorTypes 
+         WHERE RiskFactorTypeName = 'ФИЗИОЛОГИЧНИ, ПСИХОЛОГИЧНИ И СОЦИАЛНИ ФАКТОРИ'), 
+        'ПРИНУДИТЕЛНИ СРОКОВЕ И РИТЪМ НА ИЗПЪЛНЕНИЕ', 0, 10);		
+
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'ПРИНУДИТЕЛНИ СРОКОВЕ И РИТЪМ НА ИЗПЪЛНЕНИЕ'), 
+        'Принудителен ритъм – грешки, стрес, злополуки', 1);
+
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'ПРИНУДИТЕЛНИ СРОКОВЕ И РИТЪМ НА ИЗПЪЛНЕНИЕ'), 
+        'Непредвидени и спешни ситуации – грешки, стрес, злополуки', 2);
+		
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'ПРИНУДИТЕЛНИ СРОКОВЕ И РИТЪМ НА ИЗПЪЛНЕНИЕ'), 
+        'Взаимозависимост между изпълнители,поради  липса на синхрон - – грешки, стрес, злополуки', 3);		
+				
+INSERT INTO PMIS_HS.RiskFactors (RiskFactorTypeID, RiskFactorName, AllowAddManually, Seq)
+VALUES ((SELECT RiskFactorTypeID FROM PMIS_HS.RiskFactorTypes 
+         WHERE RiskFactorTypeName = 'ФИЗИОЛОГИЧНИ, ПСИХОЛОГИЧНИ И СОЦИАЛНИ ФАКТОРИ'), 
+        'ПСИХОЛОГИЧЕН ТОРМОЗ НА РАБОТНОТО МЯСТО', 0, 11);			
+		
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'ПСИХОЛОГИЧЕН ТОРМОЗ НА РАБОТНОТО МЯСТО'), 
+        'Въздействие на ръководители ', 1);		
+	
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'ПСИХОЛОГИЧЕН ТОРМОЗ НА РАБОТНОТО МЯСТО'), 
+        'Въздействие от хора (клиенти, пациенти и др.), обект на трудовата дейност', 2);	
+
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'ПСИХОЛОГИЧЕН ТОРМОЗ НА РАБОТНОТО МЯСТО'), 
+        'Взаимоотношения между колеги', 3);		
+				
+INSERT INTO PMIS_HS.RiskFactors (RiskFactorTypeID, RiskFactorName, AllowAddManually, Seq)
+VALUES ((SELECT RiskFactorTypeID FROM PMIS_HS.RiskFactorTypes 
+         WHERE RiskFactorTypeName = 'ФИЗИОЛОГИЧНИ, ПСИХОЛОГИЧНИ И СОЦИАЛНИ ФАКТОРИ'), 
+        'ОПАСНОСТ ОТ ФИЗИЧЕСКО ПОСЕГАТЕЛСТВО', 0, 12);
+
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'ОПАСНОСТ ОТ ФИЗИЧЕСКО ПОСЕГАТЕЛСТВО'), 
+        'Терор на работното място', 1);	
+
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'ОПАСНОСТ ОТ ФИЗИЧЕСКО ПОСЕГАТЕЛСТВО'), 
+        'Насилие върху персонал (на гишета, шофьори, продавачи, в здравни заведения и др.)', 2);	
+
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'ОПАСНОСТ ОТ ФИЗИЧЕСКО ПОСЕГАТЕЛСТВО'), 
+        'Насилие върху охранители, кадрови военнослужещи и полиция - при даване на дежурства и наряд', 3);			
+		
+INSERT INTO PMIS_HS.RiskFactors (RiskFactorTypeID, RiskFactorName, AllowAddManually, Seq)
+VALUES ((SELECT RiskFactorTypeID FROM PMIS_HS.RiskFactorTypes 
+         WHERE RiskFactorTypeName = 'ФИЗИОЛОГИЧНИ, ПСИХОЛОГИЧНИ И СОЦИАЛНИ ФАКТОРИ'), 
+        'ОРГАНИЗАЦИЯ, ПРИЕМСТВЕ-НОСТ И РАБОТА В ЕКИП', 0, 13);
+
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'ОРГАНИЗАЦИЯ, ПРИЕМСТВЕ-НОСТ И РАБОТА В ЕКИП'), 
+        'Работа в изолация', 1);
+		
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'ОРГАНИЗАЦИЯ, ПРИЕМСТВЕ-НОСТ И РАБОТА В ЕКИП'), 
+        'Объркване и конфликти при рапределяне на работата', 2);		
+		
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'ОРГАНИЗАЦИЯ, ПРИЕМСТВЕ-НОСТ И РАБОТА В ЕКИП'), 
+        'Неяснота и противоречивост на трудовите задачи и изисквания', 3);
+
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'ОРГАНИЗАЦИЯ, ПРИЕМСТВЕ-НОСТ И РАБОТА В ЕКИП'), 
+        'Конфликти в работата – лоши взаимоотношения между индивиди и групи', 4);
+	
+INSERT INTO PMIS_HS.RiskFactors (RiskFactorTypeID, RiskFactorName, AllowAddManually, Seq)
+VALUES ((SELECT RiskFactorTypeID FROM PMIS_HS.RiskFactorTypes 
+         WHERE RiskFactorTypeName = 'ФИЗИОЛОГИЧНИ, ПСИХОЛОГИЧНИ И СОЦИАЛНИ ФАКТОРИ'), 
+        'ВЪЗМОЖНОСТИ ЗА УЧАСТИЕ ВЪВ ВЗИМАНЕТО  НА РЕШЕНИЯ ПО ОТНОШЕНИЕ НА РАБОТАТА, ИЗИСКВАНИЯТА И КОНТРОЛА ВЪРХУ ТРУДОВИЯ ПРОЦЕС', 0, 14);	
+
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'ВЪЗМОЖНОСТИ ЗА УЧАСТИЕ ВЪВ ВЗИМАНЕТО  НА РЕШЕНИЯ ПО ОТНОШЕНИЕ НА РАБОТАТА, ИЗИСКВАНИЯТА И КОНТРОЛА ВЪРХУ ТРУДОВИЯ ПРОЦЕС'), 
+        'Високи изисквания и нисък контрол – стрес', 1);
+
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'ВЪЗМОЖНОСТИ ЗА УЧАСТИЕ ВЪВ ВЗИМАНЕТО  НА РЕШЕНИЯ ПО ОТНОШЕНИЕ НА РАБОТАТА, ИЗИСКВАНИЯТА И КОНТРОЛА ВЪРХУ ТРУДОВИЯ ПРОЦЕС'), 
+        'Високи изисквания и висок контрол – напрежение', 2);
+		
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'ВЪЗМОЖНОСТИ ЗА УЧАСТИЕ ВЪВ ВЗИМАНЕТО  НА РЕШЕНИЯ ПО ОТНОШЕНИЕ НА РАБОТАТА, ИЗИСКВАНИЯТА И КОНТРОЛА ВЪРХУ ТРУДОВИЯ ПРОЦЕС'), 
+        'Липса на автономност при планиране и работа', 3);		
+
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'ВЪЗМОЖНОСТИ ЗА УЧАСТИЕ ВЪВ ВЗИМАНЕТО  НА РЕШЕНИЯ ПО ОТНОШЕНИЕ НА РАБОТАТА, ИЗИСКВАНИЯТА И КОНТРОЛА ВЪРХУ ТРУДОВИЯ ПРОЦЕС'), 
+        'Наложена организация и план на работа', 4);
+		
+INSERT INTO PMIS_HS.RiskFactors (RiskFactorTypeID, RiskFactorName, AllowAddManually, Seq)
+VALUES ((SELECT RiskFactorTypeID FROM PMIS_HS.RiskFactorTypes 
+         WHERE RiskFactorTypeName = 'ФИЗИОЛОГИЧНИ, ПСИХОЛОГИЧНИ И СОЦИАЛНИ ФАКТОРИ'), 
+        'ВИСОКА ОТГОВОРНОСТ – ЗА ИЗПЪЛНЕНИЕТО НА ЗАДАЧИ, ЗА ХОРА, ТЕХНИКА, ФИНАНСОВА И ДР.', 0, 15);	
+
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'ВИСОКА ОТГОВОРНОСТ – ЗА ИЗПЪЛНЕНИЕТО НА ЗАДАЧИ, ЗА ХОРА, ТЕХНИКА, ФИНАНСОВА И ДР.'), 
+        'Пренапрежение – стрес', 1);
+
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'ВИСОКА ОТГОВОРНОСТ – ЗА ИЗПЪЛНЕНИЕТО НА ЗАДАЧИ, ЗА ХОРА, ТЕХНИКА, ФИНАНСОВА И ДР.'), 
+        'Професионално повлияни болести на органите на кръвообращението и храносмилането', 2);		
+	
+INSERT INTO PMIS_HS.RiskFactors (RiskFactorTypeID, RiskFactorName, AllowAddManually, Seq)
+VALUES ((SELECT RiskFactorTypeID FROM PMIS_HS.RiskFactorTypes 
+         WHERE RiskFactorTypeName = 'ФИЗИОЛОГИЧНИ, ПСИХОЛОГИЧНИ И СОЦИАЛНИ ФАКТОРИ'), 
+        'ЗРИТЕЛНО НАПРЕЖЕНИЕ', 0, 16);	
+
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'ЗРИТЕЛНО НАПРЕЖЕНИЕ'), 
+        'При шофиране', 1);	
+
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'ЗРИТЕЛНО НАПРЕЖЕНИЕ'), 
+        'При контролна дейност', 2);			
+		
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'ЗРИТЕЛНО НАПРЕЖЕНИЕ'), 
+        'При обработка на финансови документи', 3);			
+		
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'ЗРИТЕЛНО НАПРЕЖЕНИЕ'), 
+        'При учебни и бойни стрелби', 4);	
+			
+INSERT INTO PMIS_HS.RiskFactors (RiskFactorTypeID, RiskFactorName, AllowAddManually, Seq)
+VALUES ((SELECT RiskFactorTypeID FROM PMIS_HS.RiskFactorTypes 
+         WHERE RiskFactorTypeName = 'ФИЗИОЛОГИЧНИ, ПСИХОЛОГИЧНИ И СОЦИАЛНИ ФАКТОРИ'), 
+        'СЛУХОВО НАПРЕЖЕНИЕ', 0, 17);		
+
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'СЛУХОВО НАПРЕЖЕНИЕ'), 
+        'Напрежение на слуховия анализатор с цел долавяне на слаби непривични шумове', 1);	
+
+INSERT INTO PMIS_HS.RiskFactors (RiskFactorTypeID, RiskFactorName, AllowAddManually, Seq)
+VALUES ((SELECT RiskFactorTypeID FROM PMIS_HS.RiskFactorTypes 
+         WHERE RiskFactorTypeName = 'ФИЗИОЛОГИЧНИ, ПСИХОЛОГИЧНИ И СОЦИАЛНИ ФАКТОРИ'), 
+        'ДРУГИ СПЕЦИФИЧНИ ФАКТОРИ', 1, 18);			
+		
+
+		
+INSERT INTO PMIS_HS.RiskFactorTypes (RiskFactorTypeName, Seq)
+VALUES ('ЕКСПОЗИЦИЯ НА ФИЗИЧЕСКИ ФАКТОРИ', 5);
+
+INSERT INTO PMIS_HS.RiskFactors (RiskFactorTypeID, RiskFactorName, AllowAddManually, Seq)
+VALUES ((SELECT RiskFactorTypeID FROM PMIS_HS.RiskFactorTypes 
+         WHERE RiskFactorTypeName = 'ЕКСПОЗИЦИЯ НА ФИЗИЧЕСКИ ФАКТОРИ'), 
+        'ОСВЕТЕНОСТ НА РАБОТНОТО МЯСТО И НА ПЪТИЩАТА ЗА ПРИДВИЖВАНЕ', 0, 1);		
+		
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'ОСВЕТЕНОСТ НА РАБОТНОТО МЯСТО И НА ПЪТИЩАТА ЗА ПРИДВИЖВАНЕ'), 
+        'Недостатъчно – увреждане на зрението, влошено качество и производителност', 1);	
+		
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'ОСВЕТЕНОСТ НА РАБОТНОТО МЯСТО И НА ПЪТИЩАТА ЗА ПРИДВИЖВАНЕ'), 
+        'Заслепяващо осветление – увреждане на зрението, влошено качество и производителност', 2);	
+
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'ОСВЕТЕНОСТ НА РАБОТНОТО МЯСТО И НА ПЪТИЩАТА ЗА ПРИДВИЖВАНЕ'), 
+        'Смесено, неподходящо и неадекватно осветление – увреждане на зрението, влошено качество и производителност', 3);			
+	
+INSERT INTO PMIS_HS.RiskFactors (RiskFactorTypeID, RiskFactorName, AllowAddManually, Seq)
+VALUES ((SELECT RiskFactorTypeID FROM PMIS_HS.RiskFactorTypes 
+         WHERE RiskFactorTypeName = 'ЕКСПОЗИЦИЯ НА ФИЗИЧЕСКИ ФАКТОРИ'), 
+        'МИКРОКЛИМАТ НА РАБОТНОТО МЯСТО (ДВИЖЕНИЕ, ТЕМПЕРАТУРА, ВЛАЖНОСТ НА ВЪЗДУХА, КОМФОРТ)', 0, 2);		
+	
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'МИКРОКЛИМАТ НА РАБОТНОТО МЯСТО (ДВИЖЕНИЕ, ТЕМПЕРАТУРА, ВЛАЖНОСТ НА ВЪЗДУХА, КОМФОРТ)'), 
+        'Липса на въздухообмен – нарушена терморегулация, сърдечно – съдови проблеми', 1);	
+	
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'МИКРОКЛИМАТ НА РАБОТНОТО МЯСТО (ДВИЖЕНИЕ, ТЕМПЕРАТУРА, ВЛАЖНОСТ НА ВЪЗДУХА, КОМФОРТ)'), 
+        'Въздушно течение – нарушена терморегулация, сърдечно – съдови проблеми, болести на нервната система (плексит, фациалис и др.)', 2);		
+	
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'МИКРОКЛИМАТ НА РАБОТНОТО МЯСТО (ДВИЖЕНИЕ, ТЕМПЕРАТУРА, ВЛАЖНОСТ НА ВЪЗДУХА, КОМФОРТ)'), 
+        'Ниски температури– нарушена терморегулация, сърдечно – съдови проблеми', 3);		
+	
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'МИКРОКЛИМАТ НА РАБОТНОТО МЯСТО (ДВИЖЕНИЕ, ТЕМПЕРАТУРА, ВЛАЖНОСТ НА ВЪЗДУХА, КОМФОРТ)'), 
+        'Високи температури, водещи до изпотяване, дори и при неподвижност – нарушена терморегулация, сърдечно –съдови проблеми', 4);		
+	
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'МИКРОКЛИМАТ НА РАБОТНОТО МЯСТО (ДВИЖЕНИЕ, ТЕМПЕРАТУРА, ВЛАЖНОСТ НА ВЪЗДУХА, КОМФОРТ)'), 
+        'Много сух въздух – нарушена терморегулация, сърдечно – съдови проблеми', 5);		
+	
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'МИКРОКЛИМАТ НА РАБОТНОТО МЯСТО (ДВИЖЕНИЕ, ТЕМПЕРАТУРА, ВЛАЖНОСТ НА ВЪЗДУХА, КОМФОРТ)'), 
+        'Много влажен въздух, работа в близост до вода – нарушена терморегулация, сърдечно – съдови проблеми', 6);	
+
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'МИКРОКЛИМАТ НА РАБОТНОТО МЯСТО (ДВИЖЕНИЕ, ТЕМПЕРАТУРА, ВЛАЖНОСТ НА ВЪЗДУХА, КОМФОРТ)'), 
+        'Мозаечен микроклимат – нарушена терморегулация', 7);	
+	
+INSERT INTO PMIS_HS.RiskFactors (RiskFactorTypeID, RiskFactorName, AllowAddManually, Seq)
+VALUES ((SELECT RiskFactorTypeID FROM PMIS_HS.RiskFactorTypes 
+         WHERE RiskFactorTypeName = 'ЕКСПОЗИЦИЯ НА ФИЗИЧЕСКИ ФАКТОРИ'), 
+        'РАБОТА НА ОТКРИТО', 0, 3);
+		
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'РАБОТА НА ОТКРИТО'), 
+        'Работа при сурови климатични условия', 1);			
+		
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'РАБОТА НА ОТКРИТО'), 
+        'Занятия и учения на открито', 2);	
+
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'РАБОТА НА ОТКРИТО'), 
+        'При кадастрални заснемания на територии и обекти', 3);	
+		
+INSERT INTO PMIS_HS.RiskFactors (RiskFactorTypeID, RiskFactorName, AllowAddManually, Seq)
+VALUES ((SELECT RiskFactorTypeID FROM PMIS_HS.RiskFactorTypes 
+         WHERE RiskFactorTypeName = 'ЕКСПОЗИЦИЯ НА ФИЗИЧЕСКИ ФАКТОРИ'), 
+        'АТМОСФЕРНО НАЛЯГАНЕ', 0, 4);	
+
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'АТМОСФЕРНО НАЛЯГАНЕ'), 
+        'Работа при повишено атмосферно налягане – водолази', 1);	
+
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'АТМОСФЕРНО НАЛЯГАНЕ'), 
+        'Работа при понижено атмосферно налягане – летателен състав', 2);		
+		
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'АТМОСФЕРНО НАЛЯГАНЕ'), 
+        'Работа в обекти, дислоцирани на голяма надморска височина', 3);		
+		
+INSERT INTO PMIS_HS.RiskFactors (RiskFactorTypeID, RiskFactorName, AllowAddManually, Seq)
+VALUES ((SELECT RiskFactorTypeID FROM PMIS_HS.RiskFactorTypes 
+         WHERE RiskFactorTypeName = 'ЕКСПОЗИЦИЯ НА ФИЗИЧЕСКИ ФАКТОРИ'), 
+        'ШУМ, ИНФРАЗВУК И УЛТРАЗВУК', 0, 5);
+
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'ШУМ, ИНФРАЗВУК И УЛТРАЗВУК'), 
+        'Увреждане на слуха при високи нива на шум', 1);	
+
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'ШУМ, ИНФРАЗВУК И УЛТРАЗВУК'), 
+        'Остра слухова травма – при стрелби и взривове', 2);		
+		
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'ШУМ, ИНФРАЗВУК И УЛТРАЗВУК'), 
+        'Нарушена комуникация при работа', 3);		
+		
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'ШУМ, ИНФРАЗВУК И УЛТРАЗВУК'), 
+        'Бойна техника (верижна и колесна), транспортни средства и др.', 4);		
+		
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'ШУМ, ИНФРАЗВУК И УЛТРАЗВУК'), 
+        'Ръчни инструменти', 5);		
+		
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'ШУМ, ИНФРАЗВУК И УЛТРАЗВУК'), 
+        'Нива на шум под долните стойности на експозиция за предприемане на действия (80 dBAeq) в помещения на диспе-чери, администрация, оператори на ЕИМ и др. подобни  - стрес, натоварване на слуховия анализатор, нервната система – бързо настъпване на умора, човешки грешки', 6);		
+						
+INSERT INTO PMIS_HS.RiskFactors (RiskFactorTypeID, RiskFactorName, AllowAddManually, Seq)
+VALUES ((SELECT RiskFactorTypeID FROM PMIS_HS.RiskFactorTypes 
+         WHERE RiskFactorTypeName = 'ЕКСПОЗИЦИЯ НА ФИЗИЧЕСКИ ФАКТОРИ'), 
+        'МЕХАНИЧНИ ВИБРАЦИИ – НА ЦЯЛОТО ТЯЛО (ОБЩИ) И НА СИСТЕМАТА РЪКА-РАМО (ЛОКАЛНИ)', 0, 6);
+
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'МЕХАНИЧНИ ВИБРАЦИИ – НА ЦЯЛОТО ТЯЛО (ОБЩИ) И НА СИСТЕМАТА РЪКА-РАМО (ЛОКАЛНИ)'), 
+        'Косещи машини – увреждане на периферните съдове, опорно – двигателната система и вътрешни органи', 1);			
+		
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'МЕХАНИЧНИ ВИБРАЦИИ – НА ЦЯЛОТО ТЯЛО (ОБЩИ) И НА СИСТЕМАТА РЪКА-РАМО (ЛОКАЛНИ)'), 
+        'Вибриращи машини и подове – увреждане на периферните съдове, двигателната система и вътрешни органи', 2);		
+		
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'МЕХАНИЧНИ ВИБРАЦИИ – НА ЦЯЛОТО ТЯЛО (ОБЩИ) И НА СИСТЕМАТА РЪКА-РАМО (ЛОКАЛНИ)'), 
+        'Ротационни и вибриращи ръчни инструменти в други случаи на локални вибрации –увреждане на периферните съдове, двигателната система и вътрешни органи', 3);		
+		
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'МЕХАНИЧНИ ВИБРАЦИИ – НА ЦЯЛОТО ТЯЛО (ОБЩИ) И НА СИСТЕМАТА РЪКА-РАМО (ЛОКАЛНИ)'), 
+        'Бойна техника (верижна и колесна), транспортни средства и др', 4);		
+				
+INSERT INTO PMIS_HS.RiskFactors (RiskFactorTypeID, RiskFactorName, AllowAddManually, Seq)
+VALUES ((SELECT RiskFactorTypeID FROM PMIS_HS.RiskFactorTypes 
+         WHERE RiskFactorTypeName = 'ЕКСПОЗИЦИЯ НА ФИЗИЧЕСКИ ФАКТОРИ'), 
+        'ПРАХ И ЧАСТИЦИ, НЕСЪДЪРЖАЩИ ТОКСИЧНИ ВЕЩЕСТВА', 0, 7);	
+
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'ПРАХ И ЧАСТИЦИ, НЕСЪДЪРЖАЩИ ТОКСИЧНИ ВЕЩЕСТВА'), 
+        'Работа с машини и съоръжения, генериращи прах и частици, несъдържащи токсични вещества–дърводелни и др', 1);	
+
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'ПРАХ И ЧАСТИЦИ, НЕСЪДЪРЖАЩИ ТОКСИЧНИ ВЕЩЕСТВА'), 
+        'Книжен прах при обработка и съхранение на книги и документи – библиотеки, архиви, деловодства и др. ', 2);	
+		
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'ПРАХ И ЧАСТИЦИ, НЕСЪДЪРЖАЩИ ТОКСИЧНИ ВЕЩЕСТВА'), 
+        'Занятия и учения на открито, при изнасяне–марш и др.', 3);			
+				
+INSERT INTO PMIS_HS.RiskFactors (RiskFactorTypeID, RiskFactorName, AllowAddManually, Seq)
+VALUES ((SELECT RiskFactorTypeID FROM PMIS_HS.RiskFactorTypes 
+         WHERE RiskFactorTypeName = 'ЕКСПОЗИЦИЯ НА ФИЗИЧЕСКИ ФАКТОРИ'), 
+        'ЙОНИЗИРАЩИ ЛЪЧЕНИЯ', 0, 8);	
+
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'ЙОНИЗИРАЩИ ЛЪЧЕНИЯ'), 
+        'Рентгенови апарати, кугели', 1);	
+
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'ЙОНИЗИРАЩИ ЛЪЧЕНИЯ'), 
+        'Изотопна диагностика', 2);	
+
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'ЙОНИЗИРАЩИ ЛЪЧЕНИЯ'), 
+        'Калибровъчни гама-линии – подвижни и стационарни', 3);	
+
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'ЙОНИЗИРАЩИ ЛЪЧЕНИЯ'), 
+        'Радиоактивни маркери', 4);	
+
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'ЙОНИЗИРАЩИ ЛЪЧЕНИЯ'), 
+        'Противообледенители', 5);	
+
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'ЙОНИЗИРАЩИ ЛЪЧЕНИЯ'), 
+        'Други съоръжения, генериращи йонизиращи лъчения', 6);	
+
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'ЙОНИЗИРАЩИ ЛЪЧЕНИЯ'), 
+        'Соматични последствия: остра лъчева болест, хронич-на лъчева болест, локални лъчеви увреди – лъчеви дермати-ти и други', 7);	
+
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'ЙОНИЗИРАЩИ ЛЪЧЕНИЯ'), 
+        'Соматостохастични последствия: съкращаване продължителността на живота, канцерогенеза, нарушаване на ембриогенезата (тератогенни ефекти) и др.', 8);	
+
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'ЙОНИЗИРАЩИ ЛЪЧЕНИЯ'), 
+        'Генетични последствия: доминантни генни мутации, рецесивни генни мутации, хромозомни аберации и др', 9);	
+		
+INSERT INTO PMIS_HS.RiskFactors (RiskFactorTypeID, RiskFactorName, AllowAddManually, Seq)
+VALUES ((SELECT RiskFactorTypeID FROM PMIS_HS.RiskFactorTypes 
+         WHERE RiskFactorTypeName = 'ЕКСПОЗИЦИЯ НА ФИЗИЧЕСКИ ФАКТОРИ'), 
+        'НЕЙОНИЗИРАЩИ ЛЪЧЕНИЯ (ЕЛЕКТРИЧЕСКИ, МАГНИТНИ, ЕЛЕКТРОМАГНИТНИ)', 0, 9);	
+
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'НЕЙОНИЗИРАЩИ ЛЪЧЕНИЯ (ЕЛЕКТРИЧЕСКИ, МАГНИТНИ, ЕЛЕКТРОМАГНИТНИ)'), 
+        'Работа с компютър', 1);			
+		
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'НЕЙОНИЗИРАЩИ ЛЪЧЕНИЯ (ЕЛЕКТРИЧЕСКИ, МАГНИТНИ, ЕЛЕКТРОМАГНИТНИ)'), 
+        'Работа с радиостанции, локатори, сонари, спътникови връзки и др.', 2);			
+				
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'НЕЙОНИЗИРАЩИ ЛЪЧЕНИЯ (ЕЛЕКТРИЧЕСКИ, МАГНИТНИ, ЕЛЕКТРОМАГНИТНИ)'), 
+        'Други съоръжения, генериращи електромагнитни лъчения – генератори на магнитни полета, понижаващи трансформатори, открити разпределителни устройства и др.', 3);			
+				
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'НЕЙОНИЗИРАЩИ ЛЪЧЕНИЯ (ЕЛЕКТРИЧЕСКИ, МАГНИТНИ, ЕЛЕКТРОМАГНИТНИ)'), 
+        'Болести на органите на кръвообръщението – хипертония', 4);			
+				
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'НЕЙОНИЗИРАЩИ ЛЪЧЕНИЯ (ЕЛЕКТРИЧЕСКИ, МАГНИТНИ, ЕЛЕКТРОМАГНИТНИ)'), 
+        'Увреждане на зрителния анализатор – катаракта', 5);			
+				
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'НЕЙОНИЗИРАЩИ ЛЪЧЕНИЯ (ЕЛЕКТРИЧЕСКИ, МАГНИТНИ, ЕЛЕКТРОМАГНИТНИ)'), 
+        'Увреждания на централната и вегетативна нервна система', 6);			
+				
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'НЕЙОНИЗИРАЩИ ЛЪЧЕНИЯ (ЕЛЕКТРИЧЕСКИ, МАГНИТНИ, ЕЛЕКТРОМАГНИТНИ)'), 
+        'Увреждане на ендокринната система', 7);			
+				
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'НЕЙОНИЗИРАЩИ ЛЪЧЕНИЯ (ЕЛЕКТРИЧЕСКИ, МАГНИТНИ, ЕЛЕКТРОМАГНИТНИ)'), 
+        'Увреждане на половата система', 8);			
+					
+INSERT INTO PMIS_HS.RiskFactors (RiskFactorTypeID, RiskFactorName, AllowAddManually, Seq)
+VALUES ((SELECT RiskFactorTypeID FROM PMIS_HS.RiskFactorTypes 
+         WHERE RiskFactorTypeName = 'ЕКСПОЗИЦИЯ НА ФИЗИЧЕСКИ ФАКТОРИ'), 
+        'ОПТИЧНИ КВАНТОВИ ГЕНЕРАТОРИ  (ЛАЗЕРИ)  В УЛТРАВИОЛЕТОВИЯ, ВИДИМИЯ И ИНФРАЧЕРВЕНИЯ СПЕКТЪР НА ЕЛЕКТРОМАГНИТНИЯ СПЕКТЪР', 0, 10);	
+
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'ОПТИЧНИ КВАНТОВИ ГЕНЕРАТОРИ  (ЛАЗЕРИ)  В УЛТРАВИОЛЕТОВИЯ, ВИДИМИЯ И ИНФРАЧЕРВЕНИЯ СПЕКТЪР НА ЕЛЕКТРОМАГНИТНИЯ СПЕКТЪР'), 
+        'Медицински лазери', 1);	
+		
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'ОПТИЧНИ КВАНТОВИ ГЕНЕРАТОРИ  (ЛАЗЕРИ)  В УЛТРАВИОЛЕТОВИЯ, ВИДИМИЯ И ИНФРАЧЕРВЕНИЯ СПЕКТЪР НА ЕЛЕКТРОМАГНИТНИЯ СПЕКТЪР'), 
+        'Лазерни далекомери', 2);		
+		
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'ОПТИЧНИ КВАНТОВИ ГЕНЕРАТОРИ  (ЛАЗЕРИ)  В УЛТРАВИОЛЕТОВИЯ, ВИДИМИЯ И ИНФРАЧЕРВЕНИЯ СПЕКТЪР НА ЕЛЕКТРОМАГНИТНИЯ СПЕКТЪР'), 
+        'Бойни лазери', 3);		
+		
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'ОПТИЧНИ КВАНТОВИ ГЕНЕРАТОРИ  (ЛАЗЕРИ)  В УЛТРАВИОЛЕТОВИЯ, ВИДИМИЯ И ИНФРАЧЕРВЕНИЯ СПЕКТЪР НА ЕЛЕКТРОМАГНИТНИЯ СПЕКТЪР'), 
+        'УВ и инфрачервени лампи', 4);		
+		
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'ОПТИЧНИ КВАНТОВИ ГЕНЕРАТОРИ  (ЛАЗЕРИ)  В УЛТРАВИОЛЕТОВИЯ, ВИДИМИЯ И ИНФРАЧЕРВЕНИЯ СПЕКТЪР НА ЕЛЕКТРОМАГНИТНИЯ СПЕКТЪР'), 
+        'Инфрачервени прицели', 5);		
+		
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'ОПТИЧНИ КВАНТОВИ ГЕНЕРАТОРИ  (ЛАЗЕРИ)  В УЛТРАВИОЛЕТОВИЯ, ВИДИМИЯ И ИНФРАЧЕРВЕНИЯ СПЕКТЪР НА ЕЛЕКТРОМАГНИТНИЯ СПЕКТЪР'), 
+        'Увреждане на очите – катаракта, фотокератити, блефарит, изгаряне на ретината и др.', 6);		
+		
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'ОПТИЧНИ КВАНТОВИ ГЕНЕРАТОРИ  (ЛАЗЕРИ)  В УЛТРАВИОЛЕТОВИЯ, ВИДИМИЯ И ИНФРАЧЕРВЕНИЯ СПЕКТЪР НА ЕЛЕКТРОМАГНИТНИЯ СПЕКТЪР'), 
+        'Увреждане на кожата – еритема, стареене, рак и др.', 7);		
+		
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'ОПТИЧНИ КВАНТОВИ ГЕНЕРАТОРИ  (ЛАЗЕРИ)  В УЛТРАВИОЛЕТОВИЯ, ВИДИМИЯ И ИНФРАЧЕРВЕНИЯ СПЕКТЪР НА ЕЛЕКТРОМАГНИТНИЯ СПЕКТЪР'), 
+        'Увреждания на целия организъм', 8);		
+		
+INSERT INTO PMIS_HS.RiskFactors (RiskFactorTypeID, RiskFactorName, AllowAddManually, Seq)
+VALUES ((SELECT RiskFactorTypeID FROM PMIS_HS.RiskFactorTypes 
+         WHERE RiskFactorTypeName = 'ЕКСПОЗИЦИЯ НА ФИЗИЧЕСКИ ФАКТОРИ'), 
+        'РАДИАЦИОННА ТОПЛИНА (ИНФРАЧЕРВЕНО ЛЪЧЕНИЕ)', 0, 11);		
+		
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'РАДИАЦИОННА ТОПЛИНА (ИНФРАЧЕРВЕНО ЛЪЧЕНИЕ)'), 
+        'Много горещи повърхности – нарушение на терморегулацията', 1);	
+
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'РАДИАЦИОННА ТОПЛИНА (ИНФРАЧЕРВЕНО ЛЪЧЕНИЕ)'), 
+        'Много студени повърхности – нарушение на терморегулацията', 2);	
+		
+INSERT INTO PMIS_HS.RiskFactors (RiskFactorTypeID, RiskFactorName, AllowAddManually, Seq)
+VALUES ((SELECT RiskFactorTypeID FROM PMIS_HS.RiskFactorTypes 
+         WHERE RiskFactorTypeName = 'ЕКСПОЗИЦИЯ НА ФИЗИЧЕСКИ ФАКТОРИ'), 
+        'ФЛУИДИ ПОД НАЛЯГАНЕ', 0, 12);
+		
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'ФЛУИДИ ПОД НАЛЯГАНЕ'), 
+        'Въздух, пари и газове под налягане – взрив, замърсяване на средата', 1);	
+
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'ФЛУИДИ ПОД НАЛЯГАНЕ'), 
+        'Течности под налягане – взрив,замърсяване на средата', 2);
+		
+		
+INSERT INTO PMIS_HS.RiskFactors (RiskFactorTypeID, RiskFactorName, AllowAddManually, Seq)
+VALUES ((SELECT RiskFactorTypeID FROM PMIS_HS.RiskFactorTypes 
+         WHERE RiskFactorTypeName = 'ЕКСПОЗИЦИЯ НА ФИЗИЧЕСКИ ФАКТОРИ'), 
+        'ДРУГИ СПЕЦИФИЧНИ ФАКТОРИ', 1, 13);		
+		
+
+		
+INSERT INTO PMIS_HS.RiskFactorTypes (RiskFactorTypeName, Seq)
+VALUES ('ЕКСПОЗИЦИЯ НА ТОКСИЧНИ ФАКТОРИ', 6);
+
+INSERT INTO PMIS_HS.RiskFactors (RiskFactorTypeID, RiskFactorName, AllowAddManually, Seq)
+VALUES ((SELECT RiskFactorTypeID FROM PMIS_HS.RiskFactorTypes 
+         WHERE RiskFactorTypeName = 'ЕКСПОЗИЦИЯ НА ТОКСИЧНИ ФАКТОРИ'), 
+        'ВДИШВАНЕ', 0, 1);
+
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'ВДИШВАНЕ'), 
+        'Хлор и други халогенопроизводни вещества', 1);	
+
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'ВДИШВАНЕ'), 
+        'Живачни, оловни и медни пари', 2);	
+		
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'ВДИШВАНЕ'), 
+        'Арсен, кадмий, никел и др. пари на тежки метали', 3);			
+
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'ВДИШВАНЕ'), 
+        'Амоняк, серни и азотни оксиди, формалдехид и др.', 4);	
+
+INSERT INTO PMIS_HS.RiskFactors (RiskFactorTypeID, RiskFactorName, AllowAddManually, Seq)
+VALUES ((SELECT RiskFactorTypeID FROM PMIS_HS.RiskFactorTypes 
+         WHERE RiskFactorTypeName = 'ЕКСПОЗИЦИЯ НА ТОКСИЧНИ ФАКТОРИ'), 
+        'ПОГЛЪЩАНЕ', 0, 2);	
+
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'ПОГЛЪЩАНЕ'), 
+        'Живак, олово и други тежки метали', 1);	
+
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'ПОГЛЪЩАНЕ'), 
+        'Киселини, основи и алкохоли', 2);	
+
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'ПОГЛЪЩАНЕ'), 
+        'Органични разтворители – бензин, бензол, фенол и др.', 3);	
+		
+INSERT INTO PMIS_HS.RiskFactors (RiskFactorTypeID, RiskFactorName, AllowAddManually, Seq)
+VALUES ((SELECT RiskFactorTypeID FROM PMIS_HS.RiskFactorTypes 
+         WHERE RiskFactorTypeName = 'ЕКСПОЗИЦИЯ НА ТОКСИЧНИ ФАКТОРИ'), 
+        'КОЖНА РЕЗОРБЦИЯ', 0, 3);	
+
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'КОЖНА РЕЗОРБЦИЯ'), 
+        'Цимент, гасена вар и др.', 1);	
+
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'КОЖНА РЕЗОРБЦИЯ'), 
+        'Арсен, живак, калай, мед, фосфор, селен и др.', 2);	
+
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'КОЖНА РЕЗОРБЦИЯ'), 
+        'Полимери – поливинилхлорид, полистирол и др.', 3);	
+
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'КОЖНА РЕЗОРБЦИЯ'), 
+        'Дерматити, алергии и др.', 4);	
+			
+INSERT INTO PMIS_HS.RiskFactors (RiskFactorTypeID, RiskFactorName, AllowAddManually, Seq)
+VALUES ((SELECT RiskFactorTypeID FROM PMIS_HS.RiskFactorTypes 
+         WHERE RiskFactorTypeName = 'ЕКСПОЗИЦИЯ НА ТОКСИЧНИ ФАКТОРИ'), 
+        'РАБОТА С ИЗБУХЛИВИ, ВЪЗПЛАМЕНЯЕМИ МАТЕРИАЛИ', 0, 4);
+
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'РАБОТА С ИЗБУХЛИВИ, ВЪЗПЛАМЕНЯЕМИ МАТЕРИАЛИ'), 
+        'Реактивоспособни нестабилни вещества и смеси', 1);	
+
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'РАБОТА С ИЗБУХЛИВИ, ВЪЗПЛАМЕНЯЕМИ МАТЕРИАЛИ'), 
+        'Газ пропан-бутан', 2);	
+		
+INSERT INTO PMIS_HS.RiskFactors (RiskFactorTypeID, RiskFactorName, AllowAddManually, Seq)
+VALUES ((SELECT RiskFactorTypeID FROM PMIS_HS.RiskFactorTypes 
+         WHERE RiskFactorTypeName = 'ЕКСПОЗИЦИЯ НА ТОКСИЧНИ ФАКТОРИ'), 
+        'РАБОТА В УСЛОВИЯ ЗАТРУДНЯВАЩИ ИЛИ НАРУШАВАЩИ ВЪНШНОТО ДИШАНЕ', 0, 5);	
+		
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'РАБОТА В УСЛОВИЯ ЗАТРУДНЯВАЩИ ИЛИ НАРУШАВАЩИ ВЪНШНОТО ДИШАНЕ'), 
+        'Задушаване поради липса на кислород', 1);			
+		
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'РАБОТА В УСЛОВИЯ ЗАТРУДНЯВАЩИ ИЛИ НАРУШАВАЩИ ВЪНШНОТО ДИШАНЕ'), 
+        'Кислородна недостатъчност при работа при ниско атмосферно налягане', 2);				
+		
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'РАБОТА В УСЛОВИЯ ЗАТРУДНЯВАЩИ ИЛИ НАРУШАВАЩИ ВЪНШНОТО ДИШАНЕ'), 
+        'Болест при неправилна декомпресия след работа под вода', 3);						
+		
+INSERT INTO PMIS_HS.RiskFactors (RiskFactorTypeID, RiskFactorName, AllowAddManually, Seq)
+VALUES ((SELECT RiskFactorTypeID FROM PMIS_HS.RiskFactorTypes 
+         WHERE RiskFactorTypeName = 'ЕКСПОЗИЦИЯ НА ТОКСИЧНИ ФАКТОРИ'), 
+        'РАБОТА С КОРОЗИВНО ДЕЙСТВАЩИ ВЕЩЕСТВА', 0, 6);	
+		
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'РАБОТА С КОРОЗИВНО ДЕЙСТВАЩИ ВЕЩЕСТВА'), 
+        'Киселини, основи и др.', 1);			
+		
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'РАБОТА С КОРОЗИВНО ДЕЙСТВАЩИ ВЕЩЕСТВА'), 
+        'Раздразнение и възпаление на очите', 2);			
+		
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'РАБОТА С КОРОЗИВНО ДЕЙСТВАЩИ ВЕЩЕСТВА'), 
+        'Раздразнение, възпаление и язви на горните дихателни пътища и дихателната система', 3);			
+		
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'РАБОТА С КОРОЗИВНО ДЕЙСТВАЩИ ВЕЩЕСТВА'), 
+        'Изгаряния и рани по кожата', 4);			
+		
+INSERT INTO PMIS_HS.RiskFactors (RiskFactorTypeID, RiskFactorName, AllowAddManually, Seq)
+VALUES ((SELECT RiskFactorTypeID FROM PMIS_HS.RiskFactorTypes 
+         WHERE RiskFactorTypeName = 'ЕКСПОЗИЦИЯ НА ТОКСИЧНИ ФАКТОРИ'), 
+        'РАБОТА СЪС СЕНСИБИЛИЗИРАЩИ ВЕЩЕСТВА (ПРЕДИЗВИКВАЩИ ЧУВСТВИТЕЛНОСТ), АЛЕРГЕНИ', 0, 7);	
+		
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'РАБОТА СЪС СЕНСИБИЛИЗИРАЩИ ВЕЩЕСТВА (ПРЕДИЗВИКВАЩИ ЧУВСТВИТЕЛНОСТ), АЛЕРГЕНИ'), 
+        'Аминопроизводни на мастни и ароматни въглеводороди', 1);		
+		
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'РАБОТА СЪС СЕНСИБИЛИЗИРАЩИ ВЕЩЕСТВА (ПРЕДИЗВИКВАЩИ ЧУВСТВИТЕЛНОСТ), АЛЕРГЕНИ'), 
+        'Естери, алдехиди и др.', 2);			
+		
+
+INSERT INTO PMIS_HS.RiskFactors (RiskFactorTypeID, RiskFactorName, AllowAddManually, Seq)
+VALUES ((SELECT RiskFactorTypeID FROM PMIS_HS.RiskFactorTypes 
+         WHERE RiskFactorTypeName = 'ЕКСПОЗИЦИЯ НА ТОКСИЧНИ ФАКТОРИ'), 
+        'РАБОТА С ВЕЩЕСТВА ИМАЩИ ОТДАЛЕЧЕНИ ЕФЕКТИ ВЪРХУ ЧОВЕКА И НЕГОВОТО ПОТОМСТВО', 0, 8);	
+		
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'РАБОТА С ВЕЩЕСТВА ИМАЩИ ОТДАЛЕЧЕНИ ЕФЕКТИ ВЪРХУ ЧОВЕКА И НЕГОВОТО ПОТОМСТВО'), 
+        'Канцерогенни вещества', 1);			
+		
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'РАБОТА С ВЕЩЕСТВА ИМАЩИ ОТДАЛЕЧЕНИ ЕФЕКТИ ВЪРХУ ЧОВЕКА И НЕГОВОТО ПОТОМСТВО'), 
+        'Вещества с тератогенно и фетотоксично действие', 2);			
+				
+
+INSERT INTO PMIS_HS.RiskFactors (RiskFactorTypeID, RiskFactorName, AllowAddManually, Seq)
+VALUES ((SELECT RiskFactorTypeID FROM PMIS_HS.RiskFactorTypes 
+         WHERE RiskFactorTypeName = 'ЕКСПОЗИЦИЯ НА ТОКСИЧНИ ФАКТОРИ'), 
+        'ДРУГИ СПЕЦИФИЧНИ ФАКТОРИ', 1, 9);	
+
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'ДРУГИ СПЕЦИФИЧНИ ФАКТОРИ' AND
+		       RiskFactorTypeID = (SELECT RiskFactorTypeID FROM PMIS_HS.RiskFactorTypes 
+			                       WHERE RiskFactorTypeName = 'ЕКСПОЗИЦИЯ НА ТОКСИЧНИ ФАКТОРИ')), 
+        'Химични вещества с потенцииращо въздействие', 1);	
+
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'ДРУГИ СПЕЦИФИЧНИ ФАКТОРИ' AND
+		       RiskFactorTypeID = (SELECT RiskFactorTypeID FROM PMIS_HS.RiskFactorTypes 
+			                       WHERE RiskFactorTypeName = 'ЕКСПОЗИЦИЯ НА ТОКСИЧНИ ФАКТОРИ')), 
+        'Комбинирано действие на химични вещества – синергизъм, антагонизъм, независимо действие и др.', 2);			
+		
+
+		
+INSERT INTO PMIS_HS.RiskFactorTypes (RiskFactorTypeName, Seq)
+VALUES ('ЕКСПОЗИЦИЯ НА БИОЛОГИЧНИ ФАКТОРИ', 7);
+
+INSERT INTO PMIS_HS.RiskFactors (RiskFactorTypeID, RiskFactorName, AllowAddManually, Seq)
+VALUES ((SELECT RiskFactorTypeID FROM PMIS_HS.RiskFactorTypes 
+         WHERE RiskFactorTypeName = 'ЕКСПОЗИЦИЯ НА БИОЛОГИЧНИ ФАКТОРИ'), 
+        'РАБОТА  С МАТЕРИАЛИ, ИНФЕКТИРАНИ С МИКРООРГАНИЗМИ', 0, 1);		
+		
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'РАБОТА  С МАТЕРИАЛИ, ИНФЕКТИРАНИ С МИКРООРГАНИЗМИ'), 
+        'Биологични агенти, съгласно Наредба № 4/14.10.2002г.
+		- причиняващи заболявания – бактерии и други микроорганизми, вируси, паразити, гъби; 
+		- причиняващи тежки заболявания и представляващи сериозна опасност– бактерии и други микроорганизми, вируси, паразити, гъби.', 1);			
+				
+INSERT INTO PMIS_HS.RiskFactors (RiskFactorTypeID, RiskFactorName, AllowAddManually, Seq)
+VALUES ((SELECT RiskFactorTypeID FROM PMIS_HS.RiskFactorTypes 
+         WHERE RiskFactorTypeName = 'ЕКСПОЗИЦИЯ НА БИОЛОГИЧНИ ФАКТОРИ'), 
+        'НЕВОЛНА ЕКСПОЗИЦИЯ НА МИКРООРГАНИЗМИ (ВИРУСИ, БАКТЕРИИ, ГЪБИЧКИ, И ДР.)', 0, 2);	
+
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'НЕВОЛНА ЕКСПОЗИЦИЯ НА МИКРООРГАНИЗМИ (ВИРУСИ, БАКТЕРИИ, ГЪБИЧКИ, И ДР.)'), 
+        'Контакт с много хора в различно здравословно състояние', 1);	
+		
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'НЕВОЛНА ЕКСПОЗИЦИЯ НА МИКРООРГАНИЗМИ (ВИРУСИ, БАКТЕРИИ, ГЪБИЧКИ, И ДР.)'), 
+        'Работа в помещения с климатична инсталация  - инфекция от Легионела – бактерия разпространяваща се от климатични (охладителни инсталации).', 2);		
+		
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'НЕВОЛНА ЕКСПОЗИЦИЯ НА МИКРООРГАНИЗМИ (ВИРУСИ, БАКТЕРИИ, ГЪБИЧКИ, И ДР.)'), 
+        'Алергични реакции', 3);		
+			
+INSERT INTO PMIS_HS.RiskFactors (RiskFactorTypeID, RiskFactorName, AllowAddManually, Seq)
+VALUES ((SELECT RiskFactorTypeID FROM PMIS_HS.RiskFactorTypes 
+         WHERE RiskFactorTypeName = 'ЕКСПОЗИЦИЯ НА БИОЛОГИЧНИ ФАКТОРИ'), 
+        'АЛЕРГЕНИ И ДРУГИ ВЕЩЕСТВА ОТ МИКРООРГА-НИЗМИ, РАСТЕНИЯ, НАСЕКОМИ И ЖИВОТНИ', 0, 3);	
+
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'АЛЕРГЕНИ И ДРУГИ ВЕЩЕСТВА ОТ МИКРООРГА-НИЗМИ, РАСТЕНИЯ, НАСЕКОМИ И ЖИВОТНИ'), 
+        'Обработване на дървесина от екзотични/ценни дървесни видове – дразнене на горните дихателни пътища', 1);	
+
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'АЛЕРГЕНИ И ДРУГИ ВЕЩЕСТВА ОТ МИКРООРГА-НИЗМИ, РАСТЕНИЯ, НАСЕКОМИ И ЖИВОТНИ'), 
+        'Работа с животни', 2);			
+		
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'АЛЕРГЕНИ И ДРУГИ ВЕЩЕСТВА ОТ МИКРООРГА-НИЗМИ, РАСТЕНИЯ, НАСЕКОМИ И ЖИВОТНИ'), 
+        'Обработка на влакна от растения (коноп, лен и др. – дразнене, алергии, микози, микотоксикози и др.', 3);			
+		
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'АЛЕРГЕНИ И ДРУГИ ВЕЩЕСТВА ОТ МИКРООРГА-НИЗМИ, РАСТЕНИЯ, НАСЕКОМИ И ЖИВОТНИ'), 
+        'Фермерски бял дроб', 4);			
+		
+INSERT INTO PMIS_HS.RiskFactors (RiskFactorTypeID, RiskFactorName, AllowAddManually, Seq)
+VALUES ((SELECT RiskFactorTypeID FROM PMIS_HS.RiskFactorTypes 
+         WHERE RiskFactorTypeName = 'ЕКСПОЗИЦИЯ НА БИОЛОГИЧНИ ФАКТОРИ'), 
+        'УХАПВАНЕ / УЖИЛВАНЕ ОТ НАСЕКОМИ, ВЛЕЧУГИ, ДОМАШНИ И ДИВИ ЖИВОТНИ', 0, 4);		
+
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'УХАПВАНЕ / УЖИЛВАНЕ ОТ НАСЕКОМИ, ВЛЕЧУГИ, ДОМАШНИ И ДИВИ ЖИВОТНИ'), 
+        'При работа на открито', 1);			
+		
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'УХАПВАНЕ / УЖИЛВАНЕ ОТ НАСЕКОМИ, ВЛЕЧУГИ, ДОМАШНИ И ДИВИ ЖИВОТНИ'), 
+        'При полеви учебни и бойни занятия', 2);	
+		
+INSERT INTO PMIS_HS.Hazards (RiskFactorID, HazardName, Seq)
+VALUES ((SELECT RiskFactorID FROM PMIS_HS.RiskFactors 
+         WHERE RiskFactorName = 'УХАПВАНЕ / УЖИЛВАНЕ ОТ НАСЕКОМИ, ВЛЕЧУГИ, ДОМАШНИ И ДИВИ ЖИВОТНИ'), 
+        'При кадастрални заснемания на територии и обекти', 3);			
+		
+INSERT INTO PMIS_HS.RiskFactors (RiskFactorTypeID, RiskFactorName, AllowAddManually, Seq)
+VALUES ((SELECT RiskFactorTypeID FROM PMIS_HS.RiskFactorTypes 
+         WHERE RiskFactorTypeName = 'ЕКСПОЗИЦИЯ НА БИОЛОГИЧНИ ФАКТОРИ'), 
+        'ДРУГИ СПЕЦИФИЧНИ ФАКТОРИ', 1, 5);
+
+		
+COMMIT;
+CREATE TABLE PMIS_HS.Subdivisions(SubdivisionID number NOT NULL,
+							      MilitaryUnitID number NOT NULL,
+                                  SubdivisionName varchar2(250),
+								  CreatedBy number,
+								  CreatedDate date,
+								  LastModifiedBy number,
+							      LastModifiedDate date								
+                                 );
+
+ALTER TABLE PMIS_HS.Subdivisions ADD CONSTRAINT Subdivisions_PK PRIMARY KEY(SubdivisionID);
+ALTER TABLE PMIS_HS.Subdivisions ADD CONSTRAINT Subdivisions_MilUnit_FK FOREIGN KEY (MilitaryUnitID) REFERENCES UKAZ_OWNER.MIR (KOD_MIR);
+ALTER TABLE PMIS_HS.Subdivisions ADD CONSTRAINT Subdivisions_CreatedBy_FK FOREIGN KEY (CreatedBy) REFERENCES PMIS_ADM.Users (UserID);
+ALTER TABLE PMIS_HS.Subdivisions ADD CONSTRAINT Subdivisions_LastModifiedBy_FK FOREIGN KEY (LastModifiedBy) REFERENCES PMIS_ADM.Users (UserID);
+
+CREATE SEQUENCE PMIS_HS.Subdivisions_ID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+CREATE TRIGGER PMIS_HS.TRG_Subdivisions_INSERT
+BEFORE INSERT ON PMIS_HS.Subdivisions
+FOR EACH ROW
+BEGIN
+   SELECT PMIS_HS.Subdivisions_ID_SEQ.nextval INTO :new.SubdivisionID FROM dual;
+END;
+/
+
+COMMIT;
+CREATE TABLE PMIS_HS.Positions(PositionID number NOT NULL,
+							   SubdivisionID number NOT NULL,
+                               PositionName varchar2(250),
+							   Activities varchar2(4000),
+							   TotalPersonsCnt number,
+							   FemaleCnt number
+                              );
+
+ALTER TABLE PMIS_HS.Positions ADD CONSTRAINT Positions_PK PRIMARY KEY(PositionID);
+ALTER TABLE PMIS_HS.Positions ADD CONSTRAINT Positions_Subdivision_FK FOREIGN KEY (SubdivisionID) REFERENCES PMIS_HS.Subdivisions (SubdivisionID);
+
+CREATE SEQUENCE PMIS_HS.Positions_ID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+CREATE TRIGGER PMIS_HS.TRG_Positions_INSERT
+BEFORE INSERT ON PMIS_HS.Positions
+FOR EACH ROW
+BEGIN
+   SELECT PMIS_HS.Positions_ID_SEQ.nextval INTO :new.PositionID FROM dual;
+END;
+/
+
+COMMIT;
+CREATE TABLE PMIS_HS.RiskCards(RiskCardID number NOT NULL,
+							   PositionID number NOT NULL,
+							   CreatedBy number,
+                               CreatedDate date,
+                               LastModifiedBy number,
+                               LastModifiedDate date
+                              );
+
+ALTER TABLE PMIS_HS.RiskCards ADD CONSTRAINT RiskCards_PK PRIMARY KEY(RiskCardID);
+ALTER TABLE PMIS_HS.RiskCards ADD CONSTRAINT RiskCards_Positions_FK FOREIGN KEY (PositionID) REFERENCES PMIS_HS.Positions (PositionID);
+ALTER TABLE PMIS_HS.RiskCards ADD CONSTRAINT RiskCards_CreatedBy_FK FOREIGN KEY (CreatedBy) REFERENCES PMIS_ADM.Users (UserID);
+ALTER TABLE PMIS_HS.RiskCards ADD CONSTRAINT RiskCards_LastModifiedBy_FK FOREIGN KEY (LastModifiedBy) REFERENCES PMIS_ADM.Users (UserID);
+
+CREATE SEQUENCE PMIS_HS.RiskCards_ID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+CREATE TRIGGER PMIS_HS.TRG_RiskCards_INSERT
+BEFORE INSERT ON PMIS_HS.RiskCards
+FOR EACH ROW
+BEGIN
+   SELECT PMIS_HS.RiskCards_ID_SEQ.nextval INTO :new.RiskCardID FROM dual;
+END;
+/
+
+COMMIT;
+CREATE TABLE PMIS_HS.RiskCardItems(RiskCardItemID number NOT NULL,
+							       RiskCardID number NOT NULL,
+								   RiskFactorTypeID number NOT NULL,
+							       RiskFactorID number NOT NULL,
+								   HazardID number,
+								   OtherHazard varchar2(500),
+								   ProbabilityID number NOT NULL,
+								   ExposureID number NOT NULL,
+								   EffectWeightID number NOT NULL
+                                  );
+								  
+ALTER TABLE PMIS_HS.RiskCardItems ADD CONSTRAINT RiskCardItems_PK PRIMARY KEY(RiskCardItemID);
+ALTER TABLE PMIS_HS.RiskCardItems ADD CONSTRAINT RiskCardItems_RiskCards_FK FOREIGN KEY (RiskCardID) REFERENCES PMIS_HS.RiskCards (RiskCardID);
+ALTER TABLE PMIS_HS.RiskCardItems ADD CONSTRAINT RiskCardItems_FactorTypes_FK FOREIGN KEY (RiskFactorTypeID) REFERENCES PMIS_HS.RiskFactorTypes (RiskFactorTypeID);
+ALTER TABLE PMIS_HS.RiskCardItems ADD CONSTRAINT RiskCardItems_Factors_FK FOREIGN KEY (RiskFactorID) REFERENCES PMIS_HS.RiskFactors (RiskFactorID);
+ALTER TABLE PMIS_HS.RiskCardItems ADD CONSTRAINT RiskCardItems_Hazards_FK FOREIGN KEY (HazardID) REFERENCES PMIS_HS.Hazards (HazardID);
+ALTER TABLE PMIS_HS.RiskCardItems ADD CONSTRAINT RiskCardItems_Probabilities_FK FOREIGN KEY (ProbabilityID) REFERENCES PMIS_HS.Probabilities (ProbabilityID);
+ALTER TABLE PMIS_HS.RiskCardItems ADD CONSTRAINT RiskCardItems_Exposure_FK FOREIGN KEY (ExposureID) REFERENCES PMIS_HS.Exposure (ExposureID);
+ALTER TABLE PMIS_HS.RiskCardItems ADD CONSTRAINT RiskCardItems_EffectWeight_FK FOREIGN KEY (EffectWeightID) REFERENCES PMIS_HS.EffectWeight (EffectWeightID);
+
+CREATE SEQUENCE PMIS_HS.RiskCardItems_ID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+CREATE TRIGGER PMIS_HS.TRG_RiskCardItems_INSERT
+BEFORE INSERT ON PMIS_HS.RiskCardItems
+FOR EACH ROW
+BEGIN
+   SELECT PMIS_HS.RiskCardItems_ID_SEQ.nextval INTO :new.RiskCardItemID FROM dual;
+END;
+/
+
+COMMIT;
+
+GRANT ALL ON PMIS_HS.Probabilities TO PMIS_USER_ROLE;
+GRANT ALL ON PMIS_HS.Probabilities_ID_SEQ TO PMIS_USER_ROLE;
+
+GRANT ALL ON PMIS_HS.Exposure TO PMIS_USER_ROLE;
+GRANT ALL ON PMIS_HS.Exposure_ID_SEQ TO PMIS_USER_ROLE;
+
+GRANT ALL ON PMIS_HS.EffectWeight TO PMIS_USER_ROLE;
+GRANT ALL ON PMIS_HS.EffectWeight_ID_SEQ TO PMIS_USER_ROLE;
+
+GRANT ALL ON PMIS_HS.RiskRank TO PMIS_USER_ROLE;
+GRANT ALL ON PMIS_HS.RiskRank_ID_SEQ TO PMIS_USER_ROLE;
+
+GRANT ALL ON PMIS_HS.RiskFactorTypes TO PMIS_USER_ROLE;
+GRANT ALL ON PMIS_HS.RiskFactorTypes_ID_SEQ TO PMIS_USER_ROLE;
+
+GRANT ALL ON PMIS_HS.RiskFactors TO PMIS_USER_ROLE;
+GRANT ALL ON PMIS_HS.RiskFactors_ID_SEQ TO PMIS_USER_ROLE;
+
+GRANT ALL ON PMIS_HS.Hazards TO PMIS_USER_ROLE;
+GRANT ALL ON PMIS_HS.Hazards_ID_SEQ TO PMIS_USER_ROLE;
+
+GRANT ALL ON PMIS_HS.Subdivisions TO PMIS_USER_ROLE;
+GRANT ALL ON PMIS_HS.Subdivisions_ID_SEQ TO PMIS_USER_ROLE;
+
+GRANT ALL ON PMIS_HS.Positions TO PMIS_USER_ROLE;
+GRANT ALL ON PMIS_HS.Positions_ID_SEQ TO PMIS_USER_ROLE;
+
+GRANT ALL ON PMIS_HS.RiskCards TO PMIS_USER_ROLE;
+GRANT ALL ON PMIS_HS.RiskCards_ID_SEQ TO PMIS_USER_ROLE;
+
+GRANT ALL ON PMIS_HS.RiskCardItems TO PMIS_USER_ROLE;
+GRANT ALL ON PMIS_HS.RiskCardItems_ID_SEQ TO PMIS_USER_ROLE;
+
+
+/
+

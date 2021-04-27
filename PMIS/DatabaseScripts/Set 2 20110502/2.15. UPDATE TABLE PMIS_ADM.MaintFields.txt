@@ -1,0 +1,3 @@
+﻿UPDATE PMIS_ADM.MaintFields SET FieldKey = 'RES_Lists_TractorType_TableSeq' WHERE TableName = 'PMIS_RES.GTable.TractorType' AND TableColumn='TableSeq';
+
+COMMIT;

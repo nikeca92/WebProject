@@ -1,0 +1,52 @@
+﻿CREATE TABLE PMIS_APPL.Educations(EducationID number NOT NULL,
+                                  EducationName varchar2(300),
+                                  EducationCode number
+                                 );
+
+ALTER TABLE PMIS_APPL.Educations ADD CONSTRAINT Educations_PK PRIMARY KEY(EducationID);
+
+CREATE SEQUENCE PMIS_APPL.Educations_ID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+CREATE TRIGGER PMIS_APPL.TRG_Educations_INSERT
+BEFORE INSERT ON PMIS_APPL.Educations
+FOR EACH ROW
+BEGIN
+   SELECT PMIS_APPL.Educations_ID_SEQ.nextval INTO :new.EducationID FROM dual;
+END;
+/
+
+
+INSERT INTO PMIS_APPL.Educations(EducationName, EducationCode)
+VALUES ('Основно образование', '0');
+
+INSERT INTO PMIS_APPL.Educations(EducationName, EducationCode)
+VALUES ('Средно образование', '1');
+
+INSERT INTO PMIS_APPL.Educations(EducationName, EducationCode)
+VALUES ('Средно образование и  курс за професионална квалификация', '2');
+
+INSERT INTO PMIS_APPL.Educations(EducationName, EducationCode)
+VALUES ('средно образование и курс за професионална квалификация в сержантски (старшински) професионален  колеж', '3');
+
+INSERT INTO PMIS_APPL.Educations(EducationName, EducationCode)
+VALUES ('ОКС „бакалавър”', '4');
+
+INSERT INTO PMIS_APPL.Educations(EducationName, EducationCode)
+VALUES ('ОКС „магистър”', '5');
+
+INSERT INTO PMIS_APPL.Educations(EducationName, EducationCode)
+VALUES ('ОКС „магистър”', '6');
+
+INSERT INTO PMIS_APPL.Educations(EducationName, EducationCode)
+VALUES ('ОКС „магистър”', '7');
+
+INSERT INTO PMIS_APPL.Educations(EducationName, EducationCode)
+VALUES ('Хабилитация', '8');
+
+INSERT INTO PMIS_APPL.Educations(EducationName, EducationCode)
+VALUES ('Образователна и научна степен "доктор"', '9');
+
+COMMIT;

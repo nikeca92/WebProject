@@ -1,0 +1,28 @@
+﻿CREATE TABLE PMIS_RES.AviationOtherBaseMachineMakes(AviationOtherBaseMachineMakeID number NOT NULL,
+                                                    AviationOtherBaseMachineMake varchar2(300)
+                                                   );
+
+ALTER TABLE PMIS_RES.AviationOtherBaseMachineMakes ADD CONSTRAINT AviationOtherBMMakes_PK PRIMARY KEY(AviationOtherBaseMachineMakeID);
+
+CREATE SEQUENCE PMIS_RES.AviationOtherBMMakes_ID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+CREATE TRIGGER PMIS_RES.TRG_AviationOthBMMakes_INSERT
+BEFORE INSERT ON PMIS_RES.AviationOtherBaseMachineMakes
+FOR EACH ROW
+BEGIN
+   SELECT PMIS_RES.AviationOtherBMMakes_ID_SEQ.nextval INTO :new.AviationOtherBaseMachineMakeID FROM dual;
+END;
+/
+
+INSERT INTO PMIS_RES.AviationOtherBaseMachineMakes (AviationOtherBaseMachineMake)
+VALUES ('Марка #1');
+
+INSERT INTO PMIS_RES.AviationOtherBaseMachineMakes (AviationOtherBaseMachineMake)
+VALUES ('Марка #2');
+
+
+COMMIT;
+/

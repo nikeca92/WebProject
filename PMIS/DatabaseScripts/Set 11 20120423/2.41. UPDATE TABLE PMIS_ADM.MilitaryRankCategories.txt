@@ -1,0 +1,31 @@
+﻿ALTER TABLE PMIS_ADM.MilitaryRankCategories ADD (MilitaryRankSubCategory number /*1 = Sergeant, 2 = Soldier; 1 = Officer*/);
+
+UPDATE PMIS_ADM.MilitaryRankCategories SET
+   MilitaryRankSubCategory = 2
+WHERE ZVA_KAT_KOD = '20';
+
+UPDATE PMIS_ADM.MilitaryRankCategories SET
+   MilitaryRankSubCategory = 1
+WHERE ZVA_KAT_KOD = '35';
+
+UPDATE PMIS_ADM.MilitaryRankCategories SET
+   MilitaryRankSubCategory = 1
+WHERE ZVA_KAT_KOD = '46';
+
+UPDATE PMIS_ADM.MilitaryRankCategories SET
+   MilitaryRankSubCategory = 1
+WHERE ZVA_KAT_KOD = '50';
+
+UPDATE PMIS_ADM.MilitaryRankCategories SET
+   MilitaryRankSubCategory = 1
+WHERE ZVA_KAT_KOD = '55';
+
+UPDATE PMIS_ADM.MilitaryRankCategories SET
+   MilitaryRankSubCategory = 1
+WHERE ZVA_KAT_KOD = '60';
+
+UPDATE PMIS_ADM.MilitaryRankCategories SET
+   MilitaryRankSubCategory = 1
+WHERE ZVA_KAT_KOD = '73';
+
+COMMIT;

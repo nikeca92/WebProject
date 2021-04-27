@@ -1,0 +1,6 @@
+﻿INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'APPL_VacAnnPos_MilitaryRank', 'Звание', 15);
+
+COMMIT;
+
+/

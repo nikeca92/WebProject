@@ -1,0 +1,2 @@
+INSERT INTO UKAZ_OWNER.Districts_Cities(DistrictID, CityID)
+SELECT DistrictID, CityID FROM UKAZ_OWNER.Districts;

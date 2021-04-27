@@ -1,0 +1,3 @@
+﻿
+ALTER TABLE PMIS_ADM.Administrations ADD ReportA33Breakdown decimal(1) CHECK (ReportA33Breakdown BETWEEN 0 AND 1);
+/

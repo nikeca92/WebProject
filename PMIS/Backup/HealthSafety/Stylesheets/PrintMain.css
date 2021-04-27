@@ -1,0 +1,96 @@
+﻿body
+{
+	font-family: Verdana;
+	font-size: 12px;
+}
+
+.PrintMasterHeader1
+{
+	text-align: center;
+	font-size: 1.6em;
+	color: black;
+	position: absolute;
+	top: 37px;
+	width: 650px;
+	font-weight: bold;
+	left: 35px;
+}
+
+.PrintMasterHeader2
+{
+	text-align: center;
+	font-size: 2em;
+	color: black;
+	position: absolute;
+	top: 78px;
+	width: 650px;
+	font-weight: bold;
+	left: 35px;
+}
+
+.HeaderText
+{
+	text-align: center;
+	font-size: 1.4em;
+	color: #000000;
+	font-weight: bold;
+}
+
+.Label
+{
+	text-align: right;
+	color: black;
+	font-weight: normal;
+}
+
+.ValueLabel
+{
+	text-align: right;
+	color: black;
+	font-weight: bold;
+}
+
+.LinkButton
+{
+	cursor: pointer;
+	text-decoration: underline;
+}
+
+.CommonHeaderTable
+{
+	border: 1px solid #000000; 
+	border-collapse:collapse;
+	vertical-align: middle;
+}
+
+.CommonHeaderTable thead
+{
+	vertical-align: middle;
+	color: #FFFFFF;
+    background-color: #000000;
+    border-top: 2px solid #000000;
+    border-bottom: 2px solid #000000;
+}
+
+.CommonHeaderTable thead tr
+{
+	border-left: solid 1px #FFFFFF;
+}
+
+.CommonHeaderTable tr td
+{
+	border: solid 1px #000000;
+}
+
+.CommonHeaderTable thead tr th
+{
+	border: solid 1px #FFFFFF;
+	text-align: center;
+}
+
+.HiddenButton
+{
+    display: none;
+}
+
+

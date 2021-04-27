@@ -1,0 +1,5 @@
+ALTER TABLE PMIS_RES.AviationEquipment ADD AviationAirModelName VARCHAR2(300 BYTE);
+ALTER TABLE PMIS_RES.AviationEquipment ADD OtherBaseMachineMakeName VARCHAR2(300 BYTE);
+ALTER TABLE PMIS_RES.AviationEquipment ADD OtherBaseMachineModelName VARCHAR2(300 BYTE);
+
+/

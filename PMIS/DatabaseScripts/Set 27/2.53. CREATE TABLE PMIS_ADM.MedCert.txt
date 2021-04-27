@@ -1,0 +1,45 @@
+﻿CREATE TABLE PMIS_ADM.MedCert(MedCertID number NOT NULL,
+							  PersonID number NOT NULL,
+							  MedCertDate date,
+							  ProtNum varchar2(250),
+	                          ConclusionID number,
+							  MedRubricID number,
+							  ExpirationDate date
+                             );
+
+ALTER TABLE PMIS_ADM.MedCert ADD CONSTRAINT MedCert_PK PRIMARY KEY (MedCertID);
+ALTER TABLE PMIS_ADM.MedCert ADD CONSTRAINT MedCert_Persons_FK FOREIGN KEY (PersonID) REFERENCES VS_OWNER.VS_LS (PersonID);
+ALTER TABLE PMIS_ADM.MedCert ADD CONSTRAINT MedCert_Concl_FK FOREIGN KEY (ConclusionID) REFERENCES PMIS_ADM.MilitaryMedicalConclusions (MilitaryMedicalConclusionID);
+ALTER TABLE PMIS_ADM.MedCert ADD CONSTRAINT MedCert_MedRubricID_FK FOREIGN KEY (MedRubricID) REFERENCES PMIS_ADM.MedRubrics(MedRubricID);
+
+CREATE SEQUENCE PMIS_ADM.MedCert_ID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+CREATE TRIGGER PMIS_ADM.TRG_MedCert_INSERT
+BEFORE INSERT ON PMIS_ADM.MedCert
+FOR EACH ROW
+BEGIN
+   SELECT PMIS_ADM.MedCert_ID_SEQ.nextval INTO :new.MedCertID FROM dual;
+END;
+/
+
+INSERT INTO PMIS_ADM.MedCert (PersonID,
+							  MedCertDate,
+							  ProtNum,
+	                          ConclusionID,
+							  MedRubricID,
+							  ExpirationDate)
+SELECT a.PersonID, a.MedCert_Date, a.MedCert_ProtNum, a.MedCert_ConclusionID, a.MedCert_MedRubricID, NULL as ExpirationDate
+FROM PMIS_ADM.Persons a
+WHERE a.PersonID NOT IN (SELECT PersonID FROM PMIS_ADM.MedCert) AND
+      (a.MedCert_Date IS NOT NULL OR a.MedCert_ProtNum IS NOT NULL OR a.MedCert_ConclusionID IS NOT NULL OR a.MedCert_MedRubricID IS NOT NULL);
+
+ALTER TABLE PMIS_ADM.Persons RENAME COLUMN MedCert_Date TO MedCert_Date_;
+ALTER TABLE PMIS_ADM.Persons RENAME COLUMN MedCert_ProtNum TO MedCert_ProtNum_;
+ALTER TABLE PMIS_ADM.Persons RENAME COLUMN MedCert_ConclusionID TO MedCert_ConclusionID_;
+ALTER TABLE PMIS_ADM.Persons RENAME COLUMN MedCert_MedRubricID TO MedCert_MedRubricID_;
+
+COMMIT;
+/

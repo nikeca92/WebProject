@@ -1,0 +1,23 @@
+﻿CREATE TABLE PMIS_RES.PersonConscription(PersonConscriptionID number NOT NULL,
+                                    PersonID  number NOT NULL,
+                                    MilitaryUnit varchar2(100),
+									Position varchar2(100),
+                                    DateFrom date,
+                                    DateTo date
+                                    );
+
+ALTER TABLE PMIS_RES.PersonConscription ADD CONSTRAINT PersonConscription_PK PRIMARY KEY (PersonConscriptionID);
+ALTER TABLE PMIS_RES.PersonConscription ADD CONSTRAINT PersonConscription_Persons_FK FOREIGN KEY (PersonID) REFERENCES VS_OWNER.VS_LS (PersonID);
+
+CREATE SEQUENCE PMIS_RES.PersonConscription_ID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+CREATE TRIGGER PMIS_RES.TRG_PersonConscription_INSERT
+BEFORE INSERT ON PMIS_RES.PersonConscription
+FOR EACH ROW
+BEGIN
+   SELECT PMIS_RES.PersonConscription_ID_SEQ.nextval INTO :new.PersonConscriptionID FROM dual;
+END;
+/

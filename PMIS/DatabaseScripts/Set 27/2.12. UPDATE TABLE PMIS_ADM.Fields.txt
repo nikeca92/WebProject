@@ -1,0 +1,68 @@
+﻿INSERT INTO PMIS_ADM.Fields (fieldtype, fieldkey, fieldname, seq)
+VALUES ('date', 'RES_Reservist_MilServ_PreviousPosition_VaccAnnDateEnd', 'До дата', 15);
+
+INSERT INTO PMIS_ADM.Fields (fieldtype, fieldkey, fieldname, seq)
+VALUES ('date', 'RES_Reservist_MilRepStatus_MedCertExpirationDate', 'Дата на валидност', 12);
+
+INSERT INTO PMIS_ADM.Fields (fieldtype, fieldkey, fieldname, seq)
+VALUES ('date', 'RES_Reservist_MilRepStatus_PsychCertExpirationDate', 'Дата на валидност', 14);
+
+INSERT INTO PMIS_ADM.Fields (fieldtype, fieldkey, fieldname, seq)
+VALUES ('date', 'ADM_PersonDetails_RecordOfServiceDate', 'Военна книжка издадена на', 24);
+
+INSERT INTO PMIS_ADM.Fields (fieldtype, fieldkey, fieldname, seq)
+VALUES ('string', 'ADM_PersonDetails_RecordOfServiceComment', 'Военна книжка забележка', 25);
+
+INSERT INTO PMIS_ADM.Fields (fieldtype, fieldkey, fieldname, seq)
+VALUES ('number', 'APPL_Applicants_Register_RegNumber', 'Рег. №', 10);
+
+INSERT INTO PMIS_ADM.Fields (fieldtype, fieldkey, fieldname, seq)
+VALUES ('date', 'APPL_Applicants_Register_Date', 'Дата', 20);
+
+INSERT INTO PMIS_ADM.Fields (fieldtype, fieldkey, fieldname, seq)
+VALUES ('string', 'APPL_Applicants_Register_PageCount', 'Брой листа', 30);
+
+INSERT INTO PMIS_ADM.Fields (fieldtype, fieldkey, fieldname, seq)
+VALUES ('string', 'APPL_Applicants_Register_Notes', 'Бележки', 40);
+
+UPDATE PMIS_ADM.Fields SET
+	fieldname = 'Комисия от дата'
+WHERE fieldkey = 'RES_Reservist_MilRepStatus_MedCertDate';
+
+UPDATE PMIS_ADM.Fields SET
+	fieldname = 'Протокол'
+WHERE fieldkey = 'RES_Reservist_MilRepStatus_MedCertProtNum';
+
+UPDATE PMIS_ADM.Fields SET
+	fieldname = 'Решение'
+WHERE fieldkey = 'RES_Reservist_MilRepStatus_MedCertConclusion';
+
+UPDATE PMIS_ADM.Fields SET
+	fieldname = 'Комисия от дата'
+WHERE fieldkey = 'RES_Reservist_MilRepStatus_PsychCertDate';
+
+UPDATE PMIS_ADM.Fields SET
+	fieldname = 'Протокол'
+WHERE fieldkey = 'RES_Reservist_MilRepStatus_PsychCertProtNum';
+
+UPDATE PMIS_ADM.Fields SET
+	fieldname = 'Решение'
+WHERE fieldkey = 'RES_Reservist_MilRepStatus_PsychCertConclusion';
+
+INSERT INTO PMIS_ADM.Fields (fieldtype, fieldkey, fieldname, seq)
+VALUES ('string', 'ADM_PersonDetails_ContactAdr_City', 'Адрес за кореспонденция - Населено място', 4);
+
+INSERT INTO PMIS_ADM.Fields (fieldtype, fieldkey, fieldname, seq)
+VALUES ('string', 'ADM_PersonDetails_ContactAdr_District', 'Адрес за кореспонденция - Район', 4);
+
+INSERT INTO PMIS_ADM.Fields (fieldtype, fieldkey, fieldname, seq)
+VALUES ('string', 'ADM_PersonDetails_ContactAdr_PresSecondPostCode', 'Адрес за кореспонденция - Пощенски код', 4);
+
+INSERT INTO PMIS_ADM.Fields (fieldtype, fieldkey, fieldname, seq)
+VALUES ('string', 'ADM_PersonDetails_ContactAdr_Address', 'Адрес за кореспонденция - Адрес', 4);
+
+INSERT INTO PMIS_ADM.Fields (fieldtype, fieldkey, fieldname, seq)
+VALUES ('number', 'APPL_ApplicantsPosition_Seq', 'Подредба', 1);
+
+COMMIT;
+/

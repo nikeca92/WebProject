@@ -1,0 +1,26 @@
+﻿CREATE TABLE PMIS_ADM.FailedLogins(	FailedLoginID number NOT NULL,
+									ModuleID number NOT NULL,
+									Username varchar2(1000),
+									IP varchar2(50),
+									UserAgent varchar2(1000),
+									SessionID varchar2(500),
+									DateTime date
+								  );
+
+ALTER TABLE PMIS_ADM.FailedLogins ADD CONSTRAINT FailedLogins_PK PRIMARY KEY(FailedLoginID);
+ALTER TABLE PMIS_ADM.FailedLogins ADD CONSTRAINT FailedLogins_Modules_FK FOREIGN KEY (ModuleID) REFERENCES PMIS_ADM.Modules (ModuleID);
+
+CREATE SEQUENCE PMIS_ADM.FailedLogins_ID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+CREATE TRIGGER PMIS_ADM.TRG_FailedLogins_INSERT
+BEFORE INSERT ON PMIS_ADM.FailedLogins
+FOR EACH ROW
+BEGIN
+   SELECT PMIS_ADM.FailedLogins_ID_SEQ.nextval INTO :new.FailedLoginID FROM dual;
+END;
+/
+
+COMMIT;

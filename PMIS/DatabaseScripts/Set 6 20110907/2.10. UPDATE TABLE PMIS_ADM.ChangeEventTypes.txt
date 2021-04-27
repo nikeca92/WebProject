@@ -1,0 +1,18 @@
+﻿
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('ADM_PasswordPolicy_Edit', 'Редактиране на правилата при работа с пароли', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'ADM'), 1);
+
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Lists_TrailerBodyKind_AddTrailerBodyKind', 'Добавяне на вид каросерия на ремарке', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Lists_TrailerBodyKind_EditTrailerBodyKind', 'Редактиране на вид каросерия на ремарке', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Lists_TrailerBodyKind_DeleteTrailerBodyKind', 'Изтриване на вид каросерия на ремарке', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 3);
+
+
+
+COMMIT;
+/

@@ -1,0 +1,13 @@
+﻿DECLARE
+   i number;
+BEGIN
+   i := 1;
+
+   WHILE i < 100 LOOP
+      INSERT INTO VS_OWNER.VS_AR_DLO (ARDLO_EGNLS, ARDLO_DLOKOD, ARDLO_TEXTDL, ARDLO_VRIKOD, ARDLO_ZPVD, ARDLO_IZD, ARDLO_KOGA, ARDLO_VPN, ARDLO_IMEPOD, ARDLO_IMEOE, ARDLO_NMAKOD)
+      VALUES ('8506026685', 'КОД '||to_char(i), 'Длъжност №' || to_char(i), 'Т', 'ЗАП№' || to_char(i), TO_DATE('01-MAY-2018'), TO_DATE('06-MAY-2018'), 1000, 'Под. София', 'ОЕ - ' || to_char(i), 13055);
+      
+       i := i + 1;
+   END LOOP;
+END;
+/

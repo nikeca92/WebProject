@@ -1,0 +1,30 @@
+﻿CREATE TABLE PMIS_RES.Reservists(ReservistID number NOT NULL,
+                                 PersonID number,
+                                 GroupManagementSection varchar2(20),
+                                 Section varchar2(20),
+                                 Deliverer varchar2(250),
+                                 PunktID number,
+                                 
+                                 CreatedBy number,
+                                 CreatedDate date,
+                                 LastModifiedBy number,
+                                 LastModifiedDate date
+                                );
+
+ALTER TABLE PMIS_RES.Reservists ADD CONSTRAINT Reservists_PK PRIMARY KEY(ReservistID);
+ALTER TABLE PMIS_RES.Reservists ADD CONSTRAINT Reservists_Persons_FK FOREIGN KEY (PersonID) REFERENCES VS_OWNER.VS_LS (PersonID);
+ALTER TABLE PMIS_RES.Reservists ADD CONSTRAINT Reservists_ReqCmdPunkt_FK FOREIGN KEY (PunktID) REFERENCES PMIS_RES.RequestCommandPunkt (RequestCommandPunktID);
+
+
+CREATE SEQUENCE PMIS_RES.Reservists_ID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+CREATE TRIGGER PMIS_RES.TRG_Reservists_INSERT
+BEFORE INSERT ON PMIS_RES.Reservists
+FOR EACH ROW
+BEGIN
+   SELECT PMIS_RES.Reservists_ID_SEQ.nextval INTO :new.ReservistID FROM dual;
+END;
+/

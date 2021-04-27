@@ -1,0 +1,50 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="PrintMasterPage.master.cs" Inherits="PMIS.PMISAdmin.MasterPages.PrintMasterPage" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head id="Head1" runat="server">
+    <title>Администратор</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=8" />
+    
+    <link href="../StyleSheets/PrintMain.css" rel="StyleSheet" type="text/css" />
+    <style type="text/css">
+        @media print{
+           .noPrint{
+              display: none;
+              }
+        }
+    </style>
+   
+</head>
+<body>
+    <form id="form1" runat="server">
+        <asp:HiddenField ID="hdnPrintTitleLinesWidth" runat="server" />
+        <asp:HiddenField ID="hdnHeadersLeft" runat="server" />
+        <div>
+            <table style="float: left; clear: left; border-collapse:collapse;">
+                <colgroup width="<% Response.Write(PrintTitleLinesWidth); %>px"></colgroup>
+                <tr><td style="background-color: Black;">&nbsp;</td></tr>
+                <tr style="background-color: White; line-height: 1px;"><td></td></tr>
+                <tr style="background-color: Black; line-height: 1px;"><td></td></tr>
+                <tr><td style="background-color: #E8E8E8; line-height: 35px;">&nbsp;</td></tr>
+                <tr style="background-color: #D6D6D6; line-height: 1px;"><td></td></tr>
+                <tr><td style="background-color: #E8E8E8; line-height: 45px;">&nbsp;</td></tr>
+                <tr style="background-color: #D6D6D6; line-height: 1px;"><td></td></tr>
+                <tr style="background-color: #E6E6E6; line-height: 1px;"><td></td></tr>
+                <tr style="background-color: #BFBFBF; line-height: 1px;"><td></td></tr>
+                <tr>
+                    <td>
+                        <span class="PrintMasterHeader1" style="left:<% Response.Write(HeadersLeft); %>px;">АСУ на човешките ресурси</span>
+                        <span class="PrintMasterHeader2" style="left:<% Response.Write(HeadersLeft); %>px;">Администратор</span>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div style="margin-top: 10px; float: left; clear: left;">
+           <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+           </asp:ContentPlaceHolder>
+        </div>
+    </form>
+</body>
+</html>

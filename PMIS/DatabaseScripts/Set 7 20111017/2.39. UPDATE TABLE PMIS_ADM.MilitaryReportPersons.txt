@@ -1,0 +1,8 @@
+﻿ALTER TABLE PMIS_ADM.MilitaryReportPersons ADD (BirthCountryID varchar2(3));
+ALTER TABLE PMIS_ADM.MilitaryReportPersons ADD (BirthCityIfAbroad varchar2(200));
+ALTER TABLE PMIS_ADM.MilitaryReportPersons ADD (BirthCityID number);
+
+ALTER TABLE PMIS_ADM.MilitaryReportPersons ADD CONSTRAINT MilRepPersons_BirthCountry_FK FOREIGN KEY (BirthCountryID) REFERENCES VS_OWNER.KLV_DJJ (DJJ_KOD);
+ALTER TABLE PMIS_ADM.MilitaryReportPersons ADD CONSTRAINT MilRepPersons_BirthCity_FK FOREIGN KEY (BirthCityID) REFERENCES UKAZ_OWNER.KL_NMA (KOD_NMA);
+
+/

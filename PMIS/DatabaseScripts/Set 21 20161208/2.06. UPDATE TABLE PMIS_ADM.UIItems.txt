@@ -1,0 +1,28 @@
+﻿--Резерв -> Справки -> Анализ на комплектуването
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_REPORTANALYZERESFULFILMENT', 'Анализ на комплектуването', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS'));
+
+--Кандидати -> Конкурси -> Редактиране на обявен конкурс -> Длъжности -> Звание
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('APPL_VACANN_EDITVACANN_POSITIONS_MILITARYRANK', 'Звание', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'APPL_VACANN_EDITVACANN_POSITIONS'));
+
+--Резерв -> Справки -> Щатно-длъжностен списък
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_REPORTSTAFFPOSITIONLIST', 'Щатно-длъжностен списък', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS'));
+
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID, CanSetAccessOnlyOwnData)
+VALUES ('APPL_REPORTS_REPORT_VACANCY_ANNOUNCE_APPLICANTS', 'Кандидати за военна служба по обявен конкурс', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'APPL_REPORTS'), 1);
+
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID, CanSetAccessOnlyOwnData)
+VALUES ('APPL_REPORTS_REPORT_DOCUMENTS_APPLIED', 'Сведение за подалите документи за военна служба', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'APPL_REPORTS'), 1);
+
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID, CanSetAccessOnlyOwnData)
+VALUES ('APPL_REPORTS_REPORT_DOCUMENTS_SENT', 'Сведение за изпратените документи за военна служба', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'APPL_REPORTS'), 1);
+
+UPDATE pmis_adm.uiitems 
+SET UINAME = 'Видове съдове за ГСМ'
+WHERE uikey = 'RES_LISTMAINT_FUELCONTAINERKIND';
+
+COMMIT;
+
+/

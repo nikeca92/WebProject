@@ -1,0 +1,868 @@
+
+--Резерв -> Човешки ресурси -> Редактиране на резервист -> Военна служба -> Отчисляване
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_HUMANRES_EDITRESERVIST_MILSERV_DISCHARGE', 'Отчисляване', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_HUMANRES_EDITRESERVIST_MILSERV'));
+
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_HUMANRES_EDITRESERVIST_MILSERV_DISCHARGE_YEAR', 'Година', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_HUMANRES_EDITRESERVIST_MILSERV_DISCHARGE'));
+
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_HUMANRES_EDITRESERVIST_MILSERV_DISCHARGE_DISCHARGEREASON', 'Причина за снемане от отчет', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_HUMANRES_EDITRESERVIST_MILSERV_DISCHARGE'));
+
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_HUMANRES_EDITRESERVIST_MILSERV_DISCHARGE_DISCHARGEDESTINATION', 'Къде отива при снемане от отчет', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_HUMANRES_EDITRESERVIST_MILSERV_DISCHARGE'));
+
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_HUMANRES_EDITRESERVIST_MILSERV_DISCHARGE_ORDER', 'Заповед', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_HUMANRES_EDITRESERVIST_MILSERV_DISCHARGE'));
+
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_HUMANRES_EDITRESERVIST_MILSERV_DISCHARGE_ORDERDATE', 'Дата', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_HUMANRES_EDITRESERVIST_MILSERV_DISCHARGE'));
+
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_HUMANRES_EDITRESERVIST_MILSERV_DISCHARGE_ORDEREFFECTIVEDATE', 'Считано от', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_HUMANRES_EDITRESERVIST_MILSERV_DISCHARGE'));
+
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_HUMANRES_EDITRESERVIST_MILSERV_DISCHARGE_MILITARYCMMANDERRANK', 'Подписал заповедта', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_HUMANRES_EDITRESERVIST_MILSERV_DISCHARGE'));
+
+
+
+
+--Администратор -> Класификатори -> Длъжности
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('ADM_LISTMAINT_POSITIONTITLES', 'Длъжности', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'ADM_LISTMAINT'));
+
+
+--Администратор -> Класификатори -> Длъжности -> Добавяне на длъжност
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('ADM_LISTMAINT_POSITIONTITLES_ADD', 'Добавяне на длъжност', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'ADM_LISTMAINT_POSITIONTITLES'));
+
+--Администратор -> Класификатори -> Длъжности -> Добавяне на длъжност -> Длъжност
+INSERT INTO PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('ADM_LISTMAINT_POSITIONTITLES_ADD_POSITIONTITLE', 'Длъжност', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'ADM_LISTMAINT_POSITIONTITLES_ADD'));
+
+--Администратор -> Класификатори -> Длъжности -> Добавяне на длъжност -> Активна
+INSERT INTO PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('ADM_LISTMAINT_POSITIONTITLES_ADD_ISACTIVE', 'Активна', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'ADM_LISTMAINT_POSITIONTITLES_ADD'));
+
+--Администратор -> Класификатори -> Длъжности -> Редактиране на длъжност
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('ADM_LISTMAINT_POSITIONTITLES_EDIT', 'Редактиране на длъжност', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'ADM_LISTMAINT_POSITIONTITLES'));
+
+--Администратор -> Класификатори -> Длъжности -> Редактиране на длъжност -> Длъжност
+INSERT INTO PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('ADM_LISTMAINT_POSITIONTITLES_EDIT_POSITIONTITLE', 'Длъжност', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'ADM_LISTMAINT_POSITIONTITLES_EDIT'));
+
+--Администратор -> Класификатори -> Длъжности -> Редактиране на длъжност -> Активна
+INSERT INTO PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('ADM_LISTMAINT_POSITIONTITLES_EDIT_ISACTIVE', 'Активна', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'ADM_LISTMAINT_POSITIONTITLES_EDIT'));
+
+
+--Администратор -> Класификатори -> Длъжности -> Изтриване на длъжност
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('ADM_LISTMAINT_POSITIONTITLES_DELETE', 'Изтриване на длъжност', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'ADM_LISTMAINT_POSITIONTITLES'));
+
+
+--Резерв -> Човешки ресурси -> Редактиране на резервист -> Военно-отчетни
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_HUMANRES_EDITRESERVIST_MILREP_POSITIONTITLES', 'Подходящи длъжности', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_HUMANRES_EDITRESERVIST_MILREP'));
+
+
+--Резерв -> Човешки ресурси -> Добавяне на нов резервист -> Лични данни
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_HUMANRES_ADDRESERVIST_PERSONALDATA_BASEPOSITIONTITLE', 'Подходяща длъжност', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_HUMANRES_ADDRESERVIST_PERSONALDATA'));
+
+--Резерв -> Човешки ресурси -> Добавяне на нов резервист -> Лични данни
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_HUMANRES_EDITRESERVIST_PERSONALDATA_BASEPOSITIONTITLE', 'Подходяща длъжност', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_HUMANRES_EDITRESERVIST_PERSONALDATA'));
+
+
+
+--Резерв -> Заявки за окомплектоване с ресурс от резерва -> Изпълнение на заявки за окомплектоване с ресурс от резерва -> Команда -> Изпълнени -> Търсене на резервист -> Подходяща длъжност
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_EQUIPRESREQUESTS_FULFIL_MILCOMMAND_POSITIONS_FULFIL_SEARCH_POSITIONTITLE', 'Подходяща длъжност', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_EQUIPRESREQUESTS_FULFIL_MILCOMMAND_POSITIONS_FULFIL_SEARCH'));
+
+
+
+--Резерв -> Човешки ресурси -> Редактиране на резервист -> Военно-отчетни -> Мобилизационно назначение -> Връчено МН
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_HUMANRES_EDITRESERVIST_MILREP_APPOINTMENT_APPOINTMENTISDELIVERED', 'Връчено МН', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_HUMANRES_EDITRESERVIST_MILREP_APPOINTMENT'));
+
+
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_TECHNICS_VEHICLES_EDIT_MILREP_APPOINTMENT_APPOINTMENTISDELIVERED', 'Връчено МН', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_TECHNICS_VEHICLES_EDIT_MILREP_APPOINTMENT'));
+
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_TECHNICS_TRACTORS_EDIT_MILREP_APPOINTMENT_APPOINTMENTISDELIVERED', 'Връчено МН', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_TECHNICS_TRACTORS_EDIT_MILREP_APPOINTMENT'));
+
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_TECHNICS_TRAILERS_EDIT_MILREP_APPOINTMENT_APPOINTMENTISDELIVERED', 'Връчено МН', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_TECHNICS_TRAILERS_EDIT_MILREP_APPOINTMENT'));
+
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_TECHNICS_ENG_EQUIP_EDIT_MILREP_APPOINTMENT_APPOINTMENTISDELIVERED', 'Връчено МН', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_TECHNICS_ENG_EQUIP_EDIT_MILREP_APPOINTMENT'));
+
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_TECHNICS_MOB_LIFT_EQUIP_EDIT_MILREP_APPOINTMENT_APPOINTMENTISDELIVERED', 'Връчено МН', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_TECHNICS_MOB_LIFT_EQUIP_EDIT_MILREP_APPOINTMENT'));
+
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_TECHNICS_RAILWAY_EQUIP_EDIT_MILREP_APPOINTMENT_APPOINTMENTISDELIVERED', 'Връчено МН', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_TECHNICS_RAILWAY_EQUIP_EDIT_MILREP_APPOINTMENT'));
+
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_TECHNICS_FUEL_CONTAINERS_EDIT_MILREP_APPOINTMENT_APPOINTMENTISDELIVERED', 'Връчено МН', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_TECHNICS_FUEL_CONTAINERS_EDIT_MILREP_APPOINTMENT'));
+
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_TECHNICS_VESSELS_EDIT_MILREP_APPOINTMENT_APPOINTMENTISDELIVERED', 'Връчено МН', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_TECHNICS_VESSELS_EDIT_MILREP_APPOINTMENT'));
+
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_TECHNICS_AVIATION_EQUIP_EDIT_MILREP_APPOINTMENT_APPOINTMENTISDELIVERED', 'Връчено МН', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_TECHNICS_AVIATION_EQUIP_EDIT_MILREP_APPOINTMENT'));
+
+INSERT INTO PMIS_ADM.UIItems(UIKEY, UINAME, PARENTUIITEMID)
+VALUES('ADM_LISTMAINT_MEDRUBRICS', 'Медицински рубрики', (SELECT UIITEMID FROM PMIS_ADM.UIItems WHERE UIKEY = 'ADM_LISTMAINT'));
+
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('ADM_LISTMAINT_MEDRUBRICS_ADD', 'Добавяне на медицинска рубрика', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'ADM_LISTMAINT_MEDRUBRICS'));
+
+INSERT INTO PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('ADM_LISTMAINT_MEDRUBRICS_ADD_MEDRUBRIC', 'Медицинска рубрика', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'ADM_LISTMAINT_MEDRUBRICS_ADD'));
+
+INSERT INTO PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('ADM_LISTMAINT_MEDRUBRICS_ADD_ISACTIVE', 'Активна', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'ADM_LISTMAINT_MEDRUBRICS_ADD'));
+
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('ADM_LISTMAINT_MEDRUBRICS_EDIT', 'Редактиране на медицинска рубрика', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'ADM_LISTMAINT_MEDRUBRICS'));
+
+INSERT INTO PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('ADM_LISTMAINT_MEDRUBRICS_EDIT_MEDRUBRIC', 'Медицинска рубрика', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'ADM_LISTMAINT_MEDRUBRICS_EDIT'));
+
+INSERT INTO PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('ADM_LISTMAINT_MEDRUBRICS_EDIT_ISACTIVE', 'Активна', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'ADM_LISTMAINT_MEDRUBRICS_EDIT'));
+
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('ADM_LISTMAINT_MEDRUBRICS_DELETE', 'Изтриване на медицинска рубрика', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'ADM_LISTMAINT_MEDRUBRICS'));
+
+INSERT INTO pmis_adm.uiitems(uikey, uiname, PARENTUIITEMID)
+VALUES('RES_HUMANRES_EDITRESERVIST_MILREP_MEDCERT_MEDRUBRIC', 'Медицинска рубрика', (SELECT uiitemid FROM pmis_adm.uiitems WHERE uikey = 'RES_HUMANRES_EDITRESERVIST_MILREP_MEDCERT'));
+
+INSERT INTO pmis_adm.uiitems(uikey, uiname, PARENTUIITEMID)
+VALUES('APPL_APPL_ADD_APPL_MEDCERT_DATE', 'Медицинско освидетелстване - Комисия от дата', (SELECT uiitemid FROM pmis_adm.uiitems WHERE uikey = 'APPL_APPL_ADD_PERSONDETAILS'));
+
+INSERT INTO pmis_adm.uiitems(uikey, uiname, PARENTUIITEMID)
+VALUES('APPL_APPL_ADD_APPL_MEDCERT_PROTNUM', 'Медицинско освидетелстване - Протокол', (SELECT uiitemid FROM pmis_adm.uiitems WHERE uikey = 'APPL_APPL_ADD_PERSONDETAILS'));
+
+INSERT INTO pmis_adm.uiitems(uikey, uiname, PARENTUIITEMID)
+VALUES('APPL_APPL_ADD_APPL_MEDCERT_CONCLUSION', 'Медицинско освидетелстване - Решение', (SELECT uiitemid FROM pmis_adm.uiitems WHERE uikey = 'APPL_APPL_ADD_PERSONDETAILS'));
+
+INSERT INTO pmis_adm.uiitems(uikey, uiname, PARENTUIITEMID)
+VALUES('APPL_APPL_ADD_APPL_MEDCERT_MEDRUBRIC', 'Медицинско освидетелстване - Медицинска рубрика', (SELECT uiitemid FROM pmis_adm.uiitems WHERE uikey = 'APPL_APPL_ADD_PERSONDETAILS'));
+
+INSERT INTO pmis_adm.uiitems(uikey, uiname, PARENTUIITEMID)
+VALUES('APPL_APPL_ADD_APPL_PSYCHCERT_DATE', 'Психологическа пригодност - Комисия от дата', (SELECT uiitemid FROM pmis_adm.uiitems WHERE uikey = 'APPL_APPL_ADD_PERSONDETAILS'));
+
+INSERT INTO pmis_adm.uiitems(uikey, uiname, PARENTUIITEMID)
+VALUES('APPL_APPL_ADD_APPL_PSYCHCERT_PROTNUM', 'Психологическа пригодност - Протокол', (SELECT uiitemid FROM pmis_adm.uiitems WHERE uikey = 'APPL_APPL_ADD_PERSONDETAILS'));
+
+INSERT INTO pmis_adm.uiitems(uikey, uiname, PARENTUIITEMID)
+VALUES('APPL_APPL_ADD_APPL_PSYCHCERT_CONCLUSION', 'Психологическа пригодност - Решение', (SELECT uiitemid FROM pmis_adm.uiitems WHERE uikey = 'APPL_APPL_ADD_PERSONDETAILS'));
+
+INSERT INTO pmis_adm.uiitems(uikey, uiname, PARENTUIITEMID)
+VALUES('APPL_APPL_EDIT_APPL_MEDCERT_DATE', 'Медицинско освидетелстване - Комисия от дата', (SELECT uiitemid FROM pmis_adm.uiitems WHERE uikey = 'APPL_APPL_EDIT_PERSONDETAILS'));
+
+INSERT INTO pmis_adm.uiitems(uikey, uiname, PARENTUIITEMID)
+VALUES('APPL_APPL_EDIT_APPL_MEDCERT_PROTNUM', 'Медицинско освидетелстване - Протокол', (SELECT uiitemid FROM pmis_adm.uiitems WHERE uikey = 'APPL_APPL_EDIT_PERSONDETAILS'));
+
+INSERT INTO pmis_adm.uiitems(uikey, uiname, PARENTUIITEMID)
+VALUES('APPL_APPL_EDIT_APPL_MEDCERT_CONCLUSION', 'Медицинско освидетелстване - Решение', (SELECT uiitemid FROM pmis_adm.uiitems WHERE uikey = 'APPL_APPL_EDIT_PERSONDETAILS'));
+
+INSERT INTO pmis_adm.uiitems(uikey, uiname, PARENTUIITEMID)
+VALUES('APPL_APPL_EDIT_APPL_MEDCERT_MEDRUBRIC', 'Медицинско освидетелстване - Медицинска рубрика', (SELECT uiitemid FROM pmis_adm.uiitems WHERE uikey = 'APPL_APPL_EDIT_PERSONDETAILS'));
+
+INSERT INTO pmis_adm.uiitems(uikey, uiname, PARENTUIITEMID)
+VALUES('APPL_APPL_EDIT_APPL_PSYCHCERT_DATE', 'Психологическа пригодност - Комисия от дата', (SELECT uiitemid FROM pmis_adm.uiitems WHERE uikey = 'APPL_APPL_EDIT_PERSONDETAILS'));
+
+INSERT INTO pmis_adm.uiitems(uikey, uiname, PARENTUIITEMID)
+VALUES('APPL_APPL_EDIT_APPL_PSYCHCERT_PROTNUM', 'Психологическа пригодност - Протокол', (SELECT uiitemid FROM pmis_adm.uiitems WHERE uikey = 'APPL_APPL_EDIT_PERSONDETAILS'));
+
+INSERT INTO pmis_adm.uiitems(uikey, uiname, PARENTUIITEMID)
+VALUES('APPL_APPL_EDIT_APPL_PSYCHCERT_CONCLUSION', 'Психологическа пригодност - Решение', (SELECT uiitemid FROM pmis_adm.uiitems WHERE uikey = 'APPL_APPL_EDIT_PERSONDETAILS'));
+
+INSERT INTO pmis_adm.uiitems(uikey, uiname, PARENTUIITEMID)
+VALUES('APPL_CADETS_ADDCADET_MEDCERT_DATE', 'Медицинско освидетелстване - Комисия от дата', (SELECT uiitemid FROM pmis_adm.uiitems WHERE uikey = 'APPL_CADETS_ADDCADET'));
+
+INSERT INTO pmis_adm.uiitems(uikey, uiname, PARENTUIITEMID)
+VALUES('APPL_CADETS_ADDCADET_MEDCERT_PROTNUM', 'Медицинско освидетелстване - Протокол', (SELECT uiitemid FROM pmis_adm.uiitems WHERE uikey = 'APPL_CADETS_ADDCADET'));
+
+INSERT INTO pmis_adm.uiitems(uikey, uiname, PARENTUIITEMID)
+VALUES('APPL_CADETS_ADDCADET_MEDCERT_CONCLUSION', 'Медицинско освидетелстване - Решение', (SELECT uiitemid FROM pmis_adm.uiitems WHERE uikey = 'APPL_CADETS_ADDCADET'));
+
+INSERT INTO pmis_adm.uiitems(uikey, uiname, PARENTUIITEMID)
+VALUES('APPL_CADETS_ADDCADET_MEDCERT_MEDRUBRIC', 'Медицинско освидетелстване - Медицинска рубрика', (SELECT uiitemid FROM pmis_adm.uiitems WHERE uikey = 'APPL_CADETS_ADDCADET'));
+
+INSERT INTO pmis_adm.uiitems(uikey, uiname, PARENTUIITEMID)
+VALUES('APPL_CADETS_ADDCADET_PSYCHCERT_DATE', 'Психологическа пригодност - Комисия от дата', (SELECT uiitemid FROM pmis_adm.uiitems WHERE uikey = 'APPL_CADETS_ADDCADET'));
+
+INSERT INTO pmis_adm.uiitems(uikey, uiname, PARENTUIITEMID)
+VALUES('APPL_CADETS_ADDCADET_PSYCHCERT_PROTNUM', 'Психологическа пригодност - Протокол', (SELECT uiitemid FROM pmis_adm.uiitems WHERE uikey = 'APPL_CADETS_ADDCADET'));
+
+INSERT INTO pmis_adm.uiitems(uikey, uiname, PARENTUIITEMID)
+VALUES('APPL_CADETS_ADDCADET_PSYCHCERT_CONCLUSION', 'Психологическа пригодност - Решение', (SELECT uiitemid FROM pmis_adm.uiitems WHERE uikey = 'APPL_CADETS_ADDCADET'));
+
+INSERT INTO pmis_adm.uiitems(uikey, uiname, PARENTUIITEMID)
+VALUES('APPL_CADETS_EDITCADET_MEDCERT_DATE', 'Медицинско освидетелстване - Комисия от дата', (SELECT uiitemid FROM pmis_adm.uiitems WHERE uikey = 'APPL_CADETS_EDITCADET'));
+
+INSERT INTO pmis_adm.uiitems(uikey, uiname, PARENTUIITEMID)
+VALUES('APPL_CADETS_EDITCADET_MEDCERT_PROTNUM', 'Медицинско освидетелстване - Протокол', (SELECT uiitemid FROM pmis_adm.uiitems WHERE uikey = 'APPL_CADETS_EDITCADET'));
+
+INSERT INTO pmis_adm.uiitems(uikey, uiname, PARENTUIITEMID)
+VALUES('APPL_CADETS_EDITCADET_MEDCERT_CONCLUSION', 'Медицинско освидетелстване - Решение', (SELECT uiitemid FROM pmis_adm.uiitems WHERE uikey = 'APPL_CADETS_EDITCADET'));
+
+INSERT INTO pmis_adm.uiitems(uikey, uiname, PARENTUIITEMID)
+VALUES('APPL_CADETS_EDITCADET_MEDCERT_MEDRUBRIC', 'Медицинско освидетелстване - Медицинска рубрика', (SELECT uiitemid FROM pmis_adm.uiitems WHERE uikey = 'APPL_CADETS_EDITCADET'));
+
+INSERT INTO pmis_adm.uiitems(uikey, uiname, PARENTUIITEMID)
+VALUES('APPL_CADETS_EDITCADET_PSYCHCERT_DATE', 'Психологическа пригодност - Комисия от дата', (SELECT uiitemid FROM pmis_adm.uiitems WHERE uikey = 'APPL_CADETS_EDITCADET'));
+
+INSERT INTO pmis_adm.uiitems(uikey, uiname, PARENTUIITEMID)
+VALUES('APPL_CADETS_EDITCADET_PSYCHCERT_PROTNUM', 'Психологическа пригодност - Протокол', (SELECT uiitemid FROM pmis_adm.uiitems WHERE uikey = 'APPL_CADETS_EDITCADET'));
+
+INSERT INTO pmis_adm.uiitems(uikey, uiname, PARENTUIITEMID)
+VALUES('APPL_CADETS_EDITCADET_PSYCHCERT_CONCLUSION', 'Психологическа пригодност - Решение', (SELECT uiitemid FROM pmis_adm.uiitems WHERE uikey = 'APPL_CADETS_EDITCADET'));
+
+
+
+--Администратор -> Класификатори -> Структури
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('ADM_LISTMAINT_MILITARYSTRUCTURES', 'Структури', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'ADM_LISTMAINT'));
+
+
+--Администратор -> Класификатори -> Структури -> Добавяне на структура
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('ADM_LISTMAINT_MILITARYSTRUCTURES_ADD', 'Добавяне на структура', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'ADM_LISTMAINT_MILITARYSTRUCTURES'));
+
+--Администратор -> Класификатори -> Структури -> Добавяне на структура -> Структура
+INSERT INTO PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('ADM_LISTMAINT_PMILITARYSTRUCTURES_ADD_MILITARYSTRUCTURENAME', 'Структура', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'ADM_LISTMAINT_MILITARYSTRUCTURES_ADD'));
+
+--Администратор -> Класификатори -> Структури -> Добавяне на структура -> Активна
+INSERT INTO PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('ADM_LISTMAINT_MILITARYSTRUCTURES_ADD_ISACTIVE', 'Активна', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'ADM_LISTMAINT_MILITARYSTRUCTURES_ADD'));
+
+--Администратор -> Класификатори -> Структури -> Добавяне на структура -> Номер за подредба
+INSERT INTO PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('ADM_LISTMAINT_MILITARYSTRUCTURES_ADD_SEQ', 'Номер за подредба', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'ADM_LISTMAINT_MILITARYSTRUCTURES_ADD'));
+
+--Администратор -> Класификатори -> Структури -> Редактиране на структура
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('ADM_LISTMAINT_MILITARYSTRUCTURES_EDIT', 'Редактиране на структура', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'ADM_LISTMAINT_MILITARYSTRUCTURES'));
+
+--Администратор -> Класификатори -> Структури -> Редактиране на структура -> Структура
+INSERT INTO PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('ADM_LISTMAINT_MILITARYSTRUCTURES_EDIT_MILITARYSTRUCTURENAME', 'Структура', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'ADM_LISTMAINT_MILITARYSTRUCTURES_EDIT'));
+
+--Администратор -> Класификатори -> Структури -> Редактиране на структура -> Активна
+INSERT INTO PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('ADM_LISTMAINT_MILITARYSTRUCTURES_EDIT_ISACTIVE', 'Активна', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'ADM_LISTMAINT_MILITARYSTRUCTURES_EDIT'));
+
+--Администратор -> Класификатори -> Структури -> Редактиране на структура -> Номер за подредба
+INSERT INTO PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('ADM_LISTMAINT_MILITARYSTRUCTURES_EDIT_SEQ', 'Номер за подредба', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'ADM_LISTMAINT_MILITARYSTRUCTURES_EDIT'));
+
+
+--Администратор -> Класификатори -> Структури -> Изтриване на структура
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('ADM_LISTMAINT_MILITARYSTRUCTURES_DELETE', 'Изтриване на структура', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'ADM_LISTMAINT_MILITARYSTRUCTURES'));
+
+
+
+UPDATE PMIS_ADM.UIItems SET
+    UIName = 'Видове войски'
+WHERE UIKey = 'ADM_LISTMAINT_MILITFORCETYPES';
+
+UPDATE PMIS_ADM.UIItems SET
+    UIName = 'Добавяне на вид войски'
+WHERE UIKey = 'ADM_LISTMAINT_MILITFORCETYPES_ADD';
+
+UPDATE PMIS_ADM.UIItems SET
+    UIName = 'Вид войски'
+WHERE UIKey = 'ADM_LISTMAINT_MILITFORCETYPES_ADD_MILITFORCETYPENAME';
+
+UPDATE PMIS_ADM.UIItems SET
+    UIName = 'Редактиране на вид войски'
+WHERE UIKey = 'ADM_LISTMAINT_MILITFORCETYPES_EDIT';
+
+UPDATE PMIS_ADM.UIItems SET
+    UIName = 'Вид войски'
+WHERE UIKey = 'ADM_LISTMAINT_MILITFORCETYPES_EDIT_MILITFORCETYPENAME';
+
+UPDATE PMIS_ADM.UIItems SET
+    UIName = 'Изтриване на вид войски'
+WHERE UIKey = 'ADM_LISTMAINT_MILITFORCETYPES_DELETE';
+
+
+--Администратор -> Класификатори -> Видове войски -> Добавяне на вид войски -> Активен
+INSERT INTO PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('ADM_LISTMAINT_MILITFORCETYPES_ADD_ISACTIVE', 'Активна', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'ADM_LISTMAINT_MILITFORCETYPES_ADD'));
+
+--Администратор -> Класификатори -> Видове войски -> Добавяне на вид войски -> Номер за подредба
+INSERT INTO PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('ADM_LISTMAINT_MILITFORCETYPES_ADD_SEQ', 'Номер за подредба', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'ADM_LISTMAINT_MILITFORCETYPES_ADD'));
+
+--Администратор -> Класификатори -> Видове войски -> Добавяне на вид войски -> Структура
+INSERT INTO PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('ADM_LISTMAINT_MILITFORCETYPES_ADD_MILITARYSTRUCTURE', 'Структура', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'ADM_LISTMAINT_MILITFORCETYPES_ADD'));
+
+--Администратор -> Класификатори -> Видове войски -> Редактиране на вид войски -> Активен
+INSERT INTO PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('ADM_LISTMAINT_MILITFORCETYPES_EDIT_ISACTIVE', 'Активна', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'ADM_LISTMAINT_MILITFORCETYPES_EDIT'));
+
+--Администратор -> Класификатори -> Видове войски -> Редактиране на вид войски -> Номер за подредба
+INSERT INTO PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('ADM_LISTMAINT_MILITFORCETYPES_EDIT_SEQ', 'Номер за подредба', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'ADM_LISTMAINT_MILITFORCETYPES_EDIT'));
+
+--Администратор -> Класификатори -> Видове войски -> Редактиране на вид войски -> Структура
+INSERT INTO PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('ADM_LISTMAINT_MILITFORCETYPES_EDIT_MILITARYSTRUCTURE', 'Структура', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'ADM_LISTMAINT_MILITFORCETYPES_EDIT'));
+
+
+
+
+--Администратор -> Класификатори -> Родове войски
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('ADM_LISTMAINT_MILITARYFORCESORTS', 'Родове войски', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'ADM_LISTMAINT'));
+
+
+--Администратор -> Класификатори -> Родове войски -> Добавяне на род войски
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('ADM_LISTMAINT_MILITARYFORCESORTS_ADD', 'Добавяне на род войски', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'ADM_LISTMAINT_MILITARYFORCESORTS'));
+
+--Администратор -> Класификатори -> Родове войски -> Добавяне на род войски -> Код
+INSERT INTO PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('ADM_LISTMAINT_MILITARYFORCESORTS_ADD_MILITARYFORCESORTCODE', 'Код', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'ADM_LISTMAINT_MILITARYFORCESORTS_ADD'));
+
+--Администратор -> Класификатори -> Родове войски -> Добавяне на род войски -> Род войски
+INSERT INTO PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('ADM_LISTMAINT_MILITARYFORCESORTS_ADD_MILITARYFORCESORTNAME', 'Род войски', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'ADM_LISTMAINT_MILITARYFORCESORTS_ADD'));
+
+--Администратор -> Класификатори -> Родове войски -> Добавяне на род войски -> Активен
+INSERT INTO PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('ADM_LISTMAINT_MILITARYFORCESORTS_ADD_ISACTIVE', 'Активен', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'ADM_LISTMAINT_MILITARYFORCESORTS_ADD'));
+
+--Администратор -> Класификатори -> Родове войски -> Добавяне на род войски -> Номер за подредба
+INSERT INTO PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('ADM_LISTMAINT_MILITARYFORCESORTS_ADD_SEQ', 'Номер за подредба', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'ADM_LISTMAINT_MILITARYFORCESORTS_ADD'));
+
+--Администратор -> Класификатори -> Родове войски -> Добавяне на род войски -> Вид войски
+INSERT INTO PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('ADM_LISTMAINT_MILITARYFORCESORTS_ADD_MILITARYFORCETYPE', 'Вид войски', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'ADM_LISTMAINT_MILITARYFORCESORTS_ADD'));
+
+--Администратор -> Класификатори -> Родове войски -> Редактиране на род войски
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('ADM_LISTMAINT_MILITARYFORCESORTS_EDIT', 'Редактиране на род войски', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'ADM_LISTMAINT_MILITARYFORCESORTS'));
+
+--Администратор -> Класификатори -> Родове войски -> Добавяне на род войски -> Код
+INSERT INTO PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('ADM_LISTMAINT_MILITARYFORCESORTS_EDIT_MILITARYFORCESORTCODE', 'Код', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'ADM_LISTMAINT_MILITARYFORCESORTS_EDIT'));
+
+--Администратор -> Класификатори -> Родове войски -> Редактиране на род войски -> Род войски
+INSERT INTO PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('ADM_LISTMAINT_MILITARYFORCESORTS_EDIT_MILITARYFORCESORTNAME', 'Род войски', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'ADM_LISTMAINT_MILITARYFORCESORTS_EDIT'));
+
+--Администратор -> Класификатори -> Родове войски -> Редактиране на род войски -> Активен
+INSERT INTO PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('ADM_LISTMAINT_MILITARYFORCESORTS_EDIT_ISACTIVE', 'Активен', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'ADM_LISTMAINT_MILITARYFORCESORTS_EDIT'));
+
+--Администратор -> Класификатори -> Родове войски -> Редактиране на род войски -> Номер за подредба
+INSERT INTO PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('ADM_LISTMAINT_MILITARYFORCESORTS_EDIT_SEQ', 'Номер за подредба', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'ADM_LISTMAINT_MILITARYFORCESORTS_EDIT'));
+
+--Администратор -> Класификатори -> Родове войски -> Добавяне на род войски -> Вид войски
+INSERT INTO PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('ADM_LISTMAINT_MILITARYFORCESORTS_EDIT_MILITARYFORCETYPE', 'Вид войски', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'ADM_LISTMAINT_MILITARYFORCESORTS_EDIT'));
+
+
+--Администратор -> Класификатори -> Родове войски -> Изтриване на род войски
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('ADM_LISTMAINT_MILITARYFORCESORTS_DELETE', 'Изтриване на род войски', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'ADM_LISTMAINT_MILITARYFORCESORTS'));
+
+
+
+
+COMMIT;
+/
+
+INSERT INTO PMIS_ADM.ChangeTypes (ChangeTypeKey, ChangeType, ModuleID)
+VALUES ('ADM_Lists_PositionTitles', 'Класификатор "Длъжности"', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'ADM'));
+
+INSERT INTO PMIS_ADM.ChangeTypes (ChangeTypeKey, ChangeType, ModuleID)
+VALUES ('ADM_Lists_MedRubrics', 'Класификатор "Медицински рубрики"', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'ADM'));
+
+INSERT INTO PMIS_ADM.ChangeTypes (ChangeTypeKey, ChangeType, ModuleID)
+VALUES ('ADM_Lists_MilitaryStructures', 'Класификатор "Структури"', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'ADM'));
+
+UPDATE PMIS_ADM.ChangeTypes SET 
+    ChangeType = 'Класификатор "Видове войски"'
+WHERE ChangeTypeKey = 'ADM_Lists_MilitaryForceTypes';
+
+INSERT INTO PMIS_ADM.ChangeTypes (ChangeTypeKey, ChangeType, ModuleID)
+VALUES ('ADM_Lists_MilitaryForceSorts', 'Класификатор "Родове войски"', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'ADM'));
+
+COMMIT;
+/
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Reservist_MilServ_EditDischarge', 'Редактиране на отчисляване', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Reservist_MilServ_AddDischarge', 'Добавяне на отчисляване', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Reservist_MilServ_DeleteDischarge', 'Изтриване на отчисляване', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 3);
+
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('ADM_Lists_PositionTitles_Add', 'Добавяне на длъжност', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'ADM'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('ADM_Lists_PositionTitles_Edit', 'Редактиране на длъжност', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'ADM'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('ADM_Lists_PositionTitles_Delete', 'Изтриване на длъжност', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'ADM'), 3);
+
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Reservist_EditPositionTitle', 'Редактиране на подходяща длъжност', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Reservist_AddPositionTitle', 'Добавяне на подходяща длъжност', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Reservist_DeletePositionTitle', 'Изтриване на подходяща длъжност', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 3);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('ADM_Lists_MedRubrics_Add', 'Добавяне на медицинска рубрика', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'ADM'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('ADM_Lists_MedRubrics_Edit', 'Редактиране на медицинска рубрика', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'ADM'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('ADM_Lists_MedRubrics_Delete', 'Изтриване на медицинска рубрика', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'ADM'), 3);
+
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('ADM_Lists_MilitaryStructures_Add', 'Добавяне на структура', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'ADM'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('ADM_Lists_MilitaryStructures_Edit', 'Редактиране на структура', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'ADM'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('ADM_Lists_MilitaryStructures_Delete', 'Изтриване на структура', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'ADM'), 3);
+
+
+UPDATE PMIS_ADM.ChangeEventTypes SET
+    ChangeEventType = 'Добавяне на вид войски'
+WHERE ChangeEventTypeKey = 'ADM_Lists_MilitaryForceTypes_AddMilitaryForceType';
+
+UPDATE PMIS_ADM.ChangeEventTypes SET
+    ChangeEventType = 'Редактиране на вид войски'
+WHERE ChangeEventTypeKey = 'ADM_Lists_MilitaryForceTypes_EditMilitaryForceType';
+
+UPDATE PMIS_ADM.ChangeEventTypes SET
+    ChangeEventType = 'Изтриване на вид войски'
+WHERE ChangeEventTypeKey = 'ADM_Lists_MilitaryForceTypes_DeleteMilitaryForceType';
+
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('ADM_Lists_MilitaryForceSorts_Add', 'Добавяне на род войски', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'ADM'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('ADM_Lists_MilitaryForceSorts_Edit', 'Редактиране на род войски', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'ADM'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('ADM_Lists_MilitaryForceSorts_Delete', 'Изтриване на род войски', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'ADM'), 3);
+
+
+
+COMMIT;
+/
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('number', 'RES_Reservist_MilServ_Discharge_Year', 'Година', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Reservist_MilServ_Discharge_DischargeReason', 'Причина за снемане от отчет', 2);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Reservist_MilServ_Discharge_DischargeDestination', 'Къде отива при снемане от отчет', 3);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Reservist_MilServ_Discharge_Order', 'Заповед', 4);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('date', 'RES_Reservist_MilServ_Discharge_OrderDate', 'Дата', 5);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('date', 'RES_Reservist_MilServ_Discharge_OrderEffectiveDate', 'Считано от', 6);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Reservist_MilServ_Discharge_MilitaryCommanderRank', 'Подписал заповедта', 7);
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'ADM_Lists_PositionTitles_PositionTitle', 'Длъжност', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('bool', 'ADM_Lists_PositionTitles_IsActive', 'Активна', 2);
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Reservist_PositionTitles_PositionTitle', 'Длъжност', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('bool', 'RES_Reservist_PositionTitles_IsPrimary', 'Основна длъжност', 2);
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_ResAppointment_AppointmentIsDelivered', 'Връчено МН', 9);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_TechAppointment_AppointmentIsDelivered', 'Връчено МН', 7);
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'ADM_Lists_MedRubrics_MedRubricTitle', 'Медицинска рубрика', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('bool', 'ADM_Lists_MedRubrics_IsActive', 'Активна', 2);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Reservist_MilRepStatus_MedCertMedRubric', 'Медицинска рубрика', 1);
+
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'ADM_Lists_MilitaryStructures_MilitaryStructureName', 'Структура', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('bool', 'ADM_Lists_MilitaryStructures_IsActive', 'Активна', 2);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('number', 'ADM_Lists_MilitaryStructures_Seq', 'Номер за подредба', 3);
+
+
+UPDATE PMIS_ADM.Fields SET
+    FieldName = 'Вид войски'
+WHERE FieldKey = 'ADM_Lists_MilitaryForceTypes_MilitaryForceTypeName';
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('bool', 'ADM_Lists_MilitaryForceTypes_IsActive', 'Активен', 2);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('number', 'ADM_Lists_MilitaryForceTypes_Seq', 'Номер за подредба', 3);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'ADM_Lists_MilitaryForceTypes_MilitaryStructure', 'Структура', 4);
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'ADM_Lists_MilitaryForceSort_MilitaryForceSortCode', 'Код', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'ADM_Lists_MilitaryForceSort_MilitaryForceSortName', 'Род войски', 2);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('bool', 'ADM_Lists_MilitaryForceSort_IsActive', 'Активен', 3);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('number', 'ADM_Lists_MilitaryForceSort_Seq', 'Номер за подредба', 4);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'ADM_Lists_MilitaryForceSort_MilitaryForceType', 'Вид войски', 5);
+
+COMMIT;
+/
+
+INSERT INTO PMIS_ADM.Maintenance(MaintKey, HeaderTitle, DataTable, GTableTableName,
+   FldList, UpdtList, KeyFld, CanDelete, CanAdd, MasterTable, MasterField,
+   ChangeTypeKey, InsertChangeEventTypeKey, UpdateChangeEventTypeKey, DeleteChangeEventTypeKey,
+   MenuItemKey, UIKeyMaintenance, UIKeyDelete, UIKeyEdit, UIKeyAdd, 
+   ModuleID)
+VALUES ('ADM_PositionTitles', 'Длъжности', 'PMIS_ADM.PositionTitles', NULL, 
+ 'PositionTitleID[HIDDEN], PositionTitle, IsActive', 'PositionTitle, IsActive', 'PositionTitleID', 1, 1, 'PMIS_ADM.PersonPositionTitles', 'PMIS_ADM.PersonPositionTitles.PositionTitleID',
+ 'ADM_Lists_PositionTitles', 'ADM_Lists_PositionTitles_Add', 'ADM_Lists_PositionTitles_Edit', 'ADM_Lists_PositionTitles_Delete',
+ 'Lists_ADM_PositionTitles', 'ADM_LISTMAINT_POSITIONTITLES', 'ADM_LISTMAINT_POSITIONTITLES_DELETE', 'ADM_LISTMAINT_POSITIONTITLES_EDIT', 'ADM_LISTMAINT_POSITIONTITLES_ADD',
+ (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'ADM'));
+ 
+ 
+INSERT INTO PMIS_ADM.Maintenance(MaintKey, HeaderTitle, DataTable, GTableTableName, FldList, UpdtList, KeyFld, CanDelete, CanAdd, MasterTable, MasterField, 
+                                 ChangeTypeKey, InsertChangeEventTypeKey, UpdateChangeEventTypeKey, DeleteChangeEventTypeKey, MenuItemKey, 
+                                 UIKeyMaintenance, UIKeyDelete, UIKeyEdit, UIKeyAdd, ModuleID)
+VALUES ('ADM_MedRubrics', 'Медицински рубрики', 'PMIS_ADM.MedRubrics', NULL, 'MedRubricID[HIDDEN], MedRubricTitle, IsActive', 'MedRubricTitle, IsActive', 
+        'MedRubricID', 1, 1, 'PMIS_ADM.Persons', 'PMIS_ADM.Persons.MedCert_MedRubricID', 'ADM_Lists_MedRubrics', 'ADM_Lists_MedRubrics_Add',
+        'ADM_Lists_MedRubrics_Edit', 'ADM_Lists_MedRubrics_Delete', 'Lists_ADM_MedRubrics', 'ADM_LISTMAINT_MEDRUBRICS', 'ADM_LISTMAINT_MEDRUBRICS_DELETE', 
+        'ADM_LISTMAINT_MEDRUBRICS_EDIT', 'ADM_LISTMAINT_MEDRUBRICS_ADD', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'ADM'));
+ 
+
+INSERT INTO PMIS_ADM.Maintenance(MaintKey, HeaderTitle, DataTable, GTableTableName,
+   FldList, UpdtList, KeyFld, CanDelete, CanAdd, MasterTable, MasterField,
+   ChangeTypeKey, InsertChangeEventTypeKey, UpdateChangeEventTypeKey, DeleteChangeEventTypeKey,
+   MenuItemKey, UIKeyMaintenance, UIKeyDelete, UIKeyEdit, UIKeyAdd, 
+   ModuleID)
+VALUES ('ADM_MilitaryStructures', 'Структури', 'PMIS_ADM.MilitaryStructures', NULL, 
+ 'MilitaryStructureID[HIDDEN], MilitaryStructureName, IsActive, Seq', 'MilitaryStructureName, IsActive, Seq', 'MilitaryStructureID', 1, 1, 'PMIS_ADM.MilitaryForceTypes', 'PMIS_ADM.MilitaryForceTypes.MilitaryStructureID',
+ 'ADM_Lists_MilitaryStructures', 'ADM_Lists_MilitaryStructures_Add', 'ADM_Lists_MilitaryStructures_Edit', 'ADM_Lists_MilitaryStructures_Delete',
+ 'Lists_ADM_MilitaryStructures', 'ADM_LISTMAINT_MILITARYSTRUCTURES', 'ADM_LISTMAINT_MILITARYSTRUCTURES_DELETE', 'ADM_LISTMAINT_MILITARYSTRUCTURES_EDIT', 'ADM_LISTMAINT_MILITARYSTRUCTURES_ADD',
+ (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'ADM'));
+ 
+ 
+UPDATE PMIS_ADM.Maintenance SET 
+    HeaderTitle = 'Видове войски',
+    FldList = 'MilitaryForceTypeID[HIDDEN], MilitaryForceTypeName, IsActive, Seq, MilitaryStructureID[SELECT MilitaryStructureID as ID~ MilitaryStructureName as Text FROM PMIS_ADM.MilitaryStructures WHERE NVL(IsActive~ 0) = 1 OR MilitaryStructureID IN (SELECT MilitaryStructureID FROM PMIS_ADM.MilitaryForceTypes) ORDER BY MilitaryStructureName]',
+    UpdtList = 'MilitaryForceTypeName, IsActive, Seq, MilitaryStructureID',
+    MasterTable = 'PMIS_HS.RiskAssessments,PMIS_HS.Committees,VS_OWNER.KLV_ROD',
+    MasterField = 'PMIS_HS.RiskAssessments.MilitaryForceTypeID,PMIS_HS.Committees.MilitaryForceTypeID,VS_OWNER.KLV_ROD.MilitaryForceTypeID'
+WHERE MaintKey = 'ADM_MilitaryForceType';
+ 
+
+INSERT INTO PMIS_ADM.Maintenance(MaintKey, HeaderTitle, DataTable, GTableTableName,
+   FldList, UpdtList, KeyFld, CanDelete, CanAdd, MasterTable, MasterField,
+   ChangeTypeKey, InsertChangeEventTypeKey, UpdateChangeEventTypeKey, DeleteChangeEventTypeKey,
+   MenuItemKey, UIKeyMaintenance, UIKeyDelete, UIKeyEdit, UIKeyAdd, 
+   ModuleID)
+VALUES ('ADM_MilitaryForceSorts', 'Родове войски', 'VS_OWNER.KLV_ROD', NULL, 
+ 'RODID[HIDDEN], ROD_KOD, ROD_IME, Active, ROD_Seq, MilitaryForceTypeID[SELECT MilitaryForceTypeID as ID~ MilitaryForceTypeName as Text FROM PMIS_ADM.MilitaryForceTypes WHERE NVL(IsActive~ 0) = 1 OR MilitaryForceTypeID IN (SELECT MilitaryForceTypeID FROM PMIS_ADM.MilitaryReportSpecialities) ORDER BY MilitaryForceTypeName]', 'ROD_KOD, ROD_IME, Active, ROD_Seq, MilitaryForceTypeID', 'RODID', 1, 1, 'PMIS_ADM.MilitaryReportSpecialities', 'PMIS_ADM.MilitaryReportSpecialities.MilitaryForceSortID',
+ 'ADM_Lists_MilitaryForceSorts', 'ADM_Lists_MilitaryForceSorts_Add', 'ADM_Lists_MilitaryForceSorts_Edit', 'ADM_Lists_MilitaryForceSorts_Delete',
+ 'Lists_ADM_MilitaryForceSorts', 'ADM_LISTMAINT_MILITARYFORCESORTS', 'ADM_LISTMAINT_MILITARYFORCESORTS_DELETE', 'ADM_LISTMAINT_MILITARYFORCESORTS_EDIT', 'ADM_LISTMAINT_MILITARYFORCESORTS_ADD',
+ (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'ADM')); 
+ 
+ 
+COMMIT;
+/
+
+INSERT INTO PMIS_ADM.MaintFields(TableName, TableColumn, FieldLabel, WidthPixels, FieldKey, UIItemEditKey, UIItemAddKey, IsMandatory, ValidateDataType, IsUnique)
+VALUES ('PMIS_ADM.PositionTitles', 'PositionTitle', 'Длъжност', 350, 'ADM_Lists_PositionTitles_PositionTitle', 'ADM_LISTMAINT_POSITIONTITLES_EDIT_POSITIONTITLE', 'ADM_LISTMAINT_POSITIONTITLES_ADD_POSITIONTITLE', 1, 'string', 0);
+
+INSERT INTO PMIS_ADM.MaintFields(TableName, TableColumn, FieldLabel, WidthPixels, FieldKey, UIItemEditKey, UIItemAddKey, IsMandatory, ValidateDataType, IsUnique)
+VALUES ('PMIS_ADM.PositionTitles', 'IsActive', 'Активна', 90, 'ADM_Lists_PositionTitles_IsActive', 'ADM_LISTMAINT_POSITIONTITLES_EDIT_ISACTIVE', 'ADM_LISTMAINT_POSITIONTITLES_ADD_ISACTIVE', 0, 'bool', 0);
+
+INSERT INTO PMIS_ADM.MaintFields(TableName, TableColumn, FieldLabel, WidthPixels, FieldKey, UIItemEditKey, UIItemAddKey, IsMandatory, ValidateDataType, IsUnique)
+VALUES ('PMIS_ADM.MedRubrics', 'MedRubricTitle', 'Медицинска рубрика', 350, 'ADM_Lists_MedRubrics_MedRubricTitle', 'ADM_LISTMAINT_MEDRUBRICS_EDIT_MEDRUBRIC', 'ADM_LISTMAINT_MEDRUBRICS_ADD_MEDRUBRIC', 1, 'string', 0);
+
+INSERT INTO PMIS_ADM.MaintFields(TableName, TableColumn, FieldLabel, WidthPixels, FieldKey, UIItemEditKey, UIItemAddKey, IsMandatory, ValidateDataType, IsUnique)
+VALUES ('PMIS_ADM.MedRubrics', 'IsActive', 'Активна', 90, 'ADM_Lists_MedRubrics_IsActive', 'ADM_LISTMAINT_MEDRUBRICS_EDIT_ISACTIVE', 'ADM_LISTMAINT_MEDRUBRICS_ADD_ISACTIVE', 0, 'bool', 0);
+
+
+INSERT INTO PMIS_ADM.MaintFields(TableName, TableColumn, FieldLabel, WidthPixels, FieldKey, UIItemEditKey, UIItemAddKey, IsMandatory, ValidateDataType, IsUnique)
+VALUES ('PMIS_ADM.MilitaryStructures', 'MilitaryStructureName', 'Структура', 350, 'ADM_Lists_MilitaryStructures_MilitaryStructureName', 'ADM_LISTMAINT_MILITARYSTRUCTURES_EDIT_MILITARYSTRUCTURENAME', 'ADM_LISTMAINT_PMILITARYSTRUCTURES_ADD_MILITARYSTRUCTURENAME', 1, 'string', 0);
+
+INSERT INTO PMIS_ADM.MaintFields(TableName, TableColumn, FieldLabel, WidthPixels, FieldKey, UIItemEditKey, UIItemAddKey, IsMandatory, ValidateDataType, IsUnique)
+VALUES ('PMIS_ADM.MilitaryStructures', 'IsActive', 'Активна', 90, 'ADM_Lists_MilitaryStructures_IsActive', 'ADM_LISTMAINT_MILITARYSTRUCTURES_EDIT_ISACTIVE', 'ADM_LISTMAINT_MILITARYSTRUCTURES_ADD_ISACTIVE', 0, 'bool', 0);
+
+INSERT INTO PMIS_ADM.MaintFields(TableName, TableColumn, FieldLabel, WidthPixels, FieldKey, UIItemEditKey, UIItemAddKey, IsMandatory, ValidateDataType, IsUnique)
+VALUES ('PMIS_ADM.MilitaryStructures', 'Seq', 'Номер за подредба', 90, 'ADM_Lists_MilitaryStructures_Seq', 'ADM_LISTMAINT_MILITARYSTRUCTURES_EDIT_SEQ', 'ADM_LISTMAINT_MILITARYSTRUCTURES_ADD_SEQ', 0, 'number', 0);
+
+
+UPDATE PMIS_ADM.MaintFields SET
+    FieldLabel = 'Вид войски'
+WHERE TableName = 'PMIS_ADM.MilitaryForceTypes' AND TableColumn = 'MilitaryForceTypeName';
+
+INSERT INTO PMIS_ADM.MaintFields(TableName, TableColumn, FieldLabel, WidthPixels, FieldKey, UIItemEditKey, UIItemAddKey, IsMandatory, ValidateDataType, IsUnique)
+VALUES ('PMIS_ADM.MilitaryForceTypes', 'IsActive', 'Активен', 90, 'ADM_Lists_MilitaryForceTypes_IsActive', 'ADM_LISTMAINT_MILITARYFORCETYPES_EDIT_ISACTIVE', 'ADM_LISTMAINT_MILITARYFORCETYPES_ADD_ISACTIVE', 0, 'bool', 0);
+
+INSERT INTO PMIS_ADM.MaintFields(TableName, TableColumn, FieldLabel, WidthPixels, FieldKey, UIItemEditKey, UIItemAddKey, IsMandatory, ValidateDataType, IsUnique)
+VALUES ('PMIS_ADM.MilitaryForceTypes', 'Seq', 'Номер за подредба', 90, 'ADM_Lists_MilitaryForceTypes_Seq', 'ADM_LISTMAINT_MILITARYFORCETYPES_EDIT_SEQ', 'ADM_LISTMAINT_MILITARYFORCETYPES_ADD_SEQ', 0, 'number', 0);
+
+INSERT INTO PMIS_ADM.MaintFields(TableName, TableColumn, FieldLabel, WidthPixels, FieldKey, UIItemEditKey, UIItemAddKey, IsMandatory, ValidateDataType, IsUnique)
+VALUES ('PMIS_ADM.MilitaryForceTypes', 'MilitaryStructureID', 'Структура', 130, 'ADM_Lists_MilitaryForceTypes_MilitaryStructure', 'ADM_LISTMAINT_MILITARYFORCETYPES_EDIT_MILITARYSTRUCTURE', 'ADM_LISTMAINT_MILITARYFORCETYPES_ADD_MILITARYSTRUCTURE', 0, 'string', 0);
+
+
+
+INSERT INTO PMIS_ADM.MaintFields(TableName, TableColumn, FieldLabel, WidthPixels, FieldKey, UIItemEditKey, UIItemAddKey, IsMandatory, ValidateDataType, IsUnique)
+VALUES ('VS_OWNER.KLV_ROD', 'ROD_KOD', 'Код', 50, 'ADM_Lists_MilitaryForceSort_MilitaryForceSortCode', 'ADM_LISTMAINT_MILITARYFORCESORTS_EDIT_MILITARYFORCESORTCODE', 'ADM_LISTMAINT_MILITARYFORCESORTS_ADD_MILITARYFORCESORTCODE', 1, 'string', 1);
+
+INSERT INTO PMIS_ADM.MaintFields(TableName, TableColumn, FieldLabel, WidthPixels, FieldKey, UIItemEditKey, UIItemAddKey, IsMandatory, ValidateDataType, IsUnique)
+VALUES ('VS_OWNER.KLV_ROD', 'ROD_IME', 'Род войски', 350, 'ADM_Lists_MilitaryForceSort_MilitaryForceSortName', 'ADM_LISTMAINT_MILITARYFORCESORTS_EDIT_MILITARYFORCESORTNAME', 'ADM_LISTMAINT_MILITARYFORCESORTS_ADD_MILITARYFORCESORTNAME', 1, 'string', 0);
+
+INSERT INTO PMIS_ADM.MaintFields(TableName, TableColumn, FieldLabel, WidthPixels, FieldKey, UIItemEditKey, UIItemAddKey, IsMandatory, ValidateDataType, IsUnique)
+VALUES ('VS_OWNER.KLV_ROD', 'Active', 'Активен', 90, 'ADM_Lists_MilitaryForceSort_IsActive', 'ADM_LISTMAINT_MILITARYFORCESORTS_EDIT_ISACTIVE', 'ADM_LISTMAINT_MILITARYFORCESORTS_ADD_ISACTIVE', 0, 'bool', 0);
+
+INSERT INTO PMIS_ADM.MaintFields(TableName, TableColumn, FieldLabel, WidthPixels, FieldKey, UIItemEditKey, UIItemAddKey, IsMandatory, ValidateDataType, IsUnique)
+VALUES ('VS_OWNER.KLV_ROD', 'ROD_Seq', 'Номер за подредба', 90, 'ADM_Lists_MilitaryForceSort_Seq', 'ADM_LISTMAINT_MILITARYFORCESORTS_EDIT_SEQ', 'ADM_LISTMAINT_MILITARYFORCESORTS_ADD_SEQ', 0, 'number', 0);
+
+INSERT INTO PMIS_ADM.MaintFields(TableName, TableColumn, FieldLabel, WidthPixels, FieldKey, UIItemEditKey, UIItemAddKey, IsMandatory, ValidateDataType, IsUnique)
+VALUES ('VS_OWNER.KLV_ROD', 'MilitaryForceTypeID', 'Вид войски', 130, 'ADM_Lists_MilitaryForceSort_MilitaryForceType', 'ADM_LISTMAINT_MILITARYFORCESORTS_EDIT_MILITARYFORCETYPE', 'ADM_LISTMAINT_MILITARYFORCESORTS_ADD_MILITARYFORCETYPE', 0, 'string', 0);
+
+
+
+COMMIT;
+/
+CREATE TABLE PMIS_ADM.MilitaryStructures(MilitaryStructureID number NOT NULL,
+                                         MilitaryStructureName varchar2(500),
+                                         IsActive number(1) CHECK (IsActive BETWEEN 0 AND 1),
+                                         Seq number
+                                        );
+
+ALTER TABLE PMIS_ADM.MilitaryStructures ADD CONSTRAINT MilitaryStructures_PK PRIMARY KEY(MilitaryStructureID);
+
+CREATE SEQUENCE PMIS_ADM.MilitaryStructures_ID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+CREATE TRIGGER PMIS_ADM.TRG_MilitaryStructures_INSERT
+BEFORE INSERT ON PMIS_ADM.MilitaryStructures
+FOR EACH ROW
+BEGIN
+   SELECT PMIS_ADM.MilitaryStructures_ID_SEQ.nextval INTO :new.MilitaryStructureID FROM dual;
+END;
+/
+
+
+INSERT INTO PMIS_ADM.MilitaryStructures(MilitaryStructureName, IsActive, Seq)
+VALUES ('Въоръжени сили', 1, 1);
+
+INSERT INTO PMIS_ADM.MilitaryStructures(MilitaryStructureName, IsActive, Seq)
+VALUES ('МВР', 1, 2);
+
+COMMIT;
+ALTER TABLE PMIS_ADM.MilitaryForceTypes ADD IsActive number(1) CHECK (IsActive BETWEEN 0 AND 1);
+UPDATE PMIS_ADM.MilitaryForceTypes SET IsActive = 1 WHERE IsActive IS NULL;
+
+ALTER TABLE PMIS_ADM.MilitaryForceTypes ADD Seq number;
+UPDATE PMIS_ADM.MilitaryForceTypes SET Seq = MilitaryForceTypeID + 1 WHERE Seq IS NULL;
+
+ALTER TABLE PMIS_ADM.MilitaryForceTypes ADD MilitaryStructureID number;
+ALTER TABLE PMIS_ADM.MilitaryForceTypes ADD CONSTRAINT MilForceTypes_Structures_FK FOREIGN KEY (MilitaryStructureID) REFERENCES PMIS_ADM.MilitaryStructures(MilitaryStructureID);
+
+UPDATE PMIS_ADM.MilitaryForceTypes SET
+    MilitaryStructureID = (SELECT MilitaryStructureID FROM PMIS_ADM.MilitaryStructures WHERE Seq = 1)
+WHERE MilitaryStructureID IS NULL;
+
+INSERT INTO PMIS_ADM.MilitaryForceTypes (MilitaryForceTypeName, IsActive, Seq, MilitaryStructureID)
+VALUES ('-', 1, 1, (SELECT MilitaryStructureID FROM PMIS_ADM.MilitaryStructures WHERE Seq = 1));
+
+COMMIT;
+CREATE TABLE PMIS_ADM.PositionTitles(PositionTitleID number NOT NULL,
+                                     PositionTitle varchar2(200),
+                                     IsActive number(1) CHECK (IsActive BETWEEN 0 AND 1)
+                                     );
+
+ALTER TABLE PMIS_ADM.PositionTitles ADD CONSTRAINT PositionTitles_PK PRIMARY KEY (PositionTitleID);
+
+CREATE SEQUENCE PMIS_ADM.PositionTitles_ID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+CREATE TRIGGER PMIS_ADM.TRG_PositionTitles_INSERT
+BEFORE INSERT ON PMIS_ADM.PositionTitles
+FOR EACH ROW
+BEGIN
+   SELECT PMIS_ADM.PositionTitles_ID_SEQ.nextval INTO :new.PositionTitleID FROM dual;
+END;
+/
+
+INSERT INTO PMIS_ADM.PositionTitles (PositionTitle, IsActive)
+VALUES ('Длъжност #1', 1);
+
+INSERT INTO PMIS_ADM.PositionTitles (PositionTitle, IsActive)
+VALUES ('Длъжност #2', 1);
+
+INSERT INTO PMIS_ADM.PositionTitles (PositionTitle, IsActive)
+VALUES ('Длъжност #3', 1);
+
+INSERT INTO PMIS_ADM.PositionTitles (PositionTitle, IsActive)
+VALUES ('Длъжност #4', 1);
+
+INSERT INTO PMIS_ADM.PositionTitles (PositionTitle, IsActive)
+VALUES ('Длъжност #5', 1);
+
+COMMIT;
+/
+
+CREATE TABLE PMIS_ADM.PersonPositionTitles(PersonPositionTitleID number NOT NULL,
+                                           PersonID number NOT NULL,
+                                           PositionTitleID number,
+                                           IsPrimary number(1) CHECK (IsPrimary BETWEEN 0 AND 1)
+                                          );
+
+ALTER TABLE PMIS_ADM.PersonPositionTitles ADD CONSTRAINT PersonPosTitles_PK PRIMARY KEY (PersonPositionTitleID);
+ALTER TABLE PMIS_ADM.PersonPositionTitles ADD CONSTRAINT PersonPosTitles_PK_Persons_FK FOREIGN KEY (PersonID) REFERENCES VS_OWNER.VS_LS (PersonID);
+ALTER TABLE PMIS_ADM.PersonPositionTitles ADD CONSTRAINT PersonPosTitles_PK_Pos_FK FOREIGN KEY (PositionTitleID) REFERENCES PMIS_ADM.PositionTitles (PositionTitleID);
+
+CREATE SEQUENCE PMIS_ADM.PersonPositionTitles_ID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+CREATE TRIGGER PMIS_ADM.TRG_PersonPosTitles_INSERT
+BEFORE INSERT ON PMIS_ADM.PersonPositionTitles
+FOR EACH ROW
+BEGIN
+   SELECT PMIS_ADM.PersonPositionTitles_ID_SEQ.nextval INTO :new.PersonPositionTitleID FROM dual;
+END;
+/
+
+COMMIT;
+/
+CREATE TABLE PMIS_ADM.MedRubrics(MedRubricID number NOT NULL,
+                                 MedRubricTitle varchar2(200),
+                                 IsActive number(1) CHECK (IsActive BETWEEN 0 AND 1)
+                                 );
+
+ALTER TABLE PMIS_ADM.MedRubrics ADD CONSTRAINT MedRubrics_PK PRIMARY KEY (MedRubricID);
+
+CREATE SEQUENCE PMIS_ADM.MedRubrics_ID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+CREATE TRIGGER PMIS_ADM.TRG_MedRubrics_INSERT
+BEFORE INSERT ON PMIS_ADM.MedRubrics
+FOR EACH ROW
+BEGIN
+   SELECT PMIS_ADM.MedRubrics_ID_SEQ.nextval INTO :new.MedRubricID FROM dual;
+END;
+/
+
+INSERT INTO PMIS_ADM.MedRubrics (MedRubricTitle, IsActive)
+VALUES ('Рубрика #1', 1);
+
+INSERT INTO PMIS_ADM.MedRubrics (MedRubricTitle, IsActive)
+VALUES ('Рубрика #2', 1);
+
+INSERT INTO PMIS_ADM.MedRubrics (MedRubricTitle, IsActive)
+VALUES ('Рубрика #3', 1);
+
+INSERT INTO PMIS_ADM.MedRubrics (MedRubricTitle, IsActive)
+VALUES ('Рубрика #4', 1);
+
+INSERT INTO PMIS_ADM.MedRubrics (MedRubricTitle, IsActive)
+VALUES ('Рубрика #5', 1);
+/
+
+ALTER TABLE PMIS_ADM.Persons ADD (MedCert_MedRubricID number);
+ALTER TABLE PMIS_ADM.Persons ADD CONSTRAINT Persons_MedRubricID_FK FOREIGN KEY (MedCert_MedRubricID) REFERENCES PMIS_ADM.MedRubrics(MedRubricID);
+ALTER TABLE PMIS_RES.FillReservistsRequest ADD (AppointmentIsDelivered number(1) CHECK (AppointmentIsDelivered BETWEEN 0 AND 1));
+UPDATE PMIS_RES.FillReservistsRequest SET AppointmentIsDelivered = 1;
+
+COMMIT;
+
+/
+ALTER TABLE PMIS_RES.FulfilTechnicsRequest ADD (AppointmentIsDelivered number(1) CHECK (AppointmentIsDelivered BETWEEN 0 AND 1));
+UPDATE PMIS_RES.FulfilTechnicsRequest SET AppointmentIsDelivered = 1;
+
+COMMIT;
+
+/
+GRANT ALL ON VS_OWNER.VS_SNOKVS TO PMIS_USER_ROLE;
+GRANT ALL ON VS_OWNER.KLV_SNO TO PMIS_USER_ROLE;
+GRANT ALL ON VS_OWNER.KLV_PSO TO PMIS_USER_ROLE;
+GRANT ALL ON PMIS_ADM.PositionTitles TO PMIS_USER_ROLE;
+GRANT ALL ON PMIS_ADM.PersonPositionTitles TO PMIS_USER_ROLE;
+GRANT ALL ON vs_owner.klv_dlo TO PMIS_USER_ROLE; 
+GRANT ALL ON vs_owner.klv_dls TO PMIS_USER_ROLE; 
+GRANT ALL ON PMIS_ADM.MedRubrics TO PMIS_USER_ROLE;
+GRANT ALL ON PMIS_ADM.MilitaryStructures TO PMIS_USER_ROLE;
+
+GRANT ALL ON VS_OWNER.VS_SNOKVS_SNOKVSID_SEQ TO PMIS_USER_ROLE;
+GRANT ALL ON PMIS_ADM.PositionTitles_ID_SEQ TO PMIS_USER_ROLE;
+GRANT ALL ON PMIS_ADM.PersonPositionTitles_ID_SEQ TO PMIS_USER_ROLE;
+GRANT ALL ON PMIS_ADM.MedRubrics_ID_SEQ TO PMIS_USER_ROLE;
+GRANT ALL ON PMIS_ADM.MilitaryStructures_ID_SEQ TO PMIS_USER_ROLE;
+/

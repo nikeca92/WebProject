@@ -1,0 +1,103 @@
+﻿.popUpMenu
+{
+	position:absolute;
+	display:none;	
+	text-align:left;
+	background-color:#F2F2F2;
+	border-bottom: solid 3px Green;
+	z-index: 100;
+}
+
+.mainMenuItems
+{
+	font-family:Verdana;
+	font-weight:bold;
+	font-size: 11px;
+	color: White;
+	background-color:#003077;
+	padding: 1px 16px 3px 16px;
+	cursor:pointer;
+	border-top:solid 3px #003077;
+	white-space:nowrap;
+}
+
+.hoveredMenuItem
+{
+	font-family:Verdana;
+	font-weight:bold;
+	font-size: 11px;
+	color: #003077;
+	background-color:#F2F2F2;
+	padding: 1px 16px 3px 16px;
+	cursor:pointer;
+	border-top:solid 3px Green;
+	white-space:nowrap;
+}
+
+.subMenuItems
+{
+	font-family:Verdana;
+	font-weight:bold;
+	font-size: 10px;
+	color: #003077;
+	cursor:pointer;
+	padding: 2px 8px 2px 8px;
+	white-space: nowrap;
+	line-height: 15px;
+}
+
+.subMenuItems:hover
+{
+	text-decoration:underline;
+}
+
+.MainMenuItemHighlighted
+{
+	font-family:Verdana;
+	font-weight:bold;
+	font-size: 11px;
+	color: White;
+	background-color: #8cbaff;
+	border-top:solid 3px #8cbaff;
+	padding: 1px 16px 3px 16px;
+	cursor:pointer;
+	white-space:nowrap;
+}
+
+.SubMenuItemHighlighted
+{
+	font-family:Verdana;
+	font-weight:bold;
+	font-size: 10px;
+	color: #8cbaff;
+	cursor:pointer;
+	padding: 2px 8px 2px 8px;
+	white-space: nowrap;
+}
+
+.SubMenuItemHighlighted:hover
+{
+	text-decoration:underline;
+}
+
+.subMenuItemSection
+{
+	font-family:Verdana;
+	font-weight:bold;
+	font-size: 10px;
+	color: Black;
+	cursor:pointer;
+	padding: 0px 8px 0px 0px;
+	text-decoration:underline;
+	white-space: nowrap;
+}
+
+.subMenuBlankRowTop
+{
+	height: 5px;
+}
+
+.subMenuBlankRowBottom
+{
+	height: 4px;
+}

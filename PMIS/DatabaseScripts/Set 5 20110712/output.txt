@@ -1,0 +1,688 @@
+--Администратор -> Класификатори -> ВОС
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('ADM_LISTMAINT_MILREPORTSPECIALITY', 'ВОС', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'ADM_LISTMAINT'));
+
+--Администратор -> Класификатори -> ВОС -> Добавяне
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('ADM_LISTMAINT_MILREPORTSPECIALITY_ADD', 'Добавяне на ВОС', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'ADM_LISTMAINT_MILREPORTSPECIALITY'));
+
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('ADM_LISTMAINT_MILREPORTSPECIALITY_ADD_TYPE', 'Тип', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'ADM_LISTMAINT_MILREPORTSPECIALITY_ADD'));
+
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('ADM_LISTMAINT_MILREPORTSPECIALITY_ADD_CODE', 'Код', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'ADM_LISTMAINT_MILREPORTSPECIALITY_ADD'));
+
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('ADM_LISTMAINT_MILREPORTSPECIALITY_ADD_NAME', 'Име', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'ADM_LISTMAINT_MILREPORTSPECIALITY_ADD'));
+
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('ADM_LISTMAINT_MILREPORTSPECIALITY_ADD_MILFORCESORT', 'Род войски', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'ADM_LISTMAINT_MILREPORTSPECIALITY_ADD'));
+
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('ADM_LISTMAINT_MILREPORTSPECIALITY_ADD_ACTIVE', 'Активна', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'ADM_LISTMAINT_MILREPORTSPECIALITY_ADD'));
+
+
+--Администратор -> Класификатори -> ВОС -> Редактиране
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('ADM_LISTMAINT_MILREPORTSPECIALITY_EDIT', 'Редактиране на ВОС', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'ADM_LISTMAINT_MILREPORTSPECIALITY'));
+
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('ADM_LISTMAINT_MILREPORTSPECIALITY_EDIT_TYPE', 'Тип', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'ADM_LISTMAINT_MILREPORTSPECIALITY_EDIT'));
+
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('ADM_LISTMAINT_MILREPORTSPECIALITY_EDIT_CODE', 'Код', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'ADM_LISTMAINT_MILREPORTSPECIALITY_EDIT'));
+
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('ADM_LISTMAINT_MILREPORTSPECIALITY_EDIT_NAME', 'Име', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'ADM_LISTMAINT_MILREPORTSPECIALITY_EDIT'));
+
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('ADM_LISTMAINT_MILREPORTSPECIALITY_EDIT_MILFORCESORT', 'Род войски', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'ADM_LISTMAINT_MILREPORTSPECIALITY_EDIT'));
+
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('ADM_LISTMAINT_MILREPORTSPECIALITY_EDIT_ACTIVE', 'Активна', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'ADM_LISTMAINT_MILREPORTSPECIALITY_EDIT'));
+
+
+--Администратор -> Класификатори -> ВОС -> Изтриване
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('ADM_LISTMAINT_MILREPORTSPECIALITY_DELETE', 'Изтриване на ВОС', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'ADM_LISTMAINT_MILREPORTSPECIALITY'));
+
+--Резерв -> Човешки ресурси -> Добавяне на нов резервист -> Лични данни
+UPDATE PMIS_ADM.UIItems SET UIName = 'Лице за контакт' WHERE UIKey = 'RES_HUMANRES_ADDRESERVIST_PERSONALDATA_PARENTSCONTACT';
+
+--Резерв -> Човешки ресурси -> Редактиране на нов резервист -> Лични данни
+UPDATE PMIS_ADM.UIItems SET UIName = 'Лице за контакт' WHERE UIKey = 'RES_HUMANRES_EDITRESERVIST_PERSONALDATA_PARENTSCONTACT';
+
+
+--Администратор -> Одитни записи
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('ADM_FAILEDLOGINS', 'Неуспешни опити за достъп', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'ADM'));
+
+
+--Резерв -> Справки -> Списък на хората с МН по определена заявка -> Детайли - име
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_LISTRESWITHAPPOINTMENTS_DETAILS_PERMCITYNAME', 'Детайли - Населено място', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_LISTRESWITHAPPOINTMENTS'));
+
+
+
+--Безопасност на труда -> Класификатори -> Място на измерване
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('HS_LISTMAINT_WORKINGPLACES', 'Място на измерване', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'HS_LISTMAINT'));
+
+--Безопасност на труда -> Класификатори -> Място на измерване -> Добавяне
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('HS_LISTMAINT_WORKINGPLACES_ADD', 'Добавяне място на измерване', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'HS_LISTMAINT_WORKINGPLACES'));
+
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('HS_LISTMAINT_WORKINGPLACES_ADD_MILITARYUNIT', 'ВПН/Структура', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'HS_LISTMAINT_WORKINGPLACES_ADD'));
+
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('HS_LISTMAINT_WORKINGPLACES_ADD_WORKINGPLACE', 'Място на измерване', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'HS_LISTMAINT_WORKINGPLACES_ADD'));
+
+
+--Безопасност на труда -> Класификатори -> Място на измерване -> Редактиране
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('HS_LISTMAINT_WORKINGPLACES_EDIT', 'Редактиране място на измерване', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'HS_LISTMAINT_WORKINGPLACES'));
+
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('HS_LISTMAINT_WORKINGPLACES_EDIT_MILITARYUNIT', 'ВПН/Структура', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'HS_LISTMAINT_WORKINGPLACES_EDIT'));
+
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('HS_LISTMAINT_WORKINGPLACES_EDIT_WORKINGPLACE', 'Място на измерване', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'HS_LISTMAINT_WORKINGPLACES_EDIT'));
+
+
+--Безопасност на труда -> Класификатори -> Място на измерване -> Изтриване
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('HS_LISTMAINT_WORKINGPLACES_DELETE', 'Изтриване място на измерване', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'HS_LISTMAINT_WORKINGPLACES'));
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Товароносимост (т) (въздухоплават. средства)'
+WHERE UIKey = 'RES_TECHNICS_AVIATION_EQUIP_ADD_BASICINFO_AIRCARRYINGCAPACITY';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Товароносимост (т) (въздухоплават. средства)'
+WHERE UIKey = 'RES_TECHNICS_AVIATION_EQUIP_EDIT_BASICINFO_AIRCARRYINGCAPACITY';
+
+COMMIT;
+
+
+
+INSERT INTO PMIS_ADM.ChangeTypes (ChangeTypeKey, ChangeType, ModuleID)
+VALUES ('ADM_Lists_MilReportSpeciality', 'Класификатор "ВОС"', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'ADM'));
+
+INSERT INTO PMIS_ADM.ChangeTypes (ChangeTypeKey, ChangeType, ModuleID)
+VALUES ('HS_Lists_WorkingPlaces', 'Класификатор "Място на измерване"', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'));
+
+COMMIT;
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('ADM_Lists_MilReportSpeciality_Add', 'Добавяне на ВОС', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'ADM'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('ADM_Lists_MilReportSpeciality_Edit', 'Редактиране на ВОС', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'ADM'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('ADM_Lists_MilReportSpeciality_Delete', 'Изтриване на ВОС', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'ADM'), 3);
+
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('HS_Lists_WorkingPlaces_Add', 'Добавяне място на измерване', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('HS_Lists_WorkingPlaces_Edit', 'Редактиране място на измерване', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('HS_Lists_WorkingPlaces_Delete', 'Изтриване място на измерване', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'), 3);
+
+
+
+COMMIT;
+
+
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'ADM_Lists_MilReportSpeciality_Type', 'Тип', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'ADM_Lists_MilReportSpeciality_Code', 'Код', 2);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'ADM_Lists_MilReportSpeciality_Name', 'Име', 3);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'ADM_Lists_MilReportSpeciality_MilForceSort', 'Род войски', 4);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('bool', 'ADM_Lists_MilReportSpeciality_Active', 'Активна', 5);
+
+UPDATE PMIS_ADM.Fields SET FieldName = 'Лице за контакт' WHERE FieldKey = 'ADM_PersonDetails_ParentsContact';
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_InvProt_CommissionMember3', 'Членове на комисията (III)', 9);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_InvProt_CommissionMember4', 'Членове на комисията (IV)', 9);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_InvProt_CommissionMember5', 'Членове на комисията (V)', 9);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_Lists_WorkingPlaces_Add_WorkingPlace', 'Място на измерване', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_Lists_WorkingPlaces_Add_MilitaryUnit', 'ВПН/Структура', 2);
+
+
+UPDATE PMIS_ADM.Fields SET FieldName = 'Товароносимост (т)' WHERE FieldKey = 'RES_Technics_VEHICLES_CarryingCapacity';
+UPDATE PMIS_ADM.Fields SET FieldName = 'Товароподемност (т)' WHERE FieldKey = 'RES_Technics_VEHICLES_LoadingCapacity';
+UPDATE PMIS_ADM.Fields SET FieldName = 'Товароносимост (т)' WHERE FieldKey = 'RES_Technics_TRAILERS_CarryingCapacity';
+UPDATE PMIS_ADM.Fields SET FieldName = 'Товароносимост (т) (въздухоплават. средства)' WHERE FieldKey = 'RES_Technics_AVIATION_EQUIP_AirCarryingCapacity';
+
+
+COMMIT;
+
+
+CREATE TABLE PMIS_ADM.FailedLogins(	FailedLoginID number NOT NULL,
+									ModuleID number NOT NULL,
+									Username varchar2(1000),
+									IP varchar2(50),
+									UserAgent varchar2(1000),
+									SessionID varchar2(500),
+									DateTime date
+								  );
+
+ALTER TABLE PMIS_ADM.FailedLogins ADD CONSTRAINT FailedLogins_PK PRIMARY KEY(FailedLoginID);
+ALTER TABLE PMIS_ADM.FailedLogins ADD CONSTRAINT FailedLogins_Modules_FK FOREIGN KEY (ModuleID) REFERENCES PMIS_ADM.Modules (ModuleID);
+
+CREATE SEQUENCE PMIS_ADM.FailedLogins_ID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+CREATE TRIGGER PMIS_ADM.TRG_FailedLogins_INSERT
+BEFORE INSERT ON PMIS_ADM.FailedLogins
+FOR EACH ROW
+BEGIN
+   SELECT PMIS_ADM.FailedLogins_ID_SEQ.nextval INTO :new.FailedLoginID FROM dual;
+END;
+/
+
+COMMIT;
+CREATE OR REPLACE PACKAGE PMIS_ADM.CommonFunctions AS
+   TYPE PMIS_CURSOR IS REF CURSOR;
+
+
+   
+   PROCEDURE GetUIItemAndChilds (P_UIItemID IN PMIS_ADM.UIItems.UIItemID%TYPE, 
+                                 P_RoleID IN PMIS_ADM.UserRoles.RoleID%TYPE, 
+                                 P_UIItems OUT PMIS_ADM.CommonFunctions.PMIS_CURSOR);
+ 
+   FUNCTION GetUIItemsTreeIDs (P_ParentUIItems IN SQL_ListOfIDs, 
+                               P_RoleID IN PMIS_ADM.UserRoles.RoleID%TYPE) RETURN SQL_ListOfIDs;
+
+
+
+   FUNCTION GetMilitaryUnitIDsPerUser (P_UserID IN PMIS_ADM.Users.UserID%TYPE) RETURN SQL_ListOfIDs;
+   
+   FUNCTION GetMilitaryUnitChilds (P_MilitaryUnitIDs IN SQL_ListOfIDs) RETURN SQL_ListOfIDs;
+   
+   FUNCTION GetMRSPerVSSTRecordHTML (P_VSST_ID IN number) RETURN varchar2;
+   FUNCTION GetMRSIdsPerVSSTRecord (P_VSST_ID IN number) RETURN varchar2;
+
+   FUNCTION GetMRSPerPersonHTML (P_PersonID IN number, P_MaxLength IN number) RETURN varchar2;
+   FUNCTION GetLanguagesPerPerson (P_PersonID IN number) RETURN varchar2;
+   FUNCTION GetDrivingLicensesPerPerson (P_PersonID IN number) RETURN varchar2;
+   FUNCTION GetSpecialitiesPerPerson (P_PersonID IN number) RETURN varchar2;
+   FUNCTION GetAgeFromEGN (P_EGN IN varchar2) RETURN number;
+   FUNCTION IsMilitaryUnitActual(P_KOD_MIR IN number) RETURN number;
+   
+   PROCEDURE CallURL(P_URL IN varchar2);
+   PROCEDURE CallGenerateOfflineReports;
+   
+   FUNCTION GetInitials (P_FULLNAME IN varchar2) RETURN varchar2;
+END;
+/
+
+CREATE OR REPLACE PACKAGE BODY PMIS_ADM.CommonFunctions AS
+   PROCEDURE GetUIItemAndChilds (P_UIItemID IN PMIS_ADM.UIItems.UIItemID%TYPE,
+                                 P_RoleID IN PMIS_ADM.UserRoles.RoleID%TYPE,
+                                 P_UIItems OUT PMIS_ADM.CommonFunctions.PMIS_CURSOR) IS
+
+        UIItemIDs SQL_ListOfIDs := SQL_ListOfIDs();
+        ParentUIItemID SQL_ListOfIDs := SQL_ListOfIDs();
+   BEGIN
+      ParentUIItemID.extend();
+      ParentUIItemID(1) := P_UIItemID;
+      
+      UIItemIDs := GetUIItemsTreeIDs(ParentUIItemID, P_RoleID);
+      
+      OPEN P_UIItems FOR
+      SELECT a.UIItemID, a.UIKey, a.UIName, a.ParentUIItemID, b.AccessLevel,
+             a.CanSetAccessOnlyOwnData, b.AccessOnlyOwnData
+      FROM PMIS_ADM.UIItems a
+      LEFT OUTER JOIN PMIS_ADM.UIItemsPerRole b ON a.UIItemID = b.UIItemID AND b.RoleID = P_RoleID
+      LEFT OUTER JOIN PMIS_ADM.UIItems c ON a.ParentUIItemID = c.UIItemID
+      WHERE a.UIItemID IN (SELECT * FROM TABLE(UIItemIDs));
+   END;
+   
+   FUNCTION GetUIItemsTreeIDs (P_ParentUIItems IN SQL_ListOfIDs, 
+                               P_RoleID IN PMIS_ADM.UserRoles.RoleID%TYPE) RETURN SQL_ListOfIDs IS
+                               
+      UIItemIDs SQL_ListOfIDs := SQL_ListOfIDs();
+      tmp SQL_ListOfIDs := SQL_ListOfIDs();
+      
+      CURSOR UIItemsCUR is
+      SELECT a.UIItemID
+      FROM PMIS_ADM.UIItems a
+      LEFT OUTER JOIN PMIS_ADM.UIItemsPerRole b ON a.UIItemID = b.UIItemID AND b.RoleID = P_RoleID
+      WHERE a.ParentUIItemID IN (SELECT * FROM TABLE(P_ParentUIItems)) OR ((SELECT COUNT(*) FROM TABLE(P_ParentUIItems)) = 0 AND a.ParentUIItemID IS NULL);
+   BEGIN
+      OPEN UIItemsCUR;
+      
+      LOOP
+         FETCH UIItemsCUR BULK COLLECT INTO UIItemIDs;
+         EXIT WHEN UIItemsCUR%notfound;
+      END LOOP;
+      
+      CLOSE UIItemsCUR;
+      
+      IF UIItemIDs.COUNT > 0 THEN
+         tmp := GetUIItemsTreeIDs(UIItemIDs, P_RoleID);
+      
+         IF tmp.COUNT > 0 THEN
+            UIItemIDs := UIItemIDs MULTISET UNION tmp;
+         END IF;
+      END IF;
+      
+      RETURN UIItemIDs;
+   END;
+   
+   
+   
+   FUNCTION GetMilitaryUnitIDsPerUser (P_UserID IN PMIS_ADM.Users.UserID%TYPE) RETURN SQL_ListOfIDs  IS
+                               
+      MilitaryUnitIDs SQL_ListOfIDs := SQL_ListOfIDs();
+      tmp SQL_ListOfIDs := SQL_ListOfIDs();
+      
+      CURSOR MilitaryUnitsCUR is
+      SELECT a.MilitaryUnitID
+      FROM PMIS_ADM.MilitaryUnitsPerUser a
+      WHERE a.UserID = P_UserID;
+   BEGIN      
+      OPEN MilitaryUnitsCUR;
+      
+      LOOP
+         FETCH MilitaryUnitsCUR BULK COLLECT INTO MilitaryUnitIDs;
+         EXIT WHEN MilitaryUnitsCUR%notfound;
+      END LOOP;
+      
+      CLOSE MilitaryUnitsCUR;
+      
+      IF MilitaryUnitIDs.COUNT > 0 THEN
+         tmp := GetMilitaryUnitChilds(MilitaryUnitIDs);
+      
+         IF tmp.COUNT > 0 THEN
+            MilitaryUnitIDs := MilitaryUnitIDs MULTISET UNION tmp;
+         END IF;
+      END IF;
+   
+      RETURN MilitaryUnitIDs;
+   END;
+   
+   
+   FUNCTION GetMilitaryUnitChilds (P_MilitaryUnitIDs IN SQL_ListOfIDs) RETURN SQL_ListOfIDs IS
+                               
+      MilitaryUnitIDs SQL_ListOfIDs := SQL_ListOfIDs();
+      tmp SQL_ListOfIDs := SQL_ListOfIDs();
+      
+      CURSOR MilitaryUnitsCUR is
+      SELECT a.KOD_MIR as MilitaryUnitID
+      FROM UKAZ_OWNER.STRM a
+      WHERE a.STR_KOD_MIR IN (SELECT * FROM TABLE(P_MilitaryUnitIDs)) OR ((SELECT COUNT(*) FROM TABLE(P_MilitaryUnitIDs)) = 0 AND a.STR_KOD_MIR IS NULL) ;
+   BEGIN
+      OPEN MilitaryUnitsCUR;
+      
+      LOOP
+         FETCH MilitaryUnitsCUR BULK COLLECT INTO MilitaryUnitIDs;
+         EXIT WHEN MilitaryUnitsCUR%notfound;
+      END LOOP;
+      
+      CLOSE MilitaryUnitsCUR;
+      
+      IF MilitaryUnitIDs.COUNT > 0 THEN
+         tmp := GetMilitaryUnitChilds(MilitaryUnitIDs);
+         
+         IF tmp.COUNT > 0 THEN
+            MilitaryUnitIDs := MilitaryUnitIDs MULTISET UNION tmp;
+         END IF;
+      END IF;
+      
+      RETURN MilitaryUnitIDs;
+   END;
+   
+   FUNCTION GetMRSPerVSSTRecordHTML (P_VSST_ID IN number) RETURN varchar2 IS
+                               
+      MRS varchar2(4000);
+      
+      CURSOR MilitaryReportSpecialitiesCUR is
+      SELECT c.MilReportingSpecialityCode || ' ' || c.MilReportingSpecialityName as DisplayName
+      FROM VS_OWNER.VS_VSST a
+      LEFT OUTER JOIN VS_OWNER.VS_VSST_VOS b ON a.VSST_ID = b.VSVOS_VSST_ID
+      LEFT OUTER JOIN PMIS_ADM.MilitaryReportSpecialities c ON CASE WHEN b.VSVOS_VSOKOD IS NOT NULL
+                                                                    THEN b.VSVOS_VSOKOD
+                                                                    ELSE b.VSVOS_VSSKOD
+                                                               END = c.MilReportingSpecialityCode
+      WHERE a.VSST_ID = P_VSST_ID
+      ORDER BY c.MilReportingSpecialityCode;
+   BEGIN
+      FOR CurRec IN MilitaryReportSpecialitiesCUR
+      LOOP 
+         IF (MRS IS NULL OR LENGTH(MRS) < 3600) THEN
+             MRS := MRS || '<div title="' || CurRec.DisplayName || '" style="cursor: arrow;">' || 
+                              SUBSTR(CurRec.DisplayName, 1, 20) || 
+                              CASE WHEN LENGTH (CurRec.DisplayName) > 20 THEN '...' ELSE '' END || 
+                           '</div>';
+         END IF;
+      END LOOP;
+      
+      RETURN MRS;
+   END;
+   
+   FUNCTION GetMRSIdsPerVSSTRecord (P_VSST_ID IN number) RETURN varchar2 IS
+                               
+      MRSIds varchar2(4000);
+      
+      CURSOR MilitaryReportSpecialitiesCUR is
+      SELECT c.MilReportSpecialityID
+      FROM VS_OWNER.VS_VSST a
+      LEFT OUTER JOIN VS_OWNER.VS_VSST_VOS b ON a.VSST_ID = b.VSVOS_VSST_ID
+      LEFT OUTER JOIN PMIS_ADM.MilitaryReportSpecialities c ON CASE WHEN b.VSVOS_VSOKOD IS NOT NULL
+                                                                    THEN b.VSVOS_VSOKOD
+                                                                    ELSE b.VSVOS_VSSKOD
+                                                               END = c.MilReportingSpecialityCode
+      WHERE a.VSST_ID = P_VSST_ID
+      ORDER BY c.MilReportSpecialityID;
+   BEGIN
+      FOR CurRec IN MilitaryReportSpecialitiesCUR
+      LOOP 
+         IF (MRSIds IS NULL OR LENGTH(MRSIds) < 3900) THEN
+             MRSIds :=MRSIds || CASE WHEN MRSIds IS NULL THEN '' ELSE ',' END || TO_CHAR(CurRec.MilReportSpecialityID);
+         END IF;
+      END LOOP;
+      
+      RETURN MRSIds;
+   END;
+
+   FUNCTION GetMRSPerPersonHTML (P_PersonID IN number, P_MaxLength IN number) RETURN varchar2 IS
+                               
+      MRS varchar2(4000);
+      
+      CURSOR MilitaryReportSpecialitiesCUR is
+      SELECT b.MilReportingSpecialityCode || ' ' || b.MilReportingSpecialityName as DisplayName
+      FROM PMIS_ADM.PersonMilRepSpec a
+      LEFT OUTER JOIN PMIS_ADM.MilitaryReportSpecialities b ON a.MilReportSpecialityID = b.MilReportSpecialityID
+      WHERE a.PersonID = P_PersonID
+      ORDER BY a.MilReportSpecialityID;
+   BEGIN
+      FOR CurRec IN MilitaryReportSpecialitiesCUR
+      LOOP 
+         IF (MRS IS NULL OR LENGTH(MRS) < 3600) THEN
+             MRS := MRS || '<div title="' || CurRec.DisplayName || '" style="cursor: arrow;">' || 
+                              SUBSTR(CurRec.DisplayName, 1, P_MaxLength) || 
+                              CASE WHEN LENGTH (CurRec.DisplayName) > P_MaxLength THEN '...' ELSE '' END || 
+                           '</div>';
+         END IF;
+      END LOOP;
+      
+      RETURN MRS;
+   END;
+
+   FUNCTION GetLanguagesPerPerson (P_PersonID IN number) RETURN varchar2 IS
+                               
+      Lang varchar2(4000);
+      
+      CURSOR LanguagesCUR is
+      SELECT c.EZK_IME as DisplayName
+      FROM VS_OWNER.VS_LS a
+      LEFT OUTER JOIN VS_OWNER.VS_EZIK b ON a.EGN = b.EZIK_EGNLS
+      LEFT OUTER JOIN VS_OWNER.KLV_EZK c ON b.EZIK_EZKKOD = c.EZK_KOD
+      WHERE a.PersonID = P_PersonID
+      ORDER BY b.EZIK_EZKKOD;
+   BEGIN
+      FOR CurRec IN LanguagesCUR
+      LOOP 
+         IF (Lang IS NULL OR LENGTH(Lang) < 3600) THEN
+	     IF (Lang IS NOT NULL) THEN
+		Lang := Lang || ', ';
+	     END IF;
+
+             Lang := Lang || CurRec.DisplayName;
+         END IF;
+      END LOOP;
+      
+      RETURN Lang;
+   END;
+   
+   FUNCTION GetDrivingLicensesPerPerson (P_PersonID IN number) RETURN varchar2 IS
+                               
+      DL varchar2(4000);
+      
+      CURSOR DrivingLicenseCUR is
+      SELECT b.DrivingLicenseCategoryName as DisplayName
+      FROM PMIS_ADM.PersonDrivingLicenseCategories a
+      INNER JOIN PMIS_ADM.DrivingLicenseCategories b ON a.DrivingLicenseCategoryID = b.DrivingLicenseCategoryID      
+      WHERE a.PersonID = P_PersonID
+      ORDER BY b.Seq;
+   BEGIN
+      FOR CurRec IN DrivingLicenseCUR
+      LOOP 
+         IF (DL IS NULL OR LENGTH(DL) < 3600) THEN
+	     IF (DL IS NOT NULL) THEN
+		DL := DL || ', ';
+	     END IF;
+
+             DL := DL || CurRec.DisplayName;
+         END IF;
+      END LOOP;
+      
+      RETURN DL;
+   END;
+
+   FUNCTION GetSpecialitiesPerPerson (P_PersonID IN number) RETURN varchar2 IS
+                               
+      Specs varchar2(4000);
+      
+      CURSOR SpecsCUR is
+      SELECT c.OBR_IME as DisplayName
+      FROM VS_OWNER.VS_LS a
+      LEFT OUTER JOIN VS_OWNER.VS_OBRG b ON a.EGN = b.OBRG_EGNLS
+      LEFT OUTER JOIN VS_OWNER.KLV_OBR c ON b.OBRG_KOD = c.OBR_KOD
+      WHERE a.PersonID = P_PersonID
+      ORDER BY b.OBRG_KOD;
+   BEGIN
+      FOR CurRec IN SpecsCUR
+      LOOP 
+         IF (Specs IS NULL OR LENGTH(Specs) < 3600) THEN
+	     IF (Specs IS NOT NULL) THEN
+		Specs := Specs || ', ';
+	     END IF;
+
+             Specs := Specs || CurRec.DisplayName;
+         END IF;
+      END LOOP;
+      
+      RETURN Specs;
+   END;
+
+   FUNCTION GetAgeFromEGN (P_EGN IN varchar2) RETURN number IS
+      Year number;
+      Month number;
+      Day number;
+      Age number;
+
+   BEGIN
+      Year := TO_NUMBER(SUBSTR(P_EGN, 1, 2));
+      Month := TO_NUMBER(SUBSTR(P_EGN, 3, 2));
+      Day := TO_NUMBER(SUBSTR(P_EGN, 5, 2));
+
+      Year := Year + 1900;
+
+      IF (Month > 40) THEN
+         Year := Year + 100;
+         Month := Month - 40;
+      END IF;
+
+      Age := TO_NUMBER(TO_CHAR(SYSDATE, 'YYYY')) - Year; 
+
+      IF (Month > TO_NUMBER(TO_CHAR(SYSDATE, 'MM'))) THEN
+         Age := Age - 1;
+      END IF;
+
+      IF (Month = TO_NUMBER(TO_CHAR(SYSDATE, 'MM'))) THEN
+         IF (Day > TO_NUMBER(TO_CHAR(SYSDATE, 'DD'))) THEN
+            Age := Age - 1;
+         END IF;
+      END IF;
+
+      RETURN Age;
+   END;
+   
+   FUNCTION IsMilitaryUnitActual(P_KOD_MIR IN number) RETURN number IS
+	ParentID number;
+	Actual number;
+   BEGIN    
+    SELECT AKTUAL INTO Actual FROM UKAZ_OWNER.MIR WHERE KOD_MIR = P_KOD_MIR;
+    SELECT STR_KOD_MIR INTO ParentID FROM UKAZ_OWNER.STRM WHERE KOD_MIR = P_KOD_MIR;
+	
+	
+	LOOP
+		IF ParentID IS NULL OR Actual = 0 THEN
+			EXIT;
+		END IF;
+		
+		SELECT AKTUAL INTO Actual FROM UKAZ_OWNER.MIR WHERE KOD_MIR = ParentID;
+		SELECT STR_KOD_MIR INTO ParentID FROM UKAZ_OWNER.STRM WHERE KOD_MIR = ParentID;		
+	END LOOP;
+	
+	RETURN Actual;
+   END;
+
+   PROCEDURE CallURL(P_URL IN varchar2) IS
+	req       utl_http.req;
+    resp      utl_http.resp;
+    name      VARCHAR2(256);
+    value     VARCHAR2(1024);
+    data      VARCHAR2(255);
+    my_scheme VARCHAR2(256);
+    my_realm  VARCHAR2(256);
+    my_proxy  BOOLEAN;
+	BEGIN
+	-- Ask UTL_HTTP not to raise an exception for 4xx and 5xx status codes,
+	-- rather than just returning the text of the error page.
+	  utl_http.set_response_error_check(FALSE);
+
+	-- Begin retrieving this web page.
+	  req := utl_http.begin_request(P_URL);
+
+	-- Identify ourselves. Some sites serve special pages for particular browsers.
+	  utl_http.set_header(req, 'User-Agent', 'Mozilla/4.0');
+	  
+
+	  BEGIN
+		resp := utl_http.get_response(req); 
+		
+		utl_http.end_response(resp);    
+	  END;
+
+	END;
+
+	PROCEDURE CallGenerateOfflineReports IS
+	BEGIN
+		CallURL('http://127.0.0.1/PMISAdmin/PublicPages/GenerateOfflineReports.aspx');
+	END;
+	
+	FUNCTION GetInitials (P_FULLNAME IN varchar2) RETURN varchar2 IS
+      Initials varchar2(50);
+      FullName varchar2(500);
+   BEGIN
+      FullName := P_FULLNAME;
+	  FullName := TRIM(p_fullname);
+	   
+	  FullName := REPLACE(FullName, '-', ' ');
+	  FullName := REPLACE(FullName, ',', ' ');
+	   
+	  Initials := SUBSTR(FullName, 1, 1);
+	   
+	  WHILE (INSTR(FullName, ' ') > 0) LOOP
+		 Initials := Initials || SUBSTR(FullName, INSTR(FullName, ' ') + 1, 1);
+		 FullName := SUBSTR(FullName, INSTR(FullName, ' ') + 1, LENGTH(FullName) - INSTR(FullName, ' '));
+	  END LOOP;
+
+      RETURN UPPER(Initials);
+   END;
+
+END;
+/
+
+GRANT INSERT ON PMIS_ADM.FailedLogins TO PMIS_WEB_ROLE;
+/
+
+ALTER TABLE PMIS_HS.InvestigationProtocols ADD (CommissionMember3 varchar2(2000),
+                                                CommissionMember4 varchar2(2000),
+											    CommissionMember5 varchar2(2000)
+                                               )
+
+/
+
+CREATE TABLE PMIS_HS.WorkingPlaces(WorkingPlaceID number NOT NULL,
+                                   MilitaryUnitID number NOT NULL,
+                                   WorkingPlace varchar2(500)
+                                  );
+
+ALTER TABLE PMIS_HS.WorkingPlaces ADD CONSTRAINT WorkingPlaces_PK PRIMARY KEY(WorkingPlaceID);
+ALTER TABLE PMIS_HS.WorkingPlaces ADD CONSTRAINT WorkingPlaces_MIR_FK FOREIGN KEY (MilitaryUnitID) REFERENCES UKAZ_OWNER.MIR (KOD_MIR);
+
+ALTER TABLE PMIS_HS.WorkingPlaces ADD CONSTRAINT WorkingPlaces_UNQ UNIQUE (MilitaryUnitID, WorkingPlace);
+
+CREATE SEQUENCE PMIS_HS.WorkingPlaces_ID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+CREATE TRIGGER PMIS_HS.TRG_WorkingPlaces_INSERT
+BEFORE INSERT ON PMIS_HS.WorkingPlaces
+FOR EACH ROW
+BEGIN
+   SELECT PMIS_HS.WorkingPlaces_ID_SEQ.nextval INTO :new.WorkingPlaceID FROM dual;
+END;
+/
+
+ALTER TABLE PMIS_HS.ProtocolItems ADD (WorkingPlaceID number);
+
+ALTER TABLE PMIS_HS.ProtocolItems ADD CONSTRAINT ProtocolItems_WorkingPlaces_FK FOREIGN KEY (WorkingPlaceID) REFERENCES PMIS_HS.WorkingPlaces (WorkingPlaceID);
+
+/
+
+INSERT INTO PMIS_RES.GTable(TableName, TableKey, TableSeq, TableValue)
+VALUES ('MilRepStat_RemovedReasons', '4', '4', 'ДАНС');
+
+INSERT INTO PMIS_RES.GTable(TableName, TableKey, TableSeq, TableValue)
+VALUES ('MilRepStat_RemovedReasons', '5', '5', 'МВР');
+
+COMMIT;
+
+
+GRANT ALL ON VS_OWNER.KLV_ROD TO PMIS_USER_ROLE;
+GRANT ALL ON VS_OWNER.KLV_ROD_RODID_SEQ TO PMIS_USER_ROLE;
+
+
+GRANT ALL ON PMIS_ADM.FailedLogins TO PMIS_USER_ROLE;
+GRANT ALL ON PMIS_ADM.FailedLogins_ID_SEQ TO PMIS_USER_ROLE;
+
+GRANT ALL ON PMIS_HS.WorkingPlaces TO PMIS_USER_ROLE;
+GRANT ALL ON PMIS_HS.WorkingPlaces_ID_SEQ TO PMIS_USER_ROLE;
+
+
+
+/
+

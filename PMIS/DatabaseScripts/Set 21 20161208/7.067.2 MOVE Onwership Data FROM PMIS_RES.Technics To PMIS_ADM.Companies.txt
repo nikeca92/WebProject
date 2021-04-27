@@ -1,0 +1,63 @@
+﻿DECLARE
+   ExistingCompaniesCnt number;
+   MatchingCompanyID number;
+   
+   CURSOR tech is
+      SELECT a.TechnicsID,
+             a.OwnershipTypeID_,
+             a.OwnershipIdentNumber_,
+             a.OwnershipFullName_,
+             a.OwnershipCityID_,
+             a.OwnershipDistrictID_,
+             a.OwnershipAddress_,
+             a.OwnershipPhone_,
+             a.OwnershipPostCode_
+      FROM PMIS_RES.Technics a
+      INNER JOIN PMIS_ADM.OwnershipTypes b ON a.OwnershipTypeID_ = b.OwnershipTypeID
+      WHERE b.OwnershipTypeKey = 'PERSON' AND
+            a.OwnershipIdentNumber_ IS NOT NULL AND
+            a.OwnershipFullName_ IS NOT NULL;
+BEGIN
+   FOR tech_rec IN tech
+   LOOP
+      ExistingCompaniesCnt := 0;
+      
+      SELECT COUNT(*) INTO ExistingCompaniesCnt 
+      FROM PMIS_ADM.Companies a
+      WHERE a.UnifiedIdentityCode = tech_rec.OwnershipIdentNumber_;
+      
+      IF ExistingCompaniesCnt = 0 THEN
+           INSERT INTO PMIS_ADM.Companies (
+              OwnershipTypeID, 
+              UnifiedIdentityCode, 
+              CompanyName, 
+              CityID, 
+              DistrictID, 
+              Address, 
+              PostCode, 
+              Phone)
+           VALUES (
+              tech_rec.OwnershipTypeID_, 
+              tech_rec.OwnershipIdentNumber_, 
+              tech_rec.OwnershipFullName_, 
+              tech_rec.OwnershipCityID_, 
+              tech_rec.OwnershipDistrictID_, 
+              tech_rec.OwnershipAddress_, 
+              tech_rec.OwnershipPostCode_, 
+              tech_rec.OwnershipPhone_
+           );
+      END IF;
+      
+      SELECT MIN(a.CompanyID) INTO MatchingCompanyID
+      FROM PMIS_ADM.Companies a
+      WHERE a.UnifiedIdentityCode = tech_rec.OwnershipIdentNumber_;
+      
+      UPDATE PMIS_RES.Technics SET
+         OwnershipCompanyID = MatchingCompanyID
+      WHERE TechnicsID = tech_rec.TechnicsID;
+   END LOOP;
+END;
+/
+
+COMMIT;
+/

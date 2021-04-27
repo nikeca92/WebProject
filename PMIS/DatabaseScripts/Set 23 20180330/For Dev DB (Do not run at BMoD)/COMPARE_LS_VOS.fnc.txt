@@ -1,0 +1,125 @@
+﻿CREATE OR REPLACE FUNCTION VS_OWNER."COMPARE_LS_VOS" (VOS IN VARCHAR2, NewVOS IN VARCHAR2)
+RETURN VARCHAR2 IS
+
+    VC integer;
+    NV integer;
+    ct integer;
+
+BEGIN
+  if VOS is null
+    then RETURN(NewVOS);
+    else 
+ 
+      select count(*) into ct  --
+      from vs_owner.klv_vso    --
+      where vso_kod = VOS;     --
+
+      if ct > 0                --
+        then                   --
+          select VSO_TYPE into VC --
+          from vs_owner.klv_vso   --
+          where vso_kod = VOS;    --
+          
+         else VC := 2; -- star VOS         
+       end if;
+
+      select count(*) into ct  --
+      from vs_owner.klv_vso    --
+      where vso_kod = NewVOS;     --
+
+      if ct > 0                --
+        then                   --
+          select VSO_TYPE into VC --
+          from vs_owner.klv_vso   --
+          where vso_kod = NewVOS;    --
+          
+         else VC := 2; -- star VOS         
+       end if;     
+--      select count(*) into ct
+--      from vs_owner.klv_vso1
+--      where vso1_kod = VOS;    -- VA
+      
+ --     if ct > 0 
+ --       then
+ --         if VOS = '1000'
+ --           then VC := 9;
+ --           else VC := 8;
+ --         end if;
+--        else
+         
+--         select count(*) into ct
+--         from vs_owner.klv_vso2
+--         where vso2_kod = VOS;    -- VU     
+         
+--         if ct > 0
+ --          then VC := 7;
+ --          else      
+             
+--             select count(*) into ct
+--             from vs_owner.klv_vso3
+ --            where vso3_kod = VOS;    -- serj
+             
+--             if ct > 0
+--               then VC := 6;
+--               else  
+               
+--                 select count(*) into ct
+--                 from vs_owner.klv_vso4
+--                 where vso4_kod = VOS;    -- voin        
+                
+--                 if ct > 0
+--                   then VC := 5;
+--                   else VC := 2; -- star VOS
+--                 end if;
+ --            end if; 
+--         end if;
+ --     end if;
+
+-- NewVOS
+--     select count(*) into ct
+--      from vs_owner.klv_vso1
+ --     where vso1_kod = NewVOS;    -- VA
+      
+ --     if ct > 0 
+ --       then
+ --         if VOS = '1000'
+ --           then NV := 9;
+ --           else NV := 8;
+ --         end if;
+ --       else
+         
+ --        select count(*) into ct
+ --        from vs_owner.klv_vso2
+ --        where vso2_kod = NewVOS;    -- VU     
+         
+ --        if ct > 0
+ --          then NV := 7;
+ --          else      
+             
+ --            select count(*) into ct
+  --           from vs_owner.klv_vso3
+  --           where vso3_kod = NewVOS;    -- serj
+             
+  --           if ct > 0
+  --             then NV := 6;
+  --             else  
+               
+--                select count(*) into ct
+ --                from vs_owner.klv_vso4
+ --                where vso4_kod = NewVOS;    -- voin        
+                
+ --                if ct > 0
+ --                  then NV := 5;
+ --                  else NV := 2; -- star VOS  
+ --                end if;
+ --            end if; 
+ --        end if;
+  --    end if;           
+      
+      if VC > NV
+        then RETURN(VOS);
+        else RETURN(NewVOS);
+      end if;
+  end if;   
+END COMPARE_LS_VOS;     
+/

@@ -1,0 +1,3 @@
+﻿ALTER TABLE PMIS_RES.ReservistMilRepStatuses ADD Voluntary_ExpireDate date;
+ALTER TABLE PMIS_RES.ReservistMilRepStatuses ADD Voluntary_FulfilPlaceID NUMBER;   
+ALTER TABLE PMIS_RES.ReservistMilRepStatuses ADD CONSTRAINT ResMilRepStat_MIR_FK FOREIGN KEY (Voluntary_FulfilPlaceID) REFERENCES UKAZ_OWNER.MIR(KOD_MIR);

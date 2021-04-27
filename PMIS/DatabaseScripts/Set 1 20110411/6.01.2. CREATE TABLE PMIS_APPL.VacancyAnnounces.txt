@@ -1,0 +1,31 @@
+﻿CREATE TABLE PMIS_APPL.VacancyAnnounces(VacancyAnnounceID number NOT NULL,
+                                        OrderNum varchar2(250),
+                                        OrderDate date,
+                                        EndDate date,
+                                        MaxPositions number,
+                                        VacAnnStatusID number,
+                                        VacAnnType number NOT NULL,
+                                        CreatedBy number,
+                                        CreatedDate date,
+                                        LastModifiedBy number,
+                                        LastModifiedDate date
+                                       );
+
+ALTER TABLE PMIS_APPL.VacancyAnnounces ADD CONSTRAINT VacancyAnnounces_PK PRIMARY KEY(VacancyAnnounceID);
+ALTER TABLE PMIS_APPL.VacancyAnnounces ADD CONSTRAINT VacAnn_VacAnnStatuses_FK FOREIGN KEY (VacAnnStatusID) REFERENCES PMIS_APPL.VacancyAnnouncesStatuses (VacancyAnnouncesStatusID);
+ALTER TABLE PMIS_APPL.VacancyAnnounces ADD CONSTRAINT Protocols_CreatedBy_FK FOREIGN KEY (CreatedBy) REFERENCES PMIS_ADM.Users (UserID);
+ALTER TABLE PMIS_APPL.VacancyAnnounces ADD CONSTRAINT Protocols_LastModifiedBy_FK FOREIGN KEY (LastModifiedBy) REFERENCES PMIS_ADM.Users (UserID);
+
+
+CREATE SEQUENCE PMIS_APPL.VacancyAnnounces_ID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+CREATE TRIGGER PMIS_APPL.TRG_VacancyAnnounces_INSERT
+BEFORE INSERT ON PMIS_APPL.VacancyAnnounces
+FOR EACH ROW
+BEGIN
+   SELECT PMIS_APPL.VacancyAnnounces_ID_SEQ.nextval INTO :new.VacancyAnnounceID FROM dual;
+END;
+/

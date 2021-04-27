@@ -1,0 +1,11 @@
+﻿INSERT INTO PMIS_ADM.MaintFields(tablename, tablecolumn, fieldlabel, widthpixels, fieldkey, uiitemeditkey, uiitemaddkey, ismandatory, validatedatatype, isunique)
+VALUES('PMIS_RES.MilReadiness', 'PrintSymbol', 'Символ за печат', 250, 'RES_Lists_MilitaryReadinesses_MilitaryReadinessPrintSymbol', 'RES_LISTMAINT_MILITARYREADINESSES_EDIT_MILITARYREADINESSPRINTSYMBOL', 'RES_LISTMAINT_MILITARYREADINESSES_ADD_MILITARYREADINESSPRINTSYMBOL', 0, 'string', 0);
+
+INSERT INTO PMIS_ADM.MaintFields(tablename, tablecolumn, fieldlabel, widthpixels, fieldkey, uiitemeditkey, uiitemaddkey, ismandatory, validatedatatype, isunique)
+VALUES('PMIS_RES.MilReadiness', 'AdministrationID', 'Приложимо за ведомство', 250, 'RES_Lists_MilitaryReadinesses_Administration', 'RES_LISTMAINT_MILITARYREADINESSES_EDIT_ADMINISTRATION', 'RES_LISTMAINT_MILITARYREADINESSES_ADD_ADMINISTRATION', 0, 'string', 0);
+
+INSERT INTO PMIS_ADM.MaintFields(tablename, tablecolumn, fieldlabel, widthpixels, fieldkey, uiitemeditkey, uiitemaddkey, ismandatory, validatedatatype, isunique)
+VALUES('PMIS_ADM.Administrations', 'ReportA33Breakdown', 'Детайли на сведение за състоянието на ресурсите', 100, 'ADM_Lists_Administrations_ReportA33Breakdown', 'ADM_LISTMAINT_ADMINISTRATIONS_EDIT_REPORTA33BREAKDOWN', 'ADM_LISTMAINT_ADMINISTRATIONS_ADD_REPORTA33BREAKDOWN', 0, 'bool', 0);
+
+COMMIT;
+/

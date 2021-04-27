@@ -1,0 +1,10 @@
+﻿CREATE INDEX PMIS_ADM.ChangeEvents_PersonID_IDX ON PMIS_ADM.ChangeEvents (PersonID);
+ALTER INDEX PMIS_ADM.ChangeEvents_PersonID_IDX REBUILD;
+
+CREATE INDEX PMIS_ADM.ChangeEvents_ChangeID_IDX ON PMIS_ADM.ChangeEvents (ChangeID);
+ALTER INDEX PMIS_ADM.ChangeEvents_ChangeID_IDX REBUILD;
+
+CREATE INDEX PMIS_ADM.ChangeEventDetails_ChgEvID_IDX ON PMIS_ADM.ChangeEventDetails (ChangeEventID);
+ALTER INDEX PMIS_ADM.ChangeEventDetails_ChgEvID_IDX REBUILD;
+
+/

@@ -1,0 +1,26 @@
+﻿CREATE TABLE PMIS_APPL.Cadets(CadetID number NOT NULL,
+                              PersonID number NOT NULL,
+                              MilitaryDepartmentID number NOT NULL,
+							  CreatedBy number,
+							  CreatedDate date,
+							  LastModifiedBy number,
+							  LastModifiedDate date 
+                             );
+
+ALTER TABLE PMIS_APPL.Cadets ADD CONSTRAINT Cadets_PK PRIMARY KEY(CadetID);
+ALTER TABLE PMIS_APPL.Cadets ADD CONSTRAINT Cadets_UNQ UNIQUE (PersonID, MilitaryDepartmentID);
+ALTER TABLE PMIS_APPL.Cadets ADD CONSTRAINT Cadets_Persons_FK FOREIGN KEY (PersonID) REFERENCES VS_OWNER.VS_LS (PersonID);
+ALTER TABLE PMIS_APPL.Cadets ADD CONSTRAINT Cadets_MilDepartments_FK FOREIGN KEY (MilitaryDepartmentID) REFERENCES PMIS_ADM.MilitaryDepartments (MilitaryDepartmentID);
+
+CREATE SEQUENCE PMIS_APPL.Cadets_ID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+CREATE TRIGGER PMIS_APPL.TRG_Cadets_INSERT
+BEFORE INSERT ON PMIS_APPL.Cadets
+FOR EACH ROW
+BEGIN
+   SELECT PMIS_APPL.Cadets_ID_SEQ.nextval INTO :new.CadetID FROM dual;
+END;
+/

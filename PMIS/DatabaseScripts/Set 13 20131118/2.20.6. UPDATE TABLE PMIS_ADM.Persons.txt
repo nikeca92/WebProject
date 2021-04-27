@@ -1,0 +1,9 @@
+﻿/* run if necessary
+UPDATE PMIS_ADM.Persons SET
+   WorkCompanyID = NULL
+WHERE WorkCompanyID IS NOT NULL AND WorkCompanyID NOT IN (SELECT CompanyID FROM PMIS_ADM.Companies);
+*/
+
+ALTER TABLE PMIS_ADM.Persons ADD CONSTRAINT Persons_WorkCompany_FK FOREIGN KEY (WorkCompanyID) REFERENCES PMIS_ADM.Companies (CompanyID);
+
+/

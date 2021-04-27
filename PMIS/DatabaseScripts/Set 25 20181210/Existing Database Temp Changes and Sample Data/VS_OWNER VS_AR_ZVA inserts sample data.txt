@@ -1,0 +1,13 @@
+﻿DECLARE
+   i number;
+BEGIN
+   i := 1;
+
+   WHILE i < 20 LOOP
+      INSERT INTO VS_OWNER.vs_ar_zva (arzva_egnls, arzva_zvakod, arzva_zizd, arzva_zkoga)
+      VALUES ('8506026685', (select * from (SELECT zva_kod from vs_owner.klv_zva ORDER BY DBMS_RANDOM.VALUE) where rownum = 1), TO_DATE('01-MAY-2001') + i, TO_DATE('01-MAY-2001') + i);
+      
+       i := i + 1;
+   END LOOP;
+END;
+/

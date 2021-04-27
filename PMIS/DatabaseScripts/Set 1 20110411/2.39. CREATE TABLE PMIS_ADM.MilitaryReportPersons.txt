@@ -1,0 +1,41 @@
+﻿CREATE TABLE PMIS_ADM.MilitaryReportPersons(MilitaryReportPersonID number NOT NULL,
+											MilitaryDepartmentID number NOT NULL,
+                                            IdentNumber varchar2(10),
+                                            FirstName varchar2(25),
+                                            LastName varchar2(15),
+                                            Initials varchar2(10),
+                                            PermAddrCityID number,
+                                            PermAddress varchar2(40),
+                                            PermAddrDistrictID number,
+                                            CurrAddrCityID number,
+                                            CurrAddress varchar2(1500),
+                                            CurrAddrDistrictID number,
+                                            
+                                            CreatedDate date,
+                                            CreatedBy number, 
+                                            LastModifiedBy number,
+                                            LastModifiedDate date
+                                           );
+
+ALTER TABLE PMIS_ADM.MilitaryReportPersons ADD CONSTRAINT MilitaryReportPersons_PK PRIMARY KEY(MilitaryReportPersonID);
+ALTER TABLE PMIS_ADM.MilitaryReportPersons ADD CONSTRAINT MilRepPers_MilDepartments_FK FOREIGN KEY (MilitaryDepartmentID) REFERENCES PMIS_ADM.MilitaryDepartments (MilitaryDepartmentID);
+ALTER TABLE PMIS_ADM.MilitaryReportPersons ADD CONSTRAINT MilitaryReportPersons_UNQ UNIQUE (IdentNumber);
+ALTER TABLE PMIS_ADM.MilitaryReportPersons ADD CONSTRAINT MilRepPersons_PermAddrCity_FK FOREIGN KEY (PermAddrCityID) REFERENCES UKAZ_OWNER.KL_NMA (KOD_NMA);
+ALTER TABLE PMIS_ADM.MilitaryReportPersons ADD CONSTRAINT MilRepPersons_CurrAddrCity_FK FOREIGN KEY (CurrAddrCityID) REFERENCES UKAZ_OWNER.KL_NMA (KOD_NMA);
+ALTER TABLE PMIS_ADM.MilitaryReportPersons ADD CONSTRAINT MilRepPersons_PermDistrict_FK FOREIGN KEY (PermAddrDistrictID) REFERENCES PMIS_ADM.Districts (DistrictID);
+ALTER TABLE PMIS_ADM.MilitaryReportPersons ADD CONSTRAINT MilRepPersons_CurrDistrict_FK FOREIGN KEY (CurrAddrDistrictID) REFERENCES PMIS_ADM.Districts (DistrictID);
+ALTER TABLE PMIS_ADM.MilitaryReportPersons ADD CONSTRAINT MilRepPersons_CreatedBy_FK FOREIGN KEY (CreatedBy) REFERENCES PMIS_ADM.Users (UserID);
+ALTER TABLE PMIS_ADM.MilitaryReportPersons ADD CONSTRAINT MilRepPers_LastModifiedBy_FK FOREIGN KEY (LastModifiedBy) REFERENCES PMIS_ADM.Users (UserID);
+
+CREATE SEQUENCE PMIS_ADM.MilitaryReportPersons_ID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+CREATE TRIGGER PMIS_ADM.TRG_MilReportPersons_INSERT
+BEFORE INSERT ON PMIS_ADM.MilitaryReportPersons
+FOR EACH ROW
+BEGIN
+   SELECT PMIS_ADM.MilitaryReportPersons_ID_SEQ.nextval INTO :new.MilitaryReportPersonID FROM dual;
+END;
+/

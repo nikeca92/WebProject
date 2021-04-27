@@ -1,0 +1,24 @@
+﻿CREATE TABLE PMIS_RES.FuelContainers(FuelContainerID number NOT NULL,
+								   TechnicsID number NOT NULL,
+                                   InventoryNumber varchar2(50),
+                                   FuelContainerKindID number, /*GTable*/
+                                   FuelContainerTypeID number /*GTable*/
+                                   );
+
+ALTER TABLE PMIS_RES.FuelContainers ADD CONSTRAINT FuelContainerPK PRIMARY KEY(FuelContainerID);
+ALTER TABLE PMIS_RES.FuelContainers ADD CONSTRAINT FuelContainer_TechnicsID_UNQ UNIQUE (TechnicsID);
+ALTER TABLE PMIS_RES.FuelContainers ADD CONSTRAINT FuelContainer_InvNum_UNQ UNIQUE (InventoryNumber);
+ALTER TABLE PMIS_RES.FuelContainers ADD CONSTRAINT FuelContainer_Technics_FK FOREIGN KEY (TechnicsID) REFERENCES PMIS_RES.Technics (TechnicsID);
+
+CREATE SEQUENCE PMIS_RES.FuelContainers_ID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+CREATE TRIGGER PMIS_RES.TRG_FuelContainers_INSERT
+BEFORE INSERT ON PMIS_RES.FuelContainers
+FOR EACH ROW
+BEGIN
+   SELECT PMIS_RES.FuelContainers_ID_SEQ.nextval INTO :new.FuelContainerID FROM dual;
+END;
+/

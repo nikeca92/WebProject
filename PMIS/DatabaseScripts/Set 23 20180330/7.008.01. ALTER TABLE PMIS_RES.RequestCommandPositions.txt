@@ -1,0 +1,18 @@
+﻿ALTER TABLE
+   PMIS_RES.RequestCommandPositions
+ADD
+   (
+      Seq NUMBER
+   );
+
+UPDATE PMIS_RES.RequestCommandPositions t
+SET Seq = (
+      SELECT "Rank"
+      FROM (
+            SELECT RequestCommandPositionID, requestscommandid,
+                   RANK() OVER(PARTITION BY requestscommandid ORDER BY RequestCommandPositionID ASC) "Rank"  
+            FROM PMIS_RES.RequestCommandPositions)  tmp
+      WHERE tmp.RequestCommandPositionID = t.RequestCommandPositionID);
+      
+COMMIT;
+/

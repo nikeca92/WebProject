@@ -1,0 +1,7 @@
+﻿ALTER TABLE PMIS_ADM.Companies ADD (AdministrationID number);
+
+ALTER TABLE PMIS_ADM.Companies ADD CONSTRAINT Companies_Administrations_FK FOREIGN KEY (AdministrationID) REFERENCES PMIS_ADM.Administrations (AdministrationID);
+
+ALTER TABLE PMIS_ADM.Companies ADD PostCode varchar2(10);
+
+/

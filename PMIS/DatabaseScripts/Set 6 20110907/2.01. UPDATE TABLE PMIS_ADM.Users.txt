@@ -1,0 +1,22 @@
+ALTER TABLE PMIS_ADM.Users ADD (Blocked number(1) CHECK (Blocked BETWEEN 0 AND 1));
+
+UPDATE PMIS_ADM.Users SET Blocked = 0 WHERE Blocked IS NULL;
+COMMIT;
+
+ALTER TABLE PMIS_ADM.Users ADD (ConsecutiveFailedLogins number);
+
+UPDATE PMIS_ADM.Users SET ConsecutiveFailedLogins = 0 WHERE ConsecutiveFailedLogins IS NULL;
+COMMIT;
+
+ALTER TABLE PMIS_ADM.Users ADD (PasswordUpdateDate date);
+
+UPDATE PMIS_ADM.Users SET PasswordUpdateDate = SYSDATE WHERE PasswordUpdateDate IS NULL;
+COMMIT;
+
+ALTER TABLE PMIS_ADM.UserDetails ADD (PasswordDoesNotExpire number(1) CHECK (PasswordDoesNotExpire BETWEEN 0 AND 1));
+
+UPDATE PMIS_ADM.UserDetails SET PasswordDoesNotExpire = 0 WHERE PasswordDoesNotExpire IS NULL;
+UPDATE PMIS_ADM.UserDetails SET PasswordDoesNotExpire = 1 WHERE UserID = (SELECT UserID FROM PMIS_ADM.Users WHERE Username = 'devel');
+COMMIT;
+
+/

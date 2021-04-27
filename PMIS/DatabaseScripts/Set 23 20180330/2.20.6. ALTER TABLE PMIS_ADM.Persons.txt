@@ -1,0 +1,4 @@
+﻿ALTER TABLE PMIS_ADM.Persons ADD (IsSuitableForMobAppointment number(1) CHECK (IsSuitableForMobAppointment BETWEEN 0 AND 1));
+
+
+/

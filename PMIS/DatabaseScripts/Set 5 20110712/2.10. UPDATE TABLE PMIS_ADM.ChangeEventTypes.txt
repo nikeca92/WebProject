@@ -1,0 +1,25 @@
+﻿
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('ADM_Lists_MilReportSpeciality_Add', 'Добавяне на ВОС', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'ADM'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('ADM_Lists_MilReportSpeciality_Edit', 'Редактиране на ВОС', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'ADM'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('ADM_Lists_MilReportSpeciality_Delete', 'Изтриване на ВОС', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'ADM'), 3);
+
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('HS_Lists_WorkingPlaces_Add', 'Добавяне място на измерване', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('HS_Lists_WorkingPlaces_Edit', 'Редактиране място на измерване', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('HS_Lists_WorkingPlaces_Delete', 'Изтриване място на измерване', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'), 3);
+
+
+
+COMMIT;
+
+

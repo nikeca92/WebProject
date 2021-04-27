@@ -1,0 +1,110 @@
+﻿create or replace PACKAGE                     VS_OWNER.VS_SPR AS
+  -- За справка СДД (Е ли на тoзи тип длъжност - по признак)
+  
+  --	Длъжност		Ниво	В справка	Признак	В2Обобщена
+	--	Други				0			10				6				  
+  --	КВ					1			12				1				1
+  --	ЗКР					2			13				1				2
+  --	КР					3			14				1				3
+	--	ЩБ					4			 2				2				
+  --	ЗКБ,НЩБ 		5			15				1				4
+  --	КБ					6			16				1				5
+  --	ЩП					7			 3				3				
+  --	НЩП,ЗКП,КП	8			17				1				7
+  --	ЩС					9			 4				4				
+  --	ЩО			 	 10			 5				5				
+  
+  -- Парам: cEGN  - ЕГН;
+  		--    nDl   - Обобщена длъжност N (модифициран признак на дл.);
+  		--    nTip  - Тип 1-по отчет, 2-по назначение;
+  		--    nObr  - Обработка 1-всички, 2-без Вр.снети,Отсрочени,Огвс;
+  -- Връща: Y-е на такава длъжност, NULL-не е;
+  FUNCTION TDl(cEGN IN VarChar2, nDl IN Number, nTip IN Number, nObr IN Number) 
+    	Return VarChar2;
+    	
+  -- За справка СДД (Е ли минал освежаване до 5 години след курса за длъжност)
+  -- Парам: cEGN  - ЕГН;
+  -- Връща: Y-минал е освежаване, NULL-не му се полага, N-трябва но не е минал;  
+  FUNCTION Osv(cEGN IN VarChar2) 
+    	Return VarChar2;
+    	
+  -- За справка СДД (Е ли назначен на длъжност от по-високо ниво (не е минал курс))
+  -- Парам: cODl-длъжност,nOPr-признак  - води се на отчет;
+        --	cPDl-длъжност,nPPr-признак  - подаден в команда; 
+        --  nV_KOM-KOD_VVR на командата (VS_LS.V_KOMANDA; 
+  -- Връща: Y-няма нужда от курс, N-трябва но не е минал, NULL-няма МН;  
+  FUNCTION Kurs(cODl IN VarChar2, nOPr IN Number, cPDl IN VarChar2, nPPr IN Number, nV_KOM IN Number) 
+    	Return VarChar2;
+
+  -- За справка СДД (На кое ниво е)
+  -- Парам: cDl  - Длъжност, nPr - Признак;
+  -- Връща: 0-Други, 1-КВ, 2-ЗКР, 3-КР, 4-ЩБ, 5-ЗКБ НЩБ, 6-КБ, 7-ЩП, 8-КП ЗКП НЩП, 9-ЩС, 10-ЩО;  
+  FUNCTION NivoDl(cDl IN VarChar2, nPr IN Number) 
+    	Return Number;
+  
+/*  -- Връща трудов стаж към днешна дата
+  FUNCTION STAJ_DNES( pEGN IN VarChar2, nTip IN Number) 
+      RETURN VarChar2;
+  -- Връща трудов стаж към ЗАДАДЕНА дата ( със или без приравнени )
+  FUNCTION STAJ_DNES( pEGN IN VarChar2, nTip IN Number, dDate IN Date, sPriravneni IN Number) 
+      RETURN VarChar2;
+*/
+  -- Връща трудов стаж към днешна дата
+  -- При подаване на стойност 0 или 1 на nTip връща приравнения трудов стаж съответно в къс или дълъг изходен формат
+  -- При подаване на стойност 10 или 11 на nTip връща осигурителния трудов стаж съответно в къс или дълъг изходен формат
+  FUNCTION STAJ_DNES( pEGN IN VarChar2, nTip IN Number) 
+      RETURN VarChar2;
+
+  -- Връща трудов стаж към ЗАДАДЕНА дата
+  -- При подаване на стойност 0 или 1 на nTip връща трудовия стаж съответно в къс или дълъг изходен формат
+  -- При подаване на стоиност 0 или 1 или 2 на VidStaj връща съответно само стажа от кадровата служба,
+  -- приравнения стаж или осигурителния трудов стаж
+  FUNCTION STAJ_DNES( pEGN IN VarChar2, nTip IN Number, dDate IN Date, VidStaj IN Number) 
+      RETURN VarChar2;
+
+  -- Връща е ли със стаж години във вилката
+ FUNCTION IsNaStaj(cEGN IN VarChar2, OtGod IN VarChar2, DoGod IN VarChar2, dDate IN Date, sPriravneni IN Number) 
+      Return VarChar2;
+  -- Връща слепени звената в които е човека по щат МВ
+  FUNCTION GET_OES( pEGN IN VarChar2) 
+      RETURN VarChar2;
+  -- Пари Словом     
+ function Cifri(i in Number) return varchar2;
+ function Do1000(tString in VarChar2) return varchar2; 
+ function PariSlovom( Suma in number) return varchar2;
+ 
+ -- Връща тип на звание от щата (сложно) по зададен ID на длъжност
+ FUNCTION SHTAT_OF_ZVA(sst_id IN Number) RETURN VarChar2;
+ 
+  -- Запълва таблица SPR_RV_ZAP_ за извеждане на справка
+ PROCEDURE SPR_RV_ZAP_INS;
+
+ -- Връща ниво на образователен ценз за офицери
+ -- 1 - гр.образование
+ -- 2 - ШЗО с ВА
+ -- 3 - 3г. ВУ
+ -- 4 - 3г. ВУ с ВА
+ -- 5 - 4,5 г. ВУ 
+ -- 6 - 4,5 г. ВУ с ВА
+ -- 7 - ВА - ГЩФ
+ FUNCTION NIVO_OF_Obr_CENZ(vEGN IN VarChar2, vVU IN VarChar2, vVA IN VarChar2) Return NUMBER;
+ 
+ -- Ще навърши пределна възраст към ... дата
+ FUNCTION Predelna_Vazrast(vEGN IN VarChar2, vZVA IN VarChar2, vKZV IN VarChar2) Return DATE;
+ 
+ -- Ще се пенсионира ли през ... година (за гр.лида съгласно член 68 от КСО)
+ FUNCTION PensiaGL68(vEGN IN VarChar2, vGodina IN VarChar2) Return VARCHAR2;
+
+ -- Връща "пол" по зададени ЕГН, име и фамилия ->'0'-'мъж', '1'-'жена'
+ FUNCTION Pol( vEGN IN VARCHAR2, vIME IN VARCHAR2, vFAM  IN VARCHAR2) Return VARCHAR2;
+ 
+ -- Връща ИМА/НЯМА РДКИ по зададени ЕГН, Ниво '1'-'има точно', '2'-'има повече', Null-'няма или има по-малко'
+ FUNCTION HasRDKI( vEGN IN VARCHAR2, vNivo IN VARCHAR2) Return VARCHAR2; 
+ 
+ -- Връша разни данни за човека
+ --FUNCTION GET_INFO(pEGN IN Varchar2, pInfo IN Varchar2) RETURN VARCHAR2;
+ 
+ FUNCTION GET_UP_LS_VOS ( vEGN IN VARCHAR2) RETURN VARCHAR2;
+END VS_SPR;
+ 
+ 

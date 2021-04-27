@@ -1,0 +1,202 @@
+﻿CREATE OR REPLACE VIEW PMIS_RES.ViewA33v2
+AS 
+	SELECT 1 as StatusID,
+		   'ВОДЯТ СЕ НА ОТЧЕТ' as StatusName,
+		   1 as StatusOrder,
+		   0 as MilReadinessID,
+		   TO_CHAR('') as AdministrationGroup,
+		   '1.' as RowNumber,
+           0 as IsEmptyRow
+	FROM dual
+
+	UNION ALL
+
+	SELECT 2 as StatusID,
+		   'Доброволен резерв' as StatusName,
+		   2 as StatusOrder,
+		   0 as MilReadinessID,
+		   TO_CHAR('') as AdministrationGroup,
+		   '2.' as RowNumber,
+           0 as IsEmptyRow
+	FROM dual
+
+	UNION ALL
+    
+    SELECT 3 as StatusID,
+		   'Запасни на военен отчет' as StatusName,
+		   3 as StatusOrder,
+		   0 as MilReadinessID,
+		   TO_CHAR('') as AdministrationGroup,
+		   '3.' as RowNumber,
+           0 as IsEmptyRow
+	FROM dual
+
+	UNION ALL
+    
+    SELECT 4 as StatusID,
+		   'С мобилизационно назначение за в.ф. на ВС' as StatusName,
+		   4 as StatusOrder,
+		   0 as MilReadinessID,
+		   TO_CHAR('') as AdministrationGroup,
+		   '3.1.' as RowNumber,
+           1 as IsEmptyRow
+	FROM dual
+    
+    UNION ALL
+
+	SELECT 4 + DENSE_RANK() OVER (ORDER BY a.MilReadinessCmdType, a.MilReadinessID) as StatusID,
+		   'С мобилизационно назначение – ' || LOWER(a.MilReadinessCmdType) as StatusName,
+		   4 + DENSE_RANK() OVER (ORDER BY a.MilReadinessCmdType, a.MilReadinessID) as StatusOrder,
+		   a.MilReadinessID,
+		   TO_CHAR('') as AdministrationGroup,
+		   '3.1.' || TO_CHAR(RANK() OVER (ORDER BY a.MilReadinessCmdType, a.MilReadinessID)) || '.' as RowNumber,
+           0 as IsEmptyRow
+	FROM PMIS_RES.MilReadiness a
+    WHERE a.MilReadinessCmdType IS NOT NULL
+
+	UNION ALL
+    
+	SELECT 5 + (SELECT COUNT(*) FROM PMIS_RES.MilReadiness WHERE MilReadinessCmdType IS NOT NULL) as StatusID,
+		   'Процент резерв с МН /брой/' as StatusName,
+		   5 + (SELECT COUNT(*) FROM PMIS_RES.MilReadiness WHERE MilReadinessCmdType IS NOT NULL) as StatusOrder,
+		   0 as MilReadinessID,
+		   TO_CHAR('') as AdministrationGroup,
+		   '3.1.' || TO_CHAR((SELECT COUNT(*) FROM PMIS_RES.MilReadiness WHERE MilReadinessCmdType IS NOT NULL) + 1) || '.' as RowNumber,
+           0 as IsEmptyRow
+	FROM dual
+    
+    UNION ALL
+    
+	SELECT 6 + (SELECT COUNT(*) FROM PMIS_RES.MilReadiness WHERE MilReadinessCmdType IS NOT NULL) as StatusID,
+		   'Доставят се направо (община-ППЗ)' as StatusName,
+		   6 + (SELECT COUNT(*) FROM PMIS_RES.MilReadiness WHERE MilReadinessCmdType IS NOT NULL) as StatusOrder,
+		   0 as MilReadinessID,
+		   TO_CHAR('') as AdministrationGroup,
+		   '3.1.' || TO_CHAR((SELECT COUNT(*) FROM PMIS_RES.MilReadiness WHERE MilReadinessCmdType IS NOT NULL) + 2) || '.' as RowNumber,
+           0 as IsEmptyRow
+	FROM dual
+    
+    UNION ALL
+    
+	SELECT 7 + (SELECT COUNT(*) FROM PMIS_RES.MilReadiness WHERE MilReadinessCmdType IS NOT NULL) as StatusID,
+		   'Доставят се чрез сборен пункт (сборен пукт на ОВО - ППЗ)' as StatusName,
+		   7 + (SELECT COUNT(*) FROM PMIS_RES.MilReadiness WHERE MilReadinessCmdType IS NOT NULL) as StatusOrder,
+		   0 as MilReadinessID,
+		   TO_CHAR('') as AdministrationGroup,
+		   '3.1.' || TO_CHAR((SELECT COUNT(*) FROM PMIS_RES.MilReadiness WHERE MilReadinessCmdType IS NOT NULL) + 3) || '.' as RowNumber,
+           0 as IsEmptyRow
+	FROM dual
+    
+    UNION ALL
+    
+	SELECT 8 + (SELECT COUNT(*) FROM PMIS_RES.MilReadiness WHERE MilReadinessCmdType IS NOT NULL) as StatusID,
+		   'Всичко с МН за в.ф. на въоръжените сили' as StatusName,
+		   8 + (SELECT COUNT(*) FROM PMIS_RES.MilReadiness WHERE MilReadinessCmdType IS NOT NULL) as StatusOrder,
+		   0 as MilReadinessID,
+		   TO_CHAR('') as AdministrationGroup,
+		   '' as RowNumber,
+           0 as IsEmptyRow
+	FROM dual
+    
+    UNION ALL
+    
+	SELECT 9 + (SELECT COUNT(*) FROM PMIS_RES.MilReadiness WHERE MilReadinessCmdType IS NOT NULL) as StatusID,
+		   'С МН за силите от системата за национална сигурност' as StatusName,
+		   9 + (SELECT COUNT(*) FROM PMIS_RES.MilReadiness WHERE MilReadinessCmdType IS NOT NULL) as StatusOrder,
+		   0 as MilReadinessID,
+		   TO_CHAR('') as AdministrationGroup,
+		   '3.2.' as RowNumber,
+           1 as IsEmptyRow
+	FROM dual
+   
+	UNION ALL
+
+	SELECT 9 + (SELECT COUNT(*) FROM PMIS_RES.MilReadiness WHERE MilReadinessCmdType IS NOT NULL) + (DENSE_RANK() OVER (ORDER BY a.AdministrationGroupSeq, a.AdministrationGroup)) as StatusID,
+		   'С МН за ' || a.AdministrationGroup as StatusName,
+		   9 + (SELECT COUNT(*) FROM PMIS_RES.MilReadiness) + (DENSE_RANK() OVER (ORDER BY a.AdministrationGroupSeq, a.AdministrationGroup)) as StatusOrder,
+		   0 as MilReadinessID,
+		   a.AdministrationGroup,
+		   '3.2.' || TO_CHAR((DENSE_RANK() OVER (ORDER BY a.AdministrationGroupSeq, a.AdministrationGroup))) || '.' as RowNumber,
+           0 as IsEmtpyRow
+	FROM PMIS_ADM.Administrations a
+    WHERE a.AdministrationGroup IS NOT NULL AND NVL(a.IsMinistryOfDefence, 0) = 0
+    GROUP BY a.AdministrationGroupSeq, a.AdministrationGroup
+    
+	UNION ALL
+
+	SELECT 10 + (SELECT COUNT(*) FROM PMIS_RES.MilReadiness WHERE MilReadinessCmdType IS NOT NULL) + (SELECT COUNT(*) FROM PMIS_ADM.Administrations WHERE AdministrationGroup IS NOT NULL AND NVL(IsMinistryOfDefence, 0) = 0) as StatusID,
+		   'Процент резерв с МН /брой/' as StatusName,
+		   10 + (SELECT COUNT(*) FROM PMIS_RES.MilReadiness WHERE MilReadinessCmdType IS NOT NULL) + (SELECT COUNT(*) FROM PMIS_ADM.Administrations WHERE AdministrationGroup IS NOT NULL AND NVL(IsMinistryOfDefence, 0) = 0) as StatusOrder,
+		   0 as MilReadinessID,
+		   TO_CHAR('') as AdministrationGroup,
+           '3.2.' || TO_CHAR((SELECT COUNT(DISTINCT AdministrationGroup) FROM PMIS_ADM.Administrations WHERE AdministrationGroup IS NOT NULL AND NVL(IsMinistryOfDefence, 0) = 0) + 1) || '.' as RowNumber,
+           0 as IsEmtpyRow
+	FROM dual
+    
+    UNION ALL
+
+	SELECT 11 + (SELECT COUNT(*) FROM PMIS_RES.MilReadiness WHERE MilReadinessCmdType IS NOT NULL) + (SELECT COUNT(*) FROM PMIS_ADM.Administrations WHERE AdministrationGroup IS NOT NULL AND NVL(IsMinistryOfDefence, 0) = 0) as StatusID,
+		   'Доставят се направо (община-ППЗ)' as StatusName,
+		   11 + (SELECT COUNT(*) FROM PMIS_RES.MilReadiness WHERE MilReadinessCmdType IS NOT NULL) + (SELECT COUNT(*) FROM PMIS_ADM.Administrations WHERE AdministrationGroup IS NOT NULL AND NVL(IsMinistryOfDefence, 0) = 0) as StatusOrder,
+		   0 as MilReadinessID,
+		   TO_CHAR('') as AdministrationGroup,
+           '3.2.' || TO_CHAR((SELECT COUNT(DISTINCT AdministrationGroup) FROM PMIS_ADM.Administrations WHERE AdministrationGroup IS NOT NULL AND NVL(IsMinistryOfDefence, 0) = 0) + 2) || '.' as RowNumber,
+           0 as IsEmtpyRow
+	FROM dual
+    
+    UNION ALL
+
+	SELECT 12 + (SELECT COUNT(*) FROM PMIS_RES.MilReadiness WHERE MilReadinessCmdType IS NOT NULL) + (SELECT COUNT(*) FROM PMIS_ADM.Administrations WHERE AdministrationGroup IS NOT NULL AND NVL(IsMinistryOfDefence, 0) = 0) as StatusID,
+		   'Доставят се чрез сборен пункт (сборен пукт на ОВО ППЗ)' as StatusName,
+		   12 + (SELECT COUNT(*) FROM PMIS_RES.MilReadiness WHERE MilReadinessCmdType IS NOT NULL) + (SELECT COUNT(*) FROM PMIS_ADM.Administrations WHERE AdministrationGroup IS NOT NULL AND NVL(IsMinistryOfDefence, 0) = 0) as StatusOrder,
+		   0 as MilReadinessID,
+		   TO_CHAR('') as AdministrationGroup,
+           '3.2.' || TO_CHAR((SELECT COUNT(DISTINCT AdministrationGroup) FROM PMIS_ADM.Administrations WHERE AdministrationGroup IS NOT NULL AND NVL(IsMinistryOfDefence, 0) = 0) + 3) || '.' as RowNumber,
+           0 as IsEmtpyRow
+	FROM dual
+    
+    UNION ALL
+
+	SELECT 13 + (SELECT COUNT(*) FROM PMIS_RES.MilReadiness WHERE MilReadinessCmdType IS NOT NULL) + (SELECT COUNT(*) FROM PMIS_ADM.Administrations WHERE AdministrationGroup IS NOT NULL AND NVL(IsMinistryOfDefence, 0) = 0) as StatusID,
+		   'Всичко с МН за силите от системата за национална сигурност' as StatusName,
+		   13 + (SELECT COUNT(*) FROM PMIS_RES.MilReadiness WHERE MilReadinessCmdType IS NOT NULL) + (SELECT COUNT(*) FROM PMIS_ADM.Administrations WHERE AdministrationGroup IS NOT NULL AND NVL(IsMinistryOfDefence, 0) = 0) as StatusOrder,
+		   0 as MilReadinessID,
+		   TO_CHAR('') as AdministrationGroup,
+           '' as RowNumber,
+           0 as IsEmtpyRow
+	FROM dual
+    
+    UNION ALL
+
+	SELECT 14 + (SELECT COUNT(*) FROM PMIS_RES.MilReadiness WHERE MilReadinessCmdType IS NOT NULL) + (SELECT COUNT(*) FROM PMIS_ADM.Administrations WHERE AdministrationGroup IS NOT NULL AND NVL(IsMinistryOfDefence, 0) = 0) as StatusID,
+		   'Отсрочени' as StatusName,
+		   14 + (SELECT COUNT(*) FROM PMIS_RES.MilReadiness WHERE MilReadinessCmdType IS NOT NULL) + (SELECT COUNT(*) FROM PMIS_ADM.Administrations WHERE AdministrationGroup IS NOT NULL AND NVL(IsMinistryOfDefence, 0) = 0) as StatusOrder,
+		   0 as MilReadinessID,
+		   TO_CHAR('') as AdministrationGroup,
+           '3.3.' as RowNumber,
+           0 as IsEmtpyRow
+	FROM dual
+    
+    UNION ALL
+
+	SELECT 15 + (SELECT COUNT(*) FROM PMIS_RES.MilReadiness WHERE MilReadinessCmdType IS NOT NULL) + (SELECT COUNT(*) FROM PMIS_ADM.Administrations WHERE AdministrationGroup IS NOT NULL AND NVL(IsMinistryOfDefence, 0) = 0) as StatusID,
+		   'Временно отписани' as StatusName,
+		   15 + (SELECT COUNT(*) FROM PMIS_RES.MilReadiness WHERE MilReadinessCmdType IS NOT NULL) + (SELECT COUNT(*) FROM PMIS_ADM.Administrations WHERE AdministrationGroup IS NOT NULL AND NVL(IsMinistryOfDefence, 0) = 0) as StatusOrder,
+		   0 as MilReadinessID,
+		   TO_CHAR('') as AdministrationGroup,
+           '3.4.' as RowNumber,
+           0 as IsEmtpyRow
+	FROM dual
+    
+    UNION ALL
+
+	SELECT 16 + (SELECT COUNT(*) FROM PMIS_RES.MilReadiness WHERE MilReadinessCmdType IS NOT NULL) + (SELECT COUNT(*) FROM PMIS_ADM.Administrations WHERE AdministrationGroup IS NOT NULL AND NVL(IsMinistryOfDefence, 0) = 0) as StatusID,
+		   'Свободни' as StatusName,
+		   16 + (SELECT COUNT(*) FROM PMIS_RES.MilReadiness WHERE MilReadinessCmdType IS NOT NULL) + (SELECT COUNT(*) FROM PMIS_ADM.Administrations WHERE AdministrationGroup IS NOT NULL AND NVL(IsMinistryOfDefence, 0) = 0) as StatusOrder,
+		   0 as MilReadinessID,
+		   TO_CHAR('') as AdministrationGroup,
+           '3.5.' as RowNumber,
+           0 as IsEmtpyRow
+	FROM dual
+;
+/

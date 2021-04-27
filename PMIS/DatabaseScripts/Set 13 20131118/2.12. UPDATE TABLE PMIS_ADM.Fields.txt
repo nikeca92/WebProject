@@ -1,0 +1,123 @@
+﻿INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_MilitaryReportPerson_MilRepPersonSpeciality_Profession', 'Професия', 10);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_MilitaryReportPerson_MilRepPersonSpeciality_Speciality', 'Специалност', 11);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_EquipTechReq_Command_Position_NormativeTechnics', 'Нормативна категория', 2);
+
+UPDATE PMIS_ADM.Fields SET
+   Seq = 3
+WHERE FieldKey = 'RES_EquipTechReq_Command_Position_Comment';
+
+UPDATE PMIS_ADM.Fields SET
+   Seq = 4
+WHERE FieldKey = 'RES_EquipTechReq_Command_Position_Count';
+
+
+
+UPDATE PMIS_ADM.Fields SET
+   FieldName = 'Вид ремарке и полуремарке'
+WHERE FieldKey = 'RES_Lists_TrailerKind_TableValue';
+
+UPDATE PMIS_ADM.Fields SET
+   FieldName = 'Тип ремарке и полуремарке'
+WHERE FieldKey = 'RES_Lists_TrailerType_TableValue';
+
+UPDATE PMIS_ADM.Fields SET
+   FieldName = 'Вид каросерия на ремарке и полуремарке'
+WHERE FieldKey = 'RES_Lists_TrailerBodyKind_TableValue';
+
+
+
+UPDATE PMIS_ADM.Fields SET
+   FieldName = 'Марка инж. машина'
+WHERE FieldKey = 'RES_Lists_EngEquipBaseMakes_EngEquipBaseMakeName';
+
+UPDATE PMIS_ADM.Fields SET
+   FieldName = 'Вид инж. машина'
+WHERE FieldKey = 'RES_Lists_EngEquipKind_TableValue';
+
+UPDATE PMIS_ADM.Fields SET
+   FieldName = 'Тип инж. машина'
+WHERE FieldKey = 'RES_Lists_EngEquipType_TableValue';
+
+UPDATE PMIS_ADM.Fields SET
+   FieldName = 'Вид базова машина (инж. машини)'
+WHERE FieldKey = 'RES_Lists_EngEquipBaseKind_TableValue';
+
+UPDATE PMIS_ADM.Fields SET
+   FieldName = 'Тип базова машина (инж. машини)'
+WHERE FieldKey = 'RES_Lists_EngEquipBaseType_TableValue';
+
+UPDATE PMIS_ADM.Fields SET
+   FieldName = 'Вид гориво за базова машина (инж. машини)'
+WHERE FieldKey = 'RES_Lists_EngEquipBaseEngineType_TableValue';
+
+UPDATE PMIS_ADM.Fields SET
+   FieldName = 'Вид работен орган (инж. машини)'
+WHERE FieldKey = 'RES_Lists_EngEquipWorkingBodyKind_TableValue';
+
+UPDATE PMIS_ADM.Fields SET
+   FieldName = 'Вид гориво за работен орган (инж. машини)'
+WHERE FieldKey = 'RES_Lists_EngEquipWorkBodyEngineType_TableValue';
+
+UPDATE PMIS_ADM.Fields SET
+   FieldName = 'Модел инж. машина'
+WHERE FieldKey = 'RES_Lists_EngEquipBaseModels_EngEquipBaseModelName';
+
+
+
+UPDATE PMIS_ADM.Fields SET
+   FieldName = 'Вид самоходни машина'
+WHERE FieldKey = 'RES_Lists_MobileLiftingEquipKind_TableValue';
+
+UPDATE PMIS_ADM.Fields SET
+   FieldName = 'Тип самоходни машина'
+WHERE FieldKey = 'RES_Lists_MobileLiftingEquipType_TableValue';
+
+
+
+UPDATE PMIS_ADM.Fields SET
+   FieldName = 'Марка базова машина (спец. инж. и самолетообслужваща техника)'
+WHERE FieldKey = 'RES_Lists_AviationOtherBaseMachineMakes_AviationOtherBaseMachineMakeName';
+
+UPDATE PMIS_ADM.Fields SET
+   FieldName = 'Модел базова машина (спец. инж. и самолетообслужваща техника)'
+WHERE FieldKey = 'RES_Lists_AviationOtherBaseMachineModels_AviationOtherBaseMachineModelName';
+
+UPDATE PMIS_ADM.Fields SET
+   FieldName = 'Вид базова машина (спец. инж. и самолетообслужваща техника)'
+WHERE FieldKey = 'RES_Lists_AviationOtherBaseMachineKind_TableValue';
+
+UPDATE PMIS_ADM.Fields SET
+   FieldName = 'Тип базова машина (спец. инж. и самолетообслужваща техника)'
+WHERE FieldKey = 'RES_Lists_AviationOtherBaseMachineType_TableValue';
+
+UPDATE PMIS_ADM.Fields SET
+   FieldName = 'Вид оборудване (спец. инж. и самолетообслужваща техника)'
+WHERE FieldKey = 'RES_Lists_AviationOtherEquipmentKind_TableValue';
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('number', 'RES_EquipTechReq_Command_Position_DriversCount', 'Водачи', 5);
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_EquipTechReq_MilitaryDepartment_DriversCount', 'Водачи', 3);
+
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Lists_MilitaryReadinesses_MilitaryReadinessCmdType', 'Вид команда', 2);
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'ADM_Lists_Administrations_AdministrationGroup', 'Група', 2);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('number', 'ADM_Lists_Administrations_AdministrationGroupSeq', 'Подредба на група', 3);
+
+COMMIT;
+/

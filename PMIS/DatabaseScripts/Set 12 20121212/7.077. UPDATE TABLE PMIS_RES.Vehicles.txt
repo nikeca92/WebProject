@@ -1,0 +1,5 @@
+﻿
+ALTER TABLE PMIS_RES.Vehicles ADD VehicleMakeName VARCHAR2(300 BYTE);
+ALTER TABLE PMIS_RES.Vehicles ADD VehicleModelName VARCHAR2(300 BYTE);
+
+/

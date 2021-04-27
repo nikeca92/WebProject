@@ -1,0 +1,21 @@
+﻿CREATE TABLE PMIS_RES.AviationEquipInvNumbers(AviationEquipInvNumberID number NOT NULL,
+                                              AviationEquipmentID number NOT NULL,
+                                              AirInvNumber varchar2(20),                                                   
+                                              ChangeDate date
+                                             );
+
+ALTER TABLE PMIS_RES.AviationEquipInvNumbers ADD CONSTRAINT AviationEquipInvNumbers_PK PRIMARY KEY(AviationEquipInvNumberID);
+ALTER TABLE PMIS_RES.AviationEquipInvNumbers ADD CONSTRAINT AviatEquipInvNumbers_Aviat_FK FOREIGN KEY (AviationEquipmentID) REFERENCES PMIS_RES.AviationEquipment (AviationEquipmentID);
+
+CREATE SEQUENCE PMIS_RES.AviationEquipInvNumbers_ID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+CREATE TRIGGER PMIS_RES.TRG_AviatEquipInvNumb_INSERT
+BEFORE INSERT ON PMIS_RES.AviationEquipInvNumbers
+FOR EACH ROW
+BEGIN
+   SELECT PMIS_RES.AviationEquipInvNumbers_ID_SEQ.nextval INTO :new.AviationEquipInvNumberID FROM dual;
+END;
+/

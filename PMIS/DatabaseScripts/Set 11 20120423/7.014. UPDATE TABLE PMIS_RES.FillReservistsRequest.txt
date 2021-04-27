@@ -1,0 +1,8 @@
+﻿ALTER TABLE PMIS_RES.FillReservistsRequest ADD (MilReportSpecialityID number);
+
+ALTER TABLE PMIS_RES.FillReservistsRequest ADD CONSTRAINT FillResReq_MilRepSpec_FK FOREIGN KEY (MilReportSpecialityID) REFERENCES PMIS_ADM.MilitaryReportSpecialities (MilReportSpecialityID);
+/
+
+ALTER TABLE PMIS_RES.FillReservistsRequest ADD (NeedCourse number(1) CHECK (NeedCourse BETWEEN 0 AND 1));
+
+/

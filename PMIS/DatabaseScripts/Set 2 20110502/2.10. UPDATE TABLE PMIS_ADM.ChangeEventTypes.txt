@@ -1,0 +1,24 @@
+﻿INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Postpone_CopyPostpone', 'Копиране на отсрочване', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Reservist_AddReservist', 'Добавяне на резервист', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 2);
+
+
+
+UPDATE PMIS_ADM.ChangeEventTypes 
+SET ChangeEventTypeKey = 'RES_Lists_TractorType_AddTractorType'
+WHERE ChangeEventTypeKey = 'RES_Lists_TractorType_AddVehicleRoadability';
+
+UPDATE PMIS_ADM.ChangeEventTypes 
+SET ChangeEventTypeKey = 'RES_Lists_TractorType_EditTractorType'
+WHERE ChangeEventTypeKey = 'RES_Lists_TractorType_EditVehicleRoadability';
+
+UPDATE PMIS_ADM.ChangeEventTypes 
+SET ChangeEventTypeKey = 'RES_Lists_TractorType_DeleteTractorType'
+WHERE ChangeEventTypeKey = 'RES_Lists_TractorType_DeleteVehicleRoadability';
+
+
+COMMIT;
+
+

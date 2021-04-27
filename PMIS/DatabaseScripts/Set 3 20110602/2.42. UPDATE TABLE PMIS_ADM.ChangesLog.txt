@@ -1,0 +1,4 @@
+﻿ALTER TABLE PMIS_ADM.ChangesLog ADD LoginLogID number;					
+ALTER TABLE PMIS_ADM.ChangesLog ADD CONSTRAINT ChangesLog_LoginLog_FK FOREIGN KEY (LoginLogID) REFERENCES PMIS_ADM.LoginLog (LoginLogID);	
+
+COMMIT;

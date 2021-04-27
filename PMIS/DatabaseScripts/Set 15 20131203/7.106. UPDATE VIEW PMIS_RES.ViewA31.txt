@@ -1,0 +1,34 @@
+﻿CREATE OR REPLACE VIEW PMIS_RES.ViewA31
+AS 
+  SELECT MilitaryDepartmentId, MilitaryDepartmentName, MilReadinessID, MilReadiness, KOD_VVR, Command, CommandSuffix, DeliveryCityID, DeliveryPlace  FROM
+  (
+    SELECT d.MilitaryDepartmentId as MilitaryDepartmentId, f.MilitaryDepartmentName as MilitaryDepartmentName,
+           e.MilReadinessID as MilReadinessID, e.MilReadinessCmdType as MilReadiness, 
+           a.KOD_VVR as KOD_VVR, a.NK as Command, b.MilitaryCommandSuffix as CommandSuffix,
+           b.DeliveryCityID,
+           b.DeliveryPlace
+    FROM UKAZ_OWNER.VVR a
+    INNER JOIN PMIS_RES.REQUESTSCOMMANDS b ON b.MilitaryCommandId = a.KOD_VVR
+    INNER JOIN PMIS_RES.REQUESTCOMMANDPOSITIONS c ON c.RequestsCommandID = b.RequestsCommandID
+    INNER JOIN PMIS_RES.FILLRESERVISTSREQUEST d ON d.RequestCommandPositionId = c.RequestCommandPositionId
+    INNER JOIN PMIS_RES.MILREADINESS e ON b.MilReadinessID = e.MilReadinessID
+    INNER JOIN PMIS_ADM.MilitaryDepartments f ON d.MilitaryDepartmentId = f.MilitaryDepartmentId
+	
+    UNION ALL
+    
+    SELECT d.MilitaryDepartmentId as MilitaryDepartmentId, f.MilitaryDepartmentName as MilitaryDepartmentName,
+           e.MilReadinessID as MilReadinessID, e.MilReadinessCmdType as MilReadiness, 
+           a.KOD_VVR as KOD_VVR, a.NK as Command, b.MilitaryCommandSuffix as CommandSuffix,
+           b.DeliveryCityID,
+           b.DeliveryPlace
+    FROM UKAZ_OWNER.VVR a
+    INNER JOIN PMIS_RES.TECHNICSREQUESTCOMMANDS b ON b.MilitaryCommandId = a.KOD_VVR
+    INNER JOIN PMIS_RES.TECHNICSREQUESTCMDPOSITIONS c ON c.TechRequestsCommandID = b.TechRequestsCommandID
+    --INNER JOIN PMIS_RES.FULFILTECHNICSREQUEST d ON d.TechnicsRequestCmdPositionID = c.TechnicsRequestCmdPositionID /*The MilitaryDepartmentID should be pulled from PMIS_RES.TechRequestCmdPositionsMilDept because of the DriversCount field. There could be a request for Drivers from a Military Department which has't any actual fulfulments. */
+    INNER JOIN PMIS_RES.TechRequestCmdPositionsMilDept d ON d.TechnicsRequestCmdPositionID = c.TechnicsRequestCmdPositionID	
+    INNER JOIN PMIS_RES.MILREADINESS e ON b.MilReadinessID = e.MilReadinessID
+    INNER JOIN PMIS_ADM.MilitaryDepartments f ON d.MilitaryDepartmentId = f.MilitaryDepartmentId
+  )
+  GROUP BY MilitaryDepartmentId, MilitaryDepartmentName, MilReadinessID, MilReadiness, KOD_VVR, Command, CommandSuffix, DeliveryCityID, DeliveryPlace
+;
+/

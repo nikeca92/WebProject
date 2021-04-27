@@ -1,0 +1,13 @@
+﻿INSERT INTO PMIS_RES.GTable(TableName, TableKey, TableSeq, TableValue)
+VALUES ('TechMilRepStat_RemovedReasons', '1', '1', 'Причина 1');
+
+INSERT INTO PMIS_RES.GTable(TableName, TableKey, TableSeq, TableValue)
+VALUES ('TechMilRepStat_RemovedReasons', '2', '2', 'Причина 2');
+
+INSERT INTO PMIS_RES.GTable(TableName, TableKey, TableSeq, TableValue)
+VALUES ('TechMilRepStat_ТemporaryRemovedReasons', '1', '1', 'Причина 1');
+
+INSERT INTO PMIS_RES.GTable(TableName, TableKey, TableSeq, TableValue)
+VALUES ('TechMilRepStat_ТemporaryRemovedReasons', '2', '2', 'Причина 2');
+
+COMMIT;

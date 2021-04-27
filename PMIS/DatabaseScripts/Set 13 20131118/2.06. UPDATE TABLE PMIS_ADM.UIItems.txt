@@ -1,0 +1,556 @@
+﻿--Резерв -> Човешки ресурси -> Военно-отчетни лица -> Редактиране на военно-отчетно лице -> Професия и специалност
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_HUMANRES_EDITMILITARYREPORTPERSON_SPECIALITY', 'Професия и специалност', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_HUMANRES_EDITMILITARYREPORTPERSON'));
+
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_EQUIPTECHREQUESTS_EDIT_COMMANDS_EDIT_POSITIONS_NORMATIVETECHNICS', 'Нормативна категория', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_EQUIPTECHREQUESTS_EDIT_COMMANDS_EDIT_POSITIONS'));
+
+--Резерв -> Заявки за окомплектоване с техника от резерва -> Определяне на ВО на заявка за окомплектоване с техника от резерва -> Данни за позицията -> Нормативна категория
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_EQUIPTECHREQUESTS_MILDEPT_POSITION_NORMATIVETECHNICS', 'Нормативна категория', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_EQUIPTECHREQUESTS_MILDEPT_POSITION'));
+
+--Резерв -> Заявки за окомплектоване с техника от резерва -> Изпълнение на заявки за окомплектоване с техника от резерва -> Команда -> Позиции -> Нормативна категория
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_EQUIPTECHREQUESTS_FULFIL_MILCOMMAND_POSITIONS_NORMATIVETECHNICS', 'Нормативна категория', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_EQUIPTECHREQUESTS_FULFIL_MILCOMMAND_POSITIONS'));
+
+--Резерв -> Справки -> Списък на техниката с МН по определена заявка -> Детайли - нормативна категория
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_LISTTECHWITHAPPOINTMENTS_DETAILS_NORMATIVETECHNICS', 'Детайли - нормативна категория', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_LISTTECHWITHAPPOINTMENTS'));
+
+
+--Change some technics types names depending on the new normative document:
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Търсене на ремарке и полуремарке'
+WHERE UIKey = 'RES_EQUIPTECHREQUESTS_FULFIL_MILCOMMAND_POSITIONS_FULFIL_SEARCHTRAILER';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Ремаркета и полуремаркета'
+WHERE UIKey = 'RES_TECHNICS_TRAILERS';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Видове ремаркета и полуремаркета'
+WHERE UIKey = 'RES_LISTMAINT_TRAILERKIND';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Добавяне на вид ремарке и полуремарке'
+WHERE UIKey = 'RES_LISTMAINT_TRAILERKIND_ADD';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Редактиране на вид ремарке и полуремарке'
+WHERE UIKey = 'RES_LISTMAINT_TRAILERKIND_EDIT';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Изтриване на вид ремарке и полуремарке'
+WHERE UIKey = 'RES_LISTMAINT_TRAILERKIND_DELETE';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Типове ремаркета и полуремаркета'
+WHERE UIKey = 'RES_LISTMAINT_TRAILERTYPE';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Добавяне на тип ремарке и полуремарке'
+WHERE UIKey = 'RES_LISTMAINT_TRAILERTYPE_ADD';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Редактиране на тип ремарке и полуремарке'
+WHERE UIKey = 'RES_LISTMAINT_TRAILERTYPE_EDIT';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Изтриване на тип ремарке и полуремарке'
+WHERE UIKey = 'RES_LISTMAINT_TRAILERTYPE_DELETE';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Списък на техниката на военен отчет - Ремаркета и полуремаркета'
+WHERE UIKey = 'RES_REPORTS_TRAILERS';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Видове каросерии на ремаркета и полуремаркета'
+WHERE UIKey = 'RES_LISTMAINT_TRAILERBODYKIND';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Добавяне на вид каросерия на ремарке и полуремарке'
+WHERE UIKey = 'RES_LISTMAINT_TRAILERBODYKIND_ADD';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Редактиране на вид каросерия на ремарке и полуремарке'
+WHERE UIKey = 'RES_LISTMAINT_TRAILERBODYKIND_EDIT';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Изтриване на вид каросерия на ремарке и полуремарке'
+WHERE UIKey = 'RES_LISTMAINT_TRAILERBODYKIND_DELETE';
+
+
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Инженерни машини'
+WHERE UIKey = 'RES_TECHNICS_ENG_EQUIP';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Марки инж. машини'
+WHERE UIKey = 'RES_LISTMAINT_ENGEQUIPBASEMAKENAMES';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Добавяне на марка инж. машини'
+WHERE UIKey = 'RES_LISTMAINT_ENGEQUIPBASEMAKENAMES_ADD';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Марка инж. машини'
+WHERE UIKey = 'RES_LISTMAINT_ENGEQUIPBASEMAKES_ADD_ENGEQUIPMAKESNAME';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Редактиране на марка инж. машини'
+WHERE UIKey = 'RES_LISTMAINT_ENGEQUIPBASEMAKENAMES_EDIT';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Марка инж. машини'
+WHERE UIKey = 'RES_LISTMAINT_ENGEQUIPMAKES_EDIT_ENGEQUIPMAKESNAME';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Изтриване на марка инж. машини'
+WHERE UIKey = 'RES_LISTMAINT_ENGEQUIPBASEMAKENAMES_DELETE';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Модели инж. машини'
+WHERE UIKey = 'RES_LISTMAINT_ENGEQUIPBASEMODELS';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Добавяне на модел инж. машини'
+WHERE UIKey = 'RES_LISTMAINT_ENGEQUIPBASEMODELS_ADD';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Редактиране на модел инж. машини'
+WHERE UIKey = 'RES_LISTMAINT_ENGEQUIPBASEMODELS_EDIT';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Изтриване на модел инж. машини'
+WHERE UIKey = 'RES_LISTMAINT_ENGEQUIPBASEMODELS_DELETE';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Видове инж. машини'
+WHERE UIKey = 'RES_LISTMAINT_ENGEQUIPKIND';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Добавяне на вид инж. машини'
+WHERE UIKey = 'RES_LISTMAINT_ENGEQUIPKIND_ADD';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Редактиране на вид инж. машини'
+WHERE UIKey = 'RES_LISTMAINT_ENGEQUIPKIND_EDIT';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Изтриване на вид инж. машини'
+WHERE UIKey = 'RES_LISTMAINT_ENGEQUIPKIND_DELETE';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Типове инж. машини'
+WHERE UIKey = 'RES_LISTMAINT_ENGEQUIPTYPE';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Добавяне на тип инж. машини'
+WHERE UIKey = 'RES_LISTMAINT_ENGEQUIPTYPE_ADD';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Редактиране на тип инж. машини'
+WHERE UIKey = 'RES_LISTMAINT_ENGEQUIPTYPE_EDIT';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Изтриване на тип инж. машини'
+WHERE UIKey = 'RES_LISTMAINT_ENGEQUIPTYPE_DELETE';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Видове базови машини (инж. машини)'
+WHERE UIKey = 'RES_LISTMAINT_ENGEQUIPBASEKIND';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Добавяне на вид базова машина (инж. машини)'
+WHERE UIKey = 'RES_LISTMAINT_ENGEQUIPBASEKIND_ADD';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Редактиране на вид базова машина (инж. машини)'
+WHERE UIKey = 'RES_LISTMAINT_ENGEQUIPBASEKIND_EDIT';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Изтриване на вид базова машина (инж. машини)'
+WHERE UIKey = 'RES_LISTMAINT_ENGEQUIPBASEKIND_DELETE';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Типове базови машини (инж. машини)'
+WHERE UIKey = 'RES_LISTMAINT_ENGEQUIPBASETYPE';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Добавяне на тип базова машина (инж. машини)'
+WHERE UIKey = 'RES_LISTMAINT_ENGEQUIPBASETYPE_ADD';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Редактиране на тип базова машина (инж. машини)'
+WHERE UIKey = 'RES_LISTMAINT_ENGEQUIPBASETYPE_EDIT';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Изтриване на тип базова машина (инж. машини)'
+WHERE UIKey = 'RES_LISTMAINT_ENGEQUIPBASETYPE_DELETE';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Видове гориво за базова машина (инж. машини)'
+WHERE UIKey = 'RES_LISTMAINT_ENGEQUIPBASEENGINETYPE';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Добавяне на вид гориво за базова машина (инж. машини)'
+WHERE UIKey = 'RES_LISTMAINT_ENGEQUIPBASEENGINETYPE_ADD';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Редактиране на вид гориво за базова машина (инж. машини)'
+WHERE UIKey = 'RES_LISTMAINT_ENGEQUIPBASEENGINETYPE_EDIT';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Изтриване на вид гориво за базова машина (инж. машини)'
+WHERE UIKey = 'RES_LISTMAINT_ENGEQUIPBASEENGINETYPE_DELETE';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Видове работни органи (инж. машини)'
+WHERE UIKey = 'RES_LISTMAINT_ENGEQUIPWORKINGBODYKIND';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Добавяне на вид работен орган (инж. машини)'
+WHERE UIKey = 'RES_LISTMAINT_ENGEQUIPWORKINGBODYKIND_ADD';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Редактиране на вид работен орган (инж. машини)'
+WHERE UIKey = 'RES_LISTMAINT_ENGEQUIPWORKINGBODYKIND_EDIT';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Изтриване на вид работен орган (инж. машини)'
+WHERE UIKey = 'RES_LISTMAINT_ENGEQUIPWORKINGBODYKIND_DELETE';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Видове гориво за работен орган (инж. машини)'
+WHERE UIKey = 'RES_LISTMAINT_ENGEQUIPWORKBODYENGINETYPE';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Добавяне на вид гориво за работен орган (инж. машини)'
+WHERE UIKey = 'RES_LISTMAINT_ENGEQUIPWORKBODYENGINETYPE_ADD';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Редактиране на вид гориво за работен орган (инж. машини)'
+WHERE UIKey = 'RES_LISTMAINT_ENGEQUIPWORKBODYENGINETYPE_EDIT';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Изтриване на вид гориво за работен орган (инж. машини)'
+WHERE UIKey = 'RES_LISTMAINT_ENGEQUIPWORKBODYENGINETYPE_DELETE';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Търсене на Инженерни машини'
+WHERE UIKey = 'RES_EQUIPTECHREQUESTS_FULFIL_MILCOMMAND_POSITIONS_FULFIL_SEARCHENG_EQUIP';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Списък на техниката на военен отчет - Инженерни машини'
+WHERE UIKey = 'RES_REPORTS_ENG_EQUIP';
+
+
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Самоходни машини'
+WHERE UIKey = 'RES_TECHNICS_MOB_LIFT_EQUIP';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Видове самоходни машини'
+WHERE UIKey = 'RES_LISTMAINT_MOBILELIFTINGEQUIPKIND';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Добавяне на вид самоходна машина'
+WHERE UIKey = 'RES_LISTMAINT_MOBILELIFTINGEQUIPKIND_ADD';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Редактиране на вид самоходна машина'
+WHERE UIKey = 'RES_LISTMAINT_MOBILELIFTINGEQUIPKIND_EDIT';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Изтриване на вид самоходна машина'
+WHERE UIKey = 'RES_LISTMAINT_MOBILELIFTINGEQUIPKIND_DELETE';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Типове самоходни машини'
+WHERE UIKey = 'RES_LISTMAINT_MOBILELIFTINGEQUIPTYPE';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Добавяне на тип самоходна машина'
+WHERE UIKey = 'RES_LISTMAINT_MOBILELIFTINGEQUIPTYPE_ADD';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Редактиране на тип самоходна машина'
+WHERE UIKey = 'RES_LISTMAINT_MOBILELIFTINGEQUIPTYPE_EDIT';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Изтриване на тип самоходна машина'
+WHERE UIKey = 'RES_LISTMAINT_MOBILELIFTINGEQUIPTYPE_DELETE';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Търсене на самоходна машина'
+WHERE UIKey = 'RES_EQUIPTECHREQUESTS_FULFIL_MILCOMMAND_POSITIONS_FULFIL_SEARCHMOB_LIFT_EQUIP';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Списък на техниката на военен отчет - Самоходни машини'
+WHERE UIKey = 'RES_REPORTS_MOB_LIFT_EQUIP';
+
+
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Инженерна и самолетообслужваща техника'
+WHERE UIKey = 'RES_TECHNICS_AVIATION_EQUIP';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Марки базови машини (спец. инж. и самолетообслужваща техника)'
+WHERE UIKey = 'RES_LISTMAINT_AVIATIONOTHERBASEMACHINEMAKENAMES';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Добавяне на марка базова машина (спец. инж. и самолетообслужваща техника)'
+WHERE UIKey = 'RES_LISTMAINT_AVIATIONOTHERBASEMACHINEMAKENAMES_ADD';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Марка базова машина (спец. инж. и самолетообслужваща техника)'
+WHERE UIKey = 'RES_LISTMAINT_AVIATIONOTHERBASEMACHINEMAKES_ADD_AVIATIONOTHERBASEMACHINEMAKESNAME';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Редактиране на марка базова машина (спец. инж. и самолетообслужваща техника)'
+WHERE UIKey = 'RES_LISTMAINT_AVIATIONOTHERBASEMACHINEMAKENAMES_EDIT';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Марка базова машина (спец. инж. и самолетообслужваща техника)'
+WHERE UIKey = 'RES_LISTMAINT_AVIATIONOTHERBASEMACHINEMAKES_EDIT_AVIATIONOTHERBASEMACHINEMAKESNAME';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Изтриване на марка базова машина (спец. инж. и самолетообслужваща техника)'
+WHERE UIKey = 'RES_LISTMAINT_AVIATIONOTHERBASEMACHINEMAKENAMES_DELETE';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Модели базови машини (спец. инж. и самолетообслужваща техника)'
+WHERE UIKey = 'RES_LISTMAINT_AVIATIONOTHERBASEMACHINEMODELS';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Добавяне на модел базова машина (спец. инж. и самолетообслужваща техника)'
+WHERE UIKey = 'RES_LISTMAINT_AVIATIONOTHERBASEMACHINEMODELS_ADD';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Редактиране на модел базова машина (спец. инж. и самолетообслужваща техника)'
+WHERE UIKey = 'RES_LISTMAINT_AVIATIONOTHERBASEMACHINEMODELS_EDIT';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Изтриване на модел базова машина (спец. инж. и самолетообслужваща техника)'
+WHERE UIKey = 'RES_LISTMAINT_AVIATIONOTHERBASEMACHINEMODELS_DELETE';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Видове специализирана инж. и самолетообслужваща техника'
+WHERE UIKey = 'RES_LISTMAINT_AVIATIONOTHERKIND';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Типове специализирана инж. и самолетообслужваща техника'
+WHERE UIKey = 'RES_LISTMAINT_AVIATIONOTHERTYPE';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Добавяне на тип специализирана инж. и самолетообслужваща техника'
+WHERE UIKey = 'RES_LISTMAINT_AVIATIONOTHERTYPE_ADD';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Редактиране на тип специализирана инж. и самолетообслужваща техника'
+WHERE UIKey = 'RES_LISTMAINT_AVIATIONOTHERTYPE_EDIT';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Изтриване на тип специализирана инж. и самолетообслужваща техника'
+WHERE UIKey = 'RES_LISTMAINT_AVIATIONOTHERTYPE_DELETE';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Видове базови машини (спец. инж. и самолетообслужваща техника)'
+WHERE UIKey = 'RES_LISTMAINT_AVIATIONOTHERBASEMACHINEKIND';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Добавяне на вид базова машина (спец. инж. и самолетообслужваща техника)'
+WHERE UIKey = 'RES_LISTMAINT_AVIATIONOTHERBASEMACHINEKIND_ADD';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Редактиране на вид базова машина (спец. инж. и самолетообслужваща техника)'
+WHERE UIKey = 'RES_LISTMAINT_AVIATIONOTHERBASEMACHINEKIND_EDIT';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Изтриване на вид базова машина (спец. инж. и самолетообслужваща техника)'
+WHERE UIKey = 'RES_LISTMAINT_AVIATIONOTHERBASEMACHINEKIND_DELETE';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Типове базови машини (спец. инж. и самолетообслужваща техника)'
+WHERE UIKey = 'RES_LISTMAINT_AVIATIONOTHERBASEMACHINETYPE';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Добавяне на тип базова машина (спец. инж. и самолетообслужваща техника)'
+WHERE UIKey = 'RES_LISTMAINT_AVIATIONOTHERBASEMACHINETYPE_ADD';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Редактиране на тип базова машина (спец. инж. и самолетообслужваща техника)'
+WHERE UIKey = 'RES_LISTMAINT_AVIATIONOTHERBASEMACHINETYPE_EDIT';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Изтриване на тип базова машина (спец. инж. и самолетообслужваща техника)'
+WHERE UIKey = 'RES_LISTMAINT_AVIATIONOTHERBASEMACHINETYPE_DELETE';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Видове оборудване (спец. инж. и самолетообслужваща техника)'
+WHERE UIKey = 'RES_LISTMAINT_AVIATIONOTHEREQUIPMENTKIND';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Добавяне на вид оборудване (спец. инж. и самолетообслужваща техника)'
+WHERE UIKey = 'RES_LISTMAINT_AVIATIONOTHEREQUIPMENTKIND_ADD';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Редактиране на вид оборудване (спец. инж. и самолетообслужваща техника)'
+WHERE UIKey = 'RES_LISTMAINT_AVIATIONOTHEREQUIPMENTKIND_EDIT';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Изтриване на вид оборудване (спец. инж. и самолетообслужваща техника)'
+WHERE UIKey = 'RES_LISTMAINT_AVIATIONOTHEREQUIPMENTKIND_DELETE';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Търсене на Инженерна и самолетообслужваща техника'
+WHERE UIKey = 'RES_EQUIPTECHREQUESTS_FULFIL_MILCOMMAND_POSITIONS_FULFIL_SEARCHAVIATION_EQUIP';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Списък на техниката на военен отчет - Инженерна и самолетообслужваща техника'
+WHERE UIKey = 'RES_REPORTS_AVIATION_EQUIP';
+
+
+
+--Резерв -> Справки -> Списък на техниката на военен отчет - Автомобили
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_VEHICLES_NORMATIVETECHNICS', 'Нормативна категория', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_VEHICLES'));
+
+--Резерв -> Справки -> Списък на техниката на военен отчет - Ремаркета
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_TRAILERS_NORMATIVETECHNICS', 'Нормативна категория', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_TRAILERS'));
+
+--Резерв -> Справки -> Списък на техниката на военен отчет - Трактори
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_TRACTORS_NORMATIVETECHNICS', 'Нормативна категория', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_TRACTORS'));
+
+--Резерв -> Справки -> Списък на техниката на военен отчет - Инженерна техника
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_ENG_EQUIP_NORMATIVETECHNICS', 'Нормативна категория', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_ENG_EQUIP'));
+
+--Резерв -> Справки -> Списък на техниката на военен отчет - Подемно-транспортна техника
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_MOB_LIFT_EQUIP_NORMATIVETECHNICS', 'Нормативна категория', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_MOB_LIFT_EQUIP'));
+
+--Резерв -> Справки -> Списък на техниката на военен отчет - Авиационна техника
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_AVIATION_EQUIP_NORMATIVETECHNICS', 'Нормативна категория', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_AVIATION_EQUIP'));
+
+--Резерв -> Справки -> Списък на техниката на военен отчет - Специализиран железопътен състав
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_RAILWAY_EQUIP_NORMATIVETECHNICS', 'Нормативна категория', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_RAILWAY_EQUIP'));
+
+--Резерв -> Справки -> Списък на техниката на военен отчет - Кораби
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_VESSELS_NORMATIVETECHNICS', 'Нормативна категория', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_VESSELS'));
+
+--Резерв -> Справки -> Списък на техниката на военен отчет - Съдове за ГСМ
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_FUEL_CONTAINERS_NORMATIVETECHNICS', 'Нормативна категория', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_FUEL_CONTAINERS'));
+
+
+
+--Резерв -> Заявки за окомплектоване с техника от резерва -> Изпълнение на заявки за окомплектоване с техника от резерва -> Команда -> Изпълнени -> Търсене на автомобил
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_EQUIPTECHREQUESTS_FULFIL_MILCOMMAND_POSITIONS_FULFIL_SEARCHVEHICLE_NORMATIVETECHNICS', 'Нормативна категория', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_EQUIPTECHREQUESTS_FULFIL_MILCOMMAND_POSITIONS_FULFIL_SEARCHVEHICLE'));
+
+--Резерв -> Заявки за окомплектоване с техника от резерва -> Изпълнение на заявки за окомплектоване с техника от резерва -> Команда -> Изпълнени -> Търсене на ремарке
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_EQUIPTECHREQUESTS_FULFIL_MILCOMMAND_POSITIONS_FULFIL_SEARCHTRAILER_NORMATIVETECHNICS', 'Нормативна категория', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_EQUIPTECHREQUESTS_FULFIL_MILCOMMAND_POSITIONS_FULFIL_SEARCHTRAILER'));
+
+--Резерв -> Заявки за окомплектоване с техника от резерва -> Изпълнение на заявки за окомплектоване с техника от резерва -> Команда -> Изпълнени -> Търсене на трактор
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_EQUIPTECHREQUESTS_FULFIL_MILCOMMAND_POSITIONS_FULFIL_SEARCHTRACTOR_NORMATIVETECHNICS', 'Нормативна категория', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_EQUIPTECHREQUESTS_FULFIL_MILCOMMAND_POSITIONS_FULFIL_SEARCHTRACTOR'));
+
+--Резерв -> Заявки за окомплектоване с техника от резерва -> Изпълнение на заявки за окомплектоване с техника от резерва -> Команда -> Изпълнени -> Търсене на Инженерна техника
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_EQUIPTECHREQUESTS_FULFIL_MILCOMMAND_POSITIONS_FULFIL_SEARCHENG_EQUIP_NORMATIVETECHNICS', 'Нормативна категория', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_EQUIPTECHREQUESTS_FULFIL_MILCOMMAND_POSITIONS_FULFIL_SEARCHENG_EQUIP'));
+
+--Резерв -> Заявки за окомплектоване с техника от резерва -> Изпълнение на заявки за окомплектоване с техника от резерва -> Команда -> Изпълнени -> Търсене на Подемно-транспортна техника
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_EQUIPTECHREQUESTS_FULFIL_MILCOMMAND_POSITIONS_FULFIL_SEARCHMOB_LIFT_EQUIP_NORMATIVETECHNICS', 'Нормативна категория', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_EQUIPTECHREQUESTS_FULFIL_MILCOMMAND_POSITIONS_FULFIL_SEARCHMOB_LIFT_EQUIP'));
+
+--Резерв -> Заявки за окомплектоване с техника от резерва -> Изпълнение на заявки за окомплектоване с техника от резерва -> Команда -> Изпълнени -> Търсене на Авиационна техника
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_EQUIPTECHREQUESTS_FULFIL_MILCOMMAND_POSITIONS_FULFIL_SEARCHAVIATION_EQUIP_NORMATIVETECHNICS', 'Нормативна категория', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_EQUIPTECHREQUESTS_FULFIL_MILCOMMAND_POSITIONS_FULFIL_SEARCHAVIATION_EQUIP'));
+
+--Резерв -> Заявки за окомплектоване с техника от резерва -> Изпълнение на заявки за окомплектоване с техника от резерва -> Команда -> Изпълнени -> Търсене на специализиран железопътен състав
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_EQUIPTECHREQUESTS_FULFIL_MILCOMMAND_POSITIONS_FULFIL_SEARCHRAILWAYEQUIP_NORMATIVETECHNICS', 'Нормативна категория', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_EQUIPTECHREQUESTS_FULFIL_MILCOMMAND_POSITIONS_FULFIL_SEARCHRAILWAYEQUIP'));
+
+--Резерв -> Заявки за окомплектоване с техника от резерва -> Изпълнение на заявки за окомплектоване с техника от резерва -> Команда -> Изпълнени -> Търсене на Кораб
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_EQUIPTECHREQUESTS_FULFIL_MILCOMMAND_POSITIONS_FULFIL_SEARCHVESSELS_NORMATIVETECHNICS', 'Нормативна категория', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_EQUIPTECHREQUESTS_FULFIL_MILCOMMAND_POSITIONS_FULFIL_SEARCHVESSELS'));
+
+--Резерв -> Заявки за окомплектоване с техника от резерва -> Изпълнение на заявки за окомплектоване с техника от резерва -> Команда -> Изпълнени -> Търсене на съдове за ГСМ
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_EQUIPTECHREQUESTS_FULFIL_MILCOMMAND_POSITIONS_FULFIL_SEARCHFUELCONTAINER_NORMATIVETECHNICS', 'Нормативна категория', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_EQUIPTECHREQUESTS_FULFIL_MILCOMMAND_POSITIONS_FULFIL_SEARCHFUELCONTAINER'));
+
+
+
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_EQUIPTECHREQUESTS_EDIT_COMMANDS_EDIT_POSITIONS_DRIVERSCOUNT', 'Водачи', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_EQUIPTECHREQUESTS_EDIT_COMMANDS_EDIT_POSITIONS'));
+
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Брой, Водачи'
+WHERE UIKey = 'RES_EQUIPTECHREQUESTS_MILDEPT_POSITION_COUNT';
+
+
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_LISTMAINT_MILITARYREADINESSES_EDIT_MILITARYREADINESSCMDTYPE', 'Вид команда', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_LISTMAINT_MILITARYREADINESSNAMES_EDIT'));
+
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_LISTMAINT_MILITARYREADINESSES_ADD_MILITARYREADINESSCMDTYPE', 'Вид команда', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_LISTMAINT_MILITARYREADINESSNAMES_ADD'));
+
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Сведение за планираните за доставяне запасни и техника - запас'
+WHERE UIKey = 'RES_REPORTS_REPORTA31';
+
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_REPORTA33v2', 'Сведение-анализ за състоянието на ресурсите от резерва', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS'));
+
+
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('ADM_LISTMAINT_ADMINISTRATIONS_EDIT_ADMINISTRATIONGROUP', 'Група', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'ADM_LISTMAINT_ADMINISTRATIONS_EDIT'));
+
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('ADM_LISTMAINT_ADMINISTRATIONS_ADD_ADMINISTRATIONGROUP', 'Група', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'ADM_LISTMAINT_ADMINISTRATIONS_ADD'));
+
+UPDATE PMIS_ADM.UIItems SET
+   UIKey = 'ADM_LISTMAINT_ADMINISTRATIONS_ADD_ADMINISTRATIONNAME'
+WHERE UIKey = 'ADM_LISTMAINT_ADMINISTRATIONS_ADD_MILITARYDEPARTMENTNAME';
+
+UPDATE PMIS_ADM.UIItems SET
+   UIKey = 'ADM_LISTMAINT_ADMINISTRATIONS_EDIT_ADMINISTRATIONNAME'
+WHERE UIKey = 'ADM_LISTMAINT_ADMINISTRATIONS_EDIT_MILITARYDEPARTMENTNAME';
+
+
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('ADM_LISTMAINT_ADMINISTRATIONS_EDIT_ADMINISTRATIONGROUPSEQ', 'Подредба на група', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'ADM_LISTMAINT_ADMINISTRATIONS_EDIT'));
+
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('ADM_LISTMAINT_ADMINISTRATIONS_ADD_ADMINISTRATIONGROUPSEQ', 'Подредба на група', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'ADM_LISTMAINT_ADMINISTRATIONS_ADD'));
+
+
+UPDATE PMIS_ADM.UIItems SET
+   UIName = 'Отчетна ведомост за състоянието на ресурсите'
+WHERE UIKey = 'RES_REPORTS_REPORTSV1';
+
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_REPORTANALYZETECHCOMMAND', 'Сведение-анализ за комплектуване на команда с техника-запас', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS'));
+
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_REPORTNORMATIVETECHNICS', 'Отчетна ведомост за състоянието на техниката', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS'));
+
+
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID, CanSetAccessOnlyOwnData)
+VALUES ('APPL_REPORTS_REPORT_RATED_APPLICANTS_SUMMARY', 'Сведение за класираните кандидати', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'APPL_REPORTS'), 1);
+
+
+COMMIT;
+/

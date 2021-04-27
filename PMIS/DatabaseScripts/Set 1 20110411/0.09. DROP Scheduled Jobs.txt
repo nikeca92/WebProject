@@ -1,0 +1,11 @@
+/*http://www.dba-oracle.com/job_scheduling/schedules.htm http://www.dba-oracle.com/job_scheduling/calendar_syntax.htm*/
+
+BEGIN
+  DBMS_SCHEDULER.drop_job (job_name => 'VaccAnn_Status_DOCUMENTS_Job');
+END;
+/
+
+BEGIN
+  DBMS_SCHEDULER.drop_schedule (schedule_name => 'VaccAnn_Status_DOCUMENTS_Sched');
+END;
+/

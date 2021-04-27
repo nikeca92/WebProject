@@ -1,0 +1,28 @@
+﻿CREATE TABLE PMIS_ADM.VesselCrewCategories(VesselCrewCategoryID number NOT NULL,
+		             VesselCrewCategoryKey varchar2(50),
+                             VesselCrewCategoryName varchar2(250)
+                             );
+
+ALTER TABLE PMIS_ADM.VesselCrewCategories ADD CONSTRAINT VesselCrewCategories_PK PRIMARY KEY(VesselCrewCategoryID);
+
+CREATE SEQUENCE PMIS_ADM.VesselCrewCategories_ID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+
+CREATE TRIGGER PMIS_ADM.TRG_VesselCrewCateg_INSERT
+BEFORE INSERT ON PMIS_ADM.VesselCrewCategories
+FOR EACH ROW
+BEGIN
+   SELECT PMIS_ADM.VesselCrewCategories_ID_SEQ.nextval INTO :new.VesselCrewCategoryID FROM dual;
+END;
+/
+
+INSERT INTO PMIS_ADM.VesselCrewCategories (VesselCrewCategoryKey, VesselCrewCategoryName)
+VALUES ('SAILOR', 'Моряк');
+
+INSERT INTO PMIS_ADM.VesselCrewCategories (VesselCrewCategoryKey, VesselCrewCategoryName)
+VALUES ('OFFICER', 'Офицер');
+
+COMMIT;

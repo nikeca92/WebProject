@@ -1,0 +1,10 @@
+﻿ALTER TABLE PMIS_RES.Technics RENAME COLUMN OwnershipTypeID TO OwnershipTypeID_;
+ALTER TABLE PMIS_RES.Technics RENAME COLUMN OwnershipIdentNumber TO OwnershipIdentNumber_;
+ALTER TABLE PMIS_RES.Technics RENAME COLUMN OwnershipFullName TO OwnershipFullName_;
+ALTER TABLE PMIS_RES.Technics RENAME COLUMN OwnershipCityID TO OwnershipCityID_;
+ALTER TABLE PMIS_RES.Technics RENAME COLUMN OwnershipDistrictID TO OwnershipDistrictID_;
+ALTER TABLE PMIS_RES.Technics RENAME COLUMN OwnershipAddress TO OwnershipAddress_;
+ALTER TABLE PMIS_RES.Technics RENAME COLUMN OwnershipPhone TO OwnershipPhone_;
+ALTER TABLE PMIS_RES.Technics RENAME COLUMN OwnershipPostCode TO OwnershipPostCode_;
+
+/

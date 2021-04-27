@@ -1,0 +1,20 @@
+CREATE INDEX PMIS_RES.ResMilRepStatuses_ResID_IDX ON PMIS_RES.ReservistMilRepStatuses (ReservistID);
+ALTER INDEX PMIS_RES.ResMilRepStatuses_ResID_IDX REBUILD;
+
+CREATE INDEX PMIS_RES.Reservists_PersonID_IDX ON PMIS_RES.Reservists (PersonID);
+ALTER INDEX PMIS_RES.Reservists_PersonID_IDX REBUILD;
+
+CREATE INDEX PMIS_ADM.Persons_Initials_IDX ON PMIS_ADM.Persons (Initials);
+ALTER INDEX PMIS_ADM.Persons_Initials_IDX REBUILD;
+
+CREATE BITMAP INDEX PMIS_RES.ResMilRepStatuses_MilDepID_IDX ON PMIS_RES.ReservistMilRepStatuses (SourceMilDepartmentID);
+ALTER INDEX PMIS_RES.ResMilRepStatuses_MilDepID_IDX REBUILD;
+
+CREATE BITMAP INDEX PMIS_RES.ResMilRepStat_MilRepStatID_IDX ON PMIS_RES.ReservistMilRepStatuses (MilitaryReportStatusID);
+ALTER INDEX PMIS_RES.ResMilRepStat_MilRepStatID_IDX REBUILD;
+
+CREATE INDEX PMIS_RES.ResAppointments_ResID_IDX ON PMIS_RES.ReservistAppointments (ReservistID);
+ALTER INDEX PMIS_RES.ResAppointments_ResID_IDX REBUILD;
+
+
+/

@@ -1,0 +1,145 @@
+﻿--!!!SET params below (e.g. KOD_KZV)!!!--
+/*
+DECLARE 
+    pUserID NUMBER;
+    pKOD_KZV_Reservist NVARCHAR2(500) := 'Р';
+    pKOD_KAT_For_Res_No_Rank NUMBER := 91;
+    pV_PODELENIE_Reservist NVARCHAR2(500) := '';
+    pV_KOMANDA_Reservist NVARCHAR2(500) := '';
+    
+    pPersonID NUMBER;   
+    pReservistID NUMBER;
+    
+    CURSOR VolCut IS 
+        SELECT MilitaryReportPersonID, 
+               MilitaryDepartmentID, 
+               Identnumber, 
+               LastName, 
+               FirstName, 
+               Initials,
+               PermAddrCityID, 
+               PermAddrDistrictID,
+               Permaddress, 
+               CurrAddrCityID,
+               CurrAddrDistrictID,
+               CurrAddress, 
+               PermSecondPostcode,
+               PresSecondPostcode,
+               BirthCityID,
+               BirthCityIfAbroad,
+               BirthCountryID
+        FROM PMIS_ADM.MilitaryReportPersons_ 
+        WHERE Identnumber NOT IN (SELECT EGN FROM vs_owner.vs_ls)
+        ORDER BY MilitaryReportPersonid ASC;
+    
+    VolRow VolCut%ROWTYPE;
+BEGIN
+  FOR VolRow IN VolCut
+      LOOP
+          pPersonID := NULL;          
+          pReservistID := NULL;
+          
+          INSERT INTO VS_OWNER.VS_LS( EGN, 
+                                      FAM, 
+                                      IME, 
+                                      KOD_KZV, 
+                                      KOD_KAT,                               
+                                      KOD_NMA_MJ, 
+                                      ADRES, 
+                                      V_BA,                               
+                                      V_PODELENIE,
+                                      V_KOMANDA, 
+                                      CurrAddrCityID, 
+                                      CurrAddress,                               
+                                      PermSecondPostCode, 
+                                      PresSecondPostCode,
+                                      KOD_NMA_MR,
+                                      CurrAddrDistrictID,
+                                      PermAddrDistrictID)
+           VALUES (VolRow.Identnumber, 
+                   VolRow.LastName, 
+                   VolRow.FirstName,                   
+                   pKOD_KZV_Reservist,
+                   pKOD_KAT_For_Res_No_Rank,                              
+                   VolRow.PermAddrCityID, 
+                   VolRow.Permaddress,                               
+                   SYSDATE,                               
+                   pV_PODELENIE_Reservist,
+                   pV_KOMANDA_Reservist,                      
+                   VolRow.CurrAddrCityID, 
+                   VolRow.CurrAddress,                              
+                   VolRow.PermSecondPostcode, 
+                   VolRow.PresSecondPostcode,
+                   VolRow.BirthCityID,
+                   VolRow.CurrAddrDistrictID,
+                   VolRow.PermAddrDistrictID                   
+                   );
+
+          SELECT VS_OWNER.VS_LS_PersonID_SEQ.currval INTO pPersonID FROM dual;
+         
+          INSERT INTO PMIS_ADM.Persons (
+              PersonID,   
+              Initials,
+              BirthCityIfAbroad,
+              BirthCountryID,    
+              CreatedBy, 
+              CreatedDate, 
+              LastModifiedBy, 
+              LastModifiedDate
+              )
+          VALUES (
+              pPersonID,                           
+              VolRow.Initials,
+              VolRow.BirthCityIfAbroad,
+              VolRow.BirthCountryID,    
+              pUserID, 
+              SYSDATE, 
+              pUserID, 
+              SYSDATE
+             );
+                 
+           INSERT INTO PMIS_RES.Reservists(PersonID,
+                                           CreatedBy, 
+                                           CreatedDate, 
+                                           LastModifiedBy, 
+                                           LastModifiedDate)
+           VALUES (pPersonID,
+                   pUserID,
+                   SYSDATE, 
+                   pUserID, 
+                   SYSDATE);
+
+          SELECT PMIS_RES.Reservists_ID_SEQ.currval INTO pReservistID FROM dual;
+         
+         
+          INSERT INTO PMIS_RES.ReservistMilRepStatuses(
+              ReservistID,
+              IsCurrent,                                                  
+              MilitaryReportStatusID,
+              EnrolDate,                                            
+              SourceMilDepartmentID,
+              CreatedBy,
+              CreatedDate,
+              LastModifiedBy,
+              LastModifiedDate)
+          VALUES ( 
+              pReservistID,
+              1,                                                  
+              (SELECT MilitaryReportStatusID FROM PMIS_RES.MilitaryReportStatuses WHERE MilitaryReportStatusKey = 'MILITARY_REPORT_PERSONS'),
+              SYSDATE,
+              VolRow.MilitaryDepartmentID,
+              pUserID,
+              SYSDATE,
+              pUserID,
+              SYSDATE);
+        
+          INSERT INTO PMIS_ADM.PersonSpecialities(PersonID, ProfessionID, SpecialityID)
+          SELECT pPersonID, ProfessionID, SpecialityID 
+          FROM PMIS_ADM.MilRepPersonSpecialities_ 
+          WHERE MilitaryReportPersonID = VolRow.MilitaryReportPersonID;        
+         
+      END LOOP;
+      
+      COMMIT;
+END;
+*/

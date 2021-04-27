@@ -1,0 +1,35 @@
+﻿CREATE TABLE PMIS_RES.AviationOtherBaseMachineModels(AviationOthBaseMachineModelID number NOT NULL,
+                                                     AviationOthBaseMachineModel varchar2(300),
+                                                     AviationOtherBaseMachineMakeID number NOT NULL
+                                                    );
+
+ALTER TABLE PMIS_RES.AviationOtherBaseMachineModels ADD CONSTRAINT AviationOtherBMModels_PK PRIMARY KEY(AviationOthBaseMachineModelID);
+ALTER TABLE PMIS_RES.AviationOtherBaseMachineModels ADD CONSTRAINT AviationOtherBMModels_Makes_FK FOREIGN KEY (AviationOtherBaseMachineMakeID) REFERENCES PMIS_RES.AviationOtherBaseMachineMakes (AviationOtherBaseMachineMakeID);
+
+CREATE SEQUENCE PMIS_RES.AviationOtherBMModels_ID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+CREATE TRIGGER PMIS_RES.TRG_AviationOthBMModels_INSERT
+BEFORE INSERT ON PMIS_RES.AviationOtherBaseMachineModels
+FOR EACH ROW
+BEGIN
+   SELECT PMIS_RES.AviationOtherBMModels_ID_SEQ.nextval INTO :new.AviationOthBaseMachineModelID FROM dual;
+END;
+/
+
+INSERT INTO PMIS_RES.AviationOtherBaseMachineModels(AviationOthBaseMachineModel, AviationOtherBaseMachineMakeID)
+VALUES ('Модел #1.1', (SELECT AviationOtherBaseMachineMakeID FROM PMIS_RES.AviationOtherBaseMachineMakes WHERE AviationOtherBaseMachineMake = 'Марка #1'));
+
+INSERT INTO PMIS_RES.AviationOtherBaseMachineModels(AviationOthBaseMachineModel, AviationOtherBaseMachineMakeID)
+VALUES ('Модел #1.2', (SELECT AviationOtherBaseMachineMakeID FROM PMIS_RES.AviationOtherBaseMachineMakes WHERE AviationOtherBaseMachineMake = 'Марка #1'));
+
+INSERT INTO PMIS_RES.AviationOtherBaseMachineModels(AviationOthBaseMachineModel, AviationOtherBaseMachineMakeID)
+VALUES ('Модел #2.1', (SELECT AviationOtherBaseMachineMakeID FROM PMIS_RES.AviationOtherBaseMachineMakes WHERE AviationOtherBaseMachineMake = 'Марка #2'));
+
+INSERT INTO PMIS_RES.AviationOtherBaseMachineModels(AviationOthBaseMachineModel, AviationOtherBaseMachineMakeID)
+VALUES ('Модел #2.2', (SELECT AviationOtherBaseMachineMakeID FROM PMIS_RES.AviationOtherBaseMachineMakes WHERE AviationOtherBaseMachineMake = 'Марка #2'));
+
+COMMIT;
+/

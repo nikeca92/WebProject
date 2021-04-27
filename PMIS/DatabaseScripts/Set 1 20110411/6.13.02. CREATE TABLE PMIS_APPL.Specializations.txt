@@ -1,0 +1,63 @@
+﻿CREATE TABLE PMIS_APPL.Specializations(SpecializationID number NOT NULL,
+									   SpecializationName varchar2(500 byte) NOT NULL,
+									   MilitarySchoolSubjectID number NOT NULL
+									  );
+
+ALTER TABLE PMIS_APPL.Specializations ADD CONSTRAINT Specializations_PK PRIMARY KEY(SpecializationID);
+ALTER TABLE PMIS_APPL.Specializations ADD CONSTRAINT Specializations_KL_VSP_FK FOREIGN KEY (MilitarySchoolSubjectID) REFERENCES VS_OWNER.KLV_VSP (VSPID);
+
+CREATE SEQUENCE PMIS_APPL.Specializations_ID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+CREATE TRIGGER PMIS_APPL.TRG_Specializations_INSERT
+BEFORE INSERT ON PMIS_APPL.Specializations
+FOR EACH ROW
+BEGIN
+   SELECT PMIS_APPL.Specializations_ID_SEQ.nextval INTO :new.SpecializationID FROM dual;
+END;
+/
+
+INSERT INTO PMIS_APPL.Specializations(SpecializationName, MilitarySchoolSubjectID)
+VALUES ('Мотопехотни и танкови войски', (SELECT VSPID FROM VS_OWNER.KLV_VSP WHERE VSP_KOD = '-'));
+
+INSERT INTO PMIS_APPL.Specializations(SpecializationName, MilitarySchoolSubjectID)
+VALUES ('Войски за ЯХБЗ и Е', (SELECT VSPID FROM VS_OWNER.KLV_VSP WHERE VSP_KOD = '-'));
+
+INSERT INTO PMIS_APPL.Specializations(SpecializationName, MilitarySchoolSubjectID)
+VALUES ('Полева артилерия', (SELECT VSPID FROM VS_OWNER.KLV_VSP WHERE VSP_KOD = '-'));
+
+
+INSERT INTO PMIS_APPL.Specializations(SpecializationName, MilitarySchoolSubjectID)
+VALUES ('Летец-пилот', (SELECT VSPID FROM VS_OWNER.KLV_VSP WHERE VSP_KOD = '\'));
+
+INSERT INTO PMIS_APPL.Specializations(SpecializationName, MilitarySchoolSubjectID)
+VALUES ('Радиоелектронно оборудване на летателни апарати', (SELECT VSPID FROM VS_OWNER.KLV_VSP WHERE VSP_KOD = '\'));
+
+INSERT INTO PMIS_APPL.Specializations(SpecializationName, MilitarySchoolSubjectID)
+VALUES ('Авиационно въоражение', (SELECT VSPID FROM VS_OWNER.KLV_VSP WHERE VSP_KOD = '\'));
+
+INSERT INTO PMIS_APPL.Specializations(SpecializationName, MilitarySchoolSubjectID)
+VALUES ('Летателни апарати и авиационни апарати', (SELECT VSPID FROM VS_OWNER.KLV_VSP WHERE VSP_KOD = '\'));
+
+INSERT INTO PMIS_APPL.Specializations(SpecializationName, MilitarySchoolSubjectID)
+VALUES ('Радиотехнически войски', (SELECT VSPID FROM VS_OWNER.KLV_VSP WHERE VSP_KOD = '\'));
+
+
+INSERT INTO PMIS_APPL.Specializations(SpecializationName, MilitarySchoolSubjectID)
+VALUES ('Придвижване и транспорт', (SELECT VSPID FROM VS_OWNER.KLV_VSP WHERE VSP_KOD = ';'));
+
+INSERT INTO PMIS_APPL.Specializations(SpecializationName, MilitarySchoolSubjectID)
+VALUES ('Танкови войски - технически и автомобилни войски', (SELECT VSPID FROM VS_OWNER.KLV_VSP WHERE VSP_KOD = ';'));
+
+INSERT INTO PMIS_APPL.Specializations(SpecializationName, MilitarySchoolSubjectID)
+VALUES ('Артилерийско и зенитно-ракетно въоражение, оптика и бойни припаси', (SELECT VSPID FROM VS_OWNER.KLV_VSP WHERE VSP_KOD = ';'));
+
+
+INSERT INTO PMIS_APPL.Specializations(SpecializationName, MilitarySchoolSubjectID)
+VALUES ('Военни комуникационни и информационни системи', (SELECT VSPID FROM VS_OWNER.KLV_VSP WHERE VSP_KOD = '`'));
+
+
+COMMIT;
+/

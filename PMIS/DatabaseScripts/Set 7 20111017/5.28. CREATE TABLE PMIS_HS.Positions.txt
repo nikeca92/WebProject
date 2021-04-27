@@ -1,0 +1,25 @@
+﻿CREATE TABLE PMIS_HS.Positions(PositionID number NOT NULL,
+							   SubdivisionID number NOT NULL,
+                               PositionName varchar2(250),
+							   Activities varchar2(4000),
+							   TotalPersonsCnt number,
+							   FemaleCnt number
+                              );
+
+ALTER TABLE PMIS_HS.Positions ADD CONSTRAINT Positions_PK PRIMARY KEY(PositionID);
+ALTER TABLE PMIS_HS.Positions ADD CONSTRAINT Positions_Subdivision_FK FOREIGN KEY (SubdivisionID) REFERENCES PMIS_HS.Subdivisions (SubdivisionID);
+
+CREATE SEQUENCE PMIS_HS.Positions_ID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+CREATE TRIGGER PMIS_HS.TRG_Positions_INSERT
+BEFORE INSERT ON PMIS_HS.Positions
+FOR EACH ROW
+BEGIN
+   SELECT PMIS_HS.Positions_ID_SEQ.nextval INTO :new.PositionID FROM dual;
+END;
+/
+
+COMMIT;

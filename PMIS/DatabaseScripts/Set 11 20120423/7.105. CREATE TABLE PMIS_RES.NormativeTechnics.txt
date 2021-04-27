@@ -1,0 +1,74 @@
+﻿CREATE TABLE PMIS_RES.NormativeTechnics(NormativeTechnicsID number NOT NULL,
+		    							NormativeCode varchar2(10),
+										NormativeName varchar2(500),
+										NormativeLevel1 varchar2(1000),
+										NormativeLevel2 varchar2(1000),
+										NormativeLevel3 varchar2(1000),
+										NormativeLevel4 varchar2(1000),
+										NormativeLevel5 varchar2(1000),
+										TechnicsTypeID number,
+										Veh_VehicleKindID number,
+										Veh_VehicleRoadabilityID number,
+										Veh_VechicleBodyTypeID number,
+										Veh_CarryingCapacityFrom number,
+										Veh_CarryingCapacityTo number,
+										Veh_SeatsFrom number,
+										Veh_SeatsTo number,
+										Trl_TrailerKindID number,
+										Trl_TrailerTypeID number,
+										Trl_TrailerBodyKindID number,
+										Trl_CarryingCapacityFrom number,
+										Trl_CarryingCapacityTo number,
+										Trc_TractorKindID number,
+										Trc_TractorTypeID number,
+										Trc_PowerFrom number,
+										Trc_PowerTo number,
+										Eng_EngEquipKindID number,
+										Eng_EngEquipTypeID number,
+										Eng_EngEquipBaseKindID number,
+										Eng_EngEquipBaseTypeID number,
+										Eng_EngEquipWorkingBodyKindID number,
+										Mob_MobileLiftingEquipKindID number,
+										Mob_MobileLiftingEquipTypeID number,
+										Mob_LoadingCapacityFrom number,
+										Mob_LoadingCapacityTo number,
+										Rail_RailwayEquipKindID number,
+										Rail_RailwayEquipTypeID number,
+										Av_AviationAirKindID number,
+										Av_AviationAirTypeID number,
+										Av_AviationAirModelID number,
+										Av_AirCarryingCapacityFrom number,
+										Av_AirCarryingCapacityTo number,
+										Av_AvOtherKindID number,
+										Av_AvOtherTypeID number,
+										Av_AvOtherBaseMachineMakeID number,
+										Av_AvOthBaseMachineModelID number,
+										Av_AvOtherBaseMachineKindID number,
+										Av_AvOtherBaseMachineTypeID number,
+										Av_AvOtherEquipmentKindID number,
+										Ves_VesselKindID number,
+										Ves_VesselTypeID number,
+										Fuel_FuelContainerKindID number,
+										Fuel_FuelContainerTypeID number
+										);
+
+										   
+ALTER TABLE PMIS_RES.NormativeTechnics ADD CONSTRAINT NormativeTechnics_PK PRIMARY KEY(NormativeTechnicsID);
+ALTER TABLE PMIS_RES.NormativeTechnics ADD CONSTRAINT NormTechnics_TechnicsTypes_FK FOREIGN KEY (TechnicsTypeID) REFERENCES PMIS_RES.TechnicsTypes (TechnicsTypeID);
+ALTER TABLE PMIS_RES.NormativeTechnics ADD CONSTRAINT NormTechn_AviatOthBMMakes_FK FOREIGN KEY (Av_AvOtherBaseMachineMakeID) REFERENCES PMIS_RES.AviationOtherBaseMachineMakes (AviationOtherBaseMachineMakeID);
+ALTER TABLE PMIS_RES.NormativeTechnics ADD CONSTRAINT NormTechn_AviatOthBMModels_FK FOREIGN KEY (Av_AvOthBaseMachineModelID) REFERENCES PMIS_RES.AviationOtherBaseMachineModels (AviationOthBaseMachineModelID);
+
+CREATE SEQUENCE PMIS_RES.NormativeTechnics_ID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+
+CREATE TRIGGER PMIS_RES.TRG_NormativeTechnics_INSERT
+BEFORE INSERT ON PMIS_RES.NormativeTechnics
+FOR EACH ROW
+BEGIN
+   SELECT PMIS_RES.NormativeTechnics_ID_SEQ.nextval INTO :new.NormativeTechnicsID FROM dual;
+END;
+/
+

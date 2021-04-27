@@ -1,0 +1,28 @@
+﻿CREATE TABLE PMIS_HS.Subdivisions(SubdivisionID number NOT NULL,
+							      MilitaryUnitID number NOT NULL,
+                                  SubdivisionName varchar2(250),
+								  CreatedBy number,
+								  CreatedDate date,
+								  LastModifiedBy number,
+							      LastModifiedDate date								
+                                 );
+
+ALTER TABLE PMIS_HS.Subdivisions ADD CONSTRAINT Subdivisions_PK PRIMARY KEY(SubdivisionID);
+ALTER TABLE PMIS_HS.Subdivisions ADD CONSTRAINT Subdivisions_MilUnit_FK FOREIGN KEY (MilitaryUnitID) REFERENCES UKAZ_OWNER.MIR (KOD_MIR);
+ALTER TABLE PMIS_HS.Subdivisions ADD CONSTRAINT Subdivisions_CreatedBy_FK FOREIGN KEY (CreatedBy) REFERENCES PMIS_ADM.Users (UserID);
+ALTER TABLE PMIS_HS.Subdivisions ADD CONSTRAINT Subdivisions_LastModifiedBy_FK FOREIGN KEY (LastModifiedBy) REFERENCES PMIS_ADM.Users (UserID);
+
+CREATE SEQUENCE PMIS_HS.Subdivisions_ID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+CREATE TRIGGER PMIS_HS.TRG_Subdivisions_INSERT
+BEFORE INSERT ON PMIS_HS.Subdivisions
+FOR EACH ROW
+BEGIN
+   SELECT PMIS_HS.Subdivisions_ID_SEQ.nextval INTO :new.SubdivisionID FROM dual;
+END;
+/
+
+COMMIT;

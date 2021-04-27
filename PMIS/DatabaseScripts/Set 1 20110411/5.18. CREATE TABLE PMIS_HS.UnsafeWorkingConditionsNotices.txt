@@ -1,0 +1,39 @@
+﻿CREATE TABLE PMIS_HS.UnsafeWorkingConditionsNotices(UnsafeWConditionsNoticeID number NOT NULL,
+                                                    NoticeNumber varchar2(250),
+                                                    NoticeDate date,
+                                                    ReportingPerson varchar2(500),
+                                                    MilitaryUnitID number, 
+                                                    ViolationPlace varchar2(2000),
+                                                    ResponsiblePerson varchar2(500),
+                                                    DegreeOfDangerID number, /*GTable*/
+                                                    DescOfUnsafeCondition varchar2(4000),
+                                                    ListOfViolatedRequirements varchar2(4000),
+                                                    ProcedForReducingRiskEndDate date,
+                                                    TempProcedures varchar2(4000),
+                                                    TempProceduresEstResult varchar2(200),
+                                                    FinalProcedures varchar2(4000),
+                                                    FinalProceduresEstResult varchar2(200),
+                                                    AdditionalInfoContactPerson varchar2(500),
+                                                    AdditionalInfoContactInfo varchar2(1000),
+                                                    CreatedBy number,
+                                                    CreatedDate date,
+                                                    LastModifiedBy number,
+                                                    LastModifiedDate date
+                                                    );
+
+ALTER TABLE PMIS_HS.UnsafeWorkingConditionsNotices ADD CONSTRAINT UnsafeWConditionsNotices_PK PRIMARY KEY(UnsafeWConditionsNoticeID);
+ALTER TABLE PMIS_HS.UnsafeWorkingConditionsNotices ADD CONSTRAINT UnsafeW_CreatedBy_FK FOREIGN KEY (CreatedBy) REFERENCES PMIS_ADM.Users (UserID);
+ALTER TABLE PMIS_HS.UnsafeWorkingConditionsNotices ADD CONSTRAINT UnsafeW_LastModifiedBy_FK FOREIGN KEY (LastModifiedBy) REFERENCES PMIS_ADM.Users (UserID);
+
+CREATE SEQUENCE PMIS_HS.UnsafeWCondNotices_ID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+CREATE TRIGGER PMIS_HS.TRG_UnsafeWCondNotices_INSERT
+BEFORE INSERT ON PMIS_HS.UnsafeWorkingConditionsNotices
+FOR EACH ROW
+BEGIN
+   SELECT PMIS_HS.UnsafeWCondNotices_ID_SEQ.nextval INTO :new.UnsafeWConditionsNoticeID FROM dual;
+END;
+/

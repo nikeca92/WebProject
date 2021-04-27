@@ -1,0 +1,65 @@
+﻿INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES('RES_Reservist_UpdateResAppointment','Обновяване МН на резервист',(SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'),1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES('RES_Technics_UpdateTechAppointment','Обновяване МН на техника',(SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'),1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES('RES_Reservist_MilServ_EditMilitaryRan','Редактиране на текущо звание',(SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'),1);
+
+
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES('RES_PostponeRes_AddPostponeRes','Добавяне на отсрочване за резервисти',(SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'),2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES('RES_PostponeRes_EditPostponeRes','Редактиране на отсрочване за резервисти',(SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'),1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES('RES_PostponeRes_CopyPostpone','Копиране на отсрочване за резервисти',(SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'),1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES('RES_PostponeRes_AddPostponeResCompany','Добавяне на фирма към отсрочване за резервисти',(SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'),2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES('RES_PostponeRes_EditPostponeResCompany','Редактиране на фирма при отсрочване за резервисти',(SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'),1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES('RES_PostponeRes_DeletePostponeResCompany','Изтриване на фирма от отсрочване за резервисти',(SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'),3);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES('RES_PostponeRes_AddPostponeResItem','Добавяне на клас по НКПД',(SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'),2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES('RES_PostponeRes_EditPostponeResItem','Редактиране на клас по НКПД',(SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'),1);
+
+
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES('RES_PostponeTech_AddPostponeTech','Добавяне на отсрочване за техника',(SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'),2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES('RES_PostponeTech_EditPostponeTech','Редактиране на отсрочване за техника',(SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'),1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES('RES_PostponeTech_CopyPostpone','Копиране на отсрочване за техника',(SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'),1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES('RES_PostponeTech_AddPostponeTechCompany','Добавяне на фирма към отсрочване за техника',(SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'),2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES('RES_PostponeTech_EditPostponeTechCompany','Редактиране на фирма при отсрочване за техника',(SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'),1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES('RES_PostponeTech_DeletePostponeTechCompany','Изтриване на фирма от отсрочване за техника',(SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'),3);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES('RES_PostponeTech_AddPostponeTechItem','Добавяне на тип техника',(SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'),2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES('RES_PostponeTech_EditPostponeTechItem','Редактиране на тип техника',(SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'),1);
+
+
+
+COMMIT;
+/

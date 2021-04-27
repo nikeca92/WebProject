@@ -1,0 +1,24 @@
+﻿CREATE TABLE PMIS_ADM.LanguageLevelOfKnowledge(LanguageLevelOfKnowledgeKey varchar2(10),
+                                      LanguageLevelOfKnowledgeName varchar2(100)
+                                     );
+
+ALTER TABLE  PMIS_ADM.LanguageLevelOfKnowledge ADD CONSTRAINT LanguageLevelOfKnowledgeKey_PK PRIMARY KEY (LanguageLevelOfKnowledgeKey);
+
+INSERT INTO  PMIS_ADM.LanguageLevelOfKnowledge (LanguageLevelOfKnowledgeKey, LanguageLevelOfKnowledgeName)
+VALUES ('О', 'Отлично');
+
+INSERT INTO  PMIS_ADM.LanguageLevelOfKnowledge (LanguageLevelOfKnowledgeKey, LanguageLevelOfKnowledgeName)
+VALUES ('Д', 'Добре');
+
+
+INSERT INTO  PMIS_ADM.LanguageLevelOfKnowledge (LanguageLevelOfKnowledgeKey, LanguageLevelOfKnowledgeName)
+VALUES ('У', 'Удовлетворително');
+
+
+INSERT INTO  PMIS_ADM.LanguageLevelOfKnowledge (LanguageLevelOfKnowledgeKey, LanguageLevelOfKnowledgeName)
+VALUES ('М', 'Много добре');
+
+
+
+COMMIT;
+/

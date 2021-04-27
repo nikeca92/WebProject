@@ -1,0 +1,5 @@
+﻿DELETE FROM PMIS_RES.MilitaryReportStatuses 
+WHERE MilitaryReportStatusKey = 'COMPULSORY_RESERVE';
+
+COMMIT;
+/

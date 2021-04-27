@@ -1,0 +1,40 @@
+﻿CREATE TABLE PMIS_RES.AviationEquipment(AviationEquipmentID number NOT NULL,
+                                        TechnicsID number NOT NULL,
+                                        AirInvNumber varchar2(50),
+                                        AviationAirKindID number, /*GTable*/
+                                        AviationAirTypeID number, /*GTable*/
+                                        AviationAirModelID number, /*GTable*/
+                                        AirSeats number,
+                                        AirCarryingCapacity number,
+                                        AirMaxDistance number,
+                                        AirLastTechnicalReviewDate date,
+                                        OtherInvNumber varchar2(50),
+                                        AviationOtherKindID number, /*GTable*/
+                                        AviationOtherTypeID number, /*GTable*/
+                                        AviationOtherBaseMachineMakeID number,
+                                        AviationOthBaseMachineModelID number,
+                                        AviationOtherBaseMachineKindID number, /*GTable*/
+                                        AviationOtherBaseMachineTypeID number, /*GTable*/
+                                        BMMileageHoursSinceLastRepair varchar2(50),
+                                        AviationOtherEquipmentKindID number, /*GTable*/
+                                        EquipMileageHourSinceLstRepair varchar2(50)
+                                        );
+
+ALTER TABLE PMIS_RES.AviationEquipment ADD CONSTRAINT AviationEquipment_PK PRIMARY KEY(AviationEquipmentID);
+ALTER TABLE PMIS_RES.AviationEquipment ADD CONSTRAINT AviationEquipment_TechID_UNQ UNIQUE (TechnicsID);
+ALTER TABLE PMIS_RES.AviationEquipment ADD CONSTRAINT AviationEquipment_InvNum_UNQ UNIQUE (AirInvNumber);
+ALTER TABLE PMIS_RES.AviationEquipment ADD CONSTRAINT AviatEquip_AviatOthBMMakes_FK FOREIGN KEY (AviationOtherBaseMachineMakeID) REFERENCES PMIS_RES.AviationOtherBaseMachineMakes (AviationOtherBaseMachineMakeID);
+ALTER TABLE PMIS_RES.AviationEquipment ADD CONSTRAINT AviatEquip_AviatOthBMModels_FK FOREIGN KEY (AviationOthBaseMachineModelID) REFERENCES PMIS_RES.AviationOtherBaseMachineModels (AviationOthBaseMachineModelID);
+
+CREATE SEQUENCE PMIS_RES.AviationEquipment_ID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+CREATE TRIGGER PMIS_RES.TRG_AviationEquipment_INSERT
+BEFORE INSERT ON PMIS_RES.AviationEquipment
+FOR EACH ROW
+BEGIN
+   SELECT PMIS_RES.AviationEquipment_ID_SEQ.nextval INTO :new.AviationEquipmentID FROM dual;
+END;
+/

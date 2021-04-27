@@ -1,0 +1,13 @@
+﻿INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Reservist_MilServ_EditConscription', 'Редактиране на наборна служба', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Reservist_MilServ_AddConscription', 'Добавяне на наборна служба', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Reservist_MilServ_DeleteConscription', 'Изтриване на наборна служба', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 3);
+
+
+
+
+COMMIT;

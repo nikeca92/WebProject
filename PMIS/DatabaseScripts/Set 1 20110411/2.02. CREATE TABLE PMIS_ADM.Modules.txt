@@ -1,0 +1,32 @@
+﻿CREATE TABLE PMIS_ADM.Modules(ModuleID number NOT NULL,
+                              ModuleName varchar2(250) NOT NULL,
+                              ModuleKey varchar2(100) NOT NULL);
+
+ALTER TABLE PMIS_ADM.Modules ADD CONSTRAINT MODULES_PK PRIMARY KEY(ModuleID);
+
+CREATE SEQUENCE PMIS_ADM.MODULES_ID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+CREATE TRIGGER PMIS_ADM.TRG_MODULES_INSERT
+BEFORE INSERT ON PMIS_ADM.Modules
+FOR EACH ROW
+BEGIN
+   SELECT PMIS_ADM.MODULES_ID_SEQ.nextval INTO :new.ModuleID FROM dual;
+END;
+/
+
+INSERT INTO PMIS_ADM.Modules (ModuleName, ModuleKey)
+VALUES ('Администратор', 'ADM');
+
+INSERT INTO PMIS_ADM.Modules (ModuleName, ModuleKey)
+VALUES ('Безопасност на труда', 'HS');
+
+INSERT INTO PMIS_ADM.Modules (ModuleName, ModuleKey)
+VALUES ('Кандидати', 'APPL');
+
+INSERT INTO PMIS_ADM.Modules (ModuleName, ModuleKey)
+VALUES ('Резерв', 'RES');
+
+COMMIT;

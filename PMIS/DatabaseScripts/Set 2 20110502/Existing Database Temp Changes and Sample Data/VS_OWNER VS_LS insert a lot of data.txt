@@ -1,0 +1,111 @@
+﻿DECLARE
+   i number;
+   j number;
+   dat date;
+   y number;
+   m number;
+   d number;
+   y2 number;
+   m2 number;
+   d2 number;
+   c number;
+   j1 number;
+   j2 number;
+   gender number;
+   s_egn varchar2(10);
+   fname varchar2(20);
+   lname varchar2(20);
+   cnt number;
+BEGIN
+    gender := 8;
+
+    i := 1;
+
+	dat := TO_DATE('01-JAN-1910');
+	
+	WHILE i < 3000 LOOP
+	   j := 10; 
+	   
+	   WHILE j < 90 LOOP
+	        y := TO_NUMBER(SUBSTR(TO_CHAR(dat, 'rr'), 1, 1));
+			y2 := TO_NUMBER(SUBSTR(TO_CHAR(dat, 'rr'), 2, 1));
+			
+			m := TO_NUMBER(SUBSTR(TO_CHAR(dat, 'mm'), 1, 1));
+			m2 := TO_NUMBER(SUBSTR(TO_CHAR(dat, 'mm'), 2, 1));
+			
+			d := TO_NUMBER(SUBSTR(TO_CHAR(dat, 'dd'), 1, 1));
+			d2 := TO_NUMBER(SUBSTR(TO_CHAR(dat, 'dd'), 2, 1));
+			
+			j1 := TO_NUMBER(SUBSTR(TO_CHAR(j), 1, 1));
+			j2 := TO_NUMBER(SUBSTR(TO_CHAR(j), 2, 1));
+			
+			c := 2 * y + 4 * y2 + 8 * m + 5 * m2 + 10 * d + 9 * d2 + 7 * j1 + 3 * j2 + 6 * gender;
+			
+			c := MOD(c, 11);
+			
+			IF c = 10 THEN
+			   c := 0;
+			END IF;
+			
+			s_egn := TO_CHAR(y) || TO_CHAR(y2) || TO_CHAR(m) || TO_CHAR(m2) || TO_CHAR(d) || TO_CHAR(d2) || TO_CHAR(j1) || TO_CHAR(j2) || TO_CHAR(gender) || TO_CHAR(c);
+	   
+	        fname := case when c < 5 then 'Васил' else 'Петър' end || case when c < 3 then ' Тонков ' else ' Белев ' end;
+			lname := case when c in (1,3,5,7,9) then 'Спасов' else 'Зарев' end;
+	   
+	        SELECT COUNT(*) INTO cnt FROM VS_OWNER.VS_LS WHERE EGN = s_egn;
+	   
+	        IF cnt = 0 THEN
+				INSERT INTO VS_OWNER.VS_LS(EGN, FAM, IME, KOD_KZV, KOD_KAT,
+				  NLD, ACK, KOD_NMA_MR, KOD_NMA_MJ, ADRES, TEL, KOD_NAR,
+				  KOD_SPO, S_UD, N_UD, D_UD, V_BA, KOD_VIS,
+				  KOD_TIT, KOD_ZVA, Z_Z, Z_ZKOGA, KOD_SPZZ,
+				  KOD_JIL, KOD_KRG, DOPUSK, KOD_VSO, KOD_VSS,
+				  GDAT, ATES, ATES_TXT, KOD_UVO, PSTG, PSTM,
+				  PSTD, OFZV, KOD_PSO, OBR_SHZO, OBR_SHPZO,
+				  OBR_VU, OBR_VA, OBR_VISHE, OBR_SR, V_PODELENIE,
+				  V_KOMANDA, ZVR_SNET, ZOTSR, ZOGVS, ZKOD_DLO,
+				  ZKOD_DLS, ZPR_DL, ZPDLO, ZPDLS, ZPPR_DL,
+				  KOD_KATV, ZKURS_DL, ZKURS_MES, ZVVO, ZDATA_OTCH,
+				  OT_UD, GR_UD, OSTG, OSTM, OSTD, TXT,
+				  DOPUSK_DO, Z_ZIZD, KOD_VSV, KOD_VSA)
+				VALUES (s_egn, lname, fname, 'К', 91,
+				  NULL, NULL, NULL, NULL, NULL, NULL, 'Б',
+				  'Н', NULL, NULL, NULL, SYSDATE, NULL,
+				  NULL, NULL, NULL, NULL, NULL,
+				  'БЖ', 'А1+', NULL, NULL, NULL,
+				  NULL, NULL, NULL, NULL, NULL, NULL,
+				  NULL, NULL, NULL, 'N', 'N',
+				  'N', 'N', 'Y', 'Y', 1,
+				  NULL, 'N', 'N', 'N', NULL,
+				  NULL, NULL, NULL, NULL, NULL,
+				  NULL, NULL, NULL, NULL, NULL,
+				  NULL, NULL, NULL, NULL, NULL, NULL,
+				  NULL, NULL, NULL, NULL);
+			 END IF; 
+			  
+			j := j + 1;
+	   END LOOP;
+	   
+	   i := i + 1;
+	   dat := dat + 1;
+	END LOOP;
+END;
+
+
+
+/*
+
+INSERT INTO PMIS_ADM.Persons (PersonID)
+SELECT PersonID FROM VS_OWNER.VS_LS WHERE PersonID NOT IN (SELECT PersonID FROM PMIS_ADM.Persons);
+
+INSERT INTO PMIS_RES.Reservists (PersonID)
+SELECT PersonID
+FROM
+(
+  SELECT PersonID,
+         RANK() OVER (ORDER BY PersonID) as RowNumber 
+  FROM VS_OWNER.VS_LS
+)
+WHERE RowNumber < 300000;
+
+*/

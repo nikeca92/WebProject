@@ -1,0 +1,65 @@
+﻿CREATE TABLE PMIS_ADM.MilitaryReportSpecialities(MilReportSpecialityID number NOT NULL,
+                                                 MilReportingSpecialityName varchar2(300),
+                                                 MilReportingSpecialityCode varchar2(100),
+                                                 Type number(2) /*0 = NA; 1 = officers with academy; 2 = officers without academy; 3 = sergeants; 4 = soldiers */,
+                                                 MilitaryForceSortID number,
+                                                 Active number(1) CHECK (Active BETWEEN 0 AND 1)
+                                                );
+
+ALTER TABLE PMIS_ADM.MilitaryReportSpecialities ADD CONSTRAINT MilitaryReportSpecialities_PK PRIMARY KEY (MilReportSpecialityID);
+ALTER TABLE PMIS_ADM.MilitaryReportSpecialities ADD CONSTRAINT MilitaryReportSpecialities_UNQ UNIQUE (MilReportingSpecialityCode, Type);
+ALTER TABLE PMIS_ADM.MilitaryReportSpecialities ADD CONSTRAINT MilRepSpec_MilForceSort_FK FOREIGN KEY (MilitaryForceSortID) REFERENCES VS_OWNER.KLV_ROD (RODID);
+
+CREATE SEQUENCE PMIS_ADM.MilRepSpecialities_ID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+CREATE TRIGGER PMIS_ADM.TRG_MilRepSpecialities_INSERT
+BEFORE INSERT ON PMIS_ADM.MilitaryReportSpecialities
+FOR EACH ROW
+BEGIN
+   SELECT PMIS_ADM.MilRepSpecialities_ID_SEQ.nextval INTO :new.MilReportSpecialityID FROM dual;
+END;
+/
+
+INSERT INTO PMIS_ADM.MilitaryReportSpecialities (MilReportingSpecialityName,
+   MilReportingSpecialityCode, Type, MilitaryForceSortID, Active)
+SELECT VSO1_IME, VSO1_KOD, 1, RODID, 1
+FROM VS_OWNER.KLV_VSO1
+LEFT OUTER JOIN VS_OWNER.KLV_ROD ON VS_OWNER.KLV_VSO1.VSO1_ROD_KOD = VS_OWNER.KLV_ROD.ROD_KOD;
+
+INSERT INTO PMIS_ADM.MilitaryReportSpecialities (MilReportingSpecialityName,
+   MilReportingSpecialityCode, Type, MilitaryForceSortID, Active)
+SELECT VSO2_IME, VSO2_KOD, 2, RODID, 1
+FROM VS_OWNER.KLV_VSO2
+LEFT OUTER JOIN VS_OWNER.KLV_ROD ON VS_OWNER.KLV_VSO2.VSO2_ROD_KOD = VS_OWNER.KLV_ROD.ROD_KOD;
+
+INSERT INTO PMIS_ADM.MilitaryReportSpecialities (MilReportingSpecialityName,
+   MilReportingSpecialityCode, Type, MilitaryForceSortID, Active)
+SELECT VSO3_IME, VSO3_KOD, 3, RODID, 1
+FROM VS_OWNER.KLV_VSO3
+LEFT OUTER JOIN VS_OWNER.KLV_ROD ON VS_OWNER.KLV_VSO3.VSO3_ROD_KOD = VS_OWNER.KLV_ROD.ROD_KOD;
+
+INSERT INTO PMIS_ADM.MilitaryReportSpecialities (MilReportingSpecialityName,
+   MilReportingSpecialityCode, Type, MilitaryForceSortID, Active)
+SELECT VSO4_IME, VSO4_KOD, 4, RODID, 1
+FROM VS_OWNER.KLV_VSO4
+LEFT OUTER JOIN VS_OWNER.KLV_ROD ON VS_OWNER.KLV_VSO4.VSO4_ROD_KOD = VS_OWNER.KLV_ROD.ROD_KOD;
+
+INSERT INTO PMIS_ADM.MilitaryReportSpecialities (MilReportingSpecialityName,
+   MilReportingSpecialityCode, Type, MilitaryForceSortID, Active)
+SELECT VSO_IME, VSO_KOD, 0, RODID, 0
+FROM VS_OWNER.KLV_VSO
+LEFT OUTER JOIN VS_OWNER.KLV_ROD ON VS_OWNER.KLV_VSO.VSO_ROD_KOD = VS_OWNER.KLV_ROD.ROD_KOD
+WHERE VSO_KOD NOT IN (SELECT MilReportingSpecialityCode FROM PMIS_ADM.MilitaryReportSpecialities);
+
+INSERT INTO PMIS_ADM.MilitaryReportSpecialities (MilReportingSpecialityName,
+   MilReportingSpecialityCode, Type, MilitaryForceSortID, Active)
+SELECT VSS_IME, VSS_KOD, 0, RODID, 0
+FROM VS_OWNER.KLV_VSS
+LEFT OUTER JOIN VS_OWNER.KLV_ROD ON VS_OWNER.KLV_VSS.VSS_ROD_KOD = VS_OWNER.KLV_ROD.ROD_KOD
+WHERE VSS_KOD NOT IN (SELECT MilReportingSpecialityCode FROM PMIS_ADM.MilitaryReportSpecialities);
+
+COMMIT;
+/

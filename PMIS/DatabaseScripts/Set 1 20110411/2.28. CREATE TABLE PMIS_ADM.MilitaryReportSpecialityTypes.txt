@@ -1,0 +1,20 @@
+﻿CREATE TABLE PMIS_ADM.MilitaryReportSpecialityTypes(Type number NOT NULL,
+                                                    TypeName varchar2(300)
+                                                   );
+
+ALTER TABLE PMIS_ADM.MilitaryReportSpecialityTypes ADD CONSTRAINT MRSTypes_PK PRIMARY KEY (Type);
+
+INSERT INTO PMIS_ADM.MilitaryReportSpecialityTypes (Type, TypeName)
+VALUES (1, 'Офицер (академия)');
+
+INSERT INTO PMIS_ADM.MilitaryReportSpecialityTypes (Type, TypeName)
+VALUES (2, 'Офицер (без академия)');
+
+INSERT INTO PMIS_ADM.MilitaryReportSpecialityTypes (Type, TypeName)
+VALUES (3, 'Сержант');
+
+INSERT INTO PMIS_ADM.MilitaryReportSpecialityTypes (Type, TypeName)
+VALUES (4, 'Войник');
+
+COMMIT;
+/

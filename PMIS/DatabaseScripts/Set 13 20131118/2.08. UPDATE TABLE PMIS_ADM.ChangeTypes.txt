@@ -1,0 +1,106 @@
+﻿UPDATE PMIS_ADM.ChangeTypes SET
+   ChangeType = 'Резерв - Техника (Ремаркета и полуремаркета)'
+WHERE ChangeTypeKey = 'RES_Technics_TRAILERS';
+
+UPDATE PMIS_ADM.ChangeTypes SET
+   ChangeType = 'Класификатор "Видове ремаркета и полуремаркета"'
+WHERE ChangeTypeKey = 'RES_Lists_TrailerKind';
+
+UPDATE PMIS_ADM.ChangeTypes SET
+   ChangeType = 'Класификатор "Типове ремаркета и полуремаркета"'
+WHERE ChangeTypeKey = 'RES_Lists_TrailerType';
+
+UPDATE PMIS_ADM.ChangeTypes SET
+   ChangeType = 'Класификатор "Видове каросерии на ремаркета и полуремаркета"'
+WHERE ChangeTypeKey = 'RES_Lists_TrailerBodyKind';
+
+
+
+UPDATE PMIS_ADM.ChangeTypes SET
+   ChangeType = 'Резерв - Техника (Инженерни машини)'
+WHERE ChangeTypeKey = 'RES_Technics_ENG_EQUIP';
+
+UPDATE PMIS_ADM.ChangeTypes SET
+   ChangeType = 'Класификатор "Видове инж. машини"'
+WHERE ChangeTypeKey = 'RES_Lists_EngEquipKind';
+
+UPDATE PMIS_ADM.ChangeTypes SET
+   ChangeType = 'Класификатор "Типове инж. машини"'
+WHERE ChangeTypeKey = 'RES_Lists_EngEquipType';
+
+UPDATE PMIS_ADM.ChangeTypes SET
+   ChangeType = 'Класификатор "Видове базови машини (инж. машини)"'
+WHERE ChangeTypeKey = 'RES_Lists_EngEquipBaseKind';
+
+UPDATE PMIS_ADM.ChangeTypes SET
+   ChangeType = 'Класификатор "Типове базови машини (инж. машини)"'
+WHERE ChangeTypeKey = 'RES_Lists_EngEquipBaseType';
+
+UPDATE PMIS_ADM.ChangeTypes SET
+   ChangeType = 'Класификатор "Видове гориво за базова машина (инж. машини)"'
+WHERE ChangeTypeKey = 'RES_Lists_EngEquipBaseEngineType';
+
+UPDATE PMIS_ADM.ChangeTypes SET
+   ChangeType = 'Класификатор "Видове работни органи (инж. машини)"'
+WHERE ChangeTypeKey = 'RES_Lists_EngEquipWorkingBodyKind';
+
+UPDATE PMIS_ADM.ChangeTypes SET
+   ChangeType = 'Класификатор "Видове гориво за работен орган (инж. машини)"'
+WHERE ChangeTypeKey = 'RES_Lists_EngEquipWorkBodyEngineType';
+
+UPDATE PMIS_ADM.ChangeTypes SET
+   ChangeType = 'Класификатор "Марки инж. машини"'
+WHERE ChangeTypeKey = 'RES_Lists_EngEquipBaseMakeName';
+
+UPDATE PMIS_ADM.ChangeTypes SET
+   ChangeType = 'Класификатор "Модели инж. машини"'
+WHERE ChangeTypeKey = 'RES_Lists_EngEquipBaseModels';
+
+
+
+UPDATE PMIS_ADM.ChangeTypes SET
+   ChangeType = 'Резерв - Техника (Самоходни машини)'
+WHERE ChangeTypeKey = 'RES_Technics_MOB_LIFT_EQUIP';
+
+UPDATE PMIS_ADM.ChangeTypes SET
+   ChangeType = 'Класификатор "Видове самоходни машини"'
+WHERE ChangeTypeKey = 'RES_Lists_MobileLiftingEquipKind';
+
+UPDATE PMIS_ADM.ChangeTypes SET
+   ChangeType = 'Класификатор "Типове самоходни машини"'
+WHERE ChangeTypeKey = 'RES_Lists_MobileLiftingEquipType';
+
+
+
+
+UPDATE PMIS_ADM.ChangeTypes SET
+   ChangeType = 'Резерв - Техника (Инж. и самолетообслужваща техника)'
+WHERE ChangeTypeKey = 'RES_Technics_AVIATION_EQUIP';
+
+UPDATE PMIS_ADM.ChangeTypes SET
+   ChangeType = 'Класификатор "Марки базови машини (спец. инж. и самолетообслужваща техника)"'
+WHERE ChangeTypeKey = 'RES_Lists_AviationOtherBaseMachineMakeName';
+
+UPDATE PMIS_ADM.ChangeTypes SET
+   ChangeType = 'Класификатор "Модели базови машини (спец. инж. и самолетообслужваща техника)"'
+WHERE ChangeTypeKey = 'RES_Lists_AviationOtherBaseMachineModels';
+
+UPDATE PMIS_ADM.ChangeTypes SET
+   ChangeType = 'Класификатор "Видове спец. инж. и самолетообслужваща техника"'
+WHERE ChangeTypeKey = 'RES_Lists_AviationOtherKind';
+
+UPDATE PMIS_ADM.ChangeTypes SET
+   ChangeType = 'Класификатор "Видове базови машини (спец. инж. и самолетообслужваща техника)"'
+WHERE ChangeTypeKey = 'RES_Lists_AviationOtherBaseMachineKind';
+
+UPDATE PMIS_ADM.ChangeTypes SET
+   ChangeType = 'Класификатор "Типове базови машини (спец. инж. и самолетообслужваща техника)"'
+WHERE ChangeTypeKey = 'RES_Lists_AviationOtherBaseMachineType';
+
+UPDATE PMIS_ADM.ChangeTypes SET
+   ChangeType = 'Класификатор "Видове оборудване (спец. инж. и самолетообслужваща техника)"'
+WHERE ChangeTypeKey = 'RES_Lists_AviationOtherEquipmentKind';
+
+
+COMMIT;
+/

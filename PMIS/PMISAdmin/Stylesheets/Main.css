@@ -1,0 +1,751 @@
+﻿body
+{
+	font-family: Verdana;
+	font-size: 12px;
+}
+
+.HeaderPanel
+{
+	background-image: url("../Images/header.png");
+	height: 121px;
+	position: relative;
+}
+
+.LogoSection
+{
+	position: absolute;
+	top: 6px;
+	left: 40px;
+	width: 119px;
+	height: 107px;
+	background-image: url("../Images/bmod_logo.png");
+}
+
+.MasterHeader1
+{
+	text-align: center;
+	font-size: 1.6em;
+	color: #0B4489;
+	position: absolute;
+	top: 30px;
+	width: 100%;
+	font-weight: bold;
+}
+
+.MasterHeader2
+{
+	text-align: center;
+	font-size: 2em;
+	color: #0B4489;
+	position: absolute;
+	top: 70px;
+	width: 100%;
+	font-weight: bold;
+	left: 0px;
+}
+
+.FooterPanel
+{
+	background-image: url("../Images/footer.png");
+	height: 10px;
+}
+
+.ContentPanel
+{
+	min-height: 400px;
+	text-align: center;
+	background-color: #F9F9F9;
+}
+
+.HeaderText
+{
+	text-align: center;
+	font-size: 1.4em;
+	color: #0B4489;
+	font-weight: bold;
+}
+
+.SmallHeaderText
+{
+	text-align: center;
+	font-size: 1.2em;
+	color: #0B4489;
+	font-weight: bold;
+}
+
+.InputLabel
+{
+	text-align: right;
+	color: #0B4489;
+}
+
+.Button
+{
+    display:inline-block;
+    text-decoration: none;
+}
+
+.Button i
+{
+   background-color: Transparent;
+   background-image: url("../Images/BlueButtonLeftNoArrow.png");
+   background-repeat:no-repeat;
+   float:left;
+   border: none;
+   height: 30px;  
+   width: 11px;
+   cursor: pointer;
+}
+
+.Button div
+{
+   background-color: Transparent;
+   background-image: url("../Images/BlueButtonCenter.png");
+   background-repeat:repeat-x;
+   float:left;
+   border: none;
+   height: 30px; 
+   padding-top:5px;
+   font-family: "Lucida Sans", sans-serif;
+   font-size: 12px;
+   color: #ffffff;
+   text-decoration: none;
+   font-weight: normal;
+   text-align: center;
+   cursor: pointer;
+   position: relative;
+}
+
+.Button b
+{
+   background-color: Transparent;
+   background-image: url("../Images/BlueButtonRightNoArrow.png");
+   background-repeat:no-repeat;
+   float:left;
+   border: none;
+   height: 30px;  
+   width: 11px;
+   cursor: pointer;
+}
+
+.ButtonDisablerNotIE
+{
+    position: absolute;
+    top: 0px;
+    left: -11px;
+    background-color: #ffffff;
+    margin: 0;
+    opacity: .15;
+}
+
+.DisabledButton
+{
+    display:inline-block;
+    text-decoration: none;
+}
+
+.DisabledButton i
+{
+   background-color: Transparent;
+   background-image: url("../Images/GreyButtonLeftNoArrow.png");
+   background-repeat:no-repeat;
+   float:left;
+   border: none;
+   height: 30px;  
+   width: 11px;
+   cursor: pointer;
+}
+
+.DisabledButton div
+{
+   background-color: Transparent;
+   background-image: url("../Images/GreyButtonCenter.png");
+   background-repeat:repeat-x;
+   float:left;
+   border: none;
+   height: 30px; 
+   padding-top:5px;
+   font-family: "Lucida Sans", sans-serif;
+   font-size: 12px;
+   color: #ffffff;
+   text-decoration: none;
+   font-weight: normal;
+   text-align: center;
+   cursor: pointer;
+}
+
+.DisabledButton b
+{
+   background-color: Transparent;
+   background-image: url("../Images/GreyButtonRightNoArrow.png");
+   background-repeat:no-repeat;
+   float:left;
+   border: none;
+   height: 30px;  
+   width: 11px;
+   cursor: pointer;
+}
+
+.ErrorText
+{
+	text-align: center;
+	color: #BB3333;
+}
+
+.SuccessText
+{
+	text-align: center;
+	color: #006400;
+}
+
+.DarkGreyText
+{
+	text-align: center;
+	color: #444444;
+}
+
+.LinkButton
+{
+	cursor: pointer;
+	text-decoration: underline;
+}
+
+.InputField
+{
+    font-family: Verdana;
+    font-size: 1em;
+	width: 150px;
+	text-align: left;
+}
+
+.RequiredInputField
+{
+    font-family: Verdana;
+    font-size: 1em;
+	width: 150px;
+	text-align: left;
+	background-color: #FFFFCC;
+}
+
+.MasterFullName
+{
+	color: #339933;
+	position: absolute;
+	top: 100px;
+	right: 10px;
+	font-weight: bold;
+}
+
+.HomePageHeader
+{
+	font-size: 1.3em;
+	font-weight: bold;
+	color: #333377;
+	text-align: left;
+	padding-top: 10px;
+}
+
+.HomePageItem
+{
+	text-align: left;
+	padding-top: 3px;
+	padding-left: 10px;
+}
+
+.HomePageItemLink
+{
+	text-decoration: underline;
+	cursor: pointer;
+
+}
+
+.TableAddEditInvestigationProtocol
+{
+	vertical-align: middle;
+	margin: 5px auto 10px auto;
+	padding: 2px;
+	border: thin solid #C0C0C0;
+	border-collapse: collapse;
+	width: 870px;
+	border-spacing: inherit;
+}
+
+.HeaderText2
+{
+	text-align: right;
+	color: #002953;
+	font-size: 1.2em;
+	font-weight: 500;
+}
+.td1
+{
+	text-align:left
+}
+.td2
+{
+	text-align:right ;
+	width:100px
+}
+
+.CommonHeaderTable
+{
+	border: 1px solid #C3C3C3; 
+	border-collapse:collapse;
+	vertical-align: middle;
+}
+
+.CommonHeaderTable thead
+{
+	background: url("../Images/tableHeader.png") repeat-x;
+	vertical-align: middle;
+	color: #FFFFFF;
+    background-color: #00026b;
+}
+
+.CommonHeaderTable tr td
+{
+	border: solid 1px #C3C3C3;
+}
+
+.CommonHeaderTable thead tr th
+{
+	border: solid 1px #C3C3C3;
+	text-align: center;
+}
+
+.DataTable
+{
+	border: 1px solid #C3C3C3; 
+	border-collapse:collapse;
+	text-align: center;
+	vertical-align: middle;
+	table-layout:fixed;
+	width: 100%;
+}
+
+.DataTableOddRow
+{	
+	background-color: Transparent;
+}
+
+.DataTableEvenRow
+{	
+	background-color: #f0ffff;
+
+}
+.PaginationButton
+{
+    height: 20px; 
+    width: 20px;
+    cursor: pointer;
+    vertical-align: middle;
+}
+
+.PaginationLabel
+{
+    text-align: center;
+	font-size: 1.2em;
+    vertical-align: middle;
+}
+
+.PaginationTextBox
+{
+    vertical-align: middle;
+}
+
+.HidePage
+{
+	z-index: 1000; 
+	position: fixed; 
+	top: 0; 
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: #000000;
+	filter:alpha(opacity=60); 
+    -moz-opacity: 0.6; 
+    opacity: 0.6; 
+    /*cursor: not-allowed;*/
+}
+
+.HidePageYesNo
+{
+	z-index: 1010; 
+	position: fixed; 
+	top: 0; 
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: #000000;
+	filter:alpha(opacity=60); 
+    -moz-opacity: 0.6; 
+    opacity: 0.6; 
+    /*cursor: not-allowed;*/
+}
+
+.LightBox
+{
+	width: 35%;
+	background-color: #EEEEEE;
+	border: solid 1px #000000;
+	position: fixed;
+	top: 200px;
+	left: 32%;	
+	height: 320px;
+	z-index: 1000;
+}
+
+.RecommendationLightBox
+{
+	width: 450px;
+	background-color: #EEEEEE;
+	border: solid 1px #000000;
+	position: fixed;
+	top: 200px;
+	left: 32%;	
+	height: 370px;
+	z-index: 1000;
+}
+
+.HiddenButton
+{
+    display: none;
+}
+
+.SortImgDiv
+{   
+  position: absolute;
+  bottom: 1px;
+  right: 1px;
+}
+
+.GridActionIcon
+{
+	height: 15px;
+	width: 15px;
+	cursor: pointer;
+	margin-right: 5px;
+}
+
+.ReadOnlyValue
+{
+	font-weight: bold;
+	color: #333333;
+}
+
+.UITreeItem_Disabled
+{
+	color: #666666;
+}
+
+.UITreeItem_Hidden
+{
+	color: #AAAAAA; 
+	font-style: italic;
+}
+
+.InfoArea
+{
+	background-color: #FAFAFA;
+	border: solid 1px #666666;
+	width: 600px;
+	margin: 0 auto;
+	text-align: left;
+	padding: 6px;
+	font-size: 0.9em;
+	color: #444444;
+}
+
+.ImgEditUserProfile
+{
+	background: url("../Images/user.png");
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	cursor: pointer;
+}
+
+.TableHeaderRow
+{
+	background: url("../Images/tableHeader.png") repeat-x;
+	vertical-align: middle;
+	color: #FFFFFF;
+    background-color: #00026b;
+}
+
+.TableHeaderCell
+{
+	border: solid 1px #C3C3C3;
+}
+
+#divAjaxLoading
+{
+    position: fixed;
+    bottom: 2px;
+    right: 5px;
+}
+
+.YesNoLightBox
+{
+	width: 35%;
+	background-color: #EEEEEE;
+	border: solid 1px #000000;
+	position: fixed;
+	top: 200px;
+	left: 32%;	
+	height: 150px;
+	z-index: 1011;
+}
+
+.GTibleLightBox
+{
+	min-width: 480px;
+	background-color: #EEEEEE;
+	border: solid 1px #000000;
+	position: fixed;
+	top: 200px;
+	left: 32%;	
+	min-height: 200px;
+	z-index: 1000;
+	padding-top: 10px;
+}
+
+.ShadowContainer
+{
+	margin: 0 auto;
+	width: 960px;
+}
+
+.PageContentArea
+{
+	border: solid 1px #AAAAAA;
+	background-color: #FFFFFF;
+	position: relative;
+	top: -1px;
+	left: -1px;
+	min-height: 400px;
+	text-align: left;
+}
+
+.Shadow1
+{
+	background-color: #F1F0F1;
+	
+}
+
+.Shadow2
+{
+	background-color: #DBDADB;
+	position: relative;
+	top: -1px;
+	left: -1px;
+}
+
+.Shadow3
+{
+	background-color: #B8B6B8;
+	position: relative;
+	top: -1px;
+	left: -1px;
+}
+
+.MenuBarIcon
+{
+	width: 20px;
+	height: 20px;
+}
+
+.isDivListClass
+{
+   font-family: Verdana;
+   font-size: 11px;
+   font-weight: normal;
+   overflow-x: visible;
+   overflow-y: scroll;
+   position: absolute;
+   z-index: 1000;
+   border: solid 1px #AAAAAA;
+   background-color: #FFFFFF;
+   width : 210px;
+}
+
+.isDivFullListClass
+{
+   font-family: Verdana;
+   font-size: 11px;
+   position: fixed;
+   z-index: 1000;
+   border: solid 1px #AAAAAA;
+   background-color: #FFFFFF;
+   width : 500px;
+}
+
+.isDivFullListClass .Title
+{
+   font-family: Verdana;
+   font-size: 13px;
+   text-align: center;
+   width: 100%;
+   font-weight: bold;
+}
+
+.isDivFullListClass .CloseButton
+{
+    background-image: url("../Images/Close.png");
+    width: 16px; 
+    height: 16px; 
+}
+
+.isDivFullListClass .FirstButton
+{
+    background-image: url("../Images/ButtonFirst.png");
+    height: 20px; 
+    width: 20px;
+}
+
+.isDivFullListClass .FirstButtonDisabled
+{
+    background-image: url("../Images/ButtonFirstDisabled.png");
+    height: 20px; 
+    width: 20px;
+}
+
+.isDivFullListClass .PrevButton
+{
+    background-image: url("../Images/ButtonPrev.png");
+    height: 20px; 
+    width: 20px;
+}
+
+.isDivFullListClass .PrevButtonDisabled
+{
+    background-image: url("../Images/ButtonPrevDisabled.png");
+    height: 20px; 
+    width: 20px;
+}
+
+.isDivFullListClass .NextButton
+{
+    background-image: url("../Images/ButtonNext.png");
+    height: 20px; 
+    width: 20px;
+}
+
+.isDivFullListClass .NextButtonDisabled
+{
+    background-image: url("../Images/ButtonNextDisabled.png");
+    height: 20px; 
+    width: 20px;
+}
+
+.isDivFullListClass .LastButton
+{
+    background-image: url("../Images/ButtonLast.png");
+    height: 20px; 
+    width: 20px;
+}
+
+.isDivFullListClass .LastButtonDisabled
+{
+    background-image: url("../Images/ButtonLastDisabled.png");
+    height: 20px; 
+    width: 20px;
+}
+
+.isDivFullListClass input
+{
+    font-family: Verdana;
+    font-weight: normal;
+    font-size: 11px;
+    background-color: #FFFFFF;
+}
+
+.isDivMainClass
+{
+    font-family: Verdana;
+    width: 240px;
+}
+
+.isDivMainClass .ViewListButton
+{
+    background-image: url("../Images/view_list.png");
+    cursor: pointer;
+    width: 20px; 
+    height: 20px; 
+}
+
+.isDivMainClass input
+{
+   font-family: Verdana;
+   font-weight: normal;
+   font-size: 11px;
+   width : 200px;
+}
+
+.isDivMainClassRequired
+{
+    font-family: Verdana;
+    width: 240px;
+}
+
+.isDivMainClassRequired .ViewListButton
+{
+    background-image: url("../Images/view_list.png");
+    cursor: pointer;
+    width: 20px; 
+    height: 20px; 
+}
+
+.isDivMainClassRequired input
+{
+   font-family: Verdana;
+   font-weight: normal;
+   font-size: 11px;
+   width : 200px;
+   background-color: #FFFFCC;
+}
+
+.ListItem
+{
+    
+}
+
+.ListItem:hover
+{
+    cursor: pointer;
+    background-color: #333399;
+    color: #FFFFFF;    
+}
+
+.InfoPopup
+{
+    z-index: 1100;
+    border: solid 1px #000000;
+	position: absolute;
+	padding: 0 10px;
+	background-color: #FFFFCC;
+	width: 220px;
+	height: 150px;	
+	overflow-x: hidden; 
+	overflow-y: auto;
+}
+
+.FilterArea
+{
+    border: solid 1px #CCCCCC;
+    position: relative;
+    padding-top: 15px;
+    background-color: #FAFAFA;
+}
+
+.FilterLegend
+{
+    width: 68px;
+    position: absolute;
+    top: -10px;
+    left: 20px;
+    background-color: #FFFFFF;
+    color: #0B4489; 
+    font-weight: bold; 
+    font-size: 1.25em;
+}

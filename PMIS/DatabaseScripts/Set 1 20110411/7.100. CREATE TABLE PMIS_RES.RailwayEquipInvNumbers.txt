@@ -1,0 +1,21 @@
+﻿CREATE TABLE PMIS_RES.RailwayEquipInvNumbers(RailwayEquipInvNumberID number NOT NULL,
+                                        RailwayEquipID number NOT NULL,
+                                        InventoryNumber varchar2(20),
+                                        ChangeDate date
+                                        );
+
+ALTER TABLE PMIS_RES.RailwayEquipInvNumbers ADD CONSTRAINT RailwayEquipInvNumbers_PK PRIMARY KEY(RailwayEquipInvNumberID);
+ALTER TABLE PMIS_RES.RailwayEquipInvNumbers ADD CONSTRAINT RailEqInvNumbers_RailEq_FK FOREIGN KEY (RailwayEquipID) REFERENCES PMIS_RES.RailwayEquips (RailwayEquipID);
+
+CREATE SEQUENCE PMIS_RES.RailwayEquipInvNumbers_ID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+CREATE TRIGGER PMIS_RES.TRG_RailwayEquipInvNum_INSERT
+BEFORE INSERT ON PMIS_RES.RailwayEquipInvNumbers
+FOR EACH ROW
+BEGIN
+   SELECT PMIS_RES.RailwayEquipInvNumbers_ID_SEQ.nextval INTO :new.RailwayEquipInvNumberID FROM dual;
+END;
+/

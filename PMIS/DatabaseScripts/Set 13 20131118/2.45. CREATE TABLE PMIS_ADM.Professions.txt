@@ -1,0 +1,45 @@
+﻿CREATE TABLE PMIS_ADM.Professions(ProfessionID number NOT NULL,
+                                  ProfessionName varchar2(200)
+								 );
+
+ALTER TABLE PMIS_ADM.Professions ADD CONSTRAINT Professions_PK PRIMARY KEY (ProfessionID);
+
+CREATE SEQUENCE PMIS_ADM.Professions_ID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+CREATE TRIGGER PMIS_ADM.TRG_Professions_INSERT
+BEFORE INSERT ON PMIS_ADM.Professions
+FOR EACH ROW
+BEGIN
+   SELECT PMIS_ADM.Professions_ID_SEQ.nextval INTO :new.ProfessionID FROM dual;
+END;
+/
+
+INSERT INTO PMIS_ADM.Professions (ProfessionName)
+VALUES ('Лекари');
+
+INSERT INTO PMIS_ADM.Professions (ProfessionName)
+VALUES ('Фармацевт');
+
+INSERT INTO PMIS_ADM.Professions (ProfessionName)
+VALUES ('Рехабилитатор');
+
+INSERT INTO PMIS_ADM.Professions (ProfessionName)
+VALUES ('Лаборант');
+
+INSERT INTO PMIS_ADM.Professions (ProfessionName)
+VALUES ('Медицински сестри');
+
+INSERT INTO PMIS_ADM.Professions (ProfessionName)
+VALUES ('Лекари ветеринари');
+
+INSERT INTO PMIS_ADM.Professions (ProfessionName)
+VALUES ('Психолози');
+
+INSERT INTO PMIS_ADM.Professions (ProfessionName)
+VALUES ('Строителни инженери/техници');
+
+COMMIT;
+/

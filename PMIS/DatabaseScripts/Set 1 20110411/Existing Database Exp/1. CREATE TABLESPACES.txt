@@ -1,0 +1,42 @@
+create tablespace 
+   VITOSA_LS
+datafile 
+   'C:/oracle/tablespaces/VITOSA_LS.dbf'
+size 
+   50m
+autoextend on 
+next 10m 
+maxsize unlimited;
+
+
+create tablespace 
+   INDEX02
+datafile 
+   'C:/oracle/tablespaces/INDEX02.dbf'
+size 
+   50m
+autoextend on 
+next 10m 
+maxsize unlimited;
+
+
+create tablespace 
+   UKAZATEL
+datafile 
+   'C:/oracle/tablespaces/UKAZATEL.dbf'
+size 
+   50m
+autoextend on 
+next 10m 
+maxsize unlimited;
+
+
+create tablespace 
+   VS_FILES
+datafile 
+   'C:/oracle/tablespaces/VS_FILES.dbf'
+size 
+   50m
+autoextend on 
+next 10m 
+maxsize unlimited;

@@ -1,0 +1,29 @@
+﻿CREATE TABLE PMIS_RES.Trailers(TrailerID number NOT NULL,
+							   TechnicsID number NOT NULL,
+                               RegNumber varchar2(20),
+                               InventoryNumber varchar2(50),
+                               TrailerKindID number, /*GTable*/
+                               TrailerTypeID number, /*GTable*/
+                               CarryingCapacity number,
+                               FirstRegistrationDate date,
+                               LastAnnualTechnicalReviewDate date,
+                               Mileage number
+                               );
+
+ALTER TABLE PMIS_RES.Trailers ADD CONSTRAINT Trailers_PK PRIMARY KEY(TrailerID);
+ALTER TABLE PMIS_RES.Trailers ADD CONSTRAINT Trailers_TechnicsID_UNQ UNIQUE (TechnicsID);
+ALTER TABLE PMIS_RES.Trailers ADD CONSTRAINT Trailers_RegNum_UNQ UNIQUE (RegNumber);
+ALTER TABLE PMIS_RES.Trailers ADD CONSTRAINT Trailers_Technics_FK FOREIGN KEY (TechnicsID) REFERENCES PMIS_RES.Technics (TechnicsID);
+
+CREATE SEQUENCE PMIS_RES.Trailers_ID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+CREATE TRIGGER PMIS_RES.TRG_Trailers_INSERT
+BEFORE INSERT ON PMIS_RES.Trailers
+FOR EACH ROW
+BEGIN
+   SELECT PMIS_RES.Trailers_ID_SEQ.nextval INTO :new.TrailerID FROM dual;
+END;
+/

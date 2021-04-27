@@ -1,0 +1,41 @@
+/*http://www.dba-oracle.com/job_scheduling/schedules.htm http://www.dba-oracle.com/job_scheduling/calendar_syntax.htm*/
+
+/*CREATE THE SCHEDULE*/
+BEGIN
+  DBMS_SCHEDULER.create_schedule (
+      schedule_name   => 'GenerateOfflineReports_Sched',
+      start_date      => ROUND(SYSDATE) - 2,
+      repeat_interval => 'FREQ=DAILY; INTERVAL=1; BYHOUR=1; BYMINUTE=00; BYSECOND=00;',
+      end_date        => NULL,
+      comments        => 'Repeats every day at 03:00.');
+END;
+/
+
+/*VIEW DEFINED SCHEDULES
+SELECT 
+   owner,
+   schedule_name,
+   repeat_interval
+FROM
+   DBA_SCHEDULER_SCHEDULES;
+*/
+
+/*DEFINE THE JOB*/
+BEGIN
+  -- Job defined by existing schedule and inline program.
+  DBMS_SCHEDULER.create_job (
+     job_name      => 'GenerateOfflineReports_Job',
+     schedule_name => 'GenerateOfflineReports_Sched',
+     job_type      => 'STORED_PROCEDURE',
+     job_action    => 'PMIS_ADM.CommonFunctions.CallGenerateOfflineReports',
+     enabled       => TRUE,
+     comments      => '');
+END;
+/
+
+
+
+
+
+
+

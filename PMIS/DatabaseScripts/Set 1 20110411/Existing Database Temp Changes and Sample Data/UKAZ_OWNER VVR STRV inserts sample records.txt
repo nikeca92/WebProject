@@ -1,0 +1,43 @@
+﻿
+-------------------------------------------------------------------------------------------------
+
+INSERT INTO UKAZ_OWNER.VVR (KOD_VVR, NK, IMEES, IMEED,
+  NSTAT, KOD_TSR, MSROK, DSROK, OSROK,
+  BSROK, KOD_BOG, KOD_SPE, KOD_SPM,
+  KOD_MIR1, KOD_NMA, KOD_EZ, KOD_VOE,
+  KOD_NZN, KOD_RNV, KOD_MIR2, DATA,
+  MM, VFPS, KOD_PBG, KOD_TIP, VID_OE,
+  AKTUAL, KOD_TSRD, KOD_PBG0906, KOD_PBG0507)
+VALUES (1, '1234', 'Команда #1', 'Това е команда 1',
+  NULL, 0, NULL, NULL, NULL,
+  NULL, NULL, NULL, NULL,
+  NULL, NULL, 1, 1,
+  1, NULL, 1, SYSDATE,
+  NULL, NULL, NULL, 1, 'K',
+  '1', '0', NULL, NULL);
+  
+  
+INSERT INTO UKAZ_OWNER.VVR (KOD_VVR, NK, IMEES, IMEED,
+  NSTAT, KOD_TSR, MSROK, DSROK, OSROK,
+  BSROK, KOD_BOG, KOD_SPE, KOD_SPM,
+  KOD_MIR1, KOD_NMA, KOD_EZ, KOD_VOE,
+  KOD_NZN, KOD_RNV, KOD_MIR2, DATA,
+  MM, VFPS, KOD_PBG, KOD_TIP, VID_OE,
+  AKTUAL, KOD_TSRD, KOD_PBG0906, KOD_PBG0507)
+VALUES (2, '5678', 'Команда #2', 'Това е команда 2',
+  NULL, 0, NULL, NULL, NULL,
+  NULL, NULL, NULL, NULL,
+  NULL, NULL, 1, 1,
+  1, NULL, 1, SYSDATE,
+  NULL, NULL, NULL, 1, 'K',
+  '1', '0', NULL, NULL);
+
+
+-------------------------------------------------------------------------------------------------
+
+INSERT INTO UKAZ_OWNER.STRV (KOD_VVR, KP_STRV, NIVO_STRV, STR_KOD_VVR, POREDEN_STRV, LAST_STRV)
+VALUES (1, '0 1', 1, NULL, 1, 1);
+
+INSERT INTO UKAZ_OWNER.STRV (KOD_VVR, KP_STRV, NIVO_STRV, STR_KOD_VVR, POREDEN_STRV, LAST_STRV)
+VALUES (2, '0 2', 1, NULL, 1, 1);
+

@@ -1,0 +1,6 @@
+﻿ALTER TABLE PMIS_ADM.Modules ADD CONSTRAINT Modules_UNQ UNIQUE (ModuleKey);
+
+INSERT INTO PMIS_ADM.Modules (ModuleName, ModuleKey)
+VALUES ('Справки', 'REP');
+
+COMMIT;

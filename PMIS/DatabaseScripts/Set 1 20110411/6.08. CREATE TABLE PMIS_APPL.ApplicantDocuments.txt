@@ -1,0 +1,23 @@
+﻿CREATE TABLE PMIS_APPL.ApplicantDocuments(ApplicantDocumentID number NOT NULL,
+                                          ApplicantID number NOT NULL,
+                                          VacancyAnnounceDocumentID number NOT NULL,
+                                          ApplicantDocumentStatusID number NOT NULL
+                                          );
+
+ALTER TABLE PMIS_APPL.ApplicantDocuments ADD CONSTRAINT ApplicantDocuments_PK PRIMARY KEY(ApplicantDocumentID);
+ALTER TABLE PMIS_APPL.ApplicantDocuments ADD CONSTRAINT ApplDocuments_Applicants_FK FOREIGN KEY (ApplicantID) REFERENCES PMIS_APPL.Applicants (ApplicantID);
+ALTER TABLE PMIS_APPL.ApplicantDocuments ADD CONSTRAINT ApplDocuments_ApplDocStatus_FK FOREIGN KEY (ApplicantDocumentStatusID) REFERENCES PMIS_APPL.ApplicantDocumentStatus (StatusID);
+ALTER TABLE PMIS_APPL.ApplicantDocuments ADD CONSTRAINT ApplDocuments_UNQ UNIQUE (ApplicantID, VacancyAnnounceDocumentID);
+
+CREATE SEQUENCE PMIS_APPL.ApplicantDocuments_ID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+CREATE TRIGGER PMIS_APPL.TRG_ApplicantDocuments_INSERT
+BEFORE INSERT ON PMIS_APPL.ApplicantDocuments
+FOR EACH ROW
+BEGIN
+   SELECT PMIS_APPL.ApplicantDocuments_ID_SEQ.nextval INTO :new.ApplicantDocumentID FROM dual;
+END;
+/

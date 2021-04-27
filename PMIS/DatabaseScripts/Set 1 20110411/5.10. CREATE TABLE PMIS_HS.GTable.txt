@@ -1,0 +1,53 @@
+﻿CREATE TABLE PMIS_HS.GTable(GTableID number NOT NULL,
+                            TableName varchar2(500),
+                            TableKey number NOT NULL,
+                            TableSeq number,
+                            TableValue varchar2(4000)
+                            );
+
+ALTER TABLE PMIS_HS.GTable ADD CONSTRAINT HS_GTable_PK PRIMARY KEY(GTableID);
+ALTER TABLE PMIS_HS.GTable ADD CONSTRAINT HS_GTable_UNQ UNIQUE (TableName, TableKey);
+
+CREATE SEQUENCE PMIS_HS.GTable_ID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+CREATE TRIGGER PMIS_HS.TRG_GTable_INSERT
+BEFORE INSERT ON PMIS_HS.GTable
+FOR EACH ROW
+DECLARE
+   TableKey number;
+BEGIN
+   SELECT PMIS_HS.GTable_ID_SEQ.nextval INTO :new.GTableID FROM dual;
+   
+   IF :new.TableKey IS NULL THEN
+      SELECT MAX(TableKey) INTO TableKey
+      FROM PMIS_HS.GTable
+      WHERE TableName = :new.TableName;
+      
+      :new.TableKey := TableKey + 1;
+   END IF;
+END;
+/
+
+INSERT INTO PMIS_HS.GTable(TableName, TableKey, TableSeq, TableValue)
+VALUES ('DegreeOfDanger', '1', '1', 'Надвиснала опасност');
+
+INSERT INTO PMIS_HS.GTable(TableName, TableKey, TableSeq, TableValue)
+VALUES ('DegreeOfDanger', '2', '2', 'Сериозен риск');
+
+INSERT INTO PMIS_HS.GTable(TableName, TableKey, TableSeq, TableValue)
+VALUES ('DegreeOfDanger', '3', '3', 'Умерен риск');
+
+INSERT INTO PMIS_HS.GTable(TableName, TableKey, TableSeq, TableValue)
+VALUES ('DegreeOfDanger', '4', '4', 'Минимален риск');
+
+
+INSERT INTO PMIS_HS.GTable(TableName, TableKey, TableSeq, TableValue)
+VALUES ('ComitteeTypes', '1', '1', 'Комитет по условията на труда');
+
+INSERT INTO PMIS_HS.GTable(TableName, TableKey, TableSeq, TableValue)
+VALUES ('ComitteeTypes', '2', '2', 'Група по условията на труда');
+
+COMMIT;

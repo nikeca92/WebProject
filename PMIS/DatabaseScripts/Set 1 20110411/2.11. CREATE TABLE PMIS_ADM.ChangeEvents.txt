@@ -1,0 +1,25 @@
+﻿CREATE TABLE PMIS_ADM.ChangeEvents(ChangeEventID number NOT NULL,
+                                   ChangeID number NOT NULL,
+                                   ChangeEventTypeID number NOT NULL,
+                                   ObjectDesc varchar2(1500),
+                                   MilitaryUnitID number,
+                                   PersonID number
+                                  );
+
+ALTER TABLE PMIS_ADM.ChangeEvents ADD CONSTRAINT ChangeEvents_PK PRIMARY KEY(ChangeEventID);
+ALTER TABLE PMIS_ADM.ChangeEvents ADD CONSTRAINT ChangeEvents_ChangesLog_FK FOREIGN KEY (ChangeID) REFERENCES PMIS_ADM.ChangesLog (ChangeID);
+ALTER TABLE PMIS_ADM.ChangeEvents ADD CONSTRAINT ChangeEvents_EventTypes_FK FOREIGN KEY (ChangeEventTypeID) REFERENCES PMIS_ADM.ChangeEventTypes (ChangeEventTypeID);
+
+
+CREATE SEQUENCE PMIS_ADM.ChangeEvents_ID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+CREATE TRIGGER PMIS_ADM.TRG_ChangeEvents_INSERT
+BEFORE INSERT ON PMIS_ADM.ChangeEvents
+FOR EACH ROW
+BEGIN
+   SELECT PMIS_ADM.ChangeEvents_ID_SEQ.nextval INTO :new.ChangeEventID FROM dual;
+END;
+/

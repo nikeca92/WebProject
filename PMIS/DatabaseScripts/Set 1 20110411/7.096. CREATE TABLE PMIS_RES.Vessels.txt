@@ -1,0 +1,38 @@
+﻿CREATE TABLE PMIS_RES.Vessels(VesselID number NOT NULL,
+                              TechnicsID number NOT NULL,
+                              InventoryNumber varchar2(50),                             
+                              VesselKindID number, /*GTable*/
+                              VesselTypeID number, /*GTable*/
+                              VesselName varchar2(300),
+                              LoadDisplacement number,
+                              LightDisplacement number,
+                              Length number,
+                              Width number,
+                              MaxHeight number,
+                              MaxWadeLoad number,
+                              MaxWadeLight number,
+                              Officers number,
+                              Sailors number,
+                              EnginePower number,
+                              SpeedNodes number,
+                              StopDate date,
+                              StopReasons varchar2(1000)                        
+                             );
+
+ALTER TABLE PMIS_RES.Vessels ADD CONSTRAINT Vessels_PK PRIMARY KEY(VesselID);
+ALTER TABLE PMIS_RES.Vessels ADD CONSTRAINT Vessels_TechnicsID_UNQ UNIQUE (TechnicsID);
+ALTER TABLE PMIS_RES.Vessels ADD CONSTRAINT Vessels_InventNumber_UNQ UNIQUE (InventoryNumber);
+ALTER TABLE PMIS_RES.Vessels ADD CONSTRAINT Vessels_Technics_FK FOREIGN KEY (TechnicsID) REFERENCES PMIS_RES.Technics (TechnicsID);
+
+CREATE SEQUENCE PMIS_RES.Vessels_ID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+CREATE TRIGGER PMIS_RES.TRG_Vessels_INSERT
+BEFORE INSERT ON PMIS_RES.Vessels
+FOR EACH ROW
+BEGIN
+   SELECT PMIS_RES.Vessels_ID_SEQ.nextval INTO :new.VesselID FROM dual;
+END;
+/

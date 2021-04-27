@@ -1,0 +1,28 @@
+﻿CREATE TABLE PMIS_APPL.PotencialApplicants(PotencialApplicantID number NOT NULL,
+                                  PersonID number NOT NULL,
+                                  MilitaryDepartmentID number NOT NULL,
+				  Comments varchar2(4000),
+				  LastAppearance date,
+								  CreatedBy number,
+								  CreatedDate date,
+								  LastModifiedBy number,
+								  LastModifiedDate date                                  
+                                  );
+
+ALTER TABLE PMIS_APPL.PotencialApplicants ADD CONSTRAINT PotApplicants_PK PRIMARY KEY(PotencialApplicantID);
+ALTER TABLE PMIS_APPL.PotencialApplicants ADD CONSTRAINT PotApplicants_UNQ UNIQUE (PersonID, MilitaryDepartmentID);
+ALTER TABLE PMIS_APPL.PotencialApplicants ADD CONSTRAINT PotApplicants_Persons_FK FOREIGN KEY (PersonID) REFERENCES VS_OWNER.VS_LS (PersonID);
+ALTER TABLE PMIS_APPL.PotencialApplicants ADD CONSTRAINT PotApplicants_MilDepart_FK FOREIGN KEY (MilitaryDepartmentID) REFERENCES PMIS_ADM.MilitaryDepartments (MilitaryDepartmentID);
+
+CREATE SEQUENCE PMIS_APPL.PotApplicants_ID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+CREATE TRIGGER PMIS_APPL.TRG_PotencialApplicants_INSERT
+BEFORE INSERT ON PMIS_APPL.PotencialApplicants
+FOR EACH ROW
+BEGIN
+   SELECT PMIS_APPL.PotApplicants_ID_SEQ.nextval INTO :new.PotencialApplicantID FROM dual;
+END;
+/

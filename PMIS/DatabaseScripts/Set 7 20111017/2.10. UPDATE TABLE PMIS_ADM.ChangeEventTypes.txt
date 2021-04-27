@@ -1,0 +1,106 @@
+﻿INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Reservist_GroupTakeDown', 'Групово снемане от отчет', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 2);
+
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('HS_Lists_Probabilities_AddProbability', 'Добавяне на вероятност', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('HS_Lists_Probabilities_EditProbability', 'Редактиране на вероятност', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('HS_Lists_Probabilities_DeleteProbability', 'Изтриване на вероятност', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'), 3);
+
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('HS_Lists_Exposure_AddExposure', 'Добавяне на експозиция', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('HS_Lists_Exposure_EditExposure', 'Редактиране на експозиция', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('HS_Lists_Exposure_DeleteExposure', 'Изтриване на експозиция', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'), 3);
+
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('HS_Lists_EffectWeight_AddEffectWeight', 'Добавяне на тежест (последици)', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('HS_Lists_EffectWeight_EditEffectWeight', 'Редактиране на тежест (последици)', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('HS_Lists_EffectWeight_DeleteEffectWeight', 'Изтриване на тежест (последици)', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'), 3);
+
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('HS_Lists_RiskRank_AddRiskRank', 'Добавяне на риск', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('HS_Lists_RiskRank_EditRiskRank', 'Редактиране на риск', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('HS_Lists_RiskRank_DeleteRiskRank', 'Изтриване на риск', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'), 3);
+
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('HS_Lists_RiskFactorTypes_AddRiskFactorType', 'Добавяне на вид фактор при оценка на риска', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('HS_Lists_RiskFactorTypes_EditRiskFactorType', 'Редактиране на вид фактор при оценка на риска', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('HS_Lists_RiskFactorTypes_DeleteRiskFactorType', 'Изтриване на вид фактор при оценка на риска', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'), 3);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('HS_Lists_RiskFactors_AddRiskFactor', 'Добавяне на фактор при оценка на риска', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('HS_Lists_RiskFactors_EditRiskFactor', 'Редактиране на фактор при оценка на риска', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('HS_Lists_RiskFactors_DeleteRiskFactor', 'Изтриване на фактор при оценка на риска', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'), 3);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('HS_Lists_Hazards_AddHazard', 'Добавяне на потенциална опасност при оценка на риска', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('HS_Lists_Hazards_EditHazard', 'Редактиране на потенциална опасност при оценка на риска', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('HS_Lists_Hazards_DeleteHazard', 'Изтриване на потенциална опасност при оценка на риска', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'), 3);
+
+
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('HS_Subdivisions_AddSubdivision', 'Добавяне на подразделение/обект', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('HS_Subdivisions_EditSubdivision', 'Редактиране на подразделение/обект', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('HS_Subdivisions_DeleteSubdivision', 'Изтриване на подразделение/обект', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'), 3);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('HS_Positions_AddPosition', 'Добавяне на длъжност', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('HS_Positions_EditPosition', 'Редактиране на длъжност', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('HS_Positions_DeletePosition', 'Изтриване на длъжност', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'), 3);
+
+
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('HS_RiskCard_AddRiskCardItem', 'Добавяне на опасност', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('HS_RiskCard_EditRiskCardItem', 'Редактиране на опасност', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('HS_RiskCard_DeleteRiskCardItem', 'Изтриване на опасност', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'), 3);
+
+
+
+COMMIT;
+/

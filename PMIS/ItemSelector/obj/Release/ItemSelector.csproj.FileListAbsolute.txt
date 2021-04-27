@@ -1,0 +1,11 @@
+C:\PMIS\Src\PMIS\ItemSelector\bin\Release\ItemSelector.dll
+C:\PMIS\Src\PMIS\ItemSelector\bin\Release\ItemSelector.pdb
+C:\PMIS\Src\PMIS\ItemSelector\obj\Release\ResolveAssemblyReference.cache
+C:\PMIS\Src\PMIS\ItemSelector\obj\Release\ItemSelector.dll
+C:\PMIS\Src\PMIS\ItemSelector\obj\Release\ItemSelector.pdb
+C:\Users\n.markov1\Desktop\PMIS\ItemSelector\bin\Release\ItemSelector.dll
+C:\Users\n.markov1\Desktop\PMIS\ItemSelector\bin\Release\ItemSelector.pdb
+C:\Users\n.markov1\Desktop\PMIS\ItemSelector\obj\Release\ItemSelector.csprojAssemblyReference.cache
+C:\Users\n.markov1\Desktop\PMIS\ItemSelector\obj\Release\ItemSelector.csproj.CoreCompileInputs.cache
+C:\Users\n.markov1\Desktop\PMIS\ItemSelector\obj\Release\ItemSelector.dll
+C:\Users\n.markov1\Desktop\PMIS\ItemSelector\obj\Release\ItemSelector.pdb

@@ -1,0 +1,21 @@
+﻿CREATE TABLE PMIS_ADM.MaritalStatuses(MaritalStatusKey varchar2(10),
+                                      MaritalStatusName varchar2(100)
+                                     );
+
+ALTER TABLE PMIS_ADM.MaritalStatuses ADD CONSTRAINT MaritalStatuses_PK PRIMARY KEY (MaritalStatusKey);
+
+INSERT INTO PMIS_ADM.MaritalStatuses (MaritalStatusKey, MaritalStatusName)
+VALUES ('Ж', 'Женен');
+
+INSERT INTO PMIS_ADM.MaritalStatuses (MaritalStatusKey, MaritalStatusName)
+VALUES ('Р', 'Разведен');
+
+INSERT INTO PMIS_ADM.MaritalStatuses (MaritalStatusKey, MaritalStatusName)
+VALUES ('В', 'Вдовец');
+
+INSERT INTO PMIS_ADM.MaritalStatuses (MaritalStatusKey, MaritalStatusName)
+VALUES ('Н', 'Неженен');
+
+
+COMMIT;
+/

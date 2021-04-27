@@ -1,0 +1,73 @@
+CREATE INDEX PMIS_RES.FillResReq_ResID_IDX ON PMIS_RES.FillReservistsRequest (ReservistID);
+ALTER INDEX PMIS_RES.FillResReq_ResID_IDX REBUILD;
+
+CREATE INDEX PMIS_RES.FillResReq_ReqCmdPosID_IDX ON PMIS_RES.FillReservistsRequest (RequestCommandPositionID);
+ALTER INDEX PMIS_RES.FillResReq_ReqCmdPosID_IDX REBUILD;
+
+CREATE BITMAP INDEX PMIS_RES.FillResReq_RelDeptID_IDX ON PMIS_RES.FillReservistsRequest (MilitaryDepartmentID);
+ALTER INDEX PMIS_RES.FillResReq_RelDeptID_IDX REBUILD;
+
+CREATE BITMAP INDEX PMIS_RES.FillResReq_ResReadinessID_IDX ON PMIS_RES.FillReservistsRequest (ReservistReadinessID);
+ALTER INDEX PMIS_RES.FillResReq_ResReadinessID_IDX REBUILD;
+
+
+CREATE INDEX PMIS_RES.ReqCmdPosMilDept_ReqCPosID_IDX ON PMIS_RES.RequestCommandPositionsMilDept (RequestCommandPositionID);
+ALTER INDEX PMIS_RES.ReqCmdPosMilDept_ReqCPosID_IDX REBUILD;
+
+CREATE BITMAP INDEX PMIS_RES.ReqCmdPosMilDept_MilDeptID_IDX ON PMIS_RES.RequestCommandPositionsMilDept (MilitaryDepartmentID);
+ALTER INDEX PMIS_RES.ReqCmdPosMilDept_MilDeptID_IDX REBUILD;
+
+
+CREATE INDEX PMIS_RES.ReqCmdPos_ReqCmdID_IDX ON PMIS_RES.RequestCommandPositions (RequestsCommandID);
+ALTER INDEX PMIS_RES.ReqCmdPos_ReqCmdID_IDX REBUILD;
+
+
+CREATE INDEX PMIS_RES.ReqCmdPunkt_ReqCmdID_IDX ON PMIS_RES.RequestCommandPunkt (RequestCommandID);
+ALTER INDEX PMIS_RES.ReqCmdPunkt_ReqCmdID_IDX REBUILD;
+
+
+CREATE INDEX PMIS_RES.ReqCmd_EquipResReqID_IDX ON PMIS_RES.RequestsCommands (EquipmentReservistsRequestID);
+ALTER INDEX PMIS_RES.ReqCmd_EquipResReqID_IDX REBUILD;
+
+
+
+
+
+CREATE INDEX PMIS_RES.FulfilTechReq_TechD_IDX ON PMIS_RES.FulfilTechnicsRequest (TechnicsID);
+ALTER INDEX PMIS_RES.FulfilTechReq_TechD_IDX REBUILD;
+
+CREATE INDEX PMIS_RES.FulfilTechReq_TchReqCmdPos_IDX ON PMIS_RES.FulfilTechnicsRequest (TechnicsRequestCmdPositionID);
+ALTER INDEX PMIS_RES.FulfilTechReq_TchReqCmdPos_IDX REBUILD;
+
+CREATE BITMAP INDEX PMIS_RES.FulfilTechReq_MilDeptID_IDX ON PMIS_RES.FulfilTechnicsRequest (MilitaryDepartmentID);
+ALTER INDEX PMIS_RES.FulfilTechReq_MilDeptID_IDX REBUILD;
+
+CREATE BITMAP INDEX PMIS_RES.FulfilTReq_TechReadinessID_IDX ON PMIS_RES.FulfilTechnicsRequest (TechnicReadinessID);
+ALTER INDEX PMIS_RES.FulfilTReq_TechReadinessID_IDX REBUILD;
+
+
+CREATE INDEX PMIS_RES.TechReqCmdPosMilDept_PosID_IDX ON PMIS_RES.TechRequestCmdPositionsMilDept (TechnicsRequestCmdPositionID);
+ALTER INDEX PMIS_RES.TechReqCmdPosMilDept_PosID_IDX REBUILD;
+
+CREATE BITMAP INDEX PMIS_RES.TechReqCmdPosMilDep_MDepID_IDX ON PMIS_RES.TechRequestCmdPositionsMilDept (MilitaryDepartmentID);
+ALTER INDEX PMIS_RES.TechReqCmdPosMilDep_MDepID_IDX REBUILD;
+
+
+CREATE INDEX PMIS_RES.TechReqCmdPos_TechReqCmdID_IDX ON PMIS_RES.TechnicsRequestCmdPositions (TechRequestsCommandID);
+ALTER INDEX PMIS_RES.TechReqCmdPos_TechReqCmdID_IDX REBUILD;
+
+
+CREATE INDEX PMIS_RES.TechReqCmdPunkt_TReqCmdID_IDX ON PMIS_RES.TechRequestCommandPunkt (TechRequestsCommandID);
+ALTER INDEX PMIS_RES.TechReqCmdPunkt_TReqCmdID_IDX REBUILD;
+
+
+CREATE INDEX PMIS_RES.TechReqCmd_EquipTechReqID_IDX ON PMIS_RES.TechnicsRequestCommands (EquipmentTechnicsRequestID);
+ALTER INDEX PMIS_RES.TechReqCmd_EquipTechReqID_IDX REBUILD;
+
+
+
+
+
+
+
+/

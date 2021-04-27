@@ -1,0 +1,5 @@
+UPDATE PMIS_ADM.Persons SET
+Initials = (SELECT PMIS_ADM.CommonFunctions.GetInitials(IME || ' ' || FAM) 
+            FROM VS_OWNER.VS_LS 
+            WHERE VS_OWNER.VS_LS.PersonID = PMIS_ADM.Persons.PersonID);
+/

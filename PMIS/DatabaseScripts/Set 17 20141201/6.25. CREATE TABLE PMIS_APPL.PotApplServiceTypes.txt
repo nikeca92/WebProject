@@ -1,0 +1,7 @@
+﻿CREATE TABLE PMIS_APPL.PotApplServiceTypes(PotApplID number  NOT NULL,
+                                           ServiceTypeID number NOT NULL);
+ALTER TABLE PMIS_APPL.PotApplServiceTypes ADD CONSTRAINT PotApplServiceTypes_UNQ UNIQUE (PotApplID, ServiceTypeID);
+ALTER TABLE PMIS_APPL.PotApplServiceTypes ADD CONSTRAINT PotApplServiceTypes_PotAppl_FK FOREIGN KEY (PotApplID) REFERENCES PMIS_APPL.PotencialApplicants(POTENCIALAPPLICANTID);
+ALTER TABLE PMIS_APPL.PotApplServiceTypes ADD CONSTRAINT PotApplServiceTypes_STypes_FK FOREIGN KEY (ServiceTypeID) REFERENCES PMIS_APPL.ServiceTypes(ServiceTypeID);
+/
+

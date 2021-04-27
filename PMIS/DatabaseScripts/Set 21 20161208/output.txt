@@ -1,0 +1,458 @@
+--Резерв -> Справки -> Анализ на комплектуването
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_REPORTANALYZERESFULFILMENT', 'Анализ на комплектуването', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS'));
+
+--Кандидати -> Конкурси -> Редактиране на обявен конкурс -> Длъжности -> Звание
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('APPL_VACANN_EDITVACANN_POSITIONS_MILITARYRANK', 'Звание', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'APPL_VACANN_EDITVACANN_POSITIONS'));
+
+--Резерв -> Справки -> Щатно-длъжностен списък
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_REPORTSTAFFPOSITIONLIST', 'Щатно-длъжностен списък', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS'));
+
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID, CanSetAccessOnlyOwnData)
+VALUES ('APPL_REPORTS_REPORT_VACANCY_ANNOUNCE_APPLICANTS', 'Кандидати за военна служба по обявен конкурс', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'APPL_REPORTS'), 1);
+
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID, CanSetAccessOnlyOwnData)
+VALUES ('APPL_REPORTS_REPORT_DOCUMENTS_APPLIED', 'Сведение за подалите документи за военна служба', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'APPL_REPORTS'), 1);
+
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID, CanSetAccessOnlyOwnData)
+VALUES ('APPL_REPORTS_REPORT_DOCUMENTS_SENT', 'Сведение за изпратените документи за военна служба', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'APPL_REPORTS'), 1);
+
+UPDATE pmis_adm.uiitems 
+SET UINAME = 'Видове съдове за ГСМ'
+WHERE uikey = 'RES_LISTMAINT_FUELCONTAINERKIND';
+
+COMMIT;
+
+/
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'APPL_VacAnnPos_MilitaryRank', 'Звание', 15);
+
+COMMIT;
+
+/
+GRANT ALL ON VS_OWNER.KLV_ZVA TO PMIS_APPL WITH GRANT OPTION;
+
+/
+
+
+
+ALTER TABLE PMIS_APPL.VacancyAnnouncePositions ADD MilitaryRankID VARCHAR2(2);
+ALTER TABLE PMIS_APPL.VacancyAnnouncePositions ADD CONSTRAINT VacaPos_MilRank_FK FOREIGN KEY (MilitaryRankID) REFERENCES VS_OWNER.KLV_ZVA (ZVA_KOD);
+
+/
+
+
+ALTER TABLE PMIS_RES.CommandPositionMRSpecialities ADD (IsPrimary number(1) CHECK (IsPrimary BETWEEN 0 AND 1));
+
+UPDATE PMIS_RES.CommandPositionMRSpecialities SET
+   IsPrimary = 1
+WHERE RequestCommandPositionID IN (SELECT RequestCommandPositionID FROM PMIS_RES.CommandPositionMRSpecialities GROUP BY RequestCommandPositionID HAVING COUNT(*) = 1);
+
+COMMIT;
+/
+ALTER TABLE PMIS_RES.Technics RENAME COLUMN OwnershipTypeID TO OwnershipTypeID_;
+ALTER TABLE PMIS_RES.Technics RENAME COLUMN OwnershipIdentNumber TO OwnershipIdentNumber_;
+ALTER TABLE PMIS_RES.Technics RENAME COLUMN OwnershipFullName TO OwnershipFullName_;
+ALTER TABLE PMIS_RES.Technics RENAME COLUMN OwnershipCityID TO OwnershipCityID_;
+ALTER TABLE PMIS_RES.Technics RENAME COLUMN OwnershipDistrictID TO OwnershipDistrictID_;
+ALTER TABLE PMIS_RES.Technics RENAME COLUMN OwnershipAddress TO OwnershipAddress_;
+ALTER TABLE PMIS_RES.Technics RENAME COLUMN OwnershipPhone TO OwnershipPhone_;
+ALTER TABLE PMIS_RES.Technics RENAME COLUMN OwnershipPostCode TO OwnershipPostCode_;
+
+/
+
+DECLARE
+   ExistingCompaniesCnt number;
+   MatchingCompanyID number;
+   
+   CURSOR tech is
+      SELECT a.TechnicsID,
+             a.OwnershipTypeID_,
+             a.OwnershipIdentNumber_,
+             a.OwnershipFullName_,
+             a.OwnershipCityID_,
+             a.OwnershipDistrictID_,
+             a.OwnershipAddress_,
+             a.OwnershipPhone_,
+             a.OwnershipPostCode_
+      FROM PMIS_RES.Technics a
+      INNER JOIN PMIS_ADM.OwnershipTypes b ON a.OwnershipTypeID_ = b.OwnershipTypeID
+      WHERE b.OwnershipTypeKey = 'PERSON' AND
+            a.OwnershipIdentNumber_ IS NOT NULL AND
+            a.OwnershipFullName_ IS NOT NULL;
+BEGIN
+   FOR tech_rec IN tech
+   LOOP
+      ExistingCompaniesCnt := 0;
+      
+      SELECT COUNT(*) INTO ExistingCompaniesCnt 
+      FROM PMIS_ADM.Companies a
+      WHERE a.UnifiedIdentityCode = tech_rec.OwnershipIdentNumber_;
+      
+      IF ExistingCompaniesCnt = 0 THEN
+           INSERT INTO PMIS_ADM.Companies (
+              OwnershipTypeID, 
+              UnifiedIdentityCode, 
+              CompanyName, 
+              CityID, 
+              DistrictID, 
+              Address, 
+              PostCode, 
+              Phone)
+           VALUES (
+              tech_rec.OwnershipTypeID_, 
+              tech_rec.OwnershipIdentNumber_, 
+              tech_rec.OwnershipFullName_, 
+              tech_rec.OwnershipCityID_, 
+              tech_rec.OwnershipDistrictID_, 
+              tech_rec.OwnershipAddress_, 
+              tech_rec.OwnershipPostCode_, 
+              tech_rec.OwnershipPhone_
+           );
+      END IF;
+      
+      SELECT MIN(a.CompanyID) INTO MatchingCompanyID
+      FROM PMIS_ADM.Companies a
+      WHERE a.UnifiedIdentityCode = tech_rec.OwnershipIdentNumber_;
+      
+      UPDATE PMIS_RES.Technics SET
+         OwnershipCompanyID = MatchingCompanyID
+      WHERE TechnicsID = tech_rec.TechnicsID;
+   END LOOP;
+END;
+/
+
+COMMIT;
+/
+
+ALTER TABLE PMIS_RES.NormativeTechnics ADD (Sort number);
+
+UPDATE PMIS_RES.NormativeTechnics
+SET Sort = TO_NUMBER(NormativeCode);
+
+COMMIT;
+
+/
+
+CREATE OR REPLACE PACKAGE PMIS_RES.RESFunctions AS
+   FUNCTION GetMRSPerReqCmdPositionHTML (P_RequestCommandPositionID IN number, P_MaxLength IN number) RETURN varchar2;
+   FUNCTION GetMRSIdsPerReqCmdPosition (P_RequestCommandPositionID IN number) RETURN varchar2;
+   FUNCTION GetEquipResReq_ResCount (P_EquipmentReservistsRequestID IN number, P_MilDepFilter IN varchar2) RETURN number;
+   FUNCTION GetEquipResReq_FulfilCount (P_EquipmentReservistsRequestID IN number, P_MilDepFilter IN varchar2) RETURN number;
+   FUNCTION GetEquipResReq_FulfilResCount (P_EquipmentReservistsRequestID IN number, P_MilDepFilter IN varchar2) RETURN number;
+   FUNCTION GetEquipTechReq_Count (P_EquipmentTechnicsRequestID IN number, P_MilDepFilter IN varchar2) RETURN number;
+   FUNCTION GetEquipTechReq_FulfilCount (P_EquipmentTechnicsRequestID IN number, P_MilDepFilter IN varchar2) RETURN number;
+   FUNCTION GetEquipTechReq_FulfilResCount (P_EquipmentTechnicsRequestID IN number, P_MilDepFilter IN varchar2) RETURN number;
+   PROCEDURE MilitaryEmployed(P_EGN IN VS_OWNER.VS_LS.EGN%TYPE);
+END;
+/
+
+CREATE OR REPLACE PACKAGE BODY PMIS_RES.RESFunctions AS
+   FUNCTION GetMRSPerReqCmdPositionHTML (P_RequestCommandPositionID IN number, P_MaxLength IN number) RETURN varchar2 IS
+                               
+      MRS varchar2(4000);
+      
+      CURSOR MilitaryReportSpecialitiesCUR is
+      SELECT b.MilReportingSpecialityCode || ' ' || b.MilReportingSpecialityName as DisplayName, NVL(a.IsPrimary, 0) as IsPrimary
+      FROM PMIS_RES.CommandPositionMRSpecialities a
+      LEFT OUTER JOIN PMIS_ADM.MilitaryReportSpecialities b ON a.MilReportSpecialityID = b.MilReportSpecialityID
+      WHERE a.RequestCommandPositionID = P_RequestCommandPositionID
+      ORDER BY NVL(a.IsPrimary, 0) DESC, b.MilReportingSpecialityCode;
+   BEGIN
+      FOR CurRec IN MilitaryReportSpecialitiesCUR
+      LOOP 
+         IF (MRS IS NULL OR LENGTH(MRS) < 3600) THEN
+             MRS := MRS || '<div title="' || CurRec.DisplayName || '" style="cursor: arrow;' || CASE WHEN CurRec.IsPrimary = 1 THEN 'font-weight: bold;' ELSE '' END || '">' || 
+                              SUBSTR(CurRec.DisplayName, 1, P_MaxLength) || 
+                              CASE WHEN LENGTH (CurRec.DisplayName) > P_MaxLength THEN '...' ELSE '' END || 
+                           '</div>';
+         END IF;
+      END LOOP;
+      
+      RETURN MRS;
+   END;
+
+   FUNCTION GetMRSIdsPerReqCmdPosition (P_RequestCommandPositionID IN number) RETURN varchar2 IS
+                               
+      MRSIds varchar2(4000);
+      
+      CURSOR MilitaryReportSpecialitiesCUR is
+      SELECT a.MilReportSpecialityID
+      FROM PMIS_RES.CommandPositionMRSpecialities a
+      WHERE a.RequestCommandPositionID = P_RequestCommandPositionID
+      ORDER BY a.MilReportSpecialityID;
+   BEGIN
+      FOR CurRec IN MilitaryReportSpecialitiesCUR
+      LOOP 
+         IF (MRSIds IS NULL OR LENGTH(MRSIds) < 3900) THEN
+             MRSIds :=MRSIds || CASE WHEN MRSIds IS NULL THEN '' ELSE ',' END || TO_CHAR(CurRec.MilReportSpecialityID);
+         END IF;
+      END LOOP;
+      
+      RETURN MRSIds;
+   END;
+   
+   FUNCTION GetEquipResReq_ResCount (P_EquipmentReservistsRequestID IN number, P_MilDepFilter IN varchar2) RETURN number IS
+                               
+      Cnt number := 0;
+      
+      TYPE cur_typ IS REF CURSOR;
+      c cur_typ;
+      query_str VARCHAR2(4000);
+   BEGIN
+      query_str := 'SELECT NVL(SUM(a.ReservistsCount), 0) as Cnt
+                    FROM PMIS_RES.RequestCommandPositionsMilDept a
+                    INNER JOIN PMIS_RES.RequestCommandPositions b ON a.RequestCommandPositionID = b.RequestCommandPositionID
+                    INNER JOIN PMIS_RES.RequestsCommands c ON b.RequestsCommandID = c.RequestsCommandID
+                    WHERE c.EquipmentReservistsRequestID = ' || TO_CHAR(P_EquipmentReservistsRequestID);
+                    
+      IF P_MilDepFilter IS NOT NULL THEN
+         query_str := query_str || ' AND
+                      a.MilitaryDepartmentID IN (' || P_MilDepFilter || ')';
+      END IF;
+                    
+      OPEN c FOR query_str;
+      LOOP
+          FETCH c INTO Cnt;
+          EXIT WHEN c%NOTFOUND;
+      END LOOP;
+      CLOSE c;
+      
+      RETURN Cnt;
+   END;
+   
+   FUNCTION GetEquipResReq_FulFilCount (P_EquipmentReservistsRequestID IN number, P_MilDepFilter IN varchar2) RETURN number IS
+                               
+      Cnt number := 0;
+      
+      TYPE cur_typ IS REF CURSOR;
+      c cur_typ;
+      query_str VARCHAR2(4000);
+   BEGIN
+      query_str := 'SELECT NVL(COUNT(*), 0) as Cnt
+                    FROM PMIS_RES.FillReservistsRequest a
+                    INNER JOIN PMIS_RES.RequestCommandPositions b ON a.RequestCommandPositionID = b.RequestCommandPositionID
+                    INNER JOIN PMIS_RES.RequestsCommands c ON b.RequestsCommandID = c.RequestsCommandID
+                    WHERE a.ReservistReadinessID = 1 AND c.EquipmentReservistsRequestID = ' || TO_CHAR(P_EquipmentReservistsRequestID);
+                    
+      IF P_MilDepFilter IS NOT NULL THEN
+         query_str := query_str || ' AND
+                      a.MilitaryDepartmentID IN (' || P_MilDepFilter || ')';
+      END IF;
+                    
+      OPEN c FOR query_str;
+      LOOP
+          FETCH c INTO Cnt;
+          EXIT WHEN c%NOTFOUND;
+      END LOOP;
+      CLOSE c;
+      
+      RETURN Cnt;
+   END;
+   
+   FUNCTION GetEquipResReq_FulFilResCount (P_EquipmentReservistsRequestID IN number, P_MilDepFilter IN varchar2) RETURN number IS
+                               
+      Cnt number := 0;
+      
+      TYPE cur_typ IS REF CURSOR;
+      c cur_typ;
+      query_str VARCHAR2(4000);
+   BEGIN
+      query_str := 'SELECT NVL(COUNT(*), 0) as Cnt
+                    FROM PMIS_RES.FillReservistsRequest a
+                    INNER JOIN PMIS_RES.RequestCommandPositions b ON a.RequestCommandPositionID = b.RequestCommandPositionID
+                    INNER JOIN PMIS_RES.RequestsCommands c ON b.RequestsCommandID = c.RequestsCommandID
+                    WHERE a.ReservistReadinessID = 2 AND c.EquipmentReservistsRequestID = ' || TO_CHAR(P_EquipmentReservistsRequestID);
+                    
+      IF P_MilDepFilter IS NOT NULL THEN
+         query_str := query_str || ' AND
+                      a.MilitaryDepartmentID IN (' || P_MilDepFilter || ')';
+      END IF;
+                    
+      OPEN c FOR query_str;
+      LOOP
+          FETCH c INTO Cnt;
+          EXIT WHEN c%NOTFOUND;
+      END LOOP;
+      CLOSE c;
+      
+      RETURN Cnt;
+   END;
+   
+   
+   FUNCTION GetEquipTechReq_Count (P_EquipmentTechnicsRequestID IN number, P_MilDepFilter IN varchar2) RETURN number IS
+                               
+      Cnt number := 0;
+      
+      TYPE cur_typ IS REF CURSOR;
+      c cur_typ;
+      query_str VARCHAR2(4000);
+   BEGIN
+      query_str := 'SELECT NVL(SUM(a.Count), 0) as Cnt
+                    FROM PMIS_RES.TechRequestCmdPositionsMilDept a
+                    INNER JOIN PMIS_RES.TechnicsRequestCmdPositions b ON a.TechnicsRequestCmdPositionID = b.TechnicsRequestCmdPositionID
+                    INNER JOIN PMIS_RES.TechnicsRequestCommands c ON b.TechRequestsCommandID = c.TechRequestsCommandID
+                    WHERE c.EquipmentTechnicsRequestID = ' || TO_CHAR(P_EquipmentTechnicsRequestID);
+                    
+      IF P_MilDepFilter IS NOT NULL THEN
+         query_str := query_str || ' AND
+                      a.MilitaryDepartmentID IN (' || P_MilDepFilter || ')';
+      END IF;
+                    
+      OPEN c FOR query_str;
+      LOOP
+          FETCH c INTO Cnt;
+          EXIT WHEN c%NOTFOUND;
+      END LOOP;
+      CLOSE c;
+      
+      RETURN Cnt;
+   END;
+   
+   FUNCTION GetEquipTechReq_FulFilCount (P_EquipmentTechnicsRequestID IN number, P_MilDepFilter IN varchar2) RETURN number IS
+                               
+      Cnt number := 0;
+      
+      TYPE cur_typ IS REF CURSOR;
+      c cur_typ;
+      query_str VARCHAR2(4000);
+   BEGIN
+      query_str := 'SELECT NVL(SUM(t.ItemsCount), 0) as Cnt
+                    FROM PMIS_RES.FulfilTechnicsRequest a
+                    INNER JOIN PMIS_RES.Technics t ON a.TechnicsID = t.TechnicsID
+                    INNER JOIN PMIS_RES.TechnicsRequestCmdPositions b ON a.TechnicsRequestCmdPositionID = b.TechnicsRequestCmdPositionID
+                    INNER JOIN PMIS_RES.TechnicsRequestCommands c ON b.TechRequestsCommandID = c.TechRequestsCommandID
+                    WHERE a.TechnicReadinessID = 1 AND c.EquipmentTechnicsRequestID = ' || TO_CHAR(P_EquipmentTechnicsRequestID);
+                    
+      IF P_MilDepFilter IS NOT NULL THEN
+         query_str := query_str || ' AND
+                      a.MilitaryDepartmentID IN (' || P_MilDepFilter || ')';
+      END IF;
+                    
+      OPEN c FOR query_str;
+      LOOP
+          FETCH c INTO Cnt;
+          EXIT WHEN c%NOTFOUND;
+      END LOOP;
+      CLOSE c;
+      
+      RETURN Cnt;
+   END;
+   
+   FUNCTION GetEquipTechReq_FulFilResCount (P_EquipmentTechnicsRequestID IN number, P_MilDepFilter IN varchar2) RETURN number IS
+                               
+      Cnt number := 0;
+      
+      TYPE cur_typ IS REF CURSOR;
+      c cur_typ;
+      query_str VARCHAR2(4000);
+   BEGIN
+      query_str := 'SELECT NVL(SUM(t.ItemsCount), 0) as Cnt
+                    FROM PMIS_RES.FulfilTechnicsRequest a
+                    INNER JOIN PMIS_RES.Technics t ON a.TechnicsID = t.TechnicsID
+                    INNER JOIN PMIS_RES.TechnicsRequestCmdPositions b ON a.TechnicsRequestCmdPositionID = b.TechnicsRequestCmdPositionID
+                    INNER JOIN PMIS_RES.TechnicsRequestCommands c ON b.TechRequestsCommandID = c.TechRequestsCommandID
+                    WHERE a.TechnicReadinessID = 2 AND c.EquipmentTechnicsRequestID = ' || TO_CHAR(P_EquipmentTechnicsRequestID);
+                    
+      IF P_MilDepFilter IS NOT NULL THEN
+         query_str := query_str || ' AND
+                      a.MilitaryDepartmentID IN (' || P_MilDepFilter || ')';
+      END IF;
+                    
+      OPEN c FOR query_str;
+      LOOP
+          FETCH c INTO Cnt;
+          EXIT WHEN c%NOTFOUND;
+      END LOOP;
+      CLOSE c;
+      
+      RETURN Cnt;
+   END;
+   
+   PROCEDURE MilitaryEmployed(P_EGN IN VS_OWNER.VS_LS.EGN%TYPE) IS
+      v_MilEmployed_StatusID PMIS_RES.MilitaryReportStatuses.MilitaryReportStatusID%TYPE;
+	  v_Current_StatusID PMIS_RES.MilitaryReportStatuses.MilitaryReportStatusID%TYPE;
+	  v_Current_StatusKey PMIS_RES.MilitaryReportStatuses.MilitaryReportStatusKey%TYPE;
+	  v_PersonID VS_OWNER.VS_LS.PersonID%TYPE;
+	  v_ReservistID PMIS_RES.Reservists.ReservistID%TYPE;
+	  v_AdministrationID PMIS_ADM.Administrations.AdministrationID%TYPE;
+	  v_MilitaryDepartmentID PMIS_ADM.MilitaryDepartments.MilitaryDepartmentID%TYPE;
+	  v_Cnt number;
+   BEGIN
+      SELECT COUNT(*) INTO v_Cnt 
+	  FROM VS_OWNER.VS_LS
+	  WHERE EGN = P_EGN;
+	  
+	  IF v_Cnt = 1 THEN --Existing person
+	     SELECT PersonID INTO v_PersonID 
+	     FROM VS_OWNER.VS_LS
+	     WHERE EGN = P_EGN;
+		 
+		 v_Cnt := 0;
+		 
+		 SELECT COUNT(*) INTO v_Cnt
+		 FROM PMIS_RES.Reservists 
+		 WHERE PersonID = v_PersonID;
+		 
+		 IF v_Cnt = 1 THEN --Existing reservist
+		    SELECT ReservistID INTO v_ReservistID
+		    FROM PMIS_RES.Reservists 
+		    WHERE PersonID = v_PersonID;
+			
+			SELECT MilitaryReportStatusID INTO v_MilEmployed_StatusID
+			FROM PMIS_RES.MilitaryReportStatuses
+			WHERE MilitaryReportStatusKey = 'MILITARY_EMPLOYED';
+			
+			SELECT NVL(c.MilitaryReportStatusID, 0) INTO v_Current_StatusID
+			FROM PMIS_RES.Reservists a
+			LEFT OUTER JOIN PMIS_RES.ReservistMilRepStatuses b ON a.ReservistID = b.ReservistID AND b.IsCurrent = 1
+			LEFT OUTER JOIN PMIS_RES.MilitaryReportStatuses c ON b.MilitaryReportStatusID = c.MilitaryReportStatusID
+			WHERE a.ReservistID = v_ReservistID;
+			
+			SELECT NVL(c.MilitaryReportStatusKey, 0) INTO v_Current_StatusKey
+			FROM PMIS_RES.Reservists a
+			LEFT OUTER JOIN PMIS_RES.ReservistMilRepStatuses b ON a.ReservistID = b.ReservistID AND b.IsCurrent = 1
+			LEFT OUTER JOIN PMIS_RES.MilitaryReportStatuses c ON b.MilitaryReportStatusID = c.MilitaryReportStatusID
+			WHERE a.ReservistID = v_ReservistID;
+			
+			IF v_Current_StatusID <> v_MilEmployed_StatusID AND v_Current_StatusID > 0 THEN --The reservist isn't Military Employed and it is in the military report
+			   SELECT NVL(b.SourceMilDepartmentID, 0) INTO v_MilitaryDepartmentID
+			   FROM PMIS_RES.Reservists a
+			   LEFT OUTER JOIN PMIS_RES.ReservistMilRepStatuses b ON a.ReservistID = b.ReservistID AND b.IsCurrent = 1
+			   WHERE a.ReservistID = v_ReservistID;
+			   
+			   UPDATE PMIS_RES.ReservistMilRepStatuses SET 
+			      IsCurrent = 0
+			   WHERE ReservistID = v_ReservistID;
+			   
+			   UPDATE PMIS_RES.ReservistAppointments SET 
+			      IsCurrent = 0
+			   WHERE ReservistID = v_ReservistID;
+			   
+			   UPDATE PMIS_RES.Reservists SET
+			      GroupManagementSection = NULL,
+				  Section = NULL,
+				  Deliverer = NULL,
+				  PunktID = NULL
+			   WHERE ReservistID = v_ReservistID;
+			   
+			   DELETE FROM PMIS_RES.FillReservistsRequest
+			   WHERE ReservistID = v_ReservistID;
+			   
+			   SELECT MAX(AdministrationID) INTO v_AdministrationID
+			   FROM PMIS_ADM.Administrations
+			   WHERE AdministrationName = 'МО';
+			   
+			   INSERT INTO PMIS_RES.ReservistMilRepStatuses (ReservistID, IsCurrent, MilitaryReportStatusID, EnrolDate, SourceMilDepartmentID,
+			      MilEmployed_AdministrationID)
+			   VALUES (v_ReservistID, 1, v_MilEmployed_StatusID, SYSDATE, v_MilitaryDepartmentID,
+			      v_AdministrationID);
+			END IF;
+		 END IF;
+	  END IF;
+   END;
+END;
+/
+

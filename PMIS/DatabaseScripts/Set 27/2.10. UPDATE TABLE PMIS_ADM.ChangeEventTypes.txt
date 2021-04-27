@@ -1,0 +1,38 @@
+﻿INSERT INTO PMIS_ADM.ChangeEventTypes(changeeventtypekey, changeeventtype, moduleid, changetype)
+VALUES('RES_Reservist_AddRecordOfServiceArchive', 'Добавяне на военна книжка в архив', (SELECT ModuleiD FROM PMIS_ADM.modules WHERE modulekey = 'RES'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes(changeeventtypekey, changeeventtype, moduleid, changetype)
+VALUES('RES_Reservist_EditRecordOfServiceArchive', 'Редактиране на военна книжка в архив', (SELECT ModuleiD FROM PMIS_ADM.modules WHERE modulekey = 'RES'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes(changeeventtypekey, changeeventtype, moduleid, changetype)
+VALUES('RES_Reservist_DeleteRecordOfServiceArchive', 'Изтриване на военна книжка в архив', (SELECT ModuleiD FROM PMIS_ADM.modules WHERE modulekey = 'RES'), 3);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes(changeeventtypekey, changeeventtype, moduleid, changetype)
+VALUES('RES_Reservist_AddMedCert', 'Добавяне на медицинско освидетелстване', (SELECT ModuleiD FROM PMIS_ADM.modules WHERE modulekey = 'RES'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes(changeeventtypekey, changeeventtype, moduleid, changetype)
+VALUES('RES_Reservist_EditMedCert', 'Редактиране на медицинско освидетелстване', (SELECT ModuleiD FROM PMIS_ADM.modules WHERE modulekey = 'RES'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes(changeeventtypekey, changeeventtype, moduleid, changetype)
+VALUES('RES_Reservist_DeleteMedCert', 'Изтриване на медицинско освидетелстване', (SELECT ModuleiD FROM PMIS_ADM.modules WHERE modulekey = 'RES'), 3);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes(changeeventtypekey, changeeventtype, moduleid, changetype)
+VALUES('RES_Reservist_AddPsychCert', 'Добавяне на психологическа пригодност', (SELECT ModuleiD FROM PMIS_ADM.modules WHERE modulekey = 'RES'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes(changeeventtypekey, changeeventtype, moduleid, changetype)
+VALUES('RES_Reservist_EditPsychCert', 'Редактиране на психологическа пригодност', (SELECT ModuleiD FROM PMIS_ADM.modules WHERE modulekey = 'RES'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes(changeeventtypekey, changeeventtype, moduleid, changetype)
+VALUES('RES_Reservist_DeletePsychCert', 'Изтриване на психологическа пригодност', (SELECT ModuleiD FROM PMIS_ADM.modules WHERE modulekey = 'RES'), 3);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes(changeeventtypekey, changeeventtype, moduleid, changetype)
+VALUES('APPL_Applicants_AddRegister', 'Регистриране на заявление', (SELECT ModuleiD FROM PMIS_ADM.modules WHERE modulekey = 'APPL'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes(changeeventtypekey, changeeventtype, moduleid, changetype)
+VALUES('APPL_Applicants_EditRegister', 'Редактиране на регистрирано заявление', (SELECT ModuleiD FROM PMIS_ADM.modules WHERE modulekey = 'APPL'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('APPL_Applicants_MovePosition', 'Преместване на длъжност', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'APPL'), 1);
+
+COMMIT;
+/

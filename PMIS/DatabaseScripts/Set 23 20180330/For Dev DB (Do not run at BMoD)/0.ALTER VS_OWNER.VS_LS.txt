@@ -1,0 +1,9 @@
+﻿ALTER TABLE
+   VS_OWNER.VS_LS
+MODIFY
+   (
+   IME varchar2(35),
+   FAM varchar2(30)
+   );
+   
+ALTER TABLE VS_OWNER.VS_LS ADD DR  VARCHAR2(1) default 'N';

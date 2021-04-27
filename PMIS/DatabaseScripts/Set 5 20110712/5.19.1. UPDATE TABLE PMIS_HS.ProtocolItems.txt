@@ -1,0 +1,5 @@
+ALTER TABLE PMIS_HS.ProtocolItems ADD (WorkingPlaceID number);
+
+ALTER TABLE PMIS_HS.ProtocolItems ADD CONSTRAINT ProtocolItems_WorkingPlaces_FK FOREIGN KEY (WorkingPlaceID) REFERENCES PMIS_HS.WorkingPlaces (WorkingPlaceID);
+
+/

@@ -1,0 +1,28 @@
+﻿CREATE TABLE PMIS_RES.VesselCrew(VesselCrewID number NOT NULL,
+                                 VesselID number NOT NULL,
+                                 IdentNumber varchar2(10),
+				 FullName varchar2(250),
+				 Address varchar2(250),
+		                 MilitaryRankID varchar2(2),
+                                 VesselCrewCategoryID number, /*GTable*/
+                                 HasAppointment number(1) CHECK (HasAppointment BETWEEN 0 AND 1)
+                                );
+
+ALTER TABLE PMIS_RES.VesselCrew ADD CONSTRAINT VesselCrew_PK PRIMARY KEY(VesselCrewID);
+ALTER TABLE PMIS_RES.VesselCrew ADD CONSTRAINT VesselCrew_Vessels_FK FOREIGN KEY (VesselID) REFERENCES PMIS_RES.Vessels (VesselID);
+ALTER TABLE PMIS_RES.VesselCrew ADD CONSTRAINT VesselCrew_VesselCrewCateg_FK FOREIGN KEY (VesselCrewCategoryID) REFERENCES PMIS_ADM.VesselCrewCategories (VesselCrewCategoryID);
+ALTER TABLE PMIS_RES.VesselCrew ADD CONSTRAINT VesselCrew_MilRank_FK FOREIGN KEY (MilitaryRankID) REFERENCES VS_OWNER.KLV_ZVA (ZVA_KOD);
+
+
+CREATE SEQUENCE PMIS_RES.VesselCrew_ID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+CREATE TRIGGER PMIS_RES.TRG_VesselCrew_INSERT
+BEFORE INSERT ON PMIS_RES.VesselCrew
+FOR EACH ROW
+BEGIN
+   SELECT PMIS_RES.VesselCrew_ID_SEQ.nextval INTO :new.VesselCrewID FROM dual;
+END;
+/

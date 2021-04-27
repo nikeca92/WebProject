@@ -1,0 +1,4 @@
+﻿ALTER TABLE PMIS_RES.ReservistMilRepStatuses MODIFY (Voluntary_MilRepSpecialityID number);
+ALTER TABLE PMIS_RES.ReservistMilRepStatuses ADD CONSTRAINT ResMilRepStat_VolMilRepSpec_FK FOREIGN KEY (Voluntary_MilRepSpecialityID) REFERENCES PMIS_ADM.MilitaryReportSpecialities (MilReportSpecialityID);
+
+/

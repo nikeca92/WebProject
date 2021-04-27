@@ -1,0 +1,344 @@
+﻿CREATE TABLE PMIS_ADM.MaintFields(MaintFieldID number NOT NULL,
+                                  TableName varchar2(500),
+                                  TableColumn varchar2(100),
+                                  FieldLabel varchar2(2000),
+                                  WidthPixels number,
+                                  FieldKey varchar2(500),
+                                  UIItemEditKey varchar2(500),
+                                  UIItemAddKey varchar2(500),
+                                  IsMandatory decimal(1) NOT NULL CHECK (IsMandatory BETWEEN 0 AND 1),
+                                  ValidateDataType varchar2(50),
+                                  IsUnique decimal(1) NOT NULL CHECK (IsUnique BETWEEN 0 AND 1)
+                                  );
+
+ALTER TABLE PMIS_ADM.MaintFields ADD CONSTRAINT MaintFields_PK PRIMARY KEY(MaintFieldID);
+
+CREATE SEQUENCE PMIS_ADM.MaintFields_ID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+CREATE TRIGGER PMIS_ADM.TRG_MaintFields_INSERT
+BEFORE INSERT ON PMIS_ADM.MaintFields
+FOR EACH ROW
+BEGIN
+   SELECT PMIS_ADM.MaintFields_ID_SEQ.nextval INTO :new.MaintFieldID FROM dual;
+END;
+/
+
+INSERT INTO PMIS_ADM.MaintFields(TableName, TableColumn, FieldLabel, WidthPixels, FieldKey, UIItemEditKey, UIItemAddKey, IsMandatory, ValidateDataType, IsUnique)
+VALUES ('PMIS_HS.ProtocolTypes', 'ProtocolTypeName', 'Измерване', 450, 'HS_Lists_ProtocolTypes_ProtocolTypeName', 'HS_LISTMAINT_PROTTYPES_EDIT_PROTTYPENAME', 'HS_LISTMAINT_PROTTYPES_ADD_PROTTYPENAME', 1, 'string', 0);
+
+
+
+INSERT INTO PMIS_ADM.MaintFields(TableName, TableColumn, FieldLabel, WidthPixels, FieldKey, UIItemEditKey, UIItemAddKey, IsMandatory, ValidateDataType, IsUnique)
+VALUES ('PMIS_HS.Measures', 'MeasureName', 'Измервана величина', 350, 'HS_Lists_Measures_MeasureName', 'HS_LISTMAINT_MEASURES_EDIT_MEASURENAME', 'HS_LISTMAINT_MEASURES_ADD_MEASURENAME', 1, 'string', 0);
+
+INSERT INTO PMIS_ADM.MaintFields(TableName, TableColumn, FieldLabel, WidthPixels, FieldKey, UIItemEditKey, UIItemAddKey, IsMandatory, ValidateDataType, IsUnique)
+VALUES ('PMIS_HS.Measures', 'Threshold', 'Гранична стойност', 100, 'HS_Lists_Measures_Threshold', 'HS_LISTMAINT_MEASURES_EDIT_THRESHOLD', 'HS_LISTMAINT_MEASURES_ADD_THRESHOLD', 1, 'number', 0);
+
+
+
+INSERT INTO PMIS_ADM.MaintFields(TableName, TableColumn, FieldLabel, WidthPixels, FieldKey, UIItemEditKey, UIItemAddKey, IsMandatory, ValidateDataType, IsUnique)
+VALUES ('PMIS_HS.GTable.DegreeOfDanger', 'TableSeq', 'Номер за подредба', 100, 'HS_Lists_DegreeOfDangers_TableSeq', 'HS_LISTMAINT_DOFDANGERS_EDIT_TABLESEQ', 'HS_LISTMAINT_DOFDANGERS_ADD_TABLESEQ', 1, 'integer', 1);
+
+INSERT INTO PMIS_ADM.MaintFields(TableName, TableColumn, FieldLabel, WidthPixels, FieldKey, UIItemEditKey, UIItemAddKey, IsMandatory, ValidateDataType, IsUnique)
+VALUES ('PMIS_HS.GTable.DegreeOfDanger', 'TableValue', 'Степен на опасност', 270, 'HS_Lists_DegreeOfDangers_TableValue', 'HS_LISTMAINT_DOFDANGERS_EDIT_TABLEVALUE', 'HS_LISTMAINT_DOFDANGERS_ADD_TABLEVALUE', 1, 'string', 0);
+
+
+INSERT INTO PMIS_ADM.MaintFields(TableName, TableColumn, FieldLabel, WidthPixels, FieldKey, UIItemEditKey, UIItemAddKey, IsMandatory, ValidateDataType, IsUnique)
+VALUES ('PMIS_ADM.DrivingLicenseCategories', 'DrivingLicenseCategoryName', 'Категория', 100, 'ADM_Lists_DrivingLicenseCategories_Category', 'ADM_LISTMAINT_DRIVINGLICENSECATEGORIES_EDIT_CATEGORY', 'ADM_LISTMAINT_DRIVINGLICENSECATEGORIES_ADD_CATEGORY', 1, 'string', 0);
+
+
+
+INSERT INTO PMIS_ADM.MaintFields(TableName, TableColumn, FieldLabel, WidthPixels, FieldKey, UIItemEditKey, UIItemAddKey, IsMandatory, ValidateDataType, IsUnique)
+VALUES ('PMIS_ADM.MilitaryDepartments', 'MilitaryDepartmentName', 'Военно Окръжие', 270, 'ADM_Lists_MilitaryDepartments_MilitaryDepartmentName', 'ADM_LISTMAINT_MILITARYDEPARTMENTS_EDIT_MILITARYDEPARTMENTNAME', 'ADM_MILITARYDEPARTMENTS_ADD_MILITARYDEPARTMENTNAME', 1, 'string', 0);
+
+
+INSERT INTO PMIS_ADM.MaintFields(TableName, TableColumn, FieldLabel, WidthPixels, FieldKey, UIItemEditKey, UIItemAddKey, IsMandatory, ValidateDataType, IsUnique)
+VALUES ('PMIS_ADM.Administrations', 'AdministrationName', 'Ведомство', 270, 'ADM_Lists_Administrations_AdministrationName', 'ADM_LISTMAINT_ADMINISTRATIONS_EDIT_ADMINISTRATIONNAME', 'ADM_LISTMAINT_ADMINISTRATIONS_ADD_ADMINISTRATIONNAME', 1, 'string', 0);
+
+
+
+INSERT INTO PMIS_ADM.MaintFields(TableName, TableColumn, FieldLabel, WidthPixels, FieldKey, UIItemEditKey, UIItemAddKey, IsMandatory, ValidateDataType, IsUnique)
+VALUES ('PMIS_APPL.Documents', 'DocumentName', 'Документ', 270, 'APPL_Documents_DocumentName', 'APPL_DOCUMENTS_EDIT_DOCUMENTNAME', 'APPL_DOCUMENTS_ADD_DOCUMENTNAME', 1, 'string', 0);
+
+
+
+INSERT INTO PMIS_ADM.MaintFields(TableName, TableColumn, FieldLabel, WidthPixels, FieldKey, UIItemEditKey, UIItemAddKey, IsMandatory, ValidateDataType, IsUnique)
+VALUES ('PMIS_APPL.Exams', 'ExamName', 'Изпит', 270, 'APPL_Exams_ExamName', 'APPL_EXAMS_EDIT_EXAMNAME', 'APPL_EXAMS_ADD_EXAMNAME', 1, 'string', 0);
+
+
+INSERT INTO PMIS_ADM.MaintFields(TableName, TableColumn, FieldLabel, WidthPixels, FieldKey, UIItemEditKey, UIItemAddKey, IsMandatory, ValidateDataType, IsUnique)
+VALUES ('PMIS_ADM.MilitaryForceTypes', 'MilitaryForceTypeName', 'Въоръжена сила', 450, 'ADM_Lists_MilitaryForceTypes_MilitaryForceTypeName', 'ADM_LISTMAINT_MILITFORCETYPES_EDIT_MILITFORCETYPENAME', 'ADM_LISTMAINT_MILITFORCETYPES_ADD_MILITFORCETYPENAME', 1, 'string', 0);
+
+
+INSERT INTO PMIS_ADM.MaintFields(TableName, TableColumn, FieldLabel, WidthPixels, FieldKey, UIItemEditKey, UIItemAddKey, IsMandatory, ValidateDataType, IsUnique)
+VALUES ('PMIS_RES.GTable.SizeClothing', 'TableSeq', 'Номер за подредба', 100, 'RES_Lists_SizeClothing_TableSeq', 'RES_LISTMAINT_SIZECLOTHING_EDIT_TABLESEQ', 'RES_LISTMAINT_SIZECLOTHING_ADD_TABLESEQ', 1, 'integer', 1);
+
+INSERT INTO PMIS_ADM.MaintFields(TableName, TableColumn, FieldLabel, WidthPixels, FieldKey, UIItemEditKey, UIItemAddKey, IsMandatory, ValidateDataType, IsUnique)
+VALUES ('PMIS_RES.GTable.SizeClothing', 'TableValue', 'Размер дрехи', 270, 'RES_Lists_SizeClothing_TableValue', 'RES_LISTMAINT_SIZECLOTHING_EDIT_TABLEVALUE', 'RES_LISTMAINT_SIZECLOTHING_ADD_TABLEVALUE', 1, 'string', 0);
+
+INSERT INTO PMIS_ADM.MaintFields(TableName, TableColumn, FieldLabel, WidthPixels, FieldKey, UIItemEditKey, UIItemAddKey, IsMandatory, ValidateDataType, IsUnique)
+VALUES ('PMIS_RES.GTable.SizeHat', 'TableSeq', 'Номер за подредба', 100, 'RES_Lists_SizeHat_TableSeq', 'RES_LISTMAINT_SIZEHAT_EDIT_TABLESEQ', 'RES_LISTMAINT_SIZEHAT_ADD_TABLESEQ', 1, 'integer', 1);
+
+INSERT INTO PMIS_ADM.MaintFields(TableName, TableColumn, FieldLabel, WidthPixels, FieldKey, UIItemEditKey, UIItemAddKey, IsMandatory, ValidateDataType, IsUnique)
+VALUES ('PMIS_RES.GTable.SizeHat', 'TableValue', 'Размер шапка', 270, 'RES_Lists_SizeHat_TableValue', 'RES_LISTMAINT_SIZEHAT_EDIT_TABLEVALUE', 'RES_LISTMAINT_SIZEHAT_ADD_TABLEVALUE', 1, 'string', 0);
+
+INSERT INTO PMIS_ADM.MaintFields(TableName, TableColumn, FieldLabel, WidthPixels, FieldKey, UIItemEditKey, UIItemAddKey, IsMandatory, ValidateDataType, IsUnique)
+VALUES ('PMIS_RES.GTable.SizeShoes', 'TableSeq', 'Номер за подредба', 100, 'RES_Lists_SizeShoes_TableSeq', 'RES_LISTMAINT_SIZESHOES_EDIT_TABLESEQ', 'RES_LISTMAINT_SIZESHOES_ADD_TABLESEQ', 1, 'integer', 1);
+
+INSERT INTO PMIS_ADM.MaintFields(TableName, TableColumn, FieldLabel, WidthPixels, FieldKey, UIItemEditKey, UIItemAddKey, IsMandatory, ValidateDataType, IsUnique)
+VALUES ('PMIS_RES.GTable.SizeShoes', 'TableValue', 'Размер обувки', 270, 'RES_Lists_SizeShoes_TableValue', 'RES_LISTMAINT_SIZESHOES_EDIT_TABLEVALUE', 'RES_LISTMAINT_SIZESHOES_ADD_TABLEVALUE', 1, 'string', 0);
+
+INSERT INTO PMIS_ADM.MaintFields(TableName, TableColumn, FieldLabel, WidthPixels, FieldKey, UIItemEditKey, UIItemAddKey, IsMandatory, ValidateDataType, IsUnique)
+VALUES ('PMIS_RES.MilReadiness', 'MilReadinessName', 'Готовност', 450, 'RES_Lists_MilitaryReadinesses_MilitaryReadinessName', 'RES_LISTMAINT_MILITARYREADINESSES_EDIT_MILITARYREADINESSNAME', 'RES_LISTMAINT_MILITARYREADINESSES_ADD_MILITARYREADINESSNAME', 1, 'string', 0);
+
+
+INSERT INTO PMIS_ADM.MaintFields(TableName, TableColumn, FieldLabel, WidthPixels, FieldKey, UIItemEditKey, UIItemAddKey, IsMandatory, ValidateDataType, IsUnique)
+VALUES ('PMIS_RES.GTable.VehicleKind', 'TableSeq', 'Номер за подредба', 100, 'RES_Lists_VehicleKind_TableSeq', 'RES_LISTMAINT_VEHICLEKIND_EDIT_TABLESEQ', 'RES_LISTMAINT_VEHICLEKIND_ADD_TABLESEQ', 1, 'integer', 1);
+
+INSERT INTO PMIS_ADM.MaintFields(TableName, TableColumn, FieldLabel, WidthPixels, FieldKey, UIItemEditKey, UIItemAddKey, IsMandatory, ValidateDataType, IsUnique)
+VALUES ('PMIS_RES.GTable.VehicleKind', 'TableValue', 'Вид автомобил', 270, 'RES_Lists_VehicleKind_TableValue', 'RES_LISTMAINT_VEHICLEKIND_EDIT_TABLEVALUE', 'RES_LISTMAINT_VEHICLEKIND_ADD_TABLEVALUE', 1, 'string', 0);
+
+
+INSERT INTO PMIS_ADM.MaintFields(TableName, TableColumn, FieldLabel, WidthPixels, FieldKey, UIItemEditKey, UIItemAddKey, IsMandatory, ValidateDataType, IsUnique)
+VALUES ('PMIS_RES.GTable.VehicleRoadability', 'TableSeq', 'Номер за подредба', 100, 'RES_Lists_VehicleRoadability_TableSeq', 'RES_LISTMAINT_VEHICLEROADABILITY_EDIT_TABLESEQ', 'RES_LISTMAINT_VEHICLEROADABILITY_ADD_TABLESEQ', 1, 'integer', 1);
+
+INSERT INTO PMIS_ADM.MaintFields(TableName, TableColumn, FieldLabel, WidthPixels, FieldKey, UIItemEditKey, UIItemAddKey, IsMandatory, ValidateDataType, IsUnique)
+VALUES ('PMIS_RES.GTable.VehicleRoadability', 'TableValue', 'Проходимост', 270, 'RES_Lists_VehicleRoadability_TableValue', 'RES_LISTMAINT_VEHICLEROADABILITY_EDIT_TABLEVALUE', 'RES_LISTMAINT_VEHICLEROADABILITY_ADD_TABLEVALUE', 1, 'string', 0);
+
+
+INSERT INTO PMIS_ADM.MaintFields(TableName, TableColumn, FieldLabel, WidthPixels, FieldKey, UIItemEditKey, UIItemAddKey, IsMandatory, ValidateDataType, IsUnique)
+VALUES ('PMIS_RES.GTable.VehicleEngineType', 'TableSeq', 'Номер за подредба', 100, 'RES_Lists_VehicleEngineType_TableSeq', 'RES_LISTMAINT_VEHICLEENGINETYPE_EDIT_TABLESEQ', 'RES_LISTMAINT_VEHICLEENGINETYPE_ADD_TABLESEQ', 1, 'integer', 1);
+
+INSERT INTO PMIS_ADM.MaintFields(TableName, TableColumn, FieldLabel, WidthPixels, FieldKey, UIItemEditKey, UIItemAddKey, IsMandatory, ValidateDataType, IsUnique)
+VALUES ('PMIS_RES.GTable.VehicleEngineType', 'TableValue', 'Двигател', 270, 'RES_Lists_VehicleEngineType_TableValue', 'RES_LISTMAINT_VEHICLEENGINETYPE_EDIT_TABLEVALUE', 'RES_LISTMAINT_VEHICLEENGINETYPE_ADD_TABLEVALUE', 1, 'string', 0);
+
+
+INSERT INTO PMIS_ADM.MaintFields(TableName, TableColumn, FieldLabel, WidthPixels, FieldKey, UIItemEditKey, UIItemAddKey, IsMandatory, ValidateDataType, IsUnique)
+VALUES ('PMIS_RES.GTable.VehicleBodyType', 'TableSeq', 'Номер за подредба', 100, 'RES_Lists_VehicleBodyType_TableSeq', 'RES_LISTMAINT_VEHICLEBodyTYPE_EDIT_TABLESEQ', 'RES_LISTMAINT_VEHICLEBodyTYPE_ADD_TABLESEQ', 1, 'integer', 1);
+
+INSERT INTO PMIS_ADM.MaintFields(TableName, TableColumn, FieldLabel, WidthPixels, FieldKey, UIItemEditKey, UIItemAddKey, IsMandatory, ValidateDataType, IsUnique)
+VALUES ('PMIS_RES.GTable.VehicleBodyType', 'TableValue', 'Каросерия', 270, 'RES_Lists_VehicleBodyType_TableValue', 'RES_LISTMAINT_VEHICLEBODYTYPE_EDIT_TABLEVALUE', 'RES_LISTMAINT_VEHICLEBODYTYPE_ADD_TABLEVALUE', 1, 'string', 0);
+
+
+INSERT INTO PMIS_ADM.MaintFields(TableName, TableColumn, FieldLabel, WidthPixels, FieldKey, UIItemEditKey, UIItemAddKey, IsMandatory, ValidateDataType, IsUnique)
+VALUES ('PMIS_RES.VehicleMakes', 'VehicleMakeName', 'Марка автомобил', 450, 'RES_Lists_VehicleMakes_VehicleMakeName', 'RES_LISTMAINT_VEHICLEMAKES_EDIT_VEHICLEMAKESNAME', 'RES_LISTMAINT_VEHICLEMAKES_ADD_VEHICLEMAKESNAME', 1, 'string', 0);
+
+
+INSERT INTO PMIS_ADM.MaintFields(TableName, TableColumn, FieldLabel, WidthPixels, FieldKey, UIItemEditKey, UIItemAddKey, IsMandatory, ValidateDataType, IsUnique)
+VALUES ('PMIS_RES.GTable.TractorKind', 'TableSeq', 'Номер за подредба', 100, 'RES_Lists_TractorKind_TableSeq', 'RES_LISTMAINT_TRACTORKIND_EDIT_TABLESEQ', 'RES_LISTMAINT_TRACTORKIND_ADD_TABLESEQ', 1, 'integer', 1);
+
+INSERT INTO PMIS_ADM.MaintFields(TableName, TableColumn, FieldLabel, WidthPixels, FieldKey, UIItemEditKey, UIItemAddKey, IsMandatory, ValidateDataType, IsUnique)
+VALUES ('PMIS_RES.GTable.TractorKind', 'TableValue', 'Вид трактор', 270, 'RES_Lists_TractorKind_TableValue', 'RES_LISTMAINT_TRACTORKIND_EDIT_TABLEVALUE', 'RES_LISTMAINT_TRACTORKIND_ADD_TABLEVALUE', 1, 'string', 0);
+
+INSERT INTO PMIS_ADM.MaintFields(TableName, TableColumn, FieldLabel, WidthPixels, FieldKey, UIItemEditKey, UIItemAddKey, IsMandatory, ValidateDataType, IsUnique)
+VALUES ('PMIS_RES.GTable.TractorType', 'TableSeq', 'Номер за подредба', 100, 'RES_Lists_VehicleType_TableSeq', 'RES_LISTMAINT_TRACTORTYPE_EDIT_TABLESEQ', 'RES_LISTMAINT_TRACTORTYPE_ADD_TABLESEQ', 1, 'integer', 1);
+
+INSERT INTO PMIS_ADM.MaintFields(TableName, TableColumn, FieldLabel, WidthPixels, FieldKey, UIItemEditKey, UIItemAddKey, IsMandatory, ValidateDataType, IsUnique)
+VALUES ('PMIS_RES.GTable.TractorType', 'TableValue', 'Тип', 270, 'RES_Lists_TractorType_TableValue', 'RES_LISTMAINT_TRACTORTYPE_EDIT_TABLEVALUE', 'RES_LISTMAINT_TRACTORTYPE_ADD_TABLEVALUE', 1, 'string', 0);
+
+INSERT INTO PMIS_ADM.MaintFields(TableName, TableColumn, FieldLabel, WidthPixels, FieldKey, UIItemEditKey, UIItemAddKey, IsMandatory, ValidateDataType, IsUnique)
+VALUES ('PMIS_RES.TractorMakes', 'TractorMakeName', 'Марка трактор', 450, 'RES_Lists_TractorMakes_TractorMakeName', 'RES_LISTMAINT_TRACTORMAKES_EDIT_VEHICLEMAKESNAME', 'RES_LISTMAINT_TRACTORMAKES_ADD_TRACTORMAKESNAME', 1, 'string', 0);
+
+
+INSERT INTO PMIS_ADM.MaintFields(TableName, TableColumn, FieldLabel, WidthPixels, FieldKey, UIItemEditKey, UIItemAddKey, IsMandatory, ValidateDataType, IsUnique)
+VALUES ('PMIS_RES.GTable.TrailerKind', 'TableValue', 'Вид ремарке', 270, 'RES_Lists_TrailerKind_TableValue', 'RES_LISTMAINT_TRAILERKIND_EDIT_TABLEVALUE', 'RES_LISTMAINT_TRAILERKIND_ADD_TABLEVALUE', 1, 'string', 0);
+
+INSERT INTO PMIS_ADM.MaintFields(TableName, TableColumn, FieldLabel, WidthPixels, FieldKey, UIItemEditKey, UIItemAddKey, IsMandatory, ValidateDataType, IsUnique)
+VALUES ('PMIS_RES.GTable.TrailerKind', 'TableSeq', 'Номер за подредба', 100, 'RES_Lists_TrailerKind_TableSeq', 'RES_LISTMAINT_TRAILERKIND_EDIT_TABLESEQ', 'RES_LISTMAINT_TRAILERKIND_ADD_TABLESEQ', 1, 'integer', 1);
+
+
+INSERT INTO PMIS_ADM.MaintFields(TableName, TableColumn, FieldLabel, WidthPixels, FieldKey, UIItemEditKey, UIItemAddKey, IsMandatory, ValidateDataType, IsUnique)
+VALUES ('PMIS_RES.GTable.TrailerType', 'TableValue', 'Тип ремарке', 270, 'RES_Lists_TrailerType_TableValue', 'RES_LISTMAINT_TRAILERTYPE_EDIT_TABLEVALUE', 'RES_LISTMAINT_TRAILERTYPE_ADD_TABLEVALUE', 1, 'string', 0);
+
+INSERT INTO PMIS_ADM.MaintFields(TableName, TableColumn, FieldLabel, WidthPixels, FieldKey, UIItemEditKey, UIItemAddKey, IsMandatory, ValidateDataType, IsUnique)
+VALUES ('PMIS_RES.GTable.TrailerType', 'TableSeq', 'Номер за подредба', 100, 'RES_Lists_TrailerType_TableSeq', 'RES_LISTMAINT_TRAILERTYPE_EDIT_TABLESEQ', 'RES_LISTMAINT_TRAILERTYPE_ADD_TABLESEQ', 1, 'integer', 1);
+
+
+INSERT INTO PMIS_ADM.MaintFields(TableName, TableColumn, FieldLabel, WidthPixels, FieldKey, UIItemEditKey, UIItemAddKey, IsMandatory, ValidateDataType, IsUnique)
+VALUES ('PMIS_RES.GTable.EngEquipKind', 'TableValue', 'Вид инж. техника', 270, 'RES_Lists_EngEquipKind_TableValue', 'RES_LISTMAINT_ENGEQUIPKIND_EDIT_TABLEVALUE', 'RES_LISTMAINT_ENGEQUIPKIND_ADD_TABLEVALUE', 1, 'string', 0);
+
+INSERT INTO PMIS_ADM.MaintFields(TableName, TableColumn, FieldLabel, WidthPixels, FieldKey, UIItemEditKey, UIItemAddKey, IsMandatory, ValidateDataType, IsUnique)
+VALUES ('PMIS_RES.GTable.EngEquipKind', 'TableSeq', 'Номер за подредба', 100, 'RES_Lists_EngEquipKind_TableSeq', 'RES_LISTMAINT_ENGEQUIPKIND_EDIT_TABLESEQ', 'RES_LISTMAINT_ENGEQUIPKIND_ADD_TABLESEQ', 1, 'integer', 1);
+
+
+INSERT INTO PMIS_ADM.MaintFields(TableName, TableColumn, FieldLabel, WidthPixels, FieldKey, UIItemEditKey, UIItemAddKey, IsMandatory, ValidateDataType, IsUnique)
+VALUES ('PMIS_RES.GTable.EngEquipType', 'TableValue', 'Тип инж. техника', 270, 'RES_Lists_EngEquipType_TableValue', 'RES_LISTMAINT_ENGEQUIPTYPE_EDIT_TABLEVALUE', 'RES_LISTMAINT_ENGEQUIPTYPE_ADD_TABLEVALUE', 1, 'string', 0);
+
+INSERT INTO PMIS_ADM.MaintFields(TableName, TableColumn, FieldLabel, WidthPixels, FieldKey, UIItemEditKey, UIItemAddKey, IsMandatory, ValidateDataType, IsUnique)
+VALUES ('PMIS_RES.GTable.EngEquipType', 'TableSeq', 'Номер за подредба', 100, 'RES_Lists_EngEquipType_TableSeq', 'RES_LISTMAINT_ENGEQUIPTYPE_EDIT_TABLESEQ', 'RES_LISTMAINT_ENGEQUIPTYPE_ADD_TABLESEQ', 1, 'integer', 1);
+
+
+INSERT INTO PMIS_ADM.MaintFields(TableName, TableColumn, FieldLabel, WidthPixels, FieldKey, UIItemEditKey, UIItemAddKey, IsMandatory, ValidateDataType, IsUnique)
+VALUES ('PMIS_RES.GTable.EngEquipBaseKind', 'TableValue', 'Вид базова машина (инж. техника)', 270, 'RES_Lists_EngEquipBaseKind_TableValue', 'RES_LISTMAINT_ENGEQUIPBASEKIND_EDIT_TABLEVALUE', 'RES_LISTMAINT_ENGEQUIPBASEKIND_ADD_TABLEVALUE', 1, 'string', 0);
+
+INSERT INTO PMIS_ADM.MaintFields(TableName, TableColumn, FieldLabel, WidthPixels, FieldKey, UIItemEditKey, UIItemAddKey, IsMandatory, ValidateDataType, IsUnique)
+VALUES ('PMIS_RES.GTable.EngEquipBaseKind', 'TableSeq', 'Номер за подредба', 100, 'RES_Lists_EngEquipBaseKind_TableSeq', 'RES_LISTMAINT_ENGEQUIPBASEKIND_EDIT_TABLESEQ', 'RES_LISTMAINT_ENGEQUIPBASEKIND_ADD_TABLESEQ', 1, 'integer', 1);
+
+
+INSERT INTO PMIS_ADM.MaintFields(TableName, TableColumn, FieldLabel, WidthPixels, FieldKey, UIItemEditKey, UIItemAddKey, IsMandatory, ValidateDataType, IsUnique)
+VALUES ('PMIS_RES.GTable.EngEquipBaseType', 'TableValue', 'Тип базова машина (инж. техника)', 270, 'RES_Lists_EngEquipBaseType_TableValue', 'RES_LISTMAINT_ENGEQUIPBASETYPE_EDIT_TABLEVALUE', 'RES_LISTMAINT_ENGEQUIPBASETYPE_ADD_TABLEVALUE', 1, 'string', 0);
+
+INSERT INTO PMIS_ADM.MaintFields(TableName, TableColumn, FieldLabel, WidthPixels, FieldKey, UIItemEditKey, UIItemAddKey, IsMandatory, ValidateDataType, IsUnique)
+VALUES ('PMIS_RES.GTable.EngEquipBaseType', 'TableSeq', 'Номер за подредба', 100, 'RES_Lists_EngEquipBaseType_TableSeq', 'RES_LISTMAINT_ENGEQUIPBASETYPE_EDIT_TABLESEQ', 'RES_LISTMAINT_ENGEQUIPBASETYPE_ADD_TABLESEQ', 1, 'integer', 1);
+
+
+
+INSERT INTO PMIS_ADM.MaintFields(TableName, TableColumn, FieldLabel, WidthPixels, FieldKey, UIItemEditKey, UIItemAddKey, IsMandatory, ValidateDataType, IsUnique)
+VALUES ('PMIS_RES.GTable.EngEquipBaseEngineType', 'TableValue', 'Вид гориво за базова машина (инж. техника)', 270, 'RES_Lists_EngEquipBaseEngineType_TableValue', 'RES_LISTMAINT_ENGEQUIPBASEENGINETYPE_EDIT_TABLEVALUE', 'RES_LISTMAINT_ENGEQUIPBASEENGINETYPE_ADD_TABLEVALUE', 1, 'string', 0);
+
+INSERT INTO PMIS_ADM.MaintFields(TableName, TableColumn, FieldLabel, WidthPixels, FieldKey, UIItemEditKey, UIItemAddKey, IsMandatory, ValidateDataType, IsUnique)
+VALUES ('PMIS_RES.GTable.EngEquipBaseEngineType', 'TableSeq', 'Номер за подредба', 100, 'RES_Lists_EngEquipBaseEngineType_TableSeq', 'RES_LISTMAINT_ENGEQUIPBASEENGINETYPE_EDIT_TABLESEQ', 'RES_LISTMAINT_ENGEQUIPBASEENGINETYPE_ADD_TABLESEQ', 1, 'integer', 1);
+
+
+
+INSERT INTO PMIS_ADM.MaintFields(TableName, TableColumn, FieldLabel, WidthPixels, FieldKey, UIItemEditKey, UIItemAddKey, IsMandatory, ValidateDataType, IsUnique)
+VALUES ('PMIS_RES.GTable.EngEquipWorkingBodyKind', 'TableValue', 'Вид работен орган (инж. техника)', 270, 'RES_Lists_EngEquipWorkingBodyKind_TableValue', 'RES_LISTMAINT_ENGEQUIPWORKINGBODYKIND_EDIT_TABLEVALUE', 'RES_LISTMAINT_ENGEQUIPWORKINGBODYKIND_ADD_TABLEVALUE', 1, 'string', 0);
+
+INSERT INTO PMIS_ADM.MaintFields(TableName, TableColumn, FieldLabel, WidthPixels, FieldKey, UIItemEditKey, UIItemAddKey, IsMandatory, ValidateDataType, IsUnique)
+VALUES ('PMIS_RES.GTable.EngEquipWorkingBodyKind', 'TableSeq', 'Номер за подредба', 100, 'RES_Lists_EngEquipWorkingBodyKind_TableSeq', 'RES_LISTMAINT_ENGEQUIPWORKINGBODYKIND_EDIT_TABLESEQ', 'RES_LISTMAINT_ENGEQUIPWORKINGBODYKIND_ADD_TABLESEQ', 1, 'integer', 1);
+
+
+INSERT INTO PMIS_ADM.MaintFields(TableName, TableColumn, FieldLabel, WidthPixels, FieldKey, UIItemEditKey, UIItemAddKey, IsMandatory, ValidateDataType, IsUnique)
+VALUES ('PMIS_RES.GTable.EngEquipWorkBodyEngineType', 'TableValue', 'Вид гориво за работен орган (инж. техника)', 270, 'RES_Lists_EngEquipWorkBodyEngineType_TableValue', 'RES_LISTMAINT_ENGEQUIPWORKBODYENGINETYPE_EDIT_TABLEVALUE', 'RES_LISTMAINT_ENGEQUIPWORKBODYENGINETYPE_ADD_TABLEVALUE', 1, 'string', 0);
+
+INSERT INTO PMIS_ADM.MaintFields(TableName, TableColumn, FieldLabel, WidthPixels, FieldKey, UIItemEditKey, UIItemAddKey, IsMandatory, ValidateDataType, IsUnique)
+VALUES ('PMIS_RES.GTable.EngEquipWorkBodyEngineType', 'TableSeq', 'Номер за подредба', 100, 'RES_Lists_EngEquipWorkBodyEngineType_TableSeq', 'RES_LISTMAINT_ENGEQUIPWORKBODYENGINETYPE_EDIT_TABLESEQ', 'RES_LISTMAINT_ENGEQUIPWORKBODYENGINETYPE_ADD_TABLESEQ', 1, 'integer', 1);
+
+
+INSERT INTO PMIS_ADM.MaintFields(TableName, TableColumn, FieldLabel, WidthPixels, FieldKey, UIItemEditKey, UIItemAddKey, IsMandatory, ValidateDataType, IsUnique)
+VALUES ('PMIS_RES.GTable.MobileLiftingEquipKind', 'TableValue', 'Вид подемно-транспортна техника', 270, 'RES_Lists_MobileLiftingEquipKind_TableValue', 'RES_LISTMAINT_MOBILELIFTINGEQUIPKIND_EDIT_TABLEVALUE', 'RES_LISTMAINT_MOBILELIFTINGEQUIPKIND_ADD_TABLEVALUE', 1, 'string', 0);
+
+INSERT INTO PMIS_ADM.MaintFields(TableName, TableColumn, FieldLabel, WidthPixels, FieldKey, UIItemEditKey, UIItemAddKey, IsMandatory, ValidateDataType, IsUnique)
+VALUES ('PMIS_RES.GTable.MobileLiftingEquipKind', 'TableSeq', 'Номер за подредба', 100, 'RES_Lists_MobileLiftingEquipKind_TableSeq', 'RES_LISTMAINT_MOBILELIFTINGEQUIPKIND_EDIT_TABLESEQ', 'RES_LISTMAINT_MOBILELIFTINGEQUIPKIND_ADD_TABLESEQ', 1, 'integer', 1);
+
+
+INSERT INTO PMIS_ADM.MaintFields(TableName, TableColumn, FieldLabel, WidthPixels, FieldKey, UIItemEditKey, UIItemAddKey, IsMandatory, ValidateDataType, IsUnique)
+VALUES ('PMIS_RES.GTable.MobileLiftingEquipType', 'TableValue', 'Тип подемно-транспортна техника', 270, 'RES_Lists_MobileLiftingEquipType_TableValue', 'RES_LISTMAINT_MOBILELIFTINGEQUIPTYPE_EDIT_TABLEVALUE', 'RES_LISTMAINT_MOBILELIFTINGEQUIPTYPE_ADD_TABLEVALUE', 1, 'string', 0);
+
+INSERT INTO PMIS_ADM.MaintFields(TableName, TableColumn, FieldLabel, WidthPixels, FieldKey, UIItemEditKey, UIItemAddKey, IsMandatory, ValidateDataType, IsUnique)
+VALUES ('PMIS_RES.GTable.MobileLiftingEquipType', 'TableSeq', 'Номер за подредба', 100, 'RES_Lists_MobileLiftingEquipType_TableSeq', 'RES_LISTMAINT_MOBILELIFTINGEQUIPTYPE_EDIT_TABLESEQ', 'RES_LISTMAINT_MOBILELIFTINGEQUIPTYPE_ADD_TABLESEQ', 1, 'integer', 1);
+
+
+INSERT INTO PMIS_ADM.MaintFields(TableName, TableColumn, FieldLabel, WidthPixels, FieldKey, UIItemEditKey, UIItemAddKey, IsMandatory, ValidateDataType, IsUnique)
+VALUES ('PMIS_RES.GTable.RailwayEquipKind', 'TableValue', 'Вид специализиран железопътен състав', 270, 'RES_Lists_RailwayEquipKind_TableValue', 'RES_LISTMAINT_RAILWAYEQUIPKIND_EDIT_TABLEVALUE', 'RES_LISTMAINT_RAILWAYEQUIPKIND_ADD_TABLEVALUE', 1, 'string', 0);
+
+INSERT INTO PMIS_ADM.MaintFields(TableName, TableColumn, FieldLabel, WidthPixels, FieldKey, UIItemEditKey, UIItemAddKey, IsMandatory, ValidateDataType, IsUnique)
+VALUES ('PMIS_RES.GTable.RailwayEquipKind', 'TableSeq', 'Номер за подредба', 100, 'RES_Lists_RailwayEquipKind_TableSeq', 'RES_LISTMAINT_RAILWAYEQUIPKIND_EDIT_TABLESEQ', 'RES_LISTMAINT_RAILWAYEQUIPKIND_ADD_TABLESEQ', 1, 'integer', 1);
+
+
+INSERT INTO PMIS_ADM.MaintFields(TableName, TableColumn, FieldLabel, WidthPixels, FieldKey, UIItemEditKey, UIItemAddKey, IsMandatory, ValidateDataType, IsUnique)
+VALUES ('PMIS_RES.GTable.RailwayEquipType', 'TableValue', 'Тип специализиран железопътен състав', 270, 'RES_Lists_RailwayEquipType_TableValue', 'RES_LISTMAINT_RAILWAYEQUIPTYPE_EDIT_TABLEVALUE', 'RES_LISTMAINT_RAILWAYEQUIPTYPE_ADD_TABLEVALUE', 1, 'string', 0);
+
+INSERT INTO PMIS_ADM.MaintFields(TableName, TableColumn, FieldLabel, WidthPixels, FieldKey, UIItemEditKey, UIItemAddKey, IsMandatory, ValidateDataType, IsUnique)
+VALUES ('PMIS_RES.GTable.RailwayEquipType', 'TableSeq', 'Номер за подредба', 100, 'RES_Lists_RailwayEquipType_TableSeq', 'RES_LISTMAINT_RAILWAYEQUIPTYPE_EDIT_TABLESEQ', 'RES_LISTMAINT_RAILWAYEQUIPTYPE_ADD_TABLESEQ', 1, 'integer', 1);
+
+INSERT INTO PMIS_ADM.MaintFields(TableName, TableColumn, FieldLabel, WidthPixels, FieldKey, UIItemEditKey, UIItemAddKey, IsMandatory, ValidateDataType, IsUnique)
+VALUES ('PMIS_RES.EngEquipBaseMakes', 'EngEquipBaseMakeName', 'Марка инж. техника', 450, 'RES_Lists_EngEquipBaseMakes_EngEquipBaseMakeName', 'RES_LISTMAINT_ENGEQUIPBASEMAKES_EDIT_ENGEQUIPBASEMAKESNAME', 'RES_LISTMAINT_ENGEQUIPBASEMAKES_ADD_ENGEQUIPBASEMAKESNAME', 1, 'string', 0);
+
+INSERT INTO PMIS_ADM.MaintFields(TableName, TableColumn, FieldLabel, WidthPixels, FieldKey, UIItemEditKey, UIItemAddKey, IsMandatory, ValidateDataType, IsUnique)
+VALUES ('PMIS_RES.AviationOtherBaseMachineMakes', 'AviationOtherBaseMachineMake', 'Марка базова машина (друга спец. авиационна техника)', 450, 'RES_Lists_AviationOtherBaseMachineMakes_AviationOtherBaseMachineMakeName', 'RES_LISTMAINT_AVIATIONOTHERBASEMACHINEMAKES_EDIT_AVIATIONOTHERBASEMACHINEMAKESNAME', 'RES_LISTMAINT_AVIATIONOTHERBASEMACHINEMAKES_ADD_AVIATIONOTHERBASEMACHINEMAKESNAME', 1, 'string', 0);
+
+
+INSERT INTO PMIS_ADM.MaintFields(TableName, TableColumn, FieldLabel, WidthPixels, FieldKey, UIItemEditKey, UIItemAddKey, IsMandatory, ValidateDataType, IsUnique)
+VALUES ('PMIS_RES.GTable.VesselKind', 'TableValue', 'Вид кораб', 270, 'RES_Lists_VesselKind_TableValue', 'RES_LISTMAINT_VESSELKIND_EDIT_TABLEVALUE', 'RES_LISTMAINT_VESSELKIND_ADD_TABLEVALUE', 1, 'string', 0);
+
+INSERT INTO PMIS_ADM.MaintFields(TableName, TableColumn, FieldLabel, WidthPixels, FieldKey, UIItemEditKey, UIItemAddKey, IsMandatory, ValidateDataType, IsUnique)
+VALUES ('PMIS_RES.GTable.VesselKind', 'TableSeq', 'Номер за подредба', 100, 'RES_Lists_VesselKind_TableSeq', 'RES_LISTMAINT_VESSELKIND_EDIT_TABLESEQ', 'RES_LISTMAINT_VESSELKIND_ADD_TABLESEQ', 1, 'integer', 1);
+
+
+
+INSERT INTO PMIS_ADM.MaintFields(TableName, TableColumn, FieldLabel, WidthPixels, FieldKey, UIItemEditKey, UIItemAddKey, IsMandatory, ValidateDataType, IsUnique)
+VALUES ('PMIS_RES.GTable.VesselType', 'TableValue', 'Тип кораб', 270, 'RES_Lists_VesselType_TableValue', 'RES_LISTMAINT_VESSELTYPE_EDIT_TABLEVALUE', 'RES_LISTMAINT_VESSELTYPE_ADD_TABLEVALUE', 1, 'string', 0);
+
+INSERT INTO PMIS_ADM.MaintFields(TableName, TableColumn, FieldLabel, WidthPixels, FieldKey, UIItemEditKey, UIItemAddKey, IsMandatory, ValidateDataType, IsUnique)
+VALUES ('PMIS_RES.GTable.VesselType', 'TableSeq', 'Номер за подредба', 100, 'RES_Lists_VesselType_TableSeq', 'RES_LISTMAINT_VESSELTYPE_EDIT_TABLESEQ', 'RES_LISTMAINT_VESSELTYPE_ADD_TABLESEQ', 1, 'integer', 1);
+
+
+
+
+INSERT INTO PMIS_ADM.MaintFields(TableName, TableColumn, FieldLabel, WidthPixels, FieldKey, UIItemEditKey, UIItemAddKey, IsMandatory, ValidateDataType, IsUnique)
+VALUES ('PMIS_RES.GTable.FuelContainerKind', 'TableValue', 'Вид съд за ГСМ', 270, 'RES_Lists_FuelContainerKind_TableValue', 'RES_LISTMAINT_FUELCONTAINERKIND_EDIT_TABLEVALUE', 'RES_LISTMAINT_FUELCONTAINERKIND_ADD_TABLEVALUE', 1, 'string', 0);
+
+INSERT INTO PMIS_ADM.MaintFields(TableName, TableColumn, FieldLabel, WidthPixels, FieldKey, UIItemEditKey, UIItemAddKey, IsMandatory, ValidateDataType, IsUnique)
+VALUES ('PMIS_RES.GTable.FuelContainerKind', 'TableSeq', 'Номер за подредба', 100, 'RES_Lists_FuelContainerKind_TableSeq', 'RES_LISTMAINT_FUELCONTAINERKIND_EDIT_TABLESEQ', 'RES_LISTMAINT_FUELCONTAINERKIND_ADD_TABLESEQ', 1, 'integer', 1);
+
+
+INSERT INTO PMIS_ADM.MaintFields(TableName, TableColumn, FieldLabel, WidthPixels, FieldKey, UIItemEditKey, UIItemAddKey, IsMandatory, ValidateDataType, IsUnique)
+VALUES ('PMIS_RES.GTable.FuelContainerType', 'TableValue', 'Тип съд за ГСМ', 270, 'RES_Lists_FuelContainerType_TableValue', 'RES_LISTMAINT_FUELCONTAINERTYPE_EDIT_TABLEVALUE', 'RES_LISTMAINT_FUELCONTAINERTYPE_ADD_TABLEVALUE', 1, 'string', 0);
+
+INSERT INTO PMIS_ADM.MaintFields(TableName, TableColumn, FieldLabel, WidthPixels, FieldKey, UIItemEditKey, UIItemAddKey, IsMandatory, ValidateDataType, IsUnique)
+VALUES ('PMIS_RES.GTable.FuelContainerType', 'TableSeq', 'Номер за подредба', 100, 'RES_Lists_FuelContainerType_TableSeq', 'RES_LISTMAINT_FUELCONTAINERTYPE_EDIT_TABLESEQ', 'RES_LISTMAINT_FUELCONTAINERTYPE_ADD_TABLESEQ', 1, 'integer', 1);
+
+
+
+
+INSERT INTO PMIS_ADM.MaintFields(TableName, TableColumn, FieldLabel, WidthPixels, FieldKey, UIItemEditKey, UIItemAddKey, IsMandatory, ValidateDataType, IsUnique)
+VALUES ('PMIS_RES.GTable.AviationAirKind', 'TableValue', 'Вид въздухоплавателно средство', 270, 'RES_Lists_AviationAirKind_TableValue', 'RES_LISTMAINT_AVIATIONAIRKIND_EDIT_TABLEVALUE', 'RES_LISTMAINT_AVIATIONAIRKIND_ADD_TABLEVALUE', 1, 'string', 0);
+
+INSERT INTO PMIS_ADM.MaintFields(TableName, TableColumn, FieldLabel, WidthPixels, FieldKey, UIItemEditKey, UIItemAddKey, IsMandatory, ValidateDataType, IsUnique)
+VALUES ('PMIS_RES.GTable.AviationAirKind', 'TableSeq', 'Номер за подредба', 100, 'RES_Lists_AviationAirKind_TableSeq', 'RES_LISTMAINT_AVIATIONAIRKIND_EDIT_TABLESEQ', 'RES_LISTMAINT_AVIATIONAIRKIND_ADD_TABLESEQ', 1, 'integer', 1);
+
+
+
+INSERT INTO PMIS_ADM.MaintFields(TableName, TableColumn, FieldLabel, WidthPixels, FieldKey, UIItemEditKey, UIItemAddKey, IsMandatory, ValidateDataType, IsUnique)
+VALUES ('PMIS_RES.GTable.AviationAirType', 'TableValue', 'Tип въздухоплавателно средство', 270, 'RES_Lists_AviationAirType_TableValue', 'RES_LISTMAINT_AVIATIONAIRTYPE_EDIT_TABLEVALUE', 'RES_LISTMAINT_AVIATIONAIRTYPE_ADD_TABLEVALUE', 1, 'string', 0);
+
+INSERT INTO PMIS_ADM.MaintFields(TableName, TableColumn, FieldLabel, WidthPixels, FieldKey, UIItemEditKey, UIItemAddKey, IsMandatory, ValidateDataType, IsUnique)
+VALUES ('PMIS_RES.GTable.AviationAirType', 'TableSeq', 'Номер за подредба', 100, 'RES_Lists_AviationAirType_TableSeq', 'RES_LISTMAINT_AVIATIONAIRTYPE_EDIT_TABLESEQ', 'RES_LISTMAINT_AVIATIONAIRTYPE_ADD_TABLESEQ', 1, 'integer', 1);
+
+
+
+INSERT INTO PMIS_ADM.MaintFields(TableName, TableColumn, FieldLabel, WidthPixels, FieldKey, UIItemEditKey, UIItemAddKey, IsMandatory, ValidateDataType, IsUnique)
+VALUES ('PMIS_RES.GTable.AviationAirModel', 'TableValue', 'Модел въздухоплавателно средство', 270, 'RES_Lists_AviationAirModel_TableValue', 'RES_LISTMAINT_AVIATIONAIRMODEL_EDIT_TABLEVALUE', 'RES_LISTMAINT_AVIATIONAIRMODEL_ADD_TABLEVALUE', 1, 'string', 0);
+
+INSERT INTO PMIS_ADM.MaintFields(TableName, TableColumn, FieldLabel, WidthPixels, FieldKey, UIItemEditKey, UIItemAddKey, IsMandatory, ValidateDataType, IsUnique)
+VALUES ('PMIS_RES.GTable.AviationAirModel', 'TableSeq', 'Номер за подредба', 100, 'RES_Lists_AviationAirModel_TableSeq', 'RES_LISTMAINT_AVIATIONAIRMODEL_EDIT_TABLESEQ', 'RES_LISTMAINT_AVIATIONAIRMODEL_ADD_TABLESEQ', 1, 'integer', 1);
+
+
+
+INSERT INTO PMIS_ADM.MaintFields(TableName, TableColumn, FieldLabel, WidthPixels, FieldKey, UIItemEditKey, UIItemAddKey, IsMandatory, ValidateDataType, IsUnique)
+VALUES ('PMIS_RES.GTable.AviationOtherKind', 'TableValue', 'Вид специализирана аивац. техника', 270, 'RES_Lists_AviationOtherKind_TableValue', 'RES_LISTMAINT_AVIATIONOTHERKIND_EDIT_TABLEVALUE', 'RES_LISTMAINT_AVIATIONOTHERKIND_ADD_TABLEVALUE', 1, 'string', 0);
+
+INSERT INTO PMIS_ADM.MaintFields(TableName, TableColumn, FieldLabel, WidthPixels, FieldKey, UIItemEditKey, UIItemAddKey, IsMandatory, ValidateDataType, IsUnique)
+VALUES ('PMIS_RES.GTable.AviationOtherKind', 'TableSeq', 'Номер за подредба', 100, 'RES_Lists_AviationOtherKind_TableSeq', 'RES_LISTMAINT_AVIATIONOTHERKIND_EDIT_TABLESEQ', 'RES_LISTMAINT_AVIATIONOTHERKIND_ADD_TABLESEQ', 1, 'integer', 1);
+
+
+
+INSERT INTO PMIS_ADM.MaintFields(TableName, TableColumn, FieldLabel, WidthPixels, FieldKey, UIItemEditKey, UIItemAddKey, IsMandatory, ValidateDataType, IsUnique)
+VALUES ('PMIS_RES.GTable.AviationOtherType', 'TableValue', 'Тип специализирана аивац. техника', 270, 'RES_Lists_AviationOtherType_TableValue', 'RES_LISTMAINT_AVIATIONOTHERTYPE_EDIT_TABLEVALUE', 'RES_LISTMAINT_AVIATIONOTHERTYPE_ADD_TABLEVALUE', 1, 'string', 0);
+
+INSERT INTO PMIS_ADM.MaintFields(TableName, TableColumn, FieldLabel, WidthPixels, FieldKey, UIItemEditKey, UIItemAddKey, IsMandatory, ValidateDataType, IsUnique)
+VALUES ('PMIS_RES.GTable.AviationOtherType', 'TableSeq', 'Номер за подредба', 100, 'RES_Lists_AviationOtherType_TableSeq', 'RES_LISTMAINT_AVIATIONOTHERTYPE_EDIT_TABLESEQ', 'RES_LISTMAINT_AVIATIONOTHERTYPE_ADD_TABLESEQ', 1, 'integer', 1);
+
+
+INSERT INTO PMIS_ADM.MaintFields(TableName, TableColumn, FieldLabel, WidthPixels, FieldKey, UIItemEditKey, UIItemAddKey, IsMandatory, ValidateDataType, IsUnique)
+VALUES ('PMIS_RES.GTable.AviationOtherBaseMachineKind', 'TableValue', 'Вид базова машина (спец. авиационна техника)', 270, 'RES_Lists_AviationOtherBaseMachineKind_TableValue', 'RES_LISTMAINT_AVIATIONOTHERBASEMACHINEKIND_EDIT_TABLEVALUE', 'RES_LISTMAINT_AVIATIONOTHERBASEMACHINEKIND_ADD_TABLEVALUE', 1, 'string', 0);
+
+INSERT INTO PMIS_ADM.MaintFields(TableName, TableColumn, FieldLabel, WidthPixels, FieldKey, UIItemEditKey, UIItemAddKey, IsMandatory, ValidateDataType, IsUnique)
+VALUES ('PMIS_RES.GTable.AviationOtherBaseMachineKind', 'TableSeq', 'Номер за подредба', 100, 'RES_Lists_AviationOtherBaseMachineKind_TableSeq', 'RES_LISTMAINT_AVIATIONOTHERBASEMACHINEKIND_EDIT_TABLESEQ', 'RES_LISTMAINT_AVIATIONOTHERBASEMACHINEKIND_ADD_TABLESEQ', 1, 'integer', 1);
+
+
+INSERT INTO PMIS_ADM.MaintFields(TableName, TableColumn, FieldLabel, WidthPixels, FieldKey, UIItemEditKey, UIItemAddKey, IsMandatory, ValidateDataType, IsUnique)
+VALUES ('PMIS_RES.GTable.AviationOtherBaseMachineType', 'TableValue', 'Тип базова машина (спец. авиационна техника)', 270, 'RES_Lists_AviationOtherBaseMachineType_TableValue', 'RES_LISTMAINT_AVIATIONOTHERBASEMACHINETYPE_EDIT_TABLEVALUE', 'RES_LISTMAINT_AVIATIONOTHERBASEMACHINETYPE_ADD_TABLEVALUE', 1, 'string', 0);
+
+INSERT INTO PMIS_ADM.MaintFields(TableName, TableColumn, FieldLabel, WidthPixels, FieldKey, UIItemEditKey, UIItemAddKey, IsMandatory, ValidateDataType, IsUnique)
+VALUES ('PMIS_RES.GTable.AviationOtherBaseMachineType', 'TableSeq', 'Номер за подредба', 100, 'RES_Lists_AviationOtherBaseMachineType_TableSeq', 'RES_LISTMAINT_AVIATIONOTHERBASEMACHINETYPE_EDIT_TABLESEQ', 'RES_LISTMAINT_AVIATIONOTHERBASEMACHINETYPE_ADD_TABLESEQ', 1, 'integer', 1);
+
+
+INSERT INTO PMIS_ADM.MaintFields(TableName, TableColumn, FieldLabel, WidthPixels, FieldKey, UIItemEditKey, UIItemAddKey, IsMandatory, ValidateDataType, IsUnique)
+VALUES ('PMIS_RES.GTable.AviationOtherEquipmentKind', 'TableValue', 'Вид оборудване (спец. авиационна техника)', 270, 'RES_Lists_AviationOtherEquipmentKind_TableValue', 'RES_LISTMAINT_AVIATIONOTHEREQUIPMENTKIND_EDIT_TABLEVALUE', 'RES_LISTMAINT_AVIATIONOTHEREQUIPMENTKIND_ADD_TABLEVALUE', 1, 'string', 0);
+
+INSERT INTO PMIS_ADM.MaintFields(TableName, TableColumn, FieldLabel, WidthPixels, FieldKey, UIItemEditKey, UIItemAddKey, IsMandatory, ValidateDataType, IsUnique)
+VALUES ('PMIS_RES.GTable.AviationOtherEquipmentKind', 'TableSeq', 'Номер за подредба', 100, 'RES_Lists_AviationOtherEquipmentKind_TableSeq', 'RES_LISTMAINT_AVIATIONOTHEREQUIPMENTKIND_EDIT_TABLESEQ', 'RES_LISTMAINT_AVIATIONOTHEREQUIPMENTKIND_ADD_TABLESEQ', 1, 'integer', 1);
+
+
+
+INSERT INTO PMIS_ADM.MaintFields(TableName, TableColumn, FieldLabel, WidthPixels, FieldKey, UIItemEditKey, UIItemAddKey, IsMandatory, ValidateDataType, IsUnique)
+VALUES ('PMIS_RES.TechnicsCategories', 'TechnicsCategoryName', 'Категория техника', 450, 'RES_Lists_TechnicsCategories_TechnicsCategoryName', 'RES_LISTMAINT_TECHNICSCATEGORIES_EDIT_TECHNICSCATEGORIESNAME', 'RES_LISTMAINT_TECHNICSCATEGORIES_ADD_TECHNICSCATEGORIESNAME', 1, 'string', 0);
+
+
+
+COMMIT;

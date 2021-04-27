@@ -1,0 +1,3 @@
+﻿ALTER TABLE PMIS_RES.Trailers ADD (TrailerBodyKindID number /*GTable*/);
+
+/

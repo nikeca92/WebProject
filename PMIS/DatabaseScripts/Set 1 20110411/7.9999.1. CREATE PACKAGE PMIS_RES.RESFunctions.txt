@@ -1,0 +1,235 @@
+﻿CREATE OR REPLACE PACKAGE PMIS_RES.RESFunctions AS
+   FUNCTION GetMRSPerReqCmdPositionHTML (P_RequestCommandPositionID IN number, P_MaxLength IN number) RETURN varchar2;
+   FUNCTION GetMRSIdsPerReqCmdPosition (P_RequestCommandPositionID IN number) RETURN varchar2;
+   FUNCTION GetEquipResReq_ResCount (P_EquipmentReservistsRequestID IN number, P_MilDepFilter IN varchar2) RETURN number;
+   FUNCTION GetEquipResReq_FulfilCount (P_EquipmentReservistsRequestID IN number, P_MilDepFilter IN varchar2) RETURN number;
+   FUNCTION GetEquipResReq_FulfilResCount (P_EquipmentReservistsRequestID IN number, P_MilDepFilter IN varchar2) RETURN number;
+   FUNCTION GetEquipTechReq_Count (P_EquipmentTechnicsRequestID IN number, P_MilDepFilter IN varchar2) RETURN number;
+   FUNCTION GetEquipTechReq_FulfilCount (P_EquipmentTechnicsRequestID IN number, P_MilDepFilter IN varchar2) RETURN number;
+   FUNCTION GetEquipTechReq_FulfilResCount (P_EquipmentTechnicsRequestID IN number, P_MilDepFilter IN varchar2) RETURN number;
+END;
+/
+
+CREATE OR REPLACE PACKAGE BODY PMIS_RES.RESFunctions AS
+   FUNCTION GetMRSPerReqCmdPositionHTML (P_RequestCommandPositionID IN number, P_MaxLength IN number) RETURN varchar2 IS
+                               
+      MRS varchar2(4000);
+      
+      CURSOR MilitaryReportSpecialitiesCUR is
+      SELECT b.MilReportingSpecialityCode || ' ' || b.MilReportingSpecialityName as DisplayName
+      FROM PMIS_RES.CommandPositionMRSpecialities a
+      LEFT OUTER JOIN PMIS_ADM.MilitaryReportSpecialities b ON a.MilReportSpecialityID = b.MilReportSpecialityID
+      WHERE a.RequestCommandPositionID = P_RequestCommandPositionID
+      ORDER BY b.MilReportingSpecialityCode;
+   BEGIN
+      FOR CurRec IN MilitaryReportSpecialitiesCUR
+      LOOP 
+         IF (MRS IS NULL OR LENGTH(MRS) < 3600) THEN
+             MRS := MRS || '<div title="' || CurRec.DisplayName || '" style="cursor: arrow;">' || 
+                              SUBSTR(CurRec.DisplayName, 1, P_MaxLength) || 
+                              CASE WHEN LENGTH (CurRec.DisplayName) > P_MaxLength THEN '...' ELSE '' END || 
+                           '</div>';
+         END IF;
+      END LOOP;
+      
+      RETURN MRS;
+   END;
+
+   FUNCTION GetMRSIdsPerReqCmdPosition (P_RequestCommandPositionID IN number) RETURN varchar2 IS
+                               
+      MRSIds varchar2(4000);
+      
+      CURSOR MilitaryReportSpecialitiesCUR is
+      SELECT a.MilReportSpecialityID
+      FROM PMIS_RES.CommandPositionMRSpecialities a
+      WHERE a.RequestCommandPositionID = P_RequestCommandPositionID
+      ORDER BY a.MilReportSpecialityID;
+   BEGIN
+      FOR CurRec IN MilitaryReportSpecialitiesCUR
+      LOOP 
+         IF (MRSIds IS NULL OR LENGTH(MRSIds) < 3900) THEN
+             MRSIds :=MRSIds || CASE WHEN MRSIds IS NULL THEN '' ELSE ',' END || TO_CHAR(CurRec.MilReportSpecialityID);
+         END IF;
+      END LOOP;
+      
+      RETURN MRSIds;
+   END;
+   
+   FUNCTION GetEquipResReq_ResCount (P_EquipmentReservistsRequestID IN number, P_MilDepFilter IN varchar2) RETURN number IS
+                               
+      Cnt number := 0;
+      
+      TYPE cur_typ IS REF CURSOR;
+      c cur_typ;
+      query_str VARCHAR2(4000);
+   BEGIN
+      query_str := 'SELECT NVL(SUM(a.ReservistsCount), 0) as Cnt
+                    FROM PMIS_RES.RequestCommandPositionsMilDept a
+                    INNER JOIN PMIS_RES.RequestCommandPositions b ON a.RequestCommandPositionID = b.RequestCommandPositionID
+                    INNER JOIN PMIS_RES.RequestsCommands c ON b.RequestsCommandID = c.RequestsCommandID
+                    WHERE c.EquipmentReservistsRequestID = ' || TO_CHAR(P_EquipmentReservistsRequestID);
+                    
+      IF P_MilDepFilter IS NOT NULL THEN
+         query_str := query_str || ' AND
+                      a.MilitaryDepartmentID IN (' || P_MilDepFilter || ')';
+      END IF;
+                    
+      OPEN c FOR query_str;
+      LOOP
+          FETCH c INTO Cnt;
+          EXIT WHEN c%NOTFOUND;
+      END LOOP;
+      CLOSE c;
+      
+      RETURN Cnt;
+   END;
+   
+   FUNCTION GetEquipResReq_FulFilCount (P_EquipmentReservistsRequestID IN number, P_MilDepFilter IN varchar2) RETURN number IS
+                               
+      Cnt number := 0;
+      
+      TYPE cur_typ IS REF CURSOR;
+      c cur_typ;
+      query_str VARCHAR2(4000);
+   BEGIN
+      query_str := 'SELECT NVL(COUNT(*), 0) as Cnt
+                    FROM PMIS_RES.FillReservistsRequest a
+                    INNER JOIN PMIS_RES.RequestCommandPositions b ON a.RequestCommandPositionID = b.RequestCommandPositionID
+                    INNER JOIN PMIS_RES.RequestsCommands c ON b.RequestsCommandID = c.RequestsCommandID
+                    WHERE a.ReservistReadinessID = 1 AND c.EquipmentReservistsRequestID = ' || TO_CHAR(P_EquipmentReservistsRequestID);
+                    
+      IF P_MilDepFilter IS NOT NULL THEN
+         query_str := query_str || ' AND
+                      a.MilitaryDepartmentID IN (' || P_MilDepFilter || ')';
+      END IF;
+                    
+      OPEN c FOR query_str;
+      LOOP
+          FETCH c INTO Cnt;
+          EXIT WHEN c%NOTFOUND;
+      END LOOP;
+      CLOSE c;
+      
+      RETURN Cnt;
+   END;
+   
+   FUNCTION GetEquipResReq_FulFilResCount (P_EquipmentReservistsRequestID IN number, P_MilDepFilter IN varchar2) RETURN number IS
+                               
+      Cnt number := 0;
+      
+      TYPE cur_typ IS REF CURSOR;
+      c cur_typ;
+      query_str VARCHAR2(4000);
+   BEGIN
+      query_str := 'SELECT NVL(COUNT(*), 0) as Cnt
+                    FROM PMIS_RES.FillReservistsRequest a
+                    INNER JOIN PMIS_RES.RequestCommandPositions b ON a.RequestCommandPositionID = b.RequestCommandPositionID
+                    INNER JOIN PMIS_RES.RequestsCommands c ON b.RequestsCommandID = c.RequestsCommandID
+                    WHERE a.ReservistReadinessID = 2 AND c.EquipmentReservistsRequestID = ' || TO_CHAR(P_EquipmentReservistsRequestID);
+                    
+      IF P_MilDepFilter IS NOT NULL THEN
+         query_str := query_str || ' AND
+                      a.MilitaryDepartmentID IN (' || P_MilDepFilter || ')';
+      END IF;
+                    
+      OPEN c FOR query_str;
+      LOOP
+          FETCH c INTO Cnt;
+          EXIT WHEN c%NOTFOUND;
+      END LOOP;
+      CLOSE c;
+      
+      RETURN Cnt;
+   END;
+   
+   
+   FUNCTION GetEquipTechReq_Count (P_EquipmentTechnicsRequestID IN number, P_MilDepFilter IN varchar2) RETURN number IS
+                               
+      Cnt number := 0;
+      
+      TYPE cur_typ IS REF CURSOR;
+      c cur_typ;
+      query_str VARCHAR2(4000);
+   BEGIN
+      query_str := 'SELECT NVL(SUM(a.Count), 0) as Cnt
+                    FROM PMIS_RES.TechRequestCmdPositionsMilDept a
+                    INNER JOIN PMIS_RES.TechnicsRequestCmdPositions b ON a.TechnicsRequestCmdPositionID = b.TechnicsRequestCmdPositionID
+                    INNER JOIN PMIS_RES.TechnicsRequestCommands c ON b.TechRequestsCommandID = c.TechRequestsCommandID
+                    WHERE c.EquipmentTechnicsRequestID = ' || TO_CHAR(P_EquipmentTechnicsRequestID);
+                    
+      IF P_MilDepFilter IS NOT NULL THEN
+         query_str := query_str || ' AND
+                      a.MilitaryDepartmentID IN (' || P_MilDepFilter || ')';
+      END IF;
+                    
+      OPEN c FOR query_str;
+      LOOP
+          FETCH c INTO Cnt;
+          EXIT WHEN c%NOTFOUND;
+      END LOOP;
+      CLOSE c;
+      
+      RETURN Cnt;
+   END;
+   
+   FUNCTION GetEquipTechReq_FulFilCount (P_EquipmentTechnicsRequestID IN number, P_MilDepFilter IN varchar2) RETURN number IS
+                               
+      Cnt number := 0;
+      
+      TYPE cur_typ IS REF CURSOR;
+      c cur_typ;
+      query_str VARCHAR2(4000);
+   BEGIN
+      query_str := 'SELECT NVL(SUM(t.ItemsCount), 0) as Cnt
+                    FROM PMIS_RES.FulfilTechnicsRequest a
+                    INNER JOIN PMIS_RES.Technics t ON a.TechnicsID = t.TechnicsID
+                    INNER JOIN PMIS_RES.TechnicsRequestCmdPositions b ON a.TechnicsRequestCmdPositionID = b.TechnicsRequestCmdPositionID
+                    INNER JOIN PMIS_RES.TechnicsRequestCommands c ON b.TechRequestsCommandID = c.TechRequestsCommandID
+                    WHERE a.TechnicReadinessID = 1 AND c.EquipmentTechnicsRequestID = ' || TO_CHAR(P_EquipmentTechnicsRequestID);
+                    
+      IF P_MilDepFilter IS NOT NULL THEN
+         query_str := query_str || ' AND
+                      a.MilitaryDepartmentID IN (' || P_MilDepFilter || ')';
+      END IF;
+                    
+      OPEN c FOR query_str;
+      LOOP
+          FETCH c INTO Cnt;
+          EXIT WHEN c%NOTFOUND;
+      END LOOP;
+      CLOSE c;
+      
+      RETURN Cnt;
+   END;
+   
+   FUNCTION GetEquipTechReq_FulFilResCount (P_EquipmentTechnicsRequestID IN number, P_MilDepFilter IN varchar2) RETURN number IS
+                               
+      Cnt number := 0;
+      
+      TYPE cur_typ IS REF CURSOR;
+      c cur_typ;
+      query_str VARCHAR2(4000);
+   BEGIN
+      query_str := 'SELECT NVL(SUM(t.ItemsCount), 0) as Cnt
+                    FROM PMIS_RES.FulfilTechnicsRequest a
+                    INNER JOIN PMIS_RES.Technics t ON a.TechnicsID = t.TechnicsID
+                    INNER JOIN PMIS_RES.TechnicsRequestCmdPositions b ON a.TechnicsRequestCmdPositionID = b.TechnicsRequestCmdPositionID
+                    INNER JOIN PMIS_RES.TechnicsRequestCommands c ON b.TechRequestsCommandID = c.TechRequestsCommandID
+                    WHERE a.TechnicReadinessID = 2 AND c.EquipmentTechnicsRequestID = ' || TO_CHAR(P_EquipmentTechnicsRequestID);
+                    
+      IF P_MilDepFilter IS NOT NULL THEN
+         query_str := query_str || ' AND
+                      a.MilitaryDepartmentID IN (' || P_MilDepFilter || ')';
+      END IF;
+                    
+      OPEN c FOR query_str;
+      LOOP
+          FETCH c INTO Cnt;
+          EXIT WHEN c%NOTFOUND;
+      END LOOP;
+      CLOSE c;
+      
+      RETURN Cnt;
+   END;
+END;
+/

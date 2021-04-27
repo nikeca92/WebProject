@@ -1,0 +1,6 @@
+﻿SELECT a.MilitaryReportPersonID,        
+       a.Identnumber, 
+       a.FirstName, 
+       a.LastName 
+FROM PMIS_ADM.MilitaryReportPersons_ a 
+INNER JOIN vs_owner.vs_ls b ON b.egn = a.Identnumber;

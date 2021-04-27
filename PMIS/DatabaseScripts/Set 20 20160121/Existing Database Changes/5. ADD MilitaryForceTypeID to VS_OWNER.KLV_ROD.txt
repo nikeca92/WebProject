@@ -1,0 +1,12 @@
+ALTER TABLE VS_OWNER.KLV_ROD ADD MilitaryForceTypeID number;
+
+GRANT ALL ON PMIS_ADM.MilitaryForceTypes TO VS_OWNER;
+
+ALTER TABLE VS_OWNER.KLV_ROD ADD CONSTRAINT MilForceSort_MilForceType_FK FOREIGN KEY (MilitaryForceTypeID) REFERENCES PMIS_ADM.MilitaryForceTypes(MilitaryForceTypeID);
+
+UPDATE VS_OWNER.KLV_ROD SET
+    MilitaryForceTypeID = (SELECT MilitaryForceTypeID FROM PMIS_ADM.MilitaryForceTypes WHERE MilitaryForceTypeName = '-')
+WHERE MilitaryForceTypeID IS NULL;
+
+COMMIT;
+/

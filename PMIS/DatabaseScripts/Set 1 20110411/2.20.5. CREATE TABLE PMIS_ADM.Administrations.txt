@@ -1,0 +1,42 @@
+﻿CREATE TABLE PMIS_ADM.Administrations(AdministrationID number NOT NULL,
+                                      AdministrationName varchar2(300)
+                                     );
+
+ALTER TABLE PMIS_ADM.Administrations ADD CONSTRAINT Administrations_PK PRIMARY KEY(AdministrationID);
+
+CREATE SEQUENCE PMIS_ADM.Administrations_ID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+CREATE TRIGGER PMIS_ADM.TRG_Administrations_INSERT
+BEFORE INSERT ON PMIS_ADM.Administrations
+FOR EACH ROW
+BEGIN
+   SELECT PMIS_ADM.Administrations_ID_SEQ.nextval INTO :new.AdministrationID FROM dual;
+END;
+/
+
+INSERT INTO PMIS_ADM.Administrations (AdministrationName)
+VALUES ('Министерство на отбраната');
+
+INSERT INTO PMIS_ADM.Administrations (AdministrationName)
+VALUES ('МВР');
+
+INSERT INTO PMIS_ADM.Administrations (AdministrationName)
+VALUES ('Министерство на правосъдието');
+
+INSERT INTO PMIS_ADM.Administrations (AdministrationName)
+VALUES ('НСО');
+
+INSERT INTO PMIS_ADM.Administrations (AdministrationName)
+VALUES ('НРС');
+
+INSERT INTO PMIS_ADM.Administrations (AdministrationName)
+VALUES ('ДАНС');
+
+INSERT INTO PMIS_ADM.Administrations (AdministrationName)
+VALUES ('Други');
+
+COMMIT;
+/

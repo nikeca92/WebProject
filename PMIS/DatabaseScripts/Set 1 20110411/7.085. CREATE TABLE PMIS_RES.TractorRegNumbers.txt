@@ -1,0 +1,21 @@
+﻿CREATE TABLE PMIS_RES.TractorRegNumbers(TractorRegNumberID number NOT NULL,
+                                        TractorID number NOT NULL,
+                                        RegNumber varchar2(20),
+                                        ChangeDate date
+                                        );
+
+ALTER TABLE PMIS_RES.TractorRegNumbers ADD CONSTRAINT TractorRegNumbers_PK PRIMARY KEY(TractorRegNumberID);
+ALTER TABLE PMIS_RES.TractorRegNumbers ADD CONSTRAINT TractorRegNumbers_Tractors_FK FOREIGN KEY (TractorID) REFERENCES PMIS_RES.Tractors (TractorID);
+
+CREATE SEQUENCE PMIS_RES.TractorRegNumbers_ID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+CREATE TRIGGER PMIS_RES.TRG_TractorRegNumbers_INSERT
+BEFORE INSERT ON PMIS_RES.TractorRegNumbers
+FOR EACH ROW
+BEGIN
+   SELECT PMIS_RES.TractorRegNumbers_ID_SEQ.nextval INTO :new.TractorRegNumberID FROM dual;
+END;
+/

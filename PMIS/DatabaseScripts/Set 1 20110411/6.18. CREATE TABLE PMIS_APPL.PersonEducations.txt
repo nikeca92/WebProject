@@ -1,0 +1,24 @@
+CREATE TABLE PMIS_APPL.PersonEducations(PersonEducationID number NOT NULL,
+                                          PersonID number NOT NULL,
+										  EducationCode VARCHAR2(1 BYTE) NOT NULL,
+										  EducationSubjectCode VARCHAR2(13 BYTE) NOT NULL,
+										  GraduateYear number(4)
+                                          );
+
+ALTER TABLE PMIS_APPL.PersonEducations ADD CONSTRAINT PersonEducations_PK PRIMARY KEY(PersonEducationID);
+ALTER TABLE PMIS_APPL.PersonEducations ADD CONSTRAINT PersEducations_Persons_FK FOREIGN KEY (PersonID) REFERENCES PMIS_ADM.Persons (PersonID);
+ALTER TABLE PMIS_APPL.PersonEducations ADD CONSTRAINT PersEducations_EduCode_FK FOREIGN KEY (EducationCode) REFERENCES VS_OWNER.KLV_OBR (OBR_KOD);
+ALTER TABLE PMIS_APPL.PersonEducations ADD CONSTRAINT PersEducations_EduSubjCode_FK FOREIGN KEY (EducationSubjectCode) REFERENCES VS_OWNER.KLV_SPE (SPE_KOD);
+
+CREATE SEQUENCE PMIS_APPL.PersonEducations_ID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+CREATE TRIGGER PMIS_APPL.TRG_PersonEducations_INSERT
+BEFORE INSERT ON PMIS_APPL.PersonEducations
+FOR EACH ROW
+BEGIN
+   SELECT PMIS_APPL.PersonEducations_ID_SEQ.nextval INTO :new.PersonEducationID FROM dual;
+END;
+/

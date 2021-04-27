@@ -1,0 +1,21 @@
+﻿CREATE TABLE PMIS_RES.VehicleRegNumbers(VehicleRegNumberID number NOT NULL,
+                                        VehicleID number NOT NULL,
+                                        RegNumber varchar2(20),
+                                        ChangeDate date
+                                        );
+
+ALTER TABLE PMIS_RES.VehicleRegNumbers ADD CONSTRAINT VehicleRegNumbers_PK PRIMARY KEY(VehicleRegNumberID);
+ALTER TABLE PMIS_RES.VehicleRegNumbers ADD CONSTRAINT VehicleRegNumbers_Vehicles_FK FOREIGN KEY (VehicleID) REFERENCES PMIS_RES.Vehicles (VehicleID);
+
+CREATE SEQUENCE PMIS_RES.VehicleRegNumbers_ID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+CREATE TRIGGER PMIS_RES.TRG_VehicleRegNumbers_INSERT
+BEFORE INSERT ON PMIS_RES.VehicleRegNumbers
+FOR EACH ROW
+BEGIN
+   SELECT PMIS_RES.VehicleRegNumbers_ID_SEQ.nextval INTO :new.VehicleRegNumberID FROM dual;
+END;
+/

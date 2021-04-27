@@ -1,0 +1,9 @@
+﻿CREATE TABLE PMIS_RES.CommandPositionMRSpecialities (RequestCommandPositionID number NOT NULL,
+                                                     MilReportSpecialityID number NOT NULL
+                                                    );
+
+ALTER TABLE PMIS_RES.CommandPositionMRSpecialities ADD CONSTRAINT CmdPositionMRSpecialities_PK PRIMARY KEY (RequestCommandPositionID, MilReportSpecialityID);
+ALTER TABLE PMIS_RES.CommandPositionMRSpecialities ADD CONSTRAINT CmdPositionMRSpec_Pos_FK FOREIGN KEY (RequestCommandPositionID) REFERENCES PMIS_RES.RequestCommandPositions (RequestCommandPositionID);
+ALTER TABLE PMIS_RES.CommandPositionMRSpecialities ADD CONSTRAINT CmdPositionMRSpec_Spec_FK FOREIGN KEY (MilReportSpecialityID) REFERENCES PMIS_ADM.MilitaryReportSpecialities (MilReportSpecialityID);
+
+/

@@ -1,0 +1,58 @@
+﻿
+INSERT INTO PMIS_ADM.MaintFields(TableName, TableColumn, FieldLabel, WidthPixels, FieldKey, UIItemEditKey, UIItemAddKey, IsMandatory, ValidateDataType, IsUnique)
+VALUES ('PMIS_ADM.PositionTitles', 'PositionTitle', 'Длъжност', 350, 'ADM_Lists_PositionTitles_PositionTitle', 'ADM_LISTMAINT_POSITIONTITLES_EDIT_POSITIONTITLE', 'ADM_LISTMAINT_POSITIONTITLES_ADD_POSITIONTITLE', 1, 'string', 0);
+
+INSERT INTO PMIS_ADM.MaintFields(TableName, TableColumn, FieldLabel, WidthPixels, FieldKey, UIItemEditKey, UIItemAddKey, IsMandatory, ValidateDataType, IsUnique)
+VALUES ('PMIS_ADM.PositionTitles', 'IsActive', 'Активна', 90, 'ADM_Lists_PositionTitles_IsActive', 'ADM_LISTMAINT_POSITIONTITLES_EDIT_ISACTIVE', 'ADM_LISTMAINT_POSITIONTITLES_ADD_ISACTIVE', 0, 'bool', 0);
+
+INSERT INTO PMIS_ADM.MaintFields(TableName, TableColumn, FieldLabel, WidthPixels, FieldKey, UIItemEditKey, UIItemAddKey, IsMandatory, ValidateDataType, IsUnique)
+VALUES ('PMIS_ADM.MedRubrics', 'MedRubricTitle', 'Медицинска рубрика', 350, 'ADM_Lists_MedRubrics_MedRubricTitle', 'ADM_LISTMAINT_MEDRUBRICS_EDIT_MEDRUBRIC', 'ADM_LISTMAINT_MEDRUBRICS_ADD_MEDRUBRIC', 1, 'string', 0);
+
+INSERT INTO PMIS_ADM.MaintFields(TableName, TableColumn, FieldLabel, WidthPixels, FieldKey, UIItemEditKey, UIItemAddKey, IsMandatory, ValidateDataType, IsUnique)
+VALUES ('PMIS_ADM.MedRubrics', 'IsActive', 'Активна', 90, 'ADM_Lists_MedRubrics_IsActive', 'ADM_LISTMAINT_MEDRUBRICS_EDIT_ISACTIVE', 'ADM_LISTMAINT_MEDRUBRICS_ADD_ISACTIVE', 0, 'bool', 0);
+
+
+INSERT INTO PMIS_ADM.MaintFields(TableName, TableColumn, FieldLabel, WidthPixels, FieldKey, UIItemEditKey, UIItemAddKey, IsMandatory, ValidateDataType, IsUnique)
+VALUES ('PMIS_ADM.MilitaryStructures', 'MilitaryStructureName', 'Структура', 350, 'ADM_Lists_MilitaryStructures_MilitaryStructureName', 'ADM_LISTMAINT_MILITARYSTRUCTURES_EDIT_MILITARYSTRUCTURENAME', 'ADM_LISTMAINT_PMILITARYSTRUCTURES_ADD_MILITARYSTRUCTURENAME', 1, 'string', 0);
+
+INSERT INTO PMIS_ADM.MaintFields(TableName, TableColumn, FieldLabel, WidthPixels, FieldKey, UIItemEditKey, UIItemAddKey, IsMandatory, ValidateDataType, IsUnique)
+VALUES ('PMIS_ADM.MilitaryStructures', 'IsActive', 'Активна', 90, 'ADM_Lists_MilitaryStructures_IsActive', 'ADM_LISTMAINT_MILITARYSTRUCTURES_EDIT_ISACTIVE', 'ADM_LISTMAINT_MILITARYSTRUCTURES_ADD_ISACTIVE', 0, 'bool', 0);
+
+INSERT INTO PMIS_ADM.MaintFields(TableName, TableColumn, FieldLabel, WidthPixels, FieldKey, UIItemEditKey, UIItemAddKey, IsMandatory, ValidateDataType, IsUnique)
+VALUES ('PMIS_ADM.MilitaryStructures', 'Seq', 'Номер за подредба', 90, 'ADM_Lists_MilitaryStructures_Seq', 'ADM_LISTMAINT_MILITARYSTRUCTURES_EDIT_SEQ', 'ADM_LISTMAINT_MILITARYSTRUCTURES_ADD_SEQ', 0, 'number', 0);
+
+
+UPDATE PMIS_ADM.MaintFields SET
+    FieldLabel = 'Вид войски'
+WHERE TableName = 'PMIS_ADM.MilitaryForceTypes' AND TableColumn = 'MilitaryForceTypeName';
+
+INSERT INTO PMIS_ADM.MaintFields(TableName, TableColumn, FieldLabel, WidthPixels, FieldKey, UIItemEditKey, UIItemAddKey, IsMandatory, ValidateDataType, IsUnique)
+VALUES ('PMIS_ADM.MilitaryForceTypes', 'IsActive', 'Активен', 90, 'ADM_Lists_MilitaryForceTypes_IsActive', 'ADM_LISTMAINT_MILITARYFORCETYPES_EDIT_ISACTIVE', 'ADM_LISTMAINT_MILITARYFORCETYPES_ADD_ISACTIVE', 0, 'bool', 0);
+
+INSERT INTO PMIS_ADM.MaintFields(TableName, TableColumn, FieldLabel, WidthPixels, FieldKey, UIItemEditKey, UIItemAddKey, IsMandatory, ValidateDataType, IsUnique)
+VALUES ('PMIS_ADM.MilitaryForceTypes', 'Seq', 'Номер за подредба', 90, 'ADM_Lists_MilitaryForceTypes_Seq', 'ADM_LISTMAINT_MILITARYFORCETYPES_EDIT_SEQ', 'ADM_LISTMAINT_MILITARYFORCETYPES_ADD_SEQ', 0, 'number', 0);
+
+INSERT INTO PMIS_ADM.MaintFields(TableName, TableColumn, FieldLabel, WidthPixels, FieldKey, UIItemEditKey, UIItemAddKey, IsMandatory, ValidateDataType, IsUnique)
+VALUES ('PMIS_ADM.MilitaryForceTypes', 'MilitaryStructureID', 'Структура', 130, 'ADM_Lists_MilitaryForceTypes_MilitaryStructure', 'ADM_LISTMAINT_MILITARYFORCETYPES_EDIT_MILITARYSTRUCTURE', 'ADM_LISTMAINT_MILITARYFORCETYPES_ADD_MILITARYSTRUCTURE', 0, 'string', 0);
+
+
+
+INSERT INTO PMIS_ADM.MaintFields(TableName, TableColumn, FieldLabel, WidthPixels, FieldKey, UIItemEditKey, UIItemAddKey, IsMandatory, ValidateDataType, IsUnique)
+VALUES ('VS_OWNER.KLV_ROD', 'ROD_KOD', 'Код', 50, 'ADM_Lists_MilitaryForceSort_MilitaryForceSortCode', 'ADM_LISTMAINT_MILITARYFORCESORTS_EDIT_MILITARYFORCESORTCODE', 'ADM_LISTMAINT_MILITARYFORCESORTS_ADD_MILITARYFORCESORTCODE', 1, 'string', 1);
+
+INSERT INTO PMIS_ADM.MaintFields(TableName, TableColumn, FieldLabel, WidthPixels, FieldKey, UIItemEditKey, UIItemAddKey, IsMandatory, ValidateDataType, IsUnique)
+VALUES ('VS_OWNER.KLV_ROD', 'ROD_IME', 'Род войски', 350, 'ADM_Lists_MilitaryForceSort_MilitaryForceSortName', 'ADM_LISTMAINT_MILITARYFORCESORTS_EDIT_MILITARYFORCESORTNAME', 'ADM_LISTMAINT_MILITARYFORCESORTS_ADD_MILITARYFORCESORTNAME', 1, 'string', 0);
+
+INSERT INTO PMIS_ADM.MaintFields(TableName, TableColumn, FieldLabel, WidthPixels, FieldKey, UIItemEditKey, UIItemAddKey, IsMandatory, ValidateDataType, IsUnique)
+VALUES ('VS_OWNER.KLV_ROD', 'Active', 'Активен', 90, 'ADM_Lists_MilitaryForceSort_IsActive', 'ADM_LISTMAINT_MILITARYFORCESORTS_EDIT_ISACTIVE', 'ADM_LISTMAINT_MILITARYFORCESORTS_ADD_ISACTIVE', 0, 'bool', 0);
+
+INSERT INTO PMIS_ADM.MaintFields(TableName, TableColumn, FieldLabel, WidthPixels, FieldKey, UIItemEditKey, UIItemAddKey, IsMandatory, ValidateDataType, IsUnique)
+VALUES ('VS_OWNER.KLV_ROD', 'ROD_Seq', 'Номер за подредба', 90, 'ADM_Lists_MilitaryForceSort_Seq', 'ADM_LISTMAINT_MILITARYFORCESORTS_EDIT_SEQ', 'ADM_LISTMAINT_MILITARYFORCESORTS_ADD_SEQ', 0, 'number', 0);
+
+INSERT INTO PMIS_ADM.MaintFields(TableName, TableColumn, FieldLabel, WidthPixels, FieldKey, UIItemEditKey, UIItemAddKey, IsMandatory, ValidateDataType, IsUnique)
+VALUES ('VS_OWNER.KLV_ROD', 'MilitaryForceTypeID', 'Вид войски', 130, 'ADM_Lists_MilitaryForceSort_MilitaryForceType', 'ADM_LISTMAINT_MILITARYFORCESORTS_EDIT_MILITARYFORCETYPE', 'ADM_LISTMAINT_MILITARYFORCESORTS_ADD_MILITARYFORCETYPE', 0, 'string', 0);
+
+
+
+COMMIT;
+/

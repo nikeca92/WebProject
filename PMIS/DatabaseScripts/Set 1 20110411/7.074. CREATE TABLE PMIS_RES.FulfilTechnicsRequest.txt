@@ -1,0 +1,25 @@
+﻿CREATE TABLE PMIS_RES.FulfilTechnicsRequest(FulfilTechnicsRequestID number NOT NULL,
+                                            TechnicsRequestCmdPositionID number NOT NULL,
+                                            MilitaryDepartmentID number NOT NULL,
+                                            TechnicsID number NOT NULL,
+                                            TechnicReadinessID number
+                                           );
+
+ALTER TABLE PMIS_RES.FulfilTechnicsRequest ADD CONSTRAINT FulfilTechnicsRequest_PK PRIMARY KEY(FulfilTechnicsRequestID);
+ALTER TABLE PMIS_RES.FulfilTechnicsRequest ADD CONSTRAINT FulfilTechReq_EquipTechReq_FK FOREIGN KEY (TechnicsRequestCmdPositionID) REFERENCES PMIS_RES.TechnicsRequestCmdPositions (TechnicsRequestCmdPositionID);
+ALTER TABLE PMIS_RES.FulfilTechnicsRequest ADD CONSTRAINT FulfilTechReq_MilDept_FK FOREIGN KEY (MilitaryDepartmentID) REFERENCES PMIS_ADM.MilitaryDepartments (MilitaryDepartmentID);
+ALTER TABLE PMIS_RES.FulfilTechnicsRequest ADD CONSTRAINT FulfilTechReq_Technics_FK FOREIGN KEY (TechnicsID) REFERENCES PMIS_RES.Technics (TechnicsID);
+
+
+CREATE SEQUENCE PMIS_RES.FulfilTechnicsRequest_ID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+CREATE TRIGGER PMIS_RES.TRG_FulfilTechRequestt_INSERT
+BEFORE INSERT ON PMIS_RES.FulfilTechnicsRequest
+FOR EACH ROW
+BEGIN
+   SELECT PMIS_RES.FulfilTechnicsRequest_ID_SEQ.nextval INTO :new.FulfilTechnicsRequestID FROM dual;
+END;
+/

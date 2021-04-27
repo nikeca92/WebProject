@@ -1,0 +1,860 @@
+ALTER TABLE PMIS_ADM.Users ADD (Blocked number(1) CHECK (Blocked BETWEEN 0 AND 1));
+
+UPDATE PMIS_ADM.Users SET Blocked = 0 WHERE Blocked IS NULL;
+COMMIT;
+
+ALTER TABLE PMIS_ADM.Users ADD (ConsecutiveFailedLogins number);
+
+UPDATE PMIS_ADM.Users SET ConsecutiveFailedLogins = 0 WHERE ConsecutiveFailedLogins IS NULL;
+COMMIT;
+
+ALTER TABLE PMIS_ADM.Users ADD (PasswordUpdateDate date);
+
+UPDATE PMIS_ADM.Users SET PasswordUpdateDate = SYSDATE WHERE PasswordUpdateDate IS NULL;
+COMMIT;
+
+ALTER TABLE PMIS_ADM.UserDetails ADD (PasswordDoesNotExpire number(1) CHECK (PasswordDoesNotExpire BETWEEN 0 AND 1));
+
+UPDATE PMIS_ADM.UserDetails SET PasswordDoesNotExpire = 0 WHERE PasswordDoesNotExpire IS NULL;
+UPDATE PMIS_ADM.UserDetails SET PasswordDoesNotExpire = 1 WHERE UserID = (SELECT UserID FROM PMIS_ADM.Users WHERE Username = 'devel');
+COMMIT;
+
+/
+ALTER TABLE PMIS_ADM.Modules ADD CONSTRAINT Modules_UNQ UNIQUE (ModuleKey);
+
+INSERT INTO PMIS_ADM.Modules (ModuleName, ModuleKey)
+VALUES ('Справки', 'REP');
+
+COMMIT;
+INSERT INTO PMIS_ADM.Roles (RoleName, ModuleID,
+                            CreatedBy, CreatedDate, LastModifiedBy, LastModifiedDate)
+VALUES ('Потребител', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'REP'),
+        (SELECT UserID FROM PMIS_ADM.Users WHERE Username = 'devel'), SYSDATE, (SELECT UserID FROM PMIS_ADM.Users WHERE Username = 'devel'), SYSDATE);
+
+
+COMMIT;
+INSERT INTO PMIS_ADM.UserRoles (UserID, RoleID)
+VALUES ((SELECT UserID FROM PMIS_ADM.Users WHERE UPPER(Username) = UPPER('devel')), 
+        (SELECT a.RoleID 
+         FROM PMIS_ADM.Roles a 
+         INNER JOIN PMIS_ADM.Modules b ON a.ModuleID = b.ModuleID
+         WHERE b.ModuleKey = 'REP' AND a.RoleName = 'Потребител'));        
+
+COMMIT;
+--Администратор -> Потребители и сигурност -> Пароли
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('ADM_PASSWORDPOLICY', 'Пароли', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'ADM_SECURITY'));
+
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('ADM_PASSWORDPOLICY_ALLOWBLANKSPACE', 'Разрешава се интервал', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'ADM_PASSWORDPOLICY'));
+
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('ADM_PASSWORDPOLICY_CASESENSITIVITY', 'Изискват се и малки и главни букви', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'ADM_PASSWORDPOLICY'));
+
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('ADM_PASSWORDPOLICY_LETTERCHARS', 'Мин. брой букви', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'ADM_PASSWORDPOLICY'));
+
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('ADM_PASSWORDPOLICY_NUMERICCHARS', 'Мин. брой цифри', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'ADM_PASSWORDPOLICY'));
+
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('ADM_PASSWORDPOLICY_SPECIALCHARS', 'Мин. брой специални символи', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'ADM_PASSWORDPOLICY'));
+
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('ADM_PASSWORDPOLICY_MINLENGHT', 'Минимална дължина на паролата', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'ADM_PASSWORDPOLICY'));
+
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('ADM_PASSWORDPOLICY_EXPIRESAFTERDAYS', 'Брой дни след, които изтича паролата', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'ADM_PASSWORDPOLICY'));
+
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('ADM_PASSWORDPOLICY_CANNOTREUSEPREVPASSWORDS', 'Брой стари пароли, които да се проверяват за повтаряемост', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'ADM_PASSWORDPOLICY'));
+
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('ADM_PASSWORDPOLICY_BLOCKUSERAFTERFAILEDLOGINS', 'Брой опити за достъп преди да се блокира потребителят', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'ADM_PASSWORDPOLICY'));
+
+--Администратор -> Потребители и сигурност -> Добавяне на потребител -> Роля в модул "Справки"
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('ADM_SECURITY_USERS_ADDUSER_REPROLE', 'Роля в модул "Справки"', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'ADM_SECURITY_USERS_ADDUSER'));
+
+--Администратор -> Потребители и сигурност -> Редактиране на потребител -> Роля в модул "Справки"
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('ADM_SECURITY_USERS_EDITUSER_REPROLE', 'Роля в модул "Справки"', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'ADM_SECURITY_USERS_EDITUSER'));
+
+
+
+
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('REP', 'Справки', NULL);
+
+-- Справки -> Добавяне/Редактиране на справка
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID, CanSetAccessOnlyOwnData)
+VALUES ('REP_ADDEDITREPORT', 'Добавяне/Редактиране на справка', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'REP'), 0);
+
+-- Справки -> Настройки
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID, CanSetAccessOnlyOwnData)
+VALUES ('REP_SETTINGS', 'Настройки', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'REP'), 0);
+
+-- Справки -> Справки
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID, CanSetAccessOnlyOwnData)
+VALUES ('REP_LISTREPORTS', 'Справки', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'REP'), 0);
+
+-- Справки -> Редактиране на профил
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('REP_EDITPROFILE', 'Редактиране на профил', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'REP'));
+
+-- Справки -> Редактиране на профил -> Потребителско име
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('REP_EDITPROFILE_USERNAME', 'Потребителско име', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'REP_EDITPROFILE'));
+
+-- Справки -> Редактиране на профил -> Смяна на парола
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('REP_EDITPROFILE_PASSWORD', 'Смяна на парола', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'REP_EDITPROFILE'));
+
+-- Справки -> Редактиране на профил -> Име
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('REP_EDITPROFILE_FIRSTNAME', 'Име', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'REP_EDITPROFILE'));
+
+-- Справки -> Редактиране на профил -> Презиме
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('REP_EDITPROFILE_MIDDLENAME', 'Презиме', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'REP_EDITPROFILE'));
+
+-- Справки -> Редактиране на профил -> Фамилия
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('REP_EDITPROFILE_LASTNAME', 'Фамилия', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'REP_EDITPROFILE'));
+
+-- Справки -> Редактиране на профил -> Email
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('REP_EDITPROFILE_EMAIL', 'Email', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'REP_EDITPROFILE'));
+
+-- Справки -> Редактиране на профил -> Телефон
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('REP_EDITPROFILE_PHONE', 'Телефон', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'REP_EDITPROFILE'));
+
+
+--Администратор -> Потребители и сигурност -> Добавяне на потребител -> Блокиран потребител
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('ADM_SECURITY_USERS_ADDUSER_BLOCKED', 'Блокиран потребител', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'ADM_SECURITY_USERS_ADDUSER'));
+
+--Администратор -> Потребители и сигурност -> Редактиране на потребител -> Блокиран потребител
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('ADM_SECURITY_USERS_EDITUSER_BLOCKED', 'Блокиран потребител', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'ADM_SECURITY_USERS_EDITUSER'));
+
+
+--Администратор -> Потребители и сигурност -> Добавяне на потребител -> Паролата никога не изтича
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('ADM_SECURITY_USERS_ADDUSER_PASSWORDDOESNOTEXPIRE', 'Паролата никога не изтича', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'ADM_SECURITY_USERS_ADDUSER'));
+
+--Администратор -> Потребители и сигурност -> Редактиране на потребител -> Паролата никога не изтича
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('ADM_SECURITY_USERS_EDITUSER_PASSWORDDOESNOTEXPIRE', 'Паролата никога не изтича', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'ADM_SECURITY_USERS_EDITUSER'));
+
+
+
+--Резерв -> Справки -> Справка за изпълнение на отсрочването на човешки ресурси по министерства
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID, CanSetAccessOnlyOwnData)
+VALUES ('RES_REPORTS_POSTPONES_ADMINISTRATIONS', 'Справка за изпълнение на отсрочването на човешки ресурси по министерства', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS'), 1);
+
+--Резерв -> Справки -> Справка за изпълнение на отсрочването на човешки ресурси по министерства -> Месторабота
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_POSTPONES_ADMINISTRATIONS_COMPANY', 'Министерство', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_POSTPONES_ADMINISTRATIONS'));
+
+--Резерв -> Справки -> Справка за изпълнение на отсрочването на човешки ресурси по министерства  -> Сумарно - общо
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_POSTPONES_ADMINISTRATIONS_CONTROLPOINTSTOTAL', 'Сумарно - общо->КЧ', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_POSTPONES_ADMINISTRATIONS'));
+
+--Резерв -> Справки -> Справка за изпълнение на отсрочването на човешки ресурси по министерства  -> Сумарно - в т.ч. безусловно
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_POSTPONES_ADMINISTRATIONS_CONTROLPOINTSABSOLUTELY', 'Сумарно - в т.ч. безусловно->КЧ', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_POSTPONES_ADMINISTRATIONS'));
+
+--Резерв -> Справки -> Справка за изпълнение на отсрочването на човешки ресурси по министерства  -> Ръководство->Офицери->Общо
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_POSTPONES_ADMINISTRATIONS_MANAGEOFFICERSTOTAL', 'Ръководство->Офицери->Общо->КЧ', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_POSTPONES_ADMINISTRATIONS'));
+
+--Резерв -> Справки -> Справка за изпълнение на отсрочването на човешки ресурси по министерства  -> Ръководство->Офицери->В т.ч. безусловно
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_POSTPONES_ADMINISTRATIONS_MANAGEOFFICERSABSOLUTELY', 'Ръководство->Офицери->В т.ч. безусловно->КЧ', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_POSTPONES_ADMINISTRATIONS'));
+
+--Резерв -> Справки -> Справка за изпълнение на отсрочването на човешки ресурси по министерства  -> Ръководство->Сержанти и войници ->Общо
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_POSTPONES_ADMINISTRATIONS_MANAGESOLDIERSTOTAL', 'Ръководство->Сержанти и войници ->Общо->КЧ', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_POSTPONES_ADMINISTRATIONS'));
+
+--Резерв -> Справки -> Справка за изпълнение на отсрочването на човешки ресурси по министерства  -> Ръководство->Сержанти и войници ->В т.ч. безусловно
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_POSTPONES_ADMINISTRATIONS_MANAGESOLDIERSABSOLUTELY', 'Ръководство->Сержанти и войници ->В т.ч. безусловно->КЧ', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_POSTPONES_ADMINISTRATIONS'));
+
+--Резерв -> Справки -> Справка за изпълнение на отсрочването на човешки ресурси по министерства  -> Експертен персонал->Офицери->Общо
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_POSTPONES_ADMINISTRATIONS_EXPERTOFFICERSTOTAL', 'Експертен персонал->Офицери->Общо->КЧ', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_POSTPONES_ADMINISTRATIONS'));
+
+--Резерв -> Справки -> Справка за изпълнение на отсрочването на човешки ресурси по министерства  -> Експертен персонал->Офицери->В т.ч. безусловно
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_POSTPONES_ADMINISTRATIONS_EXPERTOFFICERSABSOLUTELY', 'Експертен персонал->Офицери->В т.ч. безусловно->КЧ', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_POSTPONES_ADMINISTRATIONS'));
+
+--Резерв -> Справки -> Справка за изпълнение на отсрочването на човешки ресурси по министерства  -> Експертен персонал->Сержанти и войници ->Общо
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_POSTPONES_ADMINISTRATIONS_EXPERTSOLDIERSTOTAL', 'Експертен персонал->Сержанти и войници ->Общо->КЧ', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_POSTPONES_ADMINISTRATIONS'));
+
+--Резерв -> Справки -> Справка за изпълнение на отсрочването на човешки ресурси по министерства  -> Експертен персонал->Сержанти и войници ->В т.ч. безусловно
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_POSTPONES_ADMINISTRATIONS_EXPERTSOLDIERSABSOLUTELY', 'Експертен персонал->Сержанти и войници ->В т.ч. безусловно->КЧ', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_POSTPONES_ADMINISTRATIONS'));
+
+--Резерв -> Справки -> Справка за изпълнение на отсрочването на човешки ресурси по министерства  -> Технически персонал->Офицери->Общо
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_POSTPONES_ADMINISTRATIONS_TECHOFFICERSTOTAL', 'Технически персонал->Офицери->Общо->КЧ', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_POSTPONES_ADMINISTRATIONS'));
+
+--Резерв -> Справки -> Справка за изпълнение на отсрочването на човешки ресурси по министерства  -> Технически персонал->Офицери->В т.ч. безусловно
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_POSTPONES_ADMINISTRATIONS_TECHOFFICERSABSOLUTELY', 'Технически персонал->Офицери->В т.ч. безусловно->КЧ', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_POSTPONES_ADMINISTRATIONS'));
+
+--Резерв -> Справки -> Справка за изпълнение на отсрочването на човешки ресурси по министерства  -> Технически персонал->Сержанти и войници ->Общо
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_POSTPONES_ADMINISTRATIONS_TECHSOLDIERSTOTAL', 'Технически персонал->Сержанти и войници ->Общо->КЧ', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_POSTPONES_ADMINISTRATIONS'));
+
+--Резерв -> Справки -> Справка за изпълнение на отсрочването на човешки ресурси по министерства  -> Технически персонал->Сержанти и войници ->В т.ч. безусловно
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_POSTPONES_ADMINISTRATIONS_TECHSOLDIERSABSOLUTELY', 'Технически персонал->Сержанти и войници ->В т.ч. безусловно->КЧ', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_POSTPONES_ADMINISTRATIONS'));
+
+
+
+--Резерв -> Справки -> Справка за изпълнение на отсрочването на човешки ресурси по министерства  -> Сумарно - общо
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_POSTPONES_ADMINISTRATIONS_CONTROLPOINTSTOTALFULFIL', 'Сумарно - общо->Изп.', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_POSTPONES_ADMINISTRATIONS'));
+
+--Резерв -> Справки -> Справка за изпълнение на отсрочването на човешки ресурси по министерства  -> Сумарно - в т.ч. безусловно
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_POSTPONES_ADMINISTRATIONS_CONTROLPOINTSABSOLUTELYFULFIL', 'Сумарно - в т.ч. безусловно->Изп.', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_POSTPONES_ADMINISTRATIONS'));
+
+--Резерв -> Справки -> Справка за изпълнение на отсрочването на човешки ресурси по министерства  -> Ръководство->Офицери->Общо
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_POSTPONES_ADMINISTRATIONS_MANAGEOFFICERSTOTALFULFIL', 'Ръководство->Офицери->Общо->Изп.', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_POSTPONES_ADMINISTRATIONS'));
+
+--Резерв -> Справки -> Справка за изпълнение на отсрочването на човешки ресурси по министерства  -> Ръководство->Офицери->В т.ч. безусловно
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_POSTPONES_ADMINISTRATIONS_MANAGEOFFICERSABSOLUTELYFULFIL', 'Ръководство->Офицери->В т.ч. безусловно->Изп.', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_POSTPONES_ADMINISTRATIONS'));
+
+--Резерв -> Справки -> Справка за изпълнение на отсрочването на човешки ресурси по министерства  -> Ръководство->Сержанти и войници ->Общо
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_POSTPONES_ADMINISTRATIONS_MANAGESOLDIERSTOTALFULFIL', 'Ръководство->Сержанти и войници ->Общо->Изп.', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_POSTPONES_ADMINISTRATIONS'));
+
+--Резерв -> Справки -> Справка за изпълнение на отсрочването на човешки ресурси по министерства  -> Ръководство->Сержанти и войници ->В т.ч. безусловно
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_POSTPONES_ADMINISTRATIONS_MANAGESOLDIERSABSOLUTELYFULFIL', 'Ръководство->Сержанти и войници ->В т.ч. безусловно->Изп.', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_POSTPONES_ADMINISTRATIONS'));
+
+--Резерв -> Справки -> Справка за изпълнение на отсрочването на човешки ресурси по министерства  -> Експертен персонал->Офицери->Общо
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_POSTPONES_ADMINISTRATIONS_EXPERTOFFICERSTOTALFULFIL', 'Експертен персонал->Офицери->Общо->Изп.', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_POSTPONES_ADMINISTRATIONS'));
+
+--Резерв -> Справки -> Справка за изпълнение на отсрочването на човешки ресурси по министерства  -> Експертен персонал->Офицери->В т.ч. безусловно
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_POSTPONES_ADMINISTRATIONS_EXPERTOFFICERSABSOLUTELYFULFIL', 'Експертен персонал->Офицери->В т.ч. безусловно->Изп.', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_POSTPONES_ADMINISTRATIONS'));
+
+--Резерв -> Справки -> Справка за изпълнение на отсрочването на човешки ресурси по министерства  -> Експертен персонал->Сержанти и войници ->Общо
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_POSTPONES_ADMINISTRATIONS_EXPERTSOLDIERSTOTALFULFIL', 'Експертен персонал->Сержанти и войници ->Общо->Изп.', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_POSTPONES_ADMINISTRATIONS'));
+
+--Резерв -> Справки -> Справка за изпълнение на отсрочването на човешки ресурси по министерства  -> Експертен персонал->Сержанти и войници ->В т.ч. безусловно
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_POSTPONES_ADMINISTRATIONS_EXPERTSOLDIERSABSOLUTELYFULFIL', 'Експертен персонал->Сержанти и войници ->В т.ч. безусловно->Изп.', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_POSTPONES_ADMINISTRATIONS'));
+
+--Резерв -> Справки -> Справка за изпълнение на отсрочването на човешки ресурси по министерства  -> Технически персонал->Офицери->Общо
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_POSTPONES_ADMINISTRATIONS_TECHOFFICERSTOTALFULFIL', 'Технически персонал->Офицери->Общо->Изп.', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_POSTPONES_ADMINISTRATIONS'));
+
+--Резерв -> Справки -> Справка за изпълнение на отсрочването на човешки ресурси по министерства  -> Технически персонал->Офицери->В т.ч. безусловно
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_POSTPONES_ADMINISTRATIONS_TECHOFFICERSABSOLUTELYFULFIL', 'Технически персонал->Офицери->В т.ч. безусловно->Изп.', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_POSTPONES_ADMINISTRATIONS'));
+
+--Резерв -> Справки -> Справка за изпълнение на отсрочването на човешки ресурси по министерства  -> Технически персонал->Сержанти и войници ->Общо
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_POSTPONES_ADMINISTRATIONS_TECHSOLDIERSTOTALFULFIL', 'Технически персонал->Сержанти и войници ->Общо->Изп.', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_POSTPONES_ADMINISTRATIONS'));
+
+--Резерв -> Справки -> Справка за изпълнение на отсрочването на човешки ресурси по министерства  -> Технически персонал->Сержанти и войници ->В т.ч. безусловно
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_POSTPONES_ADMINISTRATIONS_TECHSOLDIERSABSOLUTELYFULFIL', 'Технически персонал->Сержанти и войници ->В т.ч. безусловно->Изп.', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_POSTPONES_ADMINISTRATIONS'));
+
+
+--Резерв -> Класификатори -> Видове каросерии на ремаркета
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_LISTMAINT_TRAILERBODYKIND', 'Видове каросерии на ремаркета', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_LISTMAINT'));
+
+--Резерв -> Класификатори -> Видове каросерии на ремаркета -> Добавяне
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_LISTMAINT_TRAILERBODYKIND_ADD', 'Добавяне на вид каросерия на ремарке', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_LISTMAINT_TRAILERBODYKIND'));
+
+--Резерв -> Класификатори -> Видове каросерии на ремаркета -> Редактиране
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_LISTMAINT_TRAILERBODYKIND_EDIT', 'Редактиране на вид каросерия на ремарке', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_LISTMAINT_TRAILERBODYKIND'));
+
+--Резерв -> Класификатори -> Видове каросерии на ремаркета -> Изтриване
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_LISTMAINT_TRAILERBODYKIND_DELETE', 'Изтриване на вид каросерия на ремарке', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_LISTMAINT_TRAILERBODYKIND'));
+
+
+
+--Резерв -> Техника -> Ремаркета -> Добавяне на нов запис -> Основни данни -> Вид каросерия
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_TECHNICS_TRAILERS_ADD_BASICINFO_TRAILERBODYKIND', 'Вид каросерия', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_TECHNICS_TRAILERS_ADD_BASICINFO'));
+
+--Резерв -> Техника -> Ремаркета -> Редактиране -> Основни данни -> Вид каросерия
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_TECHNICS_TRAILERS_EDIT_BASICINFO_TRAILERBODYKIND', 'Вид каросерия', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_TECHNICS_TRAILERS_EDIT_BASICINFO'));
+
+
+
+--Резерв -> Класификатори -> Фирми
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_LISTMAINT_COMPANIES', 'Фирми', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_LISTMAINT'));
+
+--Резерв -> Класификатори -> Фирми -> Добавяне
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_LISTMAINT_COMPANIES_ADD', 'Добавяне на фирма', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_LISTMAINT_COMPANIES'));
+
+--Резерв -> Класификатори -> Фирми -> Добавяне -> Булстат
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_LISTMAINT_COMPANIES_ADD_BULSTAT', 'Булстат', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_LISTMAINT_COMPANIES_ADD'));
+
+--Резерв -> Класификатори -> Фирми -> Добавяне -> Име на фирмата
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_LISTMAINT_COMPANIES_ADD_COMPANYNAME', 'Име на фирмата', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_LISTMAINT_COMPANIES_ADD'));
+
+--Резерв -> Класификатори -> Фирми -> Добавяне -> Вид собственост
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_LISTMAINT_COMPANIES_ADD_OWNERSHIPTYPE', 'Вид собственост', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_LISTMAINT_COMPANIES_ADD'));
+
+--Резерв -> Класификатори -> Фирми -> Добавяне -> Министерство
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_LISTMAINT_COMPANIES_ADD_ADMINISTRATION', 'Министерство', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_LISTMAINT_COMPANIES_ADD'));
+
+--Резерв -> Класификатори -> Фирми -> Добавяне -> Телефон
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_LISTMAINT_COMPANIES_ADD_PHONE', 'Телефон', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_LISTMAINT_COMPANIES_ADD'));
+
+--Резерв -> Класификатори -> Фирми -> Добавяне -> Населено място
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_LISTMAINT_COMPANIES_ADD_CITY', 'Населено място', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_LISTMAINT_COMPANIES_ADD'));
+
+--Резерв -> Класификатори -> Фирми -> Добавяне -> Адрес
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_LISTMAINT_COMPANIES_ADD_ADDRESS', 'Адрес', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_LISTMAINT_COMPANIES_ADD'));
+
+--Резерв -> Класификатори -> Фирми -> Редактиране
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_LISTMAINT_COMPANIES_EDIT', 'Редактиране на фирма', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_LISTMAINT_COMPANIES'));
+
+--Резерв -> Класификатори -> Фирми -> Редактиране -> Булстат
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_LISTMAINT_COMPANIES_EDIT_BULSTAT', 'Булстат', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_LISTMAINT_COMPANIES_EDIT'));
+
+--Резерв -> Класификатори -> Фирми -> Редактиране -> Име на фирмата
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_LISTMAINT_COMPANIES_EDIT_COMPANYNAME', 'Име на фирмата', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_LISTMAINT_COMPANIES_EDIT'));
+
+--Резерв -> Класификатори -> Фирми -> Редактиране -> Вид собственост
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_LISTMAINT_COMPANIES_EDIT_OWNERSHIPTYPE', 'Вид собственост', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_LISTMAINT_COMPANIES_EDIT'));
+
+--Резерв -> Класификатори -> Фирми -> Редактиране -> Министерство
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_LISTMAINT_COMPANIES_EDIT_ADMINISTRATION', 'Министерство', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_LISTMAINT_COMPANIES_EDIT'));
+
+--Резерв -> Класификатори -> Фирми -> Редактиране -> Телефон
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_LISTMAINT_COMPANIES_EDIT_PHONE', 'Телефон', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_LISTMAINT_COMPANIES_EDIT'));
+
+--Резерв -> Класификатори -> Фирми -> Редактиране -> Населено място
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_LISTMAINT_COMPANIES_EDIT_CITY', 'Населено място', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_LISTMAINT_COMPANIES_EDIT'));
+
+--Резерв -> Класификатори -> Фирми -> Редактиране -> Адрес
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_LISTMAINT_COMPANIES_EDIT_ADDRESS', 'Адрес', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_LISTMAINT_COMPANIES_EDIT'));
+
+--Резерв -> Класификатори -> Фирми -> Изтриване
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_LISTMAINT_COMPANIES_DELETE', 'Изтриване на фирма', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_LISTMAINT_COMPANIES'));
+
+
+
+
+--Резерв -> Справки -> Списък на техниката на военен отчет - Автомобили
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_VEHICLES_MILDEPARTMENT', 'На отчет в', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_VEHICLES'));
+
+--Резерв -> Справки -> Списък на техниката на военен отчет - Автомобили
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_VEHICLES_MILREPSTATUS', 'Състояние по отчета', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_VEHICLES'));
+
+--Резерв -> Справки -> Списък на техниката на военен отчет - Автомобили
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_VEHICLES_OWNERSHIP', 'Собственик', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_VEHICLES'));
+
+
+--Резерв -> Справки -> Списък на техниката на военен отчет - Ремаркета
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_TRAILERS_MILDEPARTMENT', 'На отчет в', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_TRAILERS'));
+
+--Резерв -> Справки -> Списък на техниката на военен отчет - Ремаркета
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_TRAILERS_MILREPSTATUS', 'Състояние по отчета', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_TRAILERS'));
+
+--Резерв -> Справки -> Списък на техниката на военен отчет - Ремаркета
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_TRAILERS_OWNERSHIP', 'Собственик', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_TRAILERS'));
+
+
+--Резерв -> Справки -> Списък на техниката на военен отчет - Трактори
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_TRACTORS_MILDEPARTMENT', 'На отчет в', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_TRACTORS'));
+
+--Резерв -> Справки -> Списък на техниката на военен отчет - Трактори
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_TRACTORS_MILREPSTATUS', 'Състояние по отчета', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_TRACTORS'));
+
+--Резерв -> Справки -> Списък на техниката на военен отчет - Трактори
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_TRACTORS_OWNERSHIP', 'Собственик', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_TRACTORS'));
+
+
+--Резерв -> Справки -> Списък на техниката на военен отчет - Инженерна техника
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_ENG_EQUIP_MILDEPARTMENT', 'На отчет в', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_ENG_EQUIP'));
+
+--Резерв -> Справки -> Списък на техниката на военен отчет - Инженерна техника
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_ENG_EQUIP_MILREPSTATUS', 'Състояние по отчета', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_ENG_EQUIP'));
+
+--Резерв -> Справки -> Списък на техниката на военен отчет - Инженерна техника
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_ENG_EQUIP_OWNERSHIP', 'Собственик', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_ENG_EQUIP'));
+
+
+--Резерв -> Справки -> Списък на техниката на военен отчет - Подемно-транспортна техника
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_MOB_LIFT_EQUIP_MILDEPARTMENT', 'На отчет в', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_MOB_LIFT_EQUIP'));
+
+--Резерв -> Справки -> Списък на техниката на военен отчет - Подемно-транспортна техника
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_MOB_LIFT_EQUIP_MILREPSTATUS', 'Състояние по отчета', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_MOB_LIFT_EQUIP'));
+
+--Резерв -> Справки -> Списък на техниката на военен отчет - Подемно-транспортна техника
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_MOB_LIFT_EQUIP_OWNERSHIP', 'Собственик', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_MOB_LIFT_EQUIP'));
+
+
+--Резерв -> Справки -> Списък на техниката на военен отчет - Специализиран железопътен състав
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_RAILWAY_EQUIP_MILDEPARTMENT', 'На отчет в', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_RAILWAY_EQUIP'));
+
+--Резерв -> Справки -> Списък на техниката на военен отчет - Специализиран железопътен състав
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_RAILWAY_EQUIP_MILREPSTATUS', 'Състояние по отчета', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_RAILWAY_EQUIP'));
+
+--Резерв -> Справки -> Списък на техниката на военен отчет - Специализиран железопътен състав
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_RAILWAY_EQUIP_OWNERSHIP', 'Собственик', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_RAILWAY_EQUIP'));
+
+
+--Резерв -> Справки -> Списък на техниката на военен отчет - Авиационна техника
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_AVIATION_EQUIP_MILDEPARTMENT', 'На отчет в', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_AVIATION_EQUIP'));
+
+--Резерв -> Справки -> Списък на техниката на военен отчет - Авиационна техника
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_AVIATION_EQUIP_MILREPSTATUS', 'Състояние по отчета', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_AVIATION_EQUIP'));
+
+--Резерв -> Справки -> Списък на техниката на военен отчет - Авиационна техника
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_AVIATION_EQUIP_OWNERSHIP', 'Собственик', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_AVIATION_EQUIP'));
+
+
+--Резерв -> Справки -> Списък на техниката на военен отчет - Кораби
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_VESSELS_MILDEPARTMENT', 'На отчет в', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_VESSELS'));
+
+--Резерв -> Справки -> Списък на техниката на военен отчет - Кораби
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_VESSELS_MILREPSTATUS', 'Състояние по отчета', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_VESSELS'));
+
+--Резерв -> Справки -> Списък на техниката на военен отчет - Кораби
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_VESSELS_OWNERSHIP', 'Собственик', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_VESSELS'));
+
+
+--Резерв -> Справки -> Списък на техниката на военен отчет - Съдове за ГСМ
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_FUEL_CONTAINERS_MILDEPARTMENT', 'На отчет в', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_FUEL_CONTAINERS'));
+
+--Резерв -> Справки -> Списък на техниката на военен отчет - Съдове за ГСМ
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_FUEL_CONTAINERS_MILREPSTATUS', 'Състояние по отчета', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_FUEL_CONTAINERS'));
+
+--Резерв -> Справки -> Списък на техниката на военен отчет - Съдове за ГСМ
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_FUEL_CONTAINERS_OWNERSHIP', 'Собственик', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_FUEL_CONTAINERS'));
+
+
+
+--Резерв -> Заявки за окомплектоване с техника от резерва -> Изпълнение на заявки за окомплектоване с техника от резерва -> Команда -> Изпълнени -> Търсене на автомобил -> Собственик
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_EQUIPTECHREQUESTS_FULFIL_MILCOMMAND_POSITIONS_FULFIL_SEARCHVEHICLE_OWNERSHIP', 'Собственик', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_EQUIPTECHREQUESTS_FULFIL_MILCOMMAND_POSITIONS_FULFIL_SEARCHVEHICLE'));
+
+--Резерв -> Заявки за окомплектоване с техника от резерва -> Изпълнение на заявки за окомплектоване с техника от резерва -> Команда -> Изпълнени -> Търсене на ремарке -> Собственик
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_EQUIPTECHREQUESTS_FULFIL_MILCOMMAND_POSITIONS_FULFIL_SEARCHTRAILER_OWNERSHIP', 'Собственик', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_EQUIPTECHREQUESTS_FULFIL_MILCOMMAND_POSITIONS_FULFIL_SEARCHTRAILER'));
+
+--Резерв -> Заявки за окомплектоване с техника от резерва -> Изпълнение на заявки за окомплектоване с техника от резерва -> Команда -> Изпълнени -> Търсене на трактор -> Собственик
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_EQUIPTECHREQUESTS_FULFIL_MILCOMMAND_POSITIONS_FULFIL_SEARCHTRACTOR_OWNERSHIP', 'Собственик', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_EQUIPTECHREQUESTS_FULFIL_MILCOMMAND_POSITIONS_FULFIL_SEARCHTRACTOR'));
+
+--Резерв -> Заявки за окомплектоване с техника от резерва -> Изпълнение на заявки за окомплектоване с техника от резерва -> Команда -> Изпълнени -> Търсене на инженерна техника -> Собственик
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_EQUIPTECHREQUESTS_FULFIL_MILCOMMAND_POSITIONS_FULFIL_SEARCHENG_EQUIP_OWNERSHIP', 'Собственик', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_EQUIPTECHREQUESTS_FULFIL_MILCOMMAND_POSITIONS_FULFIL_SEARCHENG_EQUIP'));
+
+--Резерв -> Заявки за окомплектоване с техника от резерва -> Изпълнение на заявки за окомплектоване с техника от резерва -> Команда -> Изпълнени -> Търсене на подемно-транспортна техника -> Собственик
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_EQUIPTECHREQUESTS_FULFIL_MILCOMMAND_POSITIONS_FULFIL_SEARCHMOB_LIFT_EQUIP_OWNERSHIP', 'Собственик', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_EQUIPTECHREQUESTS_FULFIL_MILCOMMAND_POSITIONS_FULFIL_SEARCHMOB_LIFT_EQUIP'));
+
+--Резерв -> Заявки за окомплектоване с техника от резерва -> Изпълнение на заявки за окомплектоване с техника от резерва -> Команда -> Изпълнени -> Търсене на специализиран железопътен състав -> Собственик
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_EQUIPTECHREQUESTS_FULFIL_MILCOMMAND_POSITIONS_FULFIL_SEARCHRAILWAYEQUIP_OWNERSHIP', 'Собственик', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_EQUIPTECHREQUESTS_FULFIL_MILCOMMAND_POSITIONS_FULFIL_SEARCHRAILWAYEQUIP'));
+
+--Резерв -> Заявки за окомплектоване с техника от резерва -> Изпълнение на заявки за окомплектоване с техника от резерва -> Команда -> Изпълнени -> Търсене на авиационна техника -> Собственик
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_EQUIPTECHREQUESTS_FULFIL_MILCOMMAND_POSITIONS_FULFIL_SEARCHAVIATION_EQUIP_OWNERSHIP', 'Собственик', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_EQUIPTECHREQUESTS_FULFIL_MILCOMMAND_POSITIONS_FULFIL_SEARCHAVIATION_EQUIP'));
+
+--Резерв -> Заявки за окомплектоване с техника от резерва -> Изпълнение на заявки за окомплектоване с техника от резерва -> Команда -> Изпълнени -> Търсене на кораб -> Собственик
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_EQUIPTECHREQUESTS_FULFIL_MILCOMMAND_POSITIONS_FULFIL_SEARCHVESSELS_OWNERSHIP', 'Собственик', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_EQUIPTECHREQUESTS_FULFIL_MILCOMMAND_POSITIONS_FULFIL_SEARCHVESSELS'));
+
+--Резерв -> Заявки за окомплектоване с техника от резерва -> Изпълнение на заявки за окомплектоване с техника от резерва -> Команда -> Изпълнени -> Търсене на съд за ГСМ -> Собственик
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_EQUIPTECHREQUESTS_FULFIL_MILCOMMAND_POSITIONS_FULFIL_SEARCHFUELCONTAINER_OWNERSHIP', 'Собственик', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_EQUIPTECHREQUESTS_FULFIL_MILCOMMAND_POSITIONS_FULFIL_SEARCHFUELCONTAINER'));
+
+
+
+--Резерв -> Справки -> Списък на техниката с МН по определена заявка
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID, CanSetAccessOnlyOwnData)
+VALUES ('RES_REPORTS_LISTTECHWITHAPPOINTMENTS', 'Списък на техниката с МН по определена заявка', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS'), 1);
+
+--Резерв -> Справки -> Списък на техниката с МН по определена заявка -> Заявка - номер
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_LISTTECHWITHAPPOINTMENTS_REQUEST_REQNUMBER', 'Заявка - номер', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_LISTTECHWITHAPPOINTMENTS'));
+
+--Резерв -> Справки -> Списък на техниката с МН по определена заявка -> Заявка - дата
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_LISTTECHWITHAPPOINTMENTS_REQUEST_REQDATE', 'Заявка - дата', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_LISTTECHWITHAPPOINTMENTS'));
+
+--Резерв -> Справки -> Списък на техниката с МН по определена заявка -> Заявка - статус
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_LISTTECHWITHAPPOINTMENTS_REQUEST_REQSTATUS', 'Заявка - статус', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_LISTTECHWITHAPPOINTMENTS'));
+
+--Резерв -> Справки -> Списък на техниката с МН по определена заявка -> Заявка - ВПН/Структура
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_LISTTECHWITHAPPOINTMENTS_REQUEST_MILUNIT', 'Заявка - ВПН/Структура', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_LISTTECHWITHAPPOINTMENTS'));
+
+--Резерв -> Справки -> Списък на техниката с МН по определена заявка -> Заявка - министерство/ведомство
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_LISTTECHWITHAPPOINTMENTS_REQUEST_ADMINISTRATION', 'Заявка - министерство/ведомство', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_LISTTECHWITHAPPOINTMENTS'));
+
+
+--Резерв -> Справки -> Списък на техниката с МН по определена заявка -> Детайли - команда
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_LISTTECHWITHAPPOINTMENTS_DETAILS_MILCOMMAND', 'Детайли - команда', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_LISTTECHWITHAPPOINTMENTS'));
+
+--Резерв -> Справки -> Списък на техниката с МН по определена заявка -> Детайли - длъжност
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_LISTTECHWITHAPPOINTMENTS_DETAILS_TECHNICSTYPE', 'Детайли - вид техника', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_LISTTECHWITHAPPOINTMENTS'));
+
+--Резерв -> Справки -> Списък на техниката с МН по определена заявка -> Детайли - начин на явяване
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_LISTTECHWITHAPPOINTMENTS_DETAILS_READINESS', 'Детайли - начин на явяване', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_LISTTECHWITHAPPOINTMENTS'));
+
+--Резерв -> Справки -> Списък на техниката с МН по определена заявка -> Детайли - ЕГН
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_LISTTECHWITHAPPOINTMENTS_DETAILS_REGINVNUMBER', 'Детайли - Рег./Инв. номер', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_LISTTECHWITHAPPOINTMENTS'));
+
+--Резерв -> Справки -> Списък на техниката с МН по определена заявка -> Детайли - име
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_LISTTECHWITHAPPOINTMENTS_DETAILS_OWNER', 'Детайли - собственик', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_LISTTECHWITHAPPOINTMENTS'));
+
+
+
+COMMIT;
+/
+INSERT INTO PMIS_ADM.ChangeTypes (ChangeTypeKey, ChangeType, ModuleID)
+VALUES ('ADM_PasswordPolicy', 'Пароли', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'ADM'));
+
+INSERT INTO PMIS_ADM.ChangeTypes (ChangeTypeKey, ChangeType, ModuleID)
+VALUES ('RES_Lists_TrailerBodyKind', 'Класификатор "Видове каросерии на ремаркета"', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'));
+
+INSERT INTO PMIS_ADM.ChangeTypes (ChangeTypeKey, ChangeType, ModuleID)
+VALUES ('RES_Company', 'Фирми', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'));
+
+
+COMMIT;
+/
+
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('ADM_PasswordPolicy_Edit', 'Редактиране на правилата при работа с пароли', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'ADM'), 1);
+
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Lists_TrailerBodyKind_AddTrailerBodyKind', 'Добавяне на вид каросерия на ремарке', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Lists_TrailerBodyKind_EditTrailerBodyKind', 'Редактиране на вид каросерия на ремарке', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Lists_TrailerBodyKind_DeleteTrailerBodyKind', 'Изтриване на вид каросерия на ремарке', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 3);
+
+
+
+COMMIT;
+/
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('bool', 'ADM_PasswordPolicy_AllowBlankSpace', 'Разрешава се интервал', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('bool', 'ADM_PasswordPolicy_CaseSensitivity', 'Изискват се и малки и главни букви', 2);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('bool', 'ADM_PasswordPolicy_ReqLetterChars', 'Изискват се определен брой букви', 3);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('number', 'ADM_PasswordPolicy_LetterChars', 'Мин. брой букви', 4);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('bool', 'ADM_PasswordPolicy_ReqLowerCaseChars', 'Изискват се определен брой малки букви', 5);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('number', 'ADM_PasswordPolicy_LowerCaseChars', 'Мин. брой малки букви', 6);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('bool', 'ADM_PasswordPolicy_ReqUpperCaseChars', 'Изискват се определен брой главни букви', 7);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('number', 'ADM_PasswordPolicy_UpperCaseChars', 'Мин. брой главни букви', 8);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('bool', 'ADM_PasswordPolicy_ReqNumericChars', 'Изискват се определен брой цифри', 9);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('number', 'ADM_PasswordPolicy_NumericChars', 'Мин. брой цифри', 10);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('bool', 'ADM_PasswordPolicy_ReqSpecialChars', 'Изискват се определен брой специални символи', 11);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('number', 'ADM_PasswordPolicy_SpecialChars', 'Мин. брой специални символи', 12);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('bool', 'ADM_PasswordPolicy_ReqMinLenght', 'Изисква се минимална дължина на паролата', 13);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('number', 'ADM_PasswordPolicy_MinLenght', 'Минимална дължина на паролата', 14);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('bool', 'ADM_PasswordPolicy_ReqExpiresAfterDays', 'Паролата изтича след определно време', 15);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('number', 'ADM_PasswordPolicy_ExpiresAfterDays', 'Брой дни след, които изтича паролата', 16);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('bool', 'ADM_PasswordPolicy_ReqCannotReusePrevPasswords', 'Не се позволява преизползване на стари пароли', 17);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('number', 'ADM_PasswordPolicy_CannotReusePrevPasswords', 'Брой стари пароли, които да се проверяват за повтаряемост', 18);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('bool', 'ADM_PasswordPolicy_ReqBlockUserAfterFailedLogins', 'Блокиране на потребителя след няколко поредни неуспешни опита за достъп', 19);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('number', 'ADM_PasswordPolicy_BlockUserAfterFailedLogins', 'Брой опити за достъп преди да се блокира потребителят', 20);
+
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'ADM_User_REPRole', 'Роля в модул "Справки"', 15);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('bool', 'ADM_User_Blocked', 'Блокиран', 16);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('bool', 'ADM_User_PasswordDoesNotExpire', 'Паролата никога не изтича', 17);
+
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'ADM_Companies_Administration', 'Министерство/Ведомство', 8);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'ADM_Companies_PostCode', 'Пощенски код', 9);
+
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Lists_TrailerBodyKind_TableSeq', 'Номер за подредба', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Lists_TrailerBodyKind_TableValue', 'Вид каросерия на ремарке', 2);
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Technics_TRAILERS_TrailerBodyKind', 'Вид каросерия', 104);
+
+
+
+COMMIT;
+/
+
+INSERT INTO PMIS_ADM.Maintenance(MaintKey, HeaderTitle, DataTable, GTableTableName,
+   FldList, UpdtList, KeyFld, CanDelete, CanAdd, MasterTable, MasterField,
+   ChangeTypeKey, InsertChangeEventTypeKey, UpdateChangeEventTypeKey, DeleteChangeEventTypeKey,
+   MenuItemKey, UIKeyMaintenance, UIKeyDelete, UIKeyEdit, UIKeyAdd, ModuleID)
+VALUES ('RES_TrailerBodyKind', 'Видове каросерии на ремаркета', 'PMIS_RES.GTable', 'TrailerBodyKind', 
+ 'TableKey[HIDDEN], TableSeq, TableValue', 'TableSeq, TableValue', 'TableKey', 1, 1, 'PMIS_RES.Trailers', 'PMIS_RES.Trailers.TrailerBodyKindID',
+ 'RES_Lists_TrailerBodyKind', 'RES_Lists_TrailerBodyKind_AddTrailerBodyKind', 'RES_Lists_TrailerBodyKind_EditTrailerBodyKind', 'RES_Lists_TrailerBodyKind_DeleteTrailerBodyKind',
+ 'Lists_RES_TrailerBodyKind', 'RES_LISTMAINT_TRAILERBODYKIND', 'RES_LISTMAINT_TRAILERBODYKIND_DELETE', 'RES_LISTMAINT_TRAILERBODYKIND_EDIT', 'RES_LISTMAINT_TRAILERBODYKIND_ADD',
+ (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'));
+
+ 
+ 
+COMMIT;
+/
+INSERT INTO PMIS_ADM.MaintFields(TableName, TableColumn, FieldLabel, WidthPixels, FieldKey, UIItemEditKey, UIItemAddKey, IsMandatory, ValidateDataType, IsUnique)
+VALUES ('PMIS_RES.GTable.TrailerBodyKind', 'TableValue', 'Вид каросерия на ремарке', 270, 'RES_Lists_TrailerBodyKind_TableValue', 'RES_LISTMAINT_TRAILERBODYKIND_EDIT_TABLEVALUE', 'RES_LISTMAINT_TRAILERBODYKIND_ADD_TABLEVALUE', 1, 'string', 0);
+
+INSERT INTO PMIS_ADM.MaintFields(TableName, TableColumn, FieldLabel, WidthPixels, FieldKey, UIItemEditKey, UIItemAddKey, IsMandatory, ValidateDataType, IsUnique)
+VALUES ('PMIS_RES.GTable.TrailerBodyKind', 'TableSeq', 'Номер за подредба', 100, 'RES_Lists_TrailerBodyKind_TableSeq', 'RES_LISTMAINT_TRAILERBODYKIND_EDIT_TABLESEQ', 'RES_LISTMAINT_TRAILERBODYKIND_ADD_TABLESEQ', 1, 'integer', 1);
+
+
+COMMIT;
+/
+ALTER TABLE PMIS_ADM.Companies ADD (AdministrationID number);
+
+ALTER TABLE PMIS_ADM.Companies ADD CONSTRAINT Companies_Administrations_FK FOREIGN KEY (AdministrationID) REFERENCES PMIS_ADM.Administrations (AdministrationID);
+
+ALTER TABLE PMIS_ADM.Companies ADD PostCode varchar2(10);
+
+/
+
+INSERT INTO PMIS_ADM.MaritalStatuses (MaritalStatusKey, MaritalStatusName)
+VALUES ('Л', 'Липсват данни');
+
+
+COMMIT;
+/
+ALTER TABLE PMIS_ADM.PersonMilRepSpec ADD (IsPrimary number(1) CHECK (IsPrimary BETWEEN 0 AND 1));
+
+UPDATE PMIS_ADM.PersonMilRepSpec SET
+   IsPrimary = 1
+WHERE PersonMilRepSpecID IN (SELECT MIN(PersonMilRepSpecID) FROM PMIS_ADM.PersonMilRepSpec GROUP BY PersonID);
+
+COMMIT;
+
+/
+CREATE TABLE PMIS_ADM.PasswordPolicy(PasswordPolicyID number NOT NULL,
+                                     AllowBlankSpace number(1) NOT NULL CHECK (AllowBlankSpace BETWEEN 0 AND 1),
+									 CaseSensitivity number(1) NOT NULL CHECK (CaseSensitivity BETWEEN 0 AND 1),
+									 LetterChars number,
+									 LowerCaseChars number,
+									 UpperCaseChars number,
+									 NumericChars number,
+									 SpecialChars number,
+									 ExpiresAfterDays number,
+									 CannotReusePrevPasswords number,
+									 BlockUserAfterFailedLogins number,
+									 MinLenght number
+								     );
+
+ALTER TABLE PMIS_ADM.PasswordPolicy ADD CONSTRAINT PasswordPolicy_PK PRIMARY KEY(PasswordPolicyID);
+
+CREATE SEQUENCE PMIS_ADM.PasswordPolicy_ID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+CREATE TRIGGER PMIS_ADM.TRG_PasswordPolicy_INSERT
+BEFORE INSERT ON PMIS_ADM.PasswordPolicy
+FOR EACH ROW
+BEGIN
+   SELECT PMIS_ADM.PasswordPolicy_ID_SEQ.nextval INTO :new.PasswordPolicyID FROM dual;
+END;
+/
+
+INSERT INTO PMIS_ADM.PasswordPolicy (AllowBlankSpace,
+                                     CaseSensitivity, 
+                                     LetterChars,
+									 LowerCaseChars,
+									 UpperCaseChars,
+									 NumericChars,
+									 SpecialChars,
+									 ExpiresAfterDays,
+									 CannotReusePrevPasswords,
+									 BlockUserAfterFailedLogins,
+									 MinLenght)
+VALUES (1, 1, NULL, 1, 1, 1, NULL, 90, 10, 3, 8);
+
+COMMIT;
+/
+CREATE TABLE PMIS_ADM.OldPasswords(OldPasswordID number NOT NULL,
+                                   UserID number NOT NULL,
+                                   OldPassword varchar2(500) NOT NULL,
+								   ChangeDate date NOT NULL
+								   );
+
+ALTER TABLE PMIS_ADM.OldPasswords ADD CONSTRAINT OldPasswords_PK PRIMARY KEY(OldPasswordID);
+ALTER TABLE PMIS_ADM.OldPasswords ADD CONSTRAINT OldPasswords_Users_FK FOREIGN KEY (UserID) REFERENCES PMIS_ADM.Users (UserID);
+
+CREATE SEQUENCE PMIS_ADM.OldPasswords_ID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+CREATE TRIGGER PMIS_ADM.TRG_OldPasswords_INSERT
+BEFORE INSERT ON PMIS_ADM.OldPasswords
+FOR EACH ROW
+BEGIN
+   SELECT PMIS_ADM.OldPasswords_ID_SEQ.nextval INTO :new.OldPasswordID FROM dual;
+END;
+/
+
+INSERT INTO PMIS_ADM.OldPasswords (UserID,
+                                   OldPassword, 
+                                   ChangeDate)
+SELECT UserID, Password, SYSDATE
+FROM PMIS_ADM.Users;
+
+COMMIT;
+/
+GRANT SELECT ON PMIS_ADM.PasswordPolicy TO PMIS_WEB_ROLE;
+
+GRANT UPDATE (ConsecutiveFailedLogins) ON PMIS_ADM.Users TO PMIS_WEB_ROLE;
+GRANT UPDATE (Blocked) ON PMIS_ADM.Users TO PMIS_WEB_ROLE;
+/
+
+
+INSERT INTO PMIS_RES.GTable(TableName, TableKey, TableSeq, TableValue)
+VALUES ('TrailerBodyKind', '1', '1', 'Вид #1');
+
+INSERT INTO PMIS_RES.GTable(TableName, TableKey, TableSeq, TableValue)
+VALUES ('TrailerBodyKind', '2', '2', 'Вид #2');
+
+COMMIT;
+/
+ALTER TABLE PMIS_RES.Trailers ADD (TrailerBodyKindID number /*GTable*/);
+
+/
+
+
+GRANT ALL ON PMIS_ADM.PasswordPolicy TO PMIS_USER_ROLE;
+GRANT ALL ON PMIS_ADM.PasswordPolicy_ID_SEQ TO PMIS_USER_ROLE;
+
+GRANT ALL ON PMIS_ADM.OldPasswords TO PMIS_USER_ROLE;
+GRANT ALL ON PMIS_ADM.OldPasswords_ID_SEQ TO PMIS_USER_ROLE;
+
+/
+

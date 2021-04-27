@@ -1,0 +1,21 @@
+﻿CREATE TABLE PMIS_RES.VesselInvNumbers(VesselInvNumberID number NOT NULL,
+                                       VesselID number NOT NULL,
+                                       InventoryNumber varchar2(20),
+                                       ChangeDate date
+                                      );
+
+ALTER TABLE PMIS_RES.VesselInvNumbers ADD CONSTRAINT VesselInvNumbers_PK PRIMARY KEY(VesselInvNumberID);
+ALTER TABLE PMIS_RES.VesselInvNumbers ADD CONSTRAINT VesselInvNumbers_Vessels_FK FOREIGN KEY (VesselID) REFERENCES PMIS_RES.Vessels (VesselID);
+
+CREATE SEQUENCE PMIS_RES.VesselInvNumbers_ID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+CREATE TRIGGER PMIS_RES.TRG_VesselInvNumbers_INSERT
+BEFORE INSERT ON PMIS_RES.VesselInvNumbers
+FOR EACH ROW
+BEGIN
+   SELECT PMIS_RES.VesselInvNumbers_ID_SEQ.nextval INTO :new.VesselInvNumberID FROM dual;
+END;
+/

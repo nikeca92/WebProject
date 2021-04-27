@@ -1,0 +1,4 @@
+﻿ALTER TABLE PMIS_RES.Technics ADD (NormativeTechnicsID number);
+
+ALTER TABLE PMIS_RES.Technics ADD CONSTRAINT Technics_NormativeTechnics_FK FOREIGN KEY (NormativeTechnicsID) REFERENCES PMIS_RES.NormativeTechnics (NormativeTechnicsID);
+/

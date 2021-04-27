@@ -1,0 +1,24 @@
+﻿CREATE TABLE PMIS_HS.RiskFactors(RiskFactorID number NOT NULL,
+								 RiskFactorTypeID number NOT NULL,
+                                 RiskFactorName varchar2(500),
+								 AllowAddManually number(1) NOT NULL CHECK (AllowAddManually BETWEEN 0 AND 1),
+								 Seq number NOT NULL
+                                );
+
+ALTER TABLE PMIS_HS.RiskFactors ADD CONSTRAINT RiskFactors_PK PRIMARY KEY(RiskFactorID);
+ALTER TABLE PMIS_HS.RiskFactors ADD CONSTRAINT RiskFactors_RiskFactorTypes_FK FOREIGN KEY (RiskFactorTypeID) REFERENCES PMIS_HS.RiskFactorTypes (RiskFactorTypeID);
+
+CREATE SEQUENCE PMIS_HS.RiskFactors_ID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+CREATE TRIGGER PMIS_HS.TRG_RiskFactors_INSERT
+BEFORE INSERT ON PMIS_HS.RiskFactors
+FOR EACH ROW
+BEGIN
+   SELECT PMIS_HS.RiskFactors_ID_SEQ.nextval INTO :new.RiskFactorID FROM dual;
+END;
+/
+
+COMMIT;

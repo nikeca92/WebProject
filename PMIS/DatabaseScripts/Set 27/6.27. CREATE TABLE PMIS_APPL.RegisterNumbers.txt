@@ -1,0 +1,9 @@
+﻿CREATE TABLE PMIS_APPL.RegisterNumbers
+(
+  MilitaryDepartmentID number NOT NULL,
+  Year number NOT NULL,
+  LastNumber number NOT NULL
+);
+
+ALTER TABLE PMIS_APPL.RegisterNumbers ADD CONSTRAINT RegisterNumbers_PK PRIMARY KEY (MilitaryDepartmentID, Year);
+ALTER TABLE PMIS_APPL.RegisterNumbers ADD CONSTRAINT RegisterNumbers_MilitaryDep_FK FOREIGN KEY (MilitaryDepartmentID) REFERENCES PMIS_ADM.MilitaryDepartments (MilitaryDepartmentID);

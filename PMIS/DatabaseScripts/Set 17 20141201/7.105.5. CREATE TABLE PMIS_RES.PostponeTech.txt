@@ -1,0 +1,25 @@
+﻿CREATE TABLE PMIS_RES.PostponeTech(PostponeTechID number NOT NULL,
+                                   PostponeYear number,
+                                   MilitaryDepartmentID number,
+                               
+                                   CreatedBy number,
+                                   CreatedDate date,
+                                   LastModifiedBy number,
+                                   LastModifiedDate date);
+
+ALTER TABLE PMIS_RES.PostponeTech ADD CONSTRAINT PostponeTech_PK PRIMARY KEY (PostponeTechID);
+ALTER TABLE PMIS_RES.PostponeTech ADD CONSTRAINT PostponeTech_UNQ UNIQUE (PostponeYear, MilitaryDepartmentID);
+ALTER TABLE PMIS_RES.PostponeTech ADD CONSTRAINT PostponeTech_MilDepartment_FK FOREIGN KEY (MilitaryDepartmentID) REFERENCES PMIS_ADM.MilitaryDepartments (MilitaryDepartmentID);
+
+CREATE SEQUENCE PMIS_RES.PostponeTech_ID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+CREATE TRIGGER PMIS_RES.TRG_PostponeTech_INSERT
+BEFORE INSERT ON PMIS_RES.PostponeTech
+FOR EACH ROW
+BEGIN
+   SELECT PMIS_RES.PostponeTech_ID_SEQ.nextval INTO :new.PostponeTechID FROM dual;
+END;
+/

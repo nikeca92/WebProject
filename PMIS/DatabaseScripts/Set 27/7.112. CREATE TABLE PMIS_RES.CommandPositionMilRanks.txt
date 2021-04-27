@@ -1,0 +1,17 @@
+﻿CREATE TABLE PMIS_RES.CommandPositionMilRanks (RequestCommandPositionID number NOT NULL,
+                                               MilitaryRankID varchar2(2) NOT NULL,
+                                               IsPrimary number(1) CHECK (IsPrimary BETWEEN 0 AND 1)
+											  );
+
+ALTER TABLE PMIS_RES.CommandPositionMilRanks ADD CONSTRAINT CmdPositionMilRanks_PK PRIMARY KEY (RequestCommandPositionID, MilitaryRankID);
+ALTER TABLE PMIS_RES.CommandPositionMilRanks ADD CONSTRAINT CmdPositionMilRanks_Pos_FK FOREIGN KEY (RequestCommandPositionID) REFERENCES PMIS_RES.RequestCommandPositions (RequestCommandPositionID);
+ALTER TABLE PMIS_RES.CommandPositionMilRanks ADD CONSTRAINT CmdPositionMilRanks_Spec_FK FOREIGN KEY (MilitaryRankID) REFERENCES VS_OWNER.KLV_ZVA (ZVA_KOD);
+
+INSERT INTO PMIS_RES.CommandPositionMilRanks (RequestCommandPositionID, MilitaryRankID, IsPrimary)
+SELECT RequestCommandPositionID, MilitaryRankID, 1 as IsPrimary 
+FROM PMIS_RES.RequestCommandPositions
+WHERE MilitaryRankID IS NOT NULL;
+
+ALTER TABLE PMIS_RES.RequestCommandPositions RENAME COLUMN MilitaryRankID TO MilitaryRankID_;
+
+/

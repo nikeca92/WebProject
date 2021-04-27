@@ -1,0 +1,139 @@
+﻿CREATE TABLE PMIS_HS.DeclarationsOfAccident(DeclarationID number NOT NULL,
+                                            DeclarationNumber varchar2(100),
+                                            DeclarationDate date,
+                                            ReferenceNumber varchar2(200),
+                                            ReferenceDate date,
+                                            FileNumber varchar2(200),
+                                            EmployerID number,
+                                            EmplEIK varchar2(200),
+                                            EmplCityID number,
+                                            EmplStreet varchar2(300),
+                                            EmplStreetNum varchar2(20),
+                                            EmplDistrict varchar2(200),
+                                            EmplBlock varchar2(20),
+                                            EmplEntrance varchar2(20),
+                                            EmplFloor varchar2(20),
+                                            EmplApt varchar2(20),
+                                            EmplPhone varchar2(50),
+                                            EmplFax varchar2(50),
+                                            EmplEmail varchar2(500),
+                                            EmplNumberOfEmployees number,
+                                            EmplFemaleEmployees number,
+                                            DeclarationSubmitting varchar2(250),
+                                            WorkerFullName varchar2(500),
+                                            WorkerEGN varchar2(10),
+                                            WCityID number,
+                                            WStreet varchar2(300),
+                                            WStreetNum varchar2(20),
+                                            WDistrict varchar2(200),
+                                            WBlock varchar2(20),
+                                            WEntrance varchar2(20),
+                                            WFloor varchar2(20),
+                                            WApt varchar2(20),
+                                            WPhone varchar2(50),
+                                            WFax varchar2(50),
+                                            WEmail varchar2(500),
+                                            WBirthDate date,
+                                            WGender number(1), /*1=Male; 2=Female*/
+                                            WCitizenship varchar2(100),
+                                            WHireType number(1), /*1 = Неопределено време; 2 = Определен срок */
+                                            WWorkTime number(1), /*1 = Пълно работно време; 2 = Непълно работно време */
+                                            WHireDate date,
+                                            WJobTitle varchar2(200),
+                                            WJobCode varchar2(100),
+                                            WJobCategory number,
+                                            WYearsOnService number,
+											WCurrentJobYearsOnService number,
+                                            WBranch varchar2(200),
+                                            AccDateTime date,
+                                            AccWorkFromHour1 number(2),
+                                            AccWorkFromMin1 number(2),
+                                            AccWorkToHour1 number(2),
+                                            AccWorkToMin1 number(2),
+                                            AccWorkFromHour2 number(2),
+                                            AccWorkFromMin2 number(2),
+                                            AccWorkToHour2 number(2),
+                                            AccWorkToMin2 number(2),
+                                            AccPlace varchar2(250),
+											AccCountry varchar2(300),
+                                            AccCityID number,
+                                            AccStreet varchar2(300),
+                                            AccStreetNum varchar2(20),
+											AccDistrict varchar2(200),
+                                            AccBlock varchar2(20),
+                                            AccEntrance varchar2(20),
+                                            AccFloor varchar2(20),
+                                            AccApt varchar2(20),
+                                            AccPhone varchar2(50),
+											AccFax varchar2(50),
+											AccEmail varchar2(500),
+                                            AccHappenedAt number(2), /*1 = обичайното стационарно работно място, 2 = случайно, нестационарно (мобилно), временно работно място, 3 = друго; */
+                                            AccHappenedOther varchar2(1000),
+                                            AccJobType varchar2(1000),
+                                            AccTaskType varchar2(1000),
+                                            AccDeviationFromTask varchar2(1000),
+                                            AccInjurDesc varchar2(2000),
+                                            AccInjHasRights number(2), /*1 = да; 2 = не; 3 = не се изисква*/
+                                            AccLegalRef number(2), /*1 = по чл. 55, ал.1 от КСО; 2 = по чл. 55, ал.2 от КСО;*/
+                                            AccPlannedActions varchar2(2000),
+                                            AccLostDays number,
+                                            HarmType varchar2(4000),
+                                            HarmBodyParts varchar2(4000),
+                                            HarmResult number(2), /*1 = смърт; 2 = вероятна инвалидност; 3 = временна неработоспособност;*/
+                                            WitnessFullName varchar2(500),
+                                            WitCityID number,
+                                            WitStreet varchar2(300),
+                                            WitStreetNum varchar2(20),
+                                            WitDistrict varchar2(200),
+                                            WitBlock varchar2(20),
+                                            WitEntrance varchar2(20),
+                                            WitFloor varchar2(20),
+                                            WitApt varchar2(20),
+                                            WitPhone varchar2(50),
+                                            WitFax varchar2(50),
+                                            WitEmail varchar2(500),
+                                            HeirFullName varchar2(500),
+                                            HeirEGN varchar2(10),
+                                            HeirCityID number,
+                                            HeirStreet varchar2(300),
+                                            HeirStreetNum varchar2(20),
+                                            HeirDistrict varchar2(200),
+                                            HeirBlock varchar2(20),
+                                            HeirEntrance varchar2(20),
+                                            HeirFloor varchar2(20),
+                                            HeirApt varchar2(20),
+                                            HeirPhone varchar2(50),
+                                            HeirFax varchar2(50),
+                                            HeirEmail varchar2(500),
+                                            CreatedBy number,
+                                            CreatedDate date,
+                                            LastModifiedBy number,
+                                            LastModifiedDate date,
+											AplicantType number(2), /*1 = осигурител; 2 = пострадал; 3 = наследник;*/
+											AplicantPosition varchar2(300),
+											AplicantName varchar2(500)
+                                            );
+
+                                            
+ALTER TABLE PMIS_HS.DeclarationsOfAccident ADD CONSTRAINT DeclarationsOfAccident_PK PRIMARY KEY(DeclarationID);
+ALTER TABLE PMIS_HS.DeclarationsOfAccident ADD CONSTRAINT Declarations_Employers_FK FOREIGN KEY (EmployerID) REFERENCES PMIS_HS.Employers (EmployerID);
+ALTER TABLE PMIS_HS.DeclarationsOfAccident ADD CONSTRAINT Declarations_EmplCity_FK FOREIGN KEY (EmplCityID) REFERENCES UKAZ_OWNER.KL_NMA (KOD_NMA);
+ALTER TABLE PMIS_HS.DeclarationsOfAccident ADD CONSTRAINT Declarations_WCity_FK FOREIGN KEY (WCityID) REFERENCES UKAZ_OWNER.KL_NMA (KOD_NMA);
+ALTER TABLE PMIS_HS.DeclarationsOfAccident ADD CONSTRAINT Declarations_AccCity_FK FOREIGN KEY (AccCityID) REFERENCES UKAZ_OWNER.KL_NMA (KOD_NMA);
+ALTER TABLE PMIS_HS.DeclarationsOfAccident ADD CONSTRAINT Declarations_WitCity_FK FOREIGN KEY (WitCityID) REFERENCES UKAZ_OWNER.KL_NMA (KOD_NMA);
+ALTER TABLE PMIS_HS.DeclarationsOfAccident ADD CONSTRAINT Declarations_HeirCity_FK FOREIGN KEY (HeirCityID) REFERENCES UKAZ_OWNER.KL_NMA (KOD_NMA);
+ALTER TABLE PMIS_HS.DeclarationsOfAccident ADD CONSTRAINT Declarations_CreatedBy_FK FOREIGN KEY (CreatedBy) REFERENCES PMIS_ADM.Users (UserID);
+ALTER TABLE PMIS_HS.DeclarationsOfAccident ADD CONSTRAINT Declarations_LastModifiedBy_FK FOREIGN KEY (LastModifiedBy) REFERENCES PMIS_ADM.Users (UserID);
+
+CREATE SEQUENCE PMIS_HS.DeclarationsOfAccident_ID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+CREATE TRIGGER PMIS_HS.TRG_DeclarationsOfAcc_INSERT
+BEFORE INSERT ON PMIS_HS.DeclarationsOfAccident
+FOR EACH ROW
+BEGIN
+   SELECT PMIS_HS.DeclarationsOfAccident_ID_SEQ.nextval INTO :new.DeclarationID FROM dual;
+END;
+/

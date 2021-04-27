@@ -1,0 +1,3 @@
+Полето PMIS_ADM.Persons.WorkPositionTitle вече не се използва. На негово място добавихме WorkPositionNKPDID. Към това поле няма референции в кода.
+
+Полето PMIS_RES.ReservistMilRepstatuses.Postpone_PersonnelCategoryID вече не се използва. Вместо него на екрана при Отсрочване на човек се показва класа по НКПД и фирмата. Към това поле няма референции в кода.

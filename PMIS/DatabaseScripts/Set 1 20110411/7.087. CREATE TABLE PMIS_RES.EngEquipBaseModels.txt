@@ -1,0 +1,29 @@
+﻿CREATE TABLE PMIS_RES.EngEquipBaseModels(EngEquipBaseModelID number NOT NULL,
+                                         EngEquipBaseModelName varchar2(300),
+                                         EngEquipBaseMakeID number NOT NULL
+                                        );
+
+ALTER TABLE PMIS_RES.EngEquipBaseModels ADD CONSTRAINT EngEquipBaseModels_PK PRIMARY KEY(EngEquipBaseModelID);
+ALTER TABLE PMIS_RES.EngEquipBaseModels ADD CONSTRAINT EngEquipBaseModels_Makes_FK FOREIGN KEY (EngEquipBaseMakeID) REFERENCES PMIS_RES.EngEquipBaseMakes (EngEquipBaseMakeID);
+
+CREATE SEQUENCE PMIS_RES.EngEquipBaseModels_ID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+CREATE TRIGGER PMIS_RES.TRG_EngEquipBaseModels_INSERT
+BEFORE INSERT ON PMIS_RES.EngEquipBaseModels
+FOR EACH ROW
+BEGIN
+   SELECT PMIS_RES.EngEquipBaseModels_ID_SEQ.nextval INTO :new.EngEquipBaseModelID FROM dual;
+END;
+/
+
+INSERT INTO PMIS_RES.EngEquipBaseModels(EngEquipBaseModelName, EngEquipBaseMakeID)
+VALUES ('Bomag', (SELECT EngEquipBaseMakeID FROM PMIS_RES.EngEquipBaseMakes WHERE EngEquipBaseMakeName = 'Ramax'));
+
+INSERT INTO PMIS_RES.EngEquipBaseModels(EngEquipBaseModelName, EngEquipBaseMakeID)
+VALUES ('TV800', (SELECT EngEquipBaseMakeID FROM PMIS_RES.EngEquipBaseMakes WHERE EngEquipBaseMakeName = 'BENFORD'));
+
+COMMIT;
+/

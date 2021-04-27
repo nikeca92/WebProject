@@ -1,0 +1,42 @@
+﻿CREATE TABLE PMIS_HS.Probabilities(ProbabilityID number NOT NULL,
+                                   ProbabilityName varchar2(500),
+                                   ProbabilityFactor decimal(30, 10));
+
+ALTER TABLE PMIS_HS.Probabilities ADD CONSTRAINT Probabilities_PK PRIMARY KEY(ProbabilityID);
+
+CREATE SEQUENCE PMIS_HS.Probabilities_ID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+CREATE TRIGGER PMIS_HS.TRG_Probabilities_INSERT
+BEFORE INSERT ON PMIS_HS.Probabilities
+FOR EACH ROW
+BEGIN
+   SELECT PMIS_HS.Probabilities_ID_SEQ.nextval INTO :new.ProbabilityID FROM dual;
+END;
+/
+
+INSERT INTO PMIS_HS.Probabilities(ProbabilityName, ProbabilityFactor)
+VALUES ('практически невъзможна', 0.2);
+
+INSERT INTO PMIS_HS.Probabilities(ProbabilityName, ProbabilityFactor)
+VALUES ('малко вероятно', 0.5);
+
+INSERT INTO PMIS_HS.Probabilities(ProbabilityName, ProbabilityFactor)
+VALUES ('възможна в определени случаи', 1.0);
+
+INSERT INTO PMIS_HS.Probabilities(ProbabilityName, ProbabilityFactor)
+VALUES ('вероятността е под средната', 3.0);
+
+INSERT INTO PMIS_HS.Probabilities(ProbabilityName, ProbabilityFactor)
+VALUES ('вероятността е средна', 5.0);
+
+INSERT INTO PMIS_HS.Probabilities(ProbabilityName, ProbabilityFactor)
+VALUES ('вероятността е над средната', 7.0);
+
+INSERT INTO PMIS_HS.Probabilities(ProbabilityName, ProbabilityFactor)
+VALUES ('висока', 10.0);
+
+COMMIT;
+/

@@ -1,0 +1,96 @@
+﻿
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('bool', 'ADM_PasswordPolicy_AllowBlankSpace', 'Разрешава се интервал', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('bool', 'ADM_PasswordPolicy_CaseSensitivity', 'Изискват се и малки и главни букви', 2);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('bool', 'ADM_PasswordPolicy_ReqLetterChars', 'Изискват се определен брой букви', 3);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('number', 'ADM_PasswordPolicy_LetterChars', 'Мин. брой букви', 4);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('bool', 'ADM_PasswordPolicy_ReqLowerCaseChars', 'Изискват се определен брой малки букви', 5);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('number', 'ADM_PasswordPolicy_LowerCaseChars', 'Мин. брой малки букви', 6);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('bool', 'ADM_PasswordPolicy_ReqUpperCaseChars', 'Изискват се определен брой главни букви', 7);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('number', 'ADM_PasswordPolicy_UpperCaseChars', 'Мин. брой главни букви', 8);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('bool', 'ADM_PasswordPolicy_ReqNumericChars', 'Изискват се определен брой цифри', 9);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('number', 'ADM_PasswordPolicy_NumericChars', 'Мин. брой цифри', 10);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('bool', 'ADM_PasswordPolicy_ReqSpecialChars', 'Изискват се определен брой специални символи', 11);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('number', 'ADM_PasswordPolicy_SpecialChars', 'Мин. брой специални символи', 12);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('bool', 'ADM_PasswordPolicy_ReqMinLenght', 'Изисква се минимална дължина на паролата', 13);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('number', 'ADM_PasswordPolicy_MinLenght', 'Минимална дължина на паролата', 14);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('bool', 'ADM_PasswordPolicy_ReqExpiresAfterDays', 'Паролата изтича след определно време', 15);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('number', 'ADM_PasswordPolicy_ExpiresAfterDays', 'Брой дни след, които изтича паролата', 16);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('bool', 'ADM_PasswordPolicy_ReqCannotReusePrevPasswords', 'Не се позволява преизползване на стари пароли', 17);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('number', 'ADM_PasswordPolicy_CannotReusePrevPasswords', 'Брой стари пароли, които да се проверяват за повтаряемост', 18);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('bool', 'ADM_PasswordPolicy_ReqBlockUserAfterFailedLogins', 'Блокиране на потребителя след няколко поредни неуспешни опита за достъп', 19);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('number', 'ADM_PasswordPolicy_BlockUserAfterFailedLogins', 'Брой опити за достъп преди да се блокира потребителят', 20);
+
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'ADM_User_REPRole', 'Роля в модул "Справки"', 15);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('bool', 'ADM_User_Blocked', 'Блокиран', 16);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('bool', 'ADM_User_PasswordDoesNotExpire', 'Паролата никога не изтича', 17);
+
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'ADM_Companies_Administration', 'Министерство/Ведомство', 8);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'ADM_Companies_PostCode', 'Пощенски код', 9);
+
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Lists_TrailerBodyKind_TableSeq', 'Номер за подредба', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Lists_TrailerBodyKind_TableValue', 'Вид каросерия на ремарке', 2);
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Technics_TRAILERS_TrailerBodyKind', 'Вид каросерия', 104);
+
+
+
+COMMIT;
+/

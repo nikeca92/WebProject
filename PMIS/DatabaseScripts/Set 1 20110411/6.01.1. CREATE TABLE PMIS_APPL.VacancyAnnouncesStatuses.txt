@@ -1,0 +1,43 @@
+﻿CREATE TABLE PMIS_APPL.VacancyAnnouncesStatuses(VacancyAnnouncesStatusID number NOT NULL,
+                                                VacAnnStatusName varchar2(500),
+                                                VacAnnStatusKey varchar2(500)
+                                               );
+
+ALTER TABLE PMIS_APPL.VacancyAnnouncesStatuses ADD CONSTRAINT VacancyAnnouncesStatuses_PK PRIMARY KEY(VacancyAnnouncesStatusID);
+
+CREATE SEQUENCE PMIS_APPL.VacAnnStatuses_ID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+CREATE TRIGGER PMIS_APPL.TRG_VacAnnStatuses_INSERT
+BEFORE INSERT ON PMIS_APPL.VacancyAnnouncesStatuses
+FOR EACH ROW
+BEGIN
+   SELECT PMIS_APPL.VacAnnStatuses_ID_SEQ.nextval INTO :new.VacancyAnnouncesStatusID FROM dual;
+END;
+/
+
+INSERT INTO PMIS_APPL.VacancyAnnouncesStatuses(VacAnnStatusName, VacAnnStatusKey)
+VALUES ('Въвеждане на мин. заповед', 'CREATINGORDER');
+
+INSERT INTO PMIS_APPL.VacancyAnnouncesStatuses(VacAnnStatusName, VacAnnStatusKey)
+VALUES ('Подаване на документи', 'DOCUMENTS');
+
+INSERT INTO PMIS_APPL.VacancyAnnouncesStatuses(VacAnnStatusName, VacAnnStatusKey)
+VALUES ('Допускане до участие', 'ALLOWANCE');
+
+INSERT INTO PMIS_APPL.VacancyAnnouncesStatuses(VacAnnStatusName, VacAnnStatusKey)
+VALUES ('Изпитване', 'EXAM');
+
+INSERT INTO PMIS_APPL.VacancyAnnouncesStatuses(VacAnnStatusName, VacAnnStatusKey)
+VALUES ('Класиране', 'RANK');
+
+INSERT INTO PMIS_APPL.VacancyAnnouncesStatuses(VacAnnStatusName, VacAnnStatusKey)
+VALUES ('Назначаване', 'NOMINATION');
+
+INSERT INTO PMIS_APPL.VacancyAnnouncesStatuses(VacAnnStatusName, VacAnnStatusKey)
+VALUES ('Приключена', 'FINISHED');
+
+
+COMMIT;

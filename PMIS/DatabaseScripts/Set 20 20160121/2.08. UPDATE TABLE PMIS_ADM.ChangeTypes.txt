@@ -1,0 +1,18 @@
+﻿INSERT INTO PMIS_ADM.ChangeTypes (ChangeTypeKey, ChangeType, ModuleID)
+VALUES ('ADM_Lists_PositionTitles', 'Класификатор "Длъжности"', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'ADM'));
+
+INSERT INTO PMIS_ADM.ChangeTypes (ChangeTypeKey, ChangeType, ModuleID)
+VALUES ('ADM_Lists_MedRubrics', 'Класификатор "Медицински рубрики"', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'ADM'));
+
+INSERT INTO PMIS_ADM.ChangeTypes (ChangeTypeKey, ChangeType, ModuleID)
+VALUES ('ADM_Lists_MilitaryStructures', 'Класификатор "Структури"', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'ADM'));
+
+UPDATE PMIS_ADM.ChangeTypes SET 
+    ChangeType = 'Класификатор "Видове войски"'
+WHERE ChangeTypeKey = 'ADM_Lists_MilitaryForceTypes';
+
+INSERT INTO PMIS_ADM.ChangeTypes (ChangeTypeKey, ChangeType, ModuleID)
+VALUES ('ADM_Lists_MilitaryForceSorts', 'Класификатор "Родове войски"', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'ADM'));
+
+COMMIT;
+/

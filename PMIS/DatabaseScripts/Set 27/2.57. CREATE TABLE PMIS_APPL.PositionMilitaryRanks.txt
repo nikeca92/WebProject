@@ -1,0 +1,16 @@
+﻿CREATE TABLE PMIS_APPL.PositionMilitaryRanks (VacancyAnnouncePositionID number NOT NULL,
+                                              MilitaryRankID varchar2(2) NOT NULL
+											 );
+
+ALTER TABLE PMIS_APPL.PositionMilitaryRanks ADD CONSTRAINT PositionMilRanks_PK PRIMARY KEY (VacancyAnnouncePositionID, MilitaryRankID);
+ALTER TABLE PMIS_APPL.PositionMilitaryRanks ADD CONSTRAINT PositionMilRanks_Pos_FK FOREIGN KEY (VacancyAnnouncePositionID) REFERENCES PMIS_APPL.VacancyAnnouncePositions (VacancyAnnouncePositionID);
+ALTER TABLE PMIS_APPL.PositionMilitaryRanks ADD CONSTRAINT PositionMilRanks_Spec_FK FOREIGN KEY (MilitaryRankID) REFERENCES VS_OWNER.KLV_ZVA (ZVA_KOD);
+
+INSERT INTO PMIS_APPL.PositionMilitaryRanks (VacancyAnnouncePositionID, MilitaryRankID)
+SELECT VacancyAnnouncePositionID, MilitaryRankID
+FROM PMIS_APPL.VacancyAnnouncePositions
+WHERE MilitaryRankID IS NOT NULL;
+
+ALTER TABLE PMIS_APPL.VacancyAnnouncePositions RENAME COLUMN MilitaryRankID TO MilitaryRankID_;
+
+/

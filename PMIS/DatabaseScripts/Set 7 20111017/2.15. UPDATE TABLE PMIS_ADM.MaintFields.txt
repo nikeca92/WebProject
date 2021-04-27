@@ -1,0 +1,40 @@
+﻿
+INSERT INTO PMIS_ADM.MaintFields(TableName, TableColumn, FieldLabel, WidthPixels, FieldKey, UIItemEditKey, UIItemAddKey, IsMandatory, ValidateDataType, IsUnique)
+VALUES ('PMIS_HS.Probabilities', 'ProbabilityName', 'Описание на вероятността', 350, 'HS_Lists_Probabilities_ProbabilityName', 'HS_LISTMAINT_PROBABILITIES_EDIT_PROBABILITYNAME', 'HS_LISTMAINT_PROBABILITIES_ADD_PROBABILITYNAME', 1, 'string', 0);
+
+INSERT INTO PMIS_ADM.MaintFields(TableName, TableColumn, FieldLabel, WidthPixels, FieldKey, UIItemEditKey, UIItemAddKey, IsMandatory, ValidateDataType, IsUnique)
+VALUES ('PMIS_HS.Probabilities', 'ProbabilityFactor', 'Коефициент', 100, 'HS_Lists_Probabilities_ProbabilityFactor', 'HS_LISTMAINT_PROBABILITIES_EDIT_PROBABILITYFACTOR', 'HS_LISTMAINT_PROBABILITIES_ADD_PROBABILITYFACTOR', 1, 'number', 0);
+
+
+INSERT INTO PMIS_ADM.MaintFields(TableName, TableColumn, FieldLabel, WidthPixels, FieldKey, UIItemEditKey, UIItemAddKey, IsMandatory, ValidateDataType, IsUnique)
+VALUES ('PMIS_HS.Exposure', 'ExposureName', 'Описание на експозицията', 350, 'HS_Lists_Exposure_ExposureName', 'HS_LISTMAINT_EXPOSURE_EDIT_EXPOSURENAME', 'HS_LISTMAINT_EXPOSURE_ADD_EXPOSURENAME', 1, 'string', 0);
+
+INSERT INTO PMIS_ADM.MaintFields(TableName, TableColumn, FieldLabel, WidthPixels, FieldKey, UIItemEditKey, UIItemAddKey, IsMandatory, ValidateDataType, IsUnique)
+VALUES ('PMIS_HS.Exposure', 'ExposureFactor', 'Коефициент', 100, 'HS_Lists_Exposure_ExposureFactor', 'HS_LISTMAINT_EXPOSURE_EDIT_EXPOSUREFACTOR', 'HS_LISTMAINT_EXPOSURE_ADD_EXPOSUREFACTOR', 1, 'number', 0);
+
+
+INSERT INTO PMIS_ADM.MaintFields(TableName, TableColumn, FieldLabel, WidthPixels, FieldKey, UIItemEditKey, UIItemAddKey, IsMandatory, ValidateDataType, IsUnique)
+VALUES ('PMIS_HS.EffectWeight', 'EffectWeightName', 'Описание на тежестта', 200, 'HS_Lists_EffectWeight_EffectWeightName', 'HS_LISTMAINT_EFFECTWEIGHT_EDIT_EFFECTWEIGHTNAME', 'HS_LISTMAINT_EFFECTWEIGHT_ADD_EFFECTWEIGHTNAME', 1, 'string', 0);
+
+INSERT INTO PMIS_ADM.MaintFields(TableName, TableColumn, FieldLabel, WidthPixels, FieldKey, UIItemEditKey, UIItemAddKey, IsMandatory, ValidateDataType, IsUnique)
+VALUES ('PMIS_HS.EffectWeight', 'EffectWeightDesc', 'Описание на тежестта (дълго)', 350, 'HS_Lists_EffectWeight_EffectWeightDesc', 'HS_LISTMAINT_EFFECTWEIGHT_EDIT_EFFECTWEIGHTDESC', 'HS_LISTMAINT_EFFECTWEIGHT_ADD_EFFECTWEIGHTDESC', 1, 'string', 0);
+
+INSERT INTO PMIS_ADM.MaintFields(TableName, TableColumn, FieldLabel, WidthPixels, FieldKey, UIItemEditKey, UIItemAddKey, IsMandatory, ValidateDataType, IsUnique)
+VALUES ('PMIS_HS.EffectWeight', 'EffectWeightFactor', 'Коефициент', 100, 'HS_Lists_EffectWeight_EffectWeightFactor', 'HS_LISTMAINT_EFFECTWEIGHT_EDIT_EFFECTWEIGHTFACTOR', 'HS_LISTMAINT_EFFECTWEIGHT_ADD_EFFECTWEIGHTFACTOR', 1, 'number', 0);
+
+
+INSERT INTO PMIS_ADM.MaintFields(TableName, TableColumn, FieldLabel, WidthPixels, FieldKey, UIItemEditKey, UIItemAddKey, IsMandatory, ValidateDataType, IsUnique)
+VALUES ('PMIS_HS.RiskRank', 'RiskRankName', 'Описание на риска', 450, 'HS_Lists_RiskRank_RiskRankName', 'HS_LISTMAINT_RISKRANK_EDIT_RISKRANKNAME', 'HS_LISTMAINT_RISKRANK_ADD_RISKRANKNAME', 1, 'string', 0);
+
+INSERT INTO PMIS_ADM.MaintFields(TableName, TableColumn, FieldLabel, WidthPixels, FieldKey, UIItemEditKey, UIItemAddKey, IsMandatory, ValidateDataType, IsUnique)
+VALUES ('PMIS_HS.RiskRank', 'RiskRank', 'Степен', 80, 'HS_Lists_RiskRank_RiskRank', 'HS_LISTMAINT_RISKRANK_EDIT_RISKRANK', 'HS_LISTMAINT_RISKRANK_ADD_RISKRANK', 1, 'string', 0);
+
+INSERT INTO PMIS_ADM.MaintFields(TableName, TableColumn, FieldLabel, WidthPixels, FieldKey, UIItemEditKey, UIItemAddKey, IsMandatory, ValidateDataType, IsUnique)
+VALUES ('PMIS_HS.RiskRank', 'RiskRankFrom', 'Рангово число ОТ', 80, 'HS_Lists_RiskRank_RiskRankFrom', 'HS_LISTMAINT_RISKRANK_EDIT_RISKRANKFROM', 'HS_LISTMAINT_RISKRANK_ADD_RISKRANKFROM', 1, 'number', 0);
+
+INSERT INTO PMIS_ADM.MaintFields(TableName, TableColumn, FieldLabel, WidthPixels, FieldKey, UIItemEditKey, UIItemAddKey, IsMandatory, ValidateDataType, IsUnique)
+VALUES ('PMIS_HS.RiskRank', 'RiskRankTo', 'Рангово число ДО', 80, 'HS_Lists_RiskRank_RiskRankTo', 'HS_LISTMAINT_RISKRANK_EDIT_RISKRANKTO', 'HS_LISTMAINT_RISKRANK_ADD_RISKRANKTO', 1, 'number', 0);
+
+
+COMMIT;
+/

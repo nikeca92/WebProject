@@ -1,0 +1,21 @@
+﻿CREATE TABLE PMIS_ADM.PreviousPositionTypes(PreviousPositionTypeKey varchar2(10),
+                                      PreviousPositionTypeName varchar2(100)
+                                     );
+
+ALTER TABLE PMIS_ADM.PreviousPositionTypes ADD CONSTRAINT PreviousPositionTypeKey_PK PRIMARY KEY (PreviousPositionTypeKey);
+
+
+INSERT INTO PMIS_ADM.PreviousPositionTypes (PreviousPositionTypeKey, PreviousPositionTypeName)
+VALUES ('Т', 'Титуляр');
+
+
+INSERT INTO PMIS_ADM.PreviousPositionTypes (PreviousPositionTypeKey, PreviousPositionTypeName)
+VALUES ('В', 'Вр ИД (Временно изпълняващ длъжността)');
+
+
+INSERT INTO PMIS_ADM.PreviousPositionTypes (PreviousPositionTypeKey, PreviousPositionTypeName)
+VALUES ('И', 'Изпълняващ длъжност');
+
+
+COMMIT;
+/

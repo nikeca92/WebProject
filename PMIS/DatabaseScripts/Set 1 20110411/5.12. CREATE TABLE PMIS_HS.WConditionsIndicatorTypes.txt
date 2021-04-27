@@ -1,0 +1,46 @@
+﻿CREATE TABLE PMIS_HS.WConditionsIndicatorTypes(IndicatorTypeID number NOT NULL,
+                                   	       IndicatorTypeName varchar2(500),
+					       Seq number NOT NULL
+                                               );
+
+ALTER TABLE PMIS_HS.WConditionsIndicatorTypes ADD CONSTRAINT WCondIndicatorTypes_PK PRIMARY KEY(IndicatorTypeID);
+
+CREATE SEQUENCE PMIS_HS.WCondIndicatorTypes_ID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+CREATE TRIGGER PMIS_HS.TRG_WCondIndicatorTypes_INSERT
+BEFORE INSERT ON PMIS_HS.WConditionsIndicatorTypes
+FOR EACH ROW
+BEGIN
+   SELECT PMIS_HS.WCondIndicatorTypes_ID_SEQ.nextval INTO :new.IndicatorTypeID FROM dual;
+END;
+/
+
+
+INSERT INTO PMIS_HS.WConditionsIndicatorTypes(IndicatorTypeName, Seq)
+VALUES ('Микроклимат', 1);
+
+INSERT INTO PMIS_HS.WConditionsIndicatorTypes(IndicatorTypeName, Seq)
+VALUES ('Химични агенти', 2);
+
+INSERT INTO PMIS_HS.WConditionsIndicatorTypes(IndicatorTypeName, Seq)
+VALUES ('Шум', 3);
+
+INSERT INTO PMIS_HS.WConditionsIndicatorTypes(IndicatorTypeName, Seq)
+VALUES ('Вибрации', 4);
+
+INSERT INTO PMIS_HS.WConditionsIndicatorTypes(IndicatorTypeName, Seq)
+VALUES ('Осветление', 5);
+
+INSERT INTO PMIS_HS.WConditionsIndicatorTypes(IndicatorTypeName, Seq)
+VALUES ('Електромагнитни полета', 6);
+
+INSERT INTO PMIS_HS.WConditionsIndicatorTypes(IndicatorTypeName, Seq)
+VALUES ('Йонизиращи лъчения', 7);
+
+INSERT INTO PMIS_HS.WConditionsIndicatorTypes(IndicatorTypeName, Seq)
+VALUES ('Производствен риск', 8);
+
+COMMIT;

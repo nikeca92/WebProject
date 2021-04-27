@@ -1,0 +1,22 @@
+CREATE TABLE PMIS_APPL.MilitarySchoolSpecializations(MilitSchoolSpecID number NOT NULL,
+														MilitarySchoolID number NOT NULL,
+														Year number NOT NULL,
+														SpecializationID number NOT NULL
+														);
+
+ALTER TABLE PMIS_APPL.MilitarySchoolSpecializations ADD CONSTRAINT MilitSchoolSpec_PK PRIMARY KEY(MilitSchoolSpecID);
+ALTER TABLE PMIS_APPL.MilitarySchoolSpecializations ADD CONSTRAINT MilitSchoolSpec_KL_VVU_FK FOREIGN KEY (MilitarySchoolID) REFERENCES VS_OWNER.KLV_VVU (VVUID);
+ALTER TABLE PMIS_APPL.MilitarySchoolSpecializations ADD CONSTRAINT MilitSchoolSpec_Spec_FK FOREIGN KEY (SpecializationID) REFERENCES PMIS_APPL.Specializations (SpecializationID);
+
+CREATE SEQUENCE PMIS_APPL.MilitSchoolSpecial_ID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+CREATE TRIGGER PMIS_APPL.TRG_MilitSchoolSpecial_INSERT
+BEFORE INSERT ON PMIS_APPL.MilitarySchoolSpecializations
+FOR EACH ROW
+BEGIN
+   SELECT PMIS_APPL.MilitSchoolSpecial_ID_SEQ.nextval INTO :new.MilitSchoolSpecID FROM dual;
+END;
+/

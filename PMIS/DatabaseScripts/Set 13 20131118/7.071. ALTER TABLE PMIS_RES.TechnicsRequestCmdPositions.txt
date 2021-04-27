@@ -1,0 +1,6 @@
+﻿ALTER TABLE PMIS_RES.TechnicsRequestCmdPositions ADD (NormativeTechnicsID number);
+
+ALTER TABLE PMIS_RES.TechnicsRequestCmdPositions ADD CONSTRAINT TechReqCmdPos_NormativeTech_FK FOREIGN KEY (NormativeTechnicsID) REFERENCES PMIS_RES.NormativeTechnics (NormativeTechnicsID);
+
+ALTER TABLE PMIS_RES.TechnicsRequestCmdPositions ADD (DriversCount number);
+/

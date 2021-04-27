@@ -1,0 +1,48 @@
+﻿CREATE TABLE PMIS_HS.ProtocolTypes(ProtocolTypeID number NOT NULL,
+                                   ProtocolTypeName varchar2(500)
+                                  );
+
+ALTER TABLE PMIS_HS.ProtocolTypes ADD CONSTRAINT ProtocolTypes_PK PRIMARY KEY(ProtocolTypeID);
+
+CREATE SEQUENCE PMIS_HS.ProtocolTypes_ID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+CREATE TRIGGER PMIS_HS.TRG_ProtocolTypes_INSERT
+BEFORE INSERT ON PMIS_HS.ProtocolTypes
+FOR EACH ROW
+BEGIN
+   SELECT PMIS_HS.ProtocolTypes_ID_SEQ.nextval INTO :new.ProtocolTypeID FROM dual;
+END;
+/
+
+
+INSERT INTO PMIS_HS.ProtocolTypes(ProtocolTypeName)
+VALUES ('Микроклимат');
+
+INSERT INTO PMIS_HS.ProtocolTypes(ProtocolTypeName)
+VALUES ('Осветление');
+
+INSERT INTO PMIS_HS.ProtocolTypes(ProtocolTypeName)
+VALUES ('Производствен шум');
+
+INSERT INTO PMIS_HS.ProtocolTypes(ProtocolTypeName)
+VALUES ('Комунален шум');
+
+INSERT INTO PMIS_HS.ProtocolTypes(ProtocolTypeName)
+VALUES ('Вибрации');
+
+INSERT INTO PMIS_HS.ProtocolTypes(ProtocolTypeName)
+VALUES ('Електромагнитни полета');
+
+INSERT INTO PMIS_HS.ProtocolTypes(ProtocolTypeName)
+VALUES ('Радиационната защита и безопасност при дейности с източници на йонизиращи лъчения');
+
+INSERT INTO PMIS_HS.ProtocolTypes(ProtocolTypeName)
+VALUES ('Химични агенти във въздуха на работната среда');
+
+INSERT INTO PMIS_HS.ProtocolTypes(ProtocolTypeName)
+VALUES ('Прах в работната среда');
+
+COMMIT;

@@ -1,0 +1,37 @@
+﻿CREATE TABLE PMIS_RES.Vehicles(VehicleID number NOT NULL,
+                               TechnicsID number NOT NULL,
+                               RegNumber varchar2(20),
+                               InventoryNumber varchar2(50),
+                               VehicleMakeID number,
+                               VehicleModelID number,
+                               VehicleKindID number, /*GTable*/
+                               VehicleRoadabilityID number, /*GTable*/
+                               CarryingCapacity number,
+                               LoadingCapacity number,
+                               FirstRegistrationDate date,
+                               LastAnnualTechnicalReviewDate date,
+                               Seats varchar2(10),
+                               Mileage number,
+                               VehicleEngineTypeID number, /*GTable*/
+                               VehicleBodyTypeID number /*GTable*/
+                               );
+
+ALTER TABLE PMIS_RES.Vehicles ADD CONSTRAINT Vehicles_PK PRIMARY KEY(VehicleID);
+ALTER TABLE PMIS_RES.Vehicles ADD CONSTRAINT Vehicles_TechnicsID_UNQ UNIQUE (TechnicsID);
+ALTER TABLE PMIS_RES.Vehicles ADD CONSTRAINT Vehicles_RegNum_UNQ UNIQUE (RegNumber);
+ALTER TABLE PMIS_RES.Vehicles ADD CONSTRAINT Vehicles_Technics_FK FOREIGN KEY (TechnicsID) REFERENCES PMIS_RES.Technics (TechnicsID);
+ALTER TABLE PMIS_RES.Vehicles ADD CONSTRAINT Vehicles_VehicleMakes_FK FOREIGN KEY (VehicleMakeID) REFERENCES PMIS_RES.VehicleMakes (VehicleMakeID);
+ALTER TABLE PMIS_RES.Vehicles ADD CONSTRAINT Vehicles_VehicleModels_FK FOREIGN KEY (VehicleModelID) REFERENCES PMIS_RES.VehicleModels (VehicleModelID);
+
+CREATE SEQUENCE PMIS_RES.Vehicles_ID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+CREATE TRIGGER PMIS_RES.TRG_Vehicles_INSERT
+BEFORE INSERT ON PMIS_RES.Vehicles
+FOR EACH ROW
+BEGIN
+   SELECT PMIS_RES.Vehicles_ID_SEQ.nextval INTO :new.VehicleID FROM dual;
+END;
+/

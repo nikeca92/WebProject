@@ -1,0 +1,21 @@
+﻿CREATE TABLE PMIS_RES.TrailerRegNumbers(TrailerRegNumberID number NOT NULL,
+                                        TrailerID number NOT NULL,
+                                        RegNumber varchar2(20),
+                                        ChangeDate date
+                                        );
+
+ALTER TABLE PMIS_RES.TrailerRegNumbers ADD CONSTRAINT TrailerRegNumbers_PK PRIMARY KEY(TrailerRegNumberID);
+ALTER TABLE PMIS_RES.TrailerRegNumbers ADD CONSTRAINT TrailerRegNumbers_Trailers_FK FOREIGN KEY (TrailerID) REFERENCES PMIS_RES.Trailers (TrailerID);
+
+CREATE SEQUENCE PMIS_RES.TrailerRegNumbers_ID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+CREATE TRIGGER PMIS_RES.TRG_TrailerRegNumbers_INSERT
+BEFORE INSERT ON PMIS_RES.TrailerRegNumbers
+FOR EACH ROW
+BEGIN
+   SELECT PMIS_RES.TrailerRegNumbers_ID_SEQ.nextval INTO :new.TrailerRegNumberID FROM dual;
+END;
+/

@@ -1,0 +1,21 @@
+﻿ALTER TABLE VS_OWNER.KLV_VSO ADD VSO_TYPE VARCHAR2(1);
+
+UPDATE VS_OWNER.KLV_VSO t1
+SET VSO_TYPE = (SELECT MAX(CASE WHEN vos.type = 1 THEN 8 
+                            WHEN vos.type = 2 THEN 7 
+                            WHEN vos.type = 3 THEN 6 
+                            WHEN vos.type = 4 THEN 5 
+                       END)                       
+                FROM pmis_adm.militaryreportspecialities vos
+                WHERE t1.vso_kod = vos.milreportingspecialitycode
+                GROUP BY milreportingspecialitycode);
+
+GRANT ALL ON VS_OWNER.KLV_VSO TO PMIS_USER_ROLE;
+	
+
+
+UPDATE VS_OWNER.KLV_VSO set vso_type = '9'
+where vso_type is null;
+	
+commit;  
+

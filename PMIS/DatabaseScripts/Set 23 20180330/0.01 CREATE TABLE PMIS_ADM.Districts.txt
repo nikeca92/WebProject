@@ -1,0 +1,58 @@
+﻿--Прехвърляне на класификатора "Райони" към схемата UKAZ_OWNER
+--Създаване на таблицата
+CREATE TABLE UKAZ_OWNER.Districts(DistrictID number NOT NULL,
+                                  DistrictName varchar2(300),
+                                  PostCode varchar2(10),
+                                  CityID number NOT NULL
+                                  );
+
+ALTER TABLE UKAZ_OWNER.Districts ADD CONSTRAINT Districts_PK PRIMARY KEY(DistrictID);
+ALTER TABLE UKAZ_OWNER.Districts ADD CONSTRAINT Districts_Cities_FK FOREIGN KEY (CityID) REFERENCES UKAZ_OWNER.KL_NMA (KOD_NMA);
+
+--Прехвърляне на данните
+INSERT INTO UKAZ_OWNER.Districts (DistrictID, DistrictName, PostCode, CityID)
+SELECT DistrictID, DistrictName, PostCode, CityID FROM PMIS_ADM.Districts;
+
+COMMIT;
+/
+
+--Дефиниране на sequence с подходяща стартова стойност
+DECLARE
+    l_new_seq INTEGER;
+BEGIN
+   SELECT MAX(DistrictID) + 1
+   INTO l_new_seq
+   FROM UKAZ_OWNER.Districts;
+
+   EXECUTE IMMEDIATE 'CREATE SEQUENCE UKAZ_OWNER.Districts_ID_SEQ
+                      START WITH ' || l_new_seq || ' 
+                      INCREMENT BY 1 
+                      NOMAXVALUE';
+END;
+/
+
+--Дефиниране на тригер за добавяне на нови записи в преместената таблица
+CREATE TRIGGER UKAZ_OWNER.TRG_Districts_INSERT
+BEFORE INSERT ON UKAZ_OWNER.Districts
+FOR EACH ROW
+BEGIN
+   SELECT UKAZ_OWNER.Districts_ID_SEQ.nextval INTO :new.DistrictID FROM dual;
+END;
+/
+
+--Промяна на всички съществуващи FK връзки да сочат към новата таблица
+ALTER TABLE PMIS_ADM.Companies DROP CONSTRAINT Companies_District_FK;
+GRANT ALL ON UKAZ_OWNER.Districts TO PMIS_ADM;
+ALTER TABLE PMIS_ADM.Companies ADD CONSTRAINT Companies_District_FK FOREIGN KEY (DistrictID) REFERENCES UKAZ_OWNER.Districts (DistrictID);
+
+ALTER TABLE PMIS_ADM.MilitaryReportPersons DROP CONSTRAINT MilRepPersons_PermDistrict_FK;
+ALTER TABLE PMIS_ADM.MilitaryReportPersons ADD CONSTRAINT MilRepPersons_PermDistrict_FK FOREIGN KEY (PermAddrDistrictID) REFERENCES UKAZ_OWNER.Districts (DistrictID);
+
+ALTER TABLE PMIS_ADM.MilitaryReportPersons DROP CONSTRAINT MilRepPersons_CurrDistrict_FK;
+ALTER TABLE PMIS_ADM.MilitaryReportPersons ADD CONSTRAINT MilRepPersons_CurrDistrict_FK FOREIGN KEY (CurrAddrDistrictID) REFERENCES UKAZ_OWNER.Districts (DistrictID);
+
+ALTER TABLE PMIS_RES.Technics DROP CONSTRAINT Technics_ResDistrict_FK;
+GRANT ALL ON UKAZ_OWNER.Districts TO PMIS_RES;
+ALTER TABLE PMIS_RES.Technics ADD CONSTRAINT Technics_ResDistrict_FK FOREIGN KEY (ResidenceDistrictID) REFERENCES UKAZ_OWNER.Districts (DistrictID);
+
+/

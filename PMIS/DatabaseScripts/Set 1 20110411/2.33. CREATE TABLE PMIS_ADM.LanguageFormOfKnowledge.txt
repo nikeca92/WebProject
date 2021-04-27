@@ -1,0 +1,22 @@
+﻿CREATE TABLE PMIS_ADM.LanguageFormOfKnowledge(LanguageFormOfKnowledgeKey varchar2(10),
+                                      LanguageFormOfKnowledgeName varchar2(100)
+                                     );
+
+ALTER TABLE PMIS_ADM.LanguageFormOfKnowledge ADD CONSTRAINT LanguageFormOfKnowledgeKey_PK PRIMARY KEY (LanguageFormOfKnowledgeKey);
+
+INSERT INTO PMIS_ADM.LanguageFormOfKnowledge (LanguageFormOfKnowledgeKey, LanguageFormOfKnowledgeName)
+VALUES ('Г', 'Говоримо');
+
+INSERT INTO PMIS_ADM.LanguageFormOfKnowledge (LanguageFormOfKnowledgeKey, LanguageFormOfKnowledgeName)
+VALUES ('В', 'Писмено и говоримо');
+
+
+INSERT INTO PMIS_ADM.LanguageFormOfKnowledge (LanguageFormOfKnowledgeKey, LanguageFormOfKnowledgeName)
+VALUES ('П', 'Писмено');
+
+
+
+
+COMMIT;
+/
+

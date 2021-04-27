@@ -1,0 +1,21 @@
+﻿CREATE TABLE PMIS_RES.EngEquipmentRegNumbers(EngEquipmentRegNumberID number NOT NULL,
+                                             EngEquipID number NOT NULL,
+                                             RegNumber varchar2(20),
+                                             ChangeDate date
+                                            );
+
+ALTER TABLE PMIS_RES.EngEquipmentRegNumbers ADD CONSTRAINT EngEquipmentRegNumbers_PK PRIMARY KEY(EngEquipmentRegNumberID);
+ALTER TABLE PMIS_RES.EngEquipmentRegNumbers ADD CONSTRAINT EngEquipRegNumbers_EngEquip_FK FOREIGN KEY (EngEquipID) REFERENCES PMIS_RES.EngEquipment (EngEquipID);
+
+CREATE SEQUENCE PMIS_RES.EngEquipmentRegNumbers_ID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+CREATE TRIGGER PMIS_RES.TRG_EngEquipRegNumbers_INSERT
+BEFORE INSERT ON PMIS_RES.EngEquipmentRegNumbers
+FOR EACH ROW
+BEGIN
+   SELECT PMIS_RES.EngEquipmentRegNumbers_ID_SEQ.nextval INTO :new.EngEquipmentRegNumberID FROM dual;
+END;
+/

@@ -1,0 +1,38 @@
+﻿INSERT INTO PMIS_ADM.Fields (fieldtype, fieldkey, fieldname, seq)
+VALUES ('string', 'RES_Reservist_MilRepStatus_RemovedDeceasedDeathCert', 'Смъртен акт №', 23);
+
+INSERT INTO PMIS_ADM.Fields (fieldtype, fieldkey, fieldname, seq)
+VALUES ('date', 'RES_Reservist_MilRepStatus_RemovedDeceasedDate', 'Дата на смъртен акт', 24);
+
+INSERT INTO PMIS_ADM.Fields (fieldtype, fieldkey, fieldname, seq)
+VALUES ('string', 'RES_Reservist_MilRepStatus_RemovedAgeLimitOrder', 'Заповед №', 25);
+
+INSERT INTO PMIS_ADM.Fields (fieldtype, fieldkey, fieldname, seq)
+VALUES ('date', 'RES_Reservist_MilRepStatus_RemovedAgeLimitDate', 'Дата на заповед', 26);
+
+INSERT INTO PMIS_ADM.Fields (fieldtype, fieldkey, fieldname, seq)
+VALUES ('string', 'RES_Reservist_MilRepStatus_RemovedAgeLimitSignedBy', 'Подписана от', 27);
+
+INSERT INTO PMIS_ADM.Fields (fieldtype, fieldkey, fieldname, seq)
+VALUES ('string', 'RES_Reservist_MilRepStatus_RemovedNotSuitableCert', 'Удостоверение №', 28);
+
+INSERT INTO PMIS_ADM.Fields (fieldtype, fieldkey, fieldname, seq)
+VALUES ('date', 'RES_Reservist_MilRepStatus_RemovedNotSuitableDate', 'Дата на удостоворение', 29);
+
+INSERT INTO PMIS_ADM.Fields (fieldtype, fieldkey, fieldname, seq)
+VALUES ('string', 'RES_Reservist_MilRepStatus_RemovedNotSuitableSignedBy', 'Подписано от', 30);
+
+INSERT INTO PMIS_ADM.Fields (fieldtype, fieldkey, fieldname, seq)
+VALUES ('string', 'RES_Reservist_MilRepStatus_AnnexNumber', 'Доп. сп. №', 31);
+
+INSERT INTO PMIS_ADM.Fields (fieldtype, fieldkey, fieldname, seq)
+VALUES ('date', 'RES_Reservist_MilRepStatus_AnnexDate', 'от дата', 32);
+
+INSERT INTO PMIS_ADM.Fields (fieldtype, fieldkey, fieldname, seq)
+VALUES ('number', 'RES_Reservist_MilRepStatus_AnnexDurationMonths', 'Срок', 33);
+
+INSERT INTO PMIS_ADM.Fields (fieldtype, fieldkey, fieldname, seq)
+VALUES ('date', 'RES_Reservist_MilRepStatus_AnnexExpireDate', 'изтича на', 34);
+
+COMMIT;
+/

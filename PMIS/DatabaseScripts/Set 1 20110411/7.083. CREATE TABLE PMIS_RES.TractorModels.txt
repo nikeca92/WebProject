@@ -1,0 +1,41 @@
+﻿CREATE TABLE PMIS_RES.TractorModels(TractorModelID number NOT NULL,
+                                    TractorModelName varchar2(300),
+                                    TractorMakeID number NOT NULL
+                                   );
+
+ALTER TABLE PMIS_RES.TractorModels ADD CONSTRAINT TractorModels_PK PRIMARY KEY(TractorModelID);
+ALTER TABLE PMIS_RES.TractorModels ADD CONSTRAINT TractorModels_Makes_FK FOREIGN KEY (TractorMakeID) REFERENCES PMIS_RES.TractorMakes (TractorMakeID);
+
+CREATE SEQUENCE PMIS_RES.TractorModels_ID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+CREATE TRIGGER PMIS_RES.TRG_TractorModels_INSERT
+BEFORE INSERT ON PMIS_RES.TractorModels
+FOR EACH ROW
+BEGIN
+   SELECT PMIS_RES.TractorModels_ID_SEQ.nextval INTO :new.TractorModelID FROM dual;
+END;
+/
+
+INSERT INTO PMIS_RES.TractorModels(TractorModelName, TractorMakeID)
+VALUES ('CX100', (SELECT TractorMakeID FROM PMIS_RES.TractorMakes WHERE TractorMakeName = 'Case'));
+
+INSERT INTO PMIS_RES.TractorModels(TractorModelName, TractorMakeID)
+VALUES ('MXU130', (SELECT TractorMakeID FROM PMIS_RES.TractorMakes WHERE TractorMakeName = 'Case'));
+
+INSERT INTO PMIS_RES.TractorModels(TractorModelName, TractorMakeID)
+VALUES ('Ares 616 RZ', (SELECT TractorMakeID FROM PMIS_RES.TractorMakes WHERE TractorMakeName = 'Claas'));
+
+INSERT INTO PMIS_RES.TractorModels(TractorModelName, TractorMakeID)
+VALUES ('Ares 816 RZ', (SELECT TractorMakeID FROM PMIS_RES.TractorMakes WHERE TractorMakeName = 'Claas'));
+
+INSERT INTO PMIS_RES.TractorModels(TractorModelName, TractorMakeID)
+VALUES ('3080', (SELECT TractorMakeID FROM PMIS_RES.TractorMakes WHERE TractorMakeName = 'Ferguson'));
+
+INSERT INTO PMIS_RES.TractorModels(TractorModelName, TractorMakeID)
+VALUES ('6190', (SELECT TractorMakeID FROM PMIS_RES.TractorMakes WHERE TractorMakeName = 'Ferguson'));
+
+COMMIT;
+/

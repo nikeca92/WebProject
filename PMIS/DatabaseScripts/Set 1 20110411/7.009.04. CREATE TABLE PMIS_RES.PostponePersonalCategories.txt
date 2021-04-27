@@ -1,0 +1,33 @@
+﻿CREATE TABLE PMIS_RES.PostponePersonalCategories(PostponePersonalCategoryID number NOT NULL,
+												  PostponePersonalCategoryKey varchar2(100),
+												  PostponePersonalCategoryName varchar2(250)
+												 );
+
+ALTER TABLE PMIS_RES.PostponePersonalCategories ADD CONSTRAINT PostponePersonalCategories_PK PRIMARY KEY(PostponePersonalCategoryID);
+
+CREATE SEQUENCE PMIS_RES.PostponePersCateg_ID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+CREATE TRIGGER PMIS_RES.TRG_PostponePersCateg_INSERT
+BEFORE INSERT ON PMIS_RES.PostponePersonalCategories
+FOR EACH ROW
+BEGIN
+   SELECT PMIS_RES.PostponePersCateg_ID_SEQ.nextval INTO :new.PostponePersonalCategoryID FROM dual;
+END;
+/
+
+INSERT INTO PMIS_RES.PostponePersonalCategories (PostponePersonalCategoryKey, PostponePersonalCategoryName)
+VALUES ('TECH', 'Техническа');
+
+INSERT INTO PMIS_RES.PostponePersonalCategories (PostponePersonalCategoryKey, PostponePersonalCategoryName)
+VALUES ('EXPERT', 'Експертна');
+
+INSERT INTO PMIS_RES.PostponePersonalCategories (PostponePersonalCategoryKey, PostponePersonalCategoryName)
+VALUES ('MANAGE', 'Ръководител');
+
+
+
+COMMIT;
+/

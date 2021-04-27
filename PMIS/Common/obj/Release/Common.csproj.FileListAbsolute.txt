@@ -1,0 +1,11 @@
+C:\PMIS\Src\PMIS\Common\bin\Release\Common.dll
+C:\PMIS\Src\PMIS\Common\bin\Release\Common.pdb
+C:\PMIS\Src\PMIS\Common\obj\Release\ResolveAssemblyReference.cache
+C:\PMIS\Src\PMIS\Common\obj\Release\Common.dll
+C:\PMIS\Src\PMIS\Common\obj\Release\Common.pdb
+C:\Users\n.markov1\Desktop\PMIS\Common\bin\Release\Common.dll
+C:\Users\n.markov1\Desktop\PMIS\Common\bin\Release\Common.pdb
+C:\Users\n.markov1\Desktop\PMIS\Common\obj\Release\Common.csprojAssemblyReference.cache
+C:\Users\n.markov1\Desktop\PMIS\Common\obj\Release\Common.csproj.CoreCompileInputs.cache
+C:\Users\n.markov1\Desktop\PMIS\Common\obj\Release\Common.dll
+C:\Users\n.markov1\Desktop\PMIS\Common\obj\Release\Common.pdb

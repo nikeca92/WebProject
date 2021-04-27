@@ -1,0 +1,36 @@
+﻿CREATE TABLE PMIS_ADM.Users(UserID number NOT NULL,
+          	                Username varchar2(100) NOT NULL, 
+                            Password varchar2(500) NOT NULL,
+                            OracleUsername varchar2(100),
+                            OraclePassword varchar2(500),
+                            Active number(1) NOT NULL CHECK (Active BETWEEN 0 AND 1));
+
+ALTER TABLE PMIS_ADM.Users ADD CONSTRAINT USERS_PK PRIMARY KEY(UserID);
+ALTER TABLE PMIS_ADM.Users ADD CONSTRAINT USERS_UNQ UNIQUE (Username);
+
+COMMENT ON TABLE PMIS_ADM.Users IS 
+'Потребители на системата';
+
+COMMENT ON COLUMN PMIS_ADM.Users.UserID IS 'Уникален идентификатор на всеки потребител';
+
+
+CREATE SEQUENCE PMIS_ADM.USERS_ID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+CREATE TRIGGER PMIS_ADM.TRG_USERS_INSERT
+BEFORE INSERT ON PMIS_ADM.Users
+FOR EACH ROW
+BEGIN
+   SELECT PMIS_ADM.USERS_ID_SEQ.nextval INTO :new.UserID FROM dual;
+END;
+/
+
+/*12345: 6ExwiTwpCLJSIQeO4YSbXw==*/
+/*TEST: FSA9pXPV1gotmzbHKhdYNw==*/
+
+INSERT INTO PMIS_ADM.Users (Username, Password, OracleUsername, OraclePassword, Active)
+VALUES ('devel', 'FSA9pXPV1gotmzbHKhdYNw==', 'PMIS_USER', '6ExwiTwpCLJSIQeO4YSbXw==', 1);
+
+COMMIT;

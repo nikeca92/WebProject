@@ -1,0 +1,38 @@
+﻿CREATE TABLE PMIS_HS.EffectWeight(EffectWeightID number NOT NULL,
+								  EffectWeightName varchar2(500),
+								  EffectWeightDesc varchar2(500),
+								  EffectWeightFactor decimal(30, 10));
+
+ALTER TABLE PMIS_HS.EffectWeight ADD CONSTRAINT EffectWeight_PK PRIMARY KEY(EffectWeightID);
+
+CREATE SEQUENCE PMIS_HS.EffectWeight_ID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+CREATE TRIGGER PMIS_HS.TRG_EffectWeight_INSERT
+BEFORE INSERT ON PMIS_HS.EffectWeight
+FOR EACH ROW
+BEGIN
+   SELECT PMIS_HS.EffectWeight_ID_SEQ.nextval INTO :new.EffectWeightID FROM dual;
+END;
+/
+
+INSERT INTO PMIS_HS.EffectWeight(EffectWeightName, EffectWeightDesc, EffectWeightFactor)
+VALUES ('малки', 'наранявания без загуби – без болничен лист', 1);
+
+INSERT INTO PMIS_HS.EffectWeight(EffectWeightName, EffectWeightDesc, EffectWeightFactor)
+VALUES ('значителни', 'наранявания със загуби – с болничен лист', 3);
+
+INSERT INTO PMIS_HS.EffectWeight(EffectWeightName, EffectWeightDesc, EffectWeightFactor)
+VALUES ('сериозни', 'инвалидност, необратими наранявания', 7);
+
+INSERT INTO PMIS_HS.EffectWeight(EffectWeightName, EffectWeightDesc, EffectWeightFactor)
+VALUES ('опасни', '1 смъртен случай', 15);
+
+INSERT INTO PMIS_HS.EffectWeight(EffectWeightName, EffectWeightDesc, EffectWeightFactor)
+VALUES ('катастрофални', 'много смъртни случаи', 40);
+
+
+COMMIT;
+/

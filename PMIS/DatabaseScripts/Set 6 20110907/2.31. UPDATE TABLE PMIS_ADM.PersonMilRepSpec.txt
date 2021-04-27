@@ -1,0 +1,9 @@
+﻿ALTER TABLE PMIS_ADM.PersonMilRepSpec ADD (IsPrimary number(1) CHECK (IsPrimary BETWEEN 0 AND 1));
+
+UPDATE PMIS_ADM.PersonMilRepSpec SET
+   IsPrimary = 1
+WHERE PersonMilRepSpecID IN (SELECT MIN(PersonMilRepSpecID) FROM PMIS_ADM.PersonMilRepSpec GROUP BY PersonID);
+
+COMMIT;
+
+/

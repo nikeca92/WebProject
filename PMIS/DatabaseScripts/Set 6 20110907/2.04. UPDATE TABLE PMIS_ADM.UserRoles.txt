@@ -1,0 +1,8 @@
+﻿INSERT INTO PMIS_ADM.UserRoles (UserID, RoleID)
+VALUES ((SELECT UserID FROM PMIS_ADM.Users WHERE UPPER(Username) = UPPER('devel')), 
+        (SELECT a.RoleID 
+         FROM PMIS_ADM.Roles a 
+         INNER JOIN PMIS_ADM.Modules b ON a.ModuleID = b.ModuleID
+         WHERE b.ModuleKey = 'REP' AND a.RoleName = 'Потребител'));        
+
+COMMIT;

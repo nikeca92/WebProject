@@ -1,0 +1,35 @@
+﻿
+CREATE TABLE PMIS_APPL.ApplicantPositionDocStatus (StatusID number NOT NULL,
+                                            		StatusName varchar2(300),
+ 							StatusKey varchar2(300)
+                                               	       );
+
+ALTER TABLE PMIS_APPL.ApplicantPositionDocStatus ADD CONSTRAINT AppPosDocStatusID_PK PRIMARY KEY(StatusID);
+
+CREATE SEQUENCE PMIS_APPL.AppPosDocStatusID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+CREATE TRIGGER PMIS_APPL.ApplicantPosDocStatus_INSERT
+BEFORE INSERT ON PMIS_APPL.ApplicantPositionDocStatus
+FOR EACH ROW
+BEGIN
+   SELECT PMIS_APPL.AppPosDocStatusID_SEQ.nextval INTO :new.StatusID FROM dual;
+END;
+/
+
+
+INSERT INTO PMIS_APPL.ApplicantPositionDocStatus (StatusName, StatusKey)
+VALUES ('Комплектоване', 'MAKEUP');
+
+INSERT INTO PMIS_APPL.ApplicantPositionDocStatus (StatusName, StatusKey)
+VALUES ('Готов за изпращане', 'READY');
+
+INSERT INTO PMIS_APPL.ApplicantPositionDocStatus (StatusName, StatusKey)
+VALUES ('Изпратени', 'SENT');
+
+
+COMMIT;
+
+

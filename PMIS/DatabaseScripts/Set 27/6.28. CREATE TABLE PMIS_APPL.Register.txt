@@ -1,0 +1,15 @@
+﻿CREATE TABLE PMIS_APPL.Register
+(
+  ApplicantID number NOT NULL,
+  VacancyAnnounceID number NOT NULL,
+  ResponsibleMilitaryUnitID number NOT NULL,
+  RegisterNumber number NOT NULL,
+  DocumentDate date,
+  PageCount varchar2(10),
+  Notes varchar2(250)
+);
+
+ALTER TABLE PMIS_APPL.Register ADD CONSTRAINT Register_PK PRIMARY KEY (ApplicantID, VacancyAnnounceID, ResponsibleMilitaryUnitID);
+ALTER TABLE PMIS_APPL.Register ADD CONSTRAINT Register_Applicants_FK FOREIGN KEY (ApplicantID) REFERENCES PMIS_APPL.Applicants (ApplicantID);
+ALTER TABLE PMIS_APPL.Register ADD CONSTRAINT Register_VacancyAnnounce_FK FOREIGN KEY (VacancyAnnounceID) REFERENCES PMIS_APPL.VacancyAnnounces (VacancyAnnounceID);
+ALTER TABLE PMIS_APPL.Register ADD CONSTRAINT Register_ResMilUnit_FK FOREIGN KEY (ResponsibleMilitaryUnitID) REFERENCES UKAZ_OWNER.MIR (KOD_MIR);

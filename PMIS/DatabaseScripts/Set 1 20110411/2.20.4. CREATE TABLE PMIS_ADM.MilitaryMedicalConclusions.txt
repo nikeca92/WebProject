@@ -1,0 +1,29 @@
+﻿CREATE TABLE PMIS_ADM.MilitaryMedicalConclusions(MilitaryMedicalConclusionID number NOT NULL,
+						 MilitaryMedicalConclusionKey varchar2(250),
+                                   		 MilitaryMedicalConclusionName varchar2(500)
+                                  		);
+
+ALTER TABLE PMIS_ADM.MilitaryMedicalConclusions ADD CONSTRAINT MilitaryMedicalConclusions_PK PRIMARY KEY(MilitaryMedicalConclusionID);
+
+CREATE SEQUENCE PMIS_ADM.MilMedConclusions_ID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+CREATE TRIGGER PMIS_ADM.TRG_MilMedConclusions_INSERT
+BEFORE INSERT ON PMIS_ADM.MilitaryMedicalConclusions
+FOR EACH ROW
+BEGIN
+   SELECT PMIS_ADM.MilMedConclusions_ID_SEQ.nextval INTO :new.MilitaryMedicalConclusionID FROM dual;
+END;
+/
+
+
+INSERT INTO PMIS_ADM.MilitaryMedicalConclusions(MilitaryMedicalConclusionKey, MilitaryMedicalConclusionName)
+VALUES ('FIT', 'ГВС');
+
+INSERT INTO PMIS_ADM.MilitaryMedicalConclusions(MilitaryMedicalConclusionKey, MilitaryMedicalConclusionName)
+VALUES ('NOTFIT', 'НГВС');
+
+
+COMMIT;

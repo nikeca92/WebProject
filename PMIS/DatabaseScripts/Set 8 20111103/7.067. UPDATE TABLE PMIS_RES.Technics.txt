@@ -1,0 +1,8 @@
+﻿UPDATE PMIS_RES.Technics SET
+   PunktID = NULL
+WHERE PunktID IS NOT NULL AND PunktID NOT IN (SELECT TechRequestCommandPunktID FROM PMIS_RES.TechRequestCommandPunkt);
+
+ALTER TABLE PMIS_RES.Technics ADD CONSTRAINT Technics_TechReqCmdPunkt_FK FOREIGN KEY (PunktID) REFERENCES PMIS_RES.TechRequestCommandPunkt (TechRequestCommandPunktID);
+
+COMMIT;
+/

@@ -1,0 +1,7 @@
+﻿INSERT INTO PMIS_ADM.Roles (RoleName, ModuleID,
+                            CreatedBy, CreatedDate, LastModifiedBy, LastModifiedDate)
+VALUES ('Потребител', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'REP'),
+        (SELECT UserID FROM PMIS_ADM.Users WHERE Username = 'devel'), SYSDATE, (SELECT UserID FROM PMIS_ADM.Users WHERE Username = 'devel'), SYSDATE);
+
+
+COMMIT;

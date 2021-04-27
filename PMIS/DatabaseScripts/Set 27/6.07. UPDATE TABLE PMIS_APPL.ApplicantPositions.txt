@@ -1,0 +1,11 @@
+﻿UPDATE PMIS_APPL.ApplicantPositions t
+SET Seq = (
+      SELECT "Rank"
+      FROM (
+            SELECT a.ApplicantPositionID, a.ApplicantID, b.VacancyAnnounceID, b.ResponsibleMilitaryUnitID,
+                   RANK() OVER(PARTITION BY a.ApplicantID, b.VacancyAnnounceID, b.ResponsibleMilitaryUnitID ORDER BY a.ApplicantPositionID ASC) "Rank"  
+            FROM PMIS_APPL.ApplicantPositions a
+            INNER JOIN PMIS_APPL.VacancyAnnouncePositions b ON a.VacancyAnnouncePositionID = b.VacancyAnnouncePositionID)  tmp
+      WHERE tmp.ApplicantPositionID = t.ApplicantPositionID);
+      
+COMMIT;

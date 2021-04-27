@@ -1,0 +1,139 @@
+﻿INSERT INTO UKAZ_OWNER.KL_E (KOD_E, IME_E)
+VALUES (1, 'Назначение по ВОС #1');
+
+INSERT INTO UKAZ_OWNER.KL_Z (KOD_Z, IME_Z, KOD_OLD)
+VALUES (1, 'Назначение по род войска', NULL);
+
+INSERT INTO UKAZ_OWNER.KL_EZ (KOD_EZ, KOD_E, KOD_Z, KOD_OLD)
+VALUES (1, 1, 1, NULL);
+
+
+INSERT INTO UKAZ_OWNER.KL_VOE (KOD_VOE, IME_VOE, KOD_OLD)
+VALUES (1, 'Вид организационна еденица #1', NULL);
+
+
+INSERT INTO UKAZ_OWNER.KL_NZN (KOD_NZN, IME_NZN, KOD_OLD)
+VALUES (1, 'Назн. по бойно използ.', NULL);
+
+
+INSERT INTO UKAZ_OWNER.KL_TIP(KOD_TIP, IME_TIP)
+VALUES (1, 'Основно');
+
+-------------------------------------------------------------------------------------------------
+
+INSERT INTO UKAZ_OWNER.MIR (KOD_MIR, VPN, IMEES, IMEED, NSTAT,
+   KOD_NMA, KOD_VOE, KOD_EZ, KOD_NZN, KOD_RNV, KOD_LIM,  KOD_REJ,
+   DATA, MM, KOD_TIP, N_ZAP, DATA_ZAP, POZIVNA, VID_OE, O_DEJUREN, AKTUAL)
+VALUES (10000, '1', 'Военни сили', 'Военни сили', '', 
+   (select kod_nma from ukaz_owner.kl_nma where ime_nma = 'София'), 1, 1, 1, NULL, NULL, NULL,
+   SYSDATE, NULL, 1, NULL, NULL, NULL, 'P', NULL, 1);
+
+
+INSERT INTO UKAZ_OWNER.MIR (KOD_MIR, VPN, IMEES, IMEED, NSTAT,
+   KOD_NMA, KOD_VOE, KOD_EZ, KOD_NZN, KOD_RNV, KOD_LIM,  KOD_REJ,
+   DATA, MM, KOD_TIP, N_ZAP, DATA_ZAP, POZIVNA, VID_OE, O_DEJUREN, AKTUAL)
+VALUES (1, '1000', 'Под. София', 'ВПН/Структура от София №1', '', 
+   (select kod_nma from ukaz_owner.kl_nma where ime_nma = 'София'), 1, 1, 1, NULL, NULL, NULL,
+   SYSDATE, NULL, 1, NULL, NULL, NULL, 'P', NULL, 1);
+   
+
+INSERT INTO UKAZ_OWNER.MIR (KOD_MIR, VPN, IMEES, IMEED, NSTAT,
+   KOD_NMA, KOD_VOE, KOD_EZ, KOD_NZN, KOD_RNV, KOD_LIM,  KOD_REJ,
+   DATA, MM, KOD_TIP, N_ZAP, DATA_ZAP, POZIVNA, VID_OE, O_DEJUREN, AKTUAL)
+VALUES (11, '1001', 'Под. Младост', 'ВПН/Структура от Младост №11', '', 
+   (select kod_nma from ukaz_owner.kl_nma where ime_nma = 'София'), 1, 1, 1, NULL, NULL, NULL,
+   SYSDATE, NULL, 1, NULL, NULL, NULL, 'P', NULL, 1);
+   
+INSERT INTO UKAZ_OWNER.MIR (KOD_MIR, VPN, IMEES, IMEED, NSTAT,
+   KOD_NMA, KOD_VOE, KOD_EZ, KOD_NZN, KOD_RNV, KOD_LIM,  KOD_REJ,
+   DATA, MM, KOD_TIP, N_ZAP, DATA_ZAP, POZIVNA, VID_OE, O_DEJUREN, AKTUAL)
+VALUES (111, '1011', 'Младост 1', 'Младост 1', '', 
+   (select kod_nma from ukaz_owner.kl_nma where ime_nma = 'София'), 1, 1, 1, NULL, NULL, NULL,
+   SYSDATE, NULL, 1, NULL, NULL, NULL, 'P', NULL, 1);
+   
+INSERT INTO UKAZ_OWNER.MIR (KOD_MIR, VPN, IMEES, IMEED, NSTAT,
+   KOD_NMA, KOD_VOE, KOD_EZ, KOD_NZN, KOD_RNV, KOD_LIM,  KOD_REJ,
+   DATA, MM, KOD_TIP, N_ZAP, DATA_ZAP, POZIVNA, VID_OE, O_DEJUREN, AKTUAL)
+VALUES (112, '1012', 'Младост 2', 'Младост 2', '', 
+   (select kod_nma from ukaz_owner.kl_nma where ime_nma = 'София'), 1, 1, 1, NULL, NULL, NULL,
+   SYSDATE, NULL, 1, NULL, NULL, NULL, 'P', NULL, 1);
+   
+
+INSERT INTO UKAZ_OWNER.MIR (KOD_MIR, VPN, IMEES, IMEED, NSTAT,
+   KOD_NMA, KOD_VOE, KOD_EZ, KOD_NZN, KOD_RNV, KOD_LIM,  KOD_REJ,
+   DATA, MM, KOD_TIP, N_ZAP, DATA_ZAP, POZIVNA, VID_OE, O_DEJUREN, AKTUAL)
+VALUES (12, '1002', 'Под. Люлин', 'ВПН/Структура от Люлин №11', '', 
+   (select kod_nma from ukaz_owner.kl_nma where ime_nma = 'София'), 1, 1, 1, NULL, NULL, NULL,
+   SYSDATE, NULL, 1, NULL, NULL, NULL, 'P', NULL, 1);
+   
+INSERT INTO UKAZ_OWNER.MIR (KOD_MIR, VPN, IMEES, IMEED, NSTAT,
+   KOD_NMA, KOD_VOE, KOD_EZ, KOD_NZN, KOD_RNV, KOD_LIM,  KOD_REJ,
+   DATA, MM, KOD_TIP, N_ZAP, DATA_ZAP, POZIVNA, VID_OE, O_DEJUREN, AKTUAL)
+VALUES (121, '2011', 'Люлин 7', 'Люлин 7', '', 
+   (select kod_nma from ukaz_owner.kl_nma where ime_nma = 'София'), 1, 1, 1, NULL, NULL, NULL,
+   SYSDATE, NULL, 1, NULL, NULL, NULL, 'P', NULL, 1);
+   
+INSERT INTO UKAZ_OWNER.MIR (KOD_MIR, VPN, IMEES, IMEED, NSTAT,
+   KOD_NMA, KOD_VOE, KOD_EZ, KOD_NZN, KOD_RNV, KOD_LIM,  KOD_REJ,
+   DATA, MM, KOD_TIP, N_ZAP, DATA_ZAP, POZIVNA, VID_OE, O_DEJUREN, AKTUAL)
+VALUES (122, '2012', 'Люлин 10', 'Люлин 10', '', 
+   (select kod_nma from ukaz_owner.kl_nma where ime_nma = 'София'), 1, 1, 1, NULL, NULL, NULL,
+   SYSDATE, NULL, 1, NULL, NULL, NULL, 'P', NULL, 1);
+   
+   
+INSERT INTO UKAZ_OWNER.MIR (KOD_MIR, VPN, IMEES, IMEED, NSTAT,
+   KOD_NMA, KOD_VOE, KOD_EZ, KOD_NZN, KOD_RNV, KOD_LIM,  KOD_REJ,
+   DATA, MM, KOD_TIP, N_ZAP, DATA_ZAP, POZIVNA, VID_OE, O_DEJUREN, AKTUAL)
+VALUES (2, '9000', 'Под. Варна', 'ВПН/Структура от Варна №1', '', 
+   (select kod_nma from ukaz_owner.kl_nma where ime_nma = 'Варна'), 1, 1, 1, NULL, NULL, NULL,
+   SYSDATE, NULL, 1, NULL, NULL, NULL, 'P', NULL, 1);
+   
+INSERT INTO UKAZ_OWNER.MIR (KOD_MIR, VPN, IMEES, IMEED, NSTAT,
+   KOD_NMA, KOD_VOE, KOD_EZ, KOD_NZN, KOD_RNV, KOD_LIM,  KOD_REJ,
+   DATA, MM, KOD_TIP, N_ZAP, DATA_ZAP, POZIVNA, VID_OE, O_DEJUREN, AKTUAL)
+VALUES (21, '9001', 'Варна - Север', 'Варна - Север', '', 
+   (select kod_nma from ukaz_owner.kl_nma where ime_nma = 'Варна'), 1, 1, 1, NULL, NULL, NULL,
+   SYSDATE, NULL, 1, NULL, NULL, NULL, 'P', NULL, 1);
+   
+INSERT INTO UKAZ_OWNER.MIR (KOD_MIR, VPN, IMEES, IMEED, NSTAT,
+   KOD_NMA, KOD_VOE, KOD_EZ, KOD_NZN, KOD_RNV, KOD_LIM,  KOD_REJ,
+   DATA, MM, KOD_TIP, N_ZAP, DATA_ZAP, POZIVNA, VID_OE, O_DEJUREN, AKTUAL)
+VALUES (22, '9002', 'Варна - Юг', 'Варна - Юг', '', 
+   (select kod_nma from ukaz_owner.kl_nma where ime_nma = 'Варна'), 1, 1, 1, NULL, NULL, NULL,
+   SYSDATE, NULL, 1, NULL, NULL, NULL, 'P', NULL, 1);
+   
+
+-------------------------------------------------------------------------------------------------
+
+INSERT INTO UKAZ_OWNER.STRM (KOD_MIR, KP_STRM, NIVO_STRM, STR_KOD_MIR, POREDEN_STRM, LAST_STRM)
+VALUES (10000, '0', 1, NULL, 1, 1);
+
+INSERT INTO UKAZ_OWNER.STRM (KOD_MIR, KP_STRM, NIVO_STRM, STR_KOD_MIR, POREDEN_STRM, LAST_STRM)
+VALUES (1, '0 1', 1, 10000, 1, 1);
+
+INSERT INTO UKAZ_OWNER.STRM (KOD_MIR, KP_STRM, NIVO_STRM, STR_KOD_MIR, POREDEN_STRM, LAST_STRM)
+VALUES (11, '0 1 1', 1, 1, 1, 1);
+
+INSERT INTO UKAZ_OWNER.STRM (KOD_MIR, KP_STRM, NIVO_STRM, STR_KOD_MIR, POREDEN_STRM, LAST_STRM)
+VALUES (111, '0 1 1 1', 1, 11, 1, 1);
+
+INSERT INTO UKAZ_OWNER.STRM (KOD_MIR, KP_STRM, NIVO_STRM, STR_KOD_MIR, POREDEN_STRM, LAST_STRM)
+VALUES (112, '0 1 1 2', 1, 11, 1, 1);
+
+INSERT INTO UKAZ_OWNER.STRM (KOD_MIR, KP_STRM, NIVO_STRM, STR_KOD_MIR, POREDEN_STRM, LAST_STRM)
+VALUES (12, '0 1 2', 1, 1, 1, 1);
+
+INSERT INTO UKAZ_OWNER.STRM (KOD_MIR, KP_STRM, NIVO_STRM, STR_KOD_MIR, POREDEN_STRM, LAST_STRM)
+VALUES (121, '0 1 2 1', 1, 12, 1, 1);
+
+INSERT INTO UKAZ_OWNER.STRM (KOD_MIR, KP_STRM, NIVO_STRM, STR_KOD_MIR, POREDEN_STRM, LAST_STRM)
+VALUES (122, '0 1 2 2', 1, 12, 1, 1);
+
+INSERT INTO UKAZ_OWNER.STRM (KOD_MIR, KP_STRM, NIVO_STRM, STR_KOD_MIR, POREDEN_STRM, LAST_STRM)
+VALUES (2, '0 2', 1, 10000, 1, 1);
+
+INSERT INTO UKAZ_OWNER.STRM (KOD_MIR, KP_STRM, NIVO_STRM, STR_KOD_MIR, POREDEN_STRM, LAST_STRM)
+VALUES (21, '0 2 1', 1, 2, 1, 1);
+
+INSERT INTO UKAZ_OWNER.STRM (KOD_MIR, KP_STRM, NIVO_STRM, STR_KOD_MIR, POREDEN_STRM, LAST_STRM)
+VALUES (22, '0 2 2', 1, 2, 1, 1);

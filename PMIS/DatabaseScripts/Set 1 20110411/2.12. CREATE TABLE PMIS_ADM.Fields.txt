@@ -1,0 +1,2376 @@
+﻿CREATE TABLE PMIS_ADM.Fields(FieldID number NOT NULL,
+                             FieldType varchar2(20),
+                             FieldKey varchar2(500) NOT NULL,
+                             FieldName varchar2(300),
+                             Seq number
+                            );
+
+ALTER TABLE PMIS_ADM.Fields ADD CONSTRAINT FieldTypes_PK PRIMARY KEY(FieldID);
+ALTER TABLE PMIS_ADM.Fields ADD CONSTRAINT Fields_UNQ UNIQUE (FieldKey);
+
+
+CREATE SEQUENCE PMIS_ADM.Fields_ID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+CREATE TRIGGER PMIS_ADM.TRG_Fields_INSERT
+BEFORE INSERT ON PMIS_ADM.Fields
+FOR EACH ROW
+BEGIN
+   SELECT PMIS_ADM.Fields_ID_SEQ.nextval INTO :new.FieldID FROM dual;
+END;
+/
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_Prot_ProtNumber', 'Протокол номер', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('date', 'HS_Prot_ProtDate', 'Протокол дата', 2);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_Prot_ProtType', 'Измерване на', 3);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_Prot_MilitaryUnit', 'ВПН/Структура', 4);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_Prot_Object', 'Обект', 5);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_Prot_Requesting', 'Заявител', 6);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('date', 'HS_Prot_MeasurementDate', 'Дата на измерване', 7);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_Prot_NormativeDocument', 'Нормативен документ', 8);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_Prot_MeasurementMethod', 'Метод на измерване', 9);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_Prot_Address', 'Адрес', 10);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_Prot_UsedEquipments', 'Използвана апаратура', 11);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_Prot_PeoplePresent', 'Присъствали на измерванията', 12);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_ProtItem_WorkingPlace', 'Място на измерване', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_ProtItem_WorkingPeople', 'Брой хора', 2);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_ProtItem_Measure', 'Измервана величина', 3);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_ProtItem_Measured', 'Измерена стойност', 4);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_ProtItem_Threshold', 'Гранична стойност', 5);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_ProtItem_Other', 'Допълнителна информация', 6);
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'ADM_Role_RoleName', 'Име', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'ADM_Role_Module', 'Модул', 2);
+
+
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_InvProt_ProtNumber', 'Протокол номер', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('date', 'HS_InvProt_ProtDate' , 'Протокол дата', 2);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('date', 'HS_InvProt_ProtDateFrom', 'Дата от', 3);
+        
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('date', 'HS_InvProt_ProtDateТо', 'Дата до', 4);
+        
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_InvProt_LegalReason', 'Основание', 5);
+       
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_InvProt_ОrderNum', 'Заповед', 6);
+     
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_InvProt_CommissionChairman', 'Председател на комисията', 7);
+     
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_InvProt_CommissionMember1', 'Членове на комисията (I)', 8);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_InvProt_CommissionMember2', 'Членове на комисията (II)', 9);
+        
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_InvProt_Injured', 'Пострадал', 10);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_InvProt_AccidentDateAndPlace', 'Място и време на злополуката', 11);
+       
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_InvProt_Witnesses', 'Свидетели', 12);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_InvProt_JobGeneralDesc', 'Обща характеристика на работата', 13);
+       
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_InvProt_SpecificTaskActivity', 'Специфично физическо действие', 14);
+        
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_InvProt_DeviationOfNormalActivity', 'Отклонение', 15);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_InvProt_InjuryDetails', 'Начин на увреждане', 16);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_InvProt_AnalysisOfAccidentCauses', 'Анализ', 17);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_InvProt_LegalViolations', 'Допуснати нарушения', 18);
+        
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_InvProt_Itruders', 'Лица допуснали нарушенията', 19);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_InvProt_ActionsToAvoid', 'Необходими мерки', 20);
+       
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_InvProt_Еnclosures', 'Приложения', 21);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_InvProt_AccDeclarationNumber', 'Номер декларация за злополука', 22);
+
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_Committee_CommitteeType', 'Тип', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_Committee_MilitaryForceType', 'Вид ВС', 2);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_Committee_MilitaryUnit', 'ВПН/Структура', 3);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_CommitteeMember_PersonName', 'Име', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_CommitteeMember_PersonIdentNumber', 'ЕГН', 2);
+
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'ADM_UIItemsPerRole_AccessLevel', 'Състояние', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('bool', 'ADM_UIItemsPerRole_AccessOnlyOwnData', 'Достъп само до създадените от него записи', 2);
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'ADM_MilStructureAccess_MilDepartment', 'Военно окръжие', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'ADM_MilStructureAccess_MilUnit', 'ВПН/Структура', 1);
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'ADM_User_Username', 'Потребителско име', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'ADM_User_Password', 'Парола', 2);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'ADM_User_OracleUsername', 'Oracle потребителско име', 3);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'ADM_User_OraclePassword', 'Oracle парола', 4);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('bool', 'ADM_User_Active', 'Активен', 5);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'ADM_User_FirstName', 'Име', 6);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'ADM_User_MiddleName', 'Презиме', 7);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'ADM_User_LastName', 'Фамилия', 8);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'ADM_User_Email', 'Email', 9);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'ADM_User_Phone', 'Телефон', 10);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'ADM_User_ADMRole', 'Роля в модул "Администратор"', 11);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'ADM_User_HSRole', 'Роля в модул "Безопасност на труда"', 12);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'ADM_User_APPLRole', 'Роля в модул "Кандидати"', 13);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'ADM_User_RESRole', 'Роля в модул "Резерв"', 14);
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_Lists_ProtocolTypes_ProtocolTypeName', 'Измерване', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_Lists_Measures_MeasureName', 'Измервана величина', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_Lists_Measures_Threshold', 'Гранична стойност', 2);
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_Lists_DegreeOfDangers_TableSeq', 'Номер за подредба', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_Lists_DegreeOfDangers_TableValue', 'Степен на опасност', 2);
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('date', 'HS_RiskAssess_PreparDate', 'Дата на изготвяне', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_RiskAssess_RegNumber', 'Регистрационен номер', 2);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_RiskAssess_MilitaryForceType', 'Вид ВС', 3);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_RiskAssess_MilitaryUnit', 'ВПН/Структура', 4);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_RiskAssess_Comments', 'Коментари', 5);
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_RiskRemoveRecom_Recommendation', 'Препоръка', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('date', 'HS_RiskRemoveRecom_DueDate', 'Срок', 2);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('date', 'HS_RiskRemoveRecom_ExecutionDate', 'Дата на изпълнение', 3);
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_UnsafeWCondNotices_NoticeNumber', 'Номер на сведение', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('date', 'HS_UnsafeWCondNotices_NoticeDate', 'Дата', 2);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_UnsafeWCondNotices_ReportingPerson', 'Докладващо лице', 3);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_UnsafeWCondNotices_MilitaryUnit', 'ВПН/Структура', 4);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_UnsafeWCondNotices_ViolationPlace', 'Местонахождение на нарушението', 5);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_UnsafeWCondNotices_ResponsiblePerson', 'Отговорно длъжностно лице', 6);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_UnsafeWCondNotices_DangerDegree', 'Степен на опасност', 7);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_UnsafeWCondNotices_DescOfUnsafeCondition', 'Описание на опасно условие', 8);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_UnsafeWCondNotices_ListOfViolatedRequirements', 'Лист от изискванията за условия на труд', 9);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('date', 'HS_UnsafeWCondNotices_RiskReducingDueDate', 'Крайна дата за приключване на процедурите за намаляване на риска', 10);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_UnsafeWCondNotices_TempProcedures', 'Временни процедури', 11);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_UnsafeWCondNotices_FinalProcedures', 'Окончателни процедури', 12);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_UnsafeWCondNotices_TempProceduresEstResult', 'Прогнозна стойност за временните процедури', 13);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_UnsafeWCondNotices_FinalProceduresEstResult', 'Прогнозна стойност за окончателните процедури', 14);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_UnsafeWCondNotices_AdditionalInfoContactPerson', 'Лице за връзка', 15);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_UnsafeWCondNotices_AdditionalContactInfo', 'Информация за връзка', 16);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_Lists_IndicatorTypes_IndicatorTypeName', 'Наименование', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_Lists_IndicatorTypes_Seq', 'Подредба', 2);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_Lists_Indicators_IndicatorTypeName', 'Елемент на специфичните условия на труд', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_Lists_Indicators_IndicatorName', 'Наименование', 2);
+
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_DeclAcc_DeclarationNumber', 'Декларация номер', 1 );
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('date', 'HS_DeclAcc_DeclarationDate', 'Декларация дата', 2 );
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_DeclAcc_ReferenceNumber', 'Входящ номер', 3 );
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('date', 'HS_DeclAcc_ReferenceDate', 'От дата', 4 );
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_DeclAcc_FileNumber', 'Досие номер', 5 );
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('number', 'HS_DeclAcc_EmployerId', 'Осигурител - Пълно наименование', 6 );
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_DeclAcc_EmplEik', 'Осигурител - ЕИК по регистър ', 7 );
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('number', 'HS_DeclAcc_EmplCityId', 'Осигурител - Град', 8 );
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_DeclAcc_EmplStreet', 'Осигурител - Улица', 9 );
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_DeclAcc_EmplStreetNum', 'Осигурител - Улица номер', 10 );
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_DeclAcc_EmplDistrict', 'Осигурител - Жк', 11 );
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_DeclAcc_EmplBlock', 'Осигурител - Блок', 12 );
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_DeclAcc_EmplEntrance', 'Осигурител - Вход', 13 );
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_DeclAcc_EmplFloor', 'Осигурител - Етаж', 14 );
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_DeclAcc_EmplApt', 'Осигурител - Ап', 15 );
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_DeclAcc_EmplPhone', 'Осигурител - Тел', 16 );
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_DeclAcc_EmplFax', 'Осигурител - Факс', 17 );
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_DeclAcc_EmplEmail', 'Осигурител - E-mail', 18 );
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('number', 'HS_DeclAcc_EmplNumberOfEmployees', 'Осигурител - Списъчен брой на работниците ', 19 );
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('number', 'HS_DeclAcc_EmplFemaleEmployees', 'Осигурител - От тях жени', 20 );
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_DeclAcc_WorkerFullName', 'Пострадал - Трите имена', 21 );
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_DeclAcc_WorkerEgn', 'Пострадал - ЕГН', 22 );
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('number', 'HS_DeclAcc_WCityId', 'Пострадал - Град', 23 );
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_DeclAcc_WStreet', 'Пострадал - Улица', 24 );
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_DeclAcc_WStreetNum', 'Пострадал - Улица номер', 25 );
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_DeclAcc_WDistrict', 'Пострадал - Жк', 26 );
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_DeclAcc_WBlock', 'Пострадал - Блок', 27 );
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_DeclAcc_WEntrance', 'Пострадал - Вход', 28 );
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_DeclAcc_WFloor', 'Пострадал - Етаж', 29 );
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_DeclAcc_WApt', 'Пострадал - Ап', 30 );
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_DeclAcc_WPhone', 'Пострадал - Тел', 31 );
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_DeclAcc_WFax', 'Пострадал - Факс', 32 );
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_DeclAcc_WEmail', 'Пострадал - E-mail', 33 );
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('date', 'HS_DeclAcc_WBirthDate', 'Пострадал - Дата на раждане', 34 );
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('number', 'HS_DeclAcc_WGender', 'Пострадал - Пол', 35 );
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_DeclAcc_WCitizenship', 'Пострадал - Гражданство', 36 );
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('number', 'HS_DeclAcc_WHireType', 'Пострадал - Нает за определено/неопределено раб. време', 37 );
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('number', 'HS_DeclAcc_WWorkTime', 'Пострадал - Нает за пълно/непълно раб. време', 38 );
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('date', 'HS_DeclAcc_WHireDate', 'Пострадал - Дата на постъпване', 39 );
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_DeclAcc_WJobTitle', 'Пострадал - Професия по НКП', 40 );
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_DeclAcc_WJobCode', 'Пострадал - Код по НКП', 41 );
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('number', 'HS_DeclAcc_WJobCategory', 'Пострадал - Категория труд', 42 );
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('number', 'HS_DeclAcc_WYearsOnService', 'Пострадал - Трудов стаж', 43 );
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_DeclAcc_WBranch', 'Пострадал - Административна единица', 44 );
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('date', 'HS_DeclAcc_AccDateTime', 'Злополука - Дата , час, минути', 45 );
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('number', 'HS_DeclAcc_AccWorkTime1From', 'Работно време I - Начало', 46 );
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('number', 'HS_DeclAcc_AccWorkTime1To', 'Работно време I - Край', 47 );
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('number', 'HS_DeclAcc_AccWorkTime2From', 'Работно време II - Начало', 48 );
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('number', 'HS_DeclAcc_AccWorkTime2To', 'Работно време II - Край', 49 );
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_DeclAcc_AccPlace', 'Злополука - Място', 54 );
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('number', 'HS_DeclAcc_AccCityId', 'Злополука - Град', 55 );
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_DeclAcc_AccStreet', 'Злополука - Улица', 56 );
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_DeclAcc_AccStreetNum', 'Злополука - Улица номер', 57 );
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_DeclAcc_AccPhone', 'Злополука - Телефон', 58 );
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('number', 'HS_DeclAcc_AccHappenedAt', 'Злополука - Станала на', 59 );
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_DeclAcc_AccJobType', 'Злополука - Вид работа', 60 );
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_DeclAcc_AccTaskType', 'Злополука - Специфично действие', 61 );
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_DeclAcc_AccDeviationFromTask', 'Злополука - Отклонение от нормалните действия', 62 );
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_DeclAcc_AccInjurDesc', 'Злополука - Начин на увреждането', 63 );
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('number', 'HS_DeclAcc_AccInjHasRights', 'Злополука - Необходима правоспособност', 64 );
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('number', 'HS_DeclAcc_AccLegalRef', 'Злополука - По член', 65 );
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_DeclAcc_AccPlannedActions', 'Злополука - Набелязани мерки:', 66 );
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('number', 'HS_DeclAcc_AccLostDays', 'Злополука - Загубени календарни дни', 67 );
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_DeclAcc_HarmType', 'Увреждане - Вид', 68 );
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_DeclAcc_HarmBodyParts', 'Увреждане - Увредени части', 69 );
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('number', 'HS_DeclAcc_HarmResult', 'Увреждане - Последици', 70 );
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_DeclAcc_WitnessFullName', 'Свидетел - Трите имена', 71 );
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('number', 'HS_DeclAcc_WitCityId', 'Свидетел - Град', 72 );
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_DeclAcc_WitStreet', 'Свидетел - Улица', 73 );
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_DeclAcc_WitStreetNum', 'Свидетел - Улица номер', 74 );
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_DeclAcc_WitDistrict', 'Свидетел - Жк', 75 );
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_DeclAcc_WitBlock', 'Свидетел - Блок', 76 );
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_DeclAcc_WitEntrance', 'Свидетел - Вход', 77 );
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_DeclAcc_WitFloor', 'Свидетел - Етаж', 78 );
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_DeclAcc_WitApt', 'Свидетел - Ап', 79 );
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_DeclAcc_WitPhone', 'Свидетел - Тел', 80 );
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_DeclAcc_WitFax', 'Свидетел - Факс', 81 );
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_DeclAcc_WitEmail', 'Свидетел - E-mail', 82 );
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_DeclAcc_HeirFullName', 'Наследник - Трите имена', 83 );
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_DeclAcc_HeirEgn', 'Наследник - ЕГН', 84 );
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('number', 'HS_DeclAcc_HeirCityid', 'Наследник - Град', 85 );
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_DeclAcc_HeirStreet', 'Наследник - Улица', 86 );
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_DeclAcc_HeirStreetNum', 'Наследник - Улица номер', 87 );
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_DeclAcc_HeirDistrict', 'Наследник - Жк', 88 );
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_DeclAcc_HeirBlock', 'Наследник - Блок', 89 );
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_DeclAcc_HeirEntrance', 'Наследник - Вход', 90 );
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_DeclAcc_HeirFloor', 'Наследник - Етаж', 91 );
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_DeclAcc_HeirApt', 'Наследник - Ап', 92 );
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_DeclAcc_HeirPhone', 'Наследник - Тел', 93 );
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_DeclAcc_HeirFax', 'Наследник - Факс', 94 );
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_DeclAcc_HeirEmail', 'Наследник - E-mail', 95 );
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('number', 'HS_DeclAcc_WCurrentJobYearsOnService', 'Злополука - Трудов стаж за посочената професия', 96 );
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_DeclAcc_AccDistrict', 'Злополука - Жк', 97 );
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_DeclAcc_AccBlock', 'Злополука - Блок', 98 );
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_DeclAcc_AccEntrance', 'Злополука - Вход', 99 );
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_DeclAcc_AccFloor', 'Злополука - Етаж', 100 );
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_DeclAcc_AccApt', 'Злополука - Ап', 101 );
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_DeclAcc_AccFax', 'Злополука - Факс', 102 );
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_DeclAcc_AccEmail', 'Злополука - E-mail', 103 );
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_DeclAcc_AccCountry', 'Злополука - Държава', 104 );
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('number', 'HS_DeclAcc_AplicantType', 'Подаващ декларацията', 105 );
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_DeclAcc_AplicantPosition', 'Длъжност на подаващия декларацията осигурител ', 106 );
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_DeclAcc_AplicantName', 'Име и фамилия на подаващия декларацията осигурител', 107 );
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_WCondCard_MilitaryUnit', 'ВПН/Структура', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_WCondCard_CardNumber', 'Номер на карта', 2);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_WCondCard_JobType', 'Работно място(вид работа)', 3);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('number', 'HS_WCondCard_WorkersCount', 'Брой на работещите', 4);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('number', 'HS_WCondCard_ComplexAssessment', 'Комплексна оценка', 5);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('number', 'HS_WCondCard_ComplexAssessmentPointValue', 'Стойност на една точка от комплексната оценка', 6);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('number', 'HS_WCondCard_AdditionalReward', 'Размер на допълнителното трудово възнаграждение', 7);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_WCondCardItem_IndicatorTypeName', 'Елемент', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_WCondCardItem_IndicatorName', 'Показател', 2);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('number', 'HS_WCondCardItem_Value', 'Стойност', 3);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('number', 'HS_WCondCardItem_Rate', 'Степен', 4);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('number', 'HS_WCondCardItem_Assessment', 'Оценка', 5);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('date', 'HS_TrainingHistory_TrainingDate', 'Дата', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('number', 'HS_TrainingHistory_TrainingYear', 'Година на обучение', 2);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_TrainingHistory_TrainingDesc', 'Обучение', 3);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_TrainingHistory_LegalRef', 'Наредба', 4);
+
+
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'APPL_VacAnn_OrderNum', 'Заповед номер', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('date', 'APPL_VacAnn_OrderDate', 'Заповед дата', 2);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('date', 'APPL_VacAnn_EndDate', 'Крайна дата', 3);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('number', 'APPL_VacAnn_MaxPositions', 'Макс. длъжности', 4);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'APPL_VacAnn_Status', 'Текущ статус', 5);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'APPL_VacAnn_Type', 'Текущ статус', 6);
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'APPL_VacAnnExam_Name', 'Изпит', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'APPL_VacAnnDocument_Name', 'Документ', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'APPL_VacAnnPos_MilitaryUnit', 'ВПН/Структура', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'APPL_VacAnnPos_PositionName', 'Длъжност', 2);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'APPL_VacAnnPos_PositionCode', 'Код на длъжността', 3);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'APPL_VacAnnPos_Education', 'Образование', 4);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'APPL_VacAnnPos_AccLevelNATO', 'Ниво на достъп до КИ (НАТО)', 5);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'APPL_VacAnnPos_AccLevelBG', 'Ниво на достъп до КИ (РБ)', 6);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'APPL_VacAnnPos_AccLevelEU', 'Ниво на достъп до КИ (ЕС)', 7);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'APPL_VacAnnPos_MandatoryReq', 'Задължителни изисквания', 8);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'APPL_VacAnnPos_AdditionalReq', 'Допълнителни изисквания', 9);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'APPL_VacAnnPos_SpecificReq', 'Специфични изисквания', 10);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'APPL_VacAnnPos_RespMilitaryUnit', 'ВПН/Структура отговорна за конкурса', 11);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'APPL_VacAnnPos_CompPlaceAndDate', 'Дата и място на конкурса', 12);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'APPL_VacAnnPos_ContactPhone', 'Тел. за контакт', 13);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('number', 'APPL_VacAnnPos_PositionsCnt', 'Брой длъжности', 14);
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'ADM_Lists_DrivingLicenseCategories_Category', 'Категория', 1);
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'ADM_Lists_MilitaryDepartments_MilitaryDepartmentName', 'Военно окръжие', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'ADM_Lists_Administrations_AdministrationName', 'Ведомство', 1);
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'ADM_Lists_MilitaryForceTypes_MilitaryForceTypeName', 'Въоръжена сила', 1);
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'APPL_ApplicantsPosition_DocStatus', 'Статус на документите', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'APPL_ApplicantsPosition_Status', 'Статус', 2);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('number', 'APPL_ApplicantsPosition_Rating', 'Бал', 3);
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'APPL_ApplicantsEdu_Education', 'Образование', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'APPL_ApplicantsEdu_Subject', 'Специалност', 2);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('number', 'APPL_ApplicantsEdu_Year', 'Година', 3);
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'APPL_ApplicantsLang_Language', 'Език', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'APPL_ApplicantsLang_Write', 'Писмено', 2);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'APPL_ApplicantsLang_Speak', 'Говоримо', 3);
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'APPL_Applicants_DocumentStatus', 'Статус на представен документ', 1);
+
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'APPL_Applicants_ExamStatus', 'Статус на изпитите', 1);
+
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('number', 'APPL_Applicants_ExamMark', 'Оценка на изпит', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('number', 'APPL_Applicants_ExamPoints', 'Точки на изпити', 2);
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'APPL_Applicants_ClInformationAccLevelBG', 'Ниво на достъп до КИ (РБ)', 1);
+
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_EquipResReq_RequestNum', 'Заявка номер', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('date', 'RES_EquipResReq_RequestDate', 'Заявка дата', 2);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_EquipResReq_Status', 'Статус на заявката', 3);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_EquipResReq_MilitaryUnit', 'ВПН/Структура', 4);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_EquipResReq_Administration', 'Ведомство', 5);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_EquipResReq_Command_Name', 'Команда', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_EquipResReq_Command_Suffix', 'Секция', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_EquipResReq_Command_AppointmentTime', 'Време за явяване', 2);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_EquipResReq_Command_MilReadiness', 'Готовност', 3);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_EquipResReq_Command_DeliveryCity', 'Населено място за доставяне', 4);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_EquipResReq_Command_DeliveryPlace', 'Място за доставяне', 5);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_EquipResReq_Command_Position_Position', 'Длъжност', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_EquipResReq_Command_Position_MilRepSpecialities', 'ВОС', 2);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_EquipResReq_Command_Position_MilRank', 'Звание', 3);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('number', 'RES_EquipResReq_Command_Position_ReservistsCount', 'Запасни', 4);
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_EquipResReq_MilitaryDepartment', 'Военно окръжие', 1);
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_EquipResReq_MilitaryDepartment_ReservistsCount', 'Запасни', 2);
+
+
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_EquipResReq_Punkt_City', 'Населено място', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_EquipResReq_Punkt_Place', 'Място за извозване', 2);
+
+
+
+
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'APPL_PotencialApplicants_Comments', 'Коментар', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'APPL_PotencialApplicants_LastApperiance', 'Дата на последно явяване', 2);
+
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'ADM_PersonDetails_PermAdr_City', 'Постоянен адрес - Населено място', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'ADM_PersonDetails_PermAdr_District', 'Постоянен адрес - Район', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'ADM_PersonDetails_PermAdr_Address', 'Постоянен адрес - Адрес', 2);
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'ADM_PersonDetails_PresAdr_City', 'Настоящ адрес - Населено място', 3);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'ADM_PersonDetails_PresAdr_District', 'Настоящ адрес - Район', 3);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'ADM_PersonDetails_PresAdr_Address', 'Настоящ адрес - Адрес', 4);
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'ADM_PersonDetails_HomePhone', 'Домашен телефон', 5);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'ADM_PersonDetails_MobilePhone', 'Мобилен телефон', 6);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'ADM_PersonDetails_BusinessPhone', 'Служебен телефон', 6);
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'ADM_PersonDetails_Email', 'E-mail', 7);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'ADM_PersonDetails_DrivingLicence', 'Шофьорска книжка', 8);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('bool', 'ADM_PersonDetails_HasMilitaryService', 'Бил ли е на военна служба?', 9);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'ADM_PersonDetails_ServeInMilitaryUnit', 'Служещ в ВПН/Структура', 10);
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'ADM_PersonDetails_FirstName', 'Име', 11);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'ADM_PersonDetails_LastName', 'Фамилия', 12);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'ADM_PersonDetails_Gender', 'Пол', 13);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'ADM_PersonDetails_MilitaryRank', 'Звание', 14);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'ADM_PersonDetails_Initials', 'Инициали', 15);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'ADM_PersonDetails_IDCardNumber', 'Лична карта номер', 16);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'ADM_PersonDetails_IDCardIssuedBy', 'Лична карта издадена от', 17);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'ADM_PersonDetails_IDCardIssueDate', 'Лична карта издадена на', 18);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'ADM_PersonDetails_BirthCountry', 'Месторождение - държава', 19);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'ADM_PersonDetails_BirthCity', 'Месторождение - населено място', 20);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'ADM_PersonDetails_MilitaryTraining', 'Военна подготовка', 21);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'ADM_PersonDetails_RecordOfServiceSeries', 'Военна книжка серия', 22);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'ADM_PersonDetails_RecordOfServiceNumber', 'Военна книжка номер', 24);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('bool', 'ADM_PersonDetails_RecordOfServiceCopy', 'Военна книжка дубликат', 25);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'ADM_PersonDetails_MaritalStatus', 'Семейно положение', 26);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'ADM_PersonDetails_ParentsContact', 'Родители за контакт', 27);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'ADM_PersonDetails_ChildCount', 'Брой деца', 28);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'ADM_PersonDetails_SizeClothing', 'Номер на облекло', 29);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'ADM_PersonDetails_SizeHat', 'Размер на шапка', 30);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'ADM_PersonDetails_SizeShoes', 'Размер на обувки', 31);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'ADM_PersonDetails_PersonHeight', 'Ръст', 32);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'ADM_PersonDetails_OtherInfo', 'Лични данни', 33);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('bool', 'ADM_PersonDetails_IsAbroad', 'В чужбина', 34);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'ADM_PersonDetails_AbroadCountry', 'Държава на пребиваване в чужбина', 35);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('date', 'ADM_PersonDetails_AbroadSince', 'Начална дата на пребиваване в чужбина', 36);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('number', 'ADM_PersonDetails_AbroadPeriod', 'За период на пребиваване в чужбина', 37);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'ADM_PersonDetails_WorkCompany', 'Фирма на месторабота', 38);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'ADM_PersonDetails_WorkPositionTitle', 'Длъжност', 39);
+
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'APPL_Cadets_Specialization', 'Специализация', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('bool', 'APPL_Cadets_Specialization_IsRanked', 'Класиран', 2);
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'APPL_CadetsEdu_Education', 'Образование', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'APPL_CadetsEdu_Subject', 'Специалност', 2);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('number', 'APPL_CadetsEdu_Year', 'Година', 3);
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'APPL_CadetsLang_Language', 'Език', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'APPL_CadetsLang_Write', 'Писмено', 2);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'APPL_CadetsLang_Speak', 'Говоримо', 3);
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'APPL_MilitSchoolSpecializations_SpecializationName', 'Специализация', 1);
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_CivilEducation_Education', 'Образователна степен', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_CivilEducation_EducationSubject', 'Специалност', 2);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('number', 'RES_CivilEducation_GraduateYear', 'Година на завършване', 3);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_CivilEducation_LearningMethod', 'Начин на обучение', 4);
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Lists_SizeClothing_TableSeq', 'Номер за подредба', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Lists_SizeClothing_TableValue', 'Размер на дрехи', 2);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Lists_SizeHat_TableSeq', 'Номер за подредба', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Lists_SizeHat_TableValue', 'Размер на шапка', 2);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Lists_SizeShoes_TableSeq', 'Номер за подредба', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Lists_SizeShoes_TableValue', 'Размер на обувки', 2);
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_ResAppointment_ReqOrderNumber', 'Номер на заявка', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_ResAppointment_ReceiptAppointmentDate', 'Дата на получаване на назначение', 2);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_ResAppointment_MilitaryCommand', 'Команда', 3);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_ResAppointment_ReservistReadiness', 'Начин на явяване', 4);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_ResAppointment_MilitaryRank', 'На звание', 5);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_ResAppointment_MilReportingSpeciality', 'Назначен на ВОС', 6);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_ResAppointment_Position', 'Длъжност', 7);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_ResAppointment_AppointmentTime', 'Време за явяване', 8);
+
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Reservist_MilRepStatus_MilRepStatus', 'Състояние по отчета', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('date', 'RES_Reservist_MilRepStatus_EnrolDate', 'Дата на зачисляване', 2);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Reservist_MilRepStatus_SourceMilDept', 'ВО, от което идва', 3);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Reservist_MilRepStatus_VoluntaryContractNumber', 'Договор №', 4);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('date', 'RES_Reservist_MilRepStatus_VoluntaryContractDate', 'от дата', 5);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('number', 'RES_Reservist_MilRepStatus_VoluntaryDurationMonths', 'Срок', 6);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Reservist_MilRepStatus_VoluntaryFulfilPlace', 'Място на изпълнение', 7);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Reservist_MilRepStatus_VoluntaryMilitaryRank', 'На звание', 8);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Reservist_MilRepStatus_VoluntaryMilitaryPosition', 'Длъжност', 9);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Reservist_MilRepStatus_VoluntaryMilRepSpeciality', 'ВОС', 10);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('date', 'RES_Reservist_MilRepStatus_RemovedDate', 'Изключен от отчет', 11);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Reservist_MilRepStatus_RemovedReason', 'Причина за изключване', 12);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Reservist_MilRepStatus_MilEmployedAdministration', 'Ведомство', 13);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('date', 'RES_Reservist_MilRepStatus_MilEmployedDate', 'Дата', 14);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Reservist_MilRepStatus_TemporaryRemovedReason', 'Причина за временно снемане', 15);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('date', 'RES_Reservist_MilRepStatus_TemporaryRemovedDate', 'Начална дата', 16);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('number', 'RES_Reservist_MilRepStatus_TemporaryRemovedDuration', 'Продължителност', 17);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Reservist_MilRepStatus_PostponeType', 'Вид отсрочване', 18);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('number', 'RES_Reservist_MilRepStatus_PostponeYear', 'За коя година', 19);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Reservist_MilRepStatus_PostponePersonalCategory', 'Категория персонал', 20);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Reservist_MilRepStatus_DestMilDepartment', 'ВО, в което отива', 21);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('date', 'RES_Reservist_MilRepStatus_DischargeDate', 'Дата на отчисляване', 22);
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Reservist_MilRepStatus_Administration', 'Работил/служил в', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Reservist_MilRepStatus_ClInformationAccLevelBg', 'Вид допуск', 2);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Reservist_MilRepStatus_ClInformationAccLevelBgExpDate', 'Валиден до', 3);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Reservist_MilRepStatus_GroupManagementSection', 'ГРС', 4);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Reservist_MilRepStatus_Section', 'Секция', 5);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Reservist_MilRepStatus_Deliverer', 'Връчител', 6);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Reservist_MilRepStatus_Punkt', 'ПИ/КПП', 7);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Reservist_MilRepStatus_MedCertDate', 'Медицинско освидетелстване/Комисия от дата', 8);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Reservist_MilRepStatus_MedCertProtNum', 'Медицинско освидетелстване/Протокол', 9);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Reservist_MilRepStatus_MedCertConclusion', 'Медицинско освидетелстване/Решение', 10);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Reservist_MilRepStatus_PsychCertDate', 'Психологическа пригодност/Комисия от дата', 11);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Reservist_MilRepStatus_PsychCertProtNum', 'Психологическа пригодност/Протокол', 12);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Reservist_MilRepStatus_PsychCertConclusion', 'Психологическа пригодност/Решение', 13);
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Conviction_Conviction', 'Съдимост', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Conviction_ConvictionReason', 'Причина/наказание за съдимост', 2);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('date', 'RES_Conviction_DateFrom', 'От дата', 3);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('date', 'RES_Conviction_DateTo', 'До дата', 4);
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_DualCitizenship_Country', 'Държава', 1);
+
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Reservist_EduWork_Language_Language', 'Език', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Reservist_EduWork_Language_LevelOfKnowledge', 'Степен на владеене', 2);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Reservist_EduWork_Language_FormOfKnowledge', 'Форма на владеене', 3);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Reservist_EduWork_Language_Diploma', 'Диплома', 4);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Reservist_EduWork_Language_VacAnn', 'Номер на документа', 5);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('date', 'RES_Reservist_EduWork_Language_DateWhen', 'Дата на документа', 6);
+
+
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Reservist_EduWork_MltEdu_VU_MilitarySchool', 'Военно училище', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Reservist_EduWork_MltEdu_VU_MilitaryEducationType', 'Вид на военното образование', 2);
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Reservist_EduWork_MltEdu_VU_MilitarySchoolSubject', 'Военна специалност', 3);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Reservist_EduWork_MltEdu_VU_MilitaryArms', 'Род войска', 4);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('number', 'RES_Reservist_EduWork_MltEdu_VU_GraduateYear', 'Година на завършване', 5);
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Reservist_EduWork_MltEdu_VU_Country', 'Държава', 6);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Reservist_EduWork_MltEdu_VU_LearningMethod', 'Начин на обучение', 7);
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Reservist_EduWork_MltEdu_VA_MilitaryAcademy', 'Военна академия', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('bool', 'RES_Reservist_EduWork_MltEdu_VA_GstCode', 'ГЩ', 2);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Reservist_EduWork_MltEdu_VA_MilitarySubject', 'Военна специалност', 3);
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('number', 'RES_Reservist_EduWork_MltEdu_VA_DurationYear', 'Прод.(Години)', 4);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('number', 'RES_Reservist_EduWork_MltEdu_VA_GraduateYear', 'Година на завършване', 5);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Reservist_EduWork_MltEdu_VA_Country', 'Държава', 6);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Reservist_EduWork_MltEdu_VA_LearningMethod', 'Начин на обучение', 7);
+
+
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Reservist_EduWork_MltTrCource_TrainingCource', 'Курс', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('number', 'RES_Reservist_EduWork_MltTrCource_DurationMonth', 'Продължителност (месеци)', 2);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('number', 'RES_Reservist_EduWork_MltTrCource_DurationDay', 'Продължителност (дни)', 3);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('number', 'RES_Reservist_EduWork_MltTrCource_Level', 'Ниво', 4);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Reservist_EduWork_MltTrCource_Country', 'Държава', 5);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Reservist_EduWork_MltTrCource_VacAnn', 'Заповед', 6);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('date', 'RES_Reservist_EduWork_MltTrCource_DateWhen', 'Дата на заповедта', 7);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Reservist_EduWork_MltTrCource_CommanderRank', 'Подписал заповедта', 8);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('date', 'RES_Reservist_EduWork_MltTrCource_DateOfCource', 'Влиза в сила от', 9);
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Reservist_EduWork_MltTrCource_Language', 'Чужд език', 10);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Reservist_EduWork_MltTrCource_MilitarySchool', 'Място на провеждане', 11);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Reservist_EduWork_MltTrCource_Description', 'Наименование', 12);
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Lists_MilitaryReadinesses_MilitaryReadinessName', 'Готовност', 1);
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Lists_VehicleMakes_VehicleMakeName', 'Марка автомобил', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Lists_TractorMakes_TractorMakeName', 'Марка трактор', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Lists_EngEquipBaseMakes_EngEquipBaseMakeName', 'Марка инж. техника', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Lists_AviationOtherBaseMachineMakes_AviationOtherBaseMachineMakeName', 'Марка базова машина (спец. авиационна техника)', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Lists_TechnicsCategories_TechnicsCategoryName', 'Категория техника', 1);
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_EquipTechReq_RequestNum', 'Заявка номер', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('date', 'RES_EquipTechReq_RequestDate', 'Заявка дата', 2);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_EquipTechReq_Status', 'Статус на заявката', 3);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_EquipTechReq_MilitaryUnit', 'ВПН/Структура', 4);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_EquipTechReq_Administration', 'Ведомство', 5);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_EquipTechReq_Command_Name', 'Команда', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_EquipTechReq_Command_Suffix', 'Секция', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_EquipTechReq_Command_AppointmentTime', 'Време за явяване', 2);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_EquipTechReq_Command_MilReadiness', 'Готовност', 3);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_EquipTechReq_Command_DeliveryCity', 'Населено място за доставяне', 4);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_EquipTechReq_Command_DeliveryPlace', 'Място за доставяне', 5);
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_EquipTechReq_Command_Position_TechnicsType', 'Вид техника', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_EquipTechReq_Command_Position_Comment', 'Коментар', 2);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('number', 'RES_EquipTechReq_Command_Position_Count', 'Брой', 3);
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_EquipTechReq_MilitaryDepartment', 'Военно окръжие', 1);
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_EquipTechReq_MilitaryDepartment_Count', 'Брой', 2);
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_EquipTechReq_Punkt_City', 'Населено място', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_EquipTechReq_Punkt_Place', 'Място за извозване', 2);
+
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Reservist_EduWork_ScnTtl_ScientificTitle', 'Научно звание', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('number', 'RES_Reservist_EduWork_ScnTtl_Year', 'Година', 2);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Reservist_EduWork_ScnTtl_NumberProtocol', '№ Протокол', 3);
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Reservist_EduWork_ScnTtl_Desription', 'Научна специалност, къде е', 4);
+
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Reservist_MilRepSpec_MilRepSpec', 'ВОС', 1);
+
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Reservist_MilServ_ArchiveTitle_Title', 'Звание', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Reservist_MilServ_ArchiveTitle_VacAnn', '№ на заповедта', 2);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('date', 'RES_Reservist_MilServ_ArchiveTitle_DateArchive', 'Дата', 3);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('date', 'RES_Reservist_MilServ_ArchiveTitle_DateWhen', 'В сила от', 4);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Reservist_MilServ_ArchiveTitle_MilitaryCommanderRank', 'Подписал заповедта', 5);
+
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Reservist_MilServ_Penalty_Title', 'Наказание', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Reservist_MilServ_Penalty_VacAnnImposed', 'Заповед (наложена)', 2);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('date', 'RES_Reservist_MilServ_Penalty_DateImposed', 'Дата на заповед (наложена)', 3);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Reservist_MilServ_Penalty_MilitaryCommanderRankImposed', 'Наложил наказанието', 4);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Reservist_MilServ_Penalty_MilitaryCommanderRankCanceled', 'Отменил наказанието', 5);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Reservist_MilServ_Penalty_VacAnnCanceled', 'Заповед (отмяна)', 6);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('date', 'RES_Reservist_MilServ_Penalty_DateCanceled', 'Дата на заповед (отмяна)', 7);
+
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_MilitaryReportPersonDetails_IdentNumber', 'ЕГН', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_MilitaryReportPersonDetails_FirstName', 'Име', 2);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_MilitaryReportPersonDetails_LastName', 'Фамилия', 3);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_MilitaryReportPersonDetails_Initials', 'Инициали', 4);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_MilitaryReportPersonDetails_PermAdr_City', 'Постоянен адрес - Населено място', 5);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_MilitaryReportPersonDetails_PermAdr_District', 'Постоянен адрес - Район', 6);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_MilitaryReportPersonDetails_PermAdr_Address', 'Постоянен адрес - Адрес', 7);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_MilitaryReportPersonDetails_PresAdr_City', 'Настоящ адрес - Населено място', 8);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_MilitaryReportPersonDetails_PresAdr_District', 'Настоящ адрес - Район', 9);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_MilitaryReportPersonDetails_PresAdr_Address', 'Настоящ адрес - Адрес', 10);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_MilitaryReportPersonDetails_MilitaryDepartmentName', 'На отчет в', 11);
+
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Reservist_MilServ_Contract_DocumentType', 'Вид документ', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Reservist_MilServ_Contract_Number', 'Номер', 2);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('date', 'RES_Reservist_MilServ_Contract_DateWhen', 'Дата', 3);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('date', 'RES_Reservist_MilServ_Contract_DatePeriod', 'Изтича на', 4);
+
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Technics_VEHICLES_RegNumber', 'Регистрационен номер', 101);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Technics_VEHICLES_InventoryNumber', 'Инвентарен номер', 102);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Technics_VEHICLES_VehicleMake', 'Марка', 103);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Technics_VEHICLES_VehicleModel', 'Модел', 104);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Technics_VEHICLES_VehicleKind', 'Вид', 105);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Technics_VEHICLES_VehicleRoadability', 'Проходимост', 106);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('number', 'RES_Technics_VEHICLES_CarryingCapacity', 'Товароносимост (кг)', 107);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('date', 'RES_Technics_VEHICLES_FirstRegistrationDate', 'Дата на първата регистрация', 108);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('number', 'RES_Technics_VEHICLES_LoadingCapacity', 'Товароподемност (кг)', 109);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('date', 'RES_Technics_VEHICLES_LastAnnualTechnicalReviewDate', 'Дата на последен ГТП', 110);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Technics_VEHICLES_Seats', 'Брой места', 111);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('number', 'RES_Technics_VEHICLES_Mileage', 'Изминати километри', 112);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Technics_VEHICLES_VehicleEngineType', 'Двигател', 113);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Technics_VEHICLES_VehicleBodyType', 'Каросерия', 114);
+
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Technics_TRAILERS_RegNumber', 'Регистрационен номер', 101);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Technics_TRAILERS_InventoryNumber', 'Инвентарен номер', 102);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Technics_TRAILERS_TrailerKind', 'Вид', 103);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Technics_TRAILERS_TrailerType', 'Тип', 104);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('number', 'RES_Technics_TRAILERS_CarryingCapacity', 'Товароносимост (кг)', 105);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('date', 'RES_Technics_TRAILERS_FirstRegistrationDate', 'Дата на първата регистрация', 106);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('date', 'RES_Technics_TRAILERS_LastAnnualTechnicalReviewDate', 'Дата на последен ГТП', 107);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('number', 'RES_Technics_TRAILERS_Mileage', 'Изминати километри', 108);
+
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Technics_TRACTORS_RegNumber', 'Регистрационен номер', 101);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Technics_TRACTORS_InventoryNumber', 'Инвентарен номер', 102);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Technics_TRACTORS_TractorMake', 'Марка', 103);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Technics_TRACTORS_TractorModel', 'Модел', 104);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Technics_TRACTORS_TractorKind', 'Вид', 105);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Technics_TRACTORS_TractorType', 'Тип', 106);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('number', 'RES_Technics_TRACTORS_Power', 'Мощност', 107);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('date', 'RES_Technics_TRACTORS_FirstRegistrationDate', 'Дата на първата регистрация', 108);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('date', 'RES_Technics_TRACTORS_LastAnnualTechnicalReviewDate', 'Дата на последен ГТП', 110);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('number', 'RES_Technics_TRACTORS_Mileage', 'Изминати километри', 112);
+
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Technics_MOB_LIFT_EQUIP_RegNumber', 'Регистрационен номер', 113);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Technics_MOB_LIFT_EQUIP_InventoryNumber', 'Инвентарен номер', 114);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Technics_MOB_LIFT_EQUIP_MobLiftEquipKind', 'Вид', 115);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Technics_MOB_LIFT_EQUIP_MobLiftEquipType', 'Тип', 116);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('number', 'RES_Technics_MOB_LIFT_EQUIP_LoadingCapacity', 'Товароподемност', 117);
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Technics_ENG_EQUIP_RegNumber', 'Регистрационен номер', 101);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Technics_ENG_EQUIP_InventoryNumber', 'Инвентарен номер', 102);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Technics_ENG_EQUIP_EngEquipKind', 'Вид', 103);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Technics_ENG_EQUIP_EngEquipType', 'Тип', 104);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Technics_ENG_EQUIP_EngEquipBaseMake', 'Марка (базова машина)', 105);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Technics_ENG_EQUIP_EngEquipBaseModel', 'Модел (базова машина)', 106);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Technics_ENG_EQUIP_EngEquipBaseKind', 'Вид (базова машина)', 107);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Technics_ENG_EQUIP_EngEquipBaseType', 'Тип (базова машина)', 108);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Technics_ENG_EQUIP_EngEquipBaseEngineType', 'Вид гориво (базова машина)', 109);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('date', 'RES_Technics_ENG_EQUIP_BaseFirstRegDate', 'Дата на първата регистрация (базова машина)', 110);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('number', 'RES_Technics_ENG_EQUIP_BaseMileage', 'Изминати километри (базова машина)', 111);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('number', 'RES_Technics_ENG_EQUIP_WorkingBodyPerformancePerHour', 'Производителност за час (работен орган)', 112);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('date', 'RES_Technics_ENG_EQUIP_WorkingBodyFirstRegDate', 'Дата на първата регистрация (работен орган)', 113);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Technics_ENG_EQUIP_EngEquipWorkingBodyKind', 'Вид (работен орган)', 114);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Technics_ENG_EQUIP_EngEquipWorkBodyEngineType', 'Вид гориво (работен орган)', 115);
+
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Technics_VESSELS_VesselName', 'Име на плавателното средство', 101);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Technics_VESSELS_InventoryNumber', 'Инвентарен номер', 102);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Technics_VESSELS_VesselKind', 'Вид', 103);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Technics_VESSELS_VesselType', 'Тип', 104);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('number', 'RES_Technics_VESSELS_LoadDisplacement', 'Водоизместване - пълен', 105);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('number', 'RES_Technics_VESSELS_LightDisplacement', 'Водоизместване - празен', 106);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('number', 'RES_Technics_VESSELS_Length', 'Размери - дължина', 107);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('number', 'RES_Technics_VESSELS_Width', 'Размери - ширина', 108);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('number', 'RES_Technics_VESSELS_MaxHeight', 'Размери - макс. височина', 109);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('number', 'RES_Technics_VESSELS_MaxWadeLoad', 'Максимално газене - пълен', 110);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('number', 'RES_Technics_VESSELS_MaxWadeLight', 'Максимално газене - празен', 111);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('number', 'RES_Technics_VESSELS_Officers', 'Екипаж - офицери', 112);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('number', 'RES_Technics_VESSELS_Sailors', 'Екипаж - моряци', 113);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('number', 'RES_Technics_VESSELS_EnginePower', 'Мощност на двигателната установка', 114);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('number', 'RES_Technics_VESSELS_SpeedNodes', 'Скорост във възли', 115);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('date', 'RES_Technics_VESSELS_StopDate', 'Спиране на плавателния съд', 116);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Technics_VESSELS_StopReasons', 'Причини', 117);
+
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Technics_AVIATION_EQUIP_AirInvNumber', 'Инвентарен номер (въздухоплават. средства)', 101);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Technics_AVIATION_EQUIP_AviationAirKind', 'Вид (въздухоплават. средства)', 102);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Technics_AVIATION_EQUIP_AviationAirType', 'Тип (въздухоплават. средства)', 103);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Technics_AVIATION_EQUIP_AviationAirModel', 'Модел (въздухоплават. средства)', 104);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('number', 'RES_Technics_AVIATION_EQUIP_AirSeats', 'Брой места (въздухоплават. средства)', 105);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('number', 'RES_Technics_AVIATION_EQUIP_AirCarryingCapacity', 'Товароносимост (кг) (въздухоплават. средства)', 106);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('number', 'RES_Technics_AVIATION_EQUIP_AirMaxDistance', 'Максимален полет(км) (въздухоплават. средства)', 107);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('date', 'RES_Technics_AVIATION_EQUIP_AirLastTechnicalReviewDate', 'Дата на последния преглед (въздухоплават. средства)', 108);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Technics_AVIATION_EQUIP_OtherInvNumber', 'Инвентарен номер (друга спец. техника)', 109);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Technics_AVIATION_EQUIP_AviationOtherKind', 'Вид (друга спец. техника)', 110);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Technics_AVIATION_EQUIP_AviationOtherType', 'Тип (друга спец. техника)', 111);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Technics_AVIATION_EQUIP_AviationOtherBaseMachineMake', 'Марка (друга спец. техника - базова машина)', 112);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Technics_AVIATION_EQUIP_AviationOtherBaseMachineModel', 'Модел (друга спец. техника - базова машина)', 113);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Technics_AVIATION_EQUIP_AviationOtherBaseMachineKind', 'Вид (друга спец. техника - базова машина)', 114);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Technics_AVIATION_EQUIP_AviationOtherBaseMachineType', 'Тип (друга спец. техника - базова машина)', 115);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Technics_AVIATION_EQUIP_BaseMachineMileageHoursSinceLastRepair', 'Километри/часове от последния ремонт (друга спец. техника - базова машина)', 116);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Technics_AVIATION_EQUIP_AviationOtherEquipmentKind', 'Вид (друга спец. техника - оборудване)', 117);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Technics_AVIATION_EQUIP_EquipMileageHourSinceLstRepair', 'Километри/часове от последния ремонт (друга спец. техника - оборудване)', 118);
+
+
+
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Technics_TechnicsCategory', 'Категория', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Technics_ItemsCount', 'Брой', 2);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'ADM_Technics_ResidenceCity', 'Местодомуване - Населено място', 3);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'ADM_Technics_ResidenceDistrict', 'Местодомуване - Район', 4);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'ADM_Technics_ResidenceAddress', 'Местодомуване - Адрес', 5);
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Lists_VehicleKind_TableSeq', 'Номер за подредба', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Lists_VehicleKind_TableValue', 'Вид автомобил', 2);
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Lists_VehicleRoadability_TableSeq', 'Номер за подредба', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Lists_VehicleRoadability_TableValue', 'Проходимост', 2);
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Lists_VehicleEngineType_TableSeq', 'Номер за подредба', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Lists_VehicleEngineType_TableValue', 'Двигател', 2);
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Lists_VehicleBodyType_TableSeq', 'Номер за подредба', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Lists_VehicleBodyType_TableValue', 'Каросерия', 2);
+
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Lists_TractorKind_TableSeq', 'Номер за подредба', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Lists_TractorKind_TableValue', 'Вид трактор', 2);
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Lists_TractorRoadability_TableSeq', 'Номер за подредба', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Lists_TractorRoadability_TableValue', 'Тип трактор', 2);
+
+
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Reservist_MilServ_RewardIncentiv_Title', 'Награда', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('number', 'RES_Reservist_MilServ_RewardIncentiv_Number', 'Номер', 2);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Reservist_MilServ_RewardIncentiv_VacAnn', 'Заповедта', 3);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('date', 'RES_Reservist_MilServ_RewardIncentiv_DateWhen', 'Дата', 4);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Reservist_MilServ_RewardIncentiv_MilitaryCommanderRank', 'Награден от', 5);
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Technics_OtherInfo', 'Други данни', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Technics_Owner_OwnershipType', 'Вид собственост', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Technics_Owner_Owner', 'Собственик', 2);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'ADM_Technics_OwnershipLeasing', 'Отдадено на лизинг', 3);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'ADM_Technics_OwnershipCity', 'Адрес на собственик - Населено място', 4);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'ADM_Technics_OwnershipDistrict', 'Адрес на собственик - Район', 5);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'ADM_Technics_OwnershipAddress', 'Адрес на собственик - Адрес', 6);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'ADM_Technics_OwnershipPhone', 'Собственик - Телефон', 7);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Technics_Owner_DriverIdentNumber', 'Водач ЕГН', 100);
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'ADM_Companies_Name', 'Име на фирмата', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'ADM_Companies_UnifiedIdentityCode', 'БУЛСТАТ', 2);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'ADM_Companies_Type', 'Тип на фирмата', 3);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'ADM_Companies_City', 'Адрес на фирма - Населено място', 4);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'ADM_Companies_District', 'Адрес на фирма - Район', 5);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'ADM_Companies_Address', 'Адрес на фирма - Адрес', 6);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'ADM_Companies_Phone', 'Телефон', 7);
+
+
+
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Reservist_MilServ_PreviousPosition_PositionCode', 'Код длъжност', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Reservist_MilServ_PreviousPosition_PositionName', 'Длъжност', 2);
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Reservist_MilServ_PreviousPosition_TypeKey', 'Заемал длъжността като', 3);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Reservist_MilServ_PreviousPosition_KindKey', 'Вид', 4);
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Reservist_MilServ_PreviousPosition_Category', 'Категория', 5);
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Reservist_MilServ_PreviousPosition_MilRepSpec', 'ВОС', 6);
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('bool', 'RES_Reservist_MilServ_PreviousPosition_Mission', 'Мисия', 7);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Reservist_MilServ_PreviousPosition_VaccAnnNum', 'Заповед номер', 8);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('date', 'RES_Reservist_MilServ_PreviousPosition_VaccAnnDateVacAnn', 'Заповед дата', 9);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('date', 'RES_Reservist_MilServ_PreviousPosition_VaccAnnDateWhen', 'В сила от', 10);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Reservist_MilServ_PreviousPosition_CommanderRank', 'Подписал заповедта', 11);
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Reservist_MilServ_PreviousPosition_MilitaryUnit', 'ВПН/Структура', 12);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Reservist_MilServ_PreviousPosition_OrganisationUnit', 'Организационна единица', 13);
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Reservist_MilServ_PreviousPosition_GarrisonCity', 'Гарнизон', 14);
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Lists_VehicleModels_VehicleModelName', 'Модел автомобил', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Lists_TractorModels_TractorModelName', 'Модел трактор', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Lists_EngEquipBaseModels_EngEquipBaseModelName', 'Модел инж. техника', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Lists_AviationOtherBaseMachineModels_AviationOtherBaseMachineModelName', 'Модел базова машина (спец. авиационна техника)', 1);
+
+
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_TechAppointment_ReqOrderNumber', 'Номер на заявка', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_TechAppointment_ReceiptAppointmentDate', 'Дата на получаване на назначение', 2);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_TechAppointment_MilitaryCommand', 'Команда', 3);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_TechAppointment_TechnicsReadiness', 'Начин на явяване', 4);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_TechAppointment_Comment', 'Коментар', 5);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_TechAppointment_AppointmentTime', 'Време за явяване', 6);
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Technics_MilRepStatus_MilRepStatus', 'Състояние по отчета', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('date', 'RES_Technics_MilRepStatus_EnrolDate', 'Дата на зачисляване', 2);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('date', 'RES_Technics_MilRepStatus_DischargeDate', 'Снет от отчет', 3);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Technics_MilRepStatus_SourceMilDept', 'Военно окръжие', 4);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Technics_MilRepStatus_ContractContractNumber', 'Договор №', 5);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Technics_MilRepStatus_ContractContractFromDate', 'Дата', 6);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Technics_MilRepStatus_ContractContractToDate', 'До дата', 7);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Technics_MilRepStatus_ContractMilitaryUnit', 'Поделение', 8);
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Technics_MilRepStatus_GroupManagementSection', 'ГРС', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Technics_MilRepStatus_Section', 'Секция', 2);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Technics_MilRepStatus_Deliverer', 'Връчител', 3);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Technics_MilRepStatus_Punkt', 'ПИ/КПП', 4);
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Lists_EngEquipKind_TableSeq', 'Номер за подредба', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Lists_EngEquipKind_TableValue', 'Вид инж. техника', 2);
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Lists_EngEquipType_TableSeq', 'Номер за подредба', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Lists_EngEquipType_TableValue', 'Тип инж. техника', 2);
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Lists_EngEquipBaseKind_TableSeq', 'Номер за подредба', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Lists_EngEquipBaseKind_TableValue', 'Вид базова машина (инж. техника)', 2);
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Lists_EngEquipBaseType_TableSeq', 'Номер за подредба', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Lists_EngEquipBaseType_TableValue', 'Тип базова машина (инж. техника)', 2);
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Lists_EngEquipBaseEngineType_TableSeq', 'Номер за подредба', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Lists_EngEquipBaseEngineType_TableValue', 'Вид гориво за базова машина (инж. техника)', 2);
+
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Lists_EngEquipWorkingBodyKind_TableSeq', 'Номер за подредба', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Lists_EngEquipWorkingBodyKind_TableValue', 'Вид работен орган (инж. техника)', 2);
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Lists_EngEquipWorkBodyEngineType_TableSeq', 'Номер за подредба', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Lists_EngEquipWorkBodyEngineType_TableValue', 'Вид гориво за работен орган (инж. техника)', 2);
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Lists_MobileLiftingEquipKind_TableSeq', 'Номер за подредба', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Lists_MobileLiftingEquipKind_TableValue', 'Вид подемно-транспортна техника', 2);
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Lists_MobileLiftingEquipType_TableSeq', 'Номер за подредба', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Lists_MobileLiftingEquipType_TableValue', 'Тип подемно-транспортна техника', 2);
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Lists_TrailerKind_TableSeq', 'Номер за подредба', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Lists_TrailerKind_TableValue', 'Вид ремарке', 2);
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Lists_TrailerType_TableSeq', 'Номер за подредба', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Lists_TrailerType_TableValue', 'Тип ремарке', 2);
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Lists_RailwayEquipKind_TableSeq', 'Номер за подредба', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Lists_RailwayEquipKind_TableValue', 'Вид специализиран железопътен състав', 2);
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Lists_RailwayEquipType_TableSeq', 'Номер за подредба', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Lists_RailwayEquipType_TableValue', 'Тип специализиран железопътен състав', 2);
+
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Technics_RAILWAY_EQUIP_InventoryNumber', 'Инвентарен номер', 101);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Technics_RAILWAY_EQUIP_RailwayEquipKind', 'Вид', 102);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Technics_RAILWAY_EQUIP_RailwayEquipType', 'Тип', 103);
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Lists_VesselKind_TableSeq', 'Номер за подредба', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Lists_VesselKind_TableValue', 'Вид кораб', 2);
+
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Lists_VesselType_TableSeq', 'Номер за подредба', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Lists_VesselType_TableValue', 'Тип кораб', 2);
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Lists_FuelContainerKind_TableSeq', 'Номер за подредба', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Lists_FuelContainerKind_TableValue', 'Вид съд за ГСМ', 2);
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Lists_FuelContainerType_TableSeq', 'Номер за подредба', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Lists_FuelContainerType_TableValue', 'Тип съд за ГСМ', 2);
+
+
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Lists_AviationAirKind_TableSeq', 'Номер за подредба', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Lists_AviationAirKind_TableValue', 'Вид въздухоплавателно средство', 2);
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Lists_AviationAirType_TableSeq', 'Номер за подредба', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Lists_AviationAirType_TableValue', 'Tип въздухоплавателно средство', 2);
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Technics_FUEL_CONTAINERS_InventoryNumber', 'Инвентарен номер', 101);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Technics_FUEL_CONTAINERS_FuelContainerKind', 'Вид', 102);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Technics_FUEL_CONTAINERS_FuelContainerType', 'Тип', 103);
+
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Lists_AviationAirModel_TableSeq', 'Номер за подредба', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Lists_AviationAirModel_TableValue', 'Модел въздухоплавателно средство', 2);
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Lists_AviationOtherKind_TableSeq', 'Номер за подредба', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Lists_AviationOtherKind_TableValue', 'Вид специализирана аивац. техника', 2);
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Lists_AviationOtherType_TableSeq', 'Номер за подредба', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Lists_AviationOtherType_TableValue', 'Тип специализирана аивац. техника', 2);
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Lists_AviationOtherBaseMachineKind_TableSeq', 'Номер за подредба', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Lists_AviationOtherBaseMachineKind_TableValue', 'Вид базова машина (спец. авиационна техника)', 2);
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Lists_AviationOtherBaseMachineType_TableSeq', 'Номер за подредба', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Lists_AviationOtherBaseMachineType_TableValue', 'Тип базова машина (спец. авиационна техника)', 2);
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Lists_AviationOtherEquipmentKind_TableSeq', 'Номер за подредба', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Lists_AviationOtherEquipmentKind_TableValue', 'Вид оборудване (спец. авиационна техника)', 2);
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Technics_RAILWAY_EQUIP_Split_Affected_InventoryNumber', 'Инвентарен номер (променен запис)', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Technics_RAILWAY_EQUIP_Split_Created_InventoryNumber', 'Инвентарен номер (добавен запис)', 2);
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Technics_FUEL_CONTAINERS_Split_Affected_InventoryNumber', 'Инвентарен номер (променен запис)', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Technics_FUEL_CONTAINERS_Split_Created_InventoryNumber', 'Инвентарен номер (добавен запис)', 2);
+
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Technics_VESSELS_VesselCrew_IdentNumber', 'ЕГН', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Technics_VESSELS_VesselCrew_FullName', 'Име', 2);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Technics_VESSELS_VesselCrew_Address', 'Адрес', 3);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Technics_VESSELS_VesselCrew_MilitaryRank', 'Звание', 4);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Technics_VESSELS_VesselCrew_VesselCrewCategory', 'Категория', 5);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Technics_VESSELS_VesselCrew_HasAppointment', 'МН', 6);
+
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Postpone_RegNumber', 'Рег. №', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('date', 'RES_Postpone_RegDate', 'Дата', 2);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('number', 'RES_Postpone_PostponeYear', 'За година', 3);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Postpone_MilitaryDepartment', 'ВО', 4);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_PostponeItem_Company', 'Месторабота', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('number', 'RES_PostponeItem_ManageOfficersTotal', 'Ръководство->Офицери->Общо', 2);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('number', 'RES_PostponeItem_ManageOfficersAbsolutely', 'Ръководство->Офицери->В т.ч. безусловно', 3);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('number', 'RES_PostponeItem_ManageSoldiersTotal', 'Ръководство->Сержанти и войници ->Общо', 4);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('number', 'RES_PostponeItem_ManageSoldiersAbsolutely', 'Ръководство->Сержанти и войници ->В т.ч. безусловно', 5);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('number', 'RES_PostponeItem_ExpertOfficersTotal', 'Експертен персонал->Офицери->Общо', 6);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('number', 'RES_PostponeItem_ExpertOfficersAbsolutely', 'Експертен персонал->Офицери->В т.ч. безусловно', 7);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('number', 'RES_PostponeItem_ExpertSoldiersTotal', 'Експертен персонал->Сержанти и войници ->Общо', 8);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('number', 'RES_PostponeItem_ExpertSoldiersAbsolutely', 'Експертен персонал->Сержанти и войници ->В т.ч. безусловно', 9);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('number', 'RES_PostponeItem_TechOfficersTotal', 'Технически персонал->Офицери->Общо', 10);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('number', 'RES_PostponeItem_TechOfficersAbsolutely', 'Технически персонал->Офицери->В т.ч. безусловно', 11);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('number', 'RES_PostponeItem_TechSoldiersTotal', 'Технически персонал->Сержанти и войници ->Общо', 12);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('number', 'RES_PostponeItem_TechSoldiersAbsolutely', 'Технически персонал->Сержанти и войници ->В т.ч. безусловно', 13);
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'APPL_Documents_DocumentName', 'Докумнет', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'APPL_Exams_ExamName', 'Изпит', 1);
+
+
+COMMIT;
+

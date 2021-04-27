@@ -1,0 +1,646 @@
+﻿<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{43C520C2-4E50-4F49-A12F-2C541D82B235}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PMIS.HealthSafety</RootNamespace>
+    <AssemblyName>HealthSafety</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AjaxControlToolkit, Version=1.0.20229.20821, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Common\External\AjaxContorlsToolkit\AjaxControlToolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.OracleClient" />
+    <Reference Include="System.Web.Extensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Web.Mobile" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Default.aspx" />
+    <Content Include="Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_GlobalResources\Labels.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Labels.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Common\HSPage.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\AddEditDeclarationOfAccident.aspx.cs">
+      <DependentUpon>AddEditDeclarationOfAccident.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\AddEditDeclarationOfAccident.aspx.designer.cs">
+      <DependentUpon>AddEditDeclarationOfAccident.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\AddEditInvestigationProtocol.aspx.cs">
+      <DependentUpon>AddEditInvestigationProtocol.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\AddEditInvestigationProtocol.aspx.designer.cs">
+      <DependentUpon>AddEditInvestigationProtocol.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\AddEditWorkingPlace.aspx.cs">
+      <DependentUpon>AddEditWorkingPlace.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\AddEditWorkingPlace.aspx.designer.cs">
+      <DependentUpon>AddEditWorkingPlace.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\AddEditProtocol.aspx.cs">
+      <DependentUpon>AddEditProtocol.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\AddEditProtocol.aspx.designer.cs">
+      <DependentUpon>AddEditProtocol.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\AddEditRiskAssessment.aspx.cs">
+      <DependentUpon>AddEditRiskAssessment.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\AddEditRiskAssessment.aspx.designer.cs">
+      <DependentUpon>AddEditRiskAssessment.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\AddEditWorkplaceConditionsCard.aspx.cs">
+      <DependentUpon>AddEditWorkplaceConditionsCard.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\AddEditWorkplaceConditionsCard.aspx.designer.cs">
+      <DependentUpon>AddEditWorkplaceConditionsCard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\AddEditTrainingHistory.aspx.cs">
+      <DependentUpon>AddEditTrainingHistory.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\AddEditTrainingHistory.aspx.designer.cs">
+      <DependentUpon>AddEditTrainingHistory.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\AddEditCommittee.aspx.cs">
+      <DependentUpon>AddEditCommittee.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\AddEditCommittee.aspx.designer.cs">
+      <DependentUpon>AddEditCommittee.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\RiskCard.aspx.cs">
+      <DependentUpon>RiskCard.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\RiskCard.aspx.designer.cs">
+      <DependentUpon>RiskCard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\HazardsMaintenance.aspx.cs">
+      <DependentUpon>HazardsMaintenance.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\HazardsMaintenance.aspx.designer.cs">
+      <DependentUpon>HazardsMaintenance.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\MilitaryUnitPositions.aspx.cs">
+      <DependentUpon>MilitaryUnitPositions.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\MilitaryUnitPositions.aspx.designer.cs">
+      <DependentUpon>MilitaryUnitPositions.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\RiskFactorsMaintenance.aspx.cs">
+      <DependentUpon>RiskFactorsMaintenance.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\RiskFactorsMaintenance.aspx.designer.cs">
+      <DependentUpon>RiskFactorsMaintenance.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\RiskFactorTypesMaintenance.aspx.cs">
+      <DependentUpon>RiskFactorTypesMaintenance.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\RiskFactorTypesMaintenance.aspx.designer.cs">
+      <DependentUpon>RiskFactorTypesMaintenance.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\DataSource.aspx.cs">
+      <DependentUpon>DataSource.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\DataSource.aspx.designer.cs">
+      <DependentUpon>DataSource.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\ManageCommittees.aspx.cs">
+      <DependentUpon>ManageCommittees.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\ManageCommittees.aspx.designer.cs">
+      <DependentUpon>ManageCommittees.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\ManageWorkingPlaces.aspx.cs">
+      <DependentUpon>ManageWorkingPlaces.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\ManageWorkingPlaces.aspx.designer.cs">
+      <DependentUpon>ManageWorkingPlaces.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\ManageTrainingHistory.aspx.cs">
+      <DependentUpon>ManageTrainingHistory.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\ManageTrainingHistory.aspx.designer.cs">
+      <DependentUpon>ManageTrainingHistory.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\ManageDeclarationOfAccident.aspx.cs">
+      <DependentUpon>ManageDeclarationOfAccident.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\ManageDeclarationOfAccident.aspx.designer.cs">
+      <DependentUpon>ManageDeclarationOfAccident.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\ManageWorkplaceConditionsCards.aspx.cs">
+      <DependentUpon>ManageWorkplaceConditionsCards.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\ManageWorkplaceConditionsCards.aspx.designer.cs">
+      <DependentUpon>ManageWorkplaceConditionsCards.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\PasswordExpired.aspx.cs">
+      <DependentUpon>PasswordExpired.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\PasswordExpired.aspx.designer.cs">
+      <DependentUpon>PasswordExpired.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\Commitee.cs" />
+    <Compile Include="DAL\CommiteeMember.cs" />
+    <Compile Include="DAL\EffectWeight.cs" />
+    <Compile Include="DAL\Exposure.cs" />
+    <Compile Include="DAL\Probability.cs" />
+    <Compile Include="DAL\RiskCardItem.cs" />
+    <Compile Include="DAL\RiskCard.cs" />
+    <Compile Include="DAL\Position.cs" />
+    <Compile Include="DAL\Subdivision.cs" />
+    <Compile Include="DAL\Hazard.cs" />
+    <Compile Include="DAL\RiskFactor.cs" />
+    <Compile Include="DAL\RiskFactorType.cs" />
+    <Compile Include="DAL\WorkingPlace.cs" />
+    <Compile Include="DAL\Training.cs" />
+    <Compile Include="MasterPages\PrintMasterPage.Master.cs">
+      <DependentUpon>PrintMasterPage.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MasterPages\PrintMasterPage.Master.designer.cs">
+      <DependentUpon>PrintMasterPage.Master</DependentUpon>
+    </Compile>
+    <Compile Include="PrintContentPages\PrintAllCommittees.aspx.cs">
+      <DependentUpon>PrintAllCommittees.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PrintContentPages\PrintAllCommittees.aspx.designer.cs">
+      <DependentUpon>PrintAllCommittees.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PrintContentPages\PrintAllDeclarationOfAccidents.aspx.cs">
+      <DependentUpon>PrintAllDeclarationOfAccidents.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PrintContentPages\PrintAllDeclarationOfAccidents.aspx.designer.cs">
+      <DependentUpon>PrintAllDeclarationOfAccidents.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PrintContentPages\PrintAllInvestigationProtocols.aspx.cs">
+      <DependentUpon>PrintAllInvestigationProtocols.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PrintContentPages\PrintAllInvestigationProtocols.aspx.designer.cs">
+      <DependentUpon>PrintAllInvestigationProtocols.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PrintContentPages\PrintAllProtocols.aspx.cs">
+      <DependentUpon>PrintAllProtocols.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PrintContentPages\PrintAllProtocols.aspx.designer.cs">
+      <DependentUpon>PrintAllProtocols.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PrintContentPages\PrintAllRiskAssessments.aspx.cs">
+      <DependentUpon>PrintAllRiskAssessments.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PrintContentPages\PrintAllRiskAssessments.aspx.designer.cs">
+      <DependentUpon>PrintAllRiskAssessments.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PrintContentPages\PrintAllUnsafeWorkingConditionsNotices.aspx.cs">
+      <DependentUpon>PrintAllUnsafeWorkingConditionsNotices.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PrintContentPages\PrintAllUnsafeWorkingConditionsNotices.aspx.designer.cs">
+      <DependentUpon>PrintAllUnsafeWorkingConditionsNotices.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PrintContentPages\PrintAllWorkplaceConditionsCards.aspx.cs">
+      <DependentUpon>PrintAllWorkplaceConditionsCards.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PrintContentPages\PrintAllWorkplaceConditionsCards.aspx.designer.cs">
+      <DependentUpon>PrintAllWorkplaceConditionsCards.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PrintContentPages\PrintCommittee.aspx.cs">
+      <DependentUpon>PrintCommittee.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PrintContentPages\PrintCommittee.aspx.designer.cs">
+      <DependentUpon>PrintCommittee.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PrintContentPages\PrintDeclarationOfAccident.aspx.cs">
+      <DependentUpon>PrintDeclarationOfAccident.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PrintContentPages\PrintDeclarationOfAccident.aspx.designer.cs">
+      <DependentUpon>PrintDeclarationOfAccident.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PrintContentPages\PrintInvestigationProtocol.aspx.cs">
+      <DependentUpon>PrintInvestigationProtocol.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PrintContentPages\PrintInvestigationProtocol.aspx.designer.cs">
+      <DependentUpon>PrintInvestigationProtocol.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PrintContentPages\PrintProtocol.aspx.cs">
+      <DependentUpon>PrintProtocol.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PrintContentPages\PrintProtocol.aspx.designer.cs">
+      <DependentUpon>PrintProtocol.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PrintContentPages\PrintRiskAssessment.aspx.cs">
+      <DependentUpon>PrintRiskAssessment.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PrintContentPages\PrintRiskAssessment.aspx.designer.cs">
+      <DependentUpon>PrintRiskAssessment.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PrintContentPages\PrintRiskCard.aspx.cs">
+      <DependentUpon>PrintRiskCard.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PrintContentPages\PrintRiskCard.aspx.designer.cs">
+      <DependentUpon>PrintRiskCard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PrintContentPages\PrintTrainingHistory.aspx.cs">
+      <DependentUpon>PrintTrainingHistory.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PrintContentPages\PrintTrainingHistory.aspx.designer.cs">
+      <DependentUpon>PrintTrainingHistory.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PrintContentPages\PrintUnsafeWorkingConditionsNotice.aspx.cs">
+      <DependentUpon>PrintUnsafeWorkingConditionsNotice.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PrintContentPages\PrintUnsafeWorkingConditionsNotice.aspx.designer.cs">
+      <DependentUpon>PrintUnsafeWorkingConditionsNotice.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PrintContentPages\PrintWorkplaceConditionsCard.aspx.cs">
+      <DependentUpon>PrintWorkplaceConditionsCard.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PrintContentPages\PrintWorkplaceConditionsCard.aspx.designer.cs">
+      <DependentUpon>PrintWorkplaceConditionsCard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PublicPages\Error.aspx.cs">
+      <DependentUpon>Error.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PublicPages\Error.aspx.designer.cs">
+      <DependentUpon>Error.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\IndicatorsMaintenance.aspx.cs">
+      <DependentUpon>IndicatorsMaintenance.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\IndicatorsMaintenance.aspx.designer.cs">
+      <DependentUpon>IndicatorsMaintenance.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\IndicatorTypesMaintenance.aspx.cs">
+      <DependentUpon>IndicatorTypesMaintenance.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\IndicatorTypesMaintenance.aspx.designer.cs">
+      <DependentUpon>IndicatorTypesMaintenance.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\EditUserProfile.aspx.cs">
+      <DependentUpon>EditUserProfile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\EditUserProfile.aspx.designer.cs">
+      <DependentUpon>EditUserProfile.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\GTableMaintanceHandlers.aspx.cs">
+      <DependentUpon>GTableMaintanceHandlers.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\GTableMaintanceHandlers.aspx.designer.cs">
+      <DependentUpon>GTableMaintanceHandlers.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\Home.aspx.cs">
+      <DependentUpon>Home.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\Home.aspx.designer.cs">
+      <DependentUpon>Home.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\Logout.aspx.cs">
+      <DependentUpon>Logout.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\Logout.aspx.designer.cs">
+      <DependentUpon>Logout.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\Maintenance.aspx.cs">
+      <DependentUpon>Maintenance.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\Maintenance.aspx.designer.cs">
+      <DependentUpon>Maintenance.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\ManageInvestigationProtocol.aspx.cs">
+      <DependentUpon>ManageInvestigationProtocol.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\ManageInvestigationProtocol.aspx.designer.cs">
+      <DependentUpon>ManageInvestigationProtocol.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\ManageProtocols.aspx.cs">
+      <DependentUpon>ManageProtocols.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\ManageProtocols.aspx.designer.cs">
+      <DependentUpon>ManageProtocols.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\ManageRiskAssessments.aspx.cs">
+      <DependentUpon>ManageRiskAssessments.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\ManageRiskAssessments.aspx.designer.cs">
+      <DependentUpon>ManageRiskAssessments.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\AddEditUnsafeWorkingConditionsNotice.aspx.cs">
+      <DependentUpon>AddEditUnsafeWorkingConditionsNotice.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\AddEditUnsafeWorkingConditionsNotice.aspx.designer.cs">
+      <DependentUpon>AddEditUnsafeWorkingConditionsNotice.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\ManageUnsafeWorkingConditionsNotices.aspx.cs">
+      <DependentUpon>ManageUnsafeWorkingConditionsNotices.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\ManageUnsafeWorkingConditionsNotices.aspx.designer.cs">
+      <DependentUpon>ManageUnsafeWorkingConditionsNotices.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\WorkplaceConditionsCardItem.cs" />
+    <Compile Include="DAL\WorkplaceConditionsCard.cs" />
+    <Compile Include="DAL\WCondIndicator.cs" />
+    <Compile Include="DAL\WCondIndicatorType.cs" />
+    <Compile Include="DAL\DeclarationOfAccident.cs" />
+    <Compile Include="DAL\Employer.cs" />
+    <Compile Include="DAL\InvestigationProtocol.cs" />
+    <Compile Include="DAL\Measure.cs" />
+    <Compile Include="DAL\ProtocolType.cs" />
+    <Compile Include="DAL\ProtocolItem.cs" />
+    <Compile Include="DAL\Protocol.cs" />
+    <Compile Include="DAL\RiskAssessment.cs" />
+    <Compile Include="DAL\RiskRemoveRecommendation.cs" />
+    <Compile Include="DAL\UnsafeWorkingConditionsNotice.cs" />
+    <Compile Include="DAL\User.cs" />
+    <Compile Include="Default.aspx.cs">
+      <SubType>ASPXCodeBehind</SubType>
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MasterPages\MasterPage.Master.cs">
+      <DependentUpon>MasterPage.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MasterPages\MasterPage.Master.designer.cs">
+      <DependentUpon>MasterPage.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{0F621ED7-5AC9-4AA4-800A-D67DD2F361FE}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ExceptionHandler\ExceptionHandler.csproj">
+      <Project>{55B239DD-A064-4333-91EC-8B04273D4808}</Project>
+      <Name>ExceptionHandler</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ItemSelector\ItemSelector.csproj">
+      <Project>{06E5BF16-FE82-490D-9745-95240E166C31}</Project>
+      <Name>ItemSelector</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MilitaryUnitSelector\MilitaryUnitSelector.csproj">
+      <Project>{1C07F0CA-06FE-4C87-94E5-225B9B773DDD}</Project>
+      <Name>MilitaryUnitSelector</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ContentPages\Home.aspx" />
+    <Content Include="ContentPages\Login.aspx" />
+    <Content Include="ContentPages\Logout.aspx" />
+    <Content Include="Scripts\Ajax.js" />
+    <Content Include="Stylesheets\Main.css" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ContentPages\AddEditDeclarationOfAccident.aspx" />
+    <Content Include="ContentPages\AddEditInvestigationProtocol.aspx" />
+    <Content Include="ContentPages\AddEditProtocol.aspx" />
+    <Content Include="ContentPages\AddEditRiskAssessment.aspx" />
+    <Content Include="ContentPages\AddEditWorkplaceConditionsCard.aspx" />
+    <Content Include="PublicPages\Error.aspx" />
+    <Content Include="ContentPages\IndicatorsMaintenance.aspx" />
+    <Content Include="ContentPages\IndicatorTypesMaintenance.aspx" />
+    <Content Include="ContentPages\EditUserProfile.aspx" />
+    <Content Include="ContentPages\GTableMaintanceHandlers.aspx" />
+    <Content Include="ContentPages\Maintenance.aspx" />
+    <Content Include="ContentPages\ManageInvestigationProtocol.aspx" />
+    <Content Include="ContentPages\ManageProtocols.aspx" />
+    <Content Include="ContentPages\ManageRiskAssessments.aspx" />
+    <Content Include="ContentPages\AddEditUnsafeWorkingConditionsNotice.aspx" />
+    <Content Include="ContentPages\ManageUnsafeWorkingConditionsNotices.aspx" />
+    <Content Include="Images\add_new.png" />
+    <Content Include="Images\asc.gif" />
+    <Content Include="Images\BlueButtonCenter.png" />
+    <Content Include="Images\BlueButtonLeftNoArrow.png" />
+    <Content Include="Images\BlueButtonRightNoArrow.png" />
+    <Content Include="Images\bmod_logo.png" />
+    <Content Include="Images\ButtonFirst.png" />
+    <Content Include="Images\ButtonFirstDisabled.png" />
+    <Content Include="Images\ButtonGoto.png" />
+    <Content Include="Images\ButtonLast.png" />
+    <Content Include="Images\ButtonLastDisabled.png" />
+    <Content Include="Images\ButtonNext.png" />
+    <Content Include="Images\ButtonNextDisabled.png" />
+    <Content Include="Images\ButtonPrev.png" />
+    <Content Include="Images\ButtonPrevDisabled.png" />
+    <Content Include="Images\cancel.png" />
+    <Content Include="Images\DatePicker\backstripes.gif" />
+    <Content Include="Images\DatePicker\bg_header.jpg" />
+    <Content Include="Images\DatePicker\bullet1.gif" />
+    <Content Include="Images\DatePicker\bullet2.gif" />
+    <Content Include="Images\DatePicker\cal-grey.gif" />
+    <Content Include="Images\DatePicker\cal.gif" />
+    <Content Include="Images\DatePicker\calendar.png" />
+    <Content Include="Images\DatePicker\gradient-e5e5e5-ffffff.gif" />
+    <Content Include="Images\delete.png" />
+    <Content Include="Images\desc.gif" />
+    <Content Include="Images\edit.png" />
+    <Content Include="Images\footer.png" />
+    <Content Include="Images\header.png" />
+    <Content Include="Images\line.png" />
+    <Content Include="Images\list_edit.png" />
+    <Content Include="Images\save.png" />
+    <Content Include="Images\tableHeader.png" />
+    <Content Include="Images\tab_active_left.PNG" />
+    <Content Include="Images\tab_active_right.PNG" />
+    <Content Include="Images\tab_hover_left.PNG" />
+    <Content Include="Images\tab_hover_right.PNG" />
+    <Content Include="Images\tab_left.PNG" />
+    <Content Include="Images\tab_right.PNG" />
+    <Content Include="Images\warning_icon_small.gif" />
+    <Content Include="MasterPages\MasterPage.Master" />
+    <Content Include="Scripts\CheckFormSave.js" />
+    <Content Include="Scripts\Common.js" />
+    <Content Include="Scripts\DatePicker\datepicker.js" />
+    <Content Include="Scripts\DatePicker\lang\bg.js" />
+    <Content Include="Scripts\DatePicker\lang\en.js" />
+    <Content Include="Scripts\GTable.js" />
+    <Content Include="Scripts\HomePage.js" />
+    <Content Include="Scripts\MasterPage.js" />
+    <Content Include="Scripts\Timeout.js" />
+    <Content Include="Stylesheets\datepicker.css" />
+    <Content Include="Stylesheets\HoverMenu.css" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="PrintContentPages\PrintRiskAssessment.aspx" />
+    <Content Include="Stylesheets\PrintMain.css" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ContentPages\AddEditTrainingHistory.aspx" />
+    <Content Include="ContentPages\AddEditCommittee.aspx" />
+    <Content Include="ContentPages\ManageCommittees.aspx" />
+    <Content Include="ContentPages\ManageTrainingHistory.aspx" />
+    <Content Include="ContentPages\ManageDeclarationOfAccident.aspx" />
+    <Content Include="ContentPages\ManageWorkplaceConditionsCards.aspx" />
+    <Content Include="Images\empty_box.png" />
+    <Content Include="Images\excel.png" />
+    <Content Include="Images\print.png" />
+    <Content Include="Images\ticked_box.png" />
+    <Content Include="MasterPages\PrintMasterPage.Master" />
+    <Content Include="PrintContentPages\PrintAllCommittees.aspx" />
+    <Content Include="PrintContentPages\PrintAllDeclarationOfAccidents.aspx" />
+    <Content Include="PrintContentPages\PrintAllInvestigationProtocols.aspx" />
+    <Content Include="PrintContentPages\PrintAllProtocols.aspx" />
+    <Content Include="PrintContentPages\PrintAllRiskAssessments.aspx" />
+    <Content Include="PrintContentPages\PrintAllUnsafeWorkingConditionsNotices.aspx" />
+    <Content Include="PrintContentPages\PrintAllWorkplaceConditionsCards.aspx" />
+    <Content Include="PrintContentPages\PrintCommittee.aspx" />
+    <Content Include="PrintContentPages\PrintDeclarationOfAccident.aspx" />
+    <Content Include="PrintContentPages\PrintInvestigationProtocol.aspx" />
+    <Content Include="PrintContentPages\PrintProtocol.aspx" />
+    <Content Include="PrintContentPages\PrintTrainingHistory.aspx" />
+    <Content Include="PrintContentPages\PrintUnsafeWorkingConditionsNotice.aspx" />
+    <Content Include="PrintContentPages\PrintWorkplaceConditionsCard.aspx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_GlobalResources\Labels.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>Labels.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="ContentPages\AddEditWorkingPlace.aspx" />
+    <Content Include="ContentPages\RiskCard.aspx" />
+    <Content Include="ContentPages\HazardsMaintenance.aspx" />
+    <Content Include="ContentPages\MilitaryUnitPositions.aspx" />
+    <Content Include="ContentPages\RiskFactorsMaintenance.aspx" />
+    <Content Include="ContentPages\RiskFactorTypesMaintenance.aspx" />
+    <Content Include="ContentPages\DataSource.aspx" />
+    <Content Include="ContentPages\ManageWorkingPlaces.aspx" />
+    <Content Include="ContentPages\PasswordExpired.aspx" />
+    <Content Include="PrintContentPages\PrintRiskCard.aspx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="BusinessLogic\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v9.0\WebApplications\Microsoft.WebApplication.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>59476</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost/Test_HealthSafety</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

@@ -1,0 +1,60 @@
+﻿CREATE TABLE PMIS_RES.ReservistMilRepStatuses(ReservistMilRepStatusID number NOT NULL,
+                                              ReservistID number NOT NULL,
+                                              IsCurrent number(1) CHECK (IsCurrent BETWEEN 0 AND 1),
+                                              
+                                              MilitaryReportStatusID number NOT NULL,
+                                              EnrolDate date,
+                                              DischargeDate date,
+                                              SourceMilDepartmentID number,
+                                              DestMilDepartmentID number,
+                                              
+                                              Voluntary_ContractNumber varchar2(250),
+                                              Voluntary_ContractDate date,
+                                              Voluntary_DurationMonths number,
+                                              Voluntary_FulfilPlace varchar2(250),
+                                              Voluntary_MilitaryRankID varchar2(2),
+                                              Voluntary_MilRepSpecialityID varchar2(2),
+                                              Voluntary_MilitaryPosition varchar2(250),
+                                              
+                                              Removed_Date date,
+                                              Removed_ReasonID number, /*GTable*/
+                                              
+                                              MilEmployed_AdministrationID number,
+                                              MilEmployed_Date date,
+                                              
+                                              TemporaryRemoved_ReasonID number, /*GTable*/
+                                              TemporaryRemoved_Date date,
+                                              TemporaryRemoved_Duration number,
+                                              
+                                              Postpone_TypeID number,
+                                              Postpone_Year number,
+                                              Postpone_PersonnelCategoryID number,
+                                              
+                                              CreatedBy number,
+                                              CreatedDate date,
+                                              LastModifiedBy number,
+                                              LastModifiedDate date
+                                             );
+
+ALTER TABLE PMIS_RES.ReservistMilRepStatuses ADD CONSTRAINT ResMilRepStatuses_PK PRIMARY KEY(ReservistMilRepStatusID);
+ALTER TABLE PMIS_RES.ReservistMilRepStatuses ADD CONSTRAINT ResMilRepStatuses_Res_FK FOREIGN KEY (ReservistID) REFERENCES PMIS_RES.Reservists (ReservistID);
+ALTER TABLE PMIS_RES.ReservistMilRepStatuses ADD CONSTRAINT ResMilRepStatuses_SrcMilDep_FK FOREIGN KEY (SourceMilDepartmentID) REFERENCES PMIS_ADM.MilitaryDepartments (MilitaryDepartmentID);
+ALTER TABLE PMIS_RES.ReservistMilRepStatuses ADD CONSTRAINT ResMilRepStatuses_DesMilDep_FK FOREIGN KEY (DestMilDepartmentID) REFERENCES PMIS_ADM.MilitaryDepartments (MilitaryDepartmentID);
+ALTER TABLE PMIS_RES.ReservistMilRepStatuses ADD CONSTRAINT ResMilRepStatuses_MilRepSta_FK FOREIGN KEY (MilitaryReportStatusID) REFERENCES PMIS_RES.MilitaryReportStatuses (MilitaryReportStatusID);
+ALTER TABLE PMIS_RES.ReservistMilRepStatuses ADD CONSTRAINT ResHistory_MilEmpl_Adm_FK FOREIGN KEY (MilEmployed_AdministrationID) REFERENCES PMIS_ADM.Administrations (AdministrationID);
+ALTER TABLE PMIS_RES.ReservistMilRepStatuses ADD CONSTRAINT ResMilRepStatuses_MilRank_FK FOREIGN KEY (Voluntary_MilitaryRankID) REFERENCES VS_OWNER.KLV_ZVA (ZVA_KOD);
+ALTER TABLE PMIS_RES.ReservistMilRepStatuses ADD CONSTRAINT ResMilRepStatuses_PostType_FK FOREIGN KEY (Postpone_TypeID) REFERENCES PMIS_RES.PostponeTypes (PostponeTypeID);
+ALTER TABLE PMIS_RES.ReservistMilRepStatuses ADD CONSTRAINT ResMilRepStatuses_PostCat_FK FOREIGN KEY (Postpone_PersonnelCategoryID) REFERENCES PMIS_RES.PostponePersonalCategories (PostponePersonalCategoryID);
+
+CREATE SEQUENCE PMIS_RES.ReservistMilRepStatuses_ID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+CREATE TRIGGER PMIS_RES.TRG_ResMilRepStatuses_INSERT
+BEFORE INSERT ON PMIS_RES.ReservistMilRepStatuses
+FOR EACH ROW
+BEGIN
+   SELECT PMIS_RES.ReservistMilRepStatuses_ID_SEQ.nextval INTO :new.ReservistMilRepStatusID FROM dual;
+END;
+/

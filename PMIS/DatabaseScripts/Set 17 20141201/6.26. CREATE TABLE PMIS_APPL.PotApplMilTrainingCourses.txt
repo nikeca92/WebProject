@@ -1,0 +1,6 @@
+﻿CREATE TABLE PMIS_APPL.PotApplMilTrainingCourses(PotApplID number  NOT NULL,
+                                                 MilTrainingCourseID number NOT NULL);
+ALTER TABLE PMIS_APPL.PotApplMilTrainingCourses ADD CONSTRAINT PotApplMTC_UNQ UNIQUE (PotApplID, MilTrainingCourseID);
+ALTER TABLE PMIS_APPL.PotApplMilTrainingCourses ADD CONSTRAINT PotApplMTC_PotAppl_FK FOREIGN KEY (PotApplID) REFERENCES PMIS_APPL.PotencialApplicants(POTENCIALAPPLICANTID);
+ALTER TABLE PMIS_APPL.PotApplMilTrainingCourses ADD CONSTRAINT PotApplMTC_MTCs_FK FOREIGN KEY (MilTrainingCourseID) REFERENCES PMIS_APPL.MilTrainingCourses(MilTrainingCourseID);
+/

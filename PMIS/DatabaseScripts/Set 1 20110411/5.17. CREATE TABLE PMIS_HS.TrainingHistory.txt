@@ -1,0 +1,22 @@
+﻿CREATE TABLE PMIS_HS.TrainingHistory(TrainingHistoryID number NOT NULL,
+                                     PersonID number,
+                                     TrainingDate date,
+                                     TrainingYear number,
+                                     TrainingDesc varchar2(500),
+                                     LegalRef varchar2(2000)
+                                    );
+
+ALTER TABLE PMIS_HS.TrainingHistory ADD CONSTRAINT TrainingHistory_PK PRIMARY KEY(TrainingHistoryID);
+
+CREATE SEQUENCE PMIS_HS.TrainingHistory_ID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+CREATE TRIGGER PMIS_HS.TRG_TrainingHistory_INSERT
+BEFORE INSERT ON PMIS_HS.TrainingHistory
+FOR EACH ROW
+BEGIN
+   SELECT PMIS_HS.TrainingHistory_ID_SEQ.nextval INTO :new.TrainingHistoryID FROM dual;
+END;
+/

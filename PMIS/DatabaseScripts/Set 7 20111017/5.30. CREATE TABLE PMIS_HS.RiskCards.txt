@@ -1,0 +1,27 @@
+﻿CREATE TABLE PMIS_HS.RiskCards(RiskCardID number NOT NULL,
+							   PositionID number NOT NULL,
+							   CreatedBy number,
+                               CreatedDate date,
+                               LastModifiedBy number,
+                               LastModifiedDate date
+                              );
+
+ALTER TABLE PMIS_HS.RiskCards ADD CONSTRAINT RiskCards_PK PRIMARY KEY(RiskCardID);
+ALTER TABLE PMIS_HS.RiskCards ADD CONSTRAINT RiskCards_Positions_FK FOREIGN KEY (PositionID) REFERENCES PMIS_HS.Positions (PositionID);
+ALTER TABLE PMIS_HS.RiskCards ADD CONSTRAINT RiskCards_CreatedBy_FK FOREIGN KEY (CreatedBy) REFERENCES PMIS_ADM.Users (UserID);
+ALTER TABLE PMIS_HS.RiskCards ADD CONSTRAINT RiskCards_LastModifiedBy_FK FOREIGN KEY (LastModifiedBy) REFERENCES PMIS_ADM.Users (UserID);
+
+CREATE SEQUENCE PMIS_HS.RiskCards_ID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+CREATE TRIGGER PMIS_HS.TRG_RiskCards_INSERT
+BEFORE INSERT ON PMIS_HS.RiskCards
+FOR EACH ROW
+BEGIN
+   SELECT PMIS_HS.RiskCards_ID_SEQ.nextval INTO :new.RiskCardID FROM dual;
+END;
+/
+
+COMMIT;

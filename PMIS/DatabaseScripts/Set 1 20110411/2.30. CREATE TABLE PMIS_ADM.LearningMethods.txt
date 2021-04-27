@@ -1,0 +1,20 @@
+﻿CREATE TABLE PMIS_ADM.LearningMethods(LearningMethodKey varchar2(10),
+                                      LearningMethodName varchar2(100)
+                                     );
+
+ALTER TABLE PMIS_ADM.LearningMethods ADD CONSTRAINT LearningMethods_PK PRIMARY KEY (LearningMethodKey);
+
+INSERT INTO PMIS_ADM.LearningMethods (LearningMethodKey, LearningMethodName)
+VALUES ('Р', 'Редовно');
+
+INSERT INTO PMIS_ADM.LearningMethods (LearningMethodKey, LearningMethodName)
+VALUES ('З', 'Задочно');
+
+INSERT INTO PMIS_ADM.LearningMethods (LearningMethodKey, LearningMethodName)
+VALUES ('В', 'Вечерно');
+
+INSERT INTO PMIS_ADM.LearningMethods (LearningMethodKey, LearningMethodName)
+VALUES ('Д', 'Дистанционно');
+
+COMMIT;
+/

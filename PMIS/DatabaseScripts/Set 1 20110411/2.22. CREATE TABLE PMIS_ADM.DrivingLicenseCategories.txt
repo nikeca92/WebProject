@@ -1,0 +1,54 @@
+﻿CREATE TABLE PMIS_ADM.DrivingLicenseCategories(DrivingLicenseCategoryID number NOT NULL,
+                                               DrivingLicenseCategoryName varchar2(50) NOT NULL,
+                                               Seq number);
+
+ALTER TABLE PMIS_ADM.DrivingLicenseCategories ADD CONSTRAINT DrivingLicenseCategories_PK PRIMARY KEY(DrivingLicenseCategoryID);
+
+CREATE SEQUENCE PMIS_ADM.DrivingLCategories_ID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+CREATE OR REPLACE TRIGGER PMIS_ADM.TRG_DrivingLCategories_INSERT
+BEFORE INSERT ON PMIS_ADM.DrivingLicenseCategories
+FOR EACH ROW
+BEGIN
+   SELECT PMIS_ADM.DrivingLCategories_ID_SEQ.nextval INTO :new.DrivingLicenseCategoryID FROM dual;
+END;
+/
+
+INSERT INTO PMIS_ADM.DrivingLicenseCategories (DrivingLicenseCategoryName, Seq)
+VALUES ('A', 1);
+
+INSERT INTO PMIS_ADM.DrivingLicenseCategories (DrivingLicenseCategoryName, Seq)
+VALUES ('B', 2);
+
+INSERT INTO PMIS_ADM.DrivingLicenseCategories (DrivingLicenseCategoryName, Seq)
+VALUES ('C', 3);
+
+INSERT INTO PMIS_ADM.DrivingLicenseCategories (DrivingLicenseCategoryName, Seq)
+VALUES ('D', 4);
+
+INSERT INTO PMIS_ADM.DrivingLicenseCategories (DrivingLicenseCategoryName, Seq)
+VALUES ('M', 5);
+
+INSERT INTO PMIS_ADM.DrivingLicenseCategories (DrivingLicenseCategoryName, Seq)
+VALUES ('BE', 6);
+
+INSERT INTO PMIS_ADM.DrivingLicenseCategories (DrivingLicenseCategoryName, Seq)
+VALUES ('CE', 7);
+
+INSERT INTO PMIS_ADM.DrivingLicenseCategories (DrivingLicenseCategoryName, Seq)
+VALUES ('DE', 8);
+
+INSERT INTO PMIS_ADM.DrivingLicenseCategories (DrivingLicenseCategoryName, Seq)
+VALUES ('T(ТБ)', 9);
+
+INSERT INTO PMIS_ADM.DrivingLicenseCategories (DrivingLicenseCategoryName, Seq)
+VALUES ('T(ТМ)', 10);
+
+INSERT INTO PMIS_ADM.DrivingLicenseCategories (DrivingLicenseCategoryName, Seq)
+VALUES ('T(КТ)', 11);
+
+
+COMMIT;

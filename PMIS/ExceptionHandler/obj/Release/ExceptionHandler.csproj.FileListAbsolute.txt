@@ -1,0 +1,11 @@
+C:\PMIS\Src\PMIS\ExceptionHandler\bin\Release\ExceptionHandler.dll
+C:\PMIS\Src\PMIS\ExceptionHandler\bin\Release\ExceptionHandler.pdb
+C:\PMIS\Src\PMIS\ExceptionHandler\obj\Release\ResolveAssemblyReference.cache
+C:\PMIS\Src\PMIS\ExceptionHandler\obj\Release\ExceptionHandler.dll
+C:\PMIS\Src\PMIS\ExceptionHandler\obj\Release\ExceptionHandler.pdb
+C:\Users\n.markov1\Desktop\PMIS\ExceptionHandler\bin\Release\ExceptionHandler.dll
+C:\Users\n.markov1\Desktop\PMIS\ExceptionHandler\bin\Release\ExceptionHandler.pdb
+C:\Users\n.markov1\Desktop\PMIS\ExceptionHandler\obj\Release\ExceptionHandler.csprojAssemblyReference.cache
+C:\Users\n.markov1\Desktop\PMIS\ExceptionHandler\obj\Release\ExceptionHandler.csproj.CoreCompileInputs.cache
+C:\Users\n.markov1\Desktop\PMIS\ExceptionHandler\obj\Release\ExceptionHandler.dll
+C:\Users\n.markov1\Desktop\PMIS\ExceptionHandler\obj\Release\ExceptionHandler.pdb

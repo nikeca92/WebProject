@@ -1,0 +1,27 @@
+﻿CREATE TABLE PMIS_APPL.ApplicantPositions(ApplicantPositionID number NOT NULL,
+                                          ApplicantID number NOT NULL,
+                                          Seq number,
+                                          VacancyAnnouncePositionID number,
+                                          ApplicantDocumentsStatusID number,
+                                          ApplicantStatusID number,
+					                      ClInformationAccLevelBG varchar2(300),
+                                          Rating number
+                                          );
+
+ALTER TABLE PMIS_APPL.ApplicantPositions ADD CONSTRAINT ApplicantPositions_PK PRIMARY KEY(ApplicantPositionID);
+ALTER TABLE PMIS_APPL.ApplicantPositions ADD CONSTRAINT ApplPositions_Applicants_FK FOREIGN KEY (ApplicantID) REFERENCES PMIS_APPL.Applicants (ApplicantID);
+ALTER TABLE PMIS_APPL.ApplicantPositions ADD CONSTRAINT ApplPositions_AppPosDoc_FK FOREIGN KEY (ApplicantDocumentsStatusID) REFERENCES PMIS_APPL.ApplicantPositionDocStatus (StatusID);
+ALTER TABLE PMIS_APPL.ApplicantPositions ADD CONSTRAINT ApplPositions_AppPosStatus_FK FOREIGN KEY (ApplicantStatusID) REFERENCES PMIS_APPL.ApplicantPositionStatus (StatusID);
+
+CREATE SEQUENCE PMIS_APPL.ApplicantPositions_ID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+CREATE TRIGGER PMIS_APPL.TRG_ApplicantPositions_INSERT
+BEFORE INSERT ON PMIS_APPL.ApplicantPositions
+FOR EACH ROW
+BEGIN
+   SELECT PMIS_APPL.ApplicantPositions_ID_SEQ.nextval INTO :new.ApplicantPositionID FROM dual;
+END;
+/

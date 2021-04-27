@@ -1,0 +1,56 @@
+﻿INSERT INTO PMIS_ADM.Maintenance(MaintKey, HeaderTitle, DataTable, GTableTableName,
+   FldList, UpdtList, KeyFld, CanDelete, CanAdd, MasterTable, MasterField,
+   ChangeTypeKey, InsertChangeEventTypeKey, UpdateChangeEventTypeKey, DeleteChangeEventTypeKey,
+   MenuItemKey, UIKeyMaintenance, UIKeyDelete, UIKeyEdit, UIKeyAdd, 
+   ModuleID)
+VALUES ('ADM_PositionTitles', 'Длъжности', 'PMIS_ADM.PositionTitles', NULL, 
+ 'PositionTitleID[HIDDEN], PositionTitle, IsActive', 'PositionTitle, IsActive', 'PositionTitleID', 1, 1, 'PMIS_ADM.PersonPositionTitles', 'PMIS_ADM.PersonPositionTitles.PositionTitleID',
+ 'ADM_Lists_PositionTitles', 'ADM_Lists_PositionTitles_Add', 'ADM_Lists_PositionTitles_Edit', 'ADM_Lists_PositionTitles_Delete',
+ 'Lists_ADM_PositionTitles', 'ADM_LISTMAINT_POSITIONTITLES', 'ADM_LISTMAINT_POSITIONTITLES_DELETE', 'ADM_LISTMAINT_POSITIONTITLES_EDIT', 'ADM_LISTMAINT_POSITIONTITLES_ADD',
+ (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'ADM'));
+ 
+ 
+INSERT INTO PMIS_ADM.Maintenance(MaintKey, HeaderTitle, DataTable, GTableTableName, FldList, UpdtList, KeyFld, CanDelete, CanAdd, MasterTable, MasterField, 
+                                 ChangeTypeKey, InsertChangeEventTypeKey, UpdateChangeEventTypeKey, DeleteChangeEventTypeKey, MenuItemKey, 
+                                 UIKeyMaintenance, UIKeyDelete, UIKeyEdit, UIKeyAdd, ModuleID)
+VALUES ('ADM_MedRubrics', 'Медицински рубрики', 'PMIS_ADM.MedRubrics', NULL, 'MedRubricID[HIDDEN], MedRubricTitle, IsActive', 'MedRubricTitle, IsActive', 
+        'MedRubricID', 1, 1, 'PMIS_ADM.Persons', 'PMIS_ADM.Persons.MedCert_MedRubricID', 'ADM_Lists_MedRubrics', 'ADM_Lists_MedRubrics_Add',
+        'ADM_Lists_MedRubrics_Edit', 'ADM_Lists_MedRubrics_Delete', 'Lists_ADM_MedRubrics', 'ADM_LISTMAINT_MEDRUBRICS', 'ADM_LISTMAINT_MEDRUBRICS_DELETE', 
+        'ADM_LISTMAINT_MEDRUBRICS_EDIT', 'ADM_LISTMAINT_MEDRUBRICS_ADD', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'ADM'));
+ 
+
+INSERT INTO PMIS_ADM.Maintenance(MaintKey, HeaderTitle, DataTable, GTableTableName,
+   FldList, UpdtList, KeyFld, CanDelete, CanAdd, MasterTable, MasterField,
+   ChangeTypeKey, InsertChangeEventTypeKey, UpdateChangeEventTypeKey, DeleteChangeEventTypeKey,
+   MenuItemKey, UIKeyMaintenance, UIKeyDelete, UIKeyEdit, UIKeyAdd, 
+   ModuleID)
+VALUES ('ADM_MilitaryStructures', 'Структури', 'PMIS_ADM.MilitaryStructures', NULL, 
+ 'MilitaryStructureID[HIDDEN], MilitaryStructureName, IsActive, Seq', 'MilitaryStructureName, IsActive, Seq', 'MilitaryStructureID', 1, 1, 'PMIS_ADM.MilitaryForceTypes', 'PMIS_ADM.MilitaryForceTypes.MilitaryStructureID',
+ 'ADM_Lists_MilitaryStructures', 'ADM_Lists_MilitaryStructures_Add', 'ADM_Lists_MilitaryStructures_Edit', 'ADM_Lists_MilitaryStructures_Delete',
+ 'Lists_ADM_MilitaryStructures', 'ADM_LISTMAINT_MILITARYSTRUCTURES', 'ADM_LISTMAINT_MILITARYSTRUCTURES_DELETE', 'ADM_LISTMAINT_MILITARYSTRUCTURES_EDIT', 'ADM_LISTMAINT_MILITARYSTRUCTURES_ADD',
+ (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'ADM'));
+ 
+ 
+UPDATE PMIS_ADM.Maintenance SET 
+    HeaderTitle = 'Видове войски',
+    FldList = 'MilitaryForceTypeID[HIDDEN], MilitaryForceTypeName, IsActive, Seq, MilitaryStructureID[SELECT MilitaryStructureID as ID~ MilitaryStructureName as Text FROM PMIS_ADM.MilitaryStructures WHERE NVL(IsActive~ 0) = 1 OR MilitaryStructureID IN (SELECT MilitaryStructureID FROM PMIS_ADM.MilitaryForceTypes) ORDER BY MilitaryStructureName]',
+    UpdtList = 'MilitaryForceTypeName, IsActive, Seq, MilitaryStructureID',
+    MasterTable = 'PMIS_HS.RiskAssessments,PMIS_HS.Committees,VS_OWNER.KLV_ROD',
+    MasterField = 'PMIS_HS.RiskAssessments.MilitaryForceTypeID,PMIS_HS.Committees.MilitaryForceTypeID,VS_OWNER.KLV_ROD.MilitaryForceTypeID'
+WHERE MaintKey = 'ADM_MilitaryForceType';
+ 
+
+INSERT INTO PMIS_ADM.Maintenance(MaintKey, HeaderTitle, DataTable, GTableTableName,
+   FldList, UpdtList, KeyFld, CanDelete, CanAdd, MasterTable, MasterField,
+   ChangeTypeKey, InsertChangeEventTypeKey, UpdateChangeEventTypeKey, DeleteChangeEventTypeKey,
+   MenuItemKey, UIKeyMaintenance, UIKeyDelete, UIKeyEdit, UIKeyAdd, 
+   ModuleID)
+VALUES ('ADM_MilitaryForceSorts', 'Родове войски', 'VS_OWNER.KLV_ROD', NULL, 
+ 'RODID[HIDDEN], ROD_KOD, ROD_IME, Active, ROD_Seq, MilitaryForceTypeID[SELECT MilitaryForceTypeID as ID~ MilitaryForceTypeName as Text FROM PMIS_ADM.MilitaryForceTypes WHERE NVL(IsActive~ 0) = 1 OR MilitaryForceTypeID IN (SELECT MilitaryForceTypeID FROM PMIS_ADM.MilitaryReportSpecialities) ORDER BY MilitaryForceTypeName]', 'ROD_KOD, ROD_IME, Active, ROD_Seq, MilitaryForceTypeID', 'RODID', 1, 1, 'PMIS_ADM.MilitaryReportSpecialities', 'PMIS_ADM.MilitaryReportSpecialities.MilitaryForceSortID',
+ 'ADM_Lists_MilitaryForceSorts', 'ADM_Lists_MilitaryForceSorts_Add', 'ADM_Lists_MilitaryForceSorts_Edit', 'ADM_Lists_MilitaryForceSorts_Delete',
+ 'Lists_ADM_MilitaryForceSorts', 'ADM_LISTMAINT_MILITARYFORCESORTS', 'ADM_LISTMAINT_MILITARYFORCESORTS_DELETE', 'ADM_LISTMAINT_MILITARYFORCESORTS_EDIT', 'ADM_LISTMAINT_MILITARYFORCESORTS_ADD',
+ (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'ADM')); 
+ 
+ 
+COMMIT;
+/

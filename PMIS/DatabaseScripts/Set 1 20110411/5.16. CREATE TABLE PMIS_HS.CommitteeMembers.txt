@@ -1,0 +1,20 @@
+﻿CREATE TABLE PMIS_HS.CommitteeMembers(CommitteeMemberID number NOT NULL,
+                                      CommitteeID number,
+                                      PersonID number
+                                      );
+
+ALTER TABLE PMIS_HS.CommitteeMembers ADD CONSTRAINT CommitteeMembers_PK PRIMARY KEY(CommitteeMemberID);
+ALTER TABLE PMIS_HS.CommitteeMembers ADD CONSTRAINT CommitteeMembers_Committees_FK FOREIGN KEY (CommitteeID) REFERENCES PMIS_HS.Committees (CommitteeID);
+
+CREATE SEQUENCE PMIS_HS.CommitteeMembers_ID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+CREATE TRIGGER PMIS_HS.TRG_CommitteeMembers_INSERT
+BEFORE INSERT ON PMIS_HS.CommitteeMembers
+FOR EACH ROW
+BEGIN
+   SELECT PMIS_HS.CommitteeMembers_ID_SEQ.nextval INTO :new.CommitteeMemberID FROM dual;
+END;
+/

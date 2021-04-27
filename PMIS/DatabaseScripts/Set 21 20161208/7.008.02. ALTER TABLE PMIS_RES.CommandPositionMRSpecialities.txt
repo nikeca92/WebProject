@@ -1,0 +1,8 @@
+﻿ALTER TABLE PMIS_RES.CommandPositionMRSpecialities ADD (IsPrimary number(1) CHECK (IsPrimary BETWEEN 0 AND 1));
+
+UPDATE PMIS_RES.CommandPositionMRSpecialities SET
+   IsPrimary = 1
+WHERE RequestCommandPositionID IN (SELECT RequestCommandPositionID FROM PMIS_RES.CommandPositionMRSpecialities GROUP BY RequestCommandPositionID HAVING COUNT(*) = 1);
+
+COMMIT;
+/

@@ -1,0 +1,52 @@
+﻿ALTER TABLE PMIS_RES.TechnicsTypes ADD Seq int;
+ALTER TABLE PMIS_RES.TechnicsTypes ADD Active number(1) CHECK (Active BETWEEN 0 AND 1);
+
+UPDATE PMIS_RES.TechnicsTypes SET
+   Seq = 1,
+   Active = 1
+WHERE TechnicsTypeKey = 'VEHICLES';
+
+UPDATE PMIS_RES.TechnicsTypes SET
+   Seq = 2,
+   Active = 1,
+   TechnicsTypeName = 'Ремаркета и полуремаркета'
+WHERE TechnicsTypeKey = 'TRAILERS';
+
+UPDATE PMIS_RES.TechnicsTypes SET
+   Seq = 3,
+   Active = 1
+WHERE TechnicsTypeKey = 'TRACTORS';
+
+UPDATE PMIS_RES.TechnicsTypes SET
+   Seq = 4,
+   Active = 1,
+   TechnicsTypeName = 'Инженерни машини'
+WHERE TechnicsTypeKey = 'ENG_EQUIP';
+
+UPDATE PMIS_RES.TechnicsTypes SET
+   Seq = 5,
+   Active = 1,
+   TechnicsTypeName = 'Самоходни машини'
+WHERE TechnicsTypeKey = 'MOB_LIFT_EQUIP';
+
+UPDATE PMIS_RES.TechnicsTypes SET
+   Seq = 6,
+   Active = 1,
+   TechnicsTypeName = 'Инженерна и самолетообслужваща техника'
+WHERE TechnicsTypeKey = 'AVIATION_EQUIP';
+
+
+UPDATE PMIS_RES.TechnicsTypes SET
+   Active = 0
+WHERE TechnicsTypeKey = 'RAILWAY_EQUIP';
+
+UPDATE PMIS_RES.TechnicsTypes SET
+   Active = 0
+WHERE TechnicsTypeKey = 'VESSELS';
+
+UPDATE PMIS_RES.TechnicsTypes SET
+   Active = 0
+WHERE TechnicsTypeKey = 'FUEL_CONTAINERS';
+
+COMMIT;
+/

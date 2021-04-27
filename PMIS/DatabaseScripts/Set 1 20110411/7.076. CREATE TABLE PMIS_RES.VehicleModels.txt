@@ -1,0 +1,41 @@
+﻿CREATE TABLE PMIS_RES.VehicleModels(VehicleModelID number NOT NULL,
+                                    VehicleModelName varchar2(300),
+                                    VehicleMakeID number NOT NULL
+                                   );
+
+ALTER TABLE PMIS_RES.VehicleModels ADD CONSTRAINT VehicleModels_PK PRIMARY KEY(VehicleModelID);
+ALTER TABLE PMIS_RES.VehicleModels ADD CONSTRAINT VehicleModels_Makes_FK FOREIGN KEY (VehicleMakeID) REFERENCES PMIS_RES.VehicleMakes (VehicleMakeID);
+
+CREATE SEQUENCE PMIS_RES.VehicleModels_ID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+CREATE TRIGGER PMIS_RES.TRG_VehicleModels_INSERT
+BEFORE INSERT ON PMIS_RES.VehicleModels
+FOR EACH ROW
+BEGIN
+   SELECT PMIS_RES.VehicleModels_ID_SEQ.nextval INTO :new.VehicleModelID FROM dual;
+END;
+/
+
+INSERT INTO PMIS_RES.VehicleModels(VehicleModelName, VehicleMakeID)
+VALUES ('Patriot', (SELECT VehicleMakeID FROM PMIS_RES.VehicleMakes WHERE VehicleMakeName = 'Uaz'));
+
+INSERT INTO PMIS_RES.VehicleModels(VehicleModelName, VehicleMakeID)
+VALUES ('Hunter', (SELECT VehicleMakeID FROM PMIS_RES.VehicleMakes WHERE VehicleMakeName = 'Uaz'));
+
+INSERT INTO PMIS_RES.VehicleModels(VehicleModelName, VehicleMakeID)
+VALUES ('669', (SELECT VehicleMakeID FROM PMIS_RES.VehicleMakes WHERE VehicleMakeName = 'Uaz'));
+
+INSERT INTO PMIS_RES.VehicleModels(VehicleModelName, VehicleMakeID)
+VALUES ('G', (SELECT VehicleMakeID FROM PMIS_RES.VehicleMakes WHERE VehicleMakeName = 'Mercedes'));
+
+INSERT INTO PMIS_RES.VehicleModels(VehicleModelName, VehicleMakeID)
+VALUES ('G350', (SELECT VehicleMakeID FROM PMIS_RES.VehicleMakes WHERE VehicleMakeName = 'Mercedes'));
+
+INSERT INTO PMIS_RES.VehicleModels(VehicleModelName, VehicleMakeID)
+VALUES ('G400', (SELECT VehicleMakeID FROM PMIS_RES.VehicleMakes WHERE VehicleMakeName = 'Mercedes'));
+
+COMMIT;
+/

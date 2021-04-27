@@ -1,0 +1,16 @@
+﻿ALTER TABLE
+   PMIS_RES.MilReadiness
+ADD
+   (
+      PrintSymbol varchar2(500)
+   );
+   
+UPDATE PMIS_RES.MilReadiness
+SET PrintSymbol = 'МЯ'
+WHERE milreadinesscmdtype = 'Мобилизационно ядро';
+
+ALTER TABLE PMIS_RES.MilReadiness ADD AdministrationID NUMBER;   
+ALTER TABLE PMIS_RES.MilReadiness ADD CONSTRAINT MilReadiness_Adminis_FK FOREIGN KEY (AdministrationID) REFERENCES PMIS_ADM.Administrations(AdministrationID);
+
+COMMIT;
+/

@@ -1,0 +1,38 @@
+﻿CREATE TABLE PMIS_HS.RiskRank(RiskRankID number NOT NULL,
+						      RiskRankName varchar2(500),
+							  RiskRankFrom decimal(30, 10),
+							  RiskRankTo decimal(30, 10),
+							  RiskRank varchar2(10));
+
+ALTER TABLE PMIS_HS.RiskRank ADD CONSTRAINT RiskRank_PK PRIMARY KEY(RiskRankID);
+
+CREATE SEQUENCE PMIS_HS.RiskRank_ID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+CREATE TRIGGER PMIS_HS.TRG_RiskRank_INSERT
+BEFORE INSERT ON PMIS_HS.RiskRank
+FOR EACH ROW
+BEGIN
+   SELECT PMIS_HS.RiskRank_ID_SEQ.nextval INTO :new.RiskRankID FROM dual;
+END;
+/
+
+INSERT INTO PMIS_HS.RiskRank(RiskRankName, RiskRankFrom, RiskRankTo, RiskRank)
+VALUES ('Незначителен, твърде ограничен риск', 0, 20, 'I');
+
+INSERT INTO PMIS_HS.RiskRank(RiskRankName, RiskRankFrom, RiskRankTo, RiskRank)
+VALUES ('Приемлив, неголям риск, необходимо е внимание', 21, 70, 'II');
+
+INSERT INTO PMIS_HS.RiskRank(RiskRankName, RiskRankFrom, RiskRankTo, RiskRank)
+VALUES ('Умерен, необходими са мерки за намаляване на риска', 71, 200, 'III');
+
+INSERT INTO PMIS_HS.RiskRank(RiskRankName, RiskRankFrom, RiskRankTo, RiskRank)
+VALUES ('Сериозен, необходимо е незабавно подобряване условията на труд', 201, 400, 'IV');
+
+INSERT INTO PMIS_HS.RiskRank(RiskRankName, RiskRankFrom, RiskRankTo, RiskRank)
+VALUES ('Висок, прекратяване на дейността до отстраняване на риска', 401, 9999, 'V');
+
+COMMIT;
+/

@@ -1,0 +1,24 @@
+﻿CREATE TABLE PMIS_RES.TechRequestCommandPunkt ( TechRequestCommandPunktID number NOT NULL,
+                                                TechRequestsCommandID number NOT NULL,
+                                                MilitaryDepartmentID number NOT NULL,
+                                                CityID number,
+                                                Place varchar2(500)
+                                              );
+
+ALTER TABLE PMIS_RES.TechRequestCommandPunkt ADD CONSTRAINT TechRequestCommandPunkt_PK PRIMARY KEY (TechRequestCommandPunktID);
+ALTER TABLE PMIS_RES.TechRequestCommandPunkt ADD CONSTRAINT TechReqCmdPunkt_ReqCommands_FK FOREIGN KEY (TechRequestsCommandID) REFERENCES PMIS_RES.TechnicsRequestCommands (TechRequestsCommandID);
+ALTER TABLE PMIS_RES.TechRequestCommandPunkt ADD CONSTRAINT TechReqCmdPunkt_MilDept_FK FOREIGN KEY (MilitaryDepartmentID) REFERENCES PMIS_ADM.MilitaryDepartments (MilitaryDepartmentID);
+
+
+CREATE SEQUENCE PMIS_RES.TechRequestCommandPunkt_ID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+CREATE TRIGGER PMIS_RES.TRG_TechReqCmdPunkt_INSERT
+BEFORE INSERT ON PMIS_RES.TechRequestCommandPunkt
+FOR EACH ROW
+BEGIN
+   SELECT PMIS_RES.TechRequestCommandPunkt_ID_SEQ.nextval INTO :new.TechRequestCommandPunktID FROM dual;
+END;
+/

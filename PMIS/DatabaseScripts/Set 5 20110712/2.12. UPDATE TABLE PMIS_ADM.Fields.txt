@@ -1,0 +1,42 @@
+﻿
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'ADM_Lists_MilReportSpeciality_Type', 'Тип', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'ADM_Lists_MilReportSpeciality_Code', 'Код', 2);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'ADM_Lists_MilReportSpeciality_Name', 'Име', 3);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'ADM_Lists_MilReportSpeciality_MilForceSort', 'Род войски', 4);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('bool', 'ADM_Lists_MilReportSpeciality_Active', 'Активна', 5);
+
+UPDATE PMIS_ADM.Fields SET FieldName = 'Лице за контакт' WHERE FieldKey = 'ADM_PersonDetails_ParentsContact';
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_InvProt_CommissionMember3', 'Членове на комисията (III)', 9);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_InvProt_CommissionMember4', 'Членове на комисията (IV)', 9);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_InvProt_CommissionMember5', 'Членове на комисията (V)', 9);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_Lists_WorkingPlaces_Add_WorkingPlace', 'Място на измерване', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_Lists_WorkingPlaces_Add_MilitaryUnit', 'ВПН/Структура', 2);
+
+
+UPDATE PMIS_ADM.Fields SET FieldName = 'Товароносимост (т)' WHERE FieldKey = 'RES_Technics_VEHICLES_CarryingCapacity';
+UPDATE PMIS_ADM.Fields SET FieldName = 'Товароподемност (т)' WHERE FieldKey = 'RES_Technics_VEHICLES_LoadingCapacity';
+UPDATE PMIS_ADM.Fields SET FieldName = 'Товароносимост (т)' WHERE FieldKey = 'RES_Technics_TRAILERS_CarryingCapacity';
+UPDATE PMIS_ADM.Fields SET FieldName = 'Товароносимост (т) (въздухоплават. средства)' WHERE FieldKey = 'RES_Technics_AVIATION_EQUIP_AirCarryingCapacity';
+
+
+COMMIT;
+

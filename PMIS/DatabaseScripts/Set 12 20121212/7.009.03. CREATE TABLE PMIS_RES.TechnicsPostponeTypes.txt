@@ -1,0 +1,28 @@
+﻿CREATE TABLE PMIS_RES.TechnicsPostponeTypes(TechnicsPostponeTypeID number NOT NULL,
+                                    TechnicsPostponeTypeKey varchar2(100),
+                                    TechnicsPostponeTypeName varchar2(250)
+                                   );
+
+ALTER TABLE PMIS_RES.TechnicsPostponeTypes ADD CONSTRAINT TechnicsPostponeTypes_PK PRIMARY KEY(TechnicsPostponeTypeID);
+
+CREATE SEQUENCE PMIS_RES.TechPostponeTypes_ID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+CREATE TRIGGER PMIS_RES.TRG_TechPostponeTypes_INSERT
+BEFORE INSERT ON PMIS_RES.TechnicsPostponeTypes
+FOR EACH ROW
+BEGIN
+   SELECT PMIS_RES.TechPostponeTypes_ID_SEQ.nextval INTO :new.TechnicsPostponeTypeID FROM dual;
+END;
+/
+
+INSERT INTO PMIS_RES.TechnicsPostponeTypes (TechnicsPostponeTypeKey, TechnicsPostponeTypeName)
+VALUES ('CONDITIONED', 'Условно');
+
+INSERT INTO PMIS_RES.TechnicsPostponeTypes (TechnicsPostponeTypeKey, TechnicsPostponeTypeName)
+VALUES ('ABSOLUTELY', 'Безусловно');
+
+COMMIT;
+/

@@ -1,0 +1,28 @@
+﻿CREATE TABLE PMIS_HS.Committees(CommitteeID number NOT NULL,
+                                CommitteeTypeID number, /*GTable*/
+                                MilitaryForceTypeID number, /*GTable?*/
+                                MilitaryUnitID number,
+                                CreatedBy number,
+                                CreatedDate date,
+                                LastModifiedBy number,
+                                LastModifiedDate date
+                                );
+
+ALTER TABLE PMIS_HS.Committees ADD CONSTRAINT Committees_PK PRIMARY KEY(CommitteeID);
+ALTER TABLE PMIS_HS.Committees ADD CONSTRAINT Committees_MilitaryUnits_FK FOREIGN KEY (MilitaryUnitID) REFERENCES UKAZ_OWNER.MIR (KOD_MIR);
+ALTER TABLE PMIS_HS.Committees ADD CONSTRAINT Committees_CreatedBy_FK FOREIGN KEY (CreatedBy) REFERENCES PMIS_ADM.Users (UserID);
+ALTER TABLE PMIS_HS.Committees ADD CONSTRAINT Committees_LastModifiedBy_FK FOREIGN KEY (LastModifiedBy) REFERENCES PMIS_ADM.Users (UserID);
+ALTER TABLE PMIS_HS.Committees ADD CONSTRAINT Committees_MilitForceTypes_FK FOREIGN KEY (MilitaryForceTypeID) REFERENCES PMIS_ADM.MilitaryForceTypes (MilitaryForceTypeID);
+
+CREATE SEQUENCE PMIS_HS.Committees_ID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+CREATE TRIGGER PMIS_HS.TRG_Committees_INSERT
+BEFORE INSERT ON PMIS_HS.Committees
+FOR EACH ROW
+BEGIN
+   SELECT PMIS_HS.Committees_ID_SEQ.nextval INTO :new.CommitteeID FROM dual;
+END;
+/

@@ -1,0 +1,47 @@
+﻿
+CREATE TABLE PMIS_APPL.ApplicantPositionStatus (StatusID number NOT NULL,
+                                                StatusName varchar2(300),
+			                        StatusKey varchar2(300)
+                                               );
+
+ALTER TABLE PMIS_APPL.ApplicantPositionStatus ADD CONSTRAINT AppPosStatusID_PK PRIMARY KEY(StatusID);
+
+CREATE SEQUENCE PMIS_APPL.ApplicantPosStatusID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+CREATE TRIGGER PMIS_APPL.ApplicantPosStatus_INSERT
+BEFORE INSERT ON PMIS_APPL.ApplicantPositionStatus
+FOR EACH ROW
+BEGIN
+   SELECT PMIS_APPL.ApplicantPosStatusID_SEQ.nextval INTO :new.StatusID FROM dual;
+END;
+/
+
+
+INSERT INTO PMIS_APPL.ApplicantPositionStatus (StatusName, StatusKey)
+VALUES ('Подал документи', 'DOCUMENTSAPPLIED');
+
+INSERT INTO PMIS_APPL.ApplicantPositionStatus (StatusName, StatusKey)
+VALUES ('Допуснат до участие', 'PARTICIPATIONALLOWED');
+
+INSERT INTO PMIS_APPL.ApplicantPositionStatus (StatusName, StatusKey)
+VALUES ('Отпаднал по документи', 'DOCUMENTSREJECTED');
+
+INSERT INTO PMIS_APPL.ApplicantPositionStatus (StatusName, StatusKey)
+VALUES ('Определен за назначаване', 'APPOINTED');
+
+INSERT INTO PMIS_APPL.ApplicantPositionStatus (StatusName, StatusKey)
+VALUES ('Резерв за назначаване', 'RESERVE');
+
+INSERT INTO PMIS_APPL.ApplicantPositionStatus (StatusName, StatusKey)
+VALUES ('Назначен', 'NOMINATED');
+
+INSERT INTO PMIS_APPL.ApplicantPositionStatus (StatusName, StatusKey)
+VALUES ('Отказал се', 'CANCELED');
+
+
+COMMIT;
+
+

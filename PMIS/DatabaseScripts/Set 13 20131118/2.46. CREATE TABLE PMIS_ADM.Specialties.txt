@@ -1,0 +1,147 @@
+﻿CREATE TABLE PMIS_ADM.Specialities(SpecialityID number NOT NULL,
+                                  ProfessionID number NOT NULL,
+                                  SpecialityName varchar2(200)
+								 );
+
+ALTER TABLE PMIS_ADM.Specialities ADD CONSTRAINT Specialities_PK PRIMARY KEY (SpecialityID);
+ALTER TABLE PMIS_ADM.Specialities ADD CONSTRAINT Specialities_ProfessionID_FK FOREIGN KEY (ProfessionID) REFERENCES PMIS_ADM.Professions (ProfessionID);
+
+CREATE SEQUENCE PMIS_ADM.Specialities_ID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+CREATE TRIGGER PMIS_ADM.TRG_Specialities_INSERT
+BEFORE INSERT ON PMIS_ADM.Specialities
+FOR EACH ROW
+BEGIN
+   SELECT PMIS_ADM.Specialities_ID_SEQ.nextval INTO :new.SpecialityID FROM dual;
+END;
+/
+
+INSERT INTO PMIS_ADM.Specialities (SpecialityName, ProfessionID)
+VALUES ('Обща медицина', (SELECT ProfessionID FROM PMIS_ADM.Professions WHERE ProfessionName = 'Лекари'));
+
+INSERT INTO PMIS_ADM.Specialities (SpecialityName, ProfessionID)
+VALUES ('Спешна медицина', (SELECT ProfessionID FROM PMIS_ADM.Professions WHERE ProfessionName = 'Лекари'));
+
+INSERT INTO PMIS_ADM.Specialities (SpecialityName, ProfessionID)
+VALUES ('Вътрешни болести', (SELECT ProfessionID FROM PMIS_ADM.Professions WHERE ProfessionName = 'Лекари'));
+
+INSERT INTO PMIS_ADM.Specialities (SpecialityName, ProfessionID)
+VALUES ('Хирургия', (SELECT ProfessionID FROM PMIS_ADM.Professions WHERE ProfessionName = 'Лекари'));
+
+INSERT INTO PMIS_ADM.Specialities (SpecialityName, ProfessionID)
+VALUES ('Гръдна хирургия', (SELECT ProfessionID FROM PMIS_ADM.Professions WHERE ProfessionName = 'Лекари'));
+
+INSERT INTO PMIS_ADM.Specialities (SpecialityName, ProfessionID)
+VALUES ('Ортопедия и травматология', (SELECT ProfessionID FROM PMIS_ADM.Professions WHERE ProfessionName = 'Лекари'));
+
+INSERT INTO PMIS_ADM.Specialities (SpecialityName, ProfessionID)
+VALUES ('Урология', (SELECT ProfessionID FROM PMIS_ADM.Professions WHERE ProfessionName = 'Лекари'));
+
+INSERT INTO PMIS_ADM.Specialities (SpecialityName, ProfessionID)
+VALUES ('Неврохирургия', (SELECT ProfessionID FROM PMIS_ADM.Professions WHERE ProfessionName = 'Лекари'));
+
+INSERT INTO PMIS_ADM.Specialities (SpecialityName, ProfessionID)
+VALUES ('Лицево-челюстна хирургия', (SELECT ProfessionID FROM PMIS_ADM.Professions WHERE ProfessionName = 'Лекари'));
+
+INSERT INTO PMIS_ADM.Specialities (SpecialityName, ProfessionID)
+VALUES ('Съдова хирургия', (SELECT ProfessionID FROM PMIS_ADM.Professions WHERE ProfessionName = 'Лекари'));
+
+INSERT INTO PMIS_ADM.Specialities (SpecialityName, ProfessionID)
+VALUES ('Анестезиология и интензивно лечение', (SELECT ProfessionID FROM PMIS_ADM.Professions WHERE ProfessionName = 'Лекари'));
+
+INSERT INTO PMIS_ADM.Specialities (SpecialityName, ProfessionID)
+VALUES ('Акушерство и гинекология', (SELECT ProfessionID FROM PMIS_ADM.Professions WHERE ProfessionName = 'Лекари'));
+
+INSERT INTO PMIS_ADM.Specialities (SpecialityName, ProfessionID)
+VALUES ('Педиатрия', (SELECT ProfessionID FROM PMIS_ADM.Professions WHERE ProfessionName = 'Лекари'));
+
+INSERT INTO PMIS_ADM.Specialities (SpecialityName, ProfessionID)
+VALUES ('Очни болести', (SELECT ProfessionID FROM PMIS_ADM.Professions WHERE ProfessionName = 'Лекари'));
+
+INSERT INTO PMIS_ADM.Specialities (SpecialityName, ProfessionID)
+VALUES ('Ушно-носно-гърлени болести', (SELECT ProfessionID FROM PMIS_ADM.Professions WHERE ProfessionName = 'Лекари'));
+
+INSERT INTO PMIS_ADM.Specialities (SpecialityName, ProfessionID)
+VALUES ('Инфекциозни болести', (SELECT ProfessionID FROM PMIS_ADM.Professions WHERE ProfessionName = 'Лекари'));
+
+INSERT INTO PMIS_ADM.Specialities (SpecialityName, ProfessionID)
+VALUES ('Кожно-венерически болести', (SELECT ProfessionID FROM PMIS_ADM.Professions WHERE ProfessionName = 'Лекари'));
+
+INSERT INTO PMIS_ADM.Specialities (SpecialityName, ProfessionID)
+VALUES ('Нервни болести', (SELECT ProfessionID FROM PMIS_ADM.Professions WHERE ProfessionName = 'Лекари'));
+
+INSERT INTO PMIS_ADM.Specialities (SpecialityName, ProfessionID)
+VALUES ('Психиатрия', (SELECT ProfessionID FROM PMIS_ADM.Professions WHERE ProfessionName = 'Лекари'));
+
+INSERT INTO PMIS_ADM.Specialities (SpecialityName, ProfessionID)
+VALUES ('Физикална и рехабилитационна медицина', (SELECT ProfessionID FROM PMIS_ADM.Professions WHERE ProfessionName = 'Лекари'));
+
+INSERT INTO PMIS_ADM.Specialities (SpecialityName, ProfessionID)
+VALUES ('Клинична лаборатория', (SELECT ProfessionID FROM PMIS_ADM.Professions WHERE ProfessionName = 'Лекари'));
+
+INSERT INTO PMIS_ADM.Specialities (SpecialityName, ProfessionID)
+VALUES ('Токсикология', (SELECT ProfessionID FROM PMIS_ADM.Professions WHERE ProfessionName = 'Лекари'));
+
+INSERT INTO PMIS_ADM.Specialities (SpecialityName, ProfessionID)
+VALUES ('Лъчелечение', (SELECT ProfessionID FROM PMIS_ADM.Professions WHERE ProfessionName = 'Лекари'));
+
+INSERT INTO PMIS_ADM.Specialities (SpecialityName, ProfessionID)
+VALUES ('Дентална медицина, орална хирургия', (SELECT ProfessionID FROM PMIS_ADM.Professions WHERE ProfessionName = 'Лекари'));
+
+INSERT INTO PMIS_ADM.Specialities (SpecialityName, ProfessionID)
+VALUES ('Медицинска паразитология', (SELECT ProfessionID FROM PMIS_ADM.Professions WHERE ProfessionName = 'Лекари'));
+
+INSERT INTO PMIS_ADM.Specialities (SpecialityName, ProfessionID)
+VALUES ('Образна диагностика', (SELECT ProfessionID FROM PMIS_ADM.Professions WHERE ProfessionName = 'Лекари'));
+
+INSERT INTO PMIS_ADM.Specialities (SpecialityName, ProfessionID)
+VALUES ('Микробиология', (SELECT ProfessionID FROM PMIS_ADM.Professions WHERE ProfessionName = 'Лекари'));
+
+INSERT INTO PMIS_ADM.Specialities (SpecialityName, ProfessionID)
+VALUES ('Обща и клинична патология', (SELECT ProfessionID FROM PMIS_ADM.Professions WHERE ProfessionName = 'Лекари'));
+
+INSERT INTO PMIS_ADM.Specialities (SpecialityName, ProfessionID)
+VALUES ('Съдебна медицина', (SELECT ProfessionID FROM PMIS_ADM.Professions WHERE ProfessionName = 'Лекари'));
+
+INSERT INTO PMIS_ADM.Specialities (SpecialityName, ProfessionID)
+VALUES ('Вирусология', (SELECT ProfessionID FROM PMIS_ADM.Professions WHERE ProfessionName = 'Лекари'));
+
+INSERT INTO PMIS_ADM.Specialities (SpecialityName, ProfessionID)
+VALUES ('Радиобиология', (SELECT ProfessionID FROM PMIS_ADM.Professions WHERE ProfessionName = 'Лекари'));
+
+
+INSERT INTO PMIS_ADM.Specialities (SpecialityName, ProfessionID)
+VALUES ('Фармакология', (SELECT ProfessionID FROM PMIS_ADM.Professions WHERE ProfessionName = 'Фармацевт'));
+
+
+INSERT INTO PMIS_ADM.Specialities (SpecialityName, ProfessionID)
+VALUES ('Медицинска рехабилитация', (SELECT ProfessionID FROM PMIS_ADM.Professions WHERE ProfessionName = 'Рехабилитатор'));
+
+
+INSERT INTO PMIS_ADM.Specialities (SpecialityName, ProfessionID)
+VALUES ('Клинична лаборатория', (SELECT ProfessionID FROM PMIS_ADM.Professions WHERE ProfessionName = 'Лаборант'));
+
+INSERT INTO PMIS_ADM.Specialities (SpecialityName, ProfessionID)
+VALUES ('Образна диагностика', (SELECT ProfessionID FROM PMIS_ADM.Professions WHERE ProfessionName = 'Лаборант'));
+
+
+INSERT INTO PMIS_ADM.Specialities (SpecialityName, ProfessionID)
+VALUES ('Всички специалности', (SELECT ProfessionID FROM PMIS_ADM.Professions WHERE ProfessionName = 'Медицински сестри'));
+
+
+INSERT INTO PMIS_ADM.Specialities (SpecialityName, ProfessionID)
+VALUES ('Ветеринарен лекар', (SELECT ProfessionID FROM PMIS_ADM.Professions WHERE ProfessionName = 'Лекари ветеринари'));
+
+
+INSERT INTO PMIS_ADM.Specialities (SpecialityName, ProfessionID)
+VALUES ('Психолог', (SELECT ProfessionID FROM PMIS_ADM.Professions WHERE ProfessionName = 'Психолози'));
+
+
+INSERT INTO PMIS_ADM.Specialities (SpecialityName, ProfessionID)
+VALUES ('Геодезисти, картографи', (SELECT ProfessionID FROM PMIS_ADM.Professions WHERE ProfessionName = 'Строителни инженери/техници'));
+
+COMMIT;
+/

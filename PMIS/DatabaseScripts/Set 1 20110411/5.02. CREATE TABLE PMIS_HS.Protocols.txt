@@ -1,0 +1,39 @@
+CREATE TABLE PMIS_HS.Protocols(ProtocolID number NOT NULL,
+                               ProtocolNumber varchar2(100),
+                               ProtocolDate date,
+                               ProtocolTypeID number,
+                               MilitaryUnitID number,
+                               Object varchar2(250),
+                               Requesting varchar2(250),
+                               MeasurementDate date,
+                               NormativeDocument varchar2(250),
+                               MeasurementMethod varchar2(250),
+                               Address varchar2(2000),
+                               UsedEquipments varchar2(2000),
+                               PeoplePresent varchar2(2000),
+                               CreatedBy number,
+                               CreatedDate date,
+                               LastModifiedBy number,
+                               LastModifiedDate date
+                              );
+
+ALTER TABLE PMIS_HS.Protocols ADD CONSTRAINT Protocols_PK PRIMARY KEY(ProtocolID);
+ALTER TABLE PMIS_HS.Protocols ADD CONSTRAINT Protocols_ProtocolTypes_FK FOREIGN KEY (ProtocolTypeID) REFERENCES PMIS_HS.ProtocolTypes (ProtocolTypeID);
+ALTER TABLE PMIS_HS.Protocols ADD CONSTRAINT Protocols_MIR_FK FOREIGN KEY (MilitaryUnitID) REFERENCES UKAZ_OWNER.MIR (KOD_MIR);
+ALTER TABLE PMIS_HS.Protocols ADD CONSTRAINT Protocols_CreatedBy_FK FOREIGN KEY (CreatedBy) REFERENCES PMIS_ADM.Users (UserID);
+ALTER TABLE PMIS_HS.Protocols ADD CONSTRAINT Protocols_LastModifiedBy_FK FOREIGN KEY (LastModifiedBy) REFERENCES PMIS_ADM.Users (UserID);
+
+
+
+CREATE SEQUENCE PMIS_HS.Protocols_ID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+CREATE TRIGGER PMIS_HS.TRG_Protocols_INSERT
+BEFORE INSERT ON PMIS_HS.Protocols
+FOR EACH ROW
+BEGIN
+   SELECT PMIS_HS.Protocols_ID_SEQ.nextval INTO :new.ProtocolID FROM dual;
+END;
+/

@@ -1,0 +1,10 @@
+﻿UPDATE PMIS_ADM.PersonMilRepSpec SET
+   IsPrimary = 0;
+
+UPDATE PMIS_ADM.PersonMilRepSpec SET
+   IsPrimary = 1
+WHERE PersonMilRepSpecID IN (SELECT MIN(PersonMilRepSpecID) FROM PMIS_ADM.PersonMilRepSpec GROUP BY PersonID);
+
+COMMIT;
+
+/

@@ -1,0 +1,25 @@
+﻿CREATE TABLE PMIS_APPL.ApplicantExamMarks(ApplicantExamMarkID number NOT NULL,
+                                          ApplicantID number NOT NULL,
+					  ResponsibleMilitaryUnitID number NOT NULL,
+                                          VacancyAnnounceExamID number NOT NULL,
+                                          Mark number,
+					  Points number
+                                          );
+
+ALTER TABLE PMIS_APPL.ApplicantExamMarks ADD CONSTRAINT ApplicantExamMarks_PK PRIMARY KEY(ApplicantExamMarkID);
+ALTER TABLE PMIS_APPL.ApplicantExamMarks ADD CONSTRAINT ApplExamMarks_Applicants_FK FOREIGN KEY (ApplicantID) REFERENCES PMIS_APPL.Applicants (ApplicantID);
+ALTER TABLE PMIS_APPL.ApplicantExamMarks ADD CONSTRAINT ApplExamMarks_MIR_FK FOREIGN KEY (ResponsibleMilitaryUnitID) REFERENCES UKAZ_OWNER.MIR (KOD_MIR);
+ALTER TABLE PMIS_APPL.ApplicantExamMarks ADD CONSTRAINT ApplExamMarks_VacAnnExams_FK FOREIGN KEY (VacancyAnnounceExamID) REFERENCES PMIS_APPL.VacancyAnnounceExams (VacancyAnnounceExamID);
+
+CREATE SEQUENCE PMIS_APPL.ApplicantExamMarks_ID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+CREATE TRIGGER PMIS_APPL.TRG_ApplicantExamMarks_INSERT
+BEFORE INSERT ON PMIS_APPL.ApplicantExamMarks
+FOR EACH ROW
+BEGIN
+   SELECT PMIS_APPL.ApplicantExamMarks_ID_SEQ.nextval INTO :new.ApplicantExamMarkID FROM dual;
+END;
+/

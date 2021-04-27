@@ -1,0 +1,7 @@
+http://www.orafaq.com/wiki/Datapump
+
+expdp scott/tiger DIRECTORY=DATA_PUMP_DIR DUMPFILE=scott.dmp
+
+impdp scott/tiger DIRECTORY=DATA_PUMP_DIR DUMPFILE=scott.dmp
+
+C:\oracle\product\10.2.0\admin\orcl\dpdump

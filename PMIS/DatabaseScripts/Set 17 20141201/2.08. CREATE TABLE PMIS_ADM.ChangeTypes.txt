@@ -1,0 +1,9 @@
+﻿INSERT INTO PMIS_ADM.ChangeTypes (ChangeTypeKey, ChangeType, ModuleID)
+VALUES ('RES_PostponeRes', 'Отсрочване на резервисти', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'));
+
+INSERT INTO PMIS_ADM.ChangeTypes (ChangeTypeKey, ChangeType, ModuleID)
+VALUES ('RES_PostponeTech', 'Отсрочване на техника', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'));
+
+
+COMMIT;
+/

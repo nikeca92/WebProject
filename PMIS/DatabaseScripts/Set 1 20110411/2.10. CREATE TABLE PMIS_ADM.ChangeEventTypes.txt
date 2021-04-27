@@ -1,0 +1,1425 @@
+﻿CREATE TABLE PMIS_ADM.ChangeEventTypes(ChangeEventTypeID number NOT NULL,
+                                       ChangeEventTypeKey varchar2(500),
+                                       ChangeEventType varchar2(300),
+                                       ModuleID decimal NOT NULL,
+                                      ChangeType decimal(2) NOT NULL CHECK (ChangeType BETWEEN 1 AND 3) /*1 = Edit; 2 = Insert; 3 = Delete;*/
+                                      );
+
+
+ALTER TABLE PMIS_ADM.ChangeEventTypes ADD CONSTRAINT ChangeEventTypes_PK PRIMARY KEY(ChangeEventTypeID);
+ALTER TABLE PMIS_ADM.ChangeEventTypes ADD CONSTRAINT ChangeEventTypes_Modules_FK FOREIGN KEY (ModuleID) REFERENCES PMIS_ADM.Modules (ModuleID);
+ALTER TABLE PMIS_ADM.ChangeEventTypes ADD CONSTRAINT ChangeEventTypes_UNQ UNIQUE (ChangeEventTypeKey);
+
+
+
+CREATE SEQUENCE PMIS_ADM.ChangeEventTypes_ID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+CREATE TRIGGER PMIS_ADM.TRG_ChangeEventTypes_INSERT
+BEFORE INSERT ON PMIS_ADM.ChangeEventTypes
+FOR EACH ROW
+BEGIN
+   SELECT PMIS_ADM.ChangeEventTypes_ID_SEQ.nextval INTO :new.ChangeEventTypeID FROM dual;
+END;
+/
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('HS_Prot_AddProtocol', 'Добавяне на протокол', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('HS_Prot_EditProtocol', 'Редактиране на протокол', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('HS_Prot_DeleteProtocol', 'Изтриване на протокол', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'), 3);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('HS_Prot_AddItem', 'Добавяне на позиция в протокол', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('HS_Prot_EditItem', 'Редактиране на позиция от протокол', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('HS_Prot_DeleteItem', 'Изтриване на позиция от протокол', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'), 3);
+
+
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('ADM_Roles_AddRole', 'Добавяне на потребителска роля', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'ADM'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('ADM_Roles_EditRole', 'Редактиране на потребителска роля', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'ADM'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('ADM_Roles_DeleteRole', 'Изтриване на потребителска роля', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'ADM'), 3);
+
+
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('HS_InvProt_AddProtocol', 'Добавяне на протокол за разследване', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('HS_InvProt_EditProtocol', 'Редактиране на протокол за разследване', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('HS_InvProt_DeleteProtocol', 'Изтриване на протокол за разследване', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'), 3);
+
+
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('ADM_UIItemsPerRole_EditAccLevel', 'Промяна на правата и достъпа за потребителска роля', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'ADM'), 1);
+
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('ADM_MilStructureAccess_AddMilDepartment', 'Достъп до военни структури - Добавяне на ВО', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'ADM'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('ADM_MilStructureAccess_DelMilDepartment', 'Достъп до военни структури - Изтриване на ВО', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'ADM'), 3);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('ADM_MilStructureAccess_AddMilUnit', 'Достъп до военни структури - Добавяне на ВПН/Структура', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'ADM'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('ADM_MilStructureAccess_DelMilUnit', 'Достъп до военни структури - Изтриване наВПН/Структура', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'ADM'), 3);
+
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('ADM_Users_AddUser', 'Добавяне на потребител', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'ADM'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('ADM_Users_EditUser', 'Редактиране на потребител', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'ADM'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('ADM_Users_DeleteUser', 'Изтриване на потребител', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'ADM'), 3);
+
+
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('ADM_EditUserProfile', 'Редактиране на профил (Администратор)', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'ADM'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('HS_EditUserProfile', 'Редактиране на профил (Безопасност на труда)', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('APPL_EditUserProfile', 'Редактиране на профил (Кандидати)', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'APPL'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_EditUserProfile', 'Редактиране на профил (Резерв)', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 1);
+
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('HS_Lists_ProtocolTypes_AddProtocolType', 'Добавяне на измерване', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('HS_Lists_ProtocolTypes_EditProtocolType', 'Редактиране на измерване', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('HS_Lists_ProtocolTypes_DeleteProtocolType', 'Изтриване на измерване', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'), 3);
+
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('ADM_Lists_MilitaryForceTypes_AddMilitaryForceType', 'Добавяне на въоръжена сила', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'ADM'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('ADM_Lists_MilitaryForceTypes_EditMilitaryForceType', 'Редактиране на въоръжена сила', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'ADM'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('ADM_Lists_MilitaryForceTypes_DeleteMilitaryForceType', 'Изтриване на въоръжена сила', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'ADM'), 3);
+
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('HS_Lists_Measures_AddMeasure', 'Добавяне на измервана величина', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('HS_Lists_Measures_EditMeasure', 'Редактиране на измервана величина', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('HS_Lists_Measures_DeleteMeasure', 'Изтриване на измервана величина', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'), 3);
+
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('HS_Lists_DegreeOfDangers_AddDegreeOfDanger', 'Добавяне степен на опасност', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('HS_Lists_DegreeOfDangers_EditDegreeOfDanger', 'Редактиране степен на опасност', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('HS_Lists_DegreeOfDangers_DeleteDegreeOfDanger', 'Изтриване степен на опасност', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'), 3);
+
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('HS_RiskRemoveRecom_AddRiskRemoveRecommendation', 'Добавяне на препоръка за отстраняване на риска', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('HS_RiskRemoveRecom_EditRiskRemoveRecommendation', 'Редактиране на препоръка за отстраняване на риска', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('HS_RiskRemoveRecom_DeleteRiskRemoveRecommendation', 'Изтриване на препоръка за отстраняване на риска', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'), 3);
+
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('HS_RiskAssess_AddRiskAssessment', 'Добавяне на оценка на риска', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('HS_RiskAssess_EditRiskAssessment', 'Редактиране на оценка на риска', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('HS_RiskAssess_DeleteRiskAssessment', 'Изтриване на оценка на риска', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'), 3);
+
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('HS_UnsafeWCondNotices_AddNotice', 'Добавяне на сведение за заболявания и наранявания', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('HS_UnsafeWCondNotices_EditNotice', 'Редактиране на сведение за заболявания и наранявания', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('HS_UnsafeWCondNotices_DeleteNotice', 'Изтриване на сведение за заболявания и наранявания', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'), 3);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('HS_Lists_IndicatorTypes_AddIndicatorType', 'Добавяне на елемент на специфичните условия на труд', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('HS_Lists_IndicatorTypes_EditIndicatorType', 'Редактиране на елемент на специфичните условия на труд', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('HS_Lists_IndicatorTypes_DeleteIndicatorType', 'Изтриване на елемент на специфичните условия на труд', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'), 3);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('HS_Lists_Indicators_AddIndicator', 'Добавяне на показател на елементите на специфични условия на труд', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('HS_Lists_Indicators_EditIndicator', 'Редактиране на показател на елементите на специфични условия на труд', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('HS_Lists_Indicators_DeleteIndicator', 'Изтриване на показател на елементите на специфични условия на труд', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'), 3);
+
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('HS_DeclAcc_AddDecl', 'Добавяне на нова декларация за злополука', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('HS_DeclAcc_EditDecl', 'Редактиране на декларация за злополука', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('HS_DeclAcc_DeleteDecl', 'Изтриване на декларация за злополука', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'), 3);
+
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('HS_WCondCard_AddCard', 'Добавяне на карта', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('HS_WCondCard_EditCard', 'Редактиране на карта', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('HS_WCondCard_DeleteCard', 'Изтриване на карта', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'), 3);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('HS_WCondCard_AddItem', 'Добавяне на показател в карта', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('HS_WCondCard_EditItem', 'Редактиране на показател в карта', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('HS_WCondCard_DeleteItem', 'Изтриване на показател в карта', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'), 3);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('HS_TrainingHistory_AddTraining', 'Добавяне на обучение', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('HS_TrainingHistory_EditTraining', 'Редактиране на обучение', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('HS_TrainingHistory_DeleteTraining', 'Изтриване на обучение', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'), 3);
+
+
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('HS_Committee_AddCommittee', 'Добавяне на комитет или група', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('HS_Committee_EditCommittee', 'Редактиране на комитет или група', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('HS_Committee_DeleteCommittee', 'Изтриване на комитет или група', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'), 3);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('HS_Committee_AddCommitteeMember', 'Добавяне на член в комитет или група', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('HS_Committee_EditCommitteeMember', 'Редактиране на член в комитет или група', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('HS_Committee_DeleteCommitteeMember', 'Изтриване на член от комитет или група', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'), 3);
+
+
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('APPL_VacAnn_AddVacAnn', 'Добавяне на обявен конкурс', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'APPL'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('APPL_VacAnn_EditVacAnn', 'Редактиране на обявен конкурс', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'APPL'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('APPL_VacAnn_DeleteVacAnn', 'Изтриване на обявен конкурс', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'APPL'), 3);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('APPL_VacAnn_AddPosition', 'Добавяне на длъжност', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'APPL'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('APPL_VacAnn_EditPosition', 'Редактиране на длъжност', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'APPL'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('APPL_VacAnn_DeletePosition', 'Изтриване на длъжност', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'APPL'), 3);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('APPL_VacAnn_AddExam', 'Добавяне на изпит', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'APPL'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('APPL_VacAnn_EditExam', 'Редактиране на изпит', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'APPL'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('APPL_VacAnn_DeleteExam', 'Изтриване на изпит', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'APPL'), 3);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('APPL_VacAnn_AddDocument', 'Добавяне на документ', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'APPL'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('APPL_VacAnn_EditDocument', 'Редактиране на документ', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'APPL'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('APPL_VacAnn_DeleteDocument', 'Изтриване на документ', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'APPL'), 3);
+
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('ADM_Lists_DrivingLicenseCategories_Add', 'Добавяне на категория шоф. книжка', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'ADM'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('ADM_Lists_DrivingLicenseCategories_Edit', 'Редактиране на категория шоф. книжка', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'ADM'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('ADM_Lists_DrivingLicenseCategories_Delete', 'Изтриване на категория шоф. книжка', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'ADM'), 3);
+
+
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('ADM_Lists_MilitaryDepartments_Add', 'Добавяне на военно окръжие', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'ADM'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('ADM_Lists_MilitaryDepartments_Edit', 'Редактиране на военно окръжие', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'ADM'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('ADM_Lists_MilitaryDepartments_Delete', 'Изтриване на военно окръжие', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'ADM'), 3);
+
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('ADM_Lists_Administrations_Add', 'Добавяне на ведомство', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'ADM'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('ADM_Lists_Administrations_Edit', 'Редактиране на ведомство', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'ADM'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('ADM_Lists_Administrations_Delete', 'Изтриване на ведомство', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'ADM'), 3);
+
+
+
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('APPL_Applicants_Add', 'Добавяне на кандидат', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'APPL'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('APPL_Applicants_Edit', 'Редактиране на кандидат', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'APPL'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('APPL_Applicants_Delete', 'Изтриване на кандидат', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'APPL'), 3);
+
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('APPL_Applicants_AddPosition', 'Добавяне на длъжност', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'APPL'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('APPL_Applicants_EditPosition', 'Редактиране на длъжност', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'APPL'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('APPL_Applicants_DeletePosition', 'Изтриване на длъжност', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'APPL'), 3);
+
+
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('APPL_Applicants_AddEducation', 'Добавяне на образование', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'APPL'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('APPL_Applicants_EditEducation', 'Редактиране на образование', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'APPL'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('APPL_Applicants_DeleteEducation', 'Изтриване на образование', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'APPL'), 3);
+
+
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('APPL_Applicants_AddLanguage', 'Добавяне на езикова подготовка', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'APPL'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('APPL_Applicants_EditLanguage', 'Редактиране на езикова подготовка', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'APPL'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('APPL_Applicants_DeleteLanguage', 'Изтриване на езикова подготовка', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'APPL'), 3);
+
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('APPL_Applicants_Allowance', 'Допускане на кандидат', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'APPL'), 1);
+
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('APPL_Applicants_ExamStatus', 'Промяна на статус на изпитите', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'APPL'), 1);
+
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('APPL_Applicants_AddExamMark', 'Добавяне на изпитни резултати', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'APPL'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('APPL_Applicants_EditExamMark', 'Редактиране на изпитни резултати', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'APPL'), 1);
+
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('APPL_Applicants_Ranking', 'Класиране на кандидат', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'APPL'), 1);
+
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('APPL_Applicants_Nominating', 'Назначаване на кандидат', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'APPL'), 1);
+
+
+
+
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_EquipResRequests_Add', 'Добавяне на заявка за окомплектоване с ресурс от резерва', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_EquipResRequests_Edit', 'Редактиране на заявка за окомплектоване с ресурс от резерва', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_EquipResRequests_Delete', 'Изтриване на заявка за окомплектоване с ресурс от резерва', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 3);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_EquipResRequests_AddCommand', 'Добавяне на команда към заявка за окомплектоване с ресурс от резерва', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_EquipResRequests_DeleteCommand', 'Изтриване на команда от заявка за окомплектоване с ресурс от резерва', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 3);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_EquipResRequests_EditCommand', 'Редактиране на команда от заявка за окомплектоване с ресурс от резерва', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_EquipResRequests_Command_AddPosition', 'Добавяне на длъжност към заявка за окомплектоване с ресурс от резерва', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_EquipResRequests_Command_EditPosition', 'Редактиране на длъжност от заявка за окомплектоване с ресурс от резерва', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_EquipResRequests_Command_DeletePosition', 'Изтриване на длъжност от заявка за окомплектоване с ресурс от резерва', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 3);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_EquipResRequests_Command_ImportPosition', 'Импорт на вакантна длъжност към заявка за окомплектоване с ресурс от резерва', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 2);
+
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_EquipResRequests_AddMilDept', 'Добавяне на ВО на заявка за окомплектоване с ресурс от резерва', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_EquipResRequests_EditMilDept', 'Промяна на позициите на ВО на заявка за окомплектоване с ресурс от резерва', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_EquipResRequests_DeleteMilDept', 'Изтриване на ВО на заявка за окомплектоване с ресурс от резерва', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 3);
+
+
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_EquipResRequests_EditPunkt', 'Редактиране на пункт за извозване на заявка за окомплектоване с ресурс от резерва', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 1);
+
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_EquipResRequests_AddReservist', 'Добавяне на резервист към заявка за окомплектоване с ресурс от резерва', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_EquipResRequests_DeleteReservist', 'Изтриване на резервист от заявка за окомплектоване с ресурс от резерва', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 3);
+
+
+
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('APPL_Applicants_EditDocument', 'Редактиране на представен документ', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'APPL'), 1);
+
+
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('APPL_PotencialApplicants_Add', 'Добавяне на потенциален кандидат', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'APPL'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('APPL_PotencialApplicants_Edit', 'Редактиране на потенциален кандидат', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'APPL'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('APPL_PotencialApplicants_Delete', 'Изтриване на потенциален кандидат', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'APPL'), 3);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('ADM_PersonDetails_Add', 'Добавяне на лични данни', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'ADM'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('ADM_PersonDetails_Edit', 'Редактиране на лични данни', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'ADM'), 1);
+
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('ADM_Companies_EditCompany', 'Редактиране на фирма', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'ADM'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('ADM_Companies_AddCompany', 'Добавяне на фирма', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'ADM'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('ADM_Companies_DeleteCompany', 'Изтриване на фирма', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'ADM'), 3);
+
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('APPL_Cadets_Add', 'Добавяне на курсант', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'APPL'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('APPL_Cadets_Edit', 'Редактиране на курсант', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'APPL'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('APPL_Cadets_Delete', 'Изтриване на курсант', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'APPL'), 3);
+
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('APPL_Cadets_AddSpecialization', 'Добавяне на специализация', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'APPL'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('APPL_Cadets_DeleteSpecialization', 'Изтриване на специализация', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'APPL'), 3);
+
+
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('APPL_Cadets_AddEducation', 'Добавяне на образование', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'APPL'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('APPL_Cadets_EditEducation', 'Редактиране на образование', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'APPL'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('APPL_Cadets_DeleteEducation', 'Изтриване на образование', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'APPL'), 3);
+
+
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('APPL_Cadets_AddLanguage', 'Добавяне на езикова подготовка', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'APPL'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('APPL_Cadets_EditLanguage', 'Редактиране на езикова подготовка', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'APPL'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('APPL_Cadets_DeleteLanguage', 'Изтриване на езикова подготовка', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'APPL'), 3);
+
+
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('APPL_Cadets_AddRanking', 'Класиране на курсант', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'APPL'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('APPL_Cadets_DeleteRanking', 'Декласиране на курсант', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'APPL'), 1);
+
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('APPL_MilitSchoolSpecializations_Add', 'Добавяне на специализация към военно училище', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'APPL'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('APPL_MilitSchoolSpecializations_Delete', 'Изтриване на специализация от военно училище', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'APPL'), 3);
+
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Reservist_EditCivilEducation', 'Редактиране на гражданско образование', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Reservist_AddCivilEducation', 'Добавяне на гражданско образование', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Reservist_DeleteCivilEducation', 'Изтриване на гражданско образование', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 3);
+
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Lists_SizeClothing_AddSizeClothing', 'Добавяне на размер дрехи', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Lists_SizeClothing_EditSizeClothing', 'Редактиране на размер дрехи', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Lists_SizeClothing_DeleteSizeClothing', 'Изтриване на размер дрехи', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 3);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Lists_SizeHat_AddSizeHat', 'Добавяне на размер шапка', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Lists_SizeHat_EditSizeHat', 'Редактиране на размер шапка', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Lists_SizeHat_DeleteSizeHat', 'Изтриване на размер шапка', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 3);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Lists_SizeShoes_AddSizeShoes', 'Добавяне на размер обувки', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Lists_SizeShoes_EditSizeShoes', 'Редактиране на размер обувки', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Lists_SizeShoes_DeleteSizeShoes', 'Изтриване на размер обувки', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 3);
+
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Reservist_AddResAppointment', 'Даване МН на резервист', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Reservist_ClearResAppointment', 'Снемане МН на резервист', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 3);
+
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Reservist_AddMilRepStatus', 'Смяна на състоянието по отчета', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Reservist_EditMilRepStatus', 'Редактиране на текущото състояние по отчета', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 1);
+
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Reservist_EditMilRep', 'Редактиране на военно отчетна информация', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 1);
+
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Reservist_EditConviction', 'Редактиране на съдимост', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Reservist_AddConviction', 'Добавяне на съдимост', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Reservist_DeleteConviction', 'Изтриване на съдимост', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 3);
+
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Reservist_EditDualCitizenship', 'Редактиране на двойно гражданство', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Reservist_AddDualCitizenship', 'Добавяне на двойно гражданство', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Reservist_DeleteDualCitizenship', 'Изтриване на двойно гражданство', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 3);
+
+
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Reservist_EduWork_EditLanguage', 'Редактиране на чужд език', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Reservist_EduWork_AddLanguage', 'Добавяне на чужд език', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Reservist_EduWork_DeleteLanguage', 'Изтриване на чужд език', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 3);
+
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Reservist_EduWork_EditMltEdu_VU', 'Редактиране на военно образование - ВУ', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Reservist_EduWork_AddMltEdu_VU', 'Добавяне на военно образование - ВУ', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Reservist_EduWork_DeleteMltEdu_VU', 'Изтриване на военно образование - ВУ', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 3);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Reservist_EduWork_EditMltEdu_VA', 'Редактиране на военно образование - ВА', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Reservist_EduWork_AddMltEdu_VA', 'Добавяне на военно образование - ВА', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Reservist_EduWork_DeleteMltEdu_VA', 'Изтриване на военно образование - ВА', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 3);
+
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Reservist_EduWork_EditMltTrainingCource', 'Редактиране на курс', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Reservist_EduWork_AddTrainingCource', 'Добавяне на курс', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Reservist_EduWork_DeleteTrainingCource', 'Изтриване на курс', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 3);
+
+
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Reservist_EduWork_EditMltScientificTitle', 'Редактиране на научно звание', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Reservist_EduWork_AddScientificTitle', 'Добавяне на научно звание', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Reservist_EduWork_DeleteScientificTitle', 'Изтриване на научно звание', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 3);
+
+
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Reservist_EditMilRepSpec', 'Редактиране на ВОС', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Reservist_AddMilRepSpec', 'Добавяне на ВОС', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Reservist_DeleteMilRepSpec', 'Изтриване на ВОС', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 3);
+
+
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_EquipTechRequests_Add', 'Добавяне на заявка за окомплектоване с техника от резерва', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_EquipTechRequests_Edit', 'Редактиране на заявка за окомплектоване с техника от резерва', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_EquipTechRequests_Delete', 'Изтриване на заявка за окомплектоване с техника от резерва', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 3);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_EquipTechRequests_AddCommand', 'Добавяне на команда към заявка за окомплектоване с техника от резерва', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_EquipTechRequests_DeleteCommand', 'Изтриване на команда от заявка за окомплектоване с техника от резерва', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 3);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_EquipTechRequests_EditCommand', 'Редактиране на команда от заявка за окомплектоване с техника от резерва', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_EquipTechRequests_Command_AddPosition', 'Добавяне на позиция към заявка за окомплектоване с техника от резерва', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_EquipTechRequests_Command_EditPosition', 'Редактиране на позиция от заявка за окомплектоване с техника от резерва', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_EquipTechRequests_Command_DeletePosition', 'Изтриване на позиция от заявка за окомплектоване с техника от резерва', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 3);
+
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_EquipTechRequests_AddMilDept', 'Добавяне на ВО на заявка за окомплектоване с техника от резерва', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_EquipTechRequests_EditMilDept', 'Промяна на позициите на ВО на заявка за окомплектоване с техника от резерва', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_EquipTechRequests_DeleteMilDept', 'Изтриване на ВО на заявка за окомплектоване с техника от резерва', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 3);
+
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_EquipTechRequests_EditPunkt', 'Редактиране на пункт за извозване на заявка за окомплектоване с техника от резерва', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 1);
+
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_EquipTechRequests_AddVehicle', 'Добавяне на автомобил към заявка за окомплектоване с техника от резерва', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_EquipTechRequests_DeleteVehicle', 'Изтриване на автомобил от заявка за окомплектоване с техника от резерва', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 3);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_EquipTechRequests_AddTractor', 'Добавяне на трактор към заявка за окомплектоване с техника от резерва', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_EquipTechRequests_DeleteTractor', 'Изтриване на трактор от заявка за окомплектоване с техника от резерва', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 3);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_EquipTechRequests_AddMobLiftEquip', 'Добавяне на подвижна подемно-транспортна техника към заявка за окомплектоване с техника от резерва', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_EquipTechRequests_DeleteMobLiftEquip', 'Изтриване на подвижна подемно-транспортна техника от заявка за окомплектоване с техника от резерва', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 3);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_EquipTechRequests_AddTrailer', 'Добавяне на ремарке към заявка за окомплектоване с техника от резерва', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_EquipTechRequests_DeleteTrailer', 'Изтриване на ремарке от заявка за окомплектоване с техника от резерва', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 3);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_EquipTechRequests_AddEngEquip', 'Добавяне на инж. техника към заявка за окомплектоване с техника от резерва', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_EquipTechRequests_DeleteEngEquip', 'Изтриване на инж. техника от заявка за окомплектоване с техника от резерва', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 3);
+
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_EquipTechRequests_AddRailwayEquip', 'Добавяне на специализиран железопътен състав към заявка за окомплектоване с техника от резерва', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_EquipTechRequests_DeleteRailwayEquip', 'Изтриване на специализиран железопътен състав от заявка за окомплектоване с техника от резерва', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 3);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_EquipTechRequests_AddAviationEquip', 'Добавяне на авиационна техника към заявка за окомплектоване с техника от резерва', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_EquipTechRequests_DeleteAviationEquip', 'Изтриване на авиационна техника от заявка за окомплектоване с техника от резерва', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 3);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_EquipTechRequests_AddVessel', 'Добавяне на кораб към заявка за окомплектоване с техника от резерва', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_EquipTechRequests_DeleteVessel', 'Изтриване на кораб от заявка за окомплектоване с техника от резерва', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 3);
+
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_EquipTechRequests_AddFuelContainer', 'Добавяне на съд за ГСМ към заявка за окомплектоване с техника от резерва', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_EquipTechRequests_DeleteFuelContainer', 'Изтриване на съд за ГСМ от заявка за окомплектоване с техника от резерва', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 3);
+
+
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Reservist_MilServ_EditArchiveTitle', 'Редактиране на Звание', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Reservist_MilServ_AddArchiveTitle', 'Добавяне на Звание', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Reservist_MilServ_DeleteArchiveTitle', 'Изтриване на Звание', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 3);
+
+
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Reservist_MilServ_EditRewardIncentiv', 'Редактиране на награда/поощрение', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Reservist_MilServ_AddRewardIncentiv', 'Добавяне на награда/поощрение', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Reservist_MilServ_DeleteRewardIncentiv', 'Изтриване на награда/поощрение', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 3);
+
+
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Reservist_MilServ_EditPenalty', 'Редактиране на наказание', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Reservist_MilServ_AddPenalty', 'Добавяне на наказание', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Reservist_MilServ_DeletePenalty', 'Изтриване на наказание', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 3);
+
+
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_MilitaryReportPersonDetails_Edit', 'Редактиране на военно-отчетно лице', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_MilitaryReportPersonDetails_Add', 'Добавяне на военно-отчетно лице', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_MilitaryReportPersonDetails_Delete', 'Изтриване на военно-отчетно лице', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 3);
+
+
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Reservist_MilServ_EditConract', 'Редактиране на договор', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Reservist_MilServ_AddConract', 'Добавяне на договор', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Reservist_MilServ_DeleteConract', 'Изтриване на договор', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 3);
+
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Technics_VEHICLES_Edit', 'Редактиране на запис от техника (Автомобили)', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Technics_VEHICLES_Add', 'Добавяне на запис в техника (Автомобили)', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Technics_TRACTORS_Edit', 'Редактиране на запис от техника (Трактори)', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Technics_TRACTORS_Add', 'Добавяне на запис в техника (Трактори)', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Technics_MOB_LIFT_EQUIP_Edit', 'Редактиране на запис от техника (Подвижна подемно-транспортна техника)', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Technics_MOB_LIFT_EQUIP_Add', 'Добавяне на запис в техника (Подвижна подемно-транспортна техника)', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Technics_TRAILERS_Edit', 'Редактиране на запис от техника (Ремаркета)', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Technics_TRAILERS_Add', 'Добавяне на запис в техника (Ремаркета)', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Technics_ENG_EQUIP_Edit', 'Редактиране на запис от техника (Инж. техника)', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Technics_ENG_EQUIP_Add', 'Добавяне на запис в техника (Инж. техника)', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 2);
+
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Technics_RAILWAY_EQUIP_Edit', 'Редактиране на запис от техника (Специализиран железопътен състав)', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Technics_RAILWAY_EQUIP_Add', 'Добавяне на запис в техника (Специализиран железопътен състав)', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Technics_VESSELS_Edit', 'Редактиране на запис от техника (Кораби)', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Technics_VESSELS_Add', 'Добавяне на запис в техника (Кораби)', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Technics_VESSELS_EditVesselCrew', 'Редактиране на eкипаж на кораб', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Technics_VESSELS_AddVesselCrew', 'Добавяне на eкипаж на кораб', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Technics_VESSELS_DeleteVesselCrew', 'Изтриване на eкипаж на кораб', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 3);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Technics_AVIATION_EQUIP_Edit', 'Редактиране на запис от техника (Авиационна техника)', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Technics_AVIATION_EQUIP_Add', 'Добавяне на запис в техника (Авиационна техника)', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 2);
+
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Technics_FUEL_CONTAINERS_Edit', 'Редактиране на запис от техника (Съдове за ГСМ)', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Technics_FUEL_CONTAINERS_Add', 'Добавяне на запис в техника (Съдове за ГСМ)', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 2);
+
+
+
+
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Lists_VehicleKind_AddVehicleKind', 'Добавяне на вид автомобил', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Lists_VehicleKind_EditVehicleKind', 'Редактиране на вид автомобил', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Lists_VehicleKind_DeleteVehicleKind', 'Изтриване на вид автомобил', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 3);
+
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Lists_VehicleRoadability_AddVehicleRoadability', 'Добавяне проходимост на автомобил', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Lists_VehicleRoadability_EditVehicleRoadability', 'Редактиране проходимост на автомобил', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Lists_VehicleRoadability_DeleteVehicleRoadability', 'Изтриване проходимост на автомобил', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 3);
+
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Lists_VehicleEngineType_AddVehicleEngineType', 'Добавяне вид автомобилен двигател', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Lists_VehicleEngineType_EditVehicleEngineType', 'Редактиране вид автомобилен двигател', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Lists_VehicleEngineType_DeleteVehicleEngineType', 'Изтриване вид автомобилен двигател', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 3);
+
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Lists_VehicleBodyType_AddVehicleBodyType', 'Добавяне вид автомобилна каросерия', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Lists_VehicleBodyType_EditVehicleBodyType', 'Редактиране вид автомобилна каросерия', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Lists_VehicleBodyType_DeleteVehicleBodyType', 'Изтриване вид автомобилна каросерия', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 3);
+
+
+
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Lists_TractorKind_AddTractorKind', 'Добавяне на вид трактор', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Lists_TractorKind_EditTractorKind', 'Редактиране на вид трактор', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Lists_TractorKind_DeleteTractorKind', 'Изтриване на вид трактор', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 3);
+
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Lists_TractorType_AddVehicleRoadability', 'Добавяне на тип трактор', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Lists_TractorType_EditVehicleRoadability', 'Редактиране на тип трактор', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Lists_TractorType_DeleteVehicleRoadability', 'Изтриване на тип трактор', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 3);
+
+
+
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Technics_EditOtherInfo', 'Редактиране на "Други данни"', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Technics_EditOwner', 'Редактиране на "Собственик/Водач"', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 1);
+
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Lists_MilitaryReadiness_EditMilitaryReadinessName', 'Редактиране на готовност', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Lists_MilitaryReadiness_AddMilitaryReadinessName', 'Добавяне на готовност', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Lists_MilitaryReadiness_DeleteMilitaryReadinessName', 'Изтриване на готовност', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 3);
+
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Lists_VehicleMakes_EditVehicleMakeName', 'Редактиране на марка автомобил', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Lists_VehicleMakes_AddVehicleMakeName', 'Добавяне на марка автомобил', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Lists_VehicleMakes_DeleteVehicleMakeName', 'Изтриване на марка автомобил', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 3);
+
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Lists_VehicleModels_Edit', 'Редактиране на модел автомобил', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Lists_VehicleModels_Add', 'Добавяне на модел автомобил', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Lists_VehicleModels_Delete', 'Изтриване на модел автомобил', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 3);
+
+
+
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Lists_TractorMakes_EditTractorMakeName', 'Редактиране на марка трактор', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Lists_TractorMakes_AddTractorMakeName', 'Добавяне на марка трактор', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Lists_TractorMakes_DeleteTractorMakeName', 'Изтриване на марка трактор', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 3);
+
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Lists_TractorModels_Edit', 'Редактиране на модел трактор', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Lists_TractorModels_Add', 'Добавяне на модел трактор', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Lists_TractorModels_Delete', 'Изтриване на модел трактор', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 3);
+
+
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Reservist_MilServ_EditPreviousPosition', 'Редактиране на заемана длъжност', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Reservist_MilServ_AddPreviousPosition', 'Добавяне на заемана длъжност', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Reservist_MilServ_DeletePreviousPosition', 'Изтриване на заемана длъжност', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 3);
+
+
+
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Technics_AddTechAppointment', 'Даване МН на техника', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Technics_ClearTechAppointment', 'Снемане МН на техника', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 3);
+
+
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Technics_AddMilRepStatus', 'Смяна на състоянието по отчета', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Technics_EditMilRepStatus', 'Редактиране на текущото състояние по отчета', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 1);
+
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Technics_EditMilRep', 'Редактиране на военно отчетна информация', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 1);
+
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Technics_ChangeRegNumber', 'Промяна на регистрационен номер', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 1);
+
+
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Technics_ChangeInventoryNumber', 'Промяна на инвентарен номер', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 1);
+
+
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Lists_TrailerKind_AddTrailerKind', 'Добавяне на вид ремарке', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Lists_TrailerKind_EditTrailerKind', 'Редактиране на вид ремарке', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Lists_TrailerKind_DeleteTrailerKind', 'Изтриване на вид ремарке', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 3);
+
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Lists_TrailerType_AddTrailerType', 'Добавяне на тип ремарке', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Lists_TrailerType_EditTrailerType', 'Редактиране на тип ремарке', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Lists_TrailerType_DeleteTrailerType', 'Изтриване на тип ремарке', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 3);
+
+
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Lists_EngEquipKind_AddEngEquipKind', 'Добавяне на вид инж. техника', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Lists_EngEquipKind_EditEngEquipKind', 'Редактиране на вид инж. техника', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Lists_EngEquipKind_DeleteEngEquipKind', 'Изтриване на вид инж. техника', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 3);
+
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Lists_EngEquipType_AddEngEquipType', 'Добавяне на тип инж. техника', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Lists_EngEquipType_EditEngEquipType', 'Редактиране на тип инж. техника', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Lists_EngEquipType_DeleteEngEquipType', 'Изтриване на тип инж. техника', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 3);
+
+
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Lists_EngEquipBaseKind_AddEngEquipBaseKind', 'Добавяне на вид базова машина (инж. техника)', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Lists_EngEquipBaseKind_EditEngEquipBaseKind', 'Редактиране на вид базова машина (инж. техника)', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Lists_EngEquipBaseKind_DeleteEngEquipBaseKind', 'Изтриване на вид базова машина (инж. техника)', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 3);
+
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Lists_EngEquipBaseType_AddEngEquipBaseType', 'Добавяне на тип базова машина (инж. техника)', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Lists_EngEquipBaseType_EditEngEquipBaseType', 'Редактиране на тип базова машина (инж. техника)', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Lists_EngEquipBaseType_DeleteEngEquipBaseType', 'Изтриване на тип базова машина (инж. техника)', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 3);
+
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Lists_EngEquipBaseEngineType_AddEngEquipBaseEngineType', 'Добавяне на вид гориво за базова машина (инж. техника)', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Lists_EngEquipBaseEngineType_EditEngEquipBaseEngineType', 'Редактиране на вид гориво за базова машина (инж. техника)', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Lists_EngEquipBaseEngineType_DeleteEngEquipBaseEngineType', 'Изтриване на вид гориво за базова машина (инж. техника)', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 3);
+
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Lists_EngEquipWorkingBodyKind_AddEngEquipWorkingBodyKind', 'Добавяне на вид работен орган (инж. техника)', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Lists_EngEquipWorkingBodyKind_EditEngEquipWorkingBodyKind', 'Редактиране на вид работен орган (инж. техника)', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Lists_EngEquipWorkingBodyKind_DeleteEngEquipWorkingBodyKind', 'Изтриване на вид работен орган (инж. техника)', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 3);
+
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Lists_EngEquipWorkBodyEngineType_AddEngEquipWorkBodyEngineType', 'Добавяне на вид гориво за работен орган (инж. техника)', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Lists_EngEquipWorkBodyEngineType_EditEngEquipWorkBodyEngineType', 'Редактиране на вид гориво за работен орган (инж. техника)', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Lists_EngEquipWorkBodyEngineType_DeleteEngEquipWorkBodyEngineType', 'Изтриване на вид гориво за работен орган (инж. техника)', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 3);
+
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Lists_MobileLiftingEquipKind_AddMobileLiftingEquipKind', 'Добавяне на вид подемно-транспортна техника', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Lists_MobileLiftingEquipKind_EditMobileLiftingEquipKind', 'Редактиране на вид подемно-транспортна техника', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Lists_MobileLiftingEquipKind_DeleteMobileLiftingEquipKind', 'Изтриване на вид подемно-транспортна техника', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 3);
+
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Lists_MobileLiftingEquipType_AddMobileLiftingEquipType', 'Добавяне на тип подемно-транспортна техника', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Lists_MobileLiftingEquipType_EditMobileLiftingEquipType', 'Редактиране на тип подемно-транспортна техника', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Lists_MobileLiftingEquipType_DeleteMobileLiftingEquipType', 'Изтриване на тип подемно-транспортна техника', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 3);
+
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Lists_RailwayEquipKind_AddRailwayEquipKind', 'Добавяне на вид специализиран железопътен състав', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Lists_RailwayEquipKind_EditRailwayEquipKind', 'Редактиране на вид специализиран железопътен състав', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Lists_RailwayEquipKind_DeleteRailwayEquipKind', 'Изтриване на вид специализиран железопътен състав', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 3);
+
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Lists_RailwayEquipType_AddRailwayEquipType', 'Добавяне на тип специализиран железопътен състав', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Lists_RailwayEquipType_EditRailwayEquipType', 'Редактиране на тип специализиран железопътен състав', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Lists_RailwayEquipType_DeleteRailwayEquipType', 'Изтриване на тип специализиран железопътен състав', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 3);
+
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Lists_EngEquipBaseMakes_EditEngEquipBaseMakeName', 'Редактиране на марка инж. техника', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Lists_EngEquipBaseMakes_AddEngEquipBaseMakeName', 'Добавяне на марка инж. техника', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Lists_EngEquipBaseMakes_DeleteEngEquipBaseMakeName', 'Изтриване на марка инж. техника', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 3);
+
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Lists_EngEquipBaseModels_Edit', 'Редактиране на модел инж. техника', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Lists_EngEquipBaseModels_Add', 'Добавяне на модел инж. техника', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Lists_EngEquipBaseModels_Delete', 'Изтриване на модел инж. техника', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 3);
+
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Lists_AviationOtherBaseMachineMakes_EditAviationOtherBaseMachineMakeName', 'Редактиране на марка базова машина (спец. авиационна техника)', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Lists_AviationOtherBaseMachineMakes_AddAviationOtherBaseMachineMakeName', 'Добавяне на марка базова машина (спец. авиационна техника)', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Lists_AviationOtherBaseMachineMakes_DeleteAviationOtherBaseMachineMakeName', 'Изтриване на марка базова машина (спец. авиационна техника)', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 3);
+
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Lists_AviationOtherBaseMachineModels_Edit', 'Редактиране на модел базова машина (спец. авиационна техника)', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Lists_AviationOtherBaseMachineModels_Add', 'Добавяне на модел базова машина (спец. авиационна техника)', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Lists_AviationOtherBaseMachineModels_Delete', 'Изтриване на модел базова машина (спец. авиационна техника)', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 3);
+
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Lists_FuelContainerKind_AddFuelContainerKind', 'Добавяне на вид съд за гсм', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Lists_FuelContainerKind_EditFuelContainerKind', 'Редактиране на вид съд за гсм', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Lists_FuelContainerKind_DeleteFuelContainerKind', 'Изтриване на вид съд за гсм', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 3);
+
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Lists_FuelContainerType_AddFuelContainerType', 'Добавяне на тип съд за гсм', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Lists_FuelContainerType_EditFuelContainerType', 'Редактиране на тип съд за гсм', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Lists_FuelContainerType_DeleteFuelContainerType', 'Изтриване на тип съд за гсм', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 3);
+
+
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Lists_VesselKind_AddVesselKind', 'Добавяне на вид кораб', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Lists_VesselKind_EditVesselKind', 'Редактиране на вид кораб', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Lists_VesselKind_DeleteVesselKind', 'Изтриване на вид кораб', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 3);
+
+
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Lists_VesselType_AddVesselType', 'Добавяне на тип кораб', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Lists_VesselType_EditVesselType', 'Редактиране на тип кораб', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Lists_VesselType_DeleteVesselType', 'Изтриване на тип кораб', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 3);
+
+
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Lists_AviationAirKind_AddAviationAirKind', 'Добавяне на вид въздухоплавателно средство', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Lists_AviationAirKind_EditAviationAirKind', 'Редактиране на вид въздухоплавателно средство', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Lists_AviationAirKind_DeleteAviationAirKind', 'Изтриване на вид въздухоплавателно средство', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 3);
+
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Lists_AviationAirType_AddAviationAirType', 'Добавяне на тип въздухоплавателно средство', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Lists_AviationAirType_EditAviationAirType', 'Редактиране на тип въздухоплавателно средство', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Lists_AviationAirType_DeleteAviationAirType', 'Изтриване на тип въздухоплавателно средство', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 3);
+
+
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Lists_AviationAirModel_AddAviationAirModel', 'Добавяне на модел въздухоплавателно средство', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Lists_AviationAirModel_EditAviationAirModel', 'Редактиране на модел въздухоплавателно средство', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Lists_AviationAirModel_DeleteAviationAirModel', 'Изтриване на модел въздухоплавателно средство', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 3);
+
+
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Lists_AviationOtherKind_AddAviationOtherKind', 'Добавяне на вид специализирана аивац. техника', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Lists_AviationOtherKind_EditAviationOtherKind', 'Редактиране на вид специализирана аивац. техника', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Lists_AviationOtherKind_DeleteAviationOtherKind', 'Изтриване на вид специализирана аивац. техника', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 3);
+
+
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Lists_AviationOtherType_AddAviationOtherType', 'Добавяне на тип специализирана аивац. техника', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Lists_AviationOtherType_EditAviationOtherType', 'Редактиране на тип специализирана аивац. техника', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Lists_AviationOtherType_DeleteAviationOtherType', 'Изтриване на тип специализирана аивац. техника', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 3);
+
+
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Lists_AviationOtherBaseMachineKind_AddAviationOtherBaseMachineKind', 'Добавяне на вид базова машина (спец. авиационна техника)', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Lists_AviationOtherBaseMachineKind_EditAviationOtherBaseMachineKind', 'Редактиране на вид базова машина (спец. авиационна техника)', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Lists_AviationOtherBaseMachineKind_DeleteAviationOtherBaseMachineKind', 'Изтриване на вид базова машина (спец. авиационна техника)', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 3);
+
+
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Lists_AviationOtherBaseMachineType_AddAviationOtherBaseMachineType', 'Добавяне на тип базова машина (спец. авиационна техника)', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Lists_AviationOtherBaseMachineType_EditAviationOtherBaseMachineType', 'Редактиране на тип базова машина (спец. авиационна техника)', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Lists_AviationOtherBaseMachineType_DeleteAviationOtherBaseMachineType', 'Изтриване на тип базова машина (спец. авиационна техника)', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 3);
+
+
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Lists_AviationOtherEquipmentKind_AddAviationOtherEquipmentKind', 'Добавяне на вид оборудване (спец. авиационна техника)', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Lists_AviationOtherEquipmentKind_EditAviationOtherEquipmentKind', 'Редактиране на вид оборудване (спец. авиационна техника)', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Lists_AviationOtherEquipmentKind_DeleteAviationOtherEquipmentKind', 'Изтриване на вид оборудване (спец. авиационна техника)', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 3);
+
+
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Lists_TechnicsCategories_EditTechnicsCategoryName', 'Редактиране на категория техника', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Lists_TechnicsCategories_AddTechnicsCategoryName', 'Добавяне на категория техника', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Lists_TechnicsCategories_DeleteTechnicsCategoryName', 'Изтриване на категория техника', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 3);
+
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Technics_RAILWAY_EQUIP_Split', 'Разделяне на специализиран железопътен състав при изпълнение на заявка', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Technics_FUEL_CONTAINERS_Split', 'Разделяне на съдове за ГСМ при изпълнение на заявка', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 2);
+
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Postpone_AddPostpone', 'Добавяне на отсрочване', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Postpone_EditPostpone', 'Редактиране на отсрочване', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Postpone_DeletePostpone', 'Изтриване на отсрочване', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'), 3);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Postpone_AddPostponeItem', 'Добавяне на позиция в отсрочване', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Postpone_EditPostponeItem', 'Редактиране на позиция в отсрочване', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Postpone_DeletePostponeItem', 'Изтриване на позиция в отсрочване', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'), 3);
+
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('APPL_Documents_Add', 'Добавяне на документ', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'APPL'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('APPL_Documents_Edit', 'Редактиране на документ', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'APPL'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('APPL_Documents_Delete', 'Изтриване на документ', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'APPL'), 3);
+
+
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('APPL_Exams_Add', 'Добавяне на изпит', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'APPL'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('APPL_Exams_Edit', 'Редактиране на изпит', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'APPL'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('APPL_Exams_Delete', 'Изтриване на изпит', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'APPL'), 3);
+
+
+
+COMMIT;
+
+

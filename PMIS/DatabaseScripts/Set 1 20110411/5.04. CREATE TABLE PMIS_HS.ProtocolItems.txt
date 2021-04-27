@@ -1,0 +1,26 @@
+CREATE TABLE PMIS_HS.ProtocolItems(ProtocolItemID number NOT NULL,
+                                   ProtocolID number NOT NULL,
+                                   WorkingPlace varchar2(500),
+                                   WorkingPeople number,
+                                   MeasureID number,
+                                   Measured number(30, 10),
+                                   Threshold number(30, 10),
+                                   Other varchar2(500)
+                                  );
+
+ALTER TABLE PMIS_HS.ProtocolItems ADD CONSTRAINT ProtocolItems_PK PRIMARY KEY(ProtocolItemID);
+ALTER TABLE PMIS_HS.ProtocolItems ADD CONSTRAINT ProtocolItems_Protocols_FK FOREIGN KEY (ProtocolID) REFERENCES PMIS_HS.Protocols (ProtocolID);
+ALTER TABLE PMIS_HS.ProtocolItems ADD CONSTRAINT ProtocolItems_Measures_FK FOREIGN KEY (MeasureID) REFERENCES PMIS_HS.Measures (MeasureID);
+
+CREATE SEQUENCE PMIS_HS.ProtocolItems_ID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+CREATE TRIGGER PMIS_HS.TRG_ProtocolItems_INSERT
+BEFORE INSERT ON PMIS_HS.ProtocolItems
+FOR EACH ROW
+BEGIN
+   SELECT PMIS_HS.ProtocolItems_ID_SEQ.nextval INTO :new.ProtocolItemID FROM dual;
+END;
+/

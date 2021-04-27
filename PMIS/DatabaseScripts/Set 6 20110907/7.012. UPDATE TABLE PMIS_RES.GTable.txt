@@ -1,0 +1,9 @@
+﻿
+INSERT INTO PMIS_RES.GTable(TableName, TableKey, TableSeq, TableValue)
+VALUES ('TrailerBodyKind', '1', '1', 'Вид #1');
+
+INSERT INTO PMIS_RES.GTable(TableName, TableKey, TableSeq, TableValue)
+VALUES ('TrailerBodyKind', '2', '2', 'Вид #2');
+
+COMMIT;
+/

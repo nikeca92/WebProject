@@ -1,0 +1,6 @@
+﻿INSERT INTO PMIS_ADM.MaritalStatuses (MaritalStatusKey, MaritalStatusName)
+VALUES ('Л', 'Липсват данни');
+
+
+COMMIT;
+/

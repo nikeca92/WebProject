@@ -1,0 +1,180 @@
+﻿CREATE OR REPLACE VIEW PMIS_RES.ViewReportNormativeTechnics
+AS 
+SELECT 1 as NormativeLevel,
+       MIN(LPAD(a.NormativeCode, 5, '0')) as OrderCode,
+       '' as NormativeCode,
+       0 as NormativeTechnicsID,
+       TO_CHAR(RANK() OVER (ORDER BY MIN(LPAD(a.NormativeCode, 5, '0')))) || '. ' || a.NormativeLevel1 as NormativeName,
+       a.NormativeLevel1,
+       '' as NormativeLevel2,
+       '' as NormativeLevel3,
+       '' as NormativeLevel4,
+       '' as NormativeLevel5,
+       '' as NormativeLevel6
+FROM PMIS_RES.NormativeTechnics a
+WHERE a.NormativeLevel1 IS NOT NULL
+GROUP BY a.NormativeLevel1
+
+UNION ALL
+
+SELECT 2 as NormativeLevel,
+       MIN(LPAD(a.NormativeCode, 5, '0')) as OrderCode,
+       '' as NormativeCode,
+       0 as NormativeTechnicsID,
+       TO_CHAR(b.TreeNumber) || '. ' ||
+       TO_CHAR(RANK() OVER (PARTITION BY a.NormativeLevel1 ORDER BY MIN(LPAD(a.NormativeCode, 5, '0')))) || '. ' || a.NormativeLevel2 as NormativeName,
+       a.NormativeLevel1,
+       a.NormativeLevel2,
+       '' as NormativeLevel3,
+       '' as NormativeLevel4,
+       '' as NormativeLevel5,
+       '' as NormativeLevel6
+FROM PMIS_RES.NormativeTechnics a
+LEFT OUTER JOIN (SELECT a.NormativeLevel1,
+                        MIN(LPAD(a.NormativeCode, 5, '0')) as MinCode,
+                        RANK() OVER (ORDER BY MIN(LPAD(a.NormativeCode, 5, '0'))) as TreeNumber
+                 FROM PMIS_RES.NormativeTechnics a
+                 GROUP BY a.NormativeLevel1) b ON a.NormativeLevel1 = b.NormativeLevel1
+WHERE a.NormativeLevel1 IS NOT NULL AND a.NormativeLevel2 IS NOT NULL
+GROUP BY a.NormativeLevel1, b.MinCode, b.TreeNumber, a.NormativeLevel2
+
+UNION ALL
+
+SELECT 3 as NormativeLevel,
+       MIN(LPAD(a.NormativeCode, 5, '0')) as OrderCode,
+       '' as NormativeCode,
+       0 as NormativeTechnicsID,
+       TO_CHAR(b.TreeNumber) || '. ' ||
+       TO_CHAR(c.TreeNumber) || '. ' ||
+       TO_CHAR(RANK() OVER (PARTITION BY a.NormativeLevel1, a.NormativeLevel2 ORDER BY MIN(LPAD(a.NormativeCode, 5, '0')))) || '. ' || a.NormativeLevel3 as NormativeName,
+       a.NormativeLevel1,
+       a.NormativeLevel2,
+       a.NormativeLevel3,
+       '' as NormativeLevel4,
+       '' as NormativeLevel5,
+       '' as NormativeLevel6
+FROM PMIS_RES.NormativeTechnics a
+LEFT OUTER JOIN (SELECT a.NormativeLevel1,
+                        MIN(LPAD(a.NormativeCode, 5, '0')) as MinCode,
+                        RANK() OVER (ORDER BY MIN(LPAD(a.NormativeCode, 5, '0'))) as TreeNumber
+                 FROM PMIS_RES.NormativeTechnics a
+                 GROUP BY a.NormativeLevel1) b ON a.NormativeLevel1 = b.NormativeLevel1
+LEFT OUTER JOIN (SELECT a.NormativeLevel1, a.NormativeLevel2,
+                        MIN(LPAD(a.NormativeCode, 5, '0')) as MinCode,
+                        RANK() OVER (PARTITION BY a.NormativeLevel1 ORDER BY MIN(LPAD(a.NormativeCode, 5, '0'))) as TreeNumber
+                 FROM PMIS_RES.NormativeTechnics a
+                 GROUP BY a.NormativeLevel1, a.NormativeLevel2) c ON a.NormativeLevel1 = c.NormativeLevel1 AND
+                                                                     a.NormativeLevel2 = c.NormativeLevel2
+WHERE a.NormativeLevel1 IS NOT NULL AND a.NormativeLevel2 IS NOT NULL AND a.NormativeLevel3 IS NOT NULL
+GROUP BY a.NormativeLevel1, b.MinCode, b.TreeNumber, a.NormativeLevel2, c.MinCode, c.TreeNumber, a.NormativeLevel3
+
+UNION ALL
+
+SELECT 4 as NormativeLevel,
+       MIN(LPAD(a.NormativeCode, 5, '0')) as OrderCode,
+       '' as NormativeCode,
+       0 as NormativeTechnicsID,
+       TO_CHAR(b.TreeNumber) || '. ' ||
+       TO_CHAR(c.TreeNumber) || '. ' ||
+       TO_CHAR(d.TreeNumber) || '. ' ||
+       TO_CHAR(RANK() OVER (PARTITION BY a.NormativeLevel1, a.NormativeLevel2, a.NormativeLevel3 ORDER BY MIN(LPAD(a.NormativeCode, 5, '0')))) || '. ' || a.NormativeLevel4 as NormativeName,
+       a.NormativeLevel1,
+       a.NormativeLevel2,
+       a.NormativeLevel3,
+       a.NormativeLevel4,
+       '' as NormativeLevel5,
+       '' as NormativeLevel6
+FROM PMIS_RES.NormativeTechnics a
+LEFT OUTER JOIN (SELECT a.NormativeLevel1,
+                        MIN(LPAD(a.NormativeCode, 5, '0')) as MinCode,
+                        RANK() OVER (ORDER BY MIN(LPAD(a.NormativeCode, 5, '0'))) as TreeNumber
+                 FROM PMIS_RES.NormativeTechnics a
+                 GROUP BY a.NormativeLevel1) b ON a.NormativeLevel1 = b.NormativeLevel1
+LEFT OUTER JOIN (SELECT a.NormativeLevel1, a.NormativeLevel2,
+                        MIN(LPAD(a.NormativeCode, 5, '0')) as MinCode,
+                        RANK() OVER (PARTITION BY a.NormativeLevel1 ORDER BY MIN(LPAD(a.NormativeCode, 5, '0'))) as TreeNumber
+                 FROM PMIS_RES.NormativeTechnics a
+                 GROUP BY a.NormativeLevel1, a.NormativeLevel2) c ON a.NormativeLevel1 = c.NormativeLevel1 AND
+                                                                     a.NormativeLevel2 = c.NormativeLevel2
+LEFT OUTER JOIN (SELECT a.NormativeLevel1, a.NormativeLevel2, a.NormativeLevel3,
+                        MIN(LPAD(a.NormativeCode, 5, '0')) as MinCode,
+                        RANK() OVER (PARTITION BY a.NormativeLevel1, a.NormativeLevel2 ORDER BY MIN(LPAD(a.NormativeCode, 5, '0'))) as TreeNumber
+                 FROM PMIS_RES.NormativeTechnics a
+                 GROUP BY a.NormativeLevel1, a.NormativeLevel2, a.NormativeLevel3) d ON a.NormativeLevel1 = d.NormativeLevel1 AND
+                                                                                        a.NormativeLevel2 = d.NormativeLevel2 AND
+                                                                                        a.NormativeLevel3 = d.NormativeLevel3
+WHERE a.NormativeLevel1 IS NOT NULL AND a.NormativeLevel2 IS NOT NULL AND a.NormativeLevel3 IS NOT NULL AND a.NormativeLevel4 IS NOT NULL
+GROUP BY a.NormativeLevel1, b.MinCode, b.TreeNumber, a.NormativeLevel2, c.MinCode, c.TreeNumber, a.NormativeLevel3, d.MinCode, d.TreeNumber, a.NormativeLevel4
+
+UNION ALL
+
+SELECT 5 as NormativeLevel,
+       MIN(LPAD(a.NormativeCode, 5, '0')) as OrderCode,
+       '' as NormativeCode,
+       0 as NormativeTechnicsID,
+       TO_CHAR(b.TreeNumber) || '. ' ||
+       TO_CHAR(c.TreeNumber) || '. ' ||
+       TO_CHAR(d.TreeNumber) || '. ' ||
+       TO_CHAR(e.TreeNumber) || '. ' ||
+       TO_CHAR(RANK() OVER (PARTITION BY a.NormativeLevel1, a.NormativeLevel2, a.NormativeLevel3, a.NormativeLevel4 ORDER BY MIN(LPAD(a.NormativeCode, 5, '0')))) || '. ' || a.NormativeLevel5 as NormativeName,
+       a.NormativeLevel1,
+       a.NormativeLevel2,
+       a.NormativeLevel3,
+       a.NormativeLevel4,
+       a.NormativeLevel5,
+       '' as NormativeLevel6
+FROM PMIS_RES.NormativeTechnics a
+LEFT OUTER JOIN (SELECT a.NormativeLevel1,
+                        MIN(LPAD(a.NormativeCode, 5, '0')) as MinCode,
+                        RANK() OVER (ORDER BY MIN(LPAD(a.NormativeCode, 5, '0'))) as TreeNumber
+                 FROM PMIS_RES.NormativeTechnics a
+                 GROUP BY a.NormativeLevel1) b ON a.NormativeLevel1 = b.NormativeLevel1
+LEFT OUTER JOIN (SELECT a.NormativeLevel1, a.NormativeLevel2,
+                        MIN(LPAD(a.NormativeCode, 5, '0')) as MinCode,
+                        RANK() OVER (PARTITION BY a.NormativeLevel1 ORDER BY MIN(LPAD(a.NormativeCode, 5, '0'))) as TreeNumber
+                 FROM PMIS_RES.NormativeTechnics a
+                 GROUP BY a.NormativeLevel1, a.NormativeLevel2) c ON a.NormativeLevel1 = c.NormativeLevel1 AND
+                                                                     a.NormativeLevel2 = c.NormativeLevel2
+LEFT OUTER JOIN (SELECT a.NormativeLevel1, a.NormativeLevel2, a.NormativeLevel3,
+                        MIN(LPAD(a.NormativeCode, 5, '0')) as MinCode,
+                        RANK() OVER (PARTITION BY a.NormativeLevel1, a.NormativeLevel2 ORDER BY MIN(LPAD(a.NormativeCode, 5, '0'))) as TreeNumber
+                 FROM PMIS_RES.NormativeTechnics a
+                 GROUP BY a.NormativeLevel1, a.NormativeLevel2, a.NormativeLevel3) d ON a.NormativeLevel1 = d.NormativeLevel1 AND
+                                                                                        a.NormativeLevel2 = d.NormativeLevel2 AND
+                                                                                        a.NormativeLevel3 = d.NormativeLevel3
+LEFT OUTER JOIN (SELECT a.NormativeLevel1, a.NormativeLevel2, a.NormativeLevel3, a.NormativeLevel4,
+                        MIN(LPAD(a.NormativeCode, 5, '0')) as MinCode,
+                        RANK() OVER (PARTITION BY a.NormativeLevel1, a.NormativeLevel2, a.NormativeLevel3 ORDER BY MIN(LPAD(a.NormativeCode, 5, '0'))) as TreeNumber
+                 FROM PMIS_RES.NormativeTechnics a
+                 GROUP BY a.NormativeLevel1, a.NormativeLevel2, a.NormativeLevel3, a.NormativeLevel4) e ON a.NormativeLevel1 = e.NormativeLevel1 AND
+                                                                                                           a.NormativeLevel2 = e.NormativeLevel2 AND
+                                                                                                           a.NormativeLevel3 = e.NormativeLevel3 AND
+                                                                                                           a.NormativeLevel4 = e.NormativeLevel4
+WHERE a.NormativeLevel1 IS NOT NULL AND a.NormativeLevel2 IS NOT NULL AND a.NormativeLevel3 IS NOT NULL AND a.NormativeLevel4 IS NOT NULL AND a.NormativeLevel5 IS NOT NULL
+GROUP BY a.NormativeLevel1, b.MinCode, b.TreeNumber, a.NormativeLevel2, c.MinCode, c.TreeNumber, a.NormativeLevel3, d.MinCode, d.TreeNumber, a.NormativeLevel4, e.MinCode, e.TreeNumber, a.NormativeLevel5
+
+UNION ALL
+
+SELECT 6 as NormativeLevel,
+       e.MinCode as OrderCode,
+       a.NormativeCode,
+       a.NormativeTechnicsID,
+       a.NormativeName,
+       a.NormativeLevel1,
+       a.NormativeLevel2,
+       a.NormativeLevel3,
+       a.NormativeLevel4,
+       a.NormativeLevel5,
+       a.NormativeName as NormativeLevel6
+FROM PMIS_RES.NormativeTechnics a
+LEFT OUTER JOIN (SELECT a.NormativeLevel1, a.NormativeLevel2, a.NormativeLevel3, a.NormativeLevel4, a.NormativeLevel5,
+                        MIN(LPAD(a.NormativeCode, 5, '0')) as MinCode
+                 FROM PMIS_RES.NormativeTechnics a
+                 GROUP BY a.NormativeLevel1, a.NormativeLevel2, a.NormativeLevel3, a.NormativeLevel4, a.NormativeLevel5) e ON NVL(a.NormativeLevel1, '_') = NVL(e.NormativeLevel1, '_') AND
+                                                                                                                              NVL(a.NormativeLevel2, '_') = NVL(e.NormativeLevel2, '_') AND
+                                                                                                                              NVL(a.NormativeLevel3, '_') = NVL(e.NormativeLevel3, '_') AND
+                                                                                                                              NVL(a.NormativeLevel4, '_') = NVL(e.NormativeLevel4, '_') AND
+                                                                                                                              NVL(a.NormativeLevel5, '_') = NVL(e.NormativeLevel5, '_')
+
+;
+/

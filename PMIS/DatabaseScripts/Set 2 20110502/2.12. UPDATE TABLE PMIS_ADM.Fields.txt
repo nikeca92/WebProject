@@ -1,0 +1,24 @@
+﻿UPDATE PMIS_ADM.Fields SET FieldKey = 'RES_Lists_TractorType_TableSeq' WHERE FieldKey = 'RES_Lists_TractorRoadability_TableSeq';
+
+UPDATE PMIS_ADM.Fields SET FieldKey = 'RES_Lists_TractorType_TableValue' WHERE FieldKey = 'RES_Lists_TractorRoadability_TableValue';
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'ADM_Technics_ResidencePostCode', 'Местодомуване - Пощенски код', 6);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'ADM_Technics_OwnershipPostCode', 'Адрес на собственик - Пощенски код', 8);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'ADM_PersonDetails_PermAdr_PermSecondPostCode', 'Постоянен адрес - Пощенски код', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'ADM_PersonDetails_PresAdr_PresSecondPostCode', 'Настоящ адрес - Пощенски код', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_MilitaryReportPersonDetails_PermAdr_PermSecondPostCode', 'Постоянен адрес - Пощенски код', 6);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_MilitaryReportPersonDetails_PresAdr_PresSecondPostCode', 'Настоящ адрес - Пощенски код', 9);
+
+COMMIT;
+

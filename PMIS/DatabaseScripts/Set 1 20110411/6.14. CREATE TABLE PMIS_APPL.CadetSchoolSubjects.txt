@@ -1,0 +1,23 @@
+﻿CREATE TABLE PMIS_APPL.CadetSchoolSubjects(CadetSchoolSubjectID number NOT NULL,
+                                           CadetID number NOT NULL,
+                                           MilitSchoolSpecID number NOT NULL,
+                                           IsRanked number(1) NOT NULL
+                                          );
+
+ALTER TABLE PMIS_APPL.CadetSchoolSubjects ADD CONSTRAINT CadetSchoolSubjects_PK PRIMARY KEY(CadetSchoolSubjectID);
+ALTER TABLE PMIS_APPL.CadetSchoolSubjects ADD CONSTRAINT CadetSchoolSubjects_UNQ UNIQUE (CadetID, MilitSchoolSpecID);
+ALTER TABLE PMIS_APPL.CadetSchoolSubjects ADD CONSTRAINT CadetSchoolSubjects_Cadets_FK FOREIGN KEY (CadetID) REFERENCES PMIS_APPL.Cadets (CadetID);
+ALTER TABLE PMIS_APPL.CadetSchoolSubjects ADD CONSTRAINT CadetSchSubj_MilitSchSpec_FK FOREIGN KEY (MilitSchoolSpecID) REFERENCES PMIS_APPL.MilitarySchoolSpecializations (MilitSchoolSpecID);
+
+CREATE SEQUENCE PMIS_APPL.CadetSchoolSubjects_ID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+CREATE TRIGGER PMIS_APPL.TRG_CadetSchoolSubjects_INSERT
+BEFORE INSERT ON PMIS_APPL.CadetSchoolSubjects
+FOR EACH ROW
+BEGIN
+   SELECT PMIS_APPL.CadetSchoolSubjects_ID_SEQ.nextval INTO :new.CadetSchoolSubjectID FROM dual;
+END;
+/

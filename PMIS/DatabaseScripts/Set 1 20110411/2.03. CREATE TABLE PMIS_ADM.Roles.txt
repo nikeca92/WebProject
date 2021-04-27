@@ -1,0 +1,48 @@
+﻿CREATE TABLE PMIS_ADM.Roles(RoleID number NOT NULL,
+                            RoleName varchar2(250) NOT NULL,
+                            ModuleID number NOT NULL,
+                            CreatedBy number,
+                            CreatedDate date,
+                            LastModifiedBy number,
+                            LastModifiedDate date);
+
+ALTER TABLE PMIS_ADM.Roles ADD CONSTRAINT ROLES_PK PRIMARY KEY(RoleID);
+ALTER TABLE PMIS_ADM.Roles ADD CONSTRAINT ROLES_MODULES_FK FOREIGN KEY (ModuleID) REFERENCES PMIS_ADM.Modules (ModuleID);
+ALTER TABLE PMIS_ADM.Roles ADD CONSTRAINT Roles_CreatedBy_FK FOREIGN KEY (CreatedBy) REFERENCES PMIS_ADM.Users (UserID);
+ALTER TABLE PMIS_ADM.Roles ADD CONSTRAINT Roles_LastModifiedBy_FK FOREIGN KEY (LastModifiedBy) REFERENCES PMIS_ADM.Users (UserID);
+
+CREATE SEQUENCE PMIS_ADM.ROLES_ID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+CREATE TRIGGER PMIS_ADM.TRG_ROLES_INSERT
+BEFORE INSERT ON PMIS_ADM.Roles
+FOR EACH ROW
+BEGIN
+   SELECT PMIS_ADM.ROLES_ID_SEQ.nextval INTO :new.RoleID FROM dual;
+END;
+/
+
+INSERT INTO PMIS_ADM.Roles (RoleName, ModuleID, 
+                            CreatedBy, CreatedDate, LastModifiedBy, LastModifiedDate)
+VALUES ('Потребител', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'),
+        (SELECT UserID FROM PMIS_ADM.Users WHERE Username = 'devel'), SYSDATE, (SELECT UserID FROM PMIS_ADM.Users WHERE Username = 'devel'), SYSDATE);
+
+INSERT INTO PMIS_ADM.Roles (RoleName, ModuleID,
+                            CreatedBy, CreatedDate, LastModifiedBy, LastModifiedDate)
+VALUES ('Администратор', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'ADM'),
+        (SELECT UserID FROM PMIS_ADM.Users WHERE Username = 'devel'), SYSDATE, (SELECT UserID FROM PMIS_ADM.Users WHERE Username = 'devel'), SYSDATE);
+
+INSERT INTO PMIS_ADM.Roles (RoleName, ModuleID,
+                            CreatedBy, CreatedDate, LastModifiedBy, LastModifiedDate)
+VALUES ('Потребител', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'APPL'),
+        (SELECT UserID FROM PMIS_ADM.Users WHERE Username = 'devel'), SYSDATE, (SELECT UserID FROM PMIS_ADM.Users WHERE Username = 'devel'), SYSDATE);
+
+INSERT INTO PMIS_ADM.Roles (RoleName, ModuleID,
+                            CreatedBy, CreatedDate, LastModifiedBy, LastModifiedDate)
+VALUES ('Потребител', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'),
+        (SELECT UserID FROM PMIS_ADM.Users WHERE Username = 'devel'), SYSDATE, (SELECT UserID FROM PMIS_ADM.Users WHERE Username = 'devel'), SYSDATE);
+
+
+COMMIT;

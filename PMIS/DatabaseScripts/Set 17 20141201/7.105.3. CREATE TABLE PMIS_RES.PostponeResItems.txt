@@ -1,0 +1,30 @@
+﻿CREATE TABLE PMIS_RES.PostponeResItems(PostponeResItemID number NOT NULL,
+                                       PostponeResCompanyID number NOT NULL,
+                                       NKPDID number NOT NULL,
+                                       OfficersConditioned number,
+                                       OfficersAbsolutely number,
+                                       OfCandConditioned number,
+                                       OfCandAbsolutely number,
+                                       SergeantsConditioned number,
+                                       SergeantsAbsolutely number,
+                                       SoldiersConditioned number,
+                                       SoldiersAbsolutely number
+                                       );
+
+ALTER TABLE PMIS_RES.PostponeResItems ADD CONSTRAINT PostponeResItems_PK PRIMARY KEY (PostponeResItemID);
+ALTER TABLE PMIS_RES.PostponeResItems ADD CONSTRAINT PostponeResItems_UNQ UNIQUE (PostponeResCompanyID, NKPDID);
+ALTER TABLE PMIS_RES.PostponeResItems ADD CONSTRAINT PostponeResItems_PResComp_FK FOREIGN KEY (PostponeResCompanyID) REFERENCES PMIS_RES.PostponeResCompanies (PostponeResCompanyID);
+ALTER TABLE PMIS_RES.PostponeResItems ADD CONSTRAINT PostponeResItems_NKPD_FK FOREIGN KEY (NKPDID) REFERENCES PMIS_ADM.NKPD (NKPDID);
+
+CREATE SEQUENCE PMIS_RES.PostponeResItems_ID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+CREATE TRIGGER PMIS_RES.TRG_PostponeResItems_INSERT
+BEFORE INSERT ON PMIS_RES.PostponeResItems
+FOR EACH ROW
+BEGIN
+   SELECT PMIS_RES.PostponeResItems_ID_SEQ.nextval INTO :new.PostponeResItemID FROM dual;
+END;
+/

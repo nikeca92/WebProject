@@ -1,0 +1,25 @@
+﻿
+UPDATE PMIS_ADM.Maintenance 
+SET fldlist = fldlist || ', PrintSymbol', 
+    updtlist = updtlist || ', PrintSymbol'
+WHERE MaintKey = 'RES_MilitaryReadinessNames';
+
+UPDATE PMIS_ADM.Maintenance 
+SET fldlist = fldlist || ', AdministrationID[SELECT null as ID~ ''Всички'' as Text FROM dual UNION ALL SELECT ID~ Text FROM (SELECT AdministrationID as ID~ AdministrationName as Text FROM PMIS_ADM.Administrations ORDER BY administrationgroupseq ASC)   ]', 
+    updtlist = updtlist || ', AdministrationID'
+WHERE MaintKey = 'RES_MilitaryReadinessNames';
+
+UPDATE PMIS_ADM.Maintenance 
+SET fldlist = fldlist || ', ReportA33Breakdown', 
+    updtlist = updtlist || ', ReportA33Breakdown',
+    mastertable = mastertable || ',PMIS_RES.MilReadiness',
+    masterfield = masterfield || ',PMIS_RES.MilReadiness.AdministrationID'
+WHERE MaintKey = 'ADM_Administrations';
+
+UPDATE PMIS_ADM.Maintenance
+SET MasterTable  = 'PMIS_ADM.MilitaryDepartmentsPerUser,PMIS_APPL.Applicants,PMIS_APPL.Cadets,PMIS_APPL.PotencialApplicants,PMIS_RES.RequestCommandPositionsMilDept,PMIS_RES.RequestCommandPunkt,PMIS_RES.ReservistMilRepStatuses,PMIS_RES.FillReservistsRequest,PMIS_RES.TechRequestCmdPositionsMilDept,PMIS_RES.TechRequestCommandPunkt,PMIS_RES.FulfilTechnicsRequest,PMIS_RES.TechnicsMilRepStatusm,PMIS_RES.Postpone',
+    MasterField = 'PMIS_ADM.MilitaryDepartmentsPerUser.MilitaryDepartmentID,PMIS_APPL.Applicants.MilitaryDepartmentID,PMIS_APPL.Cadets.MilitaryDepartmentID,PMIS_APPL.PotencialApplicants.MilitaryDepartmentID,PMIS_RES.RequestCommandPositionsMilDept.MilitaryDepartmentID,PMIS_RES.RequestCommandPunkt.MilitaryDepartmentID,PMIS_RES.ReservistMilRepStatuses.SourceMilDepartmentID,PMIS_RES.ReservistMilRepStatuses.DestMilDepartmentID,PMIS_RES.FillReservistsRequest.MilitaryDepartmentID,PMIS_RES.TechRequestCmdPositionsMilDept.MilitaryDepartmentID,PMIS_RES.TechRequestCommandPunkt.MilitaryDepartmentID,PMIS_RES.FulfilTechnicsRequest.MilitaryDepartmentID,PMIS_RES.TechnicsMilRepStatus.SourceMilDepartmentID,PMIS_RES.Postpone.MilitaryDepartmentID'
+WHERE MaintKey = 'ADM_MilitaryDepartment';     
+
+COMMIT;
+/

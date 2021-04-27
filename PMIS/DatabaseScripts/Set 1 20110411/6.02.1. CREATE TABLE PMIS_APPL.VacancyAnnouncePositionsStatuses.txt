@@ -1,0 +1,28 @@
+﻿CREATE TABLE PMIS_APPL.VacancyAnnouncePosStatuses(VacancyAnnouncePosStatusID number NOT NULL,
+                                                VacAnnPosStatusName varchar2(500),
+                                                VacAnnPosStatusKey varchar2(500)
+                                               );
+
+ALTER TABLE PMIS_APPL.VacancyAnnouncePosStatuses ADD CONSTRAINT VacancyAnnouncePosStatuses_PK PRIMARY KEY(VacancyAnnouncePosStatusID);
+
+CREATE SEQUENCE PMIS_APPL.VacAnnPosStatuses_ID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+CREATE TRIGGER PMIS_APPL.TRG_VacAnnPosStatuses_INSERT
+BEFORE INSERT ON PMIS_APPL.VacancyAnnouncePosStatuses
+FOR EACH ROW
+BEGIN
+   SELECT PMIS_APPL.VacAnnPosStatuses_ID_SEQ.nextval INTO :new.VacancyAnnouncePosStatusID FROM dual;
+END;
+/
+
+
+INSERT INTO PMIS_APPL.VacancyAnnouncePosStatuses(VacAnnPosStatusName, VacAnnPosStatusKey)
+VALUES ('Активна', 'ACTIVE');
+
+INSERT INTO PMIS_APPL.VacancyAnnouncePosStatuses(VacAnnPosStatusName, VacAnnPosStatusKey)
+VALUES ('Приключена', 'FINISHED');
+
+COMMIT;

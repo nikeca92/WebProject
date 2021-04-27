@@ -1,0 +1,9 @@
+﻿ALTER TABLE PMIS_RES.ReservistMilRepStatuses ADD Removed_Deceased_DeathCert VARCHAR2(250);
+ALTER TABLE PMIS_RES.ReservistMilRepStatuses ADD Removed_Deceased_Date date;
+ALTER TABLE PMIS_RES.ReservistMilRepStatuses ADD Removed_AgeLimit_Order VARCHAR2(250);
+ALTER TABLE PMIS_RES.ReservistMilRepStatuses ADD Removed_AgeLimit_Date date;
+ALTER TABLE PMIS_RES.ReservistMilRepStatuses ADD Removed_AgeLimit_SignedBy VARCHAR2(250);
+ALTER TABLE PMIS_RES.ReservistMilRepStatuses ADD Removed_NotSuitable_Cert VARCHAR2(250);
+ALTER TABLE PMIS_RES.ReservistMilRepStatuses ADD Removed_NotSuitable_Date date;
+ALTER TABLE PMIS_RES.ReservistMilRepStatuses ADD Removed_NotSuitable_SignedBy VARCHAR2(250);
+/

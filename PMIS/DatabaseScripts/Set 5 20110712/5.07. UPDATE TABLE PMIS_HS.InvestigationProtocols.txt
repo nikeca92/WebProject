@@ -1,0 +1,6 @@
+ALTER TABLE PMIS_HS.InvestigationProtocols ADD (CommissionMember3 varchar2(2000),
+                                                CommissionMember4 varchar2(2000),
+											    CommissionMember5 varchar2(2000)
+                                               )
+
+/

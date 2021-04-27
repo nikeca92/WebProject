@@ -1,0 +1,27 @@
+﻿CREATE TABLE PMIS_RES.VehicleMakes(VehicleMakeID number NOT NULL,
+                                   VehicleMakeName varchar2(300)
+                                  );
+
+ALTER TABLE PMIS_RES.VehicleMakes ADD CONSTRAINT VehicleMakes_PK PRIMARY KEY(VehicleMakeID);
+
+CREATE SEQUENCE PMIS_RES.VehicleMakes_ID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+CREATE TRIGGER PMIS_RES.TRG_VehicleMakes_INSERT
+BEFORE INSERT ON PMIS_RES.VehicleMakes
+FOR EACH ROW
+BEGIN
+   SELECT PMIS_RES.VehicleMakes_ID_SEQ.nextval INTO :new.VehicleMakeID FROM dual;
+END;
+/
+
+INSERT INTO PMIS_RES.VehicleMakes (VehicleMakeName)
+VALUES ('Mercedes');
+
+INSERT INTO PMIS_RES.VehicleMakes (VehicleMakeName)
+VALUES ('Uaz');
+
+COMMIT;
+/

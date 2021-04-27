@@ -1,0 +1,28 @@
+﻿CREATE TABLE PMIS_ADM.Gender(GenderID number NOT NULL,
+                             GenderName varchar2(50)
+                             );
+
+ALTER TABLE PMIS_ADM.Gender ADD CONSTRAINT Gender_PK PRIMARY KEY(GenderID);
+
+CREATE SEQUENCE PMIS_ADM.Gender_ID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+
+CREATE TRIGGER PMIS_ADM.TRG_Gender_INSERT
+BEFORE INSERT ON PMIS_ADM.Gender
+FOR EACH ROW
+BEGIN
+   SELECT PMIS_ADM.Gender_ID_SEQ.nextval INTO :new.GenderID FROM dual;
+END;
+/
+
+INSERT INTO PMIS_ADM.Gender (GenderName)
+VALUES ('Мъж');
+
+INSERT INTO PMIS_ADM.Gender (GenderName)
+VALUES ('Жена');
+
+
+COMMIT;

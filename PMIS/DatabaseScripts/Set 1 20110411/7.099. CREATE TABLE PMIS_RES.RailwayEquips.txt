@@ -1,0 +1,24 @@
+﻿CREATE TABLE PMIS_RES.RailwayEquips(RailwayEquipID number NOT NULL,
+								   TechnicsID number NOT NULL,
+                                   InventoryNumber varchar2(50),
+                                   RailwayEquipKindID number, /*GTable*/
+                                   RailwayEquipTypeID number /*GTable*/
+                                   );
+
+ALTER TABLE PMIS_RES.RailwayEquips ADD CONSTRAINT RailwayEquip_PK PRIMARY KEY(RailwayEquipID);
+ALTER TABLE PMIS_RES.RailwayEquips ADD CONSTRAINT RailwayEquip_TechnicsID_UNQ UNIQUE (TechnicsID);
+ALTER TABLE PMIS_RES.RailwayEquips ADD CONSTRAINT RailwayEquip_InvNum_UNQ UNIQUE (InventoryNumber);
+ALTER TABLE PMIS_RES.RailwayEquips ADD CONSTRAINT RailwayEquip_Technics_FK FOREIGN KEY (TechnicsID) REFERENCES PMIS_RES.Technics (TechnicsID);
+
+CREATE SEQUENCE PMIS_RES.RailwayEquips_ID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+CREATE TRIGGER PMIS_RES.TRG_RailwayEquips_INSERT
+BEFORE INSERT ON PMIS_RES.RailwayEquips
+FOR EACH ROW
+BEGIN
+   SELECT PMIS_RES.RailwayEquips_ID_SEQ.nextval INTO :new.RailwayEquipID FROM dual;
+END;
+/

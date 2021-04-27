@@ -1,0 +1,46 @@
+﻿DECLARE
+   FirstDistrictID number;
+   SecondDistrictID number;
+   Cnt number;
+BEGIN
+   SELECT COUNT(*) INTO Cnt
+   FROM PMIS_ADM.Districts a
+   WHERE DistrictName = 'Оборище' AND CityID = (SELECT KOD_NMA FROM UKAZ_OWNER.KL_NMA WHERE IME_NMA = 'София');
+   
+   IF Cnt = 2 THEN
+      SELECT MIN(DistrictID) INTO FirstDistrictID
+	  FROM PMIS_ADM.Districts a
+      WHERE DistrictName = 'Оборище' AND CityID = (SELECT KOD_NMA FROM UKAZ_OWNER.KL_NMA WHERE IME_NMA = 'София');
+	  
+	  SELECT MAX(DistrictID) INTO SecondDistrictID
+	  FROM PMIS_ADM.Districts a
+      WHERE DistrictName = 'Оборище' AND CityID = (SELECT KOD_NMA FROM UKAZ_OWNER.KL_NMA WHERE IME_NMA = 'София');
+	  
+	  UPDATE PMIS_ADM.MILITARYREPORTPERSONS SET
+	     CURRADDRDISTRICTID = FirstDistrictID
+	  WHERE CURRADDRDISTRICTID = SecondDistrictID;
+	  
+	  UPDATE PMIS_ADM.MILITARYREPORTPERSONS SET
+	     PERMADDRDISTRICTID = FirstDistrictID
+	  WHERE PERMADDRDISTRICTID = SecondDistrictID;
+	  
+	  UPDATE PMIS_ADM.PERSONS SET
+	     CURRADDRDISTRICTID = FirstDistrictID
+	  WHERE CURRADDRDISTRICTID = SecondDistrictID;
+	  
+	  UPDATE PMIS_ADM.PERSONS SET
+	     PERMADDRDISTRICTID = FirstDistrictID
+	  WHERE PERMADDRDISTRICTID = SecondDistrictID;
+	  
+	  UPDATE PMIS_ADM.COMPANIES SET
+	     DISTRICTID = FirstDistrictID
+	  WHERE DISTRICTID = SecondDistrictID;
+   END IF;
+   
+   DELETE FROM PMIS_ADM.Districts 
+   WHERE DistrictID = SecondDistrictID;
+END;
+/
+							   
+COMMIT;
+/

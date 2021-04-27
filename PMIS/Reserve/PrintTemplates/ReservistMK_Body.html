@@ -1,0 +1,289 @@
+﻿<table lang="bg">
+   <tr>
+      <td style="text-align: left; vertical-align: top; width: 37%;">Команда №[COMMAND_NUM_PRINTSYMBOL][COMMAND_NUM][COMMAND_SUF][COMMAND_NUM_PRINTSYMBOL_2]</td>
+      <td style="text-align: right; vertical-align: top; width: 63%;">Номер по щатно - длъжностния списък - _____</td>
+   </tr>
+   <tr>
+      <td style="text-align: left; vertical-align: top;">Срок за доставяне - [APPOINTMENT_TIME] часа</td>
+      <td style="text-align: right; vertical-align: top;"></td>
+   </tr>
+   <tr>
+      <td style="text-align: left; vertical-align: top;">Място за доставяне - [DELIVERY_PLACE]</td>
+      <td style="text-align: right; vertical-align: top;">[MILITARY_DEPARTMENT]</td>
+   </tr>
+</table>
+
+<p class="DocTitle">МОБИЛИЗАЦИОННА КАРТА</p>
+
+на [FIRST_NAME] [LAST_NAME]<br />
+ЕГН [IDENT_NUMBER]<br />
+<br />
+<table class="DetailsTable" lang="bg">
+   <tr style="display: none;">
+      <td style="width: 14%;"></td>
+      <td style="width: 20%;"></td>
+      <td style="width: 16%;"></td>
+      <td style="width: 50%;"></td>
+   </tr>
+   <tr>
+      <td colspan="3">
+        <b>1. Данни по военния отчет</b><br />
+        ВОС (ОС) - [MIL_REP_SPECIALITY]<br />
+        Звание - [MILITARY_RANK]<br />
+        Длъжност - ____________________
+      </td>
+      <td rowspan="2">
+        <b>3. Попълва се във военното формирование/структура/</b><br />
+        Назначен на длъжност - ___________<br />
+        ________________________________<br />
+        в ______________________________<br />
+        ________________________________<br />
+        звание по дл.разписание(щат) ______<br />
+        ВОС(ОС) по дл.разписание(щат) ____<br />
+        Код на длъжността - ______________<br />
+      </td>
+   </tr>
+   <tr>
+      <td colspan="3">
+        <b>2. Получил моб. назначение</b><br />
+        ВОС (ОС) - [APPT_MIL_REP_SPECIALITY]<br />
+        Звание - [APPT_MILITARY_RANK]<br />
+        Длъжност - [APPT_POSITION]
+      </td>
+   </tr>
+   <tr>
+      <td colspan="4">
+        <b>4.  Адрес на запасния - </b> [CITY_ADDRESS_POSTCODE]
+      </td>
+   </tr>
+   <tr>
+      <td rowspan="4" style="width: 1.5cm;" class="VerticalText">
+        <b>5. Образование, специалност</b>
+      </td>
+      <td rowspan="2">
+         Гражданско -
+      </td>
+      <td colspan="2" class="EducationCell">
+         [CIVIL_EDU_NAME]
+      </td>
+   </tr>
+   <tr>
+      <td colspan="2" class="EducationCell">
+         [CIVIL_SUBJECT_NAME] [CIVIL_GRADUATE_YEAR]
+      </td>
+   </tr>
+   <tr>
+      <td rowspan="2">
+         Военно -
+      </td>
+      <td colspan="2" class="EducationCell">
+         [MILEDU_SCHOOL_NAME] [MILEDU_SUBJECT_NAME] [MILEDU_GRADUATE_YEAR]
+      </td>
+   </tr>
+   <tr>
+      <td colspan="2" class="EducationCell">
+         [MILACAD_ACADEMY_NAME] [MILACAD_SUBJECT_NAME] [MILACAD_GRADUATE_YEAR]
+      </td>
+   </tr>
+   <tr>
+      <td colspan="4">
+         <b>6. Допълнителна квалификация (Свидетелство за управление на МПС, строителна или друга специална техника и др) -</b> <br /><br /><br />
+      </td>
+   </tr>
+   <tr>
+      <td colspan="4">
+         <b>7. Владеене на чужди езици(степен) -</b> [FOREIGN_LANGUAGES]
+      </td>
+   </tr>
+   <tr>
+      <td colspan="4">
+         <b>8. Месторабота, длъжност</b> [WORK_COMPANY] [WORK_POSITION]
+      </td>
+   </tr>
+   <tr>
+      <td colspan="4">
+         <b>9. Семейно положение –</b> [MARITAL_STATUS], <b>деца -</b> [CHILD_COUNT]
+      </td>
+   </tr>
+   <tr>
+      <td colspan="4">
+         <b>10. Размери:</b> облекло/размер/ - [SIZE_CLOTHING] , шапка № [SIZE_HAT] , обувки № [SIZE_SHOES]
+      </td>
+   </tr>
+</table>
+
+<br />
+
+
+
+<br />
+
+<br clear=all style='mso-special-character:line-break;page-break-before:always'>
+
+<table class="DetailsTable" lang="bg">
+   <tr style="display: none;">
+      <td style="width: 29%;"></td>
+      <td style="width: 33%;"></td>
+      <td style="width: 12%;"></td>
+      <td style="width: 12%;"></td>
+      <td style="width: 14%;"></td>
+   </tr>
+   <tr>
+      <td colspan="5" style="text-align: center;">
+         <b>11. Преминаване на военната служба (доброволен резерв)</b>
+      </td>
+   </tr>
+   <tr>
+      <td colspan="2" class="MilitaryServiceSubHeaderCell">
+        Наименование на длъжността, военно формирование и продължителност на заеманата длъжност
+      </td>
+      <td colspan="2" class="MilitaryServiceSubHeaderCell">
+        Длъжностно лице, отдало нормативния акт за назначаване
+      </td>
+      <td class="MilitaryServiceSubHeaderCell">
+        № на нормативния акт/дата
+      </td>
+   </tr>
+   <tr>
+      <td colspan="5" class="MilitaryServiceCell">[MILITARY_SERVICE_1]</td>
+   </tr>
+   <tr>
+      <td colspan="5" class="MilitaryServiceCell">[MILITARY_SERVICE_2]</td>
+   </tr>
+   <tr>
+      <td colspan="5" class="MilitaryServiceCell">[MILITARY_SERVICE_3]</td>
+   </tr>
+   <tr>
+      <td colspan="5" class="MilitaryServiceCell">[MILITARY_SERVICE_4]</td>
+   </tr>
+   <tr>
+      <td colspan="5" class="MilitaryServiceCell">[MILITARY_SERVICE_5]</td>
+   </tr>
+   <tr>
+      <td colspan="5" class="MilitaryServiceCell">[MILITARY_SERVICE_6]</td>
+   </tr>
+   <tr>
+      <td colspan="5" class="MilitaryServiceCell">[MILITARY_SERVICE_7]</td>
+   </tr>
+   <tr>
+      <td colspan="5" class="MilitaryServiceCell">[MILITARY_SERVICE_8]</td>
+   </tr>
+   <tr>
+      <td colspan="5" class="MilitaryServiceCell">[MILITARY_SERVICE_9]</td>
+   </tr>
+   <tr>
+      <td colspan="5" class="MilitaryServiceCell">[MILITARY_SERVICE_10]</td>
+   </tr>
+   <tr>
+      <td colspan="5" class="MilitaryServiceCell">[MILITARY_SERVICE_11]</td>
+   </tr>
+   <tr>
+      <td colspan="5" class="MilitaryServiceCell">[MILITARY_SERVICE_12]</td>
+   </tr>
+   <tr>
+      <td colspan="5" class="MilitaryServiceCell">[MILITARY_SERVICE_13]</td>
+   </tr>
+   <tr>
+      <td colspan="5" style="text-align: center;">
+         <b>12. Подготовка и повишаване на квалификацията</b>
+      </td>
+   </tr>
+   <tr>
+      <td rowspan="2" class="MilitaryServiceSubHeaderCell2">
+        къде е провеждана
+      </td>
+      <td colspan="2" rowspan="2" class="MilitaryServiceSubHeaderCell2">
+        вид на подготовката (курс)
+      </td>
+      <td colspan="2" class="MilitaryServiceSubHeaderCell2">
+        Време
+      </td>
+   </tr>
+   <tr>
+      <td class="MilitaryServiceSubHeaderCell2">
+        от
+      </td>
+      <td class="MilitaryServiceSubHeaderCell2">
+        до
+      </td>
+   </tr>
+   <tr>
+      <td class="MilitaryServiceCell"></td>
+      <td colspan="2" class="MilitaryServiceCell"></td>
+      <td class="MilitaryServiceCell"></td>
+      <td class="MilitaryServiceCell"></td>
+   </tr>
+   <tr>
+      <td class="MilitaryServiceCell"></td>
+      <td colspan="2" class="MilitaryServiceCell"></td>
+      <td class="MilitaryServiceCell"></td>
+      <td class="MilitaryServiceCell"></td>
+   </tr>
+   <tr>
+      <td class="MilitaryServiceCell"></td>
+      <td colspan="2" class="MilitaryServiceCell"></td>
+      <td class="MilitaryServiceCell"></td>
+      <td class="MilitaryServiceCell"></td>
+   </tr>
+   <tr>
+      <td class="MilitaryServiceCell"></td>
+      <td colspan="2" class="MilitaryServiceCell"></td>
+      <td class="MilitaryServiceCell"></td>
+      <td class="MilitaryServiceCell"></td>
+   </tr>
+   <tr>
+      <td class="MilitaryServiceCell"></td>
+      <td colspan="2" class="MilitaryServiceCell"></td>
+      <td class="MilitaryServiceCell"></td>
+      <td class="MilitaryServiceCell"></td>
+   </tr>
+   <tr>
+      <td colspan="5" style="text-align: center;">
+         <b>13. Допълнителни данни за запасния</b>
+      </td>
+   </tr>
+   <tr>
+      <td colspan="5" class="MilitaryServiceCell"></td>
+   </tr>
+   <tr>
+      <td colspan="5" class="MilitaryServiceCell"></td>
+   </tr>
+   <tr>
+      <td colspan="5" class="MilitaryServiceCell"></td>
+   </tr>
+   <tr>
+      <td colspan="5" class="MilitaryServiceCell"></td>
+   </tr>
+   <tr>
+      <td colspan="5" style="height: 1.6cm;">
+         <b>14. Дадено мобилизационно назначение на мястото на - </b>
+      </td>
+   </tr>
+</table>
+
+<br />
+
+<table lang="bg">
+   <tr>
+      <td style="text-align: left; width: 30%;">
+         [DATE]
+      </td>
+      <td style="text-align: right; width: 70%;">
+         Началник на [MILITARY_DEPARTMENT]
+      </td>
+   </tr>
+   <tr>
+      <td></td>
+      <td style="text-align: right;">
+          ______________________ / _________________ /
+      </td>
+   </tr>
+   <tr>
+      <td style="text-align: right;">
+         печат
+      </td>
+      <td></td>
+   </tr>
+</table>
+
+<br clear=all style='mso-special-character:line-break;page-break-before:always'>

@@ -1,0 +1,26 @@
+﻿CREATE TABLE PMIS_ADM.LanguageDiploma(LanguageDiplomaKey varchar2(10),
+                                      LanguageDiplomaName varchar2(100)
+                                     );
+
+ALTER TABLE PMIS_ADM.LanguageDiploma ADD CONSTRAINT LanguageDiploma_PK PRIMARY KEY (LanguageDiplomaKey);
+
+INSERT INTO PMIS_ADM.LanguageDiploma (LanguageDiplomaKey, LanguageDiplomaName)
+VALUES ('Н', 'Няма документ');
+
+INSERT INTO PMIS_ADM.LanguageDiploma (LanguageDiplomaKey, LanguageDiplomaName)
+VALUES ('Г', 'Езикова гимназия');
+
+INSERT INTO PMIS_ADM.LanguageDiploma (LanguageDiplomaKey, LanguageDiplomaName)
+VALUES ('К', 'Курс');
+
+INSERT INTO PMIS_ADM.LanguageDiploma (LanguageDiplomaKey, LanguageDiplomaName)
+VALUES ('Д', 'Друг документ');
+
+INSERT INTO PMIS_ADM.LanguageDiploma (LanguageDiplomaKey, LanguageDiplomaName)
+VALUES ('S', 'STANAG');
+
+
+
+COMMIT;
+/
+

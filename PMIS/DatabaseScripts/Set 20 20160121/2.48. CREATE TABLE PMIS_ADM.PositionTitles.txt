@@ -1,0 +1,37 @@
+﻿CREATE TABLE PMIS_ADM.PositionTitles(PositionTitleID number NOT NULL,
+                                     PositionTitle varchar2(200),
+                                     IsActive number(1) CHECK (IsActive BETWEEN 0 AND 1)
+                                     );
+
+ALTER TABLE PMIS_ADM.PositionTitles ADD CONSTRAINT PositionTitles_PK PRIMARY KEY (PositionTitleID);
+
+CREATE SEQUENCE PMIS_ADM.PositionTitles_ID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+CREATE TRIGGER PMIS_ADM.TRG_PositionTitles_INSERT
+BEFORE INSERT ON PMIS_ADM.PositionTitles
+FOR EACH ROW
+BEGIN
+   SELECT PMIS_ADM.PositionTitles_ID_SEQ.nextval INTO :new.PositionTitleID FROM dual;
+END;
+/
+
+INSERT INTO PMIS_ADM.PositionTitles (PositionTitle, IsActive)
+VALUES ('Длъжност #1', 1);
+
+INSERT INTO PMIS_ADM.PositionTitles (PositionTitle, IsActive)
+VALUES ('Длъжност #2', 1);
+
+INSERT INTO PMIS_ADM.PositionTitles (PositionTitle, IsActive)
+VALUES ('Длъжност #3', 1);
+
+INSERT INTO PMIS_ADM.PositionTitles (PositionTitle, IsActive)
+VALUES ('Длъжност #4', 1);
+
+INSERT INTO PMIS_ADM.PositionTitles (PositionTitle, IsActive)
+VALUES ('Длъжност #5', 1);
+
+COMMIT;
+/

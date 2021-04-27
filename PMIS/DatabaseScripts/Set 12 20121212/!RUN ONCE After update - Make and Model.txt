@@ -1,0 +1,15 @@
+UPDATE PMIS_RES.Vehicles v SET v.VehicleMakeName = (SELECT vm.VehicleMakeName FROM PMIS_RES.VehicleMakes vm WHERE vm.VehicleMakeId = v.VehicleMakeId) WHERE v.VehicleMakeName IS NULL;
+UPDATE PMIS_RES.Vehicles v SET v.VehicleModelName = (SELECT vm.VehicleModelName FROM PMIS_RES.VehicleModels vm WHERE vm.VehicleModelId = v.VehicleModelId) WHERE v.VehicleModelName IS NULL;
+
+UPDATE PMIS_RES.Tractors t SET t.TractorMakeName = (SELECT tm.TractorMakeName FROM PMIS_RES.TractorMakes tm WHERE tm.TractorMakeId = t.TractorMakeId) WHERE t.TractorMakeName IS NULL;
+UPDATE PMIS_RES.Tractors t SET t.TractorModelName = (SELECT tm.TractorModelName FROM PMIS_RES.TractorModels tm WHERE tm.TractorModelId = t.TractorModelId) WHERE t.TractorModelName IS NULL;
+
+UPDATE PMIS_RES.EngEquipment ee SET ee.EngEquipBaseMakeName = (SELECT em.EngEquipBaseMakeName FROM PMIS_RES.EngEquipBaseMakes em WHERE em.EngEquipBaseMakeId = ee.EngEquipBaseMakeId) WHERE ee.EngEquipBaseMakeName IS NULL;
+UPDATE PMIS_RES.EngEquipment ee SET ee.EngEquipBaseModelName = (SELECT em.EngEquipBaseModelName FROM PMIS_RES.EngEquipBaseModels em WHERE em.EngEquipBaseModelId = ee.EngEquipBaseModelId) WHERE ee.EngEquipBaseModelName IS NULL;
+
+UPDATE PMIS_RES.AviationEquipment ae SET ae.OtherBaseMachineMakeName = (SELECT am.AviationOtherBaseMachineMake FROM PMIS_RES.AviationOtherBaseMachineMakes am WHERE am.AviationOtherBaseMachineMakeId = ae.AviationOtherBaseMachineMakeId) WHERE ae.OtherBaseMachineMakeName IS NULL;
+UPDATE PMIS_RES.AviationEquipment ae SET ae.OtherBaseMachineModelName = (SELECT am.AviationOthBaseMachineModel FROM PMIS_RES.AviationOtherBaseMachineModels am WHERE am.AviationOthBaseMachineModelId = ae.AviationOthBaseMachineModelId) WHERE ae.OtherBaseMachineModelName IS NULL;
+
+UPDATE PMIS_RES.AviationEquipment ae SET ae.AviationAirModelName = (SELECT g.TableValue FROM PMIS_RES.GTable g WHERE g.TableName = 'AviationAirModel' AND g.TableKey = ae.AviationAirModelId) WHERE ae.AviationAirModelName IS NULL;
+
+/

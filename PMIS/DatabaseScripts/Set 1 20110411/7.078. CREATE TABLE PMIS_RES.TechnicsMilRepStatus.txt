@@ -1,0 +1,37 @@
+﻿CREATE TABLE PMIS_RES.TechnicsMilRepStatus(TechnicsMilRepStatusID number NOT NULL,
+                                           TechnicsID number NOT NULL,
+                                           IsCurrent number(1) CHECK (IsCurrent BETWEEN 0 AND 1),
+                                             
+                                           TechMilitaryReportStatusID number NOT NULL,
+                                           EnrolDate date,
+                                           DischargeDate date,
+                                           SourceMilDepartmentID number,                                              
+                                              
+                                           Contract_ContractNumber varchar2(250),
+                                           Contract_ContractFromDate date,
+                                           Contract_MilitaryUnitID number,
+                                           Contract_ContractToDate date,                                           
+                                              
+                                           CreatedBy number,
+                                           CreatedDate date,
+                                           LastModifiedBy number,
+                                           LastModifiedDate date
+                                          );
+
+ALTER TABLE PMIS_RES.TechnicsMilRepStatus ADD CONSTRAINT TechMilRepStatus_PK PRIMARY KEY(TechnicsMilRepStatusID);
+ALTER TABLE PMIS_RES.TechnicsMilRepStatus ADD CONSTRAINT TechMilRepStatus_Tech_FK FOREIGN KEY (TechnicsID) REFERENCES PMIS_RES.Technics (TechnicsID);
+ALTER TABLE PMIS_RES.TechnicsMilRepStatus ADD CONSTRAINT TechMilRepStatus_SrcMilDep_FK FOREIGN KEY (SourceMilDepartmentID) REFERENCES PMIS_ADM.MilitaryDepartments (MilitaryDepartmentID);
+ALTER TABLE PMIS_RES.TechnicsMilRepStatus ADD CONSTRAINT TechMilRepStatus_MilRepSta_FK FOREIGN KEY (TechMilitaryReportStatusID) REFERENCES PMIS_RES.TechMilitaryReportStatuses (TechMilitaryReportStatusID);
+
+CREATE SEQUENCE PMIS_RES.TechnicsMilRepStatus_ID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+CREATE TRIGGER PMIS_RES.TRG_TechMilRepStatus_INSERT
+BEFORE INSERT ON PMIS_RES.TechnicsMilRepStatus
+FOR EACH ROW
+BEGIN
+   SELECT PMIS_RES.TechnicsMilRepStatus_ID_SEQ.nextval INTO :new.TechnicsMilRepStatusID FROM dual;
+END;
+/

@@ -1,0 +1,42 @@
+﻿CREATE TABLE PMIS_ADM.MilitaryDepartments(MilitaryDepartmentID number NOT NULL,
+                                          MilitaryDepartmentName varchar2(300)
+                                         );
+
+ALTER TABLE PMIS_ADM.MilitaryDepartments ADD CONSTRAINT MilitaryDepartmentID_PK PRIMARY KEY(MilitaryDepartmentID);
+
+CREATE SEQUENCE PMIS_ADM.MilitaryDepartments_ID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+CREATE TRIGGER PMIS_ADM.TRG_MilitaryDepartments_INSERT
+BEFORE INSERT ON PMIS_ADM.MilitaryDepartments
+FOR EACH ROW
+BEGIN
+   SELECT PMIS_ADM.MilitaryDepartments_ID_SEQ.nextval INTO :new.MilitaryDepartmentID FROM dual;
+END;
+/
+
+INSERT INTO PMIS_ADM.MilitaryDepartments (MilitaryDepartmentName)
+VALUES ('Военно окръжие - София');
+
+INSERT INTO PMIS_ADM.MilitaryDepartments (MilitaryDepartmentName)
+VALUES ('Военно окръжие - Пловдив');
+
+INSERT INTO PMIS_ADM.MilitaryDepartments (MilitaryDepartmentName)
+VALUES ('Военно окръжие - Варна');
+
+INSERT INTO PMIS_ADM.MilitaryDepartments (MilitaryDepartmentName)
+VALUES ('Военно окръжие - Стара Загора');
+
+INSERT INTO PMIS_ADM.MilitaryDepartments (MilitaryDepartmentName)
+VALUES ('Военно окръжие - Бургас');
+
+INSERT INTO PMIS_ADM.MilitaryDepartments (MilitaryDepartmentName)
+VALUES ('Военно окръжие - Плевен');
+
+INSERT INTO PMIS_ADM.MilitaryDepartments (MilitaryDepartmentName)
+VALUES ('Военно окръжие - Русе');
+
+
+COMMIT;

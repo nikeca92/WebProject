@@ -1,0 +1,57 @@
+﻿--Настоящ адрес се премества от Persons във VS_LS
+ALTER TABLE VS_OWNER.VS_LS ADD CurrAddrCityID number;
+ALTER TABLE VS_OWNER.VS_LS ADD CurrAddress varchar2(1500);
+ALTER TABLE VS_OWNER.VS_LS ADD CurrAddrDistrictID number;
+ALTER TABLE VS_OWNER.VS_LS ADD PresSecondPostCode varchar2(10);
+
+--Постоянен адрес полетата, които са във Persons се преместват към VS_LS
+ALTER TABLE VS_OWNER.VS_LS ADD PermAddrDistrictID number;
+ALTER TABLE VS_OWNER.VS_LS ADD PermSecondPostCode varchar2(10);
+
+
+--FK връзки за настоящ адрес
+ALTER TABLE VS_OWNER.VS_LS ADD CONSTRAINT VS_LS_CurrAddrCity_FK FOREIGN KEY (CurrAddrCityID) REFERENCES UKAZ_OWNER.KL_NMA (KOD_NMA);
+GRANT ALL ON UKAZ_OWNER.Districts TO VS_OWNER;
+ALTER TABLE VS_OWNER.VS_LS ADD CONSTRAINT VS_LS_CurrAddrDistrict_FK FOREIGN KEY (CurrAddrDistrictID) REFERENCES UKAZ_OWNER.Districts (DistrictID);
+
+--FK връзки за постоянен адрес
+ALTER TABLE VS_OWNER.VS_LS ADD CONSTRAINT VS_LS_PermAddrDistrict_FK FOREIGN KEY (PermAddrDistrictID) REFERENCES UKAZ_OWNER.Districts (DistrictID);
+/
+
+--Прехвърляне на данните
+DECLARE
+   KOD_OBL number;
+   
+   CURSOR pers is
+      SELECT PersonID, CurrAddrCityID, CurrAddress, CurrAddrDistrictID, PresSecondPostCode, PermAddrDistrictID, PermSecondPostCode
+      FROM PMIS_ADM.Persons;
+BEGIN
+   FOR pers_rec IN pers
+   LOOP
+      UPDATE VS_OWNER.VS_LS SET
+         CurrAddrCityID = pers_rec.CurrAddrCityID,
+         CurrAddress = pers_rec.CurrAddress,
+         CurrAddrDistrictID = pers_rec.CurrAddrDistrictID,
+         PresSecondPostCode = pers_rec.PresSecondPostCode,
+         PermAddrDistrictID = pers_rec.PermAddrDistrictID,
+         PermSecondPostCode = pers_rec.PermSecondPostCode
+      WHERE VS_OWNER.VS_LS.PersonID = pers_rec.PersonID;
+   END LOOP;
+END;
+/
+
+COMMIT;
+/
+
+--Преименуване на колоните, които вече няма да се използват:
+ALTER TABLE PMIS_ADM.Persons RENAME COLUMN CurrAddrCityID TO CurrAddrCityID_;
+ALTER TABLE PMIS_ADM.Persons RENAME COLUMN CurrAddress TO CurrAddress_;
+ALTER TABLE PMIS_ADM.Persons RENAME COLUMN CurrAddrDistrictID TO CurrAddrDistrictID_;
+ALTER TABLE PMIS_ADM.Persons RENAME COLUMN PresSecondPostCode TO PresSecondPostCode_;
+ALTER TABLE PMIS_ADM.Persons RENAME COLUMN PermAddrDistrictID TO PermAddrDistrictID_;
+ALTER TABLE PMIS_ADM.Persons RENAME COLUMN PermSecondPostCode TO PermSecondPostCode_;
+
+ALTER TABLE PMIS_ADM.Districts rename to Districts_;
+
+/
+

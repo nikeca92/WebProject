@@ -1,0 +1,22 @@
+﻿CREATE TABLE PMIS_APPL.VacancyAnnounceDocuments(VacancyAnnounceDocumentID number NOT NULL,
+                                                VacancyAnnounceID number NOT NULL,
+                                                DocumentID number NOT NULL
+                                               );
+
+ALTER TABLE PMIS_APPL.VacancyAnnounceDocuments ADD CONSTRAINT VacancyAnnounceDocuments_PK PRIMARY KEY(VacancyAnnounceDocumentID);
+ALTER TABLE PMIS_APPL.VacancyAnnounceDocuments ADD CONSTRAINT VacAnnDocuments_VacAnn_FK FOREIGN KEY (VacancyAnnounceID) REFERENCES PMIS_APPL.VacancyAnnounces (VacancyAnnounceID);
+ALTER TABLE PMIS_APPL.VacancyAnnounceDocuments ADD CONSTRAINT VacAnnDocuments_VacDoc_FK FOREIGN KEY (DocumentID) REFERENCES PMIS_APPL.Documents (DocumentID);
+
+
+CREATE SEQUENCE PMIS_APPL.VacAnnounceDocuments_ID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+CREATE TRIGGER PMIS_APPL.TRG_VacAnnDocuments_INSERT
+BEFORE INSERT ON PMIS_APPL.VacancyAnnounceDocuments
+FOR EACH ROW
+BEGIN
+   SELECT PMIS_APPL.VacAnnounceDocuments_ID_SEQ.nextval INTO :new.VacancyAnnounceDocumentID FROM dual;
+END;
+/

@@ -1,0 +1,23 @@
+CREATE TABLE PMIS_ADM.MilitaryDepartmentsPerUser(UserID number NOT NULL,
+                                           MilitaryDepartmentID number NOT NULL
+                                          );
+
+ALTER TABLE PMIS_ADM.MilitaryDepartmentsPerUser ADD CONSTRAINT MilitaryDepartmentsPerUser_PK PRIMARY KEY(UserID, MilitaryDepartmentID);
+ALTER TABLE PMIS_ADM.MilitaryDepartmentsPerUser ADD CONSTRAINT MilitaryDepartPerUser_Users_FK FOREIGN KEY (UserID) REFERENCES PMIS_ADM.Users (UserID);
+ALTER TABLE PMIS_ADM.MilitaryDepartmentsPerUser ADD CONSTRAINT MilitDepartPerUser_MDepart_FK FOREIGN KEY (MilitaryDepartmentID) REFERENCES PMIS_ADM.MilitaryDepartments (MilitaryDepartmentID);
+/
+
+INSERT INTO PMIS_ADM.MilitaryDepartmentsPerUser(UserID, MilitaryDepartmentID)
+VALUES (1, 1);
+
+INSERT INTO PMIS_ADM.MilitaryDepartmentsPerUser(UserID, MilitaryDepartmentID)
+VALUES (1, 2);
+
+INSERT INTO PMIS_ADM.MilitaryDepartmentsPerUser(UserID, MilitaryDepartmentID)
+VALUES (1, 3);
+
+INSERT INTO PMIS_ADM.MilitaryDepartmentsPerUser(UserID, MilitaryDepartmentID)
+VALUES (1, 4);
+
+COMMIT;
+/

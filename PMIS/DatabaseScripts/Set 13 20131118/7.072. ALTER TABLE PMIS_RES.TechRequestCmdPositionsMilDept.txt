@@ -1,0 +1,2 @@
+﻿ALTER TABLE PMIS_RES.TechRequestCmdPositionsMilDept ADD (DriversCount number);
+/

@@ -1,0 +1,426 @@
+﻿CREATE TABLE PMIS_RES.GTable(GTableID number NOT NULL,
+                              TableName varchar2(500),
+                              TableKey number NOT NULL,
+                              TableSeq number,
+                              TableValue varchar2(4000)
+                              );
+
+ALTER TABLE PMIS_RES.GTable ADD CONSTRAINT APPL_GTable_PK PRIMARY KEY(GTableID);
+ALTER TABLE PMIS_RES.GTable ADD CONSTRAINT APPL_GTable_UNQ UNIQUE (TableName, TableKey);
+
+CREATE SEQUENCE PMIS_RES.GTable_ID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+CREATE TRIGGER PMIS_RES.TRG_GTable_INSERT
+BEFORE INSERT ON PMIS_RES.GTable
+FOR EACH ROW
+DECLARE
+   TableKey number;
+BEGIN
+   SELECT PMIS_RES.GTable_ID_SEQ.nextval INTO :new.GTableID FROM dual;
+   
+   IF :new.TableKey IS NULL THEN
+      SELECT MAX(TableKey) INTO TableKey
+      FROM PMIS_RES.GTable
+      WHERE TableName = :new.TableName;
+      
+      :new.TableKey := TableKey + 1;
+   END IF;
+END;
+/
+
+INSERT INTO PMIS_RES.GTable(TableName, TableKey, TableSeq, TableValue)
+VALUES ('SizeClothing', '1', '1', 'XXS');
+
+INSERT INTO PMIS_RES.GTable(TableName, TableKey, TableSeq, TableValue)
+VALUES ('SizeClothing', '2', '2', 'XS');
+
+INSERT INTO PMIS_RES.GTable(TableName, TableKey, TableSeq, TableValue)
+VALUES ('SizeClothing', '3', '3', 'S');
+
+INSERT INTO PMIS_RES.GTable(TableName, TableKey, TableSeq, TableValue)
+VALUES ('SizeClothing', '4', '4', 'M');
+
+INSERT INTO PMIS_RES.GTable(TableName, TableKey, TableSeq, TableValue)
+VALUES ('SizeClothing', '5', '5', 'L');
+
+INSERT INTO PMIS_RES.GTable(TableName, TableKey, TableSeq, TableValue)
+VALUES ('SizeClothing', '6', '6', 'XL');
+
+INSERT INTO PMIS_RES.GTable(TableName, TableKey, TableSeq, TableValue)
+VALUES ('SizeClothing', '7', '7', 'XXL');
+
+INSERT INTO PMIS_RES.GTable(TableName, TableKey, TableSeq, TableValue)
+VALUES ('SizeClothing', '8', '8', 'XXXL');
+
+
+INSERT INTO PMIS_RES.GTable(TableName, TableKey, TableSeq, TableValue)
+VALUES ('SizeHat', '1', '1', '55');
+
+INSERT INTO PMIS_RES.GTable(TableName, TableKey, TableSeq, TableValue)
+VALUES ('SizeHat', '2', '2', '56');
+
+INSERT INTO PMIS_RES.GTable(TableName, TableKey, TableSeq, TableValue)
+VALUES ('SizeHat', '3', '3', '57');
+
+INSERT INTO PMIS_RES.GTable(TableName, TableKey, TableSeq, TableValue)
+VALUES ('SizeHat', '4', '4', '58');
+
+INSERT INTO PMIS_RES.GTable(TableName, TableKey, TableSeq, TableValue)
+VALUES ('SizeHat', '5', '5', '59');
+
+INSERT INTO PMIS_RES.GTable(TableName, TableKey, TableSeq, TableValue)
+VALUES ('SizeHat', '6', '6', '60');
+
+
+INSERT INTO PMIS_RES.GTable(TableName, TableKey, TableSeq, TableValue)
+VALUES ('SizeShoes', '1', '1', '35');
+
+INSERT INTO PMIS_RES.GTable(TableName, TableKey, TableSeq, TableValue)
+VALUES ('SizeShoes', '2', '2', '36');
+
+INSERT INTO PMIS_RES.GTable(TableName, TableKey, TableSeq, TableValue)
+VALUES ('SizeShoes', '3', '3', '37');
+
+INSERT INTO PMIS_RES.GTable(TableName, TableKey, TableSeq, TableValue)
+VALUES ('SizeShoes', '4', '4', '38');
+
+INSERT INTO PMIS_RES.GTable(TableName, TableKey, TableSeq, TableValue)
+VALUES ('SizeShoes', '5', '5', '39');
+
+INSERT INTO PMIS_RES.GTable(TableName, TableKey, TableSeq, TableValue)
+VALUES ('SizeShoes', '6', '6', '40');
+
+INSERT INTO PMIS_RES.GTable(TableName, TableKey, TableSeq, TableValue)
+VALUES ('SizeShoes', '7', '7', '41');
+
+INSERT INTO PMIS_RES.GTable(TableName, TableKey, TableSeq, TableValue)
+VALUES ('SizeShoes', '8', '8', '42');
+
+INSERT INTO PMIS_RES.GTable(TableName, TableKey, TableSeq, TableValue)
+VALUES ('SizeShoes', '9', '9', '43');
+
+INSERT INTO PMIS_RES.GTable(TableName, TableKey, TableSeq, TableValue)
+VALUES ('SizeShoes', '10', '10', '44');
+
+INSERT INTO PMIS_RES.GTable(TableName, TableKey, TableSeq, TableValue)
+VALUES ('SizeShoes', '11', '11', '45');
+
+INSERT INTO PMIS_RES.GTable(TableName, TableKey, TableSeq, TableValue)
+VALUES ('SizeShoes', '12', '12', '46');
+
+
+INSERT INTO PMIS_RES.GTable(TableName, TableKey, TableSeq, TableValue)
+VALUES ('MilRepStat_RemovedReasons', '1', '1', 'Починал');
+
+INSERT INTO PMIS_RES.GTable(TableName, TableKey, TableSeq, TableValue)
+VALUES ('MilRepStat_RemovedReasons', '2', '2', 'НГВС с изключване');
+
+INSERT INTO PMIS_RES.GTable(TableName, TableKey, TableSeq, TableValue)
+VALUES ('MilRepStat_RemovedReasons', '3', '3', 'Пределна възраст');
+
+
+INSERT INTO PMIS_RES.GTable(TableName, TableKey, TableSeq, TableValue)
+VALUES ('MilRepStat_ТemporaryRemovedReasons', '1', '1', 'В чужбина');
+
+INSERT INTO PMIS_RES.GTable(TableName, TableKey, TableSeq, TableValue)
+VALUES ('MilRepStat_ТemporaryRemovedReasons', '2', '2', 'В затвора');
+
+INSERT INTO PMIS_RES.GTable(TableName, TableKey, TableSeq, TableValue)
+VALUES ('MilRepStat_ТemporaryRemovedReasons', '3', '3', 'НГВС');
+
+
+
+INSERT INTO PMIS_RES.GTable(TableName, TableKey, TableSeq, TableValue)
+VALUES ('VehicleKind', '1', '1', 'Лек');
+
+INSERT INTO PMIS_RES.GTable(TableName, TableKey, TableSeq, TableValue)
+VALUES ('VehicleKind', '2', '2', 'Товарен');
+
+INSERT INTO PMIS_RES.GTable(TableName, TableKey, TableSeq, TableValue)
+VALUES ('VehicleKind', '3', '3', 'Специален');
+
+
+INSERT INTO PMIS_RES.GTable(TableName, TableKey, TableSeq, TableValue)
+VALUES ('VehicleRoadability', '1', '1', 'Нормална проходимост');
+
+INSERT INTO PMIS_RES.GTable(TableName, TableKey, TableSeq, TableValue)
+VALUES ('VehicleRoadability', '2', '2', 'Повишена проходимост');
+
+
+INSERT INTO PMIS_RES.GTable(TableName, TableKey, TableSeq, TableValue)
+VALUES ('VehicleEngineType', '1', '1', 'Бензинов');
+
+INSERT INTO PMIS_RES.GTable(TableName, TableKey, TableSeq, TableValue)
+VALUES ('VehicleEngineType', '2', '2', 'Дизелов');
+
+
+INSERT INTO PMIS_RES.GTable(TableName, TableKey, TableSeq, TableValue)
+VALUES ('VehicleBodyType', '1', '1', 'Автопомпа');
+
+INSERT INTO PMIS_RES.GTable(TableName, TableKey, TableSeq, TableValue)
+VALUES ('VehicleBodyType', '2', '2', 'Автобус');
+
+INSERT INTO PMIS_RES.GTable(TableName, TableKey, TableSeq, TableValue)
+VALUES ('VehicleBodyType', '3', '3', 'Автохладилник');
+
+
+INSERT INTO PMIS_RES.GTable(TableName, TableKey, TableSeq, TableValue)
+VALUES ('TractorKind', '1', '1', 'Колесни');
+
+INSERT INTO PMIS_RES.GTable(TableName, TableKey, TableSeq, TableValue)
+VALUES ('TractorKind', '2', '2', 'Верижни');
+
+
+
+INSERT INTO PMIS_RES.GTable(TableName, TableKey, TableSeq, TableValue)
+VALUES ('TractorType', '1', '1', 'За селскостопанско производство');
+
+INSERT INTO PMIS_RES.GTable(TableName, TableKey, TableSeq, TableValue)
+VALUES ('TractorType', '2', '2', 'Транспортни');
+
+INSERT INTO PMIS_RES.GTable(TableName, TableKey, TableSeq, TableValue)
+VALUES ('TractorType', '3', '3', 'Със специално предназначение');
+
+
+INSERT INTO PMIS_RES.GTable(TableName, TableKey, TableSeq, TableValue)
+VALUES ('TrailerKind', '1', '1', 'Едноосно');
+
+INSERT INTO PMIS_RES.GTable(TableName, TableKey, TableSeq, TableValue)
+VALUES ('TrailerKind', '2', '2', 'Двуосно');
+
+
+INSERT INTO PMIS_RES.GTable(TableName, TableKey, TableSeq, TableValue)
+VALUES ('TrailerType', '1', '1', 'Селскостопанско');
+
+INSERT INTO PMIS_RES.GTable(TableName, TableKey, TableSeq, TableValue)
+VALUES ('TrailerType', '2', '2', 'Автомобилно');
+
+
+INSERT INTO PMIS_RES.GTable(TableName, TableKey, TableSeq, TableValue)
+VALUES ('EngEquipKind', '1', '1', 'Вид инж. техника #1');
+
+INSERT INTO PMIS_RES.GTable(TableName, TableKey, TableSeq, TableValue)
+VALUES ('EngEquipKind', '2', '2', 'Вид инж. техника #2');
+
+INSERT INTO PMIS_RES.GTable(TableName, TableKey, TableSeq, TableValue)
+VALUES ('EngEquipKind', '3', '3', 'Вид инж. техника #3');
+
+
+INSERT INTO PMIS_RES.GTable(TableName, TableKey, TableSeq, TableValue)
+VALUES ('EngEquipType', '1', '1', 'Тип инж. техника #1');
+
+INSERT INTO PMIS_RES.GTable(TableName, TableKey, TableSeq, TableValue)
+VALUES ('EngEquipType', '2', '2', 'Тип инж. техника #2');
+
+INSERT INTO PMIS_RES.GTable(TableName, TableKey, TableSeq, TableValue)
+VALUES ('EngEquipType', '3', '3', 'Тип инж. техника #3');
+
+
+INSERT INTO PMIS_RES.GTable(TableName, TableKey, TableSeq, TableValue)
+VALUES ('EngEquipBaseKind', '1', '1', 'Вид базова машина #1');
+
+INSERT INTO PMIS_RES.GTable(TableName, TableKey, TableSeq, TableValue)
+VALUES ('EngEquipBaseKind', '2', '2', 'Вид базова машина #2');
+
+INSERT INTO PMIS_RES.GTable(TableName, TableKey, TableSeq, TableValue)
+VALUES ('EngEquipBaseKind', '3', '3', 'Вид базова машина #3');
+
+
+INSERT INTO PMIS_RES.GTable(TableName, TableKey, TableSeq, TableValue)
+VALUES ('EngEquipBaseType', '1', '1', 'Тип базова машина #1');
+
+INSERT INTO PMIS_RES.GTable(TableName, TableKey, TableSeq, TableValue)
+VALUES ('EngEquipBaseType', '2', '2', 'Тип базова машина #2');
+
+INSERT INTO PMIS_RES.GTable(TableName, TableKey, TableSeq, TableValue)
+VALUES ('EngEquipBaseType', '3', '3', 'Тип базова машина #3');
+
+
+INSERT INTO PMIS_RES.GTable(TableName, TableKey, TableSeq, TableValue)
+VALUES ('EngEquipBaseEngineType', '1', '1', 'Бензин');
+
+INSERT INTO PMIS_RES.GTable(TableName, TableKey, TableSeq, TableValue)
+VALUES ('EngEquipBaseEngineType', '2', '2', 'Дизел');
+
+
+INSERT INTO PMIS_RES.GTable(TableName, TableKey, TableSeq, TableValue)
+VALUES ('EngEquipWorkingBodyKind', '1', '1', 'Вид работен орган #1');
+
+INSERT INTO PMIS_RES.GTable(TableName, TableKey, TableSeq, TableValue)
+VALUES ('EngEquipWorkingBodyKind', '2', '2', 'Вид работен орган #2');
+
+INSERT INTO PMIS_RES.GTable(TableName, TableKey, TableSeq, TableValue)
+VALUES ('EngEquipWorkingBodyKind', '3', '3', 'Вид работен орган #3');
+
+
+INSERT INTO PMIS_RES.GTable(TableName, TableKey, TableSeq, TableValue)
+VALUES ('EngEquipWorkBodyEngineType', '1', '1', 'Бензин');
+
+INSERT INTO PMIS_RES.GTable(TableName, TableKey, TableSeq, TableValue)
+VALUES ('EngEquipWorkBodyEngineType', '2', '2', 'Дизел');
+
+
+INSERT INTO PMIS_RES.GTable(TableName, TableKey, TableSeq, TableValue)
+VALUES ('MobileLiftingEquipKind', '1', '1', 'Вид #1');
+
+INSERT INTO PMIS_RES.GTable(TableName, TableKey, TableSeq, TableValue)
+VALUES ('MobileLiftingEquipKind', '2', '2', 'Вид #2');
+
+INSERT INTO PMIS_RES.GTable(TableName, TableKey, TableSeq, TableValue)
+VALUES ('MobileLiftingEquipKind', '3', '3', 'Вид #3');
+
+
+INSERT INTO PMIS_RES.GTable(TableName, TableKey, TableSeq, TableValue)
+VALUES ('MobileLiftingEquipType', '1', '1', 'Тип #1');
+
+INSERT INTO PMIS_RES.GTable(TableName, TableKey, TableSeq, TableValue)
+VALUES ('MobileLiftingEquipType', '2', '2', 'Тип #2');
+
+INSERT INTO PMIS_RES.GTable(TableName, TableKey, TableSeq, TableValue)
+VALUES ('MobileLiftingEquipType', '3', '3', 'Тип #3');
+
+
+INSERT INTO PMIS_RES.GTable(TableName, TableKey, TableSeq, TableValue)
+VALUES ('RailwayEquipKind', '1', '1', 'Вид #1');
+
+INSERT INTO PMIS_RES.GTable(TableName, TableKey, TableSeq, TableValue)
+VALUES ('RailwayEquipKind', '2', '2', 'Вид #2');
+
+INSERT INTO PMIS_RES.GTable(TableName, TableKey, TableSeq, TableValue)
+VALUES ('RailwayEquipKind', '3', '3', 'Вид #3');
+
+
+INSERT INTO PMIS_RES.GTable(TableName, TableKey, TableSeq, TableValue)
+VALUES ('RailwayEquipType', '1', '1', 'Тип #1');
+
+INSERT INTO PMIS_RES.GTable(TableName, TableKey, TableSeq, TableValue)
+VALUES ('RailwayEquipType', '2', '2', 'Тип #2');
+
+INSERT INTO PMIS_RES.GTable(TableName, TableKey, TableSeq, TableValue)
+VALUES ('RailwayEquipType', '3', '3', 'Тип #3');
+
+
+INSERT INTO PMIS_RES.GTable(TableName, TableKey, TableSeq, TableValue)
+VALUES ('VesselKind', '1', '1', 'Вид кораб #1');
+
+INSERT INTO PMIS_RES.GTable(TableName, TableKey, TableSeq, TableValue)
+VALUES ('VesselKind', '2', '2', 'Вид кораб #2');
+
+INSERT INTO PMIS_RES.GTable(TableName, TableKey, TableSeq, TableValue)
+VALUES ('VesselKind', '3', '3', 'Вид кораб #3');
+
+
+INSERT INTO PMIS_RES.GTable(TableName, TableKey, TableSeq, TableValue)
+VALUES ('VesselType', '1', '1', 'Тип кораб #1');
+
+INSERT INTO PMIS_RES.GTable(TableName, TableKey, TableSeq, TableValue)
+VALUES ('VesselType', '2', '2', 'Тип кораб #2');
+
+INSERT INTO PMIS_RES.GTable(TableName, TableKey, TableSeq, TableValue)
+VALUES ('VesselType', '3', '3', 'Тип кораб #3');
+
+
+INSERT INTO PMIS_RES.GTable(TableName, TableKey, TableSeq, TableValue)
+VALUES ('AviationAirKind', '1', '1', 'Вид #1');
+
+INSERT INTO PMIS_RES.GTable(TableName, TableKey, TableSeq, TableValue)
+VALUES ('AviationAirKind', '2', '2', 'Вид #2');
+
+INSERT INTO PMIS_RES.GTable(TableName, TableKey, TableSeq, TableValue)
+VALUES ('AviationAirKind', '3', '3', 'Вид #3');
+
+
+INSERT INTO PMIS_RES.GTable(TableName, TableKey, TableSeq, TableValue)
+VALUES ('AviationAirType', '1', '1', 'Тип #1');
+
+INSERT INTO PMIS_RES.GTable(TableName, TableKey, TableSeq, TableValue)
+VALUES ('AviationAirType', '2', '2', 'Тип #2');
+
+INSERT INTO PMIS_RES.GTable(TableName, TableKey, TableSeq, TableValue)
+VALUES ('AviationAirType', '3', '3', 'Тип #3');
+
+
+INSERT INTO PMIS_RES.GTable(TableName, TableKey, TableSeq, TableValue)
+VALUES ('AviationAirModel', '1', '1', 'Модел #1');
+
+INSERT INTO PMIS_RES.GTable(TableName, TableKey, TableSeq, TableValue)
+VALUES ('AviationAirModel', '2', '2', 'Модел #2');
+
+INSERT INTO PMIS_RES.GTable(TableName, TableKey, TableSeq, TableValue)
+VALUES ('AviationAirModel', '3', '3', 'Модел #3');
+
+
+INSERT INTO PMIS_RES.GTable(TableName, TableKey, TableSeq, TableValue)
+VALUES ('AviationOtherKind', '1', '1', 'Вид #1');
+
+INSERT INTO PMIS_RES.GTable(TableName, TableKey, TableSeq, TableValue)
+VALUES ('AviationOtherKind', '2', '2', 'Вид #2');
+
+INSERT INTO PMIS_RES.GTable(TableName, TableKey, TableSeq, TableValue)
+VALUES ('AviationOtherKind', '3', '3', 'Вид #3');
+
+
+INSERT INTO PMIS_RES.GTable(TableName, TableKey, TableSeq, TableValue)
+VALUES ('AviationOtherType', '1', '1', 'Тип #1');
+
+INSERT INTO PMIS_RES.GTable(TableName, TableKey, TableSeq, TableValue)
+VALUES ('AviationOtherType', '2', '2', 'Тип #2');
+
+INSERT INTO PMIS_RES.GTable(TableName, TableKey, TableSeq, TableValue)
+VALUES ('AviationOtherType', '3', '3', 'Тип #3');
+
+
+INSERT INTO PMIS_RES.GTable(TableName, TableKey, TableSeq, TableValue)
+VALUES ('AviationOtherBaseMachineKind', '1', '1', 'Вид базова машина #1');
+
+INSERT INTO PMIS_RES.GTable(TableName, TableKey, TableSeq, TableValue)
+VALUES ('AviationOtherBaseMachineKind', '2', '2', 'Вид базова машина #2');
+
+INSERT INTO PMIS_RES.GTable(TableName, TableKey, TableSeq, TableValue)
+VALUES ('AviationOtherBaseMachineKind', '3', '3', 'Вид базова машина #3');
+
+
+INSERT INTO PMIS_RES.GTable(TableName, TableKey, TableSeq, TableValue)
+VALUES ('AviationOtherBaseMachineType', '1', '1', 'Тип базова машина #1');
+
+INSERT INTO PMIS_RES.GTable(TableName, TableKey, TableSeq, TableValue)
+VALUES ('AviationOtherBaseMachineType', '2', '2', 'Тип базова машина #2');
+
+INSERT INTO PMIS_RES.GTable(TableName, TableKey, TableSeq, TableValue)
+VALUES ('AviationOtherBaseMachineType', '3', '3', 'Тип базова машина #3');
+
+
+INSERT INTO PMIS_RES.GTable(TableName, TableKey, TableSeq, TableValue)
+VALUES ('AviationOtherEquipmentKind', '1', '1', 'Вид оборудване #1');
+
+INSERT INTO PMIS_RES.GTable(TableName, TableKey, TableSeq, TableValue)
+VALUES ('AviationOtherEquipmentKind', '2', '2', 'Вид оборудване #2');
+
+INSERT INTO PMIS_RES.GTable(TableName, TableKey, TableSeq, TableValue)
+VALUES ('AviationOtherEquipmentKind', '3', '3', 'Вид оборудване #3');
+
+
+INSERT INTO PMIS_RES.GTable(TableName, TableKey, TableSeq, TableValue)
+VALUES ('FuelContainerKind', '1', '1', 'Вид съд за ГСМ #1');
+
+INSERT INTO PMIS_RES.GTable(TableName, TableKey, TableSeq, TableValue)
+VALUES ('FuelContainerKind', '2', '2', 'Вид съд за ГСМ #2');
+
+INSERT INTO PMIS_RES.GTable(TableName, TableKey, TableSeq, TableValue)
+VALUES ('FuelContainerKind', '3', '3', 'Вид съд за ГСМ #3');
+
+
+INSERT INTO PMIS_RES.GTable(TableName, TableKey, TableSeq, TableValue)
+VALUES ('FuelContainerType', '1', '1', 'Тип съд за ГСМ #1');
+
+INSERT INTO PMIS_RES.GTable(TableName, TableKey, TableSeq, TableValue)
+VALUES ('FuelContainerType', '2', '2', 'Тип съд за ГСМ #2');
+
+INSERT INTO PMIS_RES.GTable(TableName, TableKey, TableSeq, TableValue)
+VALUES ('FuelContainerType', '3', '3', 'Тип съд за ГСМ #3');
+
+
+COMMIT;

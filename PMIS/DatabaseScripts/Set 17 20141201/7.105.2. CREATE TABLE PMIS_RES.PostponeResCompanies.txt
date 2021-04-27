@@ -1,0 +1,23 @@
+﻿CREATE TABLE PMIS_RES.PostponeResCompanies(PostponeResCompanyID number NOT NULL,
+                                           PostponeResID number NOT NULL,
+                                           CompanyID number NOT NULL,
+                                           EmployeesCnt number
+                                          );
+
+ALTER TABLE PMIS_RES.PostponeResCompanies ADD CONSTRAINT PostponeResCompanies_PK PRIMARY KEY (PostponeResCompanyID);
+ALTER TABLE PMIS_RES.PostponeResCompanies ADD CONSTRAINT PostponeResCompanies_UNQ UNIQUE (PostponeResID, CompanyID);
+ALTER TABLE PMIS_RES.PostponeResCompanies ADD CONSTRAINT PostponeResComp_PostponeRes_FK FOREIGN KEY (PostponeResID) REFERENCES PMIS_RES.PostponeRes (PostponeResID);
+ALTER TABLE PMIS_RES.PostponeResCompanies ADD CONSTRAINT PostponeResComp_Companies_FK FOREIGN KEY (CompanyID) REFERENCES PMIS_ADM.Companies (CompanyID);
+
+CREATE SEQUENCE PMIS_RES.PostponeResCompanies_ID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+CREATE TRIGGER PMIS_RES.TRG_PostponeResComp_INSERT
+BEFORE INSERT ON PMIS_RES.PostponeResCompanies
+FOR EACH ROW
+BEGIN
+   SELECT PMIS_RES.PostponeResCompanies_ID_SEQ.nextval INTO :new.PostponeResCompanyID FROM dual;
+END;
+/

@@ -1,0 +1,34 @@
+﻿CREATE TABLE PMIS_HS.RiskCardItems(RiskCardItemID number NOT NULL,
+							       RiskCardID number NOT NULL,
+								   RiskFactorTypeID number NOT NULL,
+							       RiskFactorID number NOT NULL,
+								   HazardID number,
+								   OtherHazard varchar2(500),
+								   ProbabilityID number NOT NULL,
+								   ExposureID number NOT NULL,
+								   EffectWeightID number NOT NULL
+                                  );
+								  
+ALTER TABLE PMIS_HS.RiskCardItems ADD CONSTRAINT RiskCardItems_PK PRIMARY KEY(RiskCardItemID);
+ALTER TABLE PMIS_HS.RiskCardItems ADD CONSTRAINT RiskCardItems_RiskCards_FK FOREIGN KEY (RiskCardID) REFERENCES PMIS_HS.RiskCards (RiskCardID);
+ALTER TABLE PMIS_HS.RiskCardItems ADD CONSTRAINT RiskCardItems_FactorTypes_FK FOREIGN KEY (RiskFactorTypeID) REFERENCES PMIS_HS.RiskFactorTypes (RiskFactorTypeID);
+ALTER TABLE PMIS_HS.RiskCardItems ADD CONSTRAINT RiskCardItems_Factors_FK FOREIGN KEY (RiskFactorID) REFERENCES PMIS_HS.RiskFactors (RiskFactorID);
+ALTER TABLE PMIS_HS.RiskCardItems ADD CONSTRAINT RiskCardItems_Hazards_FK FOREIGN KEY (HazardID) REFERENCES PMIS_HS.Hazards (HazardID);
+ALTER TABLE PMIS_HS.RiskCardItems ADD CONSTRAINT RiskCardItems_Probabilities_FK FOREIGN KEY (ProbabilityID) REFERENCES PMIS_HS.Probabilities (ProbabilityID);
+ALTER TABLE PMIS_HS.RiskCardItems ADD CONSTRAINT RiskCardItems_Exposure_FK FOREIGN KEY (ExposureID) REFERENCES PMIS_HS.Exposure (ExposureID);
+ALTER TABLE PMIS_HS.RiskCardItems ADD CONSTRAINT RiskCardItems_EffectWeight_FK FOREIGN KEY (EffectWeightID) REFERENCES PMIS_HS.EffectWeight (EffectWeightID);
+
+CREATE SEQUENCE PMIS_HS.RiskCardItems_ID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+CREATE TRIGGER PMIS_HS.TRG_RiskCardItems_INSERT
+BEFORE INSERT ON PMIS_HS.RiskCardItems
+FOR EACH ROW
+BEGIN
+   SELECT PMIS_HS.RiskCardItems_ID_SEQ.nextval INTO :new.RiskCardItemID FROM dual;
+END;
+/
+
+COMMIT;

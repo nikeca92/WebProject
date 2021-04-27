@@ -1,0 +1,26 @@
+﻿CREATE TABLE PMIS_APPL.ApplicantExamStatus(ApplicantExamStatusID number NOT NULL,
+                                          ApplicantID number NOT NULL,
+					  ResponsibleMilitaryUnitID number NOT NULL,
+					  VacancyAnnounceID number NOT NULL,
+                                          Status number
+                                          );
+
+ALTER TABLE PMIS_APPL.ApplicantExamStatus ADD CONSTRAINT ApplicantExamStatus_PK PRIMARY KEY(ApplicantExamStatusID);
+ALTER TABLE PMIS_APPL.ApplicantExamStatus ADD CONSTRAINT ApplExamStatus_Applicants_FK FOREIGN KEY (ApplicantID) REFERENCES PMIS_APPL.Applicants (ApplicantID);
+ALTER TABLE PMIS_APPL.ApplicantExamStatus ADD CONSTRAINT ApplExamStatus_MIR_FK FOREIGN KEY (ResponsibleMilitaryUnitID) REFERENCES UKAZ_OWNER.MIR (KOD_MIR);
+ALTER TABLE PMIS_APPL.ApplicantExamStatus ADD CONSTRAINT ApplExamStatus_VacAnn_FK FOREIGN KEY (VacancyAnnounceID) REFERENCES PMIS_APPL.VacancyAnnounces (VacancyAnnounceID);
+
+ALTER TABLE PMIS_APPL.ApplicantExamStatus ADD CONSTRAINT ApplExamStatus_Status_FK FOREIGN KEY (Status) REFERENCES PMIS_APPL.ApplicantExamStatuses (ApplicantExamStatusID);
+
+CREATE SEQUENCE PMIS_APPL.ApplicantExamStatus_ID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+CREATE TRIGGER PMIS_APPL.TRG_ApplicantExamStatus_INSERT
+BEFORE INSERT ON PMIS_APPL.ApplicantExamStatus
+FOR EACH ROW
+BEGIN
+   SELECT PMIS_APPL.ApplicantExamStatus_ID_SEQ.nextval INTO :new.ApplicantExamStatusID FROM dual;
+END;
+/

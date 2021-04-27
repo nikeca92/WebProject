@@ -1,0 +1,33 @@
+﻿UPDATE PMIS_ADM.ChangeEventTypes 
+SET ChangeEventType = 'Добавяне на заповед за прекратяване на служба'
+WHERE ChangeEventTypeKey = 'RES_Reservist_MilServ_AddDischarge';
+
+UPDATE PMIS_ADM.ChangeEventTypes 
+SET ChangeEventType = 'Редактиране на заповед за прекратяване на служба'
+WHERE ChangeEventTypeKey = 'RES_Reservist_MilServ_EditDischarge';
+
+UPDATE PMIS_ADM.ChangeEventTypes 
+SET ChangeEventType = 'Изтриване на заповед за прекратяване на служба'
+WHERE ChangeEventTypeKey = 'RES_Reservist_MilServ_DeleteDischarge';
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (changeeventtypekey, changeeventtype, moduleid, changetype)
+VALUES ('RES_EquipResRequests_Command_MovePosition', 'Преместване на длъжност от заявка за окомплектоване с ресурс от резерва', (SELECT ModuleiD FROM PMIS_ADM.modules WHERE modulekey = 'RES'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (changeeventtypekey, changeeventtype, moduleid, changetype)
+VALUES ('RES_EquipTechRequests_Command_MovePosition', 'Преместване на позиция към заявка за окомплектоване с техника от резерва', (SELECT ModuleiD FROM PMIS_ADM.modules WHERE modulekey = 'RES'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes(changeeventtypekey, changeeventtype, moduleid, changetype)
+VALUES('RES_Reservist_MilRep_TransferToVitosha', 'Прехвърляне към Витоша', (SELECT ModuleiD FROM PMIS_ADM.modules WHERE modulekey = 'RES'), 1);
+
+
+INSERT INTO PMIS_ADM.ChangeEventTypes(changeeventtypekey, changeeventtype, moduleid, changetype)
+VALUES('RES_Reservist_EduWork_AddSpeciality', 'Добавяне на специалност', (SELECT ModuleiD FROM PMIS_ADM.modules WHERE modulekey = 'RES'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes(changeeventtypekey, changeeventtype, moduleid, changetype)
+VALUES('RES_Reservist_EduWork_EditSpeciality', 'Редактиране на специалност', (SELECT ModuleiD FROM PMIS_ADM.modules WHERE modulekey = 'RES'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes(changeeventtypekey, changeeventtype, moduleid, changetype)
+VALUES('RES_Reservist_EduWork_DeleteSpeciality', 'Изтриване на специалност', (SELECT ModuleiD FROM PMIS_ADM.modules WHERE modulekey = 'RES'), 3);
+
+COMMIT;
+/

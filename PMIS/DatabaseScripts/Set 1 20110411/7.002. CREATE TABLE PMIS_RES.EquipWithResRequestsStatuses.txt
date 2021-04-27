@@ -1,0 +1,37 @@
+﻿CREATE TABLE PMIS_RES.EquipWithResRequestsStatuses(EquipWithResRequestsStatusID number NOT NULL,
+                                                   StatusKey varchar2(300),
+                                                   StatusName varchar2(300),
+                                                   Seq number
+                                                  );
+
+ALTER TABLE PMIS_RES.EquipWithResRequestsStatuses ADD CONSTRAINT EquipWithResReqStatuses_PK PRIMARY KEY(EquipWithResRequestsStatusID);
+
+CREATE SEQUENCE PMIS_RES.EquipWithResReqStatuses_ID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+CREATE TRIGGER PMIS_RES.TRG_EquipWithResReqStat_INSERT
+BEFORE INSERT ON PMIS_RES.EquipWithResRequestsStatuses
+FOR EACH ROW
+BEGIN
+   SELECT PMIS_RES.EquipWithResReqStatuses_ID_SEQ.nextval INTO :new.EquipWithResRequestsStatusID FROM dual;
+END;
+/
+
+INSERT INTO PMIS_RES.EquipWithResRequestsStatuses (StatusKey, StatusName, Seq)
+VALUES ('CREATING', 'В процес на въвеждане', 1);
+
+INSERT INTO PMIS_RES.EquipWithResRequestsStatuses (StatusKey, StatusName, Seq)
+VALUES ('CREATED', 'Приключено въвеждане', 2);
+
+INSERT INTO PMIS_RES.EquipWithResRequestsStatuses (StatusKey, StatusName, Seq)
+VALUES ('PROCESSINGBYMILDEPARTMENT', 'В процес на изпълнение от ВО', 3);
+
+INSERT INTO PMIS_RES.EquipWithResRequestsStatuses (StatusKey, StatusName, Seq)
+VALUES ('DONE', 'Приключена', 4);
+
+COMMIT;
+/
+
+

@@ -1,0 +1,305 @@
+GRANT ALL ON VS_OWNER.KLV_KAT TO PMIS_ADM;
+--Резерв -> Справки -> Справка за изпълнение на отсрочването на човешки ресурси 
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID, CanSetAccessOnlyOwnData)
+VALUES ('RES_REPORTS_POSTPONES', 'Справка за изпълнение на отсрочването на човешки ресурси', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS'), 1);
+
+--Резерв -> Справки -> Справка за изпълнение на отсрочването на човешки ресурси -> Месторабота
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_POSTPONES_COMPANY', 'Месторабота', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_POSTPONES'));
+
+--Резерв -> Справки -> Справка за изпълнение на отсрочването на човешки ресурси  -> Сумарно - общо
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_POSTPONES_CONTROLPOINTSTOTAL', 'Сумарно - общо->КЧ', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_POSTPONES'));
+
+--Резерв -> Справки -> Справка за изпълнение на отсрочването на човешки ресурси  -> Сумарно - в т.ч. безусловно
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_POSTPONES_CONTROLPOINTSABSOLUTELY', 'Сумарно - в т.ч. безусловно->КЧ', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_POSTPONES'));
+
+--Резерв -> Справки -> Справка за изпълнение на отсрочването на човешки ресурси  -> Ръководство->Офицери->Общо
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_POSTPONES_MANAGEOFFICERSTOTAL', 'Ръководство->Офицери->Общо->КЧ', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_POSTPONES'));
+
+--Резерв -> Справки -> Справка за изпълнение на отсрочването на човешки ресурси  -> Ръководство->Офицери->В т.ч. безусловно
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_POSTPONES_MANAGEOFFICERSABSOLUTELY', 'Ръководство->Офицери->В т.ч. безусловно->КЧ', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_POSTPONES'));
+
+--Резерв -> Справки -> Справка за изпълнение на отсрочването на човешки ресурси  -> Ръководство->Сержанти и войници ->Общо
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_POSTPONES_MANAGESOLDIERSTOTAL', 'Ръководство->Сержанти и войници ->Общо->КЧ', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_POSTPONES'));
+
+--Резерв -> Справки -> Справка за изпълнение на отсрочването на човешки ресурси  -> Ръководство->Сержанти и войници ->В т.ч. безусловно
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_POSTPONES_MANAGESOLDIERSABSOLUTELY', 'Ръководство->Сержанти и войници ->В т.ч. безусловно->КЧ', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_POSTPONES'));
+
+--Резерв -> Справки -> Справка за изпълнение на отсрочването на човешки ресурси  -> Експертен персонал->Офицери->Общо
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_POSTPONES_EXPERTOFFICERSTOTAL', 'Експертен персонал->Офицери->Общо->КЧ', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_POSTPONES'));
+
+--Резерв -> Справки -> Справка за изпълнение на отсрочването на човешки ресурси  -> Експертен персонал->Офицери->В т.ч. безусловно
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_POSTPONES_EXPERTOFFICERSABSOLUTELY', 'Експертен персонал->Офицери->В т.ч. безусловно->КЧ', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_POSTPONES'));
+
+--Резерв -> Справки -> Справка за изпълнение на отсрочването на човешки ресурси  -> Експертен персонал->Сержанти и войници ->Общо
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_POSTPONES_EXPERTSOLDIERSTOTAL', 'Експертен персонал->Сержанти и войници ->Общо->КЧ', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_POSTPONES'));
+
+--Резерв -> Справки -> Справка за изпълнение на отсрочването на човешки ресурси  -> Експертен персонал->Сержанти и войници ->В т.ч. безусловно
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_POSTPONES_EXPERTSOLDIERSABSOLUTELY', 'Експертен персонал->Сержанти и войници ->В т.ч. безусловно->КЧ', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_POSTPONES'));
+
+--Резерв -> Справки -> Справка за изпълнение на отсрочването на човешки ресурси  -> Технически персонал->Офицери->Общо
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_POSTPONES_TECHOFFICERSTOTAL', 'Технически персонал->Офицери->Общо->КЧ', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_POSTPONES'));
+
+--Резерв -> Справки -> Справка за изпълнение на отсрочването на човешки ресурси  -> Технически персонал->Офицери->В т.ч. безусловно
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_POSTPONES_TECHOFFICERSABSOLUTELY', 'Технически персонал->Офицери->В т.ч. безусловно->КЧ', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_POSTPONES'));
+
+--Резерв -> Справки -> Справка за изпълнение на отсрочването на човешки ресурси  -> Технически персонал->Сержанти и войници ->Общо
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_POSTPONES_TECHSOLDIERSTOTAL', 'Технически персонал->Сержанти и войници ->Общо->КЧ', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_POSTPONES'));
+
+--Резерв -> Справки -> Справка за изпълнение на отсрочването на човешки ресурси  -> Технически персонал->Сержанти и войници ->В т.ч. безусловно
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_POSTPONES_TECHSOLDIERSABSOLUTELY', 'Технически персонал->Сержанти и войници ->В т.ч. безусловно->КЧ', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_POSTPONES'));
+
+
+
+--Резерв -> Справки -> Справка за изпълнение на отсрочването на човешки ресурси  -> Сумарно - общо
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_POSTPONES_CONTROLPOINTSTOTALFULFIL', 'Сумарно - общо->Изп.', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_POSTPONES'));
+
+--Резерв -> Справки -> Справка за изпълнение на отсрочването на човешки ресурси  -> Сумарно - в т.ч. безусловно
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_POSTPONES_CONTROLPOINTSABSOLUTELYFULFIL', 'Сумарно - в т.ч. безусловно->Изп.', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_POSTPONES'));
+
+--Резерв -> Справки -> Справка за изпълнение на отсрочването на човешки ресурси  -> Ръководство->Офицери->Общо
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_POSTPONES_MANAGEOFFICERSTOTALFULFIL', 'Ръководство->Офицери->Общо->Изп.', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_POSTPONES'));
+
+--Резерв -> Справки -> Справка за изпълнение на отсрочването на човешки ресурси  -> Ръководство->Офицери->В т.ч. безусловно
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_POSTPONES_MANAGEOFFICERSABSOLUTELYFULFIL', 'Ръководство->Офицери->В т.ч. безусловно->Изп.', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_POSTPONES'));
+
+--Резерв -> Справки -> Справка за изпълнение на отсрочването на човешки ресурси  -> Ръководство->Сержанти и войници ->Общо
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_POSTPONES_MANAGESOLDIERSTOTALFULFIL', 'Ръководство->Сержанти и войници ->Общо->Изп.', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_POSTPONES'));
+
+--Резерв -> Справки -> Справка за изпълнение на отсрочването на човешки ресурси  -> Ръководство->Сержанти и войници ->В т.ч. безусловно
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_POSTPONES_MANAGESOLDIERSABSOLUTELYFULFIL', 'Ръководство->Сержанти и войници ->В т.ч. безусловно->Изп.', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_POSTPONES'));
+
+--Резерв -> Справки -> Справка за изпълнение на отсрочването на човешки ресурси  -> Експертен персонал->Офицери->Общо
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_POSTPONES_EXPERTOFFICERSTOTALFULFIL', 'Експертен персонал->Офицери->Общо->Изп.', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_POSTPONES'));
+
+--Резерв -> Справки -> Справка за изпълнение на отсрочването на човешки ресурси  -> Експертен персонал->Офицери->В т.ч. безусловно
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_POSTPONES_EXPERTOFFICERSABSOLUTELYFULFIL', 'Експертен персонал->Офицери->В т.ч. безусловно->Изп.', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_POSTPONES'));
+
+--Резерв -> Справки -> Справка за изпълнение на отсрочването на човешки ресурси  -> Експертен персонал->Сержанти и войници ->Общо
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_POSTPONES_EXPERTSOLDIERSTOTALFULFIL', 'Експертен персонал->Сержанти и войници ->Общо->Изп.', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_POSTPONES'));
+
+--Резерв -> Справки -> Справка за изпълнение на отсрочването на човешки ресурси  -> Експертен персонал->Сержанти и войници ->В т.ч. безусловно
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_POSTPONES_EXPERTSOLDIERSABSOLUTELYFULFIL', 'Експертен персонал->Сержанти и войници ->В т.ч. безусловно->Изп.', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_POSTPONES'));
+
+--Резерв -> Справки -> Справка за изпълнение на отсрочването на човешки ресурси  -> Технически персонал->Офицери->Общо
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_POSTPONES_TECHOFFICERSTOTALFULFIL', 'Технически персонал->Офицери->Общо->Изп.', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_POSTPONES'));
+
+--Резерв -> Справки -> Справка за изпълнение на отсрочването на човешки ресурси  -> Технически персонал->Офицери->В т.ч. безусловно
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_POSTPONES_TECHOFFICERSABSOLUTELYFULFIL', 'Технически персонал->Офицери->В т.ч. безусловно->Изп.', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_POSTPONES'));
+
+--Резерв -> Справки -> Справка за изпълнение на отсрочването на човешки ресурси  -> Технически персонал->Сержанти и войници ->Общо
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_POSTPONES_TECHSOLDIERSTOTALFULFIL', 'Технически персонал->Сержанти и войници ->Общо->Изп.', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_POSTPONES'));
+
+--Резерв -> Справки -> Справка за изпълнение на отсрочването на човешки ресурси  -> Технически персонал->Сержанти и войници ->В т.ч. безусловно
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_POSTPONES_TECHSOLDIERSABSOLUTELYFULFIL', 'Технически персонал->Сержанти и войници ->В т.ч. безусловно->Изп.', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_POSTPONES'));
+
+ 
+UPDATE PMIS_ADM.UIItems SET CanSetAccessOnlyOwnData = 1 WHERE UIKey='RES_HUMANRES' ;
+UPDATE PMIS_ADM.UIItems SET CanSetAccessOnlyOwnData = 1 WHERE UIKey='RES_HUMANRES_POSTPONE' ;
+
+
+UPDATE PMIS_ADM.UIItems SET 
+   UIName = 'Чужди езици'
+WHERE UIKey = 'RES_HUMANRES_EDITRESERVIST_EDUWORK_FRGNLNG';
+
+UPDATE PMIS_ADM.UIItems SET UIName = 'Типове специализирана авиац. техника' WHERE UIKey='RES_LISTMAINT_AVIATIONOTHERTYPE';
+UPDATE PMIS_ADM.UIItems SET UIName = 'Добавяне на тип специализирана авиац. техника' WHERE UIKey='RES_LISTMAINT_AVIATIONOTHERTYPE_ADD';
+UPDATE PMIS_ADM.UIItems SET UIName = 'Редактиране на тип специализирана авиац. техника' WHERE UIKey='RES_LISTMAINT_AVIATIONOTHERTYPE_EDIT';
+UPDATE PMIS_ADM.UIItems SET UIName = 'Изтриване на тип специализирана авиац. техника' WHERE UIKey='RES_LISTMAINT_AVIATIONOTHERTYPE_DELETE';
+
+COMMIT;
+/
+
+
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Postpone_CopyPostpone', 'Копиране на отсрочване', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Reservist_AddReservist', 'Добавяне на резервист', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 2);
+
+
+
+UPDATE PMIS_ADM.ChangeEventTypes 
+SET ChangeEventTypeKey = 'RES_Lists_TractorType_AddTractorType'
+WHERE ChangeEventTypeKey = 'RES_Lists_TractorType_AddVehicleRoadability';
+
+UPDATE PMIS_ADM.ChangeEventTypes 
+SET ChangeEventTypeKey = 'RES_Lists_TractorType_EditTractorType'
+WHERE ChangeEventTypeKey = 'RES_Lists_TractorType_EditVehicleRoadability';
+
+UPDATE PMIS_ADM.ChangeEventTypes 
+SET ChangeEventTypeKey = 'RES_Lists_TractorType_DeleteTractorType'
+WHERE ChangeEventTypeKey = 'RES_Lists_TractorType_DeleteVehicleRoadability';
+
+
+COMMIT;
+
+
+
+UPDATE PMIS_ADM.Fields SET FieldKey = 'RES_Lists_TractorType_TableSeq' WHERE FieldKey = 'RES_Lists_TractorRoadability_TableSeq';
+
+UPDATE PMIS_ADM.Fields SET FieldKey = 'RES_Lists_TractorType_TableValue' WHERE FieldKey = 'RES_Lists_TractorRoadability_TableValue';
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'ADM_Technics_ResidencePostCode', 'Местодомуване - Пощенски код', 6);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'ADM_Technics_OwnershipPostCode', 'Адрес на собственик - Пощенски код', 8);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'ADM_PersonDetails_PermAdr_PermSecondPostCode', 'Постоянен адрес - Пощенски код', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'ADM_PersonDetails_PresAdr_PresSecondPostCode', 'Настоящ адрес - Пощенски код', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_MilitaryReportPersonDetails_PermAdr_PermSecondPostCode', 'Постоянен адрес - Пощенски код', 6);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_MilitaryReportPersonDetails_PresAdr_PresSecondPostCode', 'Настоящ адрес - Пощенски код', 9);
+
+COMMIT;
+
+
+UPDATE PMIS_ADM.MaintFields SET FieldKey = 'RES_Lists_TractorType_TableSeq' WHERE TableName = 'PMIS_RES.GTable.TractorType' AND TableColumn='TableSeq';
+
+COMMIT;
+ALTER TABLE PMIS_ADM.Persons ADD PermSecondPostCode varchar2(10);
+ALTER TABLE PMIS_ADM.Persons ADD PresSecondPostCode varchar2(10);
+
+
+UPDATE PMIS_ADM.Persons SET
+   PresSecondPostCode = (SELECT PK FROM UKAZ_OWNER.KL_NMA WHERE KOD_NMA = PMIS_ADM.Persons.CurrAddrCityID),
+   PermSecondPostCode = (SELECT PK FROM UKAZ_OWNER.KL_NMA WHERE KOD_NMA = (SELECT KOD_NMA_MJ FROM VS_OWNER.VS_LS WHERE PersonID = PMIS_ADM.Persons.PersonID));
+   
+COMMIT;   
+/
+
+ALTER TABLE PMIS_ADM.MilitaryReportPersons ADD PermSecondPostCode varchar2(10);
+ALTER TABLE PMIS_ADM.MilitaryReportPersons ADD PresSecondPostCode varchar2(10);
+
+UPDATE PMIS_ADM.MilitaryReportPersons SET
+   PresSecondPostCode = (SELECT PK FROM UKAZ_OWNER.KL_NMA WHERE KOD_NMA = PMIS_ADM.MilitaryReportPersons.CurrAddrCityID),
+   PermSecondPostCode = (SELECT PK FROM UKAZ_OWNER.KL_NMA WHERE KOD_NMA = PMIS_ADM.MilitaryReportPersons.PermAddrCityID);
+
+COMMIT;
+/
+CREATE TABLE PMIS_ADM.MilitaryRankCategories(MilitaryRankCategoryID number NOT NULL,
+											 ZVA_KAT_KOD varchar2(2) NOT NULL,
+											 MilitaryRankCategory number NOT NULL CHECK (MilitaryRankCategory BETWEEN 1 AND 2) /* 1 - Soldier, 2 - Officer */
+											);
+
+ALTER TABLE PMIS_ADM.MilitaryRankCategories ADD CONSTRAINT MilitaryRankCategories_PK PRIMARY KEY(MilitaryRankCategoryID);
+ALTER TABLE PMIS_ADM.MilitaryRankCategories ADD CONSTRAINT MilRankCateg_KLV_KAT_FK FOREIGN KEY (ZVA_KAT_KOD) REFERENCES VS_OWNER.KLV_KAT(KAT_KOD);
+
+CREATE SEQUENCE PMIS_ADM.MilitaryRankCategories_ID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+
+CREATE TRIGGER PMIS_ADM.TRG_MilRankCateg_INSERT
+BEFORE INSERT ON PMIS_ADM.MilitaryRankCategories
+FOR EACH ROW
+BEGIN
+   SELECT PMIS_ADM.MilitaryRankCategories_ID_SEQ.nextval INTO :new.MilitaryRankCategoryID FROM dual;
+END;
+/
+
+INSERT INTO PMIS_ADM.MilitaryRankCategories (ZVA_KAT_KOD, MilitaryRankCategory)
+VALUES ('20', 1);
+
+INSERT INTO PMIS_ADM.MilitaryRankCategories (ZVA_KAT_KOD, MilitaryRankCategory)
+VALUES ('35', 1);
+
+INSERT INTO PMIS_ADM.MilitaryRankCategories (ZVA_KAT_KOD, MilitaryRankCategory)
+VALUES ('46', 1);
+
+INSERT INTO PMIS_ADM.MilitaryRankCategories (ZVA_KAT_KOD, MilitaryRankCategory)
+VALUES ('50', 1);
+
+INSERT INTO PMIS_ADM.MilitaryRankCategories (ZVA_KAT_KOD, MilitaryRankCategory)
+VALUES ('55', 1);
+
+INSERT INTO PMIS_ADM.MilitaryRankCategories (ZVA_KAT_KOD, MilitaryRankCategory)
+VALUES ('60', 2);
+
+INSERT INTO PMIS_ADM.MilitaryRankCategories (ZVA_KAT_KOD, MilitaryRankCategory)
+VALUES ('73', 2);
+
+COMMIT;
+ALTER TABLE PMIS_RES.ReservistMilRepStatuses MODIFY (Voluntary_MilRepSpecialityID number);
+ALTER TABLE PMIS_RES.ReservistMilRepStatuses ADD CONSTRAINT ResMilRepStat_VolMilRepSpec_FK FOREIGN KEY (Voluntary_MilRepSpecialityID) REFERENCES PMIS_ADM.MilitaryReportSpecialities (MilReportSpecialityID);
+
+/
+
+ALTER TABLE PMIS_RES.Technics ADD ResidencePostCode varchar2(10);
+ALTER TABLE PMIS_RES.Technics ADD OwnershipPostCode varchar2(10);
+
+COMMIT;
+CREATE TABLE PMIS_RES.PostponeFulfilments(PostponeFulfilmentID number NOT NULL,
+		    							  PostponeFulfilmentKey varchar2(50),
+										  PostponeFulfilmentName varchar2(250)
+										 );
+
+ALTER TABLE PMIS_RES.PostponeFulfilments ADD CONSTRAINT PostponeFulfilments_PK PRIMARY KEY(PostponeFulfilmentID);
+
+CREATE SEQUENCE PMIS_RES.PostponeFulfilments_ID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+
+CREATE TRIGGER PMIS_RES.TRG_PostponeFulfil_INSERT
+BEFORE INSERT ON PMIS_RES.PostponeFulfilments
+FOR EACH ROW
+BEGIN
+   SELECT PMIS_RES.PostponeFulfilments_ID_SEQ.nextval INTO :new.PostponeFulfilmentID FROM dual;
+END;
+/
+
+INSERT INTO PMIS_RES.PostponeFulfilments (PostponeFulfilmentKey, PostponeFulfilmentName)
+VALUES ('FULFILLED', 'Изпълнено');
+
+INSERT INTO PMIS_RES.PostponeFulfilments (PostponeFulfilmentKey, PostponeFulfilmentName)
+VALUES ('NOTFULFILLED', 'Незпълнено');
+
+INSERT INTO PMIS_RES.PostponeFulfilments (PostponeFulfilmentKey, PostponeFulfilmentName)
+VALUES ('OVERFULFILLED', 'Преизпълнено');
+
+COMMIT;
+GRANT ALL ON PMIS_ADM.MilitaryRankCategories TO PMIS_USER_ROLE;
+GRANT ALL ON PMIS_ADM.OwnershipTypes TO PMIS_USER_ROLE;
+
+
+GRANT ALL ON PMIS_RES.PostponeFulfilments TO PMIS_USER_ROLE;
+

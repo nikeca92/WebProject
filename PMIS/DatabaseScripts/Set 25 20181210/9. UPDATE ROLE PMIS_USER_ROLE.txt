@@ -1,0 +1,4 @@
+﻿GRANT ALL ON PMIS_RES.VoluntaryReserveAnnexes TO PMIS_USER_ROLE;
+GRANT ALL ON PMIS_RES.VoluntaryReserveAnnexes_ID_SEQ TO PMIS_USER_ROLE;
+
+/

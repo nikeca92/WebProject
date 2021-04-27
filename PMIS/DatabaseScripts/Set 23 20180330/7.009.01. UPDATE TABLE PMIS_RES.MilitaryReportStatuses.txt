@@ -1,0 +1,5 @@
+﻿
+INSERT INTO PMIS_RES.MilitaryReportStatuses (militaryreportstatuskey, militaryreportstatusname)
+VALUES ('MILITARY_REPORT_PERSONS', 'ВОЛ');
+
+COMMIT;

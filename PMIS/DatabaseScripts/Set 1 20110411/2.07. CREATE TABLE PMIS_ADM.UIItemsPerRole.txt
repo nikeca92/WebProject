@@ -1,0 +1,11 @@
+﻿CREATE TABLE PMIS_ADM.UIItemsPerRole(UIItemID number NOT NULL,
+                                     RoleID number NOT NULL,
+                                     AccessLevel number,
+                                     AccessOnlyOwnData number
+                                    );
+/*AccessLevel: 1 = Disabled; 2 = Hidden; 0 or missing record or NULL = Enabled */
+                           
+ALTER TABLE PMIS_ADM.UIItemsPerRole ADD CONSTRAINT UIITEMSPERROLE_PK PRIMARY KEY(UIItemID, RoleID);
+ALTER TABLE PMIS_ADM.UIItemsPerRole ADD CONSTRAINT UIITEMSPERROLE_UIITEMS_FK FOREIGN KEY (UIItemID) REFERENCES PMIS_ADM.UIItems (UIItemID);
+ALTER TABLE PMIS_ADM.UIItemsPerRole ADD CONSTRAINT UIITEMSPERROLE_ROLES_FK FOREIGN KEY (RoleID) REFERENCES PMIS_ADM.Roles (RoleID);
+/

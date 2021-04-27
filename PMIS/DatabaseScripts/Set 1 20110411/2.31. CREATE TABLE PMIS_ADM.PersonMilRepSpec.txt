@@ -1,0 +1,72 @@
+﻿CREATE TABLE PMIS_ADM.PersonMilRepSpec(PersonMilRepSpecID number NOT NULL,
+                                       PersonID number NOT NULL,
+									   MilReportSpecialityID number
+                                      );
+
+ALTER TABLE PMIS_ADM.PersonMilRepSpec ADD CONSTRAINT PersonMilRepSpec_PK PRIMARY KEY (PersonMilRepSpecID);
+ALTER TABLE PMIS_ADM.PersonMilRepSpec ADD CONSTRAINT PersonMilRepSpec_Persons_FK FOREIGN KEY (PersonID) REFERENCES VS_OWNER.VS_LS (PersonID);
+ALTER TABLE PMIS_ADM.PersonMilRepSpec ADD CONSTRAINT PersonMilRepSpec_MilRepSpec_FK FOREIGN KEY (MilReportSpecialityID) REFERENCES PMIS_ADM.MilitaryReportSpecialities (MilReportSpecialityID);
+
+CREATE SEQUENCE PMIS_ADM.PersonMilRepSpec_ID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+CREATE TRIGGER PMIS_ADM.TRG_PersonMilRepSpec_INSERT
+BEFORE INSERT ON PMIS_ADM.PersonMilRepSpec
+FOR EACH ROW
+BEGIN
+   SELECT PMIS_ADM.PersonMilRepSpec_ID_SEQ.nextval INTO :new.PersonMilRepSpecID FROM dual;
+END;
+/
+
+INSERT INTO PMIS_ADM.PersonMilRepSpec (PersonID, MilReportSpecialityID)
+SELECT PersonID, MilReportSpecialityID
+FROM (
+   SELECT a.PersonID, b.MilReportSpecialityID,
+          RANK() OVER (ORDER BY a.PersonID, b.MilReportSpecialityID) as RowNumber
+   FROM VS_OWNER.VS_LS a
+   INNER JOIN PMIS_ADM.MilitaryReportSpecialities b ON a.KOD_VSO = b.MilReportingSpecialityCode
+   WHERE a.KOD_VSO IS NOT NULL AND
+         b.MilReportSpecialityID NOT IN (SELECT MilReportSpecialityID FROM PMIS_ADM.PersonMilRepSpec WHERE PersonID = a.PersonID)
+    ) tmp
+WHERE tmp.RowNumber = 1;
+
+INSERT INTO PMIS_ADM.PersonMilRepSpec (PersonID, MilReportSpecialityID)
+SELECT PersonID, MilReportSpecialityID
+FROM (
+   SELECT a.PersonID, b.MilReportSpecialityID,
+          RANK() OVER (ORDER BY a.PersonID, b.MilReportSpecialityID) as RowNumber
+   FROM VS_OWNER.VS_LS a
+   INNER JOIN PMIS_ADM.MilitaryReportSpecialities b ON a.KOD_VSS = b.MilReportingSpecialityCode
+   WHERE a.KOD_VSS IS NOT NULL AND
+         b.MilReportSpecialityID NOT IN (SELECT MilReportSpecialityID FROM PMIS_ADM.PersonMilRepSpec WHERE PersonID = a.PersonID)
+    ) tmp
+WHERE tmp.RowNumber = 1;
+
+INSERT INTO PMIS_ADM.PersonMilRepSpec (PersonID, MilReportSpecialityID)
+SELECT PersonID, MilReportSpecialityID
+FROM (
+   SELECT a.PersonID, b.MilReportSpecialityID,
+          RANK() OVER (ORDER BY a.PersonID, b.MilReportSpecialityID) as RowNumber
+   FROM VS_OWNER.VS_LS a
+   INNER JOIN PMIS_ADM.MilitaryReportSpecialities b ON a.KOD_VSV = b.MilReportingSpecialityCode
+   WHERE a.KOD_VSV IS NOT NULL AND
+         b.MilReportSpecialityID NOT IN (SELECT MilReportSpecialityID FROM PMIS_ADM.PersonMilRepSpec WHERE PersonID = a.PersonID)
+    ) tmp
+WHERE tmp.RowNumber = 1;
+
+INSERT INTO PMIS_ADM.PersonMilRepSpec (PersonID, MilReportSpecialityID)
+SELECT PersonID, MilReportSpecialityID
+FROM (
+   SELECT a.PersonID, b.MilReportSpecialityID,
+          RANK() OVER (ORDER BY a.PersonID, b.MilReportSpecialityID) as RowNumber
+   FROM VS_OWNER.VS_LS a
+   INNER JOIN PMIS_ADM.MilitaryReportSpecialities b ON a.KOD_VSA = b.MilReportingSpecialityCode
+   WHERE a.KOD_VSA IS NOT NULL AND
+         b.MilReportSpecialityID NOT IN (SELECT MilReportSpecialityID FROM PMIS_ADM.PersonMilRepSpec WHERE PersonID = a.PersonID)
+    ) tmp
+WHERE tmp.RowNumber = 1;
+
+COMMIT;
+/

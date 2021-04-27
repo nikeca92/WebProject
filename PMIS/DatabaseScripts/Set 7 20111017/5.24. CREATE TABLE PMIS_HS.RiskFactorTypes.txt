@@ -1,0 +1,21 @@
+﻿CREATE TABLE PMIS_HS.RiskFactorTypes(RiskFactorTypeID number NOT NULL,
+                                   	 RiskFactorTypeName varchar2(500),
+									 Seq number NOT NULL
+                                    );
+
+ALTER TABLE PMIS_HS.RiskFactorTypes ADD CONSTRAINT RiskFactorTypes_PK PRIMARY KEY(RiskFactorTypeID);
+
+CREATE SEQUENCE PMIS_HS.RiskFactorTypes_ID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+CREATE TRIGGER PMIS_HS.TRG_RiskFactorTypes_INSERT
+BEFORE INSERT ON PMIS_HS.RiskFactorTypes
+FOR EACH ROW
+BEGIN
+   SELECT PMIS_HS.RiskFactorTypes_ID_SEQ.nextval INTO :new.RiskFactorTypeID FROM dual;
+END;
+/
+
+COMMIT;

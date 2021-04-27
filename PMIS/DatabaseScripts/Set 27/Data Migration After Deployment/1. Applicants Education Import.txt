@@ -1,0 +1,18 @@
+--first, prepare some lists of EGN that will/won't be transferred because of already existing data per person
+SELECT DISTINCT b.EGN AS "ЕГН-та които НЕ СА прехвърлени"
+FROM PMIS_APPL.PersonEducations_ a
+INNER JOIN VS_OWNER.VS_LS b ON b.PersonID = a.PersonID
+INNER JOIN VS_OWNER.VS_OBRG c ON c.OBRG_EGNLS = b.EGN
+
+SELECT DISTINCT b.EGN AS "ЕГН-та които СА прехвърлени"
+FROM PMIS_APPL.PersonEducations_ a
+INNER JOIN VS_OWNER.VS_LS b ON b.PersonID = a.PersonID
+WHERE b.EGN NOT IN (SELECT OBRG_EGNLS FROM VS_OWNER.VS_OBRG)
+                    
+/* do the import/migration/transfer of education data
+INSERT INTO VS_OWNER.VS_OBRG (OBRG_EGNLS, OBRG_KOD, OBRG_SPEKOD, OBRG_KOGA, OBRG_VZOKOD)
+SELECT b.EGN, a.EducationCode, a.EducationSubjectCode, NVL(a.GraduateYear, 0), 'Р'
+FROM PMIS_APPL.PersonEducations_ a
+INNER JOIN VS_OWNER.VS_LS b ON b.PersonID = a.PersonID
+WHERE b.EGN NOT IN (SELECT OBRG_EGNLS FROM VS_OWNER.VS_OBRG)
+*/

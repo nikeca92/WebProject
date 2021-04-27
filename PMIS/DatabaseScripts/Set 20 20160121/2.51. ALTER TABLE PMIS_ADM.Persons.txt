@@ -1,0 +1,2 @@
+ALTER TABLE PMIS_ADM.Persons ADD (MedCert_MedRubricID number);
+ALTER TABLE PMIS_ADM.Persons ADD CONSTRAINT Persons_MedRubricID_FK FOREIGN KEY (MedCert_MedRubricID) REFERENCES PMIS_ADM.MedRubrics(MedRubricID);

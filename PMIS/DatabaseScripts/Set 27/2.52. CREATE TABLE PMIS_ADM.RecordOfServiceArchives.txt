@@ -1,0 +1,33 @@
+﻿CREATE TABLE PMIS_ADM.RecordOfServiceArchives(RecordOfServiceID number NOT NULL,
+											  PersonID number NOT NULL,
+											  RecordOfServiceSeries varchar2(20),
+											  RecordOfServiceNumber varchar2(100),
+											  RecordOfServiceDate date,
+											  RecordOfServiceCopy number(1) CHECK (RecordOfServiceCopy BETWEEN 0 AND 1), 
+											  RecordOfServiceComment varchar2(4000),
+											  CreatedBy number NOT NULL,
+											  CreatedDate date NOT NULL,
+											  LastModifiedBy number NOT NULL,
+											  LastModifiedDate date NOT NULL
+											 );
+											 
+ALTER TABLE PMIS_ADM.RecordOfServiceArchives ADD CONSTRAINT RecordOfService_PK PRIMARY KEY(RecordOfServiceID);
+ALTER TABLE PMIS_ADM.RecordOfServiceArchives ADD CONSTRAINT RecordOfService_PersonID_FK FOREIGN KEY (PersonID) REFERENCES VS_OWNER.VS_LS (PersonID);
+ALTER TABLE PMIS_ADM.RecordOfServiceArchives ADD CONSTRAINT RecordOfService_CreatedBy_FK FOREIGN KEY (CreatedBy) REFERENCES PMIS_ADM.Users (UserID);
+ALTER TABLE PMIS_ADM.RecordOfServiceArchives ADD CONSTRAINT RecordOfService_LastModBy_FK FOREIGN KEY (LastModifiedBy) REFERENCES PMIS_ADM.Users (UserID);
+
+CREATE SEQUENCE PMIS_ADM.ROSA_ROSID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+CREATE TRIGGER PMIS_ADM.TRG_ROSA_INSERT
+BEFORE INSERT ON PMIS_ADM.RecordOfServiceArchives
+FOR EACH ROW
+BEGIN
+   SELECT PMIS_ADM.ROSA_ROSID_SEQ.nextval INTO :new.RecordOfServiceID FROM dual;
+END;
+/
+
+COMMIT;
+/

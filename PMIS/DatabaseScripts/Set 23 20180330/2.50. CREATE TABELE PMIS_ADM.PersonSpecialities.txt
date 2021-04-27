@@ -1,0 +1,24 @@
+﻿CREATE TABLE PMIS_ADM.PersonSpecialities(
+    PersonSpecialityID number NOT NULL,
+    PersonID number NOT NULL,
+    ProfessionID number,
+    SpecialityID number
+);
+
+ALTER TABLE PMIS_ADM.PersonSpecialities ADD CONSTRAINT PersonSpecialities_PK PRIMARY KEY (PersonSpecialityID);
+ALTER TABLE PMIS_ADM.PersonSpecialities ADD CONSTRAINT PersonSpec_MilRepPers_FK FOREIGN KEY (PersonID) REFERENCES PMIS_ADM.Persons (PersonID);
+ALTER TABLE PMIS_ADM.PersonSpecialities ADD CONSTRAINT PersonSpec_Profession_FK FOREIGN KEY (ProfessionID) REFERENCES PMIS_ADM.Professions (ProfessionID);
+ALTER TABLE PMIS_ADM.PersonSpecialities ADD CONSTRAINT PersonSpec_Speciality_FK FOREIGN KEY (SpecialityID) REFERENCES PMIS_ADM.Specialities (SpecialityID);
+
+CREATE SEQUENCE PMIS_ADM.PersonSpec_ID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+CREATE TRIGGER PMIS_ADM.TRG_PersonSpec_INSERT
+BEFORE INSERT ON PMIS_ADM.PersonSpecialities
+FOR EACH ROW
+BEGIN
+   SELECT PMIS_ADM.PersonSpec_ID_SEQ.nextval INTO :new.PersonSpecialityID FROM dual;
+END;
+/

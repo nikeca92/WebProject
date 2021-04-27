@@ -1,0 +1,129 @@
+﻿CREATE TABLE PMIS_RES.TechnicsSubTypes(TechnicsSubTypeID number NOT NULL,
+                                       TechnicsTypeID number NOT NULL,
+                                       TechnicsSubTypeName varchar2(300),
+                                       Seq number,
+                                       IsActive number(1) CHECK (IsActive BETWEEN 0 AND 1)
+                                      );
+
+ALTER TABLE PMIS_RES.TechnicsSubTypes ADD CONSTRAINT TechnicsSubTypes_PK PRIMARY KEY (TechnicsSubTypeID);
+ALTER TABLE PMIS_RES.TechnicsSubTypes ADD CONSTRAINT TechnicsSubTypes_TechTypes_FK FOREIGN KEY (TechnicsTypeID) REFERENCES PMIS_RES.TechnicsTypes (TechnicsTypeID);
+
+CREATE SEQUENCE PMIS_RES.TechnicsSubTypes_ID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+CREATE TRIGGER PMIS_RES.TRG_TechnicsSubTypes_INSERT
+BEFORE INSERT ON PMIS_RES.TechnicsSubTypes
+FOR EACH ROW
+BEGIN
+   SELECT PMIS_RES.TechnicsSubTypes_ID_SEQ.nextval INTO :new.TechnicsSubTypeID FROM dual;
+END;
+/
+
+INSERT INTO PMIS_RES.TechnicsSubTypes (TechnicsTypeID, TechnicsSubTypeName, Seq, IsActive) 
+VALUES ((SELECT TechnicsTypeID FROM PMIS_RES.TechnicsTypes WHERE TechnicsTypeKey = 'VEHICLES'), 'Леки автомобили', 1, 1);
+
+INSERT INTO PMIS_RES.TechnicsSubTypes (TechnicsTypeID, TechnicsSubTypeName, Seq, IsActive) 
+VALUES ((SELECT TechnicsTypeID FROM PMIS_RES.TechnicsTypes WHERE TechnicsTypeKey = 'VEHICLES'), 'Товарни автомобили', 2, 1);
+
+INSERT INTO PMIS_RES.TechnicsSubTypes (TechnicsTypeID, TechnicsSubTypeName, Seq, IsActive) 
+VALUES ((SELECT TechnicsTypeID FROM PMIS_RES.TechnicsTypes WHERE TechnicsTypeKey = 'VEHICLES'), 'Специални автомобили', 3, 1);
+
+
+INSERT INTO PMIS_RES.TechnicsSubTypes (TechnicsTypeID, TechnicsSubTypeName, Seq, IsActive) 
+VALUES ((SELECT TechnicsTypeID FROM PMIS_RES.TechnicsTypes WHERE TechnicsTypeKey = 'TRAILERS'), 'Товарни ремаркета (за трактори)', 1, 1);
+
+INSERT INTO PMIS_RES.TechnicsSubTypes (TechnicsTypeID, TechnicsSubTypeName, Seq, IsActive) 
+VALUES ((SELECT TechnicsTypeID FROM PMIS_RES.TechnicsTypes WHERE TechnicsTypeKey = 'TRAILERS'), 'Специални ремаркета', 2, 1);
+
+INSERT INTO PMIS_RES.TechnicsSubTypes (TechnicsTypeID, TechnicsSubTypeName, Seq, IsActive) 
+VALUES ((SELECT TechnicsTypeID FROM PMIS_RES.TechnicsTypes WHERE TechnicsTypeKey = 'TRAILERS'), 'Ремарке', 3, 1);
+
+INSERT INTO PMIS_RES.TechnicsSubTypes (TechnicsTypeID, TechnicsSubTypeName, Seq, IsActive) 
+VALUES ((SELECT TechnicsTypeID FROM PMIS_RES.TechnicsTypes WHERE TechnicsTypeKey = 'TRAILERS'), 'Полуремаркета за седлови влекачи', 4, 1);
+
+
+INSERT INTO PMIS_RES.TechnicsSubTypes (TechnicsTypeID, TechnicsSubTypeName, Seq, IsActive) 
+VALUES ((SELECT TechnicsTypeID FROM PMIS_RES.TechnicsTypes WHERE TechnicsTypeKey = 'TRACTORS'), 'Верижни трактори', 1, 1);
+
+INSERT INTO PMIS_RES.TechnicsSubTypes (TechnicsTypeID, TechnicsSubTypeName, Seq, IsActive) 
+VALUES ((SELECT TechnicsTypeID FROM PMIS_RES.TechnicsTypes WHERE TechnicsTypeKey = 'TRACTORS'), 'Колесни трактори', 2, 1);
+
+
+INSERT INTO PMIS_RES.TechnicsSubTypes (TechnicsTypeID, TechnicsSubTypeName, Seq, IsActive) 
+VALUES ((SELECT TechnicsTypeID FROM PMIS_RES.TechnicsTypes WHERE TechnicsTypeKey = 'ENG_EQUIP'), 'Пътностроителна техника', 1, 1);
+
+INSERT INTO PMIS_RES.TechnicsSubTypes (TechnicsTypeID, TechnicsSubTypeName, Seq, IsActive) 
+VALUES ((SELECT TechnicsTypeID FROM PMIS_RES.TechnicsTypes WHERE TechnicsTypeKey = 'ENG_EQUIP'), 'Земекопна техника', 2, 1);
+
+INSERT INTO PMIS_RES.TechnicsSubTypes (TechnicsTypeID, TechnicsSubTypeName, Seq, IsActive) 
+VALUES ((SELECT TechnicsTypeID FROM PMIS_RES.TechnicsTypes WHERE TechnicsTypeKey = 'ENG_EQUIP'), 'Пробивна техника', 3, 1);
+
+INSERT INTO PMIS_RES.TechnicsSubTypes (TechnicsTypeID, TechnicsSubTypeName, Seq, IsActive) 
+VALUES ((SELECT TechnicsTypeID FROM PMIS_RES.TechnicsTypes WHERE TechnicsTypeKey = 'ENG_EQUIP'), 'Подвижни електроагрегати', 4, 1);
+
+INSERT INTO PMIS_RES.TechnicsSubTypes (TechnicsTypeID, TechnicsSubTypeName, Seq, IsActive) 
+VALUES ((SELECT TechnicsTypeID FROM PMIS_RES.TechnicsTypes WHERE TechnicsTypeKey = 'ENG_EQUIP'), 'Дървообработваща техника', 5, 1);
+
+INSERT INTO PMIS_RES.TechnicsSubTypes (TechnicsTypeID, TechnicsSubTypeName, Seq, IsActive) 
+VALUES ((SELECT TechnicsTypeID FROM PMIS_RES.TechnicsTypes WHERE TechnicsTypeKey = 'ENG_EQUIP'), 'Водоснабдителна техника', 6, 1);
+
+
+INSERT INTO PMIS_RES.TechnicsSubTypes (TechnicsTypeID, TechnicsSubTypeName, Seq, IsActive) 
+VALUES ((SELECT TechnicsTypeID FROM PMIS_RES.TechnicsTypes WHERE TechnicsTypeKey = 'MOB_LIFT_EQUIP'), 'Електрокари', 1, 1);
+
+INSERT INTO PMIS_RES.TechnicsSubTypes (TechnicsTypeID, TechnicsSubTypeName, Seq, IsActive) 
+VALUES ((SELECT TechnicsTypeID FROM PMIS_RES.TechnicsTypes WHERE TechnicsTypeKey = 'MOB_LIFT_EQUIP'), 'Мотокари', 2, 1);
+
+
+INSERT INTO PMIS_RES.TechnicsSubTypes (TechnicsTypeID, TechnicsSubTypeName, Seq, IsActive) 
+VALUES ((SELECT TechnicsTypeID FROM PMIS_RES.TechnicsTypes WHERE TechnicsTypeKey = 'AVIATION_EQUIP'), 'За подвижни командни пунктове (КП)', 1, 1);
+
+INSERT INTO PMIS_RES.TechnicsSubTypes (TechnicsTypeID, TechnicsSubTypeName, Seq, IsActive) 
+VALUES ((SELECT TechnicsTypeID FROM PMIS_RES.TechnicsTypes WHERE TechnicsTypeKey = 'AVIATION_EQUIP'), 'Светотехнически средства', 2, 1);
+
+INSERT INTO PMIS_RES.TechnicsSubTypes (TechnicsTypeID, TechnicsSubTypeName, Seq, IsActive) 
+VALUES ((SELECT TechnicsTypeID FROM PMIS_RES.TechnicsTypes WHERE TechnicsTypeKey = 'AVIATION_EQUIP'), 'Техника за запускане на самолети', 3, 1);
+
+INSERT INTO PMIS_RES.TechnicsSubTypes (TechnicsTypeID, TechnicsSubTypeName, Seq, IsActive) 
+VALUES ((SELECT TechnicsTypeID FROM PMIS_RES.TechnicsTypes WHERE TechnicsTypeKey = 'AVIATION_EQUIP'), 'Техника за добив и зареждане с въздух', 4, 1);
+
+INSERT INTO PMIS_RES.TechnicsSubTypes (TechnicsTypeID, TechnicsSubTypeName, Seq, IsActive) 
+VALUES ((SELECT TechnicsTypeID FROM PMIS_RES.TechnicsTypes WHERE TechnicsTypeKey = 'AVIATION_EQUIP'), 'Акумулаторозарядни станции', 5, 1);
+
+INSERT INTO PMIS_RES.TechnicsSubTypes (TechnicsTypeID, TechnicsSubTypeName, Seq, IsActive) 
+VALUES ((SELECT TechnicsTypeID FROM PMIS_RES.TechnicsTypes WHERE TechnicsTypeKey = 'AVIATION_EQUIP'), 'Техника за подгряване на авиационната техника', 6, 1);
+
+INSERT INTO PMIS_RES.TechnicsSubTypes (TechnicsTypeID, TechnicsSubTypeName, Seq, IsActive) 
+VALUES ((SELECT TechnicsTypeID FROM PMIS_RES.TechnicsTypes WHERE TechnicsTypeKey = 'AVIATION_EQUIP'), 'Техника за проверка, контрол, измерване и ремонт', 7, 1);
+
+INSERT INTO PMIS_RES.TechnicsSubTypes (TechnicsTypeID, TechnicsSubTypeName, Seq, IsActive) 
+VALUES ((SELECT TechnicsTypeID FROM PMIS_RES.TechnicsTypes WHERE TechnicsTypeKey = 'AVIATION_EQUIP'), 'Техника за почистване на полосите и инженерната техника', 8, 1);
+
+INSERT INTO PMIS_RES.TechnicsSubTypes (TechnicsTypeID, TechnicsSubTypeName, Seq, IsActive) 
+VALUES ((SELECT TechnicsTypeID FROM PMIS_RES.TechnicsTypes WHERE TechnicsTypeKey = 'AVIATION_EQUIP'), 'Техника за зареждане с авиационни горива, кислород, азот и други', 9, 1);
+
+INSERT INTO PMIS_RES.TechnicsSubTypes (TechnicsTypeID, TechnicsSubTypeName, Seq, IsActive) 
+VALUES ((SELECT TechnicsTypeID FROM PMIS_RES.TechnicsTypes WHERE TechnicsTypeKey = 'AVIATION_EQUIP'), 'Подвижни приводни авиационни радиостанции', 10, 1);
+
+INSERT INTO PMIS_RES.TechnicsSubTypes (TechnicsTypeID, TechnicsSubTypeName, Seq, IsActive) 
+VALUES ((SELECT TechnicsTypeID FROM PMIS_RES.TechnicsTypes WHERE TechnicsTypeKey = 'AVIATION_EQUIP'), 'Радиолокационни системи', 11, 1);
+
+INSERT INTO PMIS_RES.TechnicsSubTypes (TechnicsTypeID, TechnicsSubTypeName, Seq, IsActive) 
+VALUES ((SELECT TechnicsTypeID FROM PMIS_RES.TechnicsTypes WHERE TechnicsTypeKey = 'AVIATION_EQUIP'), 'Метеорологична техника', 12, 1);
+
+INSERT INTO PMIS_RES.TechnicsSubTypes (TechnicsTypeID, TechnicsSubTypeName, Seq, IsActive) 
+VALUES ((SELECT TechnicsTypeID FROM PMIS_RES.TechnicsTypes WHERE TechnicsTypeKey = 'AVIATION_EQUIP'), 'Авиационни подвижни лаборатории', 13, 1);
+
+INSERT INTO PMIS_RES.TechnicsSubTypes (TechnicsTypeID, TechnicsSubTypeName, Seq, IsActive) 
+VALUES ((SELECT TechnicsTypeID FROM PMIS_RES.TechnicsTypes WHERE TechnicsTypeKey = 'AVIATION_EQUIP'), 'Пускови установки (ПУ) за разбиване на градоносни облаци', 14, 1);
+
+INSERT INTO PMIS_RES.TechnicsSubTypes (TechnicsTypeID, TechnicsSubTypeName, Seq, IsActive) 
+VALUES ((SELECT TechnicsTypeID FROM PMIS_RES.TechnicsTypes WHERE TechnicsTypeKey = 'AVIATION_EQUIP'), 'Друга специализирана авиационна техника', 15, 1);
+
+INSERT INTO PMIS_RES.TechnicsSubTypes (TechnicsTypeID, TechnicsSubTypeName, Seq, IsActive) 
+VALUES ((SELECT TechnicsTypeID FROM PMIS_RES.TechnicsTypes WHERE TechnicsTypeKey = 'AVIATION_EQUIP'), 'Подвижна подемно-транспортна техника', 16, 1);
+
+COMMIT;
+/

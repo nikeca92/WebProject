@@ -1,0 +1,25 @@
+﻿CREATE TABLE PMIS_ADM.PersonAddresses(PersonAddressID number NOT NULL,
+									  PersonID number NOT NULL,
+									  AddressID number NOT NULL,
+									  AddressType varchar2(100)
+									 );
+											 
+ALTER TABLE PMIS_ADM.PersonAddresses ADD CONSTRAINT PersonAddresses_PK PRIMARY KEY(PersonAddressID);
+ALTER TABLE PMIS_ADM.PersonAddresses ADD CONSTRAINT PersonAddresses_PersonID_FK FOREIGN KEY (PersonID) REFERENCES VS_OWNER.VS_LS (PersonID);
+ALTER TABLE PMIS_ADM.PersonAddresses ADD CONSTRAINT PersonAddresses_AddressID_FK FOREIGN KEY (AddressID) REFERENCES PMIS_ADM.Addresses (AddressID);
+
+CREATE SEQUENCE PMIS_ADM.PersonAddresses_ID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+CREATE TRIGGER PMIS_ADM.TRG_PersonAddresses_INSERT
+BEFORE INSERT ON PMIS_ADM.PersonAddresses
+FOR EACH ROW
+BEGIN
+   SELECT PMIS_ADM.PersonAddresses_ID_SEQ.nextval INTO :new.PersonAddressID FROM dual;
+END;
+/
+
+COMMIT;
+/

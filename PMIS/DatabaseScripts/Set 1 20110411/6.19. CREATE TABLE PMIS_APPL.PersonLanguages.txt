@@ -1,0 +1,23 @@
+CREATE TABLE PMIS_APPL.PersonLanguages(PersonLanguageID number NOT NULL,
+                                          PersonID number NOT NULL,
+										  LanguageCode VARCHAR2(1 BYTE) NOT NULL,
+										  WritingLevelID number NOT NULL, /*GTable*/
+										  SpeakingLevelID number NOT NULL /*GTable*/
+                                          );
+
+ALTER TABLE PMIS_APPL.PersonLanguages ADD CONSTRAINT PersonLanguages_PK PRIMARY KEY(PersonLanguageID);
+ALTER TABLE PMIS_APPL.PersonLanguages ADD CONSTRAINT PersLanguages_Persons_FK FOREIGN KEY (PersonID) REFERENCES PMIS_ADM.Persons (PersonID);
+ALTER TABLE PMIS_APPL.PersonLanguages ADD CONSTRAINT PersLanguages_Language_FK FOREIGN KEY (LanguageCode) REFERENCES VS_OWNER.KLV_EZK (EZK_KOD);
+
+CREATE SEQUENCE PMIS_APPL.PersonLanguages_ID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+CREATE TRIGGER PMIS_APPL.TRG_PersonLanguages_INSERT
+BEFORE INSERT ON PMIS_APPL.PersonLanguages
+FOR EACH ROW
+BEGIN
+   SELECT PMIS_APPL.PersonLanguages_ID_SEQ.nextval INTO :new.PersonLanguageID FROM dual;
+END;
+/

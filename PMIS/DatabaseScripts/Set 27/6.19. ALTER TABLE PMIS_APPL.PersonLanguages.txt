@@ -1,0 +1,1 @@
+﻿ALTER TABLE PMIS_APPL.PersonLanguages RENAME TO PersonLanguages_;

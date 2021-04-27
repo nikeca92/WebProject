@@ -1,0 +1,38 @@
+﻿CREATE TABLE PMIS_HS.Employers(EmployerID number NOT NULL,
+                               EmployerName varchar2(500),
+                               EmplEIK varchar2(200),
+                               EmplCityID number,
+                               EmplStreet varchar2(300),
+                               EmplStreetNum varchar2(20),
+                               EmplDistrict varchar2(200),
+                               EmplBlock varchar2(20),
+                               EmplEntrance varchar2(20),
+                               EmplFloor varchar2(20),
+                               EmplApt varchar2(20),
+                               EmplPhone varchar2(50),
+                               EmplFax varchar2(50),
+                               EmplEmail varchar2(500),
+                               EmplNumberOfEmployees number,
+                               EmplFemaleEmployees number
+                               );
+
+ALTER TABLE PMIS_HS.Employers ADD CONSTRAINT Employers_PK PRIMARY KEY(EmployerID);
+ALTER TABLE PMIS_HS.Employers ADD CONSTRAINT Employers_EmplCity_FK FOREIGN KEY (EmplCityID) REFERENCES UKAZ_OWNER.KL_NMA (KOD_NMA);
+
+CREATE SEQUENCE PMIS_HS.Employers_ID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+CREATE TRIGGER PMIS_HS.TRG_Employers_INSERT
+BEFORE INSERT ON PMIS_HS.Employers
+FOR EACH ROW
+BEGIN
+   SELECT PMIS_HS.Employers_ID_SEQ.nextval INTO :new.EmployerID FROM dual;
+END;
+/
+
+INSERT INTO PMIS_HS.Employers(EmployerName, EmplCityID)
+VALUES ('Дирекция "Финанси" - Министерство на отбраната', (SELECT KOD_NMA FROM UKAZ_OWNER.KL_NMA WHERE IME_NMA = 'София'));
+
+COMMIT;

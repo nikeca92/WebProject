@@ -1,0 +1,41 @@
+/*http://www.dba-oracle.com/job_scheduling/schedules.htm http://www.dba-oracle.com/job_scheduling/calendar_syntax.htm*/
+
+/*CREATE THE SCHEDULE*/
+BEGIN
+  DBMS_SCHEDULER.create_schedule (
+      schedule_name   => 'VaccAnn_Status_DOCUMENTS_Sched',
+      start_date      => SYSDATE - 1,
+      repeat_interval => 'FREQ=MINUTELY; INTERVAL=15; BYSECOND=1',
+      end_date        => NULL,
+      comments        => 'Repeats every day on every two minutes.');
+END;
+/
+
+/*VIEW DEFINED SCHEDULES
+SELECT 
+   owner,
+   schedule_name,
+   repeat_interval
+FROM
+   DBA_SCHEDULER_SCHEDULES;
+*/
+
+/*DEFINE THE JOB*/
+BEGIN
+  -- Job defined by existing schedule and inline program.
+  DBMS_SCHEDULER.create_job (
+     job_name      => 'VaccAnn_Status_DOCUMENTS_Job',
+     schedule_name => 'VaccAnn_Status_DOCUMENTS_Sched',
+     job_type      => 'STORED_PROCEDURE',
+     job_action    => 'PMIS_APPL.APPL_Functions.SetVacancyAnnounceStatusDocs',
+     enabled       => TRUE,
+     comments      => 'Call a procedure that changes the status of all Vacancy Announces from DOCUMENTS to ALLOWANCE when the End Date has been passed.');
+END;
+/
+
+
+
+
+
+
+

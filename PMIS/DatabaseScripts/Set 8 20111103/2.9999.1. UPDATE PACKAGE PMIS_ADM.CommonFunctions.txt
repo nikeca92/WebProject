@@ -1,0 +1,458 @@
+﻿CREATE OR REPLACE PACKAGE PMIS_ADM.CommonFunctions AS
+   TYPE PMIS_CURSOR IS REF CURSOR;
+
+
+   
+   PROCEDURE GetUIItemAndChilds (P_UIItemID IN PMIS_ADM.UIItems.UIItemID%TYPE, 
+                                 P_RoleID IN PMIS_ADM.UserRoles.RoleID%TYPE, 
+                                 P_UIItems OUT PMIS_ADM.CommonFunctions.PMIS_CURSOR);
+ 
+   FUNCTION GetUIItemsTreeIDs (P_ParentUIItems IN SQL_ListOfIDs, 
+                               P_RoleID IN PMIS_ADM.UserRoles.RoleID%TYPE) RETURN SQL_ListOfIDs;
+
+
+
+   FUNCTION GetMilitaryUnitIDsPerUser (P_UserID IN PMIS_ADM.Users.UserID%TYPE) RETURN SQL_ListOfIDs;
+   
+   FUNCTION GetMilitaryUnitChilds (P_MilitaryUnitIDs IN SQL_ListOfIDs) RETURN SQL_ListOfIDs;
+   
+   FUNCTION GetMRSPerVSSTRecordHTML (P_VSST_ID IN number) RETURN varchar2;
+   FUNCTION GetMRSIdsPerVSSTRecord (P_VSST_ID IN number) RETURN varchar2;
+
+   FUNCTION GetMRSPerPersonHTML (P_PersonID IN number, P_MaxLength IN number) RETURN varchar2;
+   FUNCTION GetLanguagesPerPerson (P_PersonID IN number) RETURN varchar2;
+   FUNCTION GetDrivingLicensesPerPerson (P_PersonID IN number) RETURN varchar2;
+   FUNCTION GetSpecialitiesPerPerson (P_PersonID IN number) RETURN varchar2;
+   FUNCTION GetAgeFromEGN (P_EGN IN varchar2) RETURN number;
+   FUNCTION IsMilitaryUnitActual(P_KOD_MIR IN number) RETURN number;
+   
+   PROCEDURE CallURL(P_URL IN varchar2);
+   PROCEDURE CallGenerateOfflineReports;
+   
+   FUNCTION GetInitials (P_FULLNAME IN varchar2) RETURN varchar2;
+   FUNCTION GetFullAddress (P_CityID IN number, P_DistrictID IN number, P_Address varchar2) RETURN varchar2;
+   
+   FUNCTION GetMilitaryUnitAndChildren (P_MilitaryUnitID IN UKAZ_OWNER.MIR.KOD_MIR%TYPE) RETURN SQL_ListOfIDs;
+END;
+/
+
+CREATE OR REPLACE PACKAGE BODY PMIS_ADM.CommonFunctions AS
+   PROCEDURE GetUIItemAndChilds (P_UIItemID IN PMIS_ADM.UIItems.UIItemID%TYPE,
+                                 P_RoleID IN PMIS_ADM.UserRoles.RoleID%TYPE,
+                                 P_UIItems OUT PMIS_ADM.CommonFunctions.PMIS_CURSOR) IS
+
+        UIItemIDs SQL_ListOfIDs := SQL_ListOfIDs();
+        ParentUIItemID SQL_ListOfIDs := SQL_ListOfIDs();
+   BEGIN
+      ParentUIItemID.extend();
+      ParentUIItemID(1) := P_UIItemID;
+      
+      UIItemIDs := GetUIItemsTreeIDs(ParentUIItemID, P_RoleID);
+      
+      OPEN P_UIItems FOR
+      SELECT a.UIItemID, a.UIKey, a.UIName, a.ParentUIItemID, b.AccessLevel,
+             a.CanSetAccessOnlyOwnData, b.AccessOnlyOwnData
+      FROM PMIS_ADM.UIItems a
+      LEFT OUTER JOIN PMIS_ADM.UIItemsPerRole b ON a.UIItemID = b.UIItemID AND b.RoleID = P_RoleID
+      LEFT OUTER JOIN PMIS_ADM.UIItems c ON a.ParentUIItemID = c.UIItemID
+      WHERE a.UIItemID IN (SELECT * FROM TABLE(UIItemIDs));
+   END;
+   
+   FUNCTION GetUIItemsTreeIDs (P_ParentUIItems IN SQL_ListOfIDs, 
+                               P_RoleID IN PMIS_ADM.UserRoles.RoleID%TYPE) RETURN SQL_ListOfIDs IS
+                               
+      UIItemIDs SQL_ListOfIDs := SQL_ListOfIDs();
+      tmp SQL_ListOfIDs := SQL_ListOfIDs();
+      
+      CURSOR UIItemsCUR is
+      SELECT a.UIItemID
+      FROM PMIS_ADM.UIItems a
+      LEFT OUTER JOIN PMIS_ADM.UIItemsPerRole b ON a.UIItemID = b.UIItemID AND b.RoleID = P_RoleID
+      WHERE a.ParentUIItemID IN (SELECT * FROM TABLE(P_ParentUIItems)) OR ((SELECT COUNT(*) FROM TABLE(P_ParentUIItems)) = 0 AND a.ParentUIItemID IS NULL);
+   BEGIN
+      OPEN UIItemsCUR;
+      
+      LOOP
+         FETCH UIItemsCUR BULK COLLECT INTO UIItemIDs;
+         EXIT WHEN UIItemsCUR%notfound;
+      END LOOP;
+      
+      CLOSE UIItemsCUR;
+      
+      IF UIItemIDs.COUNT > 0 THEN
+         tmp := GetUIItemsTreeIDs(UIItemIDs, P_RoleID);
+      
+         IF tmp.COUNT > 0 THEN
+            UIItemIDs := UIItemIDs MULTISET UNION tmp;
+         END IF;
+      END IF;
+      
+      RETURN UIItemIDs;
+   END;
+   
+   
+   
+   FUNCTION GetMilitaryUnitIDsPerUser (P_UserID IN PMIS_ADM.Users.UserID%TYPE) RETURN SQL_ListOfIDs  IS
+                               
+      MilitaryUnitIDs SQL_ListOfIDs := SQL_ListOfIDs();
+      tmp SQL_ListOfIDs := SQL_ListOfIDs();
+      
+      CURSOR MilitaryUnitsCUR is
+      SELECT a.MilitaryUnitID
+      FROM PMIS_ADM.MilitaryUnitsPerUser a
+      WHERE a.UserID = P_UserID;
+   BEGIN      
+      OPEN MilitaryUnitsCUR;
+      
+      LOOP
+         FETCH MilitaryUnitsCUR BULK COLLECT INTO MilitaryUnitIDs;
+         EXIT WHEN MilitaryUnitsCUR%notfound;
+      END LOOP;
+      
+      CLOSE MilitaryUnitsCUR;
+      
+      IF MilitaryUnitIDs.COUNT > 0 THEN
+         tmp := GetMilitaryUnitChilds(MilitaryUnitIDs);
+      
+         IF tmp.COUNT > 0 THEN
+            MilitaryUnitIDs := MilitaryUnitIDs MULTISET UNION tmp;
+         END IF;
+      END IF;
+   
+      RETURN MilitaryUnitIDs;
+   END;
+   
+   
+   FUNCTION GetMilitaryUnitChilds (P_MilitaryUnitIDs IN SQL_ListOfIDs) RETURN SQL_ListOfIDs IS
+                               
+      MilitaryUnitIDs SQL_ListOfIDs := SQL_ListOfIDs();
+      tmp SQL_ListOfIDs := SQL_ListOfIDs();
+      
+      CURSOR MilitaryUnitsCUR is
+      SELECT a.KOD_MIR as MilitaryUnitID
+      FROM UKAZ_OWNER.STRM a
+      WHERE a.STR_KOD_MIR IN (SELECT * FROM TABLE(P_MilitaryUnitIDs)) OR ((SELECT COUNT(*) FROM TABLE(P_MilitaryUnitIDs)) = 0 AND a.STR_KOD_MIR IS NULL) ;
+   BEGIN
+      OPEN MilitaryUnitsCUR;
+      
+      LOOP
+         FETCH MilitaryUnitsCUR BULK COLLECT INTO MilitaryUnitIDs;
+         EXIT WHEN MilitaryUnitsCUR%notfound;
+      END LOOP;
+      
+      CLOSE MilitaryUnitsCUR;
+      
+      IF MilitaryUnitIDs.COUNT > 0 THEN
+         tmp := GetMilitaryUnitChilds(MilitaryUnitIDs);
+         
+         IF tmp.COUNT > 0 THEN
+            MilitaryUnitIDs := MilitaryUnitIDs MULTISET UNION tmp;
+         END IF;
+      END IF;
+      
+      RETURN MilitaryUnitIDs;
+   END;
+   
+   FUNCTION GetMRSPerVSSTRecordHTML (P_VSST_ID IN number) RETURN varchar2 IS
+                               
+      MRS varchar2(4000);
+      
+      CURSOR MilitaryReportSpecialitiesCUR is
+      SELECT c.MilReportingSpecialityCode || ' ' || c.MilReportingSpecialityName as DisplayName
+      FROM VS_OWNER.VS_VSST a
+      LEFT OUTER JOIN VS_OWNER.VS_VSST_VOS b ON a.VSST_ID = b.VSVOS_VSST_ID
+      LEFT OUTER JOIN PMIS_ADM.MilitaryReportSpecialities c ON CASE WHEN b.VSVOS_VSOKOD IS NOT NULL
+                                                                    THEN b.VSVOS_VSOKOD
+                                                                    ELSE b.VSVOS_VSSKOD
+                                                               END = c.MilReportingSpecialityCode
+      WHERE a.VSST_ID = P_VSST_ID
+      ORDER BY c.MilReportingSpecialityCode;
+   BEGIN
+      FOR CurRec IN MilitaryReportSpecialitiesCUR
+      LOOP 
+         IF (MRS IS NULL OR LENGTH(MRS) < 3600) THEN
+             MRS := MRS || '<div title="' || CurRec.DisplayName || '" style="cursor: arrow;">' || 
+                              SUBSTR(CurRec.DisplayName, 1, 20) || 
+                              CASE WHEN LENGTH (CurRec.DisplayName) > 20 THEN '...' ELSE '' END || 
+                           '</div>';
+         END IF;
+      END LOOP;
+      
+      RETURN MRS;
+   END;
+   
+   FUNCTION GetMRSIdsPerVSSTRecord (P_VSST_ID IN number) RETURN varchar2 IS
+                               
+      MRSIds varchar2(4000);
+      
+      CURSOR MilitaryReportSpecialitiesCUR is
+      SELECT c.MilReportSpecialityID
+      FROM VS_OWNER.VS_VSST a
+      LEFT OUTER JOIN VS_OWNER.VS_VSST_VOS b ON a.VSST_ID = b.VSVOS_VSST_ID
+      LEFT OUTER JOIN PMIS_ADM.MilitaryReportSpecialities c ON CASE WHEN b.VSVOS_VSOKOD IS NOT NULL
+                                                                    THEN b.VSVOS_VSOKOD
+                                                                    ELSE b.VSVOS_VSSKOD
+                                                               END = c.MilReportingSpecialityCode
+      WHERE a.VSST_ID = P_VSST_ID
+      ORDER BY c.MilReportSpecialityID;
+   BEGIN
+      FOR CurRec IN MilitaryReportSpecialitiesCUR
+      LOOP 
+         IF (MRSIds IS NULL OR LENGTH(MRSIds) < 3900) THEN
+             MRSIds :=MRSIds || CASE WHEN MRSIds IS NULL THEN '' ELSE ',' END || TO_CHAR(CurRec.MilReportSpecialityID);
+         END IF;
+      END LOOP;
+      
+      RETURN MRSIds;
+   END;
+
+   FUNCTION GetMRSPerPersonHTML (P_PersonID IN number, P_MaxLength IN number) RETURN varchar2 IS
+                               
+      MRS varchar2(4000);
+      
+      CURSOR MilitaryReportSpecialitiesCUR is
+      SELECT b.MilReportingSpecialityCode || ' ' || b.MilReportingSpecialityName as DisplayName
+      FROM PMIS_ADM.PersonMilRepSpec a
+      LEFT OUTER JOIN PMIS_ADM.MilitaryReportSpecialities b ON a.MilReportSpecialityID = b.MilReportSpecialityID
+      WHERE a.PersonID = P_PersonID
+      ORDER BY a.MilReportSpecialityID;
+   BEGIN
+      FOR CurRec IN MilitaryReportSpecialitiesCUR
+      LOOP 
+         IF (MRS IS NULL OR LENGTH(MRS) < 3600) THEN
+             MRS := MRS || '<div title="' || CurRec.DisplayName || '" style="cursor: arrow;">' || 
+                              SUBSTR(CurRec.DisplayName, 1, P_MaxLength) || 
+                              CASE WHEN LENGTH (CurRec.DisplayName) > P_MaxLength THEN '...' ELSE '' END || 
+                           '</div>';
+         END IF;
+      END LOOP;
+      
+      RETURN MRS;
+   END;
+
+   FUNCTION GetLanguagesPerPerson (P_PersonID IN number) RETURN varchar2 IS
+                               
+      Lang varchar2(4000);
+      
+      CURSOR LanguagesCUR is
+      SELECT c.EZK_IME as DisplayName
+      FROM VS_OWNER.VS_LS a
+      LEFT OUTER JOIN VS_OWNER.VS_EZIK b ON a.EGN = b.EZIK_EGNLS
+      LEFT OUTER JOIN VS_OWNER.KLV_EZK c ON b.EZIK_EZKKOD = c.EZK_KOD
+      WHERE a.PersonID = P_PersonID
+      ORDER BY b.EZIK_EZKKOD;
+   BEGIN
+      FOR CurRec IN LanguagesCUR
+      LOOP 
+         IF (Lang IS NULL OR LENGTH(Lang) < 3600) THEN
+	     IF (Lang IS NOT NULL) THEN
+		Lang := Lang || ', ';
+	     END IF;
+
+             Lang := Lang || CurRec.DisplayName;
+         END IF;
+      END LOOP;
+      
+      RETURN Lang;
+   END;
+   
+   FUNCTION GetDrivingLicensesPerPerson (P_PersonID IN number) RETURN varchar2 IS
+                               
+      DL varchar2(4000);
+      
+      CURSOR DrivingLicenseCUR is
+      SELECT b.DrivingLicenseCategoryName as DisplayName
+      FROM PMIS_ADM.PersonDrivingLicenseCategories a
+      INNER JOIN PMIS_ADM.DrivingLicenseCategories b ON a.DrivingLicenseCategoryID = b.DrivingLicenseCategoryID      
+      WHERE a.PersonID = P_PersonID
+      ORDER BY b.Seq;
+   BEGIN
+      FOR CurRec IN DrivingLicenseCUR
+      LOOP 
+         IF (DL IS NULL OR LENGTH(DL) < 3600) THEN
+	     IF (DL IS NOT NULL) THEN
+		DL := DL || ', ';
+	     END IF;
+
+             DL := DL || CurRec.DisplayName;
+         END IF;
+      END LOOP;
+      
+      RETURN DL;
+   END;
+
+   FUNCTION GetSpecialitiesPerPerson (P_PersonID IN number) RETURN varchar2 IS
+                               
+      Specs varchar2(4000);
+      
+      CURSOR SpecsCUR is
+      SELECT c.OBR_IME as DisplayName
+      FROM VS_OWNER.VS_LS a
+      LEFT OUTER JOIN VS_OWNER.VS_OBRG b ON a.EGN = b.OBRG_EGNLS
+      LEFT OUTER JOIN VS_OWNER.KLV_OBR c ON b.OBRG_KOD = c.OBR_KOD
+      WHERE a.PersonID = P_PersonID
+      ORDER BY b.OBRG_KOD;
+   BEGIN
+      FOR CurRec IN SpecsCUR
+      LOOP 
+         IF (Specs IS NULL OR LENGTH(Specs) < 3600) THEN
+	     IF (Specs IS NOT NULL) THEN
+		Specs := Specs || ', ';
+	     END IF;
+
+             Specs := Specs || CurRec.DisplayName;
+         END IF;
+      END LOOP;
+      
+      RETURN Specs;
+   END;
+
+   FUNCTION GetAgeFromEGN (P_EGN IN varchar2) RETURN number IS
+      Year number;
+      Month number;
+      Day number;
+      Age number;
+
+   BEGIN
+      Year := TO_NUMBER(SUBSTR(P_EGN, 1, 2));
+      Month := TO_NUMBER(SUBSTR(P_EGN, 3, 2));
+      Day := TO_NUMBER(SUBSTR(P_EGN, 5, 2));
+
+      Year := Year + 1900;
+
+      IF (Month > 40) THEN
+         Year := Year + 100;
+         Month := Month - 40;
+      END IF;
+
+      Age := TO_NUMBER(TO_CHAR(SYSDATE, 'YYYY')) - Year; 
+
+      IF (Month > TO_NUMBER(TO_CHAR(SYSDATE, 'MM'))) THEN
+         Age := Age - 1;
+      END IF;
+
+      IF (Month = TO_NUMBER(TO_CHAR(SYSDATE, 'MM'))) THEN
+         IF (Day > TO_NUMBER(TO_CHAR(SYSDATE, 'DD'))) THEN
+            Age := Age - 1;
+         END IF;
+      END IF;
+
+      RETURN Age;
+   END;
+   
+   FUNCTION IsMilitaryUnitActual(P_KOD_MIR IN number) RETURN number IS
+	ParentID number;
+	Actual number;
+   BEGIN    
+    SELECT AKTUAL INTO Actual FROM UKAZ_OWNER.MIR WHERE KOD_MIR = P_KOD_MIR;
+    SELECT STR_KOD_MIR INTO ParentID FROM UKAZ_OWNER.STRM WHERE KOD_MIR = P_KOD_MIR;
+	
+	
+	LOOP
+		IF ParentID IS NULL OR Actual = 0 THEN
+			EXIT;
+		END IF;
+		
+		SELECT AKTUAL INTO Actual FROM UKAZ_OWNER.MIR WHERE KOD_MIR = ParentID;
+		SELECT STR_KOD_MIR INTO ParentID FROM UKAZ_OWNER.STRM WHERE KOD_MIR = ParentID;		
+	END LOOP;
+	
+	RETURN Actual;
+   END;
+
+   PROCEDURE CallURL(P_URL IN varchar2) IS
+	req       utl_http.req;
+    resp      utl_http.resp;
+    name      VARCHAR2(256);
+    value     VARCHAR2(1024);
+    data      VARCHAR2(255);
+    my_scheme VARCHAR2(256);
+    my_realm  VARCHAR2(256);
+    my_proxy  BOOLEAN;
+	BEGIN
+	-- Ask UTL_HTTP not to raise an exception for 4xx and 5xx status codes,
+	-- rather than just returning the text of the error page.
+	  utl_http.set_response_error_check(FALSE);
+
+	-- Begin retrieving this web page.
+	  req := utl_http.begin_request(P_URL);
+
+	-- Identify ourselves. Some sites serve special pages for particular browsers.
+	  utl_http.set_header(req, 'User-Agent', 'Mozilla/4.0');
+	  
+
+	  BEGIN
+		resp := utl_http.get_response(req); 
+		
+		utl_http.end_response(resp);    
+	  END;
+
+	END;
+
+	PROCEDURE CallGenerateOfflineReports IS
+	BEGIN
+		CallURL('http://127.0.0.1/PMISAdmin/PublicPages/GenerateOfflineReports.aspx');
+	END;
+	
+	FUNCTION GetInitials (P_FULLNAME IN varchar2) RETURN varchar2 IS
+      Initials varchar2(50);
+      FullName varchar2(500);
+   BEGIN
+      FullName := P_FULLNAME;
+	  FullName := TRIM(p_fullname);
+	   
+	  FullName := REPLACE(FullName, '-', ' ');
+	  FullName := REPLACE(FullName, ',', ' ');
+	   
+	  Initials := SUBSTR(FullName, 1, 1);
+	   
+	  WHILE (INSTR(FullName, ' ') > 0) LOOP
+		 Initials := Initials || SUBSTR(FullName, INSTR(FullName, ' ') + 1, 1);
+		 FullName := SUBSTR(FullName, INSTR(FullName, ' ') + 1, LENGTH(FullName) - INSTR(FullName, ' '));
+	  END LOOP;
+
+      RETURN UPPER(Initials);
+   END;
+   
+   FUNCTION GetFullAddress (P_CityID IN number, P_DistrictID IN number, P_Address varchar2) RETURN varchar2 IS
+     FullAddress varchar2(2000);
+   BEGIN
+     SELECT c.Ime_Obl || ', ' || 
+			b.Ime_Obs || ', ' || 
+			a.Ime_Nma ||  
+			CASE WHEN P_DistrictID IS NULL THEN ''
+				 ELSE ', ' || d.DistrictName
+			END || ', ' || CHR(13) || CHR(10) ||
+			P_Address
+	 INTO FullAddress 
+	 FROM UKAZ_OWNER.KL_NMA a
+	 INNER JOIN UKAZ_OWNER.KL_OBS b ON a.KOD_OBS = b.KOD_OBS
+	 INNER JOIN UKAZ_OWNER.KL_OBL c ON a.KOD_OBL = c.KOD_OBL
+	 LEFT OUTER JOIN PMIS_ADM.Districts d ON d.DistrictID = P_DistrictID
+     WHERE a.Kod_Nma = P_CityID;
+	 
+	 RETURN FullAddress;
+   END;
+   
+   FUNCTION GetMilitaryUnitAndChildren (P_MilitaryUnitID IN UKAZ_OWNER.MIR.KOD_MIR%TYPE) RETURN SQL_ListOfIDs  IS
+                               
+      MilitaryUnitIDs SQL_ListOfIDs := SQL_ListOfIDs();
+      tmp SQL_ListOfIDs := SQL_ListOfIDs();
+      
+   BEGIN      
+      MilitaryUnitIDs.EXTEND(1);
+	  MilitaryUnitIDs(1) := P_MilitaryUnitID;
+      
+      IF MilitaryUnitIDs.COUNT > 0 THEN
+         tmp := GetMilitaryUnitChilds(MilitaryUnitIDs);
+      
+         IF tmp.COUNT > 0 THEN
+            MilitaryUnitIDs := MilitaryUnitIDs MULTISET UNION tmp;
+         END IF;
+      END IF;
+   
+      RETURN MilitaryUnitIDs;
+   END;
+
+END;
+/

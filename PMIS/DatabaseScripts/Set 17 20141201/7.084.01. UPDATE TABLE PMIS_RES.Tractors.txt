@@ -1,0 +1,7 @@
+﻿
+UPDATE PMIS_RES.TRACTORS
+SET regnumber = Upper(regnumber),
+    inventorynumber = Upper(inventorynumber);    
+
+COMMIT;    
+/

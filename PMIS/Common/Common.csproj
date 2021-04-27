@@ -1,0 +1,173 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{0F621ED7-5AC9-4AA4-800A-D67DD2F361FE}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PMIS.Common</RootNamespace>
+    <AssemblyName>Common</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.OracleClient" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Common\Ajax.cs" />
+    <Compile Include="Common\BasePage.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Common\BenchmarkLog.cs" />
+    <Compile Include="Common\Config.cs" />
+    <Compile Include="Common\CommonFunctions.cs" />
+    <Compile Include="Common\Reporting.cs" />
+    <Compile Include="Common\GTablePage.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Common\ListItems.cs" />
+    <Compile Include="Common\DBCommon.cs" />
+    <Compile Include="Common\Cryptography.cs" />
+    <Compile Include="Common\SessionTimer.cs" />
+    <Compile Include="Common\TestBasePage.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DAL\Address.cs" />
+    <Compile Include="DAL\Company.cs" />
+    <Compile Include="DAL\ContractDuration.cs" />
+    <Compile Include="DAL\Conviction.cs" />
+    <Compile Include="DAL\ConvictionReason.cs" />
+    <Compile Include="DAL\PersonPsychCert.cs" />
+    <Compile Include="DAL\PersonMedCert.cs" />
+    <Compile Include="DAL\MilitaryCategoryForReports.cs" />
+    <Compile Include="DAL\MedicalRubric.cs" />
+    <Compile Include="DAL\PersonRecordOfServiceArchive.cs" />
+    <Compile Include="DAL\PersonSpeciality.cs" />
+    <Compile Include="DAL\PositionTitle.cs" />
+    <Compile Include="DAL\PersonPositionTitle.cs" />
+    <Compile Include="DAL\DischargeDestination.cs" />
+    <Compile Include="DAL\DischargeReason.cs" />
+    <Compile Include="DAL\PersonDischarge.cs" />
+    <Compile Include="DAL\NKPD.cs" />
+    <Compile Include="DAL\PersonMilitaryRank.cs" />
+    <Compile Include="DAL\Speciality.cs" />
+    <Compile Include="DAL\Profession.cs" />
+    <Compile Include="DAL\PasswordPolicy.cs" />
+    <Compile Include="DAL\FailedLogins.cs" />
+    <Compile Include="DAL\MilitaryForceSort.cs" />
+    <Compile Include="DAL\PersonConscription.cs" />
+    <Compile Include="DAL\LoginLog.cs" />
+    <Compile Include="DAL\VesselCrewCategory.cs" />
+    <Compile Include="DAL\OwnershipType.cs" />
+    <Compile Include="DAL\DocumentType.cs" />
+    <Compile Include="DAL\MilitaryMedicalConclusion.cs" />
+    <Compile Include="DAL\Penalty.cs" />
+    <Compile Include="DAL\PersonArchiveTitle.cs" />
+    <Compile Include="DAL\PersonContract.cs" />
+    <Compile Include="DAL\PersonDualCitizenship.cs" />
+    <Compile Include="DAL\PersonConviction.cs" />
+    <Compile Include="DAL\LanguageDiploma.cs" />
+    <Compile Include="DAL\LanguageFormOfKnowledge.cs" />
+    <Compile Include="DAL\LanguageLevelOfKnowledge.cs" />
+    <Compile Include="DAL\LearningMethod.cs" />
+    <Compile Include="DAL\MilitaryAcademy.cs" />
+    <Compile Include="DAL\MilitaryArms.cs" />
+    <Compile Include="DAL\MilitaryCommanderRank.cs" />
+    <Compile Include="DAL\MilitaryEducationType.cs" />
+    <Compile Include="DAL\MilitarySchool.cs" />
+    <Compile Include="DAL\MilitarySchoolSubject.cs" />
+    <Compile Include="DAL\MilitarySubject.cs" />
+    <Compile Include="DAL\MilitaryTrainingCource.cs" />
+    <Compile Include="DAL\PersonCivilEducation.cs" />
+    <Compile Include="DAL\ClInformation.cs" />
+    <Compile Include="DAL\AuditTrail.cs" />
+    <Compile Include="DAL\BaseDbObject.cs" />
+    <Compile Include="DAL\City.cs" />
+    <Compile Include="DAL\MaritalStatus.cs" />
+    <Compile Include="DAL\Country.cs" />
+    <Compile Include="DAL\MilitaryCategory.cs" />
+    <Compile Include="DAL\MilitaryReportSpeciality.cs" />
+    <Compile Include="DAL\MilitaryReportSpecialityType.cs" />
+    <Compile Include="DAL\MilitaryCommand.cs" />
+    <Compile Include="DAL\DrivingLicenseCategory.cs" />
+    <Compile Include="DAL\Administration.cs" />
+    <Compile Include="DAL\Gender.cs" />
+    <Compile Include="DAL\MilitaryDepartment.cs" />
+    <Compile Include="DAL\MilitaryForceType.cs" />
+    <Compile Include="DAL\MilitaryRank.cs" />
+    <Compile Include="DAL\GTableItem.cs" />
+    <Compile Include="DAL\Maintenance.cs" />
+    <Compile Include="DAL\MilitaryUnit.cs" />
+    <Compile Include="DAL\Module.cs" />
+    <Compile Include="DAL\Person.cs" />
+    <Compile Include="DAL\PersonEducation.cs" />
+    <Compile Include="DAL\PersonLangEduForeignLanguage.cs" />
+    <Compile Include="DAL\PersonLanguage.cs" />
+    <Compile Include="DAL\PersonMilitaryReportSpeciality.cs" />
+    <Compile Include="DAL\PersonMilitaryTrainingCource.cs" />
+    <Compile Include="DAL\PersonMilitaryEducation.cs" />
+    <Compile Include="DAL\PersonMilitaryEducationAcademy.cs" />
+    <Compile Include="DAL\PersonPenalty.cs" />
+    <Compile Include="DAL\PersonPreviousPosition.cs" />
+    <Compile Include="DAL\PersonRewardIncentiv.cs" />
+    <Compile Include="DAL\PersonSchoolSubject.cs" />
+    <Compile Include="DAL\PersonScientificTitle.cs" />
+    <Compile Include="DAL\PreviousPositionKind.cs" />
+    <Compile Include="DAL\PreviousPositionType.cs" />
+    <Compile Include="DAL\RewardIncentiv.cs" />
+    <Compile Include="DAL\ScientificTitle.cs" />
+    <Compile Include="DAL\UIItems.cs" />
+    <Compile Include="DAL\User.cs" />
+    <Compile Include="DAL\VitoshaMilitaryReportSpeciality.cs" />
+    <Compile Include="DAL\VitoshaMilitaryReportSpecialityType.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

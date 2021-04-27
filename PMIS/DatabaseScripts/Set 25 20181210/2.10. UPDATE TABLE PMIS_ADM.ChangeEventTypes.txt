@@ -1,0 +1,11 @@
+﻿INSERT INTO PMIS_ADM.ChangeEventTypes(changeeventtypekey, changeeventtype, moduleid, changetype)
+VALUES('RES_Reservist_MilRepStatus_AddVoluntaryReserveAnnex', 'Добавяне на допълнително споразумение', (SELECT ModuleiD FROM PMIS_ADM.modules WHERE modulekey = 'RES'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes(changeeventtypekey, changeeventtype, moduleid, changetype)
+VALUES('RES_Reservist_MilRepStatus_EditVoluntaryReserveAnnex', 'Редактиране на допълнително споразумение', (SELECT ModuleiD FROM PMIS_ADM.modules WHERE modulekey = 'RES'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes(changeeventtypekey, changeeventtype, moduleid, changetype)
+VALUES('RES_Reservist_MilRepStatus_DeleteVoluntaryReserveAnnex', 'Изтриване на допълнително споразумение', (SELECT ModuleiD FROM PMIS_ADM.modules WHERE modulekey = 'RES'), 3);
+
+COMMIT;
+/

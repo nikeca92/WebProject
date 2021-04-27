@@ -1,0 +1,7 @@
+﻿INSERT INTO PMIS_RES.GTable(TableName, TableKey, TableSeq, TableValue)
+VALUES ('MilRepStat_RemovedReasons', '4', '4', 'ДАНС');
+
+INSERT INTO PMIS_RES.GTable(TableName, TableKey, TableSeq, TableValue)
+VALUES ('MilRepStat_RemovedReasons', '5', '5', 'МВР');
+
+COMMIT;

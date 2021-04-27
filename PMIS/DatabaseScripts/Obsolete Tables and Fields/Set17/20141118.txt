@@ -1,0 +1,9 @@
+Таблиците:
+PMIS_RES.Postpone
+PMIS_RES.PostponeItems
+PMIS_RES.PostponeFulfilments
+PMIS_RES.PostponePersonalCategories
+
+Екрани:
+ManagePostpones.aspx
+AddEditPostpone.aspx

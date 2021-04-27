@@ -1,0 +1,734 @@
+﻿<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{7FEED9A5-AB8B-4674-BDB5-7EA974A6AAA0}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PMIS.Applicants</RootNamespace>
+    <AssemblyName>Applicants</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AjaxControlToolkit, Version=1.0.20229.20821, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Common\External\AjaxContorlsToolkit\AjaxControlToolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.OracleClient" />
+    <Reference Include="System.Web.Extensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Web.Mobile" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ContentPages\EditUserProfile.aspx" />
+    <Content Include="ContentPages\Home.aspx" />
+    <Content Include="ContentPages\Login.aspx" />
+    <Content Include="ContentPages\Logout.aspx" />
+    <Content Include="Images\asc.gif" />
+    <Content Include="Images\BlueButtonCenter.png" />
+    <Content Include="Images\BlueButtonLeftNoArrow.png" />
+    <Content Include="Images\BlueButtonRightNoArrow.png" />
+    <Content Include="Images\bmod_logo.png" />
+    <Content Include="Images\ButtonFirst.png" />
+    <Content Include="Images\ButtonFirstDisabled.png" />
+    <Content Include="Images\ButtonGoto.png" />
+    <Content Include="Images\ButtonLast.png" />
+    <Content Include="Images\ButtonLastDisabled.png" />
+    <Content Include="Images\ButtonNext.png" />
+    <Content Include="Images\ButtonNextDisabled.png" />
+    <Content Include="Images\ButtonPrev.png" />
+    <Content Include="Images\ButtonPrevDisabled.png" />
+    <Content Include="Images\DatePicker\backstripes.gif" />
+    <Content Include="Images\DatePicker\bg_header.jpg" />
+    <Content Include="Images\DatePicker\bullet1.gif" />
+    <Content Include="Images\DatePicker\bullet2.gif" />
+    <Content Include="Images\DatePicker\cal-grey.gif" />
+    <Content Include="Images\DatePicker\cal.gif" />
+    <Content Include="Images\DatePicker\calendar.png" />
+    <Content Include="Images\DatePicker\gradient-e5e5e5-ffffff.gif" />
+    <Content Include="Images\delete.png" />
+    <Content Include="Images\desc.gif" />
+    <Content Include="Images\edit.png" />
+    <Content Include="Images\footer.png" />
+    <Content Include="Images\header.png" />
+    <Content Include="Images\tableHeader.png" />
+    <Content Include="Images\tab_active_left.PNG" />
+    <Content Include="Images\tab_active_right.PNG" />
+    <Content Include="Images\tab_hover_left.PNG" />
+    <Content Include="Images\tab_hover_right.PNG" />
+    <Content Include="Images\tab_left.PNG" />
+    <Content Include="Images\tab_right.PNG" />
+    <Content Include="Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_GlobalResources\Labels1.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Labels.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Common\APPLPage.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Common\GeneratePrintApplicant.cs" />
+    <Compile Include="Common\GeneratePrint.cs" />
+    <Compile Include="ContentPages\AddCadet_PersonDetails.aspx.cs">
+      <DependentUpon>AddCadet_PersonDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\AddCadet_PersonDetails.aspx.designer.cs">
+      <DependentUpon>AddCadet_PersonDetails.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\AddCadet_SelectPerson.aspx.cs">
+      <DependentUpon>AddCadet_SelectPerson.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\AddCadet_SelectPerson.aspx.designer.cs">
+      <DependentUpon>AddCadet_SelectPerson.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\AddEditVacancyAnnounce.aspx.cs">
+      <DependentUpon>AddEditVacancyAnnounce.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\AddEditVacancyAnnounce.aspx.designer.cs">
+      <DependentUpon>AddEditVacancyAnnounce.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\AddApplicant_SelectPerson.aspx.cs">
+      <DependentUpon>AddApplicant_SelectPerson.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\AddApplicant_SelectPerson.aspx.designer.cs">
+      <DependentUpon>AddApplicant_SelectPerson.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\AddApplicant_PersonDetails.aspx.cs">
+      <DependentUpon>AddApplicant_PersonDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\AddApplicant_PersonDetails.aspx.designer.cs">
+      <DependentUpon>AddApplicant_PersonDetails.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\AddPotencialApplicant_PersonDetails.aspx.cs">
+      <DependentUpon>AddPotencialApplicant_PersonDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\AddPotencialApplicant_PersonDetails.aspx.designer.cs">
+      <DependentUpon>AddPotencialApplicant_PersonDetails.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\AddPotencialApplicant_SelectPerson.aspx.cs">
+      <DependentUpon>AddPotencialApplicant_SelectPerson.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\AddPotencialApplicant_SelectPerson.aspx.designer.cs">
+      <DependentUpon>AddPotencialApplicant_SelectPerson.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\CadetsRanking.aspx.cs">
+      <DependentUpon>CadetsRanking.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\CadetsRanking.aspx.designer.cs">
+      <DependentUpon>CadetsRanking.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\CivilEducationSelectorHandlers.aspx.cs">
+      <DependentUpon>CivilEducationSelectorHandlers.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\CivilEducationSelectorHandlers.aspx.designer.cs">
+      <DependentUpon>CivilEducationSelectorHandlers.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\CommonAjaxRequests.aspx.cs">
+      <DependentUpon>CommonAjaxRequests.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\CommonAjaxRequests.aspx.designer.cs">
+      <DependentUpon>CommonAjaxRequests.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\ApplicantsAllowance.aspx.cs">
+      <DependentUpon>ApplicantsAllowance.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\ApplicantsAllowance.aspx.designer.cs">
+      <DependentUpon>ApplicantsAllowance.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\ApplicantsExams.aspx.cs">
+      <DependentUpon>ApplicantsExams.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\ApplicantsExams.aspx.designer.cs">
+      <DependentUpon>ApplicantsExams.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\ApplicantsRanking.aspx.cs">
+      <DependentUpon>ApplicantsRanking.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\ApplicantsRanking.aspx.designer.cs">
+      <DependentUpon>ApplicantsRanking.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\ApplicantsNomination.aspx.cs">
+      <DependentUpon>ApplicantsNomination.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\ApplicantsNomination.aspx.designer.cs">
+      <DependentUpon>ApplicantsNomination.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\ReportDocumentsApplied.aspx.cs">
+      <DependentUpon>ReportDocumentsApplied.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\ReportDocumentsApplied.aspx.designer.cs">
+      <DependentUpon>ReportDocumentsApplied.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\ReportDocumentsSent.aspx.cs">
+      <DependentUpon>ReportDocumentsSent.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\ReportDocumentsSent.aspx.designer.cs">
+      <DependentUpon>ReportDocumentsSent.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\ReportRatedApplicantsSummary.aspx.cs">
+      <DependentUpon>ReportRatedApplicantsSummary.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\ReportRatedApplicantsSummary.aspx.designer.cs">
+      <DependentUpon>ReportRatedApplicantsSummary.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\NoAccessToPerson.aspx.cs">
+      <DependentUpon>NoAccessToPerson.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\NoAccessToPerson.aspx.designer.cs">
+      <DependentUpon>NoAccessToPerson.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\ManageCadets.aspx.cs">
+      <DependentUpon>ManageCadets.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\ManageCadets.aspx.designer.cs">
+      <DependentUpon>ManageCadets.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\PasswordExpired.aspx.cs">
+      <DependentUpon>PasswordExpired.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\PasswordExpired.aspx.designer.cs">
+      <DependentUpon>PasswordExpired.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\ReportRegister.aspx.cs">
+      <DependentUpon>ReportRegister.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\ReportRegister.aspx.designer.cs">
+      <DependentUpon>ReportRegister.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\ReportsCadet.aspx.cs">
+      <DependentUpon>ReportsCadet.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\ReportsCadet.aspx.designer.cs">
+      <DependentUpon>ReportsCadet.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\ReportVacancyAnnounceApplicants.aspx.cs">
+      <DependentUpon>ReportVacancyAnnounceApplicants.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\ReportVacancyAnnounceApplicants.aspx.designer.cs">
+      <DependentUpon>ReportVacancyAnnounceApplicants.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\ReportVacAnnApplListNominated.aspx.cs">
+      <DependentUpon>ReportVacAnnApplListNominated.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\ReportVacAnnApplListNominated.aspx.designer.cs">
+      <DependentUpon>ReportVacAnnApplListNominated.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\ReportVacAnnApplListParticipate.aspx.cs">
+      <DependentUpon>ReportVacAnnApplListParticipate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\ReportVacAnnApplListParticipate.aspx.designer.cs">
+      <DependentUpon>ReportVacAnnApplListParticipate.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\EditApplicant.aspx.cs">
+      <DependentUpon>EditApplicant.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\EditApplicant.aspx.designer.cs">
+      <DependentUpon>EditApplicant.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\EditCadet.aspx.cs">
+      <DependentUpon>EditCadet.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\EditCadet.aspx.designer.cs">
+      <DependentUpon>EditCadet.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\EditUserProfile.aspx.cs">
+      <DependentUpon>EditUserProfile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\EditUserProfile.aspx.designer.cs">
+      <DependentUpon>EditUserProfile.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\GTableMaintanceHandlers.aspx.cs">
+      <DependentUpon>GTableMaintanceHandlers.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\GTableMaintanceHandlers.aspx.designer.cs">
+      <DependentUpon>GTableMaintanceHandlers.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\ManageApplicants.aspx.cs">
+      <DependentUpon>ManageApplicants.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\ManageApplicants.aspx.designer.cs">
+      <DependentUpon>ManageApplicants.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\ManageMilitarySchoolSpecializations.aspx.cs">
+      <DependentUpon>ManageMilitarySchoolSpecializations.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\ManageMilitarySchoolSpecializations.aspx.designer.cs">
+      <DependentUpon>ManageMilitarySchoolSpecializations.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\ManagePotencialApplicants.aspx.cs">
+      <DependentUpon>ManagePotencialApplicants.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\ManagePotencialApplicants.aspx.designer.cs">
+      <DependentUpon>ManagePotencialApplicants.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\ManageVacancyAnnounces.aspx.cs">
+      <DependentUpon>ManageVacancyAnnounces.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\ManageVacancyAnnounces.aspx.designer.cs">
+      <DependentUpon>ManageVacancyAnnounces.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\ReportVacAnnApplDetailed.aspx.cs">
+      <DependentUpon>ReportVacAnnApplDetailed.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\ReportVacAnnApplDetailed.aspx.designer.cs">
+      <DependentUpon>ReportVacAnnApplDetailed.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\ReportVacAnnApplListRanking.aspx.cs">
+      <DependentUpon>ReportVacAnnApplListRanking.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\ReportVacAnnApplListRanking.aspx.designer.cs">
+      <DependentUpon>ReportVacAnnApplListRanking.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\Applicant.cs" />
+    <Compile Include="DAL\ApplicantDocument.cs" />
+    <Compile Include="DAL\ApplicantDocumentStatus.cs" />
+    <Compile Include="DAL\ApplicantPosition.cs" />
+    <Compile Include="DAL\ApplicantPositionDocumentStatus.cs" />
+    <Compile Include="DAL\ApplicantPositionStatus.cs" />
+    <Compile Include="DAL\ApplicantExamStatus.cs" />
+    <Compile Include="DAL\ApplicantExamMark.cs" />
+    <Compile Include="DAL\Cadet.cs" />
+    <Compile Include="DAL\CadetSchoolSubject.cs" />
+    <Compile Include="DAL\PrintApplicantApplication.cs" />
+    <Compile Include="DAL\PrintApplicantDocuments.cs" />
+    <Compile Include="DAL\PrintApplicantLetter.cs" />
+    <Compile Include="DAL\Register.cs" />
+    <Compile Include="DAL\RegisterNumbers.cs" />
+    <Compile Include="DAL\ReportDocumentsApplied.cs" />
+    <Compile Include="DAL\ReportDocumentsSent.cs" />
+    <Compile Include="DAL\ReportRatedApplicantsSummary.cs" />
+    <Compile Include="DAL\Education.cs" />
+    <Compile Include="DAL\Document.cs" />
+    <Compile Include="DAL\Exam.cs" />
+    <Compile Include="DAL\MilitarySchoolSpecialization.cs" />
+    <Compile Include="DAL\PotencialApplicant.cs" />
+    <Compile Include="DAL\ReportCadet.cs" />
+    <Compile Include="DAL\ReportRegister.cs" />
+    <Compile Include="DAL\ReportVacancyAnnounceApplicants.cs" />
+    <Compile Include="DAL\Specialization.cs" />
+    <Compile Include="DAL\VacancyAnnounceDocument.cs" />
+    <Compile Include="DAL\ReportVacAnnApplDetailedBlock.cs" />
+    <Compile Include="DAL\ReportVacAnnApplListNominatedBlock.cs" />
+    <Compile Include="DAL\ReportVacAnnApplListParticipateBlock.cs" />
+    <Compile Include="DAL\ReportVacAnnApplListRankingBlock.cs" />
+    <Compile Include="DAL\VacantPosition.cs" />
+    <Compile Include="DAL\VacancyAnnouncePositionStatus.cs" />
+    <Compile Include="DAL\VacancyAnnouncePosition.cs" />
+    <Compile Include="DAL\VacancyAnnounceStatus.cs" />
+    <Compile Include="DAL\VacancyAnnounce.cs" />
+    <Compile Include="ContentPages\DataSource.aspx.cs">
+      <DependentUpon>DataSource.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\DataSource.aspx.designer.cs">
+      <DependentUpon>DataSource.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MasterPages\PrintMasterPage.Master.cs">
+      <DependentUpon>PrintMasterPage.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MasterPages\PrintMasterPage.Master.designer.cs">
+      <DependentUpon>PrintMasterPage.Master</DependentUpon>
+    </Compile>
+    <Compile Include="PrintContentPages\PrintReportDocumentsApplied.aspx.cs">
+      <DependentUpon>PrintReportDocumentsApplied.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PrintContentPages\PrintReportDocumentsApplied.aspx.designer.cs">
+      <DependentUpon>PrintReportDocumentsApplied.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PrintContentPages\PrintReportDocumentsSent.aspx.cs">
+      <DependentUpon>PrintReportDocumentsSent.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PrintContentPages\PrintReportDocumentsSent.aspx.designer.cs">
+      <DependentUpon>PrintReportDocumentsSent.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PrintContentPages\PrintReportRatedApplicantsSummary.aspx.cs">
+      <DependentUpon>PrintReportRatedApplicantsSummary.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PrintContentPages\PrintReportRatedApplicantsSummary.aspx.designer.cs">
+      <DependentUpon>PrintReportRatedApplicantsSummary.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PrintContentPages\PrintAllApplicants.aspx.cs">
+      <DependentUpon>PrintAllApplicants.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PrintContentPages\PrintAllApplicants.aspx.designer.cs">
+      <DependentUpon>PrintAllApplicants.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PrintContentPages\PrintAllCadets.aspx.cs">
+      <DependentUpon>PrintAllCadets.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PrintContentPages\PrintAllCadets.aspx.designer.cs">
+      <DependentUpon>PrintAllCadets.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PrintContentPages\PrintAllPotencialApplicants.aspx.cs">
+      <DependentUpon>PrintAllPotencialApplicants.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PrintContentPages\PrintAllPotencialApplicants.aspx.designer.cs">
+      <DependentUpon>PrintAllPotencialApplicants.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PrintContentPages\PrintAllVacancyAnnounces.aspx.cs">
+      <DependentUpon>PrintAllVacancyAnnounces.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PrintContentPages\PrintAllVacancyAnnounces.aspx.designer.cs">
+      <DependentUpon>PrintAllVacancyAnnounces.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PrintContentPages\PrintReportCadets.aspx.cs">
+      <DependentUpon>PrintReportCadets.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PrintContentPages\PrintReportCadets.aspx.designer.cs">
+      <DependentUpon>PrintReportCadets.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PrintContentPages\PrintReportRegister.aspx.cs">
+      <DependentUpon>PrintReportRegister.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PrintContentPages\PrintReportRegister.aspx.designer.cs">
+      <DependentUpon>PrintReportRegister.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PrintContentPages\PrintReportVacancyAnnounceApplicants.aspx.cs">
+      <DependentUpon>PrintReportVacancyAnnounceApplicants.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PrintContentPages\PrintReportVacancyAnnounceApplicants.aspx.designer.cs">
+      <DependentUpon>PrintReportVacancyAnnounceApplicants.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PrintContentPages\PrintReportVacAnnApplDetailed.aspx.cs">
+      <DependentUpon>PrintReportVacAnnApplDetailed.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PrintContentPages\PrintReportVacAnnApplDetailed.aspx.designer.cs">
+      <DependentUpon>PrintReportVacAnnApplDetailed.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PrintContentPages\PrintReportVacAnnApplListNominated.aspx.cs">
+      <DependentUpon>PrintReportVacAnnApplListNominated.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PrintContentPages\PrintReportVacAnnApplListNominated.aspx.designer.cs">
+      <DependentUpon>PrintReportVacAnnApplListNominated.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PrintContentPages\PrintReportVacAnnApplListParticipate.aspx.cs">
+      <DependentUpon>PrintReportVacAnnApplListParticipate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PrintContentPages\PrintReportVacAnnApplListParticipate.aspx.designer.cs">
+      <DependentUpon>PrintReportVacAnnApplListParticipate.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PrintContentPages\PrintReportVacAnnApplListRanking.aspx.cs">
+      <DependentUpon>PrintReportVacAnnApplListRanking.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PrintContentPages\PrintReportVacAnnApplListRanking.aspx.designer.cs">
+      <DependentUpon>PrintReportVacAnnApplListRanking.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PublicPages\Error.aspx.cs">
+      <DependentUpon>Error.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PublicPages\Error.aspx.designer.cs">
+      <DependentUpon>Error.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\Home.aspx.cs">
+      <DependentUpon>Home.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\Home.aspx.designer.cs">
+      <DependentUpon>Home.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\Logout.aspx.cs">
+      <DependentUpon>Logout.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\Logout.aspx.designer.cs">
+      <DependentUpon>Logout.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPages\Maintenance.aspx.cs">
+      <DependentUpon>Maintenance.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentPages\Maintenance.aspx.designer.cs">
+      <DependentUpon>Maintenance.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MasterPages\MasterPage.Master.cs">
+      <DependentUpon>MasterPage.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MasterPages\MasterPage.Master.designer.cs">
+      <DependentUpon>MasterPage.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ContentPages\AddEditVacancyAnnounce.aspx" />
+    <Content Include="ContentPages\AddApplicant_SelectPerson.aspx" />
+    <Content Include="ContentPages\AddApplicant_PersonDetails.aspx" />
+    <Content Include="ContentPages\EditApplicant.aspx" />
+    <Content Include="ContentPages\GTableMaintanceHandlers.aspx" />
+    <Content Include="ContentPages\ManageVacancyAnnounces.aspx" />
+    <Content Include="Images\addrow.gif" />
+    <Content Include="Images\add_new.png" />
+    <Content Include="Images\ajax-loader-big.gif" />
+    <Content Include="Images\ajax-loader.gif" />
+    <Content Include="Images\cancel.png" />
+    <Content Include="Images\close.png" />
+    <Content Include="Images\DropDownSelector.gif" />
+    <Content Include="Images\error.png" />
+    <Content Include="Images\GreyButtonCenter.png" />
+    <Content Include="Images\GreyButtonLeftNoArrow.png" />
+    <Content Include="Images\GreyButtonRightNoArrow.png" />
+    <Content Include="Images\list_edit.png" />
+    <Content Include="Images\save.png" />
+    <Content Include="Images\tab_active_right2.PNG" />
+    <Content Include="Images\user.png" />
+    <Content Include="Images\warning_icon_small.gif" />
+    <Content Include="PublicPages\Error.aspx" />
+    <Content Include="ContentPages\Maintenance.aspx" />
+    <Content Include="Default.aspx" />
+    <Content Include="MasterPages\MasterPage.Master" />
+    <Content Include="Scripts\AddApplicant_PersonDetails.js" />
+    <Content Include="Scripts\Ajax.js" />
+    <Content Include="Scripts\CheckFormSave.js" />
+    <Content Include="Scripts\Common.js" />
+    <Content Include="Scripts\EditApplicant.js" />
+    <Content Include="Scripts\DatePicker\datepicker.js" />
+    <Content Include="Scripts\DatePicker\lang\bg.js" />
+    <Content Include="Scripts\DatePicker\lang\en.js" />
+    <Content Include="Scripts\GTable.js" />
+    <Content Include="Scripts\HomePage.js" />
+    <Content Include="Scripts\MasterPage.js" />
+    <Content Include="Scripts\PickList.js" />
+    <Content Include="Scripts\Timeout.js" />
+    <Content Include="Stylesheets\datepicker.css" />
+    <Content Include="Stylesheets\HoverMenu.css" />
+    <Content Include="Stylesheets\Main.css" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{0F621ED7-5AC9-4AA4-800A-D67DD2F361FE}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ExceptionHandler\ExceptionHandler.csproj">
+      <Project>{55B239DD-A064-4333-91EC-8B04273D4808}</Project>
+      <Name>ExceptionHandler</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ItemSelector\ItemSelector.csproj">
+      <Project>{06E5BF16-FE82-490D-9745-95240E166C31}</Project>
+      <Name>ItemSelector</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MilitaryUnitSelector\MilitaryUnitSelector.csproj">
+      <Project>{1C07F0CA-06FE-4C87-94E5-225B9B773DDD}</Project>
+      <Name>MilitaryUnitSelector</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_GlobalResources\Labels.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>Labels1.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="ContentPages\AddCadet_PersonDetails.aspx" />
+    <Content Include="ContentPages\AddCadet_SelectPerson.aspx" />
+    <Content Include="ContentPages\AddPotencialApplicant_PersonDetails.aspx" />
+    <Content Include="ContentPages\AddPotencialApplicant_SelectPerson.aspx" />
+    <Content Include="ContentPages\CadetsRanking.aspx" />
+    <Content Include="ContentPages\CommonAjaxRequests.aspx" />
+    <Content Include="ContentPages\ApplicantsAllowance.aspx" />
+    <Content Include="ContentPages\ApplicantsExams.aspx" />
+    <Content Include="ContentPages\ApplicantsRanking.aspx" />
+    <Content Include="ContentPages\ApplicantsNomination.aspx" />
+    <Content Include="ContentPages\ManageCadets.aspx" />
+    <Content Include="ContentPages\ReportVacAnnApplListNominated.aspx" />
+    <Content Include="ContentPages\ReportVacAnnApplListParticipate.aspx" />
+    <Content Include="ContentPages\DataSource.aspx" />
+    <Content Include="ContentPages\EditCadet.aspx" />
+    <Content Include="ContentPages\ManageApplicants.aspx" />
+    <Content Include="ContentPages\ManageMilitarySchoolSpecializations.aspx" />
+    <Content Include="ContentPages\ManagePotencialApplicants.aspx" />
+    <Content Include="ContentPages\ReportVacAnnApplDetailed.aspx" />
+    <Content Include="ContentPages\ReportVacAnnApplListRanking.aspx" />
+    <Content Include="Images\arrow_down.png" />
+    <Content Include="Images\arrow_right.png" />
+    <Content Include="Images\view_list.png" />
+    <Content Include="Scripts\AddCadet_PersonDetails.js" />
+    <Content Include="Scripts\AddPotencialApplicant_PersonDetails.js" />
+    <Content Include="Scripts\CadetsRanking.js" />
+    <Content Include="Scripts\EditCadet.js" />
+    <Content Include="Scripts\ManageMilitarySchoolSpecializations.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ContentPages\CivilEducationSelectorHandlers.aspx" />
+    <Content Include="ContentPages\ReportDocumentsApplied.aspx" />
+    <Content Include="ContentPages\ReportDocumentsSent.aspx" />
+    <Content Include="ContentPages\ReportRatedApplicantsSummary.aspx" />
+    <Content Include="ContentPages\NoAccessToPerson.aspx" />
+    <Content Include="ContentPages\PasswordExpired.aspx" />
+    <Content Include="ContentPages\ReportRegister.aspx" />
+    <Content Include="ContentPages\ReportsCadet.aspx" />
+    <Content Include="ContentPages\ReportVacancyAnnounceApplicants.aspx" />
+    <Content Include="Images\excel.png" />
+    <Content Include="Images\logo_vos_plovdiv.png" />
+    <Content Include="Images\move_down.gif" />
+    <Content Include="Images\move_up.gif" />
+    <Content Include="Images\print.png" />
+    <Content Include="MasterPages\PrintMasterPage.Master" />
+    <Content Include="PrintContentPages\PrintReportDocumentsApplied.aspx" />
+    <Content Include="PrintContentPages\PrintReportDocumentsSent.aspx" />
+    <Content Include="PrintContentPages\PrintReportRatedApplicantsSummary.aspx" />
+    <Content Include="PrintContentPages\PrintAllApplicants.aspx" />
+    <Content Include="PrintContentPages\PrintAllCadets.aspx" />
+    <Content Include="PrintContentPages\PrintAllPotencialApplicants.aspx" />
+    <Content Include="PrintContentPages\PrintAllVacancyAnnounces.aspx" />
+    <Content Include="PrintContentPages\PrintReportCadets.aspx" />
+    <Content Include="PrintContentPages\PrintReportRegister.aspx" />
+    <Content Include="PrintContentPages\PrintReportVacancyAnnounceApplicants.aspx" />
+    <Content Include="PrintContentPages\PrintReportVacAnnApplDetailed.aspx" />
+    <Content Include="PrintContentPages\PrintReportVacAnnApplListNominated.aspx" />
+    <Content Include="PrintContentPages\PrintReportVacAnnApplListParticipate.aspx" />
+    <Content Include="PrintContentPages\PrintReportVacAnnApplListRanking.aspx" />
+    <Content Include="PrintTemplates\ApplicantApplication_Body_DR4B.html" />
+    <Content Include="PrintTemplates\ApplicantApplication_Body_DR6.html" />
+    <Content Include="PrintTemplates\ApplicantApplication_Body_NVP.html" />
+    <Content Include="PrintTemplates\ApplicantApplication_Body_SVP.html" />
+    <Content Include="PrintTemplates\ApplicantApplication_Body_VS.html" />
+    <Content Include="PrintTemplates\ApplicantApplication_End.html" />
+    <Content Include="PrintTemplates\ApplicantApplication_Start.html" />
+    <Content Include="PrintTemplates\ApplicantLetter_Body_CVMKPlovdiv.html" />
+    <Content Include="PrintTemplates\ApplicantLetter_Body_CVMKSofia.html" />
+    <Content Include="PrintTemplates\ApplicantDocuments_Body.html" />
+    <Content Include="PrintTemplates\ApplicantDocuments_End.html" />
+    <Content Include="PrintTemplates\ApplicantDocuments_Start.html" />
+    <Content Include="PrintTemplates\ApplicantLetter_Body_CVMKVarna.html" />
+    <Content Include="PrintTemplates\ApplicantLetter_Body_LPZP.html" />
+    <Content Include="PrintTemplates\ApplicantLetter_End.html" />
+    <Content Include="PrintTemplates\ApplicantLetter_Start.html" />
+    <Content Include="Scripts\CivilEducationSelector.js" />
+    <Content Include="Stylesheets\PrintMain.css" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="BusinessLogic\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v9.0\WebApplications\Microsoft.WebApplication.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>57303</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost/Test_Applicants</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

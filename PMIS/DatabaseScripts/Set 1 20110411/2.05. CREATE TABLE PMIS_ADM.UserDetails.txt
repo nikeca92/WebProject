@@ -1,0 +1,24 @@
+CREATE TABLE PMIS_ADM.UserDetails(UserID number NOT NULL,
+                                  PersonID number,
+                                  FirstName varchar(250),
+                                  MiddleName varchar(250),
+                                  LastName varchar(250),
+                                  EmailAddress varchar(500),
+                                  Phone varchar(20),
+                                  CreatedBy number,
+                                  CreatedDate date,
+                                  LastModifiedBy number,
+                                  LastModifiedDate date
+                                 );
+
+ALTER TABLE PMIS_ADM.UserDetails ADD CONSTRAINT USERDETAILS_PK PRIMARY KEY(UserID);
+ALTER TABLE PMIS_ADM.UserDetails ADD CONSTRAINT USERDETAILS_USERS_FK FOREIGN KEY (UserID) REFERENCES PMIS_ADM.Users (UserID);
+ALTER TABLE PMIS_ADM.UserDetails ADD CONSTRAINT UserDetails_CreatedBy_FK FOREIGN KEY (CreatedBy) REFERENCES PMIS_ADM.Users (UserID);
+ALTER TABLE PMIS_ADM.UserDetails ADD CONSTRAINT UserDetails_LastModifiedBy_FK FOREIGN KEY (LastModifiedBy) REFERENCES PMIS_ADM.Users (UserID);
+
+INSERT INTO PMIS_ADM.UserDetails (UserID, PersonID, FirstName, MiddleName, LastName, EmailAddress,
+                                  CreatedBy, CreatedDate, LastModifiedBy, LastModifiedDate)
+VALUES ((SELECT UserID FROM PMIS_ADM.Users WHERE Username = 'devel'), NULL, 'Admin', 'Admin', 'Admin', 'admin@admin.admin',
+        (SELECT UserID FROM PMIS_ADM.Users WHERE Username = 'devel'), SYSDATE, (SELECT UserID FROM PMIS_ADM.Users WHERE Username = 'devel'), SYSDATE);
+
+COMMIT;

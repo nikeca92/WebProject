@@ -1,0 +1,17 @@
+﻿ALTER TABLE PMIS_ADM.MilitaryForceTypes ADD IsActive number(1) CHECK (IsActive BETWEEN 0 AND 1);
+UPDATE PMIS_ADM.MilitaryForceTypes SET IsActive = 1 WHERE IsActive IS NULL;
+
+ALTER TABLE PMIS_ADM.MilitaryForceTypes ADD Seq number;
+UPDATE PMIS_ADM.MilitaryForceTypes SET Seq = MilitaryForceTypeID + 1 WHERE Seq IS NULL;
+
+ALTER TABLE PMIS_ADM.MilitaryForceTypes ADD MilitaryStructureID number;
+ALTER TABLE PMIS_ADM.MilitaryForceTypes ADD CONSTRAINT MilForceTypes_Structures_FK FOREIGN KEY (MilitaryStructureID) REFERENCES PMIS_ADM.MilitaryStructures(MilitaryStructureID);
+
+UPDATE PMIS_ADM.MilitaryForceTypes SET
+    MilitaryStructureID = (SELECT MilitaryStructureID FROM PMIS_ADM.MilitaryStructures WHERE Seq = 1)
+WHERE MilitaryStructureID IS NULL;
+
+INSERT INTO PMIS_ADM.MilitaryForceTypes (MilitaryForceTypeName, IsActive, Seq, MilitaryStructureID)
+VALUES ('-', 1, 1, (SELECT MilitaryStructureID FROM PMIS_ADM.MilitaryStructures WHERE Seq = 1));
+
+COMMIT;

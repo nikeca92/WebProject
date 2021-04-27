@@ -1,0 +1,5 @@
+﻿
+
+ALTER TABLE PMIS_RES.TechnicsMilRepStatus ADD Voluntary_FulfilPlaceID NUMBER;   
+ALTER TABLE PMIS_RES.TechnicsMilRepStatus ADD CONSTRAINT TechMilRepStat_MIR_FK FOREIGN KEY (Voluntary_FulfilPlaceID) REFERENCES UKAZ_OWNER.MIR(KOD_MIR);
+

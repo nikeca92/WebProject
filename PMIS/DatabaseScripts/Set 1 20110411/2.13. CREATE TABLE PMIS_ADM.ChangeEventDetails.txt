@@ -1,0 +1,24 @@
+﻿CREATE TABLE PMIS_ADM.ChangeEventDetails(DetailID number NOT NULL,
+                                         ChangeEventID number NOT NULL,
+                                         FieldID number NOT NULL,
+                                         OldValue varchar2(4000),
+                                         NewValue varchar2(4000)
+                                        );
+
+ALTER TABLE PMIS_ADM.ChangeEventDetails ADD CONSTRAINT ChangeEventDetails_PK PRIMARY KEY(DetailID);
+ALTER TABLE PMIS_ADM.ChangeEventDetails ADD CONSTRAINT ChangeEventDetails_Events_FK FOREIGN KEY (ChangeEventID) REFERENCES PMIS_ADM.ChangeEvents (ChangeEventID);
+ALTER TABLE PMIS_ADM.ChangeEventDetails ADD CONSTRAINT ChangeEventDetails_Fields_FK FOREIGN KEY (FieldID) REFERENCES PMIS_ADM.Fields (FieldID);
+
+
+CREATE SEQUENCE PMIS_ADM.ChangeEventDetails_ID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+CREATE TRIGGER PMIS_ADM.TRG_ChangeEventDetails_INSERT
+BEFORE INSERT ON PMIS_ADM.ChangeEventDetails
+FOR EACH ROW
+BEGIN
+   SELECT PMIS_ADM.ChangeEventDetails_ID_SEQ.nextval INTO :new.DetailID FROM dual;
+END;
+/

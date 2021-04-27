@@ -1,0 +1,16 @@
+C:\PMIS\Src\PMIS\MilitaryUnitSelector\bin\Release\MilitaryUnitSelector.dll
+C:\PMIS\Src\PMIS\MilitaryUnitSelector\bin\Release\MilitaryUnitSelector.pdb
+C:\PMIS\Src\PMIS\MilitaryUnitSelector\bin\Release\Common.dll
+C:\PMIS\Src\PMIS\MilitaryUnitSelector\bin\Release\Common.pdb
+C:\PMIS\Src\PMIS\MilitaryUnitSelector\obj\Release\ResolveAssemblyReference.cache
+C:\PMIS\Src\PMIS\MilitaryUnitSelector\obj\Release\MilitaryUnitSelector.dll
+C:\PMIS\Src\PMIS\MilitaryUnitSelector\obj\Release\MilitaryUnitSelector.pdb
+C:\Users\n.markov1\Desktop\PMIS\MilitaryUnitSelector\bin\Release\MilitaryUnitSelector.dll
+C:\Users\n.markov1\Desktop\PMIS\MilitaryUnitSelector\bin\Release\MilitaryUnitSelector.pdb
+C:\Users\n.markov1\Desktop\PMIS\MilitaryUnitSelector\bin\Release\Common.dll
+C:\Users\n.markov1\Desktop\PMIS\MilitaryUnitSelector\bin\Release\Common.pdb
+C:\Users\n.markov1\Desktop\PMIS\MilitaryUnitSelector\obj\Release\MilitaryUnitSelector.csprojAssemblyReference.cache
+C:\Users\n.markov1\Desktop\PMIS\MilitaryUnitSelector\obj\Release\MilitaryUnitSelector.csproj.CoreCompileInputs.cache
+C:\Users\n.markov1\Desktop\PMIS\MilitaryUnitSelector\obj\Release\MilitaryUnitSelector.csproj.CopyComplete
+C:\Users\n.markov1\Desktop\PMIS\MilitaryUnitSelector\obj\Release\MilitaryUnitSelector.dll
+C:\Users\n.markov1\Desktop\PMIS\MilitaryUnitSelector\obj\Release\MilitaryUnitSelector.pdb

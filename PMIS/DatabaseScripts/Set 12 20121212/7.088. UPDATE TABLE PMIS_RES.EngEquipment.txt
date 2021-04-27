@@ -1,0 +1,4 @@
+ALTER TABLE PMIS_RES.EngEquipment ADD EngEquipBaseMakeName VARCHAR2(300 BYTE);
+ALTER TABLE PMIS_RES.EngEquipment ADD EngEquipBaseModelName VARCHAR2(300 BYTE);
+
+/

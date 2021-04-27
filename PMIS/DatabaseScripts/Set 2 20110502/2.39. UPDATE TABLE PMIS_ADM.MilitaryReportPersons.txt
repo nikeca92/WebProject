@@ -1,0 +1,9 @@
+﻿ALTER TABLE PMIS_ADM.MilitaryReportPersons ADD PermSecondPostCode varchar2(10);
+ALTER TABLE PMIS_ADM.MilitaryReportPersons ADD PresSecondPostCode varchar2(10);
+
+UPDATE PMIS_ADM.MilitaryReportPersons SET
+   PresSecondPostCode = (SELECT PK FROM UKAZ_OWNER.KL_NMA WHERE KOD_NMA = PMIS_ADM.MilitaryReportPersons.CurrAddrCityID),
+   PermSecondPostCode = (SELECT PK FROM UKAZ_OWNER.KL_NMA WHERE KOD_NMA = PMIS_ADM.MilitaryReportPersons.PermAddrCityID);
+
+COMMIT;
+/

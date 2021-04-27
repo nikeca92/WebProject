@@ -1,0 +1,14 @@
+CREATE TABLE UKAZ_OWNER.Districts_Cities(DistrictID number NOT NULL,
+                                         CityID number NOT NULL,
+                                         PRIMARY KEY (DistrictID, CityID));
+										 
+ALTER TABLE UKAZ_OWNER.Districts_Cities ADD CONSTRAINT DistrictsCities_Districts_FK FOREIGN KEY (DISTRICTID) REFERENCES UKAZ_OWNER.DISTRICTS (DISTRICTID);
+ALTER TABLE UKAZ_OWNER.Districts_Cities ADD CONSTRAINT DistrictsCities_Cities_FK FOREIGN KEY (CITYID) REFERENCES UKAZ_OWNER.KL_NMA (KOD_NMA);
+
+INSERT INTO UKAZ_OWNER.Districts_Cities(DistrictID, CityID)
+SELECT DistrictID, CityID FROM UKAZ_OWNER.Districts;
+GRANT ALL ON UKAZ_OWNER.Districts_Cities TO PMIS_USER_ROLE;
+
+/
+ALTER TABLE UKAZ_OWNER.Districts
+RENAME COLUMN CityID TO CityID_;

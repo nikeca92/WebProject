@@ -1,0 +1,12 @@
+﻿ALTER TABLE VS_OWNER.KLV_ZVA ADD (ZVA_ORDER NUMBER);
+
+UPDATE  VS_OWNER.KLV_ZVA t
+SET zva_order = (
+      SELECT "Rank"
+      FROM (
+            SELECT zva_kod,
+                   RANK() OVER (ORDER BY ZVA_KOD ASC) "Rank"  
+            FROM VS_OWNER.KLV_ZVA)  tmp
+      WHERE tmp.zva_kod = t.zva_kod);
+      
+COMMIT;

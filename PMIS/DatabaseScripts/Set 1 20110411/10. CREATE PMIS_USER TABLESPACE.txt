@@ -1,0 +1,10 @@
+CREATE TABLESPACE
+   PMIS_USER
+datafile 
+   'C:/oracle/tablespaces/PMIS_USER.dbf'
+size 
+   50m
+reuse
+autoextend on 
+next 10m 
+maxsize unlimited;

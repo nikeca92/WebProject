@@ -1,0 +1,6 @@
+﻿ALTER TABLE PMIS_RES.FillReservistsRequest ADD (AppointmentIsDelivered number(1) CHECK (AppointmentIsDelivered BETWEEN 0 AND 1));
+UPDATE PMIS_RES.FillReservistsRequest SET AppointmentIsDelivered = 1;
+
+COMMIT;
+
+/

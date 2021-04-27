@@ -1,0 +1,21 @@
+﻿CREATE TABLE PMIS_ADM.PreviousPositionKinds(PreviousPositionKindKey varchar2(10),
+                                      PreviousPositionKindName varchar2(100)
+                                     );
+
+ALTER TABLE PMIS_ADM.PreviousPositionKinds ADD CONSTRAINT PreviousPositionKindKey_PK PRIMARY KEY (PreviousPositionKindKey);
+
+
+INSERT INTO PMIS_ADM.PreviousPositionKinds (PreviousPositionKindKey, PreviousPositionKindName)
+VALUES ('K', 'Кадрови');
+
+
+INSERT INTO PMIS_ADM.PreviousPositionKinds (PreviousPositionKindKey, PreviousPositionKindName)
+VALUES ('Н', 'Наборен');
+
+
+INSERT INTO PMIS_ADM.PreviousPositionKinds (PreviousPositionKindKey, PreviousPositionKindName)
+VALUES ('Р', 'Резерв');
+
+
+COMMIT;
+/

@@ -1,0 +1,572 @@
+
+--Резерв -> Справки -> Справка SV1
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_REPORTSV1', 'Справка SV1', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS'));
+
+--Резерв -> Справки -> Справка A31
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_REPORTA31', 'Справка A31', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS'));
+
+--Резерв -> Справки -> Справка A33
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_REPORTA33', 'Справка A33', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS'));
+
+--Резерв -> Справки -> Сведение - анализ за комплектуването на команда
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_REPORTANALYZECOMMAND', 'Сведение - анализ за комплектуването на команда', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS'));
+
+--Резерв -> Справки -> Списък на хората с МН от команда
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_REPORTLISTRESERVISTSFROMCOMMAND', 'Списък на хората с МН от команда', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS'));
+
+--Резерв -> Справки -> Списък на техниката с МН от команда
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_REPORTLISTTECHNICSFROMCOMMAND', 'Списък на техниката с МН от команда', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS'));
+
+
+--Резерв -> Техника -> Автомобили -> Добавяне на нов запис -> Основни данни -> Нормативна категория
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_TECHNICS_VEHICLES_ADD_BASICINFO_NORMATIVETECHNICS', 'Нормативна категория', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_TECHNICS_VEHICLES_ADD_BASICINFO'));
+
+--Резерв -> Техника -> Автомобили -> Редактиране -> Основни данни -> Нормативна категория
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_TECHNICS_VEHICLES_EDIT_BASICINFO_NORMATIVETECHNICS', 'Нормативна категория', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_TECHNICS_VEHICLES_EDIT_BASICINFO'));
+
+--Резерв -> Техника -> Трактори -> Добавяне на нов запис -> Основни данни -> Нормативна категория
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_TECHNICS_TRACTORS_ADD_BASICINFO_NORMATIVETECHNICS', 'Нормативна категория', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_TECHNICS_TRACTORS_ADD_BASICINFO'));
+
+--Резерв -> Техника -> Трактори -> Редактиране -> Основни данни -> Нормативна категория
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_TECHNICS_TRACTORS_EDIT_BASICINFO_NORMATIVETECHNICS', 'Нормативна категория', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_TECHNICS_TRACTORS_EDIT_BASICINFO'));
+
+--Резерв -> Техника -> Ремаркета -> Добавяне на нов запис -> Основни данни -> Нормативна категория
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_TECHNICS_TRAILERS_ADD_BASICINFO_NORMATIVETECHNICS', 'Нормативна категория', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_TECHNICS_TRAILERS_ADD_BASICINFO'));
+
+--Резерв -> Техника -> Ремаркета -> Редактиране -> Основни данни -> Нормативна категория
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_TECHNICS_TRAILERS_EDIT_BASICINFO_NORMATIVETECHNICS', 'Нормативна категория', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_TECHNICS_TRAILERS_EDIT_BASICINFO'));
+
+--Резерв -> Техника -> Инженерна техника -> Добавяне на нов запис -> Основни данни -> Нормативна категория
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_TECHNICS_ENG_EQUIP_ADD_BASICINFO_NORMATIVETECHNICS', 'Нормативна категория', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_TECHNICS_ENG_EQUIP_ADD_BASICINFO'));
+
+--Резерв -> Техника -> Инженерна техника -> Редактиране -> Основни данни -> Нормативна категория
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_TECHNICS_ENG_EQUIP_EDIT_BASICINFO_NORMATIVETECHNICS', 'Нормативна категория', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_TECHNICS_ENG_EQUIP_EDIT_BASICINFO'));
+
+--Резерв -> Техника -> Подемно-транспортна техника -> Добавяне на нов запис -> Основни данни -> Нормативна категория
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_TECHNICS_MOB_LIFT_EQUIP_ADD_BASICINFO_NORMATIVETECHNICS', 'Нормативна категория', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_TECHNICS_MOB_LIFT_EQUIP_ADD_BASICINFO'));
+
+--Резерв -> Техника -> Подемно-транспортна техника -> Редактиране -> Основни данни -> Нормативна категория
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_TECHNICS_MOB_LIFT_EQUIP_EDIT_BASICINFO_NORMATIVETECHNICS', 'Нормативна категория', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_TECHNICS_MOB_LIFT_EQUIP_EDIT_BASICINFO'));
+
+--Резерв -> Техника -> Специализиран железопътен състав -> Добавяне на нов запис -> Основни данни -> Нормативна категория
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_TECHNICS_RAILWAY_EQUIP_ADD_BASICINFO_NORMATIVETECHNICS', 'Нормативна категория', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_TECHNICS_RAILWAY_EQUIP_ADD_BASICINFO'));
+
+--Резерв -> Техника -> Специализиран железопътен състав -> Редактиране -> Основни данни -> Нормативна категория
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_TECHNICS_RAILWAY_EQUIP_EDIT_BASICINFO_NORMATIVETECHNICS', 'Нормативна категория', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_TECHNICS_RAILWAY_EQUIP_EDIT_BASICINFO'));
+
+--Резерв -> Техника -> Съдове за ГСМ -> Добавяне на нов запис -> Основни данни -> Нормативна категория
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_TECHNICS_FUEL_CONTAINERS_ADD_BASICINFO_NORMATIVETECHNICS', 'Нормативна категория', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_TECHNICS_FUEL_CONTAINERS_ADD_BASICINFO'));
+
+--Резерв -> Техника -> Съдове за ГСМ -> Редактиране -> Основни данни -> Нормативна категория
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_TECHNICS_FUEL_CONTAINERS_EDIT_BASICINFO_NORMATIVETECHNICS', 'Нормативна категория', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_TECHNICS_FUEL_CONTAINERS_EDIT_BASICINFO'));
+
+--Резерв -> Техника -> Кораби -> Добавяне на нов запис -> Основни данни -> Нормативна категория
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_TECHNICS_VESSELS_ADD_BASICINFO_NORMATIVETECHNICS', 'Нормативна категория', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_TECHNICS_VESSELS_ADD_BASICINFO'));
+
+--Резерв -> Техника -> Кораби -> Добавяне на нов запис -> Основни данни -> Нормативна категория
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_TECHNICS_VESSELS_EDIT_BASICINFO_NORMATIVETECHNICS', 'Нормативна категория', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_TECHNICS_VESSELS_EDIT_BASICINFO'));
+
+--Резерв -> Техника -> Авиационна техника -> Добавяне на нов запис -> Основни данни -> Нормативна категория
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_TECHNICS_AVIATION_EQUIP_ADD_BASICINFO_NORMATIVETECHNICS', 'Нормативна категория', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_TECHNICS_AVIATION_EQUIP_ADD_BASICINFO'));
+
+--Резерв -> Техника -> Авиационна техника -> Добавяне на нов запис -> Основни данни -> Нормативна категория
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_TECHNICS_AVIATION_EQUIP_EDIT_BASICINFO_NORMATIVETECHNICS', 'Нормативна категория', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_TECHNICS_AVIATION_EQUIP_EDIT_BASICINFO'));
+
+
+
+--Резерв -> Човешки ресурси -> Редактиране на резервист -> Военно-отчетни -> Мобилизационно назначение -> Нуждае се от курс
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_HUMANRES_EDITRESERVIST_MILREP_APPOINTMENT_NEEDCOURSE', 'Нуждае се от курс', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_HUMANRES_EDITRESERVIST_MILREP_APPOINTMENT'));
+
+
+
+COMMIT;
+/
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Technics_NormativeTechnics', 'Нормативна категория', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_ResAppointment_NeedCourse', 'Нуждае се от курс', 6);
+
+COMMIT;
+/
+
+ALTER TABLE PMIS_ADM.MilitaryRankCategories ADD (MilitaryRankSubCategory number /*1 = Sergeant, 2 = Soldier; 1 = Officer*/);
+
+UPDATE PMIS_ADM.MilitaryRankCategories SET
+   MilitaryRankSubCategory = 2
+WHERE ZVA_KAT_KOD = '20';
+
+UPDATE PMIS_ADM.MilitaryRankCategories SET
+   MilitaryRankSubCategory = 1
+WHERE ZVA_KAT_KOD = '35';
+
+UPDATE PMIS_ADM.MilitaryRankCategories SET
+   MilitaryRankSubCategory = 1
+WHERE ZVA_KAT_KOD = '46';
+
+UPDATE PMIS_ADM.MilitaryRankCategories SET
+   MilitaryRankSubCategory = 1
+WHERE ZVA_KAT_KOD = '50';
+
+UPDATE PMIS_ADM.MilitaryRankCategories SET
+   MilitaryRankSubCategory = 1
+WHERE ZVA_KAT_KOD = '55';
+
+UPDATE PMIS_ADM.MilitaryRankCategories SET
+   MilitaryRankSubCategory = 1
+WHERE ZVA_KAT_KOD = '60';
+
+UPDATE PMIS_ADM.MilitaryRankCategories SET
+   MilitaryRankSubCategory = 1
+WHERE ZVA_KAT_KOD = '73';
+
+COMMIT;
+GRANT ALL ON UKAZ_OWNER.VVR TO PMIS_RES WITH GRANT OPTION;
+GRANT ALL ON PMIS_ADM.Administrations TO PMIS_RES WITH GRANT OPTION;
+
+/
+ALTER TABLE PMIS_RES.FillReservistsRequest ADD (MilReportSpecialityID number);
+
+ALTER TABLE PMIS_RES.FillReservistsRequest ADD CONSTRAINT FillResReq_MilRepSpec_FK FOREIGN KEY (MilReportSpecialityID) REFERENCES PMIS_ADM.MilitaryReportSpecialities (MilReportSpecialityID);
+/
+
+ALTER TABLE PMIS_RES.FillReservistsRequest ADD (NeedCourse number(1) CHECK (NeedCourse BETWEEN 0 AND 1));
+
+/
+CREATE TABLE PMIS_RES.NormativeTechnics(NormativeTechnicsID number NOT NULL,
+		    							NormativeCode varchar2(10),
+										NormativeName varchar2(500),
+										NormativeLevel1 varchar2(1000),
+										NormativeLevel2 varchar2(1000),
+										NormativeLevel3 varchar2(1000),
+										NormativeLevel4 varchar2(1000),
+										NormativeLevel5 varchar2(1000),
+										TechnicsTypeID number,
+										Veh_VehicleKindID number,
+										Veh_VehicleRoadabilityID number,
+										Veh_VechicleBodyTypeID number,
+										Veh_CarryingCapacityFrom number,
+										Veh_CarryingCapacityTo number,
+										Veh_SeatsFrom number,
+										Veh_SeatsTo number,
+										Trl_TrailerKindID number,
+										Trl_TrailerTypeID number,
+										Trl_TrailerBodyKindID number,
+										Trl_CarryingCapacityFrom number,
+										Trl_CarryingCapacityTo number,
+										Trc_TractorKindID number,
+										Trc_TractorTypeID number,
+										Trc_PowerFrom number,
+										Trc_PowerTo number,
+										Eng_EngEquipKindID number,
+										Eng_EngEquipTypeID number,
+										Eng_EngEquipBaseKindID number,
+										Eng_EngEquipBaseTypeID number,
+										Eng_EngEquipWorkingBodyKindID number,
+										Mob_MobileLiftingEquipKindID number,
+										Mob_MobileLiftingEquipTypeID number,
+										Mob_LoadingCapacityFrom number,
+										Mob_LoadingCapacityTo number,
+										Rail_RailwayEquipKindID number,
+										Rail_RailwayEquipTypeID number,
+										Av_AviationAirKindID number,
+										Av_AviationAirTypeID number,
+										Av_AviationAirModelID number,
+										Av_AirCarryingCapacityFrom number,
+										Av_AirCarryingCapacityTo number,
+										Av_AvOtherKindID number,
+										Av_AvOtherTypeID number,
+										Av_AvOtherBaseMachineMakeID number,
+										Av_AvOthBaseMachineModelID number,
+										Av_AvOtherBaseMachineKindID number,
+										Av_AvOtherBaseMachineTypeID number,
+										Av_AvOtherEquipmentKindID number,
+										Ves_VesselKindID number,
+										Ves_VesselTypeID number,
+										Fuel_FuelContainerKindID number,
+										Fuel_FuelContainerTypeID number
+										);
+
+										   
+ALTER TABLE PMIS_RES.NormativeTechnics ADD CONSTRAINT NormativeTechnics_PK PRIMARY KEY(NormativeTechnicsID);
+ALTER TABLE PMIS_RES.NormativeTechnics ADD CONSTRAINT NormTechnics_TechnicsTypes_FK FOREIGN KEY (TechnicsTypeID) REFERENCES PMIS_RES.TechnicsTypes (TechnicsTypeID);
+ALTER TABLE PMIS_RES.NormativeTechnics ADD CONSTRAINT NormTechn_AviatOthBMMakes_FK FOREIGN KEY (Av_AvOtherBaseMachineMakeID) REFERENCES PMIS_RES.AviationOtherBaseMachineMakes (AviationOtherBaseMachineMakeID);
+ALTER TABLE PMIS_RES.NormativeTechnics ADD CONSTRAINT NormTechn_AviatOthBMModels_FK FOREIGN KEY (Av_AvOthBaseMachineModelID) REFERENCES PMIS_RES.AviationOtherBaseMachineModels (AviationOthBaseMachineModelID);
+
+CREATE SEQUENCE PMIS_RES.NormativeTechnics_ID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+
+CREATE TRIGGER PMIS_RES.TRG_NormativeTechnics_INSERT
+BEFORE INSERT ON PMIS_RES.NormativeTechnics
+FOR EACH ROW
+BEGIN
+   SELECT PMIS_RES.NormativeTechnics_ID_SEQ.nextval INTO :new.NormativeTechnicsID FROM dual;
+END;
+/
+
+
+ALTER TABLE PMIS_RES.Technics ADD (NormativeTechnicsID number);
+
+ALTER TABLE PMIS_RES.Technics ADD CONSTRAINT Technics_NormativeTechnics_FK FOREIGN KEY (NormativeTechnicsID) REFERENCES PMIS_RES.NormativeTechnics (NormativeTechnicsID);
+/
+
+CREATE OR REPLACE VIEW PMIS_RES.ViewA31
+AS 
+  SELECT MilitaryDepartmentId, MilReadinessID, MilReadiness, KOD_VVR, Command, CommandSuffix  FROM
+  (
+    SELECT d.MilitaryDepartmentId as MilitaryDepartmentId, e.MilReadinessID as MilReadinessID, e.MilReadinessName as MilReadiness, a.KOD_VVR as KOD_VVR, a.NK as Command, b.MilitaryCommandSuffix as CommandSuffix
+    FROM UKAZ_OWNER.VVR a
+    INNER JOIN PMIS_RES.REQUESTSCOMMANDS b ON b.MilitaryCommandId = a.KOD_VVR
+    INNER JOIN PMIS_RES.REQUESTCOMMANDPOSITIONS c ON c.RequestsCommandID = b.RequestsCommandID
+    INNER JOIN PMIS_RES.FILLRESERVISTSREQUEST d ON d.RequestCommandPositionId = c.RequestCommandPositionId
+    INNER JOIN PMIS_RES.MILREADINESS e ON b.MilReadinessID = e.MilReadinessID
+	
+    UNION ALL
+    
+    SELECT d.MilitaryDepartmentId as MilitaryDepartmentId, e.MilReadinessID as MilReadinessID, e.MilReadinessName as MilReadiness, a.KOD_VVR as KOD_VVR, a.NK as Command, b.MilitaryCommandSuffix as CommandSuffix 
+    FROM UKAZ_OWNER.VVR a
+    INNER JOIN PMIS_RES.TECHNICSREQUESTCOMMANDS b ON b.MilitaryCommandId = a.KOD_VVR
+    INNER JOIN PMIS_RES.TECHNICSREQUESTCMDPOSITIONS c ON c.TechRequestsCommandID = b.TechRequestsCommandID
+    INNER JOIN PMIS_RES.FULFILTECHNICSREQUEST d ON d.TechnicsRequestCmdPositionID = c.TechnicsRequestCmdPositionID	
+    INNER JOIN PMIS_RES.MILREADINESS e ON b.MilReadinessID = e.MilReadinessID
+  )
+  GROUP BY MilitaryDepartmentId, MilReadinessID, MilReadiness, KOD_VVR, Command, CommandSuffix
+;
+/
+CREATE OR REPLACE VIEW PMIS_RES.ViewA33
+AS 
+	SELECT 1 as StatusID,
+		   'Водят се на отчет' as StatusName,
+		   1 as StatusOrder,
+		   0 as MilReadinessID,
+		   0 as AdministrationID,
+		   'А' as Section
+	FROM dual
+
+	UNION ALL
+
+	SELECT 2 as StatusID,
+		   'С МН-осн.попълнение' as StatusName,
+		   2 as StatusOrder,
+		   0 as MilReadinessID,
+		   0 as AdministrationID,
+		   'А' as Section
+	FROM dual
+
+	UNION ALL
+
+	SELECT 2 + RANK() OVER (ORDER BY a.MilReadinessName, a.MilReadinessID) as StatusID,
+		   '   ' || a.MilReadinessName as StatusName,
+		   2 + RANK() OVER (ORDER BY a.MilReadinessName, a.MilReadinessID) as StatusOrder,
+		   a.MilReadinessID,
+		   0 as AdministrationID,
+		   'А' as Section
+	FROM PMIS_RES.MilReadiness a
+
+	UNION ALL
+
+	SELECT 3 + (SELECT COUNT(*) FROM PMIS_RES.MilReadiness) as StatusID,
+		   'Резерв' as StatusName,
+		   3 + (SELECT COUNT(*) FROM PMIS_RES.MilReadiness) as StatusOrder,
+		   0 as MilReadinessID,
+		   0 as AdministrationID,
+		   'А' as Section
+	FROM dual
+
+	UNION ALL
+
+	SELECT 4 + (SELECT COUNT(*) FROM PMIS_RES.MilReadiness) as StatusID,
+		   'Отсрочени/неподлеж.' as StatusName,
+		   4 + (SELECT COUNT(*) FROM PMIS_RES.MilReadiness) as StatusOrder,
+		   0 as MilReadinessID,
+		   0 as AdministrationID,
+		   'А' as Section
+	FROM dual
+
+	UNION ALL
+
+	SELECT 5 + (SELECT COUNT(*) FROM PMIS_RES.MilReadiness) as StatusID,
+		   'Временно снети' as StatusName,
+		   5 + (SELECT COUNT(*) FROM PMIS_RES.MilReadiness) as StatusOrder,
+		   0 as MilReadinessID,
+		   0 as AdministrationID,
+		   'А' as Section
+	FROM dual
+
+	UNION ALL
+
+	SELECT 6 + (SELECT COUNT(*) FROM PMIS_RES.MilReadiness) as StatusID,
+		   'Свободни' as StatusName,
+		   6 + (SELECT COUNT(*) FROM PMIS_RES.MilReadiness) as StatusOrder,
+		   0 as MilReadinessID,
+		   0 as AdministrationID,
+		   'А' as Section
+	FROM dual
+
+	UNION ALL
+
+	SELECT 7 + (SELECT COUNT(*) FROM PMIS_RES.MilReadiness) as StatusID,
+		   '   НГВС за мирно време' as StatusName,
+		   7 + (SELECT COUNT(*) FROM PMIS_RES.MilReadiness) as StatusOrder,
+		   0 as MilReadinessID,
+		   0 as AdministrationID,
+		   'А' as Section
+	FROM dual
+
+	UNION ALL
+
+	SELECT 8 + (SELECT COUNT(*) FROM PMIS_RES.MilReadiness) as StatusID,
+		   '   получили МН с ТНС' as StatusName,
+		   8 + (SELECT COUNT(*) FROM PMIS_RES.MilReadiness) as StatusOrder,
+		   0 as MilReadinessID,
+		   0 as AdministrationID,
+		   'А' as Section
+	FROM dual
+	
+	UNION ALL
+
+	SELECT 8 + (SELECT COUNT(*) FROM PMIS_RES.MilReadiness) + (DENSE_RANK() OVER (ORDER BY a.AdministrationName)) as StatusID,
+		   a.AdministrationName as StatusName,
+		   8 + (SELECT COUNT(*) FROM PMIS_RES.MilReadiness) + (DENSE_RANK() OVER (ORDER BY a.AdministrationName)) as StatusOrder,
+		   0 as MilReadinessID,
+		   a.AdministrationID,
+		   'Б' as Section
+	FROM PMIS_ADM.Administrations a
+	
+	UNION ALL
+
+	SELECT 9 + (SELECT COUNT(*) FROM PMIS_RES.MilReadiness) + (SELECT COUNT(*) FROM PMIS_ADM.Administrations) as StatusID,
+		   'Доставят се направо' as StatusName,
+		   9 + (SELECT COUNT(*) FROM PMIS_RES.MilReadiness) + (SELECT COUNT(*) FROM PMIS_ADM.Administrations) as StatusOrder,
+		   0 as MilReadinessID,
+		   0 as AdministrationID,
+		   'В' as Section
+	FROM dual
+	
+	UNION ALL
+
+	SELECT 10 + (SELECT COUNT(*) FROM PMIS_RES.MilReadiness) + (SELECT COUNT(*) FROM PMIS_ADM.Administrations) as StatusID,
+		   'Доставят се чрез ПИз' as StatusName,
+		   10 + (SELECT COUNT(*) FROM PMIS_RES.MilReadiness) + (SELECT COUNT(*) FROM PMIS_ADM.Administrations) as StatusOrder,
+		   0 as MilReadinessID,
+		   0 as AdministrationID,
+		   'В' as Section
+	FROM dual
+;
+/
+CREATE OR REPLACE VIEW PMIS_RES.ViewReportNormativeTechnics
+AS 
+SELECT 1 as NormativeLevel,
+       MIN(LPAD(a.NormativeCode, 5, '0')) as OrderCode,
+       '' as NormativeCode,
+       0 as NormativeTechnicsID,
+       TO_CHAR(RANK() OVER (ORDER BY MIN(LPAD(a.NormativeCode, 5, '0')))) || '. ' || a.NormativeLevel1 as NormativeName,
+       a.NormativeLevel1,
+       '' as NormativeLevel2,
+       '' as NormativeLevel3,
+       '' as NormativeLevel4,
+       '' as NormativeLevel5,
+       '' as NormativeLevel6
+FROM PMIS_RES.NormativeTechnics a
+WHERE a.NormativeLevel1 IS NOT NULL
+GROUP BY a.NormativeLevel1
+
+UNION ALL
+
+SELECT 2 as NormativeLevel,
+       MIN(LPAD(a.NormativeCode, 5, '0')) as OrderCode,
+       '' as NormativeCode,
+       0 as NormativeTechnicsID,
+       TO_CHAR(b.TreeNumber) || '. ' ||
+       TO_CHAR(RANK() OVER (PARTITION BY a.NormativeLevel1 ORDER BY MIN(LPAD(a.NormativeCode, 5, '0')))) || '. ' || a.NormativeLevel2 as NormativeName,
+       a.NormativeLevel1,
+       a.NormativeLevel2,
+       '' as NormativeLevel3,
+       '' as NormativeLevel4,
+       '' as NormativeLevel5,
+       '' as NormativeLevel6
+FROM PMIS_RES.NormativeTechnics a
+LEFT OUTER JOIN (SELECT a.NormativeLevel1,
+                        MIN(LPAD(a.NormativeCode, 5, '0')) as MinCode,
+                        RANK() OVER (ORDER BY MIN(LPAD(a.NormativeCode, 5, '0'))) as TreeNumber
+                 FROM PMIS_RES.NormativeTechnics a
+                 GROUP BY a.NormativeLevel1) b ON a.NormativeLevel1 = b.NormativeLevel1
+WHERE a.NormativeLevel1 IS NOT NULL AND a.NormativeLevel2 IS NOT NULL
+GROUP BY a.NormativeLevel1, b.MinCode, b.TreeNumber, a.NormativeLevel2
+
+UNION ALL
+
+SELECT 3 as NormativeLevel,
+       MIN(LPAD(a.NormativeCode, 5, '0')) as OrderCode,
+       '' as NormativeCode,
+       0 as NormativeTechnicsID,
+       TO_CHAR(b.TreeNumber) || '. ' ||
+       TO_CHAR(c.TreeNumber) || '. ' ||
+       TO_CHAR(RANK() OVER (PARTITION BY a.NormativeLevel1, a.NormativeLevel2 ORDER BY MIN(LPAD(a.NormativeCode, 5, '0')))) || '. ' || a.NormativeLevel3 as NormativeName,
+       a.NormativeLevel1,
+       a.NormativeLevel2,
+       a.NormativeLevel3,
+       '' as NormativeLevel4,
+       '' as NormativeLevel5,
+       '' as NormativeLevel6
+FROM PMIS_RES.NormativeTechnics a
+LEFT OUTER JOIN (SELECT a.NormativeLevel1,
+                        MIN(LPAD(a.NormativeCode, 5, '0')) as MinCode,
+                        RANK() OVER (ORDER BY MIN(LPAD(a.NormativeCode, 5, '0'))) as TreeNumber
+                 FROM PMIS_RES.NormativeTechnics a
+                 GROUP BY a.NormativeLevel1) b ON a.NormativeLevel1 = b.NormativeLevel1
+LEFT OUTER JOIN (SELECT a.NormativeLevel1, a.NormativeLevel2,
+                        MIN(LPAD(a.NormativeCode, 5, '0')) as MinCode,
+                        RANK() OVER (PARTITION BY a.NormativeLevel1 ORDER BY MIN(LPAD(a.NormativeCode, 5, '0'))) as TreeNumber
+                 FROM PMIS_RES.NormativeTechnics a
+                 GROUP BY a.NormativeLevel1, a.NormativeLevel2) c ON a.NormativeLevel1 = c.NormativeLevel1 AND
+                                                                     a.NormativeLevel2 = c.NormativeLevel2
+WHERE a.NormativeLevel1 IS NOT NULL AND a.NormativeLevel2 IS NOT NULL AND a.NormativeLevel3 IS NOT NULL
+GROUP BY a.NormativeLevel1, b.MinCode, b.TreeNumber, a.NormativeLevel2, c.MinCode, c.TreeNumber, a.NormativeLevel3
+
+UNION ALL
+
+SELECT 4 as NormativeLevel,
+       MIN(LPAD(a.NormativeCode, 5, '0')) as OrderCode,
+       '' as NormativeCode,
+       0 as NormativeTechnicsID,
+       TO_CHAR(b.TreeNumber) || '. ' ||
+       TO_CHAR(c.TreeNumber) || '. ' ||
+       TO_CHAR(d.TreeNumber) || '. ' ||
+       TO_CHAR(RANK() OVER (PARTITION BY a.NormativeLevel1, a.NormativeLevel2, a.NormativeLevel3 ORDER BY MIN(LPAD(a.NormativeCode, 5, '0')))) || '. ' || a.NormativeLevel4 as NormativeName,
+       a.NormativeLevel1,
+       a.NormativeLevel2,
+       a.NormativeLevel3,
+       a.NormativeLevel4,
+       '' as NormativeLevel5,
+       '' as NormativeLevel6
+FROM PMIS_RES.NormativeTechnics a
+LEFT OUTER JOIN (SELECT a.NormativeLevel1,
+                        MIN(LPAD(a.NormativeCode, 5, '0')) as MinCode,
+                        RANK() OVER (ORDER BY MIN(LPAD(a.NormativeCode, 5, '0'))) as TreeNumber
+                 FROM PMIS_RES.NormativeTechnics a
+                 GROUP BY a.NormativeLevel1) b ON a.NormativeLevel1 = b.NormativeLevel1
+LEFT OUTER JOIN (SELECT a.NormativeLevel1, a.NormativeLevel2,
+                        MIN(LPAD(a.NormativeCode, 5, '0')) as MinCode,
+                        RANK() OVER (PARTITION BY a.NormativeLevel1 ORDER BY MIN(LPAD(a.NormativeCode, 5, '0'))) as TreeNumber
+                 FROM PMIS_RES.NormativeTechnics a
+                 GROUP BY a.NormativeLevel1, a.NormativeLevel2) c ON a.NormativeLevel1 = c.NormativeLevel1 AND
+                                                                     a.NormativeLevel2 = c.NormativeLevel2
+LEFT OUTER JOIN (SELECT a.NormativeLevel1, a.NormativeLevel2, a.NormativeLevel3,
+                        MIN(LPAD(a.NormativeCode, 5, '0')) as MinCode,
+                        RANK() OVER (PARTITION BY a.NormativeLevel1, a.NormativeLevel2 ORDER BY MIN(LPAD(a.NormativeCode, 5, '0'))) as TreeNumber
+                 FROM PMIS_RES.NormativeTechnics a
+                 GROUP BY a.NormativeLevel1, a.NormativeLevel2, a.NormativeLevel3) d ON a.NormativeLevel1 = d.NormativeLevel1 AND
+                                                                                        a.NormativeLevel2 = d.NormativeLevel2 AND
+                                                                                        a.NormativeLevel3 = d.NormativeLevel3
+WHERE a.NormativeLevel1 IS NOT NULL AND a.NormativeLevel2 IS NOT NULL AND a.NormativeLevel3 IS NOT NULL AND a.NormativeLevel4 IS NOT NULL
+GROUP BY a.NormativeLevel1, b.MinCode, b.TreeNumber, a.NormativeLevel2, c.MinCode, c.TreeNumber, a.NormativeLevel3, d.MinCode, d.TreeNumber, a.NormativeLevel4
+
+UNION ALL
+
+SELECT 5 as NormativeLevel,
+       MIN(LPAD(a.NormativeCode, 5, '0')) as OrderCode,
+       '' as NormativeCode,
+       0 as NormativeTechnicsID,
+       TO_CHAR(b.TreeNumber) || '. ' ||
+       TO_CHAR(c.TreeNumber) || '. ' ||
+       TO_CHAR(d.TreeNumber) || '. ' ||
+       TO_CHAR(e.TreeNumber) || '. ' ||
+       TO_CHAR(RANK() OVER (PARTITION BY a.NormativeLevel1, a.NormativeLevel2, a.NormativeLevel3, a.NormativeLevel4 ORDER BY MIN(LPAD(a.NormativeCode, 5, '0')))) || '. ' || a.NormativeLevel5 as NormativeName,
+       a.NormativeLevel1,
+       a.NormativeLevel2,
+       a.NormativeLevel3,
+       a.NormativeLevel4,
+       a.NormativeLevel5,
+       '' as NormativeLevel6
+FROM PMIS_RES.NormativeTechnics a
+LEFT OUTER JOIN (SELECT a.NormativeLevel1,
+                        MIN(LPAD(a.NormativeCode, 5, '0')) as MinCode,
+                        RANK() OVER (ORDER BY MIN(LPAD(a.NormativeCode, 5, '0'))) as TreeNumber
+                 FROM PMIS_RES.NormativeTechnics a
+                 GROUP BY a.NormativeLevel1) b ON a.NormativeLevel1 = b.NormativeLevel1
+LEFT OUTER JOIN (SELECT a.NormativeLevel1, a.NormativeLevel2,
+                        MIN(LPAD(a.NormativeCode, 5, '0')) as MinCode,
+                        RANK() OVER (PARTITION BY a.NormativeLevel1 ORDER BY MIN(LPAD(a.NormativeCode, 5, '0'))) as TreeNumber
+                 FROM PMIS_RES.NormativeTechnics a
+                 GROUP BY a.NormativeLevel1, a.NormativeLevel2) c ON a.NormativeLevel1 = c.NormativeLevel1 AND
+                                                                     a.NormativeLevel2 = c.NormativeLevel2
+LEFT OUTER JOIN (SELECT a.NormativeLevel1, a.NormativeLevel2, a.NormativeLevel3,
+                        MIN(LPAD(a.NormativeCode, 5, '0')) as MinCode,
+                        RANK() OVER (PARTITION BY a.NormativeLevel1, a.NormativeLevel2 ORDER BY MIN(LPAD(a.NormativeCode, 5, '0'))) as TreeNumber
+                 FROM PMIS_RES.NormativeTechnics a
+                 GROUP BY a.NormativeLevel1, a.NormativeLevel2, a.NormativeLevel3) d ON a.NormativeLevel1 = d.NormativeLevel1 AND
+                                                                                        a.NormativeLevel2 = d.NormativeLevel2 AND
+                                                                                        a.NormativeLevel3 = d.NormativeLevel3
+LEFT OUTER JOIN (SELECT a.NormativeLevel1, a.NormativeLevel2, a.NormativeLevel3, a.NormativeLevel4,
+                        MIN(LPAD(a.NormativeCode, 5, '0')) as MinCode,
+                        RANK() OVER (PARTITION BY a.NormativeLevel1, a.NormativeLevel2, a.NormativeLevel3 ORDER BY MIN(LPAD(a.NormativeCode, 5, '0'))) as TreeNumber
+                 FROM PMIS_RES.NormativeTechnics a
+                 GROUP BY a.NormativeLevel1, a.NormativeLevel2, a.NormativeLevel3, a.NormativeLevel4) e ON a.NormativeLevel1 = e.NormativeLevel1 AND
+                                                                                                           a.NormativeLevel2 = e.NormativeLevel2 AND
+                                                                                                           a.NormativeLevel3 = e.NormativeLevel3 AND
+                                                                                                           a.NormativeLevel4 = e.NormativeLevel4
+WHERE a.NormativeLevel1 IS NOT NULL AND a.NormativeLevel2 IS NOT NULL AND a.NormativeLevel3 IS NOT NULL AND a.NormativeLevel4 IS NOT NULL AND a.NormativeLevel5 IS NOT NULL
+GROUP BY a.NormativeLevel1, b.MinCode, b.TreeNumber, a.NormativeLevel2, c.MinCode, c.TreeNumber, a.NormativeLevel3, d.MinCode, d.TreeNumber, a.NormativeLevel4, e.MinCode, e.TreeNumber, a.NormativeLevel5
+
+UNION ALL
+
+SELECT 6 as NormativeLevel,
+       e.MinCode as OrderCode,
+       a.NormativeCode,
+       a.NormativeTechnicsID,
+       a.NormativeName,
+       a.NormativeLevel1,
+       a.NormativeLevel2,
+       a.NormativeLevel3,
+       a.NormativeLevel4,
+       a.NormativeLevel5,
+       a.NormativeName as NormativeLevel6
+FROM PMIS_RES.NormativeTechnics a
+LEFT OUTER JOIN (SELECT a.NormativeLevel1, a.NormativeLevel2, a.NormativeLevel3, a.NormativeLevel4, a.NormativeLevel5,
+                        MIN(LPAD(a.NormativeCode, 5, '0')) as MinCode
+                 FROM PMIS_RES.NormativeTechnics a
+                 GROUP BY a.NormativeLevel1, a.NormativeLevel2, a.NormativeLevel3, a.NormativeLevel4, a.NormativeLevel5) e ON NVL(a.NormativeLevel1, '_') = NVL(e.NormativeLevel1, '_') AND
+                                                                                                                              NVL(a.NormativeLevel2, '_') = NVL(e.NormativeLevel2, '_') AND
+                                                                                                                              NVL(a.NormativeLevel3, '_') = NVL(e.NormativeLevel3, '_') AND
+                                                                                                                              NVL(a.NormativeLevel4, '_') = NVL(e.NormativeLevel4, '_') AND
+                                                                                                                              NVL(a.NormativeLevel5, '_') = NVL(e.NormativeLevel5, '_')
+
+;
+/
+GRANT ALL ON PMIS_RES.ViewA31 TO PMIS_USER_ROLE;
+GRANT ALL ON PMIS_RES.ViewA33 TO PMIS_USER_ROLE;
+GRANT ALL ON PMIS_RES.ViewReportNormativeTechnics TO PMIS_USER_ROLE;
+GRANT ALL ON PMIS_RES.NormativeTechnics TO PMIS_USER_ROLE;
+GRANT ALL ON PMIS_RES.NormativeTechnics_ID_SEQ TO PMIS_USER_ROLE;
+
+/
+

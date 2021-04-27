@@ -1,0 +1,21 @@
+﻿DECLARE
+   i number;
+   offset number := 200;
+BEGIN
+   i := 1;
+
+   WHILE i < 1000 LOOP
+      INSERT INTO UKAZ_OWNER.MIR (KOD_MIR, VPN, IMEES, IMEED, NSTAT,
+        KOD_NMA, KOD_VOE, KOD_EZ, KOD_NZN, KOD_RNV, KOD_LIM,  KOD_REJ,
+        DATA, MM, KOD_TIP, N_ZAP, DATA_ZAP, POZIVNA, VID_OE, O_DEJUREN, AKTUAL)
+      VALUES (offset + i, '9'||to_char(i), 'Варна - Тест #' || to_char(offset  +i), 'Варна - Тест #' || to_char(offset  +i), '', 
+         (select kod_nma from ukaz_owner.kl_nma where ime_nma = 'Варна'), 1, 1, 1, NULL, NULL, NULL,
+          SYSDATE, NULL, 1, NULL, NULL, NULL, 'P', NULL, 1);
+          
+      INSERT INTO UKAZ_OWNER.STRM (KOD_MIR, KP_STRM, NIVO_STRM, STR_KOD_MIR, POREDEN_STRM, LAST_STRM)
+      VALUES (offset + i, '0 2 '||to_char(offset + i), 1, 2, i, 1);
+      
+       i := i + 1;
+   END LOOP;
+END;
+/

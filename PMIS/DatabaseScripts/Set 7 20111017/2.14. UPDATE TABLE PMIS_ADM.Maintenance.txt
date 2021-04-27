@@ -1,0 +1,42 @@
+﻿INSERT INTO PMIS_ADM.Maintenance(MaintKey, HeaderTitle, DataTable, GTableTableName,
+   FldList, UpdtList, KeyFld, CanDelete, CanAdd, MasterTable, MasterField,
+   ChangeTypeKey, InsertChangeEventTypeKey, UpdateChangeEventTypeKey, DeleteChangeEventTypeKey,
+   MenuItemKey, UIKeyMaintenance, UIKeyDelete, UIKeyEdit, UIKeyAdd, ModuleID)
+VALUES ('HS_Probabilities', 'Определяне (класифициране) на вероятността - В', 'PMIS_HS.Probabilities', NULL, 
+ 'ProbabilityID[HIDDEN], ProbabilityFactor, ProbabilityName', 'ProbabilityFactor, ProbabilityName', 'ProbabilityID', 1, 1, '', '',
+ 'HS_Lists_Probabilities', 'HS_Lists_Probabilities_AddProbability', 'HS_Lists_Probabilities_EditProbability', 'HS_Lists_Probabilities_DeleteProbability',
+ 'Lists_HS_Probabilities', 'HS_LISTMAINT_PROBABILITIES', 'HS_LISTMAINT_PROBABILITIES_DELETE', 'HS_LISTMAINT_PROBABILITIES_EDIT', 'HS_LISTMAINT_PROBABILITIES_ADD',
+ (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'));
+
+INSERT INTO PMIS_ADM.Maintenance(MaintKey, HeaderTitle, DataTable, GTableTableName,
+   FldList, UpdtList, KeyFld, CanDelete, CanAdd, MasterTable, MasterField,
+   ChangeTypeKey, InsertChangeEventTypeKey, UpdateChangeEventTypeKey, DeleteChangeEventTypeKey,
+   MenuItemKey, UIKeyMaintenance, UIKeyDelete, UIKeyEdit, UIKeyAdd, ModuleID)
+VALUES ('HS_Exposure', 'Определяне (класифициране) на честотата, продължителността (експозицията) и спецификата на излагане - Е', 'PMIS_HS.Exposure', NULL, 
+ 'ExposureID[HIDDEN], ExposureFactor, ExposureName', 'ExposureFactor, ExposureName', 'ExposureID', 1, 1, '', '',
+ 'HS_Lists_Exposure', 'HS_Lists_Exposure_AddExposure', 'HS_Lists_Exposure_EditExposure', 'HS_Lists_Exposure_DeleteExposure',
+ 'Lists_HS_Exposure', 'HS_LISTMAINT_EXPOSURE', 'HS_LISTMAINT_EXPOSURE_DELETE', 'HS_LISTMAINT_EXPOSURE_EDIT', 'HS_LISTMAINT_EXPOSURE_ADD',
+ (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'));
+ 
+INSERT INTO PMIS_ADM.Maintenance(MaintKey, HeaderTitle, DataTable, GTableTableName,
+   FldList, UpdtList, KeyFld, CanDelete, CanAdd, MasterTable, MasterField,
+   ChangeTypeKey, InsertChangeEventTypeKey, UpdateChangeEventTypeKey, DeleteChangeEventTypeKey,
+   MenuItemKey, UIKeyMaintenance, UIKeyDelete, UIKeyEdit, UIKeyAdd, ModuleID)
+VALUES ('HS_EffectWeight', 'Определяне (класифициране) на тежестта (последиците) - Т', 'PMIS_HS.EffectWeight', NULL, 
+ 'EffectWeightID[HIDDEN], EffectWeightFactor, EffectWeightName, EffectWeightDesc', 'EffectWeightFactor, EffectWeightName, EffectWeightDesc', 'EffectWeightID', 1, 1, '', '',
+ 'HS_Lists_EffectWeight', 'HS_Lists_EffectWeight_AddEffectWeight', 'HS_Lists_EffectWeight_EditEffectWeight', 'HS_Lists_EffectWeight_DeleteEffectWeight',
+ 'Lists_HS_EffectWeight', 'HS_LISTMAINT_EFFECTWEIGHT', 'HS_LISTMAINT_EFFECTWEIGHT_DELETE', 'HS_LISTMAINT_EFFECTWEIGHT_EDIT', 'HS_LISTMAINT_EFFECTWEIGHT_ADD',
+ (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'));
+ 
+INSERT INTO PMIS_ADM.Maintenance(MaintKey, HeaderTitle, DataTable, GTableTableName,
+   FldList, UpdtList, KeyFld, CanDelete, CanAdd, MasterTable, MasterField,
+   ChangeTypeKey, InsertChangeEventTypeKey, UpdateChangeEventTypeKey, DeleteChangeEventTypeKey,
+   MenuItemKey, UIKeyMaintenance, UIKeyDelete, UIKeyEdit, UIKeyAdd, ModuleID)
+VALUES ('HS_RiskRank', 'Класифициране на риска', 'PMIS_HS.RiskRank', NULL, 
+ 'RiskRankID[HIDDEN], RiskRank, RiskRankFrom, RiskRankTo, RiskRankName', 'RiskRank, RiskRankFrom, RiskRankTo, RiskRankName', 'RiskRankID', 1, 1, '', '',
+ 'HS_Lists_RiskRank', 'HS_Lists_RiskRank_AddRiskRank', 'HS_Lists_RiskRank_EditRiskRank', 'HS_Lists_RiskRank_DeleteRiskRank',
+ 'Lists_HS_RiskRank', 'HS_LISTMAINT_RISKRANK', 'HS_LISTMAINT_RISKRANK_DELETE', 'HS_LISTMAINT_RISKRANK_EDIT', 'HS_LISTMAINT_RISKRANK_ADD',
+ (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'));
+ 
+COMMIT;
+/

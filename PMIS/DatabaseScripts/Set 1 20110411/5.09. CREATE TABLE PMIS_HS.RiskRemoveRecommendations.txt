@@ -1,0 +1,22 @@
+﻿CREATE TABLE PMIS_HS.RiskRemoveRecommendations(RiskRemoveRecommendationID number NOT NULL,
+                              RiskAssessmentID number,
+                              Recommendations varchar2(4000),
+                              DueDate date,
+                              ExecutionDate date
+                              );
+
+ALTER TABLE PMIS_HS.RiskRemoveRecommendations ADD CONSTRAINT RiskRemoveRecommendations_PK PRIMARY KEY(RiskRemoveRecommendationID);
+ALTER TABLE PMIS_HS.RiskRemoveRecommendations ADD CONSTRAINT RRRecommendations_RiskAss_FK FOREIGN KEY (RiskAssessmentID) REFERENCES PMIS_HS.RiskAssessments (RiskAssessmentID);
+
+CREATE SEQUENCE PMIS_HS.RRRecommendations_ID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+CREATE TRIGGER PMIS_HS.TRG_RRRecommendations_INSERT
+BEFORE INSERT ON PMIS_HS.RiskRemoveRecommendations
+FOR EACH ROW
+BEGIN
+   SELECT PMIS_HS.RRRecommendations_ID_SEQ.nextval INTO :new.RiskRemoveRecommendationID FROM dual;
+END;
+/

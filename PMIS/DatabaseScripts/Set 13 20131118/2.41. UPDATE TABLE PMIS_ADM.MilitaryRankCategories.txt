@@ -1,0 +1,7 @@
+﻿
+UPDATE PMIS_ADM.MilitaryRankCategories SET
+   MilitaryRankSubCategory = 3
+WHERE ZVA_KAT_KOD = '55';
+
+COMMIT;
+/

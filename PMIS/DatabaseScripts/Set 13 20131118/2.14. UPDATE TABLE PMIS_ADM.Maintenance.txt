@@ -1,0 +1,98 @@
+﻿
+UPDATE PMIS_ADM.Maintenance SET
+   HeaderTitle = 'Видове каросерии на ремаркета и полуремаркета'
+WHERE MaintKey = 'RES_TrailerBodyKind';
+
+UPDATE PMIS_ADM.Maintenance SET
+   HeaderTitle = 'Видове ремаркета и полуремаркета'
+WHERE MaintKey = 'RES_TrailerKind';
+
+UPDATE PMIS_ADM.Maintenance SET
+   HeaderTitle = 'Типове ремаркета и полуремаркета'
+WHERE MaintKey = 'RES_TrailerType';
+ 
+
+
+UPDATE PMIS_ADM.Maintenance SET
+   HeaderTitle = 'Видове базови машини (инж. машини)'
+WHERE MaintKey = 'RES_EngEquipBaseKind';
+
+UPDATE PMIS_ADM.Maintenance SET
+   HeaderTitle = 'Типове базови машини (инж. машини)'
+WHERE MaintKey = 'RES_EngEquipBaseType';
+
+UPDATE PMIS_ADM.Maintenance SET
+   HeaderTitle = 'Видове гориво за базова машина (инж. машини)'
+WHERE MaintKey = 'RES_EngEquipBaseEngineType';
+
+UPDATE PMIS_ADM.Maintenance SET
+   HeaderTitle = 'Видове работни органи (инж. машини)'
+WHERE MaintKey = 'RES_EngEquipWorkingBodyKind';
+
+UPDATE PMIS_ADM.Maintenance SET
+   HeaderTitle = 'Видове гориво за работен орган (инж. машини)'
+WHERE MaintKey = 'RES_EngEquipWorkBodyEngineType';
+
+UPDATE PMIS_ADM.Maintenance SET
+   HeaderTitle = 'Марки инж. машини'
+WHERE MaintKey = 'RES_EngEquipBaseMakeNames';
+
+UPDATE PMIS_ADM.Maintenance SET
+   HeaderTitle = 'Видове инж. машини'
+WHERE MaintKey = 'RES_EngEquipKind';
+
+UPDATE PMIS_ADM.Maintenance SET
+   HeaderTitle = 'Типове инж. машини'
+WHERE MaintKey = 'RES_EngEquipType';
+
+
+
+UPDATE PMIS_ADM.Maintenance SET
+   HeaderTitle = 'Видове самоходни машини'
+WHERE MaintKey = 'RES_MobileLiftingEquipKind';
+
+UPDATE PMIS_ADM.Maintenance SET
+   HeaderTitle = 'Типове самоходни машини'
+WHERE MaintKey = 'RES_MobileLiftingEquipType';
+
+
+
+UPDATE PMIS_ADM.Maintenance SET
+   HeaderTitle = 'Марки базови машини (спец. инж. и самолетообслужваща техника)'
+WHERE MaintKey = 'RES_AviationOtherBaseMachineMakeNames';
+
+UPDATE PMIS_ADM.Maintenance SET
+   HeaderTitle = 'Видове спец. инж. и самолетообслужваща техника'
+WHERE MaintKey = 'RES_AviationOtherKind';
+
+UPDATE PMIS_ADM.Maintenance SET
+   HeaderTitle = 'Видове базови машини (спец. инж. и самолетообслужваща техника)'
+WHERE MaintKey = 'RES_AviationOtherBaseMachineKind';
+
+UPDATE PMIS_ADM.Maintenance SET
+   HeaderTitle = 'Типове базови машини (спец. инж. и самолетообслужваща техника)'
+WHERE MaintKey = 'RES_AviationOtherBaseMachineType';
+
+UPDATE PMIS_ADM.Maintenance SET
+   HeaderTitle = 'Видове оборудване (спец. инж. и самолетообслужваща техника)'
+WHERE MaintKey = 'RES_AviationOtherEquipmentKind';
+
+UPDATE PMIS_ADM.Maintenance SET
+   HeaderTitle = 'Типове спец. инж. и самолетообслужваща техника'
+WHERE MaintKey = 'RES_AviationOtherType';      
+
+ 
+UPDATE PMIS_ADM.Maintenance SET
+   FldList = 'MilReadinessID[HIDDEN], MilReadinessName, MilReadinessCmdType',
+   UpdtList = 'MilReadinessName, MilReadinessCmdType'
+WHERE MaintKey = 'RES_MilitaryReadinessNames';
+
+
+UPDATE PMIS_ADM.Maintenance SET
+   FldList = 'AdministrationID[HIDDEN], AdministrationName, AdministrationGroup, AdministrationGroupSeq',
+   UpdtList = 'AdministrationName, AdministrationGroup, AdministrationGroupSeq'
+WHERE MaintKey = 'ADM_Administrations';
+ 
+ 
+COMMIT;
+/

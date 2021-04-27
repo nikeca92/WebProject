@@ -1,0 +1,28 @@
+﻿CREATE TABLE PMIS_RES.EquipmentReservistsRequests(EquipmentReservistsRequestID number NOT NULL,
+                                                  RequestNumber varchar2(300),
+                                                  RequestDate date,
+                                                  EquipWithResRequestsStatusID number, 
+                                                  MilitaryUnitID number,
+                                                  AdministrationID number,
+                                                  CreatedBy number,
+                                                  CreatedDate date,
+                                                  LastModifiedBy number,
+                                                  LastModifiedDate date
+                                                 );
+
+ALTER TABLE PMIS_RES.EquipmentReservistsRequests ADD CONSTRAINT EquipResRequests_PK PRIMARY KEY(EquipmentReservistsRequestID);
+ALTER TABLE PMIS_RES.EquipmentReservistsRequests ADD CONSTRAINT EquipResRequests_ReqStat_FK FOREIGN KEY (EquipWithResRequestsStatusID) REFERENCES PMIS_RES.EquipWithResRequestsStatuses (EquipWithResRequestsStatusID);
+
+
+CREATE SEQUENCE PMIS_RES.EquipResRequests_ID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+CREATE TRIGGER PMIS_RES.TRG_EquipResRequests_INSERT
+BEFORE INSERT ON PMIS_RES.EquipmentReservistsRequests
+FOR EACH ROW
+BEGIN
+   SELECT PMIS_RES.EquipResRequests_ID_SEQ.nextval INTO :new.EquipmentReservistsRequestID FROM dual;
+END;
+/

@@ -1,0 +1,59 @@
+﻿UPDATE PMIS_ADM.Fields
+SET fieldname = 'Дата на промяна'
+WHERE FieldKey = 'RES_Reservist_MilRepStatus_EnrolDate';
+
+UPDATE PMIS_ADM.Fields
+SET fieldname = 'Дата на промяна'
+WHERE FieldKey = 'RES_Technics_MilRepStatus_EnrolDate';
+
+INSERT INTO PMIS_ADM.Fields (fieldtype, fieldkey, fieldname, seq)
+VALUES ('string', 'RES_Reservist_MilRepStatus_VoluntaryExpireDate', 'изтича на', 6);
+
+INSERT INTO PMIS_ADM.Fields (fieldtype, fieldkey, fieldname, seq)
+VALUES ('string', 'RES_EquipResReq_Command_Position_Seq', 'Подредба', 1);
+
+INSERT INTO PMIS_ADM.Fields(fieldtype, fieldkey, fieldname, seq) 
+VALUES('string', 'RES_Lists_MilitaryReadinesses_MilitaryReadinessPrintSymbol', 'Символ за печат', 3);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('bool', 'RES_Reservist_MilRepStatus_IsSuitableForMobAppointment', 'Подходящ за МН', 4);
+
+INSERT INTO PMIS_ADM.Fields (fieldtype, fieldkey, fieldname, seq)
+VALUES ('string', 'RES_Lists_MilitaryReadinesses_Administration', 'Приложимо за ведомство', 5);
+
+INSERT INTO PMIS_ADM.Fields (fieldtype, fieldkey, fieldname, seq)
+VALUES ('bool', 'ADM_Lists_Administrations_ReportA33Breakdown', 'Детайли на сведение за състоянието на ресурсите', 4);
+
+INSERT INTO  PMIS_ADM.Fields(FieldType, FieldKey, FieldName, Seq)
+VALUES('bool', 'RES_Reservist_MilServ_MilitaryRan_DR', 'ДР', 6);
+
+INSERT INTO  PMIS_ADM.Fields(FieldType, FieldKey, FieldName, Seq)
+VALUES('bool', 'RES_Reservist_MilServ_ArchiveTitle_DR', 'ДР', 6);
+
+INSERT INTO  PMIS_ADM.Fields(FieldType, FieldKey, FieldName, Seq)
+VALUES('string', 'RES_Reservist_MilServ_Contract_ContractDuration', 'Срок на договора', 5);
+
+INSERT INTO  PMIS_ADM.Fields(FieldType, FieldKey, FieldName, Seq)
+VALUES('date', 'RES_Reservist_MilServ_Contract_MilitaryServiceTo', 'Военна служба до', 6);
+
+INSERT INTO  PMIS_ADM.Fields(FieldType, FieldKey, FieldName, Seq)
+VALUES('string', 'RES_Reservist_EduWork_MltEdu_VU_VitoshaMilitaryReportSpeciality', 'ВОС', 8);
+
+INSERT INTO  PMIS_ADM.Fields(FieldType, FieldKey, FieldName, Seq)
+VALUES('string', 'RES_Reservist_EduWork_MltEdu_VA_VitoshaMilitaryReportSpeciality', 'ВОС', 8);
+
+INSERT INTO  PMIS_ADM.Fields(FieldType, FieldKey, FieldName, Seq)
+VALUES('string', 'RES_Reservist_EduWork_MltTrCource_VitoshaMilitaryReportSpeciality', 'ВОС', 13);
+
+INSERT INTO  PMIS_ADM.Fields(FieldType, FieldKey, FieldName, Seq)
+VALUES('string', 'RES_Reservist_EduWork_Speciality_Profession', 'Професия', 1);
+
+INSERT INTO  PMIS_ADM.Fields(FieldType, FieldKey, FieldName, Seq)
+VALUES('string', 'RES_Reservist_EduWork_Speciality_Speciality', 'Специалност', 2);
+
+UPDATE PMIS_ADM.Fields SET 
+    fieldname = 'Причина за освобождаване от ВС'
+WHERE FieldKey = 'RES_Reservist_MilServ_Discharge_DischargeReason';
+
+COMMIT;
+/

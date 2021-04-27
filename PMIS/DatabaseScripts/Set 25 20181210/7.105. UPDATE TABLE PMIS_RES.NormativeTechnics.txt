@@ -1,0 +1,31 @@
+﻿UPDATE PMIS_RES.NormativeTechnics SET
+   Veh_VehicleKindID = (SELECT TableKey FROM PMIS_RES.GTable WHERE TableName = 'VehicleKind' AND TableValue = 'Лек')
+WHERE TechnicsTypeID = (SELECT TechnicsTypeID FROM PMIS_RES.TechnicsTypes WHERE TechnicsTypeKey = 'VEHICLES') AND
+      NormativeCode IN ('6');
+      
+UPDATE PMIS_RES.NormativeTechnics SET
+   Veh_VehicleKindID = (SELECT TableKey FROM PMIS_RES.GTable WHERE TableName = 'VehicleKind' AND TableValue = 'Товарен')
+WHERE TechnicsTypeID = (SELECT TechnicsTypeID FROM PMIS_RES.TechnicsTypes WHERE TechnicsTypeKey = 'VEHICLES') AND
+      NormativeCode IN ('9', '10', '11', '12', '14', '16', '17', '18', '19', '20', '22', '25', '26', '27', '28', '32', '33', '34', '35', '36', '40', '41', '42', '43', '47', '48', '49', '50', '51');
+      
+UPDATE PMIS_RES.NormativeTechnics SET
+   Veh_VehicleKindID = (SELECT TableKey FROM PMIS_RES.GTable WHERE TableName = 'VehicleKind' AND TableValue = 'Специален')
+WHERE TechnicsTypeID = (SELECT TechnicsTypeID FROM PMIS_RES.TechnicsTypes WHERE TechnicsTypeKey = 'VEHICLES') AND
+      NormativeCode IN ('53', '54', '55', '61', '62', '63', '65', '66', '67', '68', '70', '71', '72', '73', '74', '75', '76', '78', '79', '80', '81', '82', '83', '85', '86', '87', '88', '89', '90', '91', '92', '93', '94', '95', '100', '101', '102', '103', '104', '110', '111', '112', '113', '114', '115', '116', '118', '119', '120', '123', '124');
+      
+UPDATE PMIS_RES.NormativeTechnics SET
+   Veh_VehicleKindID = (SELECT TableKey FROM PMIS_RES.GTable WHERE TableName = 'VehicleKind' AND TableValue = 'Автобус')
+WHERE TechnicsTypeID = (SELECT TechnicsTypeID FROM PMIS_RES.TechnicsTypes WHERE TechnicsTypeKey = 'VEHICLES') AND
+      NormativeCode IN ('125', '126', '127');
+
+DELETE FROM PMIS_RES.NormativeTechnics
+WHERE normativecode = 189;
+
+UPDATE PMIS_RES.NormativeTechnics
+SET normativelevel5 = normativelevel4,
+    normativelevel4 = 'Ескаватори'
+WHERE normativecode IN (190, 191, 193, 194);
+
+COMMIT;
+
+/

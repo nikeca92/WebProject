@@ -1,0 +1,321 @@
+﻿CREATE TABLE PMIS_ADM.ChangeTypes(ChangeTypeID number NOT NULL,
+                         ChangeTypeKey varchar2(500) NOT NULL,
+                         ChangeType varchar2(300),
+                         ModuleID number NOT NULL
+                        );
+
+ALTER TABLE PMIS_ADM.ChangeTypes ADD CONSTRAINT CHANGETYPES_PK PRIMARY KEY(ChangeTypeID);
+ALTER TABLE PMIS_ADM.ChangeTypes ADD CONSTRAINT ChangeTypes_Modules_FK FOREIGN KEY (ModuleID) REFERENCES PMIS_ADM.Modules (ModuleID);
+ALTER TABLE PMIS_ADM.ChangeTypes ADD CONSTRAINT ChangeTypes_UNQ UNIQUE (ChangeTypeKey);
+
+CREATE SEQUENCE PMIS_ADM.CHANGETYPES_ID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+CREATE TRIGGER PMIS_ADM.TRG_CHANGETYPES_INSERT
+BEFORE INSERT ON PMIS_ADM.ChangeTypes
+FOR EACH ROW
+BEGIN
+   SELECT PMIS_ADM.CHANGETYPES_ID_SEQ.nextval INTO :new.ChangeTypeID FROM dual;
+END;
+/
+
+
+INSERT INTO PMIS_ADM.ChangeTypes (ChangeTypeKey, ChangeType, ModuleID)
+VALUES ('HS_Protocols', 'Протоколи', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'));
+
+INSERT INTO PMIS_ADM.ChangeTypes (ChangeTypeKey, ChangeType, ModuleID)
+VALUES ('ADM_Roles', 'Потребителски роли', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'ADM'));
+
+INSERT INTO PMIS_ADM.ChangeTypes (ChangeTypeKey, ChangeType, ModuleID)
+VALUES ('HS_InvProtocols', 'Протоколи за разследване', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'));
+
+INSERT INTO PMIS_ADM.ChangeTypes (ChangeTypeKey, ChangeType, ModuleID)
+VALUES ('ADM_UIItemsPerRole', 'Потребителски роли (права и достъп)', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'ADM'));
+
+INSERT INTO PMIS_ADM.ChangeTypes (ChangeTypeKey, ChangeType, ModuleID)
+VALUES ('ADM_MilStructureAccess', 'Потребители (права на достъп до военни структури)', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'ADM'));
+
+INSERT INTO PMIS_ADM.ChangeTypes (ChangeTypeKey, ChangeType, ModuleID)
+VALUES ('ADM_Users', 'Потребители', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'ADM'));
+
+INSERT INTO PMIS_ADM.ChangeTypes (ChangeTypeKey, ChangeType, ModuleID)
+VALUES ('ADM_UserProfile', 'Профил (Администратор)', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'ADM'));
+
+INSERT INTO PMIS_ADM.ChangeTypes (ChangeTypeKey, ChangeType, ModuleID)
+VALUES ('HS_UserProfile', 'Профил (Безопасност на труда)', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'));
+
+INSERT INTO PMIS_ADM.ChangeTypes (ChangeTypeKey, ChangeType, ModuleID)
+VALUES ('APPL_UserProfile', 'Профил (Кандидати)', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'APPL'));
+
+INSERT INTO PMIS_ADM.ChangeTypes (ChangeTypeKey, ChangeType, ModuleID)
+VALUES ('RES_UserProfile', 'Профил (Резерв)', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'));
+
+
+INSERT INTO PMIS_ADM.ChangeTypes (ChangeTypeKey, ChangeType, ModuleID)
+VALUES ('HS_Lists_ProtocolTypes', 'Класификатор "Измервания"', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'));
+
+INSERT INTO PMIS_ADM.ChangeTypes (ChangeTypeKey, ChangeType, ModuleID)
+VALUES ('HS_Lists_Measures', 'Класификатор "Измервани величини"', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'));
+
+INSERT INTO PMIS_ADM.ChangeTypes (ChangeTypeKey, ChangeType, ModuleID)
+VALUES ('HS_Lists_DegreeOfDangers', 'Класификатор "Степени на опасност"', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'));
+
+INSERT INTO PMIS_ADM.ChangeTypes (ChangeTypeKey, ChangeType, ModuleID)
+VALUES ('HS_Lists_IndicatorTypes', 'Елементи на специфичните условия на труд', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'));
+
+INSERT INTO PMIS_ADM.ChangeTypes (ChangeTypeKey, ChangeType, ModuleID)
+VALUES ('HS_Lists_Indicators', 'Показатели на елементите на специфични условия на труд', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'));
+
+INSERT INTO PMIS_ADM.ChangeTypes (ChangeTypeKey, ChangeType, ModuleID)
+VALUES ('ADM_Lists_MilitaryForceTypes', 'Класификатор "Въоръжени сили"', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'ADM'));
+
+INSERT INTO PMIS_ADM.ChangeTypes (ChangeTypeKey, ChangeType, ModuleID)
+VALUES ('ADM_Lists_MilitaryDepartments', 'Класификатор "Военни окръжия"', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'ADM'));
+
+INSERT INTO PMIS_ADM.ChangeTypes (ChangeTypeKey, ChangeType, ModuleID)
+VALUES ('ADM_Lists_Administrations', 'Класификатор "Ведомства"', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'ADM'));
+
+
+
+INSERT INTO PMIS_ADM.ChangeTypes (ChangeTypeKey, ChangeType, ModuleID)
+VALUES ('HS_RiskAssessments', 'Оценки на риска', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'));
+
+INSERT INTO PMIS_ADM.ChangeTypes (ChangeTypeKey, ChangeType, ModuleID)
+VALUES ('HS_UnsafeWCondNotices', 'Сведения за заболявания и наранявания свързани с работата', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'));
+
+INSERT INTO PMIS_ADM.ChangeTypes (ChangeTypeKey, ChangeType, ModuleID)
+VALUES ('HS_DeclAcc', 'Декларация за злополука', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'));
+
+INSERT INTO PMIS_ADM.ChangeTypes (ChangeTypeKey, ChangeType, ModuleID)
+VALUES ('HS_WorkplaceCondtitionsCard', 'Карти', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'));
+
+INSERT INTO PMIS_ADM.ChangeTypes (ChangeTypeKey, ChangeType, ModuleID)
+VALUES ('HS_TrainingHistory', 'Обучения', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'));
+
+INSERT INTO PMIS_ADM.ChangeTypes (ChangeTypeKey, ChangeType, ModuleID)
+VALUES ('HS_Committees', 'Комитети и групи', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'));
+
+
+
+
+INSERT INTO PMIS_ADM.ChangeTypes (ChangeTypeKey, ChangeType, ModuleID)
+VALUES ('APPL_VacancyAnnounces', 'Конкурси', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'APPL'));
+
+INSERT INTO PMIS_ADM.ChangeTypes (ChangeTypeKey, ChangeType, ModuleID)
+VALUES ('ADM_Lists_DrivingLicenseCategories', 'Класификатор "Шоф. книжка - категории"', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'ADM'));
+
+INSERT INTO PMIS_ADM.ChangeTypes (ChangeTypeKey, ChangeType, ModuleID)
+VALUES ('APPL_MilitaryDepartments', 'Класификатор "Военни окръжия"', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'APPL'));
+
+INSERT INTO PMIS_ADM.ChangeTypes (ChangeTypeKey, ChangeType, ModuleID)
+VALUES ('APPL_Documents', 'Класификатор "Документи"', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'APPL'));
+
+INSERT INTO PMIS_ADM.ChangeTypes (ChangeTypeKey, ChangeType, ModuleID)
+VALUES ('APPL_Exams', 'Класификатор "Изпити"', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'APPL'));
+
+INSERT INTO PMIS_ADM.ChangeTypes (ChangeTypeKey, ChangeType, ModuleID)
+VALUES ('APPL_Applicants', 'Кандидати', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'APPL'));
+
+INSERT INTO PMIS_ADM.ChangeTypes (ChangeTypeKey, ChangeType, ModuleID)
+VALUES ('APPL_PotencialApplicants', 'Потенциални кандидати', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'APPL'));
+
+
+
+INSERT INTO PMIS_ADM.ChangeTypes (ChangeTypeKey, ChangeType, ModuleID)
+VALUES ('RES_EquipmentReservistsRequests', 'Заявки за окомплектоване с ресурс от резерва', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'));
+
+
+INSERT INTO PMIS_ADM.ChangeTypes (ChangeTypeKey, ChangeType, ModuleID)
+VALUES ('APPL_Cadets', 'Курсанти', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'APPL'));
+
+
+INSERT INTO PMIS_ADM.ChangeTypes (ChangeTypeKey, ChangeType, ModuleID)
+VALUES ('APPL_MilitSchoolSpecializations', 'Специалности и специализации за военните училища', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'APPL'));
+
+
+INSERT INTO PMIS_ADM.ChangeTypes (ChangeTypeKey, ChangeType, ModuleID)
+VALUES ('RES_Reservists', 'Резерв - Човешки ресурси', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'));
+
+INSERT INTO PMIS_ADM.ChangeTypes (ChangeTypeKey, ChangeType, ModuleID)
+VALUES ('RES_Lists_SizeClothing', 'Класификатор "Размер на дрехи"', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'));
+
+INSERT INTO PMIS_ADM.ChangeTypes (ChangeTypeKey, ChangeType, ModuleID)
+VALUES ('RES_Lists_SizeHat', 'Класификатор "Размер на шапка"', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'));
+
+INSERT INTO PMIS_ADM.ChangeTypes (ChangeTypeKey, ChangeType, ModuleID)
+VALUES ('RES_Lists_SizeShoes', 'Класификатор "Размер на обувки"', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'));
+
+INSERT INTO PMIS_ADM.ChangeTypes (ChangeTypeKey, ChangeType, ModuleID)
+VALUES ('RES_Lists_MilitaryReadinessName', 'Класификатор "Готовност"', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'));
+
+INSERT INTO PMIS_ADM.ChangeTypes (ChangeTypeKey, ChangeType, ModuleID)
+VALUES ('RES_EquipmentTechnicsRequests', 'Заявки за окомплектоване с техника от резерва', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'));
+
+
+INSERT INTO PMIS_ADM.ChangeTypes (ChangeTypeKey, ChangeType, ModuleID)
+VALUES ('RES_Technics_VEHICLES', 'Резерв - Техника (Автомобили)', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'));
+
+INSERT INTO PMIS_ADM.ChangeTypes (ChangeTypeKey, ChangeType, ModuleID)
+VALUES ('RES_Technics_TRACTORS', 'Резерв - Техника (Трактори)', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'));
+
+INSERT INTO PMIS_ADM.ChangeTypes (ChangeTypeKey, ChangeType, ModuleID)
+VALUES ('RES_Technics_MOB_LIFT_EQUIP', 'Резерв - Техника (Подвижна подемно-транспортна техника)', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'));
+
+INSERT INTO PMIS_ADM.ChangeTypes (ChangeTypeKey, ChangeType, ModuleID)
+VALUES ('RES_Technics_TRAILERS', 'Резерв - Техника (Ремаркета)', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'));
+
+INSERT INTO PMIS_ADM.ChangeTypes (ChangeTypeKey, ChangeType, ModuleID)
+VALUES ('RES_Technics_ENG_EQUIP', 'Резерв - Техника (Инженерна техника)', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'));
+
+INSERT INTO PMIS_ADM.ChangeTypes (ChangeTypeKey, ChangeType, ModuleID)
+VALUES ('RES_Technics_RAILWAY_EQUIP', 'Резерв - Техника (Специализиран железопътен състав)', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'));
+
+INSERT INTO PMIS_ADM.ChangeTypes (ChangeTypeKey, ChangeType, ModuleID)
+VALUES ('RES_Technics_VESSELS', 'Резерв - Техника (Кораби)', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'));
+
+INSERT INTO PMIS_ADM.ChangeTypes (ChangeTypeKey, ChangeType, ModuleID)
+VALUES ('RES_Technics_AVIATION_EQUIP', 'Резерв - Техника (Авиационна техника)', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'));
+
+INSERT INTO PMIS_ADM.ChangeTypes (ChangeTypeKey, ChangeType, ModuleID)
+VALUES ('RES_Technics_FUEL_CONTAINERS', 'Резерв - Техника (Съдове за ГСМ)', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'));
+
+
+INSERT INTO PMIS_ADM.ChangeTypes (ChangeTypeKey, ChangeType, ModuleID)
+VALUES ('RES_Postpone', 'Резерв - отсрочване', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'));
+
+
+
+INSERT INTO PMIS_ADM.ChangeTypes (ChangeTypeKey, ChangeType, ModuleID)
+VALUES ('RES_MilitaryReportPersons', 'Резерв - Човешки ресурси - Военно-отчетни лица', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'));
+
+
+INSERT INTO PMIS_ADM.ChangeTypes (ChangeTypeKey, ChangeType, ModuleID)
+VALUES ('RES_Lists_VehicleKind', 'Класификатор "Видове автомобили"', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'));
+
+INSERT INTO PMIS_ADM.ChangeTypes (ChangeTypeKey, ChangeType, ModuleID)
+VALUES ('RES_Lists_TrailerKind', 'Класификатор "Видове ремаркета"', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'));
+
+INSERT INTO PMIS_ADM.ChangeTypes (ChangeTypeKey, ChangeType, ModuleID)
+VALUES ('RES_Lists_TrailerType', 'Класификатор "Типове ремаркета"', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'));
+
+INSERT INTO PMIS_ADM.ChangeTypes (ChangeTypeKey, ChangeType, ModuleID)
+VALUES ('RES_Lists_VehicleRoadability', 'Класификатор "Проходимост на автомобили"', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'));
+
+INSERT INTO PMIS_ADM.ChangeTypes (ChangeTypeKey, ChangeType, ModuleID)
+VALUES ('RES_Lists_VehicleEngineType', 'Класификатор "Видове автомобилни двигатели"', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'));
+
+INSERT INTO PMIS_ADM.ChangeTypes (ChangeTypeKey, ChangeType, ModuleID)
+VALUES ('RES_Lists_VehicleBodyType', 'Класификатор "Видове автомобилни каросерии"', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'));
+
+
+INSERT INTO PMIS_ADM.ChangeTypes (ChangeTypeKey, ChangeType, ModuleID)
+VALUES ('RES_Lists_VehicleMakeName', 'Класификатор "Марки автомобили"', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'));
+
+INSERT INTO PMIS_ADM.ChangeTypes (ChangeTypeKey, ChangeType, ModuleID)
+VALUES ('RES_Lists_VehicleModels', 'Класификатор "Модели автомобили"', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'));
+
+
+INSERT INTO PMIS_ADM.ChangeTypes (ChangeTypeKey, ChangeType, ModuleID)
+VALUES ('RES_Lists_TractorKind', 'Класификатор "Видове трактори"', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'));
+
+INSERT INTO PMIS_ADM.ChangeTypes (ChangeTypeKey, ChangeType, ModuleID)
+VALUES ('RES_Lists_TractorType', 'Класификатор "Типове трактори"', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'));
+
+INSERT INTO PMIS_ADM.ChangeTypes (ChangeTypeKey, ChangeType, ModuleID)
+VALUES ('RES_Lists_TractorMakeName', 'Класификатор "Марки трактори"', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'));
+
+INSERT INTO PMIS_ADM.ChangeTypes (ChangeTypeKey, ChangeType, ModuleID)
+VALUES ('RES_Lists_TractorModels', 'Класификатор "Модели трактори"', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'));
+
+INSERT INTO PMIS_ADM.ChangeTypes (ChangeTypeKey, ChangeType, ModuleID)
+VALUES ('RES_Lists_EngEquipKind', 'Класификатор "Видове инж. техника"', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'));
+
+INSERT INTO PMIS_ADM.ChangeTypes (ChangeTypeKey, ChangeType, ModuleID)
+VALUES ('RES_Lists_EngEquipType', 'Класификатор "Типове инж. техника"', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'));
+
+INSERT INTO PMIS_ADM.ChangeTypes (ChangeTypeKey, ChangeType, ModuleID)
+VALUES ('RES_Lists_EngEquipBaseKind', 'Класификатор "Видове базови машини (инж. техника)"', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'));
+
+INSERT INTO PMIS_ADM.ChangeTypes (ChangeTypeKey, ChangeType, ModuleID)
+VALUES ('RES_Lists_EngEquipBaseType', 'Класификатор "Типове базови машини (инж. техника)"', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'));
+
+INSERT INTO PMIS_ADM.ChangeTypes (ChangeTypeKey, ChangeType, ModuleID)
+VALUES ('RES_Lists_EngEquipBaseEngineType', 'Класификатор "Видове гориво за базова машина (инж. техника)"', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'));
+
+INSERT INTO PMIS_ADM.ChangeTypes (ChangeTypeKey, ChangeType, ModuleID)
+VALUES ('RES_Lists_EngEquipWorkingBodyKind', 'Класификатор "Видове работни органи (инж. техника)"', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'));
+
+INSERT INTO PMIS_ADM.ChangeTypes (ChangeTypeKey, ChangeType, ModuleID)
+VALUES ('RES_Lists_EngEquipWorkBodyEngineType', 'Класификатор "Видове гориво за работен орган (инж. техника)"', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'));
+
+INSERT INTO PMIS_ADM.ChangeTypes (ChangeTypeKey, ChangeType, ModuleID)
+VALUES ('RES_Lists_MobileLiftingEquipKind', 'Класификатор "Видове подемно-транспортна техника"', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'));
+
+INSERT INTO PMIS_ADM.ChangeTypes (ChangeTypeKey, ChangeType, ModuleID)
+VALUES ('RES_Lists_MobileLiftingEquipType', 'Класификатор "Типове подемно-транспортна техника"', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'));
+
+INSERT INTO PMIS_ADM.ChangeTypes (ChangeTypeKey, ChangeType, ModuleID)
+VALUES ('RES_Lists_RailwayEquipKind', 'Класификатор "Видове специализиран железопътен състав"', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'));
+
+INSERT INTO PMIS_ADM.ChangeTypes (ChangeTypeKey, ChangeType, ModuleID)
+VALUES ('RES_Lists_RailwayEquipType', 'Класификатор "Типове специализиран железопътен състав"', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'));
+
+INSERT INTO PMIS_ADM.ChangeTypes (ChangeTypeKey, ChangeType, ModuleID)
+VALUES ('RES_Lists_EngEquipBaseMakeName', 'Класификатор "Марки инж. техника"', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'));
+
+INSERT INTO PMIS_ADM.ChangeTypes (ChangeTypeKey, ChangeType, ModuleID)
+VALUES ('RES_Lists_EngEquipBaseModels', 'Класификатор "Модели инж. техника"', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'));
+
+INSERT INTO PMIS_ADM.ChangeTypes (ChangeTypeKey, ChangeType, ModuleID)
+VALUES ('RES_Lists_AviationOtherBaseMachineMakeName', 'Класификатор "Марки базови машини (спец. авиационна техника)"', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'));
+
+INSERT INTO PMIS_ADM.ChangeTypes (ChangeTypeKey, ChangeType, ModuleID)
+VALUES ('RES_Lists_AviationOtherBaseMachineModels', 'Класификатор "Модели базови машини (спец. авиационна техника)"', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'));
+
+INSERT INTO PMIS_ADM.ChangeTypes (ChangeTypeKey, ChangeType, ModuleID)
+VALUES ('RES_Lists_VesselKind', 'Класификатор "Видове кораби"', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'));
+
+INSERT INTO PMIS_ADM.ChangeTypes (ChangeTypeKey, ChangeType, ModuleID)
+VALUES ('RES_Lists_FuelContainerKind', 'Класификатор "Видове съдове за ГСМ"', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'));
+
+INSERT INTO PMIS_ADM.ChangeTypes (ChangeTypeKey, ChangeType, ModuleID)
+VALUES ('RES_Lists_VesselType', 'Класификатор "Типове кораби"', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'));
+
+
+INSERT INTO PMIS_ADM.ChangeTypes (ChangeTypeKey, ChangeType, ModuleID)
+VALUES ('RES_Lists_FuelContainerType', 'Класификатор "Типове съдове за ГСМ"', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'));
+
+
+INSERT INTO PMIS_ADM.ChangeTypes (ChangeTypeKey, ChangeType, ModuleID)
+VALUES ('RES_Lists_AviationAirKind', 'Класификатор "Видове въздухоплавателни средства"', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'));
+
+INSERT INTO PMIS_ADM.ChangeTypes (ChangeTypeKey, ChangeType, ModuleID)
+VALUES ('RES_Lists_AviationAirType', 'Класификатор "Типове въздухоплавателни средства"', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'));
+
+INSERT INTO PMIS_ADM.ChangeTypes (ChangeTypeKey, ChangeType, ModuleID)
+VALUES ('RES_Lists_AviationAirModel', 'Класификатор "Модели въздухоплавателни средства"', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'));
+
+INSERT INTO PMIS_ADM.ChangeTypes (ChangeTypeKey, ChangeType, ModuleID)
+VALUES ('RES_Lists_AviationOtherKind', 'Класификатор "Видове специализирана авиац. техника"', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'));
+
+INSERT INTO PMIS_ADM.ChangeTypes (ChangeTypeKey, ChangeType, ModuleID)
+VALUES ('RES_Lists_AviationOtherType', 'Класификатор "Типове специализирана аивац. техника"', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'));
+
+INSERT INTO PMIS_ADM.ChangeTypes (ChangeTypeKey, ChangeType, ModuleID)
+VALUES ('RES_Lists_AviationOtherBaseMachineKind', 'Класификатор "Видове базови машини (спец. авиационна техника)"', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'));
+
+INSERT INTO PMIS_ADM.ChangeTypes (ChangeTypeKey, ChangeType, ModuleID)
+VALUES ('RES_Lists_AviationOtherBaseMachineType', 'Класификатор "Типове базови машини (спец. авиационна техника)"', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'));
+
+INSERT INTO PMIS_ADM.ChangeTypes (ChangeTypeKey, ChangeType, ModuleID)
+VALUES ('RES_Lists_AviationOtherEquipmentKind', 'Класификатор "Видове оборудване (спец. авиационна техника)"', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'));
+
+
+INSERT INTO PMIS_ADM.ChangeTypes (ChangeTypeKey, ChangeType, ModuleID)
+VALUES ('RES_Lists_TechnicsCategoryName', 'Класификатор "Категории техника"', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'));
+
+
+
+COMMIT;

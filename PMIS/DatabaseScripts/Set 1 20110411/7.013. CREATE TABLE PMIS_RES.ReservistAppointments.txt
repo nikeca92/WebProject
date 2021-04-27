@@ -1,0 +1,43 @@
+﻿CREATE TABLE PMIS_RES.ReservistAppointments(ReservistAppointmentID number NOT NULL,
+                                            ReservistID number NOT NULL,
+                                            IsCurrent number(1) CHECK (IsCurrent BETWEEN 0 AND 1),
+                                            
+                                            ReqOrderNumber varchar2(250),
+                                            EquipmentReservistsRequestID number, 
+                                            ReceiptAppointmentDate date,
+                                            MilitaryCommandName varchar2(100), 
+                                            MilitaryCommandSuffix varchar2(20), 
+                                            MilitaryCommandID number,
+                                            ReservistReadinessID number, /*hard-coded*/
+                                            MilitaryRankName varchar2(50),
+                                            MilitaryRankID varchar2(2),
+                                            MilReportingSpecialityName varchar2(300),
+                                            MilReportingSpecialityCode varchar2(100),
+                                            MilReportSpecialityID number,
+                                            Position varchar2(250),
+                                            AppointmentTime number,
+                                            AppointmentPlace varchar2(1000),
+                                            FillReservistsRequestID number,
+                                            
+                                            CreatedBy number,
+                                            CreatedDate date,
+                                            LastModifiedBy number,
+                                            LastModifiedDate date
+                                           );
+
+ALTER TABLE PMIS_RES.ReservistAppointments ADD CONSTRAINT ReservistAppointments_PK PRIMARY KEY(ReservistAppointmentID);
+ALTER TABLE PMIS_RES.ReservistAppointments ADD CONSTRAINT ResAppointments_Reservists_FK FOREIGN KEY (ReservistID) REFERENCES PMIS_RES.Reservists (ReservistID);
+ALTER TABLE PMIS_RES.ReservistAppointments ADD CONSTRAINT ResAppointments_MilRank_FK FOREIGN KEY (MilitaryRankID) REFERENCES VS_OWNER.KLV_ZVA (ZVA_KOD);
+
+CREATE SEQUENCE PMIS_RES.ReservistAppointments_ID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+CREATE TRIGGER PMIS_RES.TRG_ResAppointments_INSERT
+BEFORE INSERT ON PMIS_RES.ReservistAppointments
+FOR EACH ROW
+BEGIN
+   SELECT PMIS_RES.ReservistAppointments_ID_SEQ.nextval INTO :new.ReservistAppointmentID FROM dual;
+END;
+/

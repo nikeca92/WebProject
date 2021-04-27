@@ -1,0 +1,23 @@
+﻿CREATE TABLE PMIS_RES.RequestCommandPositionsMilDept ( ReqCommandPositionMilDeptID number NOT NULL,
+													   RequestCommandPositionID number NOT NULL,
+													   MilitaryDepartmentID number NOT NULL,
+	                                                   ReservistsCount number
+        	                                         );
+
+ALTER TABLE PMIS_RES.RequestCommandPositionsMilDept ADD CONSTRAINT ReqCommandPositionMilDept_PK PRIMARY KEY (ReqCommandPositionMilDeptID);
+ALTER TABLE PMIS_RES.RequestCommandPositionsMilDept ADD CONSTRAINT ReqCmdPosMD_ReqCmdPositions_FK FOREIGN KEY (RequestCommandPositionID) REFERENCES PMIS_RES.RequestCommandPositions (RequestCommandPositionID);
+ALTER TABLE PMIS_RES.RequestCommandPositionsMilDept ADD CONSTRAINT ReqCmdPosMD_MilDept_FK FOREIGN KEY (MilitaryDepartmentID) REFERENCES PMIS_ADM.MilitaryDepartments (MilitaryDepartmentID);
+
+
+CREATE SEQUENCE PMIS_RES.ReqCmdPositionsMilDept_ID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+CREATE TRIGGER PMIS_RES.TRG_ReqCmdPosMD_INSERT
+BEFORE INSERT ON PMIS_RES.RequestCommandPositionsMilDept
+FOR EACH ROW
+BEGIN
+   SELECT PMIS_RES.ReqCmdPositionsMilDept_ID_SEQ.nextval INTO :new.ReqCommandPositionMilDeptID FROM dual;
+END;
+/

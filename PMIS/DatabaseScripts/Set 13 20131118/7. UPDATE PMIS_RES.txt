@@ -1,0 +1,3 @@
+GRANT ALL ON PMIS_ADM.MilitaryDepartments TO PMIS_RES WITH GRANT OPTION;
+
+/

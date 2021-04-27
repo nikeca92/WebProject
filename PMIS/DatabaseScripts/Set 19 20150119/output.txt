@@ -1,0 +1,6 @@
+ALTER TABLE PMIS_RES.FillReservistsRequest ADD CONSTRAINT FulfilReservists_UNQ UNIQUE (ReservistID);
+/
+
+ALTER TABLE PMIS_RES.FulfilTechnicsRequest ADD CONSTRAINT FulfilTechnics_UNQ UNIQUE (TechnicsID);
+/
+

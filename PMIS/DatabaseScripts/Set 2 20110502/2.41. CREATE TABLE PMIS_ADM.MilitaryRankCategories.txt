@@ -1,0 +1,44 @@
+﻿CREATE TABLE PMIS_ADM.MilitaryRankCategories(MilitaryRankCategoryID number NOT NULL,
+											 ZVA_KAT_KOD varchar2(2) NOT NULL,
+											 MilitaryRankCategory number NOT NULL CHECK (MilitaryRankCategory BETWEEN 1 AND 2) /* 1 - Soldier, 2 - Officer */
+											);
+
+ALTER TABLE PMIS_ADM.MilitaryRankCategories ADD CONSTRAINT MilitaryRankCategories_PK PRIMARY KEY(MilitaryRankCategoryID);
+ALTER TABLE PMIS_ADM.MilitaryRankCategories ADD CONSTRAINT MilRankCateg_KLV_KAT_FK FOREIGN KEY (ZVA_KAT_KOD) REFERENCES VS_OWNER.KLV_KAT(KAT_KOD);
+
+CREATE SEQUENCE PMIS_ADM.MilitaryRankCategories_ID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+
+CREATE TRIGGER PMIS_ADM.TRG_MilRankCateg_INSERT
+BEFORE INSERT ON PMIS_ADM.MilitaryRankCategories
+FOR EACH ROW
+BEGIN
+   SELECT PMIS_ADM.MilitaryRankCategories_ID_SEQ.nextval INTO :new.MilitaryRankCategoryID FROM dual;
+END;
+/
+
+INSERT INTO PMIS_ADM.MilitaryRankCategories (ZVA_KAT_KOD, MilitaryRankCategory)
+VALUES ('20', 1);
+
+INSERT INTO PMIS_ADM.MilitaryRankCategories (ZVA_KAT_KOD, MilitaryRankCategory)
+VALUES ('35', 1);
+
+INSERT INTO PMIS_ADM.MilitaryRankCategories (ZVA_KAT_KOD, MilitaryRankCategory)
+VALUES ('46', 1);
+
+INSERT INTO PMIS_ADM.MilitaryRankCategories (ZVA_KAT_KOD, MilitaryRankCategory)
+VALUES ('50', 1);
+
+INSERT INTO PMIS_ADM.MilitaryRankCategories (ZVA_KAT_KOD, MilitaryRankCategory)
+VALUES ('55', 1);
+
+INSERT INTO PMIS_ADM.MilitaryRankCategories (ZVA_KAT_KOD, MilitaryRankCategory)
+VALUES ('60', 2);
+
+INSERT INTO PMIS_ADM.MilitaryRankCategories (ZVA_KAT_KOD, MilitaryRankCategory)
+VALUES ('73', 2);
+
+COMMIT;

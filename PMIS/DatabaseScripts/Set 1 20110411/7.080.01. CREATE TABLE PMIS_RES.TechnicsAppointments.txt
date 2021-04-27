@@ -1,0 +1,37 @@
+﻿CREATE TABLE PMIS_RES.TechnicsAppointments(TechnicsAppointmentID number NOT NULL,
+                                           TechnicsID number NOT NULL,
+                                           IsCurrent number(1) CHECK (IsCurrent BETWEEN 0 AND 1),
+                                            
+                                           ReqOrderNumber varchar2(250),
+                                           EquipmentTechnicsRequestID number, 
+                                           ReceiptAppointmentDate date,
+                                           MilitaryCommandName varchar2(100), 
+                                           MilitaryCommandSuffix varchar2(20), 
+                                           MilitaryCommandID number,
+                                           TechnicsReadinessID number, /*hard-coded*/
+                                           TComment varchar2(50),
+                                           AppointmentTime number,
+                                           AppointmentPlace varchar2(1000),
+                                           FulfillTechnicsRequestID number,
+                                            
+                                           CreatedBy number,
+                                           CreatedDate date,
+                                           LastModifiedBy number,
+                                           LastModifiedDate date
+                                          );
+
+ALTER TABLE PMIS_RES.TechnicsAppointments ADD CONSTRAINT TechnicsAppointment_PK PRIMARY KEY(TechnicsAppointmentID);
+ALTER TABLE PMIS_RES.TechnicsAppointments ADD CONSTRAINT TechAppointments_Technics_FK FOREIGN KEY (TechnicsID) REFERENCES PMIS_RES.Technics (TechnicsID);
+
+CREATE SEQUENCE PMIS_RES.TechnicsAppointments_ID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+CREATE TRIGGER PMIS_RES.TRG_TechAppointments_INSERT
+BEFORE INSERT ON PMIS_RES.TechnicsAppointments
+FOR EACH ROW
+BEGIN
+   SELECT PMIS_RES.TechnicsAppointments_ID_SEQ.nextval INTO :new.TechnicsAppointmentID FROM dual;
+END;
+/

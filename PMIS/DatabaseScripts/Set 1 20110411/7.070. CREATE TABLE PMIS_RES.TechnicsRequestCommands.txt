@@ -1,0 +1,28 @@
+﻿CREATE TABLE PMIS_RES.TechnicsRequestCommands(TechRequestsCommandID number NOT NULL,
+                                              EquipmentTechnicsRequestID number NOT NULL,
+                                              MilitaryCommandID number,
+                                              MilitaryCommandSuffix varchar2(20),
+                                              DeliveryCityID number,
+                                              DeliveryPlace varchar2(500),
+                                              AppointmentTime number,
+                                              MilReadinessID number
+                                              );
+
+ALTER TABLE PMIS_RES.TechnicsRequestCommands ADD CONSTRAINT TechReqCommands_PK PRIMARY KEY(TechRequestsCommandID);
+ALTER TABLE PMIS_RES.TechnicsRequestCommands ADD CONSTRAINT TechReqCmds_EquipResReq_FK FOREIGN KEY (EquipmentTechnicsRequestID) REFERENCES PMIS_RES.EquipmentTechnicsRequests (EquipmentTechnicsRequestID);
+ALTER TABLE PMIS_RES.TechnicsRequestCommands ADD CONSTRAINT TechReqCmds_MilCommands_FK FOREIGN KEY (MilitaryCommandID) REFERENCES UKAZ_OWNER.VVR (KOD_VVR);
+ALTER TABLE PMIS_RES.TechnicsRequestCommands ADD CONSTRAINT TechReqCmds_MilReadiness_FK FOREIGN KEY (MilReadinessID) REFERENCES PMIS_RES.MilReadiness (MilReadinessID);
+
+
+CREATE SEQUENCE PMIS_RES.TechnicsRequestCommands_ID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+CREATE TRIGGER PMIS_RES.TRG_TechRequestsCmds_INSERT
+BEFORE INSERT ON PMIS_RES.TechnicsRequestCommands
+FOR EACH ROW
+BEGIN
+   SELECT PMIS_RES.TechnicsRequestCommands_ID_SEQ.nextval INTO :new.TechRequestsCommandID FROM dual;
+END;
+/

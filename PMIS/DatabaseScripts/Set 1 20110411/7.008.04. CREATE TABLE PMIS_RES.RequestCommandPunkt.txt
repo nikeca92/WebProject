@@ -1,0 +1,24 @@
+﻿CREATE TABLE PMIS_RES.RequestCommandPunkt ( RequestCommandPunktID number NOT NULL,
+											RequestCommandID number NOT NULL,
+											MilitaryDepartmentID number NOT NULL,
+                                            CityID number,
+                                            Place varchar2(500)
+        	                          );
+
+ALTER TABLE PMIS_RES.RequestCommandPunkt ADD CONSTRAINT RequestCommandPunkt_PK PRIMARY KEY (RequestCommandPunktID);
+ALTER TABLE PMIS_RES.RequestCommandPunkt ADD CONSTRAINT ReqCmdPunkt_ReqCommands_FK FOREIGN KEY (RequestCommandID) REFERENCES PMIS_RES.RequestsCommands (RequestsCommandID);
+ALTER TABLE PMIS_RES.RequestCommandPunkt ADD CONSTRAINT ReqCmdPunkt_MilDept_FK FOREIGN KEY (MilitaryDepartmentID) REFERENCES PMIS_ADM.MilitaryDepartments (MilitaryDepartmentID);
+
+
+CREATE SEQUENCE PMIS_RES.RequestCommandPunkt_ID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+CREATE TRIGGER PMIS_RES.TRG_ReqCmdPunkt_INSERT
+BEFORE INSERT ON PMIS_RES.RequestCommandPunkt
+FOR EACH ROW
+BEGIN
+   SELECT PMIS_RES.RequestCommandPunkt_ID_SEQ.nextval INTO :new.RequestCommandPunktID FROM dual;
+END;
+/

@@ -1,0 +1,9 @@
+﻿INSERT INTO PMIS_ADM.MaintFields(TableName, TableColumn, FieldLabel, WidthPixels, FieldKey, UIItemEditKey, UIItemAddKey, IsMandatory, ValidateDataType, IsUnique)
+VALUES ('PMIS_RES.GTable.TrailerBodyKind', 'TableValue', 'Вид каросерия на ремарке', 270, 'RES_Lists_TrailerBodyKind_TableValue', 'RES_LISTMAINT_TRAILERBODYKIND_EDIT_TABLEVALUE', 'RES_LISTMAINT_TRAILERBODYKIND_ADD_TABLEVALUE', 1, 'string', 0);
+
+INSERT INTO PMIS_ADM.MaintFields(TableName, TableColumn, FieldLabel, WidthPixels, FieldKey, UIItemEditKey, UIItemAddKey, IsMandatory, ValidateDataType, IsUnique)
+VALUES ('PMIS_RES.GTable.TrailerBodyKind', 'TableSeq', 'Номер за подредба', 100, 'RES_Lists_TrailerBodyKind_TableSeq', 'RES_LISTMAINT_TRAILERBODYKIND_EDIT_TABLESEQ', 'RES_LISTMAINT_TRAILERBODYKIND_ADD_TABLESEQ', 1, 'integer', 1);
+
+
+COMMIT;
+/

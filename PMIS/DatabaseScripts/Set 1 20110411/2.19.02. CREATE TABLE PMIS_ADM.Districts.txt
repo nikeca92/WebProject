@@ -1,0 +1,132 @@
+﻿CREATE TABLE PMIS_ADM.Districts(DistrictID number NOT NULL,
+                                DistrictName varchar2(300),
+                                PostCode varchar2(10),
+                                CityID number NOT NULL
+                               );
+
+ALTER TABLE PMIS_ADM.Districts ADD CONSTRAINT Districts_PK PRIMARY KEY(DistrictID);
+ALTER TABLE PMIS_ADM.Districts ADD CONSTRAINT Districts_Cities_FK FOREIGN KEY (CityID) REFERENCES UKAZ_OWNER.KL_NMA (KOD_NMA);
+
+CREATE SEQUENCE PMIS_ADM.Districts_ID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+CREATE TRIGGER PMIS_ADM.TRG_Districts_INSERT
+BEFORE INSERT ON PMIS_ADM.Districts
+FOR EACH ROW
+BEGIN
+   SELECT PMIS_ADM.Districts_ID_SEQ.nextval INTO :new.DistrictID FROM dual;
+END;
+/
+
+INSERT INTO PMIS_ADM.Districts (DistrictName, PostCode, CityID)
+VALUES ('Банкя', '', (SELECT KOD_NMA FROM UKAZ_OWNER.KL_NMA WHERE PK = 1000));
+
+INSERT INTO PMIS_ADM.Districts (DistrictName, PostCode, CityID)
+VALUES ('Витоша', '', (SELECT KOD_NMA FROM UKAZ_OWNER.KL_NMA WHERE PK = 1000));
+
+INSERT INTO PMIS_ADM.Districts (DistrictName, PostCode, CityID)
+VALUES ('Връбница', '', (SELECT KOD_NMA FROM UKAZ_OWNER.KL_NMA WHERE PK = 1000));
+
+INSERT INTO PMIS_ADM.Districts (DistrictName, PostCode, CityID)
+VALUES ('Възраждане', '', (SELECT KOD_NMA FROM UKAZ_OWNER.KL_NMA WHERE PK = 1000));
+
+INSERT INTO PMIS_ADM.Districts (DistrictName, PostCode, CityID)
+VALUES ('Изгрев', '', (SELECT KOD_NMA FROM UKAZ_OWNER.KL_NMA WHERE PK = 1000));
+
+INSERT INTO PMIS_ADM.Districts (DistrictName, PostCode, CityID)
+VALUES ('Илинден', '', (SELECT KOD_NMA FROM UKAZ_OWNER.KL_NMA WHERE PK = 1000));
+
+INSERT INTO PMIS_ADM.Districts (DistrictName, PostCode, CityID)
+VALUES ('Искър', '', (SELECT KOD_NMA FROM UKAZ_OWNER.KL_NMA WHERE PK = 1000));
+
+INSERT INTO PMIS_ADM.Districts (DistrictName, PostCode, CityID)
+VALUES ('Красна поляна', '', (SELECT KOD_NMA FROM UKAZ_OWNER.KL_NMA WHERE PK = 1000));
+
+INSERT INTO PMIS_ADM.Districts (DistrictName, PostCode, CityID)
+VALUES ('Красно село', '', (SELECT KOD_NMA FROM UKAZ_OWNER.KL_NMA WHERE PK = 1000));
+
+INSERT INTO PMIS_ADM.Districts (DistrictName, PostCode, CityID)
+VALUES ('Кремиковци', '', (SELECT KOD_NMA FROM UKAZ_OWNER.KL_NMA WHERE PK = 1000));
+
+INSERT INTO PMIS_ADM.Districts (DistrictName, PostCode, CityID)
+VALUES ('Лозенец', '', (SELECT KOD_NMA FROM UKAZ_OWNER.KL_NMA WHERE PK = 1000));
+
+INSERT INTO PMIS_ADM.Districts (DistrictName, PostCode, CityID)
+VALUES ('Люлин', '', (SELECT KOD_NMA FROM UKAZ_OWNER.KL_NMA WHERE PK = 1000));
+
+INSERT INTO PMIS_ADM.Districts (DistrictName, PostCode, CityID)
+VALUES ('Младост', '', (SELECT KOD_NMA FROM UKAZ_OWNER.KL_NMA WHERE PK = 1000));
+
+INSERT INTO PMIS_ADM.Districts (DistrictName, PostCode, CityID)
+VALUES ('Надежда', '', (SELECT KOD_NMA FROM UKAZ_OWNER.KL_NMA WHERE PK = 1000));
+
+INSERT INTO PMIS_ADM.Districts (DistrictName, PostCode, CityID)
+VALUES ('Нови Искър', '', (SELECT KOD_NMA FROM UKAZ_OWNER.KL_NMA WHERE PK = 1000));
+
+INSERT INTO PMIS_ADM.Districts (DistrictName, PostCode, CityID)
+VALUES ('Оборище', '', (SELECT KOD_NMA FROM UKAZ_OWNER.KL_NMA WHERE PK = 1000));
+
+INSERT INTO PMIS_ADM.Districts (DistrictName, PostCode, CityID)
+VALUES ('Оборище', '', (SELECT KOD_NMA FROM UKAZ_OWNER.KL_NMA WHERE PK = 1000));
+
+INSERT INTO PMIS_ADM.Districts (DistrictName, PostCode, CityID)
+VALUES ('Панчарево', '', (SELECT KOD_NMA FROM UKAZ_OWNER.KL_NMA WHERE PK = 1000));
+
+INSERT INTO PMIS_ADM.Districts (DistrictName, PostCode, CityID)
+VALUES ('Подуяне', '', (SELECT KOD_NMA FROM UKAZ_OWNER.KL_NMA WHERE PK = 1000));
+
+INSERT INTO PMIS_ADM.Districts (DistrictName, PostCode, CityID)
+VALUES ('Сердика', '', (SELECT KOD_NMA FROM UKAZ_OWNER.KL_NMA WHERE PK = 1000));
+
+INSERT INTO PMIS_ADM.Districts (DistrictName, PostCode, CityID)
+VALUES ('Слатина', '', (SELECT KOD_NMA FROM UKAZ_OWNER.KL_NMA WHERE PK = 1000));
+
+INSERT INTO PMIS_ADM.Districts (DistrictName, PostCode, CityID)
+VALUES ('Средец', '', (SELECT KOD_NMA FROM UKAZ_OWNER.KL_NMA WHERE PK = 1000));
+
+INSERT INTO PMIS_ADM.Districts (DistrictName, PostCode, CityID)
+VALUES ('Студентски', '', (SELECT KOD_NMA FROM UKAZ_OWNER.KL_NMA WHERE PK = 1000));
+
+INSERT INTO PMIS_ADM.Districts (DistrictName, PostCode, CityID)
+VALUES ('Триадица', '', (SELECT KOD_NMA FROM UKAZ_OWNER.KL_NMA WHERE PK = 1000));
+
+
+INSERT INTO PMIS_ADM.Districts (DistrictName, PostCode, CityID)
+VALUES ('Централен', '', (SELECT KOD_NMA FROM UKAZ_OWNER.KL_NMA WHERE PK = 4000));
+
+INSERT INTO PMIS_ADM.Districts (DistrictName, PostCode, CityID)
+VALUES ('Източен', '', (SELECT KOD_NMA FROM UKAZ_OWNER.KL_NMA WHERE PK = 4000));
+
+INSERT INTO PMIS_ADM.Districts (DistrictName, PostCode, CityID)
+VALUES ('Западен', '', (SELECT KOD_NMA FROM UKAZ_OWNER.KL_NMA WHERE PK = 4000));
+
+INSERT INTO PMIS_ADM.Districts (DistrictName, PostCode, CityID)
+VALUES ('Северен', '', (SELECT KOD_NMA FROM UKAZ_OWNER.KL_NMA WHERE PK = 4000));
+
+INSERT INTO PMIS_ADM.Districts (DistrictName, PostCode, CityID)
+VALUES ('Южен', '', (SELECT KOD_NMA FROM UKAZ_OWNER.KL_NMA WHERE PK = 4000));
+
+INSERT INTO PMIS_ADM.Districts (DistrictName, PostCode, CityID)
+VALUES ('Тракия', '4023', (SELECT KOD_NMA FROM UKAZ_OWNER.KL_NMA WHERE PK = 4000));
+
+
+
+INSERT INTO PMIS_ADM.Districts (DistrictName, PostCode, CityID)
+VALUES ('Аспарухово', '', (SELECT KOD_NMA FROM UKAZ_OWNER.KL_NMA WHERE PK = 9000));
+
+INSERT INTO PMIS_ADM.Districts (DistrictName, PostCode, CityID)
+VALUES ('Владислав Варненчик', '9023', (SELECT KOD_NMA FROM UKAZ_OWNER.KL_NMA WHERE PK = 9000));
+
+INSERT INTO PMIS_ADM.Districts (DistrictName, PostCode, CityID)
+VALUES ('Младост', '', (SELECT KOD_NMA FROM UKAZ_OWNER.KL_NMA WHERE PK = 9000));
+
+INSERT INTO PMIS_ADM.Districts (DistrictName, PostCode, CityID)
+VALUES ('Одесос', '', (SELECT KOD_NMA FROM UKAZ_OWNER.KL_NMA WHERE PK = 9000));
+
+INSERT INTO PMIS_ADM.Districts (DistrictName, PostCode, CityID)
+VALUES ('Приморски', '', (SELECT KOD_NMA FROM UKAZ_OWNER.KL_NMA WHERE PK = 9000));
+
+COMMIT;
+/

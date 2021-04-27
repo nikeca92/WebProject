@@ -1,0 +1,105 @@
+﻿
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('bool', 'RES_Reservist_MilRepSpec_IsPrimary', 'Основна ВОС', 2);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_MilitaryReportPersonDetails_BirthCountry', 'Месторождение - държава', 13);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_MilitaryReportPersonDetails_BirthCity', 'Месторождение - населено място', 14);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('number', 'HS_Lists_Probabilities_ProbabilityFactor', 'Коефициент', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_Lists_Probabilities_ProbabilityName', 'Описание на вероятността', 2);
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('number', 'HS_Lists_Exposure_ExposureFactor', 'Коефициент', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_Lists_Exposure_ExposureName', 'Описание на експозицията', 2);
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('number', 'HS_Lists_EffectWeight_EffectWeightFactor', 'Коефициент', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_Lists_EffectWeight_EffectWeightName', 'Описание на тежестта', 2);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_Lists_EffectWeight_EffectWeightDesc', 'Описание на тежестта (дълго)', 3);
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_Lists_RiskRank_RiskRank', 'Степен', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('number', 'HS_Lists_RiskRank_RiskRankFrom', 'Рангово число ОТ', 2);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('number', 'HS_Lists_RiskRank_RiskRankTo', 'Рангово число ДО', 3);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_Lists_RiskRank_RiskRankName', 'Описание на риска', 4);
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_Lists_RiskFactorTypes_RiskFactorTypeName', 'Наименование', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('number', 'HS_Lists_RiskFactorTypes_Seq', 'Подредба', 2);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_Lists_RiskFactors_RiskFactorName', 'Наименование', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('number', 'HS_Lists_RiskFactors_Seq', 'Подредба', 2);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('bool', 'HS_Lists_RiskFactors_AllowAddManually', 'Позволява ръчно добавяне на опасности', 3);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_Lists_Hazards_HazardName', 'Наименование', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('number', 'HS_Lists_Hazards_Seq', 'Подредба', 2);
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_Subdivisions_SubdivisionName', 'Наименование', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_Subdivisions_MilitaryUnit', 'ВПН/Структура', 2);
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_Positions_PositionName', 'Наименование', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_Positions_Activities', 'Извършвани дейности', 2);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('number', 'HS_Positions_TotalPersonsCnt', 'Общи брой лица', 3);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('number', 'HS_Positions_FemaleCnt', 'Жени', 4);
+
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('number', 'HS_RiskCard_Probability', 'Вероятност', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('number', 'HS_RiskCard_Exposure', 'Експозиция', 2);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('number', 'HS_RiskCard_EffectWeight', 'Тежест', 3);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'HS_RiskCard_OtherHazard', 'Друга опасност', 4);
+
+
+COMMIT;
+/

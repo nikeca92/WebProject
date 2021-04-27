@@ -1,0 +1,87 @@
+﻿INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES('string', 'RES_Reservist_MilServ_MilitaryRan_Title', 'Звание', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES('string', 'RES_Reservist_MilServ_MilitaryRan_VacAnn', '№ на заповедта', 2);
+      
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)    
+VALUES('date', 'RES_Reservist_MilServ_MilitaryRan_DateArchive', 'Дата', 3);
+      
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)     
+VALUES('date', 'RES_Reservist_MilServ_MilitaryRan_DateWhen', 'В сила от', 4);
+      
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)     
+VALUES('string', 'RES_Reservist_MilServ_MilitaryRan_MilitaryCommanderRank', 'Подписал заповедта', 5) ;
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES('string', 'RES_PostponeRes_PostponeYear', 'Година', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES('string', 'RES_PostponeRes_MilitaryDepartment', 'Военно окръжие', 1);
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES('string', 'RES_PostponeResCompany_Company', 'Месторабота', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES('number', 'RES_PostponeResCompany_EmployeesCnt', 'Обща численост на персонала', 2);
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES('string', 'RES_PostponeResItem_NKPD', 'Клас по НКПД', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES('number', 'RES_PostponeResItem_OfficersAbsolutely', 'Офицери - безусловно отср.', 2);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES('number', 'RES_PostponeResItem_OfficersConditioned', 'Офицери - условно отср.', 3);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES('number', 'RES_PostponeResItem_OfCandAbsolutely', 'Офицерски кандидати - безусловно отср.', 4);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES('number', 'RES_PostponeResItem_OfCandConditioned', 'Офицерски кандидати - условно отср.', 5);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES('number', 'RES_PostponeResItem_SergeantsAbsolutely', 'Сержанти / Старшини  - безусловно отср.', 6);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES('number', 'RES_PostponeResItem_SergeantsConditioned', 'Сержанти / Старшини  - условно отср.', 7);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES('number', 'RES_PostponeResItem_SoldiersAbsolutely', 'Войници / матроси   - безусловно отср.', 8);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES('number', 'RES_PostponeResItem_SoldiersConditioned', 'Войници / матроси   - условно отср.', 9);
+
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES('string', 'RES_PostponeTech_PostponeYear', 'Година', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES('string', 'RES_PostponeTech_MilitaryDepartment', 'Военно окръжие', 1);
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES('string', 'RES_PostponeTechCompany_Company', 'Месторабота', 1);
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES('string', 'RES_PostponeTechItem_TechnicsSubType', 'Тип техника', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES('number', 'RES_PostponeTechItem_PostponeAbsolutely', 'Предл. за безусловно отсрочване', 2);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES('number', 'RES_PostponeTechItem_PostponeConditioned', 'Предл. за условно отсрочване', 3);
+
+INSERT INTO pmis_adm.FIELDS(FIELDTYPE, FIELDKEY, FIELDNAME, SEQ)
+VALUES('string', 'APPL_PotencialApplicants_ServiceType', 'Вид служба', 3);
+
+INSERT INTO pmis_adm.FIELDS(FIELDTYPE, FIELDKEY, FIELDNAME, SEQ)
+VALUES('string', 'APPL_PotencialApplicants_MilitaryTrainingCourse', 'Курсове за военна подготовка', 4); 
+
+COMMIT;
+/

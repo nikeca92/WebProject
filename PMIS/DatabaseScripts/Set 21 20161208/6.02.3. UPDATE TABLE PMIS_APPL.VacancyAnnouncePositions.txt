@@ -1,0 +1,7 @@
+
+
+ALTER TABLE PMIS_APPL.VacancyAnnouncePositions ADD MilitaryRankID VARCHAR2(2);
+ALTER TABLE PMIS_APPL.VacancyAnnouncePositions ADD CONSTRAINT VacaPos_MilRank_FK FOREIGN KEY (MilitaryRankID) REFERENCES VS_OWNER.KLV_ZVA (ZVA_KOD);
+
+/
+

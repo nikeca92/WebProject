@@ -1,0 +1,652 @@
+--Резерв -> Човешки ресурси -> Редактиране на резервист -> Военна служба -> Наборна служба
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_HUMANRES_EDITRESERVIST_MILSERV_CONSCRIPTION', 'Наборна служба', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_HUMANRES_EDITRESERVIST_MILSERV'));
+
+
+--Резерв -> Човешки ресурси -> Редактиране на резервист -> Военна служба -> Наборна служба -> Военно формирование
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_HUMANRES_EDITRESERVIST_MILSERV_CONSCRIPTION_MILITARYUNIT', 'Военно формирование', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_HUMANRES_EDITRESERVIST_MILSERV_CONSCRIPTION'));
+
+--Резерв -> Човешки ресурси -> Редактиране на резервист -> Военна служба -> Наборна служба -> Длъжност
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_HUMANRES_EDITRESERVIST_MILSERV_CONSCRIPTION_POSITION', 'Длъжност', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_HUMANRES_EDITRESERVIST_MILSERV_CONSCRIPTION'));
+
+--Резерв -> Човешки ресурси -> Редактиране на резервист -> Военна служба -> Наборна служба -> От
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_HUMANRES_EDITRESERVIST_MILSERV_CONSCRIPTION_DATEFROM', 'От', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_HUMANRES_EDITRESERVIST_MILSERV_CONSCRIPTION'));
+
+--Резерв -> Човешки ресурси -> Редактиране на резервист -> Военна служба -> Наборна служба -> До
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_HUMANRES_EDITRESERVIST_MILSERV_CONSCRIPTION_DATETO', 'До', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_HUMANRES_EDITRESERVIST_MILSERV_CONSCRIPTION'));
+
+
+
+--Резерв -> Техника -> Автомобили -> Редактиране -> Военно-отчетни -> Състояние по отчета -> Редактиране на текущото състояние -> Доброволен резерв - Договор №
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_TECHNICS_VEHICLES_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS_VOLUNTARYCONTRACTNUMBER', 'Доброволен резерв - Договор №', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_TECHNICS_VEHICLES_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS'));
+
+--Резерв -> Техника -> Автомобили -> Редактиране -> Военно-отчетни -> Състояние по отчета -> Редактиране на текущото състояние -> Доброволен резерв - от дата
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_TECHNICS_VEHICLES_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS_VOLUNTARYCONTRACTDATE', 'Доброволен резерв - от дата', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_TECHNICS_VEHICLES_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS'));
+
+--Резерв -> Техника -> Автомобили -> Редактиране -> Военно-отчетни -> Състояние по отчета -> Редактиране на текущото състояние -> Доброволен резерв - Срок
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_TECHNICS_VEHICLES_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS_VOLUNTARYDURATIONMONTHS', 'Доброволен резерв - Срок', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_TECHNICS_VEHICLES_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS'));
+
+--Резерв -> Техника -> Автомобили -> Редактиране -> Военно-отчетни -> Състояние по отчета -> Редактиране на текущото състояние -> Доброволен резерв - до дата
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_TECHNICS_VEHICLES_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS_VOLUNTARYCONTRACTTODATE', 'Доброволен резерв - до дата', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_TECHNICS_VEHICLES_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS'));
+
+--Резерв -> Техника -> Автомобили -> Редактиране -> Военно-отчетни -> Състояние по отчета -> Редактиране на текущото състояние -> Доброволен резерв - Място на изпълнение
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_TECHNICS_VEHICLES_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS_VOLUNTARYFULFILPLACE', 'Доброволен резерв - Място на изпълнение', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_TECHNICS_VEHICLES_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS'));
+
+--Резерв -> Техника -> Автомобили -> Редактиране -> Военно-отчетни -> Състояние по отчета -> Редактиране на текущото състояние -> Изключен - Изключен от отчет
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_TECHNICS_VEHICLES_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS_REMOVEDDATE', 'Изключен - Изключен от отчет', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_TECHNICS_VEHICLES_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS'));
+
+--Резерв -> Техника -> Автомобили -> Редактиране -> Военно-отчетни -> Състояние по отчета -> Редактиране на текущото състояние -> Изключен - Причина за изключване
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_TECHNICS_VEHICLES_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS_REMOVEDREASON', 'Изключен - Причина за изключване', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_TECHNICS_VEHICLES_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS'));
+
+--Резерв -> Техника -> Автомобили -> Редактиране -> Военно-отчетни -> Състояние по отчета -> Редактиране на текущото състояние -> Временно снет - Причина за временно снемане
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_TECHNICS_VEHICLES_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS_TEMPREMOVEDREASON', 'Временно снет - Причина за временно снемане', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_TECHNICS_VEHICLES_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS'));
+
+--Резерв -> Техника -> Автомобили -> Редактиране -> Военно-отчетни -> Състояние по отчета -> Редактиране на текущото състояние -> Временно снет - Начална дата
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_TECHNICS_VEHICLES_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS_TEMPREMOVEDDATE', 'Временно снет - Начална дата', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_TECHNICS_VEHICLES_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS'));
+
+--Резерв -> Техника -> Автомобили -> Редактиране -> Военно-отчетни -> Състояние по отчета -> Редактиране на текущото състояние -> Временно снет - Продължителност
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_TECHNICS_VEHICLES_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS_TEMPREMOVEDDURATION', 'Временно снет - Продължителност', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_TECHNICS_VEHICLES_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS'));
+
+--Резерв -> Техника -> Автомобили -> Редактиране -> Военно-отчетни -> Състояние по отчета -> Редактиране на текущото състояние -> Отсрочен - Вид отсрочване
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_TECHNICS_VEHICLES_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS_POSTPONETYPE', 'Отсрочен - Вид отсрочване', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_TECHNICS_VEHICLES_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS'));
+
+--Резерв -> Техника -> Автомобили -> Редактиране -> Военно-отчетни -> Състояние по отчета -> Редактиране на текущото състояние -> Отсрочен - За коя година
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_TECHNICS_VEHICLES_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS_POSTPONEYEAR', 'Отсрочен - За коя година', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_TECHNICS_VEHICLES_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS'));
+
+
+
+--Резерв -> Техника -> Трактори -> Редактиране -> Военно-отчетни -> Състояние по отчета -> Редактиране на текущото състояние -> Доброволен резерв - Договор №
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_TECHNICS_TRACTORS_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS_VOLUNTARYCONTRACTNUMBER', 'Доброволен резерв - Договор №', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_TECHNICS_TRACTORS_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS'));
+
+--Резерв -> Техника -> Трактори -> Редактиране -> Военно-отчетни -> Състояние по отчета -> Редактиране на текущото състояние -> Доброволен резерв - от дата
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_TECHNICS_TRACTORS_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS_VOLUNTARYCONTRACTDATE', 'Доброволен резерв - от дата', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_TECHNICS_TRACTORS_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS'));
+
+--Резерв -> Техника -> Трактори -> Редактиране -> Военно-отчетни -> Състояние по отчета -> Редактиране на текущото състояние -> Доброволен резерв - Срок
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_TECHNICS_TRACTORS_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS_VOLUNTARYDURATIONMONTHS', 'Доброволен резерв - Срок', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_TECHNICS_TRACTORS_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS'));
+
+--Резерв -> Техника -> Трактори -> Редактиране -> Военно-отчетни -> Състояние по отчета -> Редактиране на текущото състояние -> Доброволен резерв - до дата
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_TECHNICS_TRACTORS_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS_VOLUNTARYCONTRACTTODATE', 'Доброволен резерв - до дата', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_TECHNICS_TRACTORS_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS'));
+
+--Резерв -> Техника -> Трактори -> Редактиране -> Военно-отчетни -> Състояние по отчета -> Редактиране на текущото състояние -> Доброволен резерв - Място на изпълнение
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_TECHNICS_TRACTORS_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS_VOLUNTARYFULFILPLACE', 'Доброволен резерв - Място на изпълнение', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_TECHNICS_TRACTORS_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS'));
+
+--Резерв -> Техника -> Трактори -> Редактиране -> Военно-отчетни -> Състояние по отчета -> Редактиране на текущото състояние -> Изключен - Изключен от отчет
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_TECHNICS_TRACTORS_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS_REMOVEDDATE', 'Изключен - Изключен от отчет', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_TECHNICS_TRACTORS_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS'));
+
+--Резерв -> Техника -> Трактори -> Редактиране -> Военно-отчетни -> Състояние по отчета -> Редактиране на текущото състояние -> Изключен - Причина за изключване
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_TECHNICS_TRACTORS_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS_REMOVEDREASON', 'Изключен - Причина за изключване', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_TECHNICS_TRACTORS_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS'));
+
+--Резерв -> Техника -> Трактори -> Редактиране -> Военно-отчетни -> Състояние по отчета -> Редактиране на текущото състояние -> Временно снет - Причина за временно снемане
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_TECHNICS_TRACTORS_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS_TEMPREMOVEDREASON', 'Временно снет - Причина за временно снемане', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_TECHNICS_TRACTORS_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS'));
+
+--Резерв -> Техника -> Трактори -> Редактиране -> Военно-отчетни -> Състояние по отчета -> Редактиране на текущото състояние -> Временно снет - Начална дата
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_TECHNICS_TRACTORS_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS_TEMPREMOVEDDATE', 'Временно снет - Начална дата', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_TECHNICS_TRACTORS_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS'));
+
+--Резерв -> Техника -> Трактори -> Редактиране -> Военно-отчетни -> Състояние по отчета -> Редактиране на текущото състояние -> Временно снет - Продължителност
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_TECHNICS_TRACTORS_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS_TEMPREMOVEDDURATION', 'Временно снет - Продължителност', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_TECHNICS_TRACTORS_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS'));
+
+--Резерв -> Техника -> Трактори -> Редактиране -> Военно-отчетни -> Състояние по отчета -> Редактиране на текущото състояние -> Отсрочен - Вид отсрочване
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_TECHNICS_TRACTORS_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS_POSTPONETYPE', 'Отсрочен - Вид отсрочване', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_TECHNICS_TRACTORS_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS'));
+
+--Резерв -> Техника -> Трактори -> Редактиране -> Военно-отчетни -> Състояние по отчета -> Редактиране на текущото състояние -> Отсрочен - За коя година
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_TECHNICS_TRACTORS_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS_POSTPONEYEAR', 'Отсрочен - За коя година', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_TECHNICS_TRACTORS_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS'));
+
+
+--Резерв -> Техника -> Ремаркета -> Редактиране -> Военно-отчетни -> Състояние по отчета -> Редактиране на текущото състояние -> Доброволен резерв - Договор №
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_TECHNICS_TRAILERS_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS_VOLUNTARYCONTRACTNUMBER', 'Доброволен резерв - Договор №', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_TECHNICS_TRAILERS_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS'));
+
+--Резерв -> Техника -> Ремаркета -> Редактиране -> Военно-отчетни -> Състояние по отчета -> Редактиране на текущото състояние -> Доброволен резерв - от дата
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_TECHNICS_TRAILERS_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS_VOLUNTARYCONTRACTDATE', 'Доброволен резерв - от дата', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_TECHNICS_TRAILERS_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS'));
+
+--Резерв -> Техника -> Ремаркета -> Редактиране -> Военно-отчетни -> Състояние по отчета -> Редактиране на текущото състояние -> Доброволен резерв - Срок
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_TECHNICS_TRAILERS_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS_VOLUNTARYDURATIONMONTHS', 'Доброволен резерв - Срок', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_TECHNICS_TRAILERS_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS'));
+
+--Резерв -> Техника -> Ремаркета -> Редактиране -> Военно-отчетни -> Състояние по отчета -> Редактиране на текущото състояние -> Доброволен резерв - до дата
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_TECHNICS_TRAILERS_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS_VOLUNTARYCONTRACTTODATE', 'Доброволен резерв - до дата', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_TECHNICS_TRAILERS_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS'));
+
+--Резерв -> Техника -> Ремаркета -> Редактиране -> Военно-отчетни -> Състояние по отчета -> Редактиране на текущото състояние -> Доброволен резерв - Място на изпълнение
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_TECHNICS_TRAILERS_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS_VOLUNTARYFULFILPLACE', 'Доброволен резерв - Място на изпълнение', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_TECHNICS_TRAILERS_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS'));
+
+--Резерв -> Техника -> Ремаркета -> Редактиране -> Военно-отчетни -> Състояние по отчета -> Редактиране на текущото състояние -> Изключен - Изключен от отчет
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_TECHNICS_TRAILERS_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS_REMOVEDDATE', 'Изключен - Изключен от отчет', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_TECHNICS_TRAILERS_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS'));
+
+--Резерв -> Техника -> Ремаркета -> Редактиране -> Военно-отчетни -> Състояние по отчета -> Редактиране на текущото състояние -> Изключен - Причина за изключване
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_TECHNICS_TRAILERS_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS_REMOVEDREASON', 'Изключен - Причина за изключване', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_TECHNICS_TRAILERS_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS'));
+
+--Резерв -> Техника -> Ремаркета -> Редактиране -> Военно-отчетни -> Състояние по отчета -> Редактиране на текущото състояние -> Временно снет - Причина за временно снемане
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_TECHNICS_TRAILERS_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS_TEMPREMOVEDREASON', 'Временно снет - Причина за временно снемане', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_TECHNICS_TRAILERS_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS'));
+
+--Резерв -> Техника -> Ремаркета -> Редактиране -> Военно-отчетни -> Състояние по отчета -> Редактиране на текущото състояние -> Временно снет - Начална дата
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_TECHNICS_TRAILERS_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS_TEMPREMOVEDDATE', 'Временно снет - Начална дата', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_TECHNICS_TRAILERS_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS'));
+
+--Резерв -> Техника -> Ремаркета -> Редактиране -> Военно-отчетни -> Състояние по отчета -> Редактиране на текущото състояние -> Временно снет - Продължителност
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_TECHNICS_TRAILERS_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS_TEMPREMOVEDDURATION', 'Временно снет - Продължителност', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_TECHNICS_TRAILERS_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS'));
+
+--Резерв -> Техника -> Ремаркета -> Редактиране -> Военно-отчетни -> Състояние по отчета -> Редактиране на текущото състояние -> Отсрочен - Вид отсрочване
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_TECHNICS_TRAILERS_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS_POSTPONETYPE', 'Отсрочен - Вид отсрочване', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_TECHNICS_TRAILERS_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS'));
+
+--Резерв -> Техника -> Ремаркета -> Редактиране -> Военно-отчетни -> Състояние по отчета -> Редактиране на текущото състояние -> Отсрочен - За коя година
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_TECHNICS_TRAILERS_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS_POSTPONEYEAR', 'Отсрочен - За коя година', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_TECHNICS_TRAILERS_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS'));
+
+
+--Резерв -> Техника -> Инженерна техника -> Редактиране -> Военно-отчетни -> Състояние по отчета -> Редактиране на текущото състояние -> Доброволен резерв - Договор №
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_TECHNICS_ENG_EQUIP_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS_VOLUNTARYCONTRACTNUMBER', 'Доброволен резерв - Договор №', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_TECHNICS_ENG_EQUIP_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS'));
+
+--Резерв -> Техника -> Инженерна техника -> Редактиране -> Военно-отчетни -> Състояние по отчета -> Редактиране на текущото състояние -> Доброволен резерв - от дата
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_TECHNICS_ENG_EQUIP_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS_VOLUNTARYCONTRACTDATE', 'Доброволен резерв - от дата', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_TECHNICS_ENG_EQUIP_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS'));
+
+--Резерв -> Техника -> Инженерна техника -> Редактиране -> Военно-отчетни -> Състояние по отчета -> Редактиране на текущото състояние -> Доброволен резерв - Срок
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_TECHNICS_ENG_EQUIP_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS_VOLUNTARYDURATIONMONTHS', 'Доброволен резерв - Срок', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_TECHNICS_ENG_EQUIP_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS'));
+
+--Резерв -> Техника -> Инженерна техника -> Редактиране -> Военно-отчетни -> Състояние по отчета -> Редактиране на текущото състояние -> Доброволен резерв - до дата
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_TECHNICS_ENG_EQUIP_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS_VOLUNTARYCONTRACTTODATE', 'Доброволен резерв - до дата', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_TECHNICS_ENG_EQUIP_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS'));
+
+--Резерв -> Техника -> Инженерна техника -> Редактиране -> Военно-отчетни -> Състояние по отчета -> Редактиране на текущото състояние -> Доброволен резерв - Място на изпълнение
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_TECHNICS_ENG_EQUIP_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS_VOLUNTARYFULFILPLACE', 'Доброволен резерв - Място на изпълнение', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_TECHNICS_ENG_EQUIP_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS'));
+
+--Резерв -> Техника -> Инженерна техника -> Редактиране -> Военно-отчетни -> Състояние по отчета -> Редактиране на текущото състояние -> Изключен - Изключен от отчет
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_TECHNICS_ENG_EQUIP_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS_REMOVEDDATE', 'Изключен - Изключен от отчет', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_TECHNICS_ENG_EQUIP_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS'));
+
+--Резерв -> Техника -> Инженерна техника -> Редактиране -> Военно-отчетни -> Състояние по отчета -> Редактиране на текущото състояние -> Изключен - Причина за изключване
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_TECHNICS_ENG_EQUIP_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS_REMOVEDREASON', 'Изключен - Причина за изключване', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_TECHNICS_ENG_EQUIP_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS'));
+
+--Резерв -> Техника -> Инженерна техника -> Редактиране -> Военно-отчетни -> Състояние по отчета -> Редактиране на текущото състояние -> Временно снет - Причина за временно снемане
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_TECHNICS_ENG_EQUIP_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS_TEMPREMOVEDREASON', 'Временно снет - Причина за временно снемане', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_TECHNICS_ENG_EQUIP_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS'));
+
+--Резерв -> Техника -> Инженерна техника -> Редактиране -> Военно-отчетни -> Състояние по отчета -> Редактиране на текущото състояние -> Временно снет - Начална дата
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_TECHNICS_ENG_EQUIP_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS_TEMPREMOVEDDATE', 'Временно снет - Начална дата', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_TECHNICS_ENG_EQUIP_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS'));
+
+--Резерв -> Техника -> Инженерна техника -> Редактиране -> Военно-отчетни -> Състояние по отчета -> Редактиране на текущото състояние -> Временно снет - Продължителност
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_TECHNICS_ENG_EQUIP_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS_TEMPREMOVEDDURATION', 'Временно снет - Продължителност', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_TECHNICS_ENG_EQUIP_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS'));
+
+--Резерв -> Техника -> Инженерна техника -> Редактиране -> Военно-отчетни -> Състояние по отчета -> Редактиране на текущото състояние -> Отсрочен - Вид отсрочване
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_TECHNICS_ENG_EQUIP_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS_POSTPONETYPE', 'Отсрочен - Вид отсрочване', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_TECHNICS_ENG_EQUIP_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS'));
+
+--Резерв -> Техника -> Инженерна техника -> Редактиране -> Военно-отчетни -> Състояние по отчета -> Редактиране на текущото състояние -> Отсрочен - За коя година
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_TECHNICS_ENG_EQUIP_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS_POSTPONEYEAR', 'Отсрочен - За коя година', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_TECHNICS_ENG_EQUIP_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS'));
+
+
+
+--Резерв -> Техника -> Подемно-транспортна техника -> Редактиране -> Военно-отчетни -> Състояние по отчета -> Редактиране на текущото състояние -> Доброволен резерв - Договор №
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_TECHNICS_MOB_LIFT_EQUIP_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS_VOLUNTARYCONTRACTNUMBER', 'Доброволен резерв - Договор №', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_TECHNICS_MOB_LIFT_EQUIP_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS'));
+
+--Резерв -> Техника -> Подемно-транспортна техника -> Редактиране -> Военно-отчетни -> Състояние по отчета -> Редактиране на текущото състояние -> Доброволен резерв - от дата
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_TECHNICS_MOB_LIFT_EQUIP_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS_VOLUNTARYCONTRACTDATE', 'Доброволен резерв - от дата', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_TECHNICS_MOB_LIFT_EQUIP_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS'));
+
+--Резерв -> Техника -> Подемно-транспортна техника -> Редактиране -> Военно-отчетни -> Състояние по отчета -> Редактиране на текущото състояние -> Доброволен резерв - Срок
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_TECHNICS_MOB_LIFT_EQUIP_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS_VOLUNTARYDURATIONMONTHS', 'Доброволен резерв - Срок', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_TECHNICS_MOB_LIFT_EQUIP_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS'));
+
+--Резерв -> Техника -> Подемно-транспортна техника -> Редактиране -> Военно-отчетни -> Състояние по отчета -> Редактиране на текущото състояние -> Доброволен резерв - до дата
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_TECHNICS_MOB_LIFT_EQUIP_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS_VOLUNTARYCONTRACTTODATE', 'Доброволен резерв - до дата', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_TECHNICS_MOB_LIFT_EQUIP_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS'));
+
+--Резерв -> Техника -> Подемно-транспортна техника -> Редактиране -> Военно-отчетни -> Състояние по отчета -> Редактиране на текущото състояние -> Доброволен резерв - Място на изпълнение
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_TECHNICS_MOB_LIFT_EQUIP_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS_VOLUNTARYFULFILPLACE', 'Доброволен резерв - Място на изпълнение', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_TECHNICS_MOB_LIFT_EQUIP_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS'));
+
+--Резерв -> Техника -> Подемно-транспортна техника -> Редактиране -> Военно-отчетни -> Състояние по отчета -> Редактиране на текущото състояние -> Изключен - Изключен от отчет
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_TECHNICS_MOB_LIFT_EQUIP_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS_REMOVEDDATE', 'Изключен - Изключен от отчет', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_TECHNICS_MOB_LIFT_EQUIP_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS'));
+
+--Резерв -> Техника -> Подемно-транспортна техника -> Редактиране -> Военно-отчетни -> Състояние по отчета -> Редактиране на текущото състояние -> Изключен - Причина за изключване
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_TECHNICS_MOB_LIFT_EQUIP_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS_REMOVEDREASON', 'Изключен - Причина за изключване', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_TECHNICS_MOB_LIFT_EQUIP_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS'));
+
+--Резерв -> Техника -> Подемно-транспортна техника -> Редактиране -> Военно-отчетни -> Състояние по отчета -> Редактиране на текущото състояние -> Временно снет - Причина за временно снемане
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_TECHNICS_MOB_LIFT_EQUIP_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS_TEMPREMOVEDREASON', 'Временно снет - Причина за временно снемане', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_TECHNICS_MOB_LIFT_EQUIP_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS'));
+
+--Резерв -> Техника -> Подемно-транспортна техника -> Редактиране -> Военно-отчетни -> Състояние по отчета -> Редактиране на текущото състояние -> Временно снет - Начална дата
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_TECHNICS_MOB_LIFT_EQUIP_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS_TEMPREMOVEDDATE', 'Временно снет - Начална дата', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_TECHNICS_MOB_LIFT_EQUIP_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS'));
+
+--Резерв -> Техника -> Подемно-транспортна техника -> Редактиране -> Военно-отчетни -> Състояние по отчета -> Редактиране на текущото състояние -> Временно снет - Продължителност
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_TECHNICS_MOB_LIFT_EQUIP_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS_TEMPREMOVEDDURATION', 'Временно снет - Продължителност', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_TECHNICS_MOB_LIFT_EQUIP_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS'));
+
+--Резерв -> Техника -> Подемно-транспортна техника -> Редактиране -> Военно-отчетни -> Състояние по отчета -> Редактиране на текущото състояние -> Отсрочен - Вид отсрочване
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_TECHNICS_MOB_LIFT_EQUIP_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS_POSTPONETYPE', 'Отсрочен - Вид отсрочване', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_TECHNICS_MOB_LIFT_EQUIP_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS'));
+
+--Резерв -> Техника -> Подемно-транспортна техника -> Редактиране -> Военно-отчетни -> Състояние по отчета -> Редактиране на текущото състояние -> Отсрочен - За коя година
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_TECHNICS_MOB_LIFT_EQUIP_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS_POSTPONEYEAR', 'Отсрочен - За коя година', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_TECHNICS_MOB_LIFT_EQUIP_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS'));
+
+
+--Резерв -> Техника -> Специализиран железопътен състав -> Редактиране -> Военно-отчетни -> Състояние по отчета -> Редактиране на текущото състояние -> Доброволен резерв - Договор №
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_TECHNICS_RAILWAY_EQUIP_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS_VOLUNTARYCONTRACTNUMBER', 'Доброволен резерв - Договор №', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_TECHNICS_RAILWAY_EQUIP_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS'));
+
+--Резерв -> Техника -> Специализиран железопътен състав -> Редактиране -> Военно-отчетни -> Състояние по отчета -> Редактиране на текущото състояние -> Доброволен резерв - от дата
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_TECHNICS_RAILWAY_EQUIP_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS_VOLUNTARYCONTRACTDATE', 'Доброволен резерв - от дата', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_TECHNICS_RAILWAY_EQUIP_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS'));
+
+--Резерв -> Техника -> Специализиран железопътен състав -> Редактиране -> Военно-отчетни -> Състояние по отчета -> Редактиране на текущото състояние -> Доброволен резерв - Срок
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_TECHNICS_RAILWAY_EQUIP_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS_VOLUNTARYDURATIONMONTHS', 'Доброволен резерв - Срок', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_TECHNICS_RAILWAY_EQUIP_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS'));
+
+--Резерв -> Техника -> Специализиран железопътен състав -> Редактиране -> Военно-отчетни -> Състояние по отчета -> Редактиране на текущото състояние -> Доброволен резерв - до дата
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_TECHNICS_RAILWAY_EQUIP_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS_VOLUNTARYCONTRACTTODATE', 'Доброволен резерв - до дата', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_TECHNICS_RAILWAY_EQUIP_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS'));
+
+--Резерв -> Техника -> Специализиран железопътен състав -> Редактиране -> Военно-отчетни -> Състояние по отчета -> Редактиране на текущото състояние -> Доброволен резерв - Място на изпълнение
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_TECHNICS_RAILWAY_EQUIP_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS_VOLUNTARYFULFILPLACE', 'Доброволен резерв - Място на изпълнение', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_TECHNICS_RAILWAY_EQUIP_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS'));
+
+--Резерв -> Техника -> Специализиран железопътен състав -> Редактиране -> Военно-отчетни -> Състояние по отчета -> Редактиране на текущото състояние -> Изключен - Изключен от отчет
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_TECHNICS_RAILWAY_EQUIP_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS_REMOVEDDATE', 'Изключен - Изключен от отчет', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_TECHNICS_RAILWAY_EQUIP_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS'));
+
+--Резерв -> Техника -> Специализиран железопътен състав -> Редактиране -> Военно-отчетни -> Състояние по отчета -> Редактиране на текущото състояние -> Изключен - Причина за изключване
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_TECHNICS_RAILWAY_EQUIP_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS_REMOVEDREASON', 'Изключен - Причина за изключване', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_TECHNICS_RAILWAY_EQUIP_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS'));
+
+--Резерв -> Техника -> Специализиран железопътен състав -> Редактиране -> Военно-отчетни -> Състояние по отчета -> Редактиране на текущото състояние -> Временно снет - Причина за временно снемане
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_TECHNICS_RAILWAY_EQUIP_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS_TEMPREMOVEDREASON', 'Временно снет - Причина за временно снемане', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_TECHNICS_RAILWAY_EQUIP_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS'));
+
+--Резерв -> Техника -> Специализиран железопътен състав -> Редактиране -> Военно-отчетни -> Състояние по отчета -> Редактиране на текущото състояние -> Временно снет - Начална дата
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_TECHNICS_RAILWAY_EQUIP_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS_TEMPREMOVEDDATE', 'Временно снет - Начална дата', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_TECHNICS_RAILWAY_EQUIP_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS'));
+
+--Резерв -> Техника -> Специализиран железопътен състав -> Редактиране -> Военно-отчетни -> Състояние по отчета -> Редактиране на текущото състояние -> Временно снет - Продължителност
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_TECHNICS_RAILWAY_EQUIP_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS_TEMPREMOVEDDURATION', 'Временно снет - Продължителност', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_TECHNICS_RAILWAY_EQUIP_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS'));
+
+--Резерв -> Техника -> Специализиран железопътен състав -> Редактиране -> Военно-отчетни -> Състояние по отчета -> Редактиране на текущото състояние -> Отсрочен - Вид отсрочване
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_TECHNICS_RAILWAY_EQUIP_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS_POSTPONETYPE', 'Отсрочен - Вид отсрочване', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_TECHNICS_RAILWAY_EQUIP_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS'));
+
+--Резерв -> Техника -> Специализиран железопътен състав -> Редактиране -> Военно-отчетни -> Състояние по отчета -> Редактиране на текущото състояние -> Отсрочен - За коя година
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_TECHNICS_RAILWAY_EQUIP_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS_POSTPONEYEAR', 'Отсрочен - За коя година', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_TECHNICS_RAILWAY_EQUIP_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS'));
+
+
+--Резерв -> Техника -> Кораби -> Редактиране -> Военно-отчетни -> Състояние по отчета -> Редактиране на текущото състояние -> Доброволен резерв - Договор №
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_TECHNICS_VESSELS_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS_VOLUNTARYCONTRACTNUMBER', 'Доброволен резерв - Договор №', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_TECHNICS_VESSELS_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS'));
+
+--Резерв -> Техника -> Кораби -> Редактиране -> Военно-отчетни -> Състояние по отчета -> Редактиране на текущото състояние -> Доброволен резерв - от дата
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_TECHNICS_VESSELS_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS_VOLUNTARYCONTRACTDATE', 'Доброволен резерв - от дата', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_TECHNICS_VESSELS_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS'));
+
+--Резерв -> Техника -> Кораби -> Редактиране -> Военно-отчетни -> Състояние по отчета -> Редактиране на текущото състояние -> Доброволен резерв - Срок
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_TECHNICS_VESSELS_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS_VOLUNTARYDURATIONMONTHS', 'Доброволен резерв - Срок', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_TECHNICS_VESSELS_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS'));
+
+--Резерв -> Техника -> Кораби -> Редактиране -> Военно-отчетни -> Състояние по отчета -> Редактиране на текущото състояние -> Доброволен резерв - до дата
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_TECHNICS_VESSELS_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS_VOLUNTARYCONTRACTTODATE', 'Доброволен резерв - до дата', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_TECHNICS_VESSELS_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS'));
+
+--Резерв -> Техника -> Кораби -> Редактиране -> Военно-отчетни -> Състояние по отчета -> Редактиране на текущото състояние -> Доброволен резерв - Място на изпълнение
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_TECHNICS_VESSELS_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS_VOLUNTARYFULFILPLACE', 'Доброволен резерв - Място на изпълнение', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_TECHNICS_VESSELS_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS'));
+
+--Резерв -> Техника -> Кораби -> Редактиране -> Военно-отчетни -> Състояние по отчета -> Редактиране на текущото състояние -> Изключен - Изключен от отчет
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_TECHNICS_VESSELS_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS_REMOVEDDATE', 'Изключен - Изключен от отчет', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_TECHNICS_VESSELS_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS'));
+
+--Резерв -> Техника -> Кораби -> Редактиране -> Военно-отчетни -> Състояние по отчета -> Редактиране на текущото състояние -> Изключен - Причина за изключване
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_TECHNICS_VESSELS_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS_REMOVEDREASON', 'Изключен - Причина за изключване', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_TECHNICS_VESSELS_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS'));
+
+--Резерв -> Техника -> Кораби -> Редактиране -> Военно-отчетни -> Състояние по отчета -> Редактиране на текущото състояние -> Временно снет - Причина за временно снемане
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_TECHNICS_VESSELS_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS_TEMPREMOVEDREASON', 'Временно снет - Причина за временно снемане', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_TECHNICS_VESSELS_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS'));
+
+--Резерв -> Техника -> Кораби -> Редактиране -> Военно-отчетни -> Състояние по отчета -> Редактиране на текущото състояние -> Временно снет - Начална дата
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_TECHNICS_VESSELS_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS_TEMPREMOVEDDATE', 'Временно снет - Начална дата', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_TECHNICS_VESSELS_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS'));
+
+--Резерв -> Техника -> Кораби -> Редактиране -> Военно-отчетни -> Състояние по отчета -> Редактиране на текущото състояние -> Временно снет - Продължителност
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_TECHNICS_VESSELS_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS_TEMPREMOVEDDURATION', 'Временно снет - Продължителност', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_TECHNICS_VESSELS_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS'));
+
+--Резерв -> Техника -> Кораби -> Редактиране -> Военно-отчетни -> Състояние по отчета -> Редактиране на текущото състояние -> Отсрочен - Вид отсрочване
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_TECHNICS_VESSELS_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS_POSTPONETYPE', 'Отсрочен - Вид отсрочване', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_TECHNICS_VESSELS_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS'));
+
+--Резерв -> Техника -> Кораби -> Редактиране -> Военно-отчетни -> Състояние по отчета -> Редактиране на текущото състояние -> Отсрочен - За коя година
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_TECHNICS_VESSELS_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS_POSTPONEYEAR', 'Отсрочен - За коя година', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_TECHNICS_VESSELS_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS'));
+
+
+--Резерв -> Техника -> Съдове за ГСМ -> Редактиране -> Военно-отчетни -> Състояние по отчета -> Редактиране на текущото състояние -> Доброволен резерв - Договор №
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_TECHNICS_FUEL_CONTAINERS_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS_VOLUNTARYCONTRACTNUMBER', 'Доброволен резерв - Договор №', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_TECHNICS_FUEL_CONTAINERS_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS'));
+
+--Резерв -> Техника -> Съдове за ГСМ -> Редактиране -> Военно-отчетни -> Състояние по отчета -> Редактиране на текущото състояние -> Доброволен резерв - от дата
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_TECHNICS_FUEL_CONTAINERS_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS_VOLUNTARYCONTRACTDATE', 'Доброволен резерв - от дата', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_TECHNICS_FUEL_CONTAINERS_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS'));
+
+--Резерв -> Техника -> Съдове за ГСМ -> Редактиране -> Военно-отчетни -> Състояние по отчета -> Редактиране на текущото състояние -> Доброволен резерв - Срок
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_TECHNICS_FUEL_CONTAINERS_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS_VOLUNTARYDURATIONMONTHS', 'Доброволен резерв - Срок', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_TECHNICS_FUEL_CONTAINERS_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS'));
+
+--Резерв -> Техника -> Съдове за ГСМ -> Редактиране -> Военно-отчетни -> Състояние по отчета -> Редактиране на текущото състояние -> Доброволен резерв - до дата
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_TECHNICS_FUEL_CONTAINERS_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS_VOLUNTARYCONTRACTTODATE', 'Доброволен резерв - до дата', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_TECHNICS_FUEL_CONTAINERS_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS'));
+
+--Резерв -> Техника -> Съдове за ГСМ -> Редактиране -> Военно-отчетни -> Състояние по отчета -> Редактиране на текущото състояние -> Доброволен резерв - Място на изпълнение
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_TECHNICS_FUEL_CONTAINERS_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS_VOLUNTARYFULFILPLACE', 'Доброволен резерв - Място на изпълнение', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_TECHNICS_FUEL_CONTAINERS_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS'));
+
+--Резерв -> Техника -> Съдове за ГСМ -> Редактиране -> Военно-отчетни -> Състояние по отчета -> Редактиране на текущото състояние -> Изключен - Изключен от отчет
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_TECHNICS_FUEL_CONTAINERS_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS_REMOVEDDATE', 'Изключен - Изключен от отчет', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_TECHNICS_FUEL_CONTAINERS_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS'));
+
+--Резерв -> Техника -> Съдове за ГСМ -> Редактиране -> Военно-отчетни -> Състояние по отчета -> Редактиране на текущото състояние -> Изключен - Причина за изключване
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_TECHNICS_FUEL_CONTAINERS_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS_REMOVEDREASON', 'Изключен - Причина за изключване', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_TECHNICS_FUEL_CONTAINERS_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS'));
+
+--Резерв -> Техника -> Съдове за ГСМ -> Редактиране -> Военно-отчетни -> Състояние по отчета -> Редактиране на текущото състояние -> Временно снет - Причина за временно снемане
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_TECHNICS_FUEL_CONTAINERS_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS_TEMPREMOVEDREASON', 'Временно снет - Причина за временно снемане', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_TECHNICS_FUEL_CONTAINERS_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS'));
+
+--Резерв -> Техника -> Съдове за ГСМ -> Редактиране -> Военно-отчетни -> Състояние по отчета -> Редактиране на текущото състояние -> Временно снет - Начална дата
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_TECHNICS_FUEL_CONTAINERS_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS_TEMPREMOVEDDATE', 'Временно снет - Начална дата', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_TECHNICS_FUEL_CONTAINERS_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS'));
+
+--Резерв -> Техника -> Съдове за ГСМ -> Редактиране -> Военно-отчетни -> Състояние по отчета -> Редактиране на текущото състояние -> Временно снет - Продължителност
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_TECHNICS_FUEL_CONTAINERS_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS_TEMPREMOVEDDURATION', 'Временно снет - Продължителност', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_TECHNICS_FUEL_CONTAINERS_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS'));
+
+--Резерв -> Техника -> Съдове за ГСМ -> Редактиране -> Военно-отчетни -> Състояние по отчета -> Редактиране на текущото състояние -> Отсрочен - Вид отсрочване
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_TECHNICS_FUEL_CONTAINERS_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS_POSTPONETYPE', 'Отсрочен - Вид отсрочване', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_TECHNICS_FUEL_CONTAINERS_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS'));
+
+--Резерв -> Техника -> Съдове за ГСМ -> Редактиране -> Военно-отчетни -> Състояние по отчета -> Редактиране на текущото състояние -> Отсрочен - За коя година
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_TECHNICS_FUEL_CONTAINERS_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS_POSTPONEYEAR', 'Отсрочен - За коя година', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_TECHNICS_FUEL_CONTAINERS_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS'));
+
+
+
+--Резерв -> Техника -> Авиационна техника -> Редактиране -> Военно-отчетни -> Състояние по отчета -> Редактиране на текущото състояние -> Доброволен резерв - Договор №
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_TECHNICS_AVIATION_EQUIP_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS_VOLUNTARYCONTRACTNUMBER', 'Доброволен резерв - Договор №', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_TECHNICS_AVIATION_EQUIP_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS'));
+
+--Резерв -> Техника -> Авиационна техника -> Редактиране -> Военно-отчетни -> Състояние по отчета -> Редактиране на текущото състояние -> Доброволен резерв - от дата
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_TECHNICS_AVIATION_EQUIP_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS_VOLUNTARYCONTRACTDATE', 'Доброволен резерв - от дата', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_TECHNICS_AVIATION_EQUIP_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS'));
+
+--Резерв -> Техника -> Авиационна техника -> Редактиране -> Военно-отчетни -> Състояние по отчета -> Редактиране на текущото състояние -> Доброволен резерв - Срок
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_TECHNICS_AVIATION_EQUIP_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS_VOLUNTARYDURATIONMONTHS', 'Доброволен резерв - Срок', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_TECHNICS_AVIATION_EQUIP_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS'));
+
+--Резерв -> Техника -> Авиационна техника -> Редактиране -> Военно-отчетни -> Състояние по отчета -> Редактиране на текущото състояние -> Доброволен резерв - до дата
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_TECHNICS_AVIATION_EQUIP_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS_VOLUNTARYCONTRACTTODATE', 'Доброволен резерв - до дата', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_TECHNICS_AVIATION_EQUIP_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS'));
+
+--Резерв -> Техника -> Авиационна техника -> Редактиране -> Военно-отчетни -> Състояние по отчета -> Редактиране на текущото състояние -> Доброволен резерв - Място на изпълнение
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_TECHNICS_AVIATION_EQUIP_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS_VOLUNTARYFULFILPLACE', 'Доброволен резерв - Място на изпълнение', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_TECHNICS_AVIATION_EQUIP_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS'));
+
+--Резерв -> Техника -> Авиационна техника -> Редактиране -> Военно-отчетни -> Състояние по отчета -> Редактиране на текущото състояние -> Изключен - Изключен от отчет
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_TECHNICS_AVIATION_EQUIP_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS_REMOVEDDATE', 'Изключен - Изключен от отчет', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_TECHNICS_AVIATION_EQUIP_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS'));
+
+--Резерв -> Техника -> Авиационна техника -> Редактиране -> Военно-отчетни -> Състояние по отчета -> Редактиране на текущото състояние -> Изключен - Причина за изключване
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_TECHNICS_AVIATION_EQUIP_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS_REMOVEDREASON', 'Изключен - Причина за изключване', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_TECHNICS_AVIATION_EQUIP_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS'));
+
+--Резерв -> Техника -> Авиационна техника -> Редактиране -> Военно-отчетни -> Състояние по отчета -> Редактиране на текущото състояние -> Временно снет - Причина за временно снемане
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_TECHNICS_AVIATION_EQUIP_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS_TEMPREMOVEDREASON', 'Временно снет - Причина за временно снемане', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_TECHNICS_AVIATION_EQUIP_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS'));
+
+--Резерв -> Техника -> Авиационна техника -> Редактиране -> Военно-отчетни -> Състояние по отчета -> Редактиране на текущото състояние -> Временно снет - Начална дата
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_TECHNICS_AVIATION_EQUIP_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS_TEMPREMOVEDDATE', 'Временно снет - Начална дата', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_TECHNICS_AVIATION_EQUIP_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS'));
+
+--Резерв -> Техника -> Авиационна техника -> Редактиране -> Военно-отчетни -> Състояние по отчета -> Редактиране на текущото състояние -> Временно снет - Продължителност
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_TECHNICS_AVIATION_EQUIP_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS_TEMPREMOVEDDURATION', 'Временно снет - Продължителност', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_TECHNICS_AVIATION_EQUIP_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS'));
+
+--Резерв -> Техника -> Авиационна техника -> Редактиране -> Военно-отчетни -> Състояние по отчета -> Редактиране на текущото състояние -> Отсрочен - Вид отсрочване
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_TECHNICS_AVIATION_EQUIP_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS_POSTPONETYPE', 'Отсрочен - Вид отсрочване', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_TECHNICS_AVIATION_EQUIP_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS'));
+
+--Резерв -> Техника -> Авиационна техника -> Редактиране -> Военно-отчетни -> Състояние по отчета -> Редактиране на текущото състояние -> Отсрочен - За коя година
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_TECHNICS_AVIATION_EQUIP_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS_POSTPONEYEAR', 'Отсрочен - За коя година', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_TECHNICS_AVIATION_EQUIP_EDIT_MILREP_MILREPSTATUS_EDITMILREPSTATUS'));
+
+
+
+--Резерв -> Човешки ресурси -> Добавяне на нов резервист -> Лични данни
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_HUMANRES_ADDRESERVIST_PERSONALDATA_BASEVOS', 'ВОС', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_HUMANRES_ADDRESERVIST_PERSONALDATA'));
+
+--Резерв -> Човешки ресурси -> Добавяне на нов резервист -> Лични данни
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_HUMANRES_EDITRESERVIST_PERSONALDATA_BASEVOS', 'ВОС', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_HUMANRES_EDITRESERVIST_PERSONALDATA'));
+
+COMMIT;
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Reservist_MilServ_EditConscription', 'Редактиране на наборна служба', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 1);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Reservist_MilServ_AddConscription', 'Добавяне на наборна служба', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 2);
+
+INSERT INTO PMIS_ADM.ChangeEventTypes (ChangeEventTypeKey, ChangeEventType, ModuleID, ChangeType)
+VALUES ('RES_Reservist_MilServ_DeleteConscription', 'Изтриване на наборна служба', (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'), 3);
+
+
+
+
+COMMIT;
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Reservist_MilServ_Conscription_MilitaryUnit', 'Военно формирование', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Reservist_MilServ_Conscription_Position', 'Длъжност', 2);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('date', 'RES_Reservist_MilServ_Conscription_DateFrom', 'От', 3);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('date', 'RES_Reservist_MilServ_Conscription_DateTo', 'До', 4);
+
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Technics_MilRepStatus_VoluntaryContractNumber', 'Договор №', 9);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('date', 'RES_Technics_MilRepStatus_VoluntaryContractDate', 'от дата', 10);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('number', 'RES_Technics_MilRepStatus_VoluntaryDurationMonths', 'Срок', 11);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('date', 'RES_Technics_MilRepStatus_VoluntaryContractToDate', 'до дата', 12);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Technics_MilRepStatus_VoluntaryFulfilPlace', 'Място на изпълнение', 13);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('date', 'RES_Technics_MilRepStatus_RemovedDate', 'Изключен от отчет', 14);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Technics_MilRepStatus_RemovedReason', 'Причина за изключване', 15);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Technics_MilRepStatus_TemporaryRemovedReason', 'Причина за временно снемане', 16);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('date', 'RES_Technics_MilRepStatus_TemporaryRemovedDate', 'Начална дата', 17);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('number', 'RES_Technics_MilRepStatus_TemporaryRemovedDuration', 'Продължителност', 18);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Technics_MilRepStatus_TechnicsPostponeType', 'Вид отсрочване', 19);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('number', 'RES_Technics_MilRepStatus_TechnicsPostponeYear', 'За коя година', 20);
+
+
+COMMIT;
+CREATE TABLE PMIS_RES.TechnicsPostponeTypes(TechnicsPostponeTypeID number NOT NULL,
+                                    TechnicsPostponeTypeKey varchar2(100),
+                                    TechnicsPostponeTypeName varchar2(250)
+                                   );
+
+ALTER TABLE PMIS_RES.TechnicsPostponeTypes ADD CONSTRAINT TechnicsPostponeTypes_PK PRIMARY KEY(TechnicsPostponeTypeID);
+
+CREATE SEQUENCE PMIS_RES.TechPostponeTypes_ID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+CREATE TRIGGER PMIS_RES.TRG_TechPostponeTypes_INSERT
+BEFORE INSERT ON PMIS_RES.TechnicsPostponeTypes
+FOR EACH ROW
+BEGIN
+   SELECT PMIS_RES.TechPostponeTypes_ID_SEQ.nextval INTO :new.TechnicsPostponeTypeID FROM dual;
+END;
+/
+
+INSERT INTO PMIS_RES.TechnicsPostponeTypes (TechnicsPostponeTypeKey, TechnicsPostponeTypeName)
+VALUES ('CONDITIONED', 'Условно');
+
+INSERT INTO PMIS_RES.TechnicsPostponeTypes (TechnicsPostponeTypeKey, TechnicsPostponeTypeName)
+VALUES ('ABSOLUTELY', 'Безусловно');
+
+COMMIT;
+/
+INSERT INTO PMIS_RES.GTable(TableName, TableKey, TableSeq, TableValue)
+VALUES ('TechMilRepStat_RemovedReasons', '1', '1', 'Причина 1');
+
+INSERT INTO PMIS_RES.GTable(TableName, TableKey, TableSeq, TableValue)
+VALUES ('TechMilRepStat_RemovedReasons', '2', '2', 'Причина 2');
+
+INSERT INTO PMIS_RES.GTable(TableName, TableKey, TableSeq, TableValue)
+VALUES ('TechMilRepStat_ТemporaryRemovedReasons', '1', '1', 'Причина 1');
+
+INSERT INTO PMIS_RES.GTable(TableName, TableKey, TableSeq, TableValue)
+VALUES ('TechMilRepStat_ТemporaryRemovedReasons', '2', '2', 'Причина 2');
+
+COMMIT;
+
+
+ALTER TABLE PMIS_RES.Vehicles ADD VehicleMakeName VARCHAR2(300 BYTE);
+ALTER TABLE PMIS_RES.Vehicles ADD VehicleModelName VARCHAR2(300 BYTE);
+
+/
+
+ALTER TABLE PMIS_RES.TechnicsMilRepStatus ADD Voluntary_ContractNumber varchar2(250);
+ALTER TABLE PMIS_RES.TechnicsMilRepStatus ADD Voluntary_ContractDate date;
+ALTER TABLE PMIS_RES.TechnicsMilRepStatus ADD Voluntary_DurationMonths number;
+ALTER TABLE PMIS_RES.TechnicsMilRepStatus ADD Voluntary_ContractToDate date;
+ALTER TABLE PMIS_RES.TechnicsMilRepStatus ADD Voluntary_FulfilPlace varchar2(250);
+
+ALTER TABLE PMIS_RES.TechnicsMilRepStatus ADD Removed_Date date;
+ALTER TABLE PMIS_RES.TechnicsMilRepStatus ADD Removed_ReasonID number; /*GTable*/
+
+ALTER TABLE PMIS_RES.TechnicsMilRepStatus ADD TemporaryRemoved_ReasonID number; /*GTable*/
+ALTER TABLE PMIS_RES.TechnicsMilRepStatus ADD TemporaryRemoved_Date date;
+ALTER TABLE PMIS_RES.TechnicsMilRepStatus ADD TemporaryRemoved_Duration number;
+										  
+ALTER TABLE PMIS_RES.TechnicsMilRepStatus ADD TechnicsPostpone_TypeID number;
+ALTER TABLE PMIS_RES.TechnicsMilRepStatus ADD TechnicsPostpone_Year number;
+
+ALTER TABLE PMIS_RES.TechnicsMilRepStatus ADD CONSTRAINT TechMilRepStatuses_PostType_FK FOREIGN KEY (TechnicsPostpone_TypeID) REFERENCES PMIS_RES.TechnicsPostponeTypes (TechnicsPostponeTypeID);
+
+/
+
+ALTER TABLE PMIS_RES.Tractors ADD TractorMakeName VARCHAR2(300 BYTE);
+ALTER TABLE PMIS_RES.Tractors ADD TractorModelName VARCHAR2(300 BYTE);
+
+/
+ALTER TABLE PMIS_RES.EngEquipment ADD EngEquipBaseMakeName VARCHAR2(300 BYTE);
+ALTER TABLE PMIS_RES.EngEquipment ADD EngEquipBaseModelName VARCHAR2(300 BYTE);
+
+/
+ALTER TABLE PMIS_RES.AviationEquipment ADD AviationAirModelName VARCHAR2(300 BYTE);
+ALTER TABLE PMIS_RES.AviationEquipment ADD OtherBaseMachineMakeName VARCHAR2(300 BYTE);
+ALTER TABLE PMIS_RES.AviationEquipment ADD OtherBaseMachineModelName VARCHAR2(300 BYTE);
+
+/
+CREATE TABLE PMIS_RES.PersonConscription(PersonConscriptionID number NOT NULL,
+                                    PersonID  number NOT NULL,
+                                    MilitaryUnit varchar2(100),
+									Position varchar2(100),
+                                    DateFrom date,
+                                    DateTo date
+                                    );
+
+ALTER TABLE PMIS_RES.PersonConscription ADD CONSTRAINT PersonConscription_PK PRIMARY KEY (PersonConscriptionID);
+ALTER TABLE PMIS_RES.PersonConscription ADD CONSTRAINT PersonConscription_Persons_FK FOREIGN KEY (PersonID) REFERENCES VS_OWNER.VS_LS (PersonID);
+
+CREATE SEQUENCE PMIS_RES.PersonConscription_ID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+CREATE TRIGGER PMIS_RES.TRG_PersonConscription_INSERT
+BEFORE INSERT ON PMIS_RES.PersonConscription
+FOR EACH ROW
+BEGIN
+   SELECT PMIS_RES.PersonConscription_ID_SEQ.nextval INTO :new.PersonConscriptionID FROM dual;
+END;
+/
+GRANT ALL ON PMIS_RES.PersonConscription TO PMIS_USER_ROLE;
+GRANT ALL ON PMIS_RES.PersonConscription_ID_SEQ TO PMIS_USER_ROLE;
+
+GRANT ALL ON PMIS_RES.TechnicsPostponeTypes TO PMIS_USER_ROLE;
+GRANT ALL ON PMIS_RES.TechPostponeTypes_ID_SEQ TO PMIS_USER_ROLE;
+
+/

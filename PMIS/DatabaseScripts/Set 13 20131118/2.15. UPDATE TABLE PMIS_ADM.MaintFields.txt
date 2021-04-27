@@ -1,0 +1,106 @@
+﻿
+UPDATE PMIS_ADM.MaintFields SET
+   FieldLabel = 'Вид каросерия на ремарке и полуремарке'
+WHERE TableName = 'PMIS_RES.GTable.TrailerBodyKind' AND TableColumn = 'TableValue';
+
+UPDATE PMIS_ADM.MaintFields SET
+   FieldLabel = 'Вид ремарке и полуремарке'
+WHERE TableName = 'PMIS_RES.GTable.TrailerKind' AND TableColumn = 'TableValue';
+
+UPDATE PMIS_ADM.MaintFields SET
+   FieldLabel = 'Тип ремарке и полуремарке'
+WHERE TableName = 'PMIS_RES.GTable.TrailerType' AND TableColumn = 'TableValue';
+
+
+
+UPDATE PMIS_ADM.MaintFields SET
+   FieldLabel = 'Вид инж. машина'
+WHERE TableName = 'PMIS_RES.GTable.EngEquipKind' AND TableColumn = 'TableValue';
+
+UPDATE PMIS_ADM.MaintFields SET
+   FieldLabel = 'Тип инж. машина'
+WHERE TableName = 'PMIS_RES.GTable.EngEquipType' AND TableColumn = 'TableValue';
+
+UPDATE PMIS_ADM.MaintFields SET
+   FieldLabel = 'Вид базова машина (инж. машини)'
+WHERE TableName = 'PMIS_RES.GTable.EngEquipBaseKind' AND TableColumn = 'TableValue';
+
+UPDATE PMIS_ADM.MaintFields SET
+   FieldLabel = 'Тип базова машина (инж. машини)'
+WHERE TableName = 'PMIS_RES.GTable.EngEquipBaseType' AND TableColumn = 'TableValue';
+
+UPDATE PMIS_ADM.MaintFields SET
+   FieldLabel = 'Вид гориво за базова машина (инж. машини)'
+WHERE TableName = 'PMIS_RES.GTable.EngEquipBaseEngineType' AND TableColumn = 'TableValue';
+
+UPDATE PMIS_ADM.MaintFields SET
+   FieldLabel = 'Вид работен орган (инж. машини)'
+WHERE TableName = 'PMIS_RES.GTable.EngEquipWorkingBodyKind' AND TableColumn = 'TableValue';
+
+UPDATE PMIS_ADM.MaintFields SET
+   FieldLabel = 'Вид гориво за работен орган (инж. машини)'
+WHERE TableName = 'PMIS_RES.GTable.EngEquipWorkBodyEngineType' AND TableColumn = 'TableValue';
+
+UPDATE PMIS_ADM.MaintFields SET
+   FieldLabel = 'Марка инж. машина'
+WHERE TableName = 'PMIS_RES.EngEquipBaseMakes' AND TableColumn = 'EngEquipBaseMakeName';
+
+
+
+UPDATE PMIS_ADM.MaintFields SET
+   FieldLabel = 'Вид самоходна машина'
+WHERE TableName = 'PMIS_RES.GTable.MobileLiftingEquipKind' AND TableColumn = 'TableValue';
+
+UPDATE PMIS_ADM.MaintFields SET
+   FieldLabel = 'Тип самоходни машина'
+WHERE TableName = 'PMIS_RES.GTable.MobileLiftingEquipType' AND TableColumn = 'TableValue';
+
+
+
+UPDATE PMIS_ADM.MaintFields SET
+   FieldLabel = 'Вид спец. инж. и самолетообслужваща техника'
+WHERE TableName = 'PMIS_RES.GTable.AviationOtherKind' AND TableColumn = 'TableValue';
+
+UPDATE PMIS_ADM.MaintFields SET
+   FieldLabel = 'Тип спец. инж. и самолетообслужваща техника'
+WHERE TableName = 'PMIS_RES.GTable.AviationOtherType' AND TableColumn = 'TableValue';
+
+UPDATE PMIS_ADM.MaintFields SET
+   FieldLabel = 'Вид базова машина (спец. инж. и самолетообслужваща техника)'
+WHERE TableName = 'PMIS_RES.GTable.AviationOtherBaseMachineKind' AND TableColumn = 'TableValue';
+
+UPDATE PMIS_ADM.MaintFields SET
+   FieldLabel = 'Тип базова машина (спец. инж. и самолетообслужваща техника)'
+WHERE TableName = 'PMIS_RES.GTable.AviationOtherBaseMachineType' AND TableColumn = 'TableValue';
+
+UPDATE PMIS_ADM.MaintFields SET
+   FieldLabel = 'Вид оборудване (спец. инж. и самолетообслужваща техника)'
+WHERE TableName = 'PMIS_RES.GTable.AviationOtherEquipmentKind' AND TableColumn = 'TableValue';
+
+UPDATE PMIS_ADM.MaintFields SET
+   FieldLabel = 'Марка базова машина (друга спец. инж. и самолетообслужваща техника)'
+WHERE TableName = 'PMIS_RES.AviationOtherBaseMachineMakes' AND TableColumn = 'AviationOtherBaseMachineMake';
+
+
+UPDATE PMIS_ADM.MaintFields SET 
+   WidthPixels = 250
+WHERE TableName = 'PMIS_RES.MilReadiness' AND TableColumn = 'MilReadinessName';
+
+INSERT INTO PMIS_ADM.MaintFields(TableName, TableColumn, FieldLabel, WidthPixels, FieldKey, UIItemEditKey, UIItemAddKey, IsMandatory, ValidateDataType, IsUnique)
+VALUES ('PMIS_RES.MilReadiness', 'MilReadinessCmdType', 'Тип команда', 250, 'RES_Lists_MilitaryReadinesses_MilitaryReadinessCmdType', 'RES_LISTMAINT_MILITARYREADINESSES_EDIT_MILITARYREADINESSCMDTYPE', 'RES_LISTMAINT_MILITARYREADINESSES_ADD_MILITARYREADINESSNAME', 1, 'string', 0);
+
+
+UPDATE PMIS_ADM.MaintFields SET 
+   WidthPixels = 250
+WHERE TableName = 'PMIS_ADM.Administrations' AND TableColumn = 'AdministrationName';
+
+INSERT INTO PMIS_ADM.MaintFields(TableName, TableColumn, FieldLabel, WidthPixels, FieldKey, UIItemEditKey, UIItemAddKey, IsMandatory, ValidateDataType, IsUnique)
+VALUES ('PMIS_ADM.Administrations', 'AdministrationGroup', 'Група', 250, 'ADM_Lists_Administrations_AdministrationGroup', 'ADM_LISTMAINT_ADMINISTRATIONS_EDIT_ADMINISTRATIONGROUP', 'ADM_LISTMAINT_ADMINISTRATIONS_ADD_ADMINISTRATIONGROUP', 0, 'string', 0);
+
+INSERT INTO PMIS_ADM.MaintFields(TableName, TableColumn, FieldLabel, WidthPixels, FieldKey, UIItemEditKey, UIItemAddKey, IsMandatory, ValidateDataType, IsUnique)
+VALUES ('PMIS_ADM.Administrations', 'AdministrationGroupSeq', 'Подредба на група', 100, 'ADM_Lists_Administrations_AdministrationGroupSeq', 'ADM_LISTMAINT_ADMINISTRATIONS_EDIT_ADMINISTRATIONGROUPSEQ', 'ADM_LISTMAINT_ADMINISTRATIONS_ADD_ADMINISTRATIONGROUPSEQ', 0, 'integer', 0);
+
+
+
+COMMIT;
+/

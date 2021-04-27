@@ -1,0 +1,15 @@
+﻿ALTER TABLE PMIS_RES.MilReadiness ADD MilReadinessCmdType varchar2(300);
+
+UPDATE PMIS_RES.MilReadiness SET 
+   MilReadinessCmdType = MilReadinessName;
+
+UPDATE PMIS_RES.MilReadiness SET 
+   MilReadinessCmdType = 'Мобилизационно ядро'
+WHERE MilReadinessName = 'Повишена';
+ 
+UPDATE PMIS_RES.MilReadiness SET 
+   MilReadinessCmdType = 'Основно попълнение'
+WHERE MilReadinessName = 'Пълна';
+ 
+COMMIT;
+/

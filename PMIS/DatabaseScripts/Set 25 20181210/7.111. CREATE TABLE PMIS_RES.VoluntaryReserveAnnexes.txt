@@ -1,0 +1,23 @@
+﻿CREATE TABLE PMIS_RES.VoluntaryReserveAnnexes(VoluntaryReserveAnnexID number NOT NULL,
+                                              ReservistMilRepStatusID number NOT NULL,
+                                              AnnexNumber varchar2(250),
+                                              AnnexDate date,
+                                              AnnexDurationMonths number,
+                                              AnnexExpireDate date
+                                       );
+
+ALTER TABLE PMIS_RES.VoluntaryReserveAnnexes ADD CONSTRAINT VoluntaryReserveAnnexes_PK PRIMARY KEY (VoluntaryReserveAnnexID);
+ALTER TABLE PMIS_RES.VoluntaryReserveAnnexes ADD CONSTRAINT VolResAnnexes_ResMilRepStat_FK FOREIGN KEY (ReservistMilRepStatusID) REFERENCES PMIS_RES.ReservistMilRepStatuses (ReservistMilRepStatusID);
+
+CREATE SEQUENCE PMIS_RES.VoluntaryReserveAnnexes_ID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+CREATE TRIGGER PMIS_RES.TRG_VolReserveAnnexes_INSERT
+BEFORE INSERT ON PMIS_RES.VoluntaryReserveAnnexes
+FOR EACH ROW
+BEGIN
+   SELECT PMIS_RES.VoluntaryReserveAnnexes_ID_SEQ.nextval INTO :new.VoluntaryReserveAnnexID FROM dual;
+END;
+/

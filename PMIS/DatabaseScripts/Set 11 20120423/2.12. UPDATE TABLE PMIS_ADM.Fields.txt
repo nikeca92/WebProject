@@ -1,0 +1,8 @@
+﻿INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_Technics_NormativeTechnics', 'Нормативна категория', 1);
+
+INSERT INTO PMIS_ADM.Fields (FieldType, FieldKey, FieldName, Seq)
+VALUES ('string', 'RES_ResAppointment_NeedCourse', 'Нуждае се от курс', 6);
+
+COMMIT;
+/

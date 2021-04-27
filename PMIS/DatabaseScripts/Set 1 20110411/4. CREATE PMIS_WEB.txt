@@ -1,0 +1,18 @@
+CREATE TABLESPACE
+   PMIS_WEB
+datafile 
+   'C:/oracle/tablespaces/PMIS_WEB.dbf'
+size 
+   50m
+reuse
+autoextend on 
+next 10m 
+maxsize unlimited;
+
+CREATE USER "PMIS_WEB" identified by "12345" DEFAULT TABLESPACE "PMIS_WEB";
+
+GRANT UNLIMITED TABLESPACE TO "PMIS_WEB";
+
+GRANT PMIS_WEB_ROLE TO PMIS_WEB;
+
+ALTER USER PMIS_WEB DEFAULT ROLE PMIS_WEB_ROLE;

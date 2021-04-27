@@ -1,0 +1,187 @@
+﻿
+INSERT INTO PMIS_ADM.UIItems(UIKEY, UINAME, PARENTUIITEMID)
+VALUES('RES_TECHNICS_VEHICLES_ADD_BASICINFO_LASTMODIFIED', 'Последна сверка', (SELECT UIITEMID
+                                                                               FROM PMIS_ADM.UIItems
+                                                                               WHERE UIKEY = 'RES_TECHNICS_VEHICLES_ADD_BASICINFO'));
+                                                                           
+INSERT INTO PMIS_ADM.UIItems(UIKEY, UINAME, PARENTUIITEMID)
+VALUES('RES_TECHNICS_VEHICLES_EDIT_BASICINFO_LASTMODIFIED', 'Последна сверка', (SELECT UIITEMID
+                                                                                FROM PMIS_ADM.UIItems
+                                                                                WHERE UIKEY = 'RES_TECHNICS_VEHICLES_EDIT_BASICINFO'));                                                                           
+
+INSERT INTO PMIS_ADM.UIItems(UIKEY, UINAME, PARENTUIITEMID)
+VALUES('RES_TECHNICS_TRAILERS_ADD_BASICINFO_LASTMODIFIED', 'Последна сверка', (SELECT UIITEMID
+                                                                               FROM PMIS_ADM.UIItems
+                                                                               WHERE UIKEY = 'RES_TECHNICS_TRAILERS_ADD_BASICINFO'));
+                                                                           
+INSERT INTO PMIS_ADM.UIItems(UIKEY, UINAME, PARENTUIITEMID)
+VALUES('RES_TECHNICS_TRAILERS_EDIT_BASICINFO_LASTMODIFIED', 'Последна сверка', (SELECT UIITEMID
+                                                                                FROM PMIS_ADM.UIItems
+                                                                                WHERE UIKEY = 'RES_TECHNICS_TRAILERS_EDIT_BASICINFO'));                                                                           
+
+INSERT INTO PMIS_ADM.UIItems(UIKEY, UINAME, PARENTUIITEMID)
+VALUES('RES_TECHNICS_TRACTORS_ADD_BASICINFO_LASTMODIFIED', 'Последна сверка', (SELECT UIITEMID
+                                                                               FROM PMIS_ADM.UIItems
+                                                                               WHERE UIKEY = 'RES_TECHNICS_TRACTORS_ADD_BASICINFO'));
+                                                                           
+INSERT INTO PMIS_ADM.UIItems(UIKEY, UINAME, PARENTUIITEMID)
+VALUES('RES_TECHNICS_TRACTORS_EDIT_BASICINFO_LASTMODIFIED', 'Последна сверка', (SELECT UIITEMID
+                                                                                FROM PMIS_ADM.UIItems
+                                                                                WHERE UIKEY = 'RES_TECHNICS_TRACTORS_EDIT_BASICINFO'));    
+
+INSERT INTO PMIS_ADM.UIItems(UIKEY, UINAME, PARENTUIITEMID)
+VALUES('RES_TECHNICS_ENG_EQUIP_ADD_BASICINFO_LASTMODIFIED', 'Последна сверка', (SELECT UIITEMID
+                                                                                FROM PMIS_ADM.UIItems
+                                                                                WHERE UIKEY = 'RES_TECHNICS_ENG_EQUIP_ADD_BASICINFO'));
+                                                                           
+INSERT INTO PMIS_ADM.UIItems(UIKEY, UINAME, PARENTUIITEMID)
+VALUES('RES_TECHNICS_ENG_EQUIP_EDIT_BASICINFO_LASTMODIFIED', 'Последна сверка', (SELECT UIITEMID
+                                                                                FROM PMIS_ADM.UIItems
+                                                                                WHERE UIKEY = 'RES_TECHNICS_ENG_EQUIP_EDIT_BASICINFO'));  
+
+INSERT INTO PMIS_ADM.UIItems(UIKEY, UINAME, PARENTUIITEMID)
+VALUES('RES_TECHNICS_MOB_LIFT_EQUIP_ADD_BASICINFO_LASTMODIFIED', 'Последна сверка', (SELECT UIITEMID
+                                                                                     FROM PMIS_ADM.UIItems
+                                                                                     WHERE UIKEY = 'RES_TECHNICS_MOB_LIFT_EQUIP_ADD_BASICINFO'));
+                                                                           
+INSERT INTO PMIS_ADM.UIItems(UIKEY, UINAME, PARENTUIITEMID)
+VALUES('RES_TECHNICS_MOB_LIFT_EQUIP_EDIT_BASICINFO_LASTMODIFIED', 'Последна сверка', (SELECT UIITEMID
+                                                                                      FROM PMIS_ADM.UIItems
+                                                                                      WHERE UIKEY = 'RES_TECHNICS_MOB_LIFT_EQUIP_EDIT_BASICINFO'));                                                                           
+
+INSERT INTO PMIS_ADM.UIItems(UIKEY, UINAME, PARENTUIITEMID)
+VALUES('RES_TECHNICS_RAILWAY_EQUIP_ADD_BASICINFO_LASTMODIFIED', 'Последна сверка', (SELECT UIITEMID
+                                                                                    FROM PMIS_ADM.UIItems
+                                                                                    WHERE UIKEY = 'RES_TECHNICS_RAILWAY_EQUIP_ADD_BASICINFO'));
+                                                                           
+INSERT INTO PMIS_ADM.UIItems(UIKEY, UINAME, PARENTUIITEMID)
+VALUES('RES_TECHNICS_RAILWAY_EQUIP_EDIT_BASICINFO_LASTMODIFIED', 'Последна сверка', (SELECT UIITEMID
+                                                                                FROM PMIS_ADM.UIItems
+                                                                                WHERE UIKEY = 'RES_TECHNICS_RAILWAY_EQUIP_EDIT_BASICINFO'));       
+
+INSERT INTO PMIS_ADM.UIItems(UIKEY, UINAME, PARENTUIITEMID)
+VALUES('RES_TECHNICS_AVIATION_EQUIP_ADD_BASICINFO_LASTMODIFIED', 'Последна сверка', (SELECT UIITEMID
+                                                                                     FROM PMIS_ADM.UIItems
+                                                                                     WHERE UIKEY = 'RES_TECHNICS_AVIATION_EQUIP_ADD_BASICINFO'));
+                                                                           
+INSERT INTO PMIS_ADM.UIItems(UIKEY, UINAME, PARENTUIITEMID)
+VALUES('RES_TECHNICS_AVIATION_EQUIP_EDIT_BASICINFO_LASTMODIFIED', 'Последна сверка', (SELECT UIITEMID
+                                                                                      FROM PMIS_ADM.UIItems
+                                                                                      WHERE UIKEY = 'RES_TECHNICS_AVIATION_EQUIP_EDIT_BASICINFO'));   
+
+INSERT INTO PMIS_ADM.UIItems(UIKEY, UINAME, PARENTUIITEMID)
+VALUES('RES_TECHNICS_VESSELS_ADD_BASICINFO_LASTMODIFIED', 'Последна сверка', (SELECT UIITEMID
+                                                                               FROM PMIS_ADM.UIItems
+                                                                               WHERE UIKEY = 'RES_TECHNICS_VESSELS_ADD_BASICINFO'));
+                                                                           
+INSERT INTO PMIS_ADM.UIItems(UIKEY, UINAME, PARENTUIITEMID)
+VALUES('RES_TECHNICS_VESSELS_EDIT_BASICINFO_LASTMODIFIED', 'Последна сверка', (SELECT UIITEMID
+                                                                                FROM PMIS_ADM.UIItems
+                                                                                WHERE UIKEY = 'RES_TECHNICS_VESSELS_EDIT_BASICINFO'));    
+
+INSERT INTO PMIS_ADM.UIItems(UIKEY, UINAME, PARENTUIITEMID)
+VALUES('RES_TECHNICS_FUEL_CONTAINERS_ADD_BASICINFO_LASTMODIFIED', 'Последна сверка', (SELECT UIITEMID
+                                                                               FROM PMIS_ADM.UIItems
+                                                                               WHERE UIKEY = 'RES_TECHNICS_FUEL_CONTAINERS_ADD_BASICINFO'));
+                                                                           
+INSERT INTO PMIS_ADM.UIItems(UIKEY, UINAME, PARENTUIITEMID)
+VALUES('RES_TECHNICS_FUEL_CONTAINERS_EDIT_BASICINFO_LASTMODIFIED', 'Последна сверка', (SELECT UIITEMID
+                                                                                FROM PMIS_ADM.UIItems
+                                                                                WHERE UIKEY = 'RES_TECHNICS_FUEL_CONTAINERS_EDIT_BASICINFO'));   
+
+
+
+INSERT INTO PMIS_ADM.UIItems(UIKEY, UINAME, PARENTUIITEMID)
+VALUES('RES_TECHNICS_VEHICLES_ADD_BASICINFO_MILREPSTATUS', 'Състояние по отчета', (SELECT UIITEMID
+                                                                               FROM PMIS_ADM.UIItems
+                                                                               WHERE UIKEY = 'RES_TECHNICS_VEHICLES_ADD_BASICINFO'));
+                                                                           
+INSERT INTO PMIS_ADM.UIItems(UIKEY, UINAME, PARENTUIITEMID)
+VALUES('RES_TECHNICS_VEHICLES_EDIT_BASICINFO_MILREPSTATUS', 'Състояние по отчета', (SELECT UIITEMID
+                                                                                FROM PMIS_ADM.UIItems
+                                                                                WHERE UIKEY = 'RES_TECHNICS_VEHICLES_EDIT_BASICINFO'));                                                                           
+
+INSERT INTO PMIS_ADM.UIItems(UIKEY, UINAME, PARENTUIITEMID)
+VALUES('RES_TECHNICS_TRAILERS_ADD_BASICINFO_MILREPSTATUS', 'Състояние по отчета', (SELECT UIITEMID
+                                                                               FROM PMIS_ADM.UIItems
+                                                                               WHERE UIKEY = 'RES_TECHNICS_TRAILERS_ADD_BASICINFO'));
+                                                                           
+INSERT INTO PMIS_ADM.UIItems(UIKEY, UINAME, PARENTUIITEMID)
+VALUES('RES_TECHNICS_TRAILERS_EDIT_BASICINFO_MILREPSTATUS', 'Състояние по отчета', (SELECT UIITEMID
+                                                                                FROM PMIS_ADM.UIItems
+                                                                                WHERE UIKEY = 'RES_TECHNICS_TRAILERS_EDIT_BASICINFO'));                                                                           
+
+INSERT INTO PMIS_ADM.UIItems(UIKEY, UINAME, PARENTUIITEMID)
+VALUES('RES_TECHNICS_TRACTORS_ADD_BASICINFO_MILREPSTATUS', 'Състояние по отчета', (SELECT UIITEMID
+                                                                               FROM PMIS_ADM.UIItems
+                                                                               WHERE UIKEY = 'RES_TECHNICS_TRACTORS_ADD_BASICINFO'));
+                                                                           
+INSERT INTO PMIS_ADM.UIItems(UIKEY, UINAME, PARENTUIITEMID)
+VALUES('RES_TECHNICS_TRACTORS_EDIT_BASICINFO_MILREPSTATUS', 'Състояние по отчета', (SELECT UIITEMID
+                                                                                FROM PMIS_ADM.UIItems
+                                                                                WHERE UIKEY = 'RES_TECHNICS_TRACTORS_EDIT_BASICINFO'));    
+
+INSERT INTO PMIS_ADM.UIItems(UIKEY, UINAME, PARENTUIITEMID)
+VALUES('RES_TECHNICS_ENG_EQUIP_ADD_BASICINFO_MILREPSTATUS', 'Състояние по отчета', (SELECT UIITEMID
+                                                                                FROM PMIS_ADM.UIItems
+                                                                                WHERE UIKEY = 'RES_TECHNICS_ENG_EQUIP_ADD_BASICINFO'));
+                                                                           
+INSERT INTO PMIS_ADM.UIItems(UIKEY, UINAME, PARENTUIITEMID)
+VALUES('RES_TECHNICS_ENG_EQUIP_EDIT_BASICINFO_MILREPSTATUS', 'Състояние по отчета', (SELECT UIITEMID
+                                                                                FROM PMIS_ADM.UIItems
+                                                                                WHERE UIKEY = 'RES_TECHNICS_ENG_EQUIP_EDIT_BASICINFO'));  
+
+INSERT INTO PMIS_ADM.UIItems(UIKEY, UINAME, PARENTUIITEMID)
+VALUES('RES_TECHNICS_MOB_LIFT_EQUIP_ADD_BASICINFO_MILREPSTATUS', 'Състояние по отчета', (SELECT UIITEMID
+                                                                                     FROM PMIS_ADM.UIItems
+                                                                                     WHERE UIKEY = 'RES_TECHNICS_MOB_LIFT_EQUIP_ADD_BASICINFO'));
+                                                                           
+INSERT INTO PMIS_ADM.UIItems(UIKEY, UINAME, PARENTUIITEMID)
+VALUES('RES_TECHNICS_MOB_LIFT_EQUIP_EDIT_BASICINFO_MILREPSTATUS', 'Състояние по отчета', (SELECT UIITEMID
+                                                                                      FROM PMIS_ADM.UIItems
+                                                                                      WHERE UIKEY = 'RES_TECHNICS_MOB_LIFT_EQUIP_EDIT_BASICINFO'));                                                                           
+
+INSERT INTO PMIS_ADM.UIItems(UIKEY, UINAME, PARENTUIITEMID)
+VALUES('RES_TECHNICS_RAILWAY_EQUIP_ADD_BASICINFO_MILREPSTATUS', 'Състояние по отчета', (SELECT UIITEMID
+                                                                                    FROM PMIS_ADM.UIItems
+                                                                                    WHERE UIKEY = 'RES_TECHNICS_RAILWAY_EQUIP_ADD_BASICINFO'));
+                                                                           
+INSERT INTO PMIS_ADM.UIItems(UIKEY, UINAME, PARENTUIITEMID)
+VALUES('RES_TECHNICS_RAILWAY_EQUIP_EDIT_BASICINFO_MILREPSTATUS', 'Състояние по отчета', (SELECT UIITEMID
+                                                                                FROM PMIS_ADM.UIItems
+                                                                                WHERE UIKEY = 'RES_TECHNICS_RAILWAY_EQUIP_EDIT_BASICINFO'));       
+
+INSERT INTO PMIS_ADM.UIItems(UIKEY, UINAME, PARENTUIITEMID)
+VALUES('RES_TECHNICS_AVIATION_EQUIP_ADD_BASICINFO_MILREPSTATUS', 'Състояние по отчета', (SELECT UIITEMID
+                                                                                     FROM PMIS_ADM.UIItems
+                                                                                     WHERE UIKEY = 'RES_TECHNICS_AVIATION_EQUIP_ADD_BASICINFO'));
+                                                                           
+INSERT INTO PMIS_ADM.UIItems(UIKEY, UINAME, PARENTUIITEMID)
+VALUES('RES_TECHNICS_AVIATION_EQUIP_EDIT_BASICINFO_MILREPSTATUS', 'Състояние по отчета', (SELECT UIITEMID
+                                                                                      FROM PMIS_ADM.UIItems
+                                                                                      WHERE UIKEY = 'RES_TECHNICS_AVIATION_EQUIP_EDIT_BASICINFO'));   
+
+INSERT INTO PMIS_ADM.UIItems(UIKEY, UINAME, PARENTUIITEMID)
+VALUES('RES_TECHNICS_VESSELS_ADD_BASICINFO_MILREPSTATUS', 'Състояние по отчета', (SELECT UIITEMID
+                                                                               FROM PMIS_ADM.UIItems
+                                                                               WHERE UIKEY = 'RES_TECHNICS_VESSELS_ADD_BASICINFO'));
+                                                                           
+INSERT INTO PMIS_ADM.UIItems(UIKEY, UINAME, PARENTUIITEMID)
+VALUES('RES_TECHNICS_VESSELS_EDIT_BASICINFO_MILREPSTATUS', 'Състояние по отчета', (SELECT UIITEMID
+                                                                                FROM PMIS_ADM.UIItems
+                                                                                WHERE UIKEY = 'RES_TECHNICS_VESSELS_EDIT_BASICINFO'));    
+
+INSERT INTO PMIS_ADM.UIItems(UIKEY, UINAME, PARENTUIITEMID)
+VALUES('RES_TECHNICS_FUEL_CONTAINERS_ADD_BASICINFO_MILREPSTATUS', 'Състояние по отчета', (SELECT UIITEMID
+                                                                               FROM PMIS_ADM.UIItems
+                                                                               WHERE UIKEY = 'RES_TECHNICS_FUEL_CONTAINERS_ADD_BASICINFO'));
+                                                                           
+INSERT INTO PMIS_ADM.UIItems(UIKEY, UINAME, PARENTUIITEMID)
+VALUES('RES_TECHNICS_FUEL_CONTAINERS_EDIT_BASICINFO_MILREPSTATUS', 'Състояние по отчета', (SELECT UIITEMID
+                                                                                FROM PMIS_ADM.UIItems
+                                                                                WHERE UIKEY = 'RES_TECHNICS_FUEL_CONTAINERS_EDIT_BASICINFO'));   
+
+
+																				
+COMMIT;
+/

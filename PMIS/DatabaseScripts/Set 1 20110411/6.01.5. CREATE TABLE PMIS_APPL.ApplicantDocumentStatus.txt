@@ -1,0 +1,42 @@
+﻿
+CREATE TABLE PMIS_APPL.ApplicantDocumentStatus (StatusID number NOT NULL,
+                                                StatusName varchar2(300),
+			                        StatusKey varchar2(300)
+                                               );
+
+ALTER TABLE PMIS_APPL.ApplicantDocumentStatus ADD CONSTRAINT StatusID_PK PRIMARY KEY(StatusID);
+
+CREATE SEQUENCE PMIS_APPL.StatusID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+CREATE TRIGGER PMIS_APPL.ApplicantDocumentStatus_INSERT
+BEFORE INSERT ON PMIS_APPL.ApplicantDocumentStatus
+FOR EACH ROW
+BEGIN
+   SELECT PMIS_APPL.StatusID_SEQ.nextval INTO :new.StatusID FROM dual;
+END;
+/
+
+
+INSERT INTO PMIS_APPL.ApplicantDocumentStatus (StatusName, StatusKey)
+VALUES ('Неизвестен', 'UNKNOWN');
+
+INSERT INTO PMIS_APPL.ApplicantDocumentStatus (StatusName, StatusKey)
+VALUES ('Приложен', 'APPLIED');
+
+INSERT INTO PMIS_APPL.ApplicantDocumentStatus (StatusName, StatusKey)
+VALUES ('Приложен служебно', 'APPLIEDSERVICE');
+
+INSERT INTO PMIS_APPL.ApplicantDocumentStatus (StatusName, StatusKey)
+VALUES ('Приложен невалиден', 'APPLIEDUNVALID');
+
+INSERT INTO PMIS_APPL.ApplicantDocumentStatus (StatusName, StatusKey)
+VALUES ('Липсва', 'MISSING');
+
+
+
+COMMIT;
+
+

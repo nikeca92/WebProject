@@ -1,0 +1,3 @@
+﻿ALTER TABLE PMIS_RES.TechnicsAppointments MODIFY TComment varchar2(1000);
+
+/

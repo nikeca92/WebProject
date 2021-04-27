@@ -1,0 +1,592 @@
+﻿CREATE TABLE PMIS_ADM.Maintenance(MaintID number NOT NULL,
+                                  MaintKey varchar2(250),
+                                  HeaderTitle varchar2(500),
+                                  DataTable varchar2(100),
+                                  GTableTableName varchar2(100),
+                                  FldList varchar2(2000),
+	                              UpdtList varchar2(2000),
+	                              KeyFld varchar2(100),
+	                              CanDelete number(1),
+                                  CanAdd number(1),
+                                  MasterTable varchar2(4000),
+                                  MasterField varchar2(4000),
+                                  ChangeTypeKey varchar2(500),
+                                  InsertChangeEventTypeKey varchar2(500),
+                                  UpdateChangeEventTypeKey varchar2(500),
+                                  DeleteChangeEventTypeKey varchar2(500),
+                                  MenuItemKey varchar2(500),
+                                  UIKeyMaintenance varchar2(500),
+                                  UIKeyDelete varchar2(500),
+                                  UIKeyEdit varchar2(500),
+                                  UIKeyAdd varchar2(500),
+								  ModuleID number NOT NULL
+                                  );
+
+ALTER TABLE PMIS_ADM.Maintenance ADD CONSTRAINT Maintenance_PK PRIMARY KEY(MaintID);
+ALTER TABLE PMIS_ADM.Maintenance ADD CONSTRAINT Maintenance_Modules_FK FOREIGN KEY (ModuleID) REFERENCES PMIS_ADM.Modules (ModuleID);
+ALTER TABLE PMIS_ADM.Maintenance ADD CONSTRAINT Maintenance_UNQ UNIQUE (MaintKey);
+
+CREATE SEQUENCE PMIS_ADM.Maintenance_ID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+CREATE TRIGGER PMIS_ADM.TRG_Maintenance_INSERT
+BEFORE INSERT ON PMIS_ADM.Maintenance
+FOR EACH ROW
+BEGIN
+   SELECT PMIS_ADM.Maintenance_ID_SEQ.nextval INTO :new.MaintID FROM dual;
+END;
+/
+
+INSERT INTO PMIS_ADM.Maintenance(MaintKey, HeaderTitle, DataTable, GTableTableName,
+   FldList, UpdtList, KeyFld, CanDelete, CanAdd, MasterTable, MasterField,
+   ChangeTypeKey, InsertChangeEventTypeKey, UpdateChangeEventTypeKey, DeleteChangeEventTypeKey,
+   MenuItemKey, UIKeyMaintenance, UIKeyDelete, UIKeyEdit, UIKeyAdd, ModuleID)
+VALUES ('HS_ProtocolType', 'Измервания', 'PMIS_HS.ProtocolTypes', NULL, 
+ 'ProtocolTypeID[HIDDEN], ProtocolTypeName', 'ProtocolTypeName', 'ProtocolTypeID', 1, 1, 'PMIS_HS.Protocols', 'PMIS_HS.Protocols.ProtocolTypeID',
+ 'HS_Lists_ProtocolTypes', 'HS_Lists_ProtocolTypes_AddProtocolType', 'HS_Lists_ProtocolTypes_EditProtocolType', 'HS_Lists_ProtocolTypes_DeleteProtocolType',
+ 'Lists_HS_ProtocolType', 'HS_LISTMAINT_PROTTYPES', 'HS_LISTMAINT_PROTTYPES_DELETE', 'HS_LISTMAINT_PROTTYPES_EDIT', 'HS_LISTMAINT_PROTTYPES_ADD',
+ (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'));
+
+INSERT INTO PMIS_ADM.Maintenance(MaintKey, HeaderTitle, DataTable, GTableTableName,
+   FldList, UpdtList, KeyFld, CanDelete, CanAdd, MasterTable, MasterField,
+   ChangeTypeKey, InsertChangeEventTypeKey, UpdateChangeEventTypeKey, DeleteChangeEventTypeKey,
+   MenuItemKey, UIKeyMaintenance, UIKeyDelete, UIKeyEdit, UIKeyAdd, ModuleID)
+VALUES ('HS_Measures', 'Измервани величини', 'PMIS_HS.Measures', NULL, 
+ 'MeasureID[HIDDEN], MeasureName, Threshold', 'MeasureName, Threshold', 'MeasureID', 1, 1, 'PMIS_HS.ProtocolItems', 'PMIS_HS.ProtocolItems.MeasureID',
+ 'HS_Lists_Measures', 'HS_Lists_Measures_AddMeasure', 'HS_Lists_Measures_EditMeasure', 'HS_Lists_Measures_DeleteMeasure',
+ 'Lists_HS_Measures', 'HS_LISTMAINT_MEASURES', 'HS_LISTMAINT_MEASURES_DELETE', 'HS_LISTMAINT_MEASURES_EDIT', 'HS_LISTMAINT_MEASURES_ADD',
+ (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'));
+
+INSERT INTO PMIS_ADM.Maintenance(MaintKey, HeaderTitle, DataTable, GTableTableName,
+   FldList, UpdtList, KeyFld, CanDelete, CanAdd, MasterTable, MasterField,
+   ChangeTypeKey, InsertChangeEventTypeKey, UpdateChangeEventTypeKey, DeleteChangeEventTypeKey,
+   MenuItemKey, UIKeyMaintenance, UIKeyDelete, UIKeyEdit, UIKeyAdd, ModuleID)
+VALUES ('HS_DegreeOfDanger', 'Степени на опасност', 'PMIS_HS.GTable', 'DegreeOfDanger', 
+ 'TableKey[HIDDEN], TableSeq, TableValue', 'TableSeq, TableValue', 'TableKey', 1, 1, 'PMIS_HS.UnsafeWorkingConditionsNotices', 'PMIS_HS.UnsafeWorkingConditionsNotices.DegreeOfDangerID',
+ 'HS_Lists_DegreeOfDangers', 'HS_Lists_DegreeOfDangers_AddDegreeOfDanger', 'HS_Lists_DegreeOfDangers_EditDegreeOfDanger', 'HS_Lists_DegreeOfDangers_DeleteDegreeOfDanger',
+ 'Lists_HS_DegreeOfDanger', 'HS_LISTMAINT_DOFDANGERS', 'HS_LISTMAINT_DOFDANGERS_DELETE', 'HS_LISTMAINT_DOFDANGERS_EDIT', 'HS_LISTMAINT_DOFDANGERS_ADD',
+ (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'HS'));
+ 
+INSERT INTO PMIS_ADM.Maintenance(MaintKey, HeaderTitle, DataTable, GTableTableName,
+   FldList, UpdtList, KeyFld, CanDelete, CanAdd, MasterTable, MasterField,
+   ChangeTypeKey, InsertChangeEventTypeKey, UpdateChangeEventTypeKey, DeleteChangeEventTypeKey,
+   MenuItemKey, UIKeyMaintenance, UIKeyDelete, UIKeyEdit, UIKeyAdd, ModuleID)
+VALUES ('ADM_DrivingLicenseCategories', 'Шофьорска книжка - категории', 'PMIS_ADM.DrivingLicenseCategories', NULL, 
+ 'DrivingLicenseCategoryID[HIDDEN], DrivingLicenseCategoryName', 'DrivingLicenseCategoryName', 'DrivingLicenseCategoryID', 1, 1, 'PMIS_ADM.PersonDrivingLicenseCategories', 'PMIS_ADM.PersonDrivingLicenseCategories.DrivingLicenseCategoryID',
+ 'ADM_Lists_DrivingLicenseCategories', 'ADM_Lists_DrivingLicenseCategories_Add', 'ADM_Lists_DrivingLicenseCategories_Edit', 'ADM_Lists_DrivingLicenseCategories_Delete',
+ 'Lists_ADM_DrivingLicenseCategories', 'ADM_LISTMAINT_DRIVINGLICENSECATEGORIES', 'ADM_LISTMAINT_DRIVINGLICENSECATEGORIES_DELETE', 'ADM_LISTMAINT_DRIVINGLICENSECATEGORIES_EDIT', 'ADM_LISTMAINT_DRIVINGLICENSECATEGORIES_ADD',
+ (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'ADM'));
+ 
+INSERT INTO PMIS_ADM.Maintenance(MaintKey, HeaderTitle, DataTable, GTableTableName,
+   FldList, UpdtList, KeyFld, CanDelete, CanAdd, MasterTable, MasterField,
+   ChangeTypeKey, InsertChangeEventTypeKey, UpdateChangeEventTypeKey, DeleteChangeEventTypeKey,
+   MenuItemKey, UIKeyMaintenance, UIKeyDelete, UIKeyEdit, UIKeyAdd, ModuleID)
+VALUES ('ADM_MilitaryDepartment', 'Военни окръжия', 'PMIS_ADM.MilitaryDepartments', NULL, 
+ 'MilitaryDepartmentID[HIDDEN], MilitaryDepartmentName', 'MilitaryDepartmentName', 'MilitaryDepartmentID', 1, 1, 'PMIS_ADM.MilitaryDepartmentsPerUser,PMIS_ADM.MilitaryReportPersons,PMIS_APPL.Applicants,PMIS_APPL.Cadets,PMIS_APPL.PotencialApplicants,PMIS_RES.RequestCommandPositionsMilDept,PMIS_RES.RequestCommandPunkt,PMIS_RES.ReservistMilRepStatuses,PMIS_RES.FillReservistsRequest,PMIS_RES.TechRequestCmdPositionsMilDept,PMIS_RES.TechRequestCommandPunkt,PMIS_RES.FulfilTechnicsRequest,PMIS_RES.TechnicsMilRepStatusm,PMIS_RES.Postpone', 'PMIS_ADM.MilitaryDepartmentsPerUser.MilitaryDepartmentID,PMIS_ADM.MilitaryReportPersons.MilitaryDepartmentID,PMIS_APPL.Applicants.MilitaryDepartmentID,PMIS_APPL.Cadets.MilitaryDepartmentID,PMIS_APPL.PotencialApplicants.MilitaryDepartmentID,PMIS_RES.RequestCommandPositionsMilDept.MilitaryDepartmentID,PMIS_RES.RequestCommandPunkt.MilitaryDepartmentID,PMIS_RES.ReservistMilRepStatuses.SourceMilDepartmentID,PMIS_RES.ReservistMilRepStatuses.DestMilDepartmentID,PMIS_RES.FillReservistsRequest.MilitaryDepartmentID,PMIS_RES.TechRequestCmdPositionsMilDept.MilitaryDepartmentID,PMIS_RES.TechRequestCommandPunkt.MilitaryDepartmentID,PMIS_RES.FulfilTechnicsRequest.MilitaryDepartmentID,PMIS_RES.TechnicsMilRepStatus.SourceMilDepartmentID,PMIS_RES.Postpone.MilitaryDepartmentID',
+ 'ADM_Lists_MilitaryDepartments', 'ADM_Lists_MilitaryDepartments_Add', 'ADM_Lists_MilitaryDepartments_Edit', 'ADM_Lists_MilitaryDepartments_Delete',
+ 'Lists_ADM_MilitaryDepartment', 'ADM_LISTMAINT_MILITARYDEPARTMENTS', 'ADM_LISTMAINT_MILITARYDEPARTMENTS_DELETE', 'ADM_LISTMAINT_MILITARYDEPARTMENTS_EDIT', 'ADM_LISTMAINT_MILITARYDEPARTMENTS_ADD',
+ (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'ADM'));
+ 
+ INSERT INTO PMIS_ADM.Maintenance(MaintKey, HeaderTitle, DataTable, GTableTableName,
+   FldList, UpdtList, KeyFld, CanDelete, CanAdd, MasterTable, MasterField,
+   ChangeTypeKey, InsertChangeEventTypeKey, UpdateChangeEventTypeKey, DeleteChangeEventTypeKey,
+   MenuItemKey, UIKeyMaintenance, UIKeyDelete, UIKeyEdit, UIKeyAdd, 
+   ModuleID)
+VALUES ('ADM_Administrations', 'Ведомства', 'PMIS_ADM.Administrations', NULL, 
+ 'AdministrationID[HIDDEN], AdministrationName', 'MilitaryDepartmentName', 'AdministrationID', 1, 1, 'PMIS_ADM.Persons,PMIS_RES.ReservistMilRepStatuses', 'PMIS_ADM.Persons.AdministrationID,PMIS_RES.ReservistMilRepStatuses.MilEmployed_AdministrationID',
+ 'ADM_Lists_Administrations', 'ADM_Lists_Administrations_Add', 'ADM_Lists_Administrations_Edit', 'ADM_Lists_Administrations_Delete',
+ 'Lists_ADM_Administrations', 'ADM_LISTMAINT_ADMINISTRATIONS', 'ADM_LISTMAINT_ADMINISTRATIONS_DELETE', 'ADM_LISTMAINT_ADMINISTRATIONS_EDIT', 'ADM_LISTMAINT_ADMINISTRATIONS_ADD',
+ (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'ADM'));
+ 
+
+
+
+INSERT INTO PMIS_ADM.Maintenance(MaintKey, HeaderTitle, DataTable, GTableTableName,
+   FldList, UpdtList, KeyFld, CanDelete, CanAdd, MasterTable, MasterField,
+   ChangeTypeKey, InsertChangeEventTypeKey, UpdateChangeEventTypeKey, DeleteChangeEventTypeKey,
+   MenuItemKey, UIKeyMaintenance, UIKeyDelete, UIKeyEdit, UIKeyAdd, ModuleID)
+VALUES ('APPL_Documents', 'Документи', 'PMIS_APPL.Documents', NULL, 
+ 'DocumentID[HIDDEN], DocumentName', 'DocumentName', 'DocumentID', 1, 1, 'PMIS_APPL.VacancyAnnounceDocuments', 'PMIS_APPL.VacancyAnnounceDocuments.DocumentID',
+ 'APPL_Documents', 'APPL_Documents_Add', 'APPL_Documents_Edit', 'APPL_Documents_Delete',
+ 'Lists_APPL_Documents', 'APPL_DOCUMENTS', 'APPL_DOCUMENTS_DELETE', 'APPL_DOCUMENTS_EDIT', 'APPL_DOCUMENTS_ADD',
+ (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'APPL'));
+
+
+
+INSERT INTO PMIS_ADM.Maintenance(MaintKey, HeaderTitle, DataTable, GTableTableName,
+   FldList, UpdtList, KeyFld, CanDelete, CanAdd, MasterTable, MasterField,
+   ChangeTypeKey, InsertChangeEventTypeKey, UpdateChangeEventTypeKey, DeleteChangeEventTypeKey,
+   MenuItemKey, UIKeyMaintenance, UIKeyDelete, UIKeyEdit, UIKeyAdd, ModuleID)
+VALUES ('APPL_Exams', 'Изпити', 'PMIS_APPL.Exams', NULL, 
+ 'ExamID[HIDDEN], ExamName', 'ExamName', 'ExamID', 1, 1, 'PMIS_APPL.VacancyAnnounceExams', 'PMIS_APPL.VacancyAnnounceExams.ApplicantExamID',
+ 'APPL_Exams', 'APPL_Exams_Add', 'APPL_Exams_Edit', 'APPL_Exams_Delete',
+ 'Lists_APPL_Exams', 'APPL_EXAMS', 'APPL_EXAMS_DELETE', 'APPL_EXAMS_EDIT', 'APPL_EXAMS_ADD',
+ (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'APPL'));
+
+ 
+ INSERT INTO PMIS_ADM.Maintenance(MaintKey, HeaderTitle, DataTable, GTableTableName,
+   FldList, UpdtList, KeyFld, CanDelete, CanAdd, MasterTable, MasterField,
+   ChangeTypeKey, InsertChangeEventTypeKey, UpdateChangeEventTypeKey, DeleteChangeEventTypeKey,
+   MenuItemKey, UIKeyMaintenance, UIKeyDelete, UIKeyEdit, UIKeyAdd, ModuleID)
+VALUES ('ADM_MilitaryForceType', 'Въоръжени сили', 'PMIS_ADM.MilitaryForceTypes', NULL, 
+ 'MilitaryForceTypeID[HIDDEN], MilitaryForceTypeName', 'MilitaryForceTypeName', 'MilitaryForceTypeID', 1, 1, 'PMIS_HS.RiskAssessments,PMIS_HS.Committees', 'PMIS_HS.RiskAssessments.MilitaryForceTypeID,PMIS_HS.Committees.MilitaryForceTypeID',
+ 'ADM_Lists_MilitaryForceTypes', 'ADM_Lists_MilitaryForceTypes_AddMilitaryForceType', 'ADM_Lists_MilitaryForceTypes_EditMilitaryForceType', 'ADM_Lists_MilitaryForceTypes_DeleteMilitaryForceType',
+ 'Lists_ADM_MilitaryForceType', 'ADM_LISTMAINT_MILITFORCETYPES', 'ADM_LISTMAINT_MILITFORCETYPES_DELETE', 'ADM_LISTMAINT_MILITFORCETYPES_EDIT', 'ADM_LISTMAINT_MILITFORCETYPES_ADD',
+ (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'ADM'));
+
+ 
+ INSERT INTO PMIS_ADM.Maintenance(MaintKey, HeaderTitle, DataTable, GTableTableName,
+   FldList, UpdtList, KeyFld, CanDelete, CanAdd, MasterTable, MasterField,
+   ChangeTypeKey, InsertChangeEventTypeKey, UpdateChangeEventTypeKey, DeleteChangeEventTypeKey,
+   MenuItemKey, UIKeyMaintenance, UIKeyDelete, UIKeyEdit, UIKeyAdd, ModuleID)
+VALUES ('RES_SizeClothing', 'Размер на дрехи', 'PMIS_RES.GTable', 'SizeClothing', 
+ 'TableKey[HIDDEN], TableSeq, TableValue', 'TableSeq, TableValue', 'TableKey', 1, 1, 'PMIS_ADM.Persons', 'PMIS_ADM.Persons.SizeClothingID',
+ 'RES_Lists_SizeClothing', 'RES_Lists_SizeClothing_AddSizeClothing', 'RES_Lists_SizeClothing_EditSizeClothing', 'RES_Lists_SizeClothing_DeleteSizeClothing',
+ 'Lists_RES_SizeClothing', 'RES_LISTMAINT_SIZECLOTHING', 'RES_LISTMAINT_SIZECLOTHING_DELETE', 'RES_LISTMAINT_SIZECLOTHING_EDIT', 'RES_LISTMAINT_SIZECLOTHING_ADD',
+ (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'));
+ 
+ INSERT INTO PMIS_ADM.Maintenance(MaintKey, HeaderTitle, DataTable, GTableTableName,
+   FldList, UpdtList, KeyFld, CanDelete, CanAdd, MasterTable, MasterField,
+   ChangeTypeKey, InsertChangeEventTypeKey, UpdateChangeEventTypeKey, DeleteChangeEventTypeKey,
+   MenuItemKey, UIKeyMaintenance, UIKeyDelete, UIKeyEdit, UIKeyAdd, ModuleID)
+VALUES ('RES_SizeHat', 'Размер на шапка', 'PMIS_RES.GTable', 'SizeHat', 
+ 'TableKey[HIDDEN], TableSeq, TableValue', 'TableSeq, TableValue', 'TableKey', 1, 1, 'PMIS_ADM.Persons', 'PMIS_ADM.Persons.SizeHatID',
+ 'RES_Lists_SizeHat', 'RES_Lists_SizeHat_AddSizeHat', 'RES_Lists_SizeHat_EditSizeHat', 'RES_Lists_SizeHat_DeleteSizeHat',
+ 'Lists_RES_SizeHat', 'RES_LISTMAINT_SIZEHAT', 'RES_LISTMAINT_SIZEHAT_DELETE', 'RES_LISTMAINT_SIZEHAT_EDIT', 'RES_LISTMAINT_SIZEHAT_ADD',
+ (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'));
+ 
+  INSERT INTO PMIS_ADM.Maintenance(MaintKey, HeaderTitle, DataTable, GTableTableName,
+   FldList, UpdtList, KeyFld, CanDelete, CanAdd, MasterTable, MasterField,
+   ChangeTypeKey, InsertChangeEventTypeKey, UpdateChangeEventTypeKey, DeleteChangeEventTypeKey,
+   MenuItemKey, UIKeyMaintenance, UIKeyDelete, UIKeyEdit, UIKeyAdd, ModuleID)
+VALUES ('RES_SizeShoes', 'Размер на обувки', 'PMIS_RES.GTable', 'SizeShoes', 
+ 'TableKey[HIDDEN], TableSeq, TableValue', 'TableSeq, TableValue', 'TableKey', 1, 1, 'PMIS_ADM.Persons', 'PMIS_ADM.Persons.SizeShoesID',
+ 'RES_Lists_SizeShoes', 'RES_Lists_SizeShoes_AddSizeShoes', 'RES_Lists_SizeShoes_EditSizeShoes', 'RES_Lists_SizeShoes_DeleteSizeShoes',
+ 'Lists_RES_SizeShoes', 'RES_LISTMAINT_SIZESHOES', 'RES_LISTMAINT_SIZESHOES_DELETE', 'RES_LISTMAINT_SIZESHOES_EDIT', 'RES_LISTMAINT_SIZESHOES_ADD',
+ (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'));
+ 
+ INSERT INTO PMIS_ADM.Maintenance(MaintKey, HeaderTitle, DataTable, GTableTableName,
+   FldList, UpdtList, KeyFld, CanDelete, CanAdd, MasterTable, MasterField,
+   ChangeTypeKey, InsertChangeEventTypeKey, UpdateChangeEventTypeKey, DeleteChangeEventTypeKey,
+   MenuItemKey, UIKeyMaintenance, UIKeyDelete, UIKeyEdit, UIKeyAdd, ModuleID)
+VALUES ('RES_MilitaryReadinessNames', 'Готовност', 'PMIS_RES.MilReadiness', NULL, 
+ 'MilReadinessID[HIDDEN], MilReadinessName', 'MilReadinessName', 'MilReadinessID', 1, 1, 'PMIS_RES.RequestsCommands,PMIS_RES.TechnicsRequestCommands', 'PMIS_RES.RequestsCommands.MilReadinessID,PMIS_RES.TechnicsRequestCommands.MilReadinessID',
+ 'RES_Lists_MilitaryReadinessName', 'RES_Lists_MilitaryReadiness_AddMilitaryReadinessName', 'RES_Lists_MilitaryReadiness_EditMilitaryReadinessName', 'RES_Lists_MilitaryReadiness_DeleteMilitaryReadinessName',
+ 'Lists_RES_MilitaryReadinessName', 'RES_LISTMAINT_MILITARYREADINESSNAMES', 'RES_LISTMAINT_MILITARYREADINESSNAMES_DELETE', 'RES_LISTMAINT_MILITARYREADINESSNAMES_EDIT', 'RES_LISTMAINT_MILITARYREADINESSNAMES_ADD',
+ (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'));
+ 
+ 
+ 
+ INSERT INTO PMIS_ADM.Maintenance(MaintKey, HeaderTitle, DataTable, GTableTableName,
+   FldList, UpdtList, KeyFld, CanDelete, CanAdd, MasterTable, MasterField,
+   ChangeTypeKey, InsertChangeEventTypeKey, UpdateChangeEventTypeKey, DeleteChangeEventTypeKey,
+   MenuItemKey, UIKeyMaintenance, UIKeyDelete, UIKeyEdit, UIKeyAdd, ModuleID)
+VALUES ('RES_VehicleKind', 'Видове автомобили', 'PMIS_RES.GTable', 'VehicleKind', 
+ 'TableKey[HIDDEN], TableSeq, TableValue', 'TableSeq, TableValue', 'TableKey', 1, 1, 'PMIS_RES.Vehicles', 'PMIS_RES.Vehicles.VehicleKindID',
+ 'RES_Lists_VehicleKind', 'RES_Lists_VehicleKind_AddVehicleKind', 'RES_Lists_VehicleKind_EditVehicleKind', 'RES_Lists_VehicleKind_DeleteVehicleKind',
+ 'Lists_RES_VehicleKind', 'RES_LISTMAINT_VEHICLEKIND', 'RES_LISTMAINT_VEHICLEKIND_DELETE', 'RES_LISTMAINT_VEHICLEKIND_EDIT', 'RES_LISTMAINT_VEHICLEKIND_ADD',
+ (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'));
+ 
+
+  INSERT INTO PMIS_ADM.Maintenance(MaintKey, HeaderTitle, DataTable, GTableTableName,
+   FldList, UpdtList, KeyFld, CanDelete, CanAdd, MasterTable, MasterField,
+   ChangeTypeKey, InsertChangeEventTypeKey, UpdateChangeEventTypeKey, DeleteChangeEventTypeKey,
+   MenuItemKey, UIKeyMaintenance, UIKeyDelete, UIKeyEdit, UIKeyAdd, ModuleID)
+VALUES ('RES_VehicleRoadability', 'Проходимост на автомобил', 'PMIS_RES.GTable', 'VehicleRoadability', 
+ 'TableKey[HIDDEN], TableSeq, TableValue', 'TableSeq, TableValue', 'TableKey', 1, 1, 'PMIS_RES.Vehicles', 'PMIS_RES.Vehicles.VehicleRoadabilityID',
+ 'RES_Lists_VehicleRoadability', 'RES_Lists_VehicleRoadability_AddVehicleRoadability', 'RES_Lists_VehicleRoadability_EditVehicleRoadability', 'RES_Lists_VehicleRoadability_DeleteVehicleRoadability',
+ 'Lists_RES_VehicleRoadability', 'RES_LISTMAINT_VEHICLEROADABILITY', 'RES_LISTMAINT_VEHICLEROADABILITY_DELETE', 'RES_LISTMAINT_VEHICLEROADABILITY_EDIT', 'RES_LISTMAINT_VEHICLEROADABILITY_ADD',
+ (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'));
+ 
+ 
+ INSERT INTO PMIS_ADM.Maintenance(MaintKey, HeaderTitle, DataTable, GTableTableName,
+   FldList, UpdtList, KeyFld, CanDelete, CanAdd, MasterTable, MasterField,
+   ChangeTypeKey, InsertChangeEventTypeKey, UpdateChangeEventTypeKey, DeleteChangeEventTypeKey,
+   MenuItemKey, UIKeyMaintenance, UIKeyDelete, UIKeyEdit, UIKeyAdd, ModuleID)
+VALUES ('RES_VehicleEngineType', 'Видове автомобилни двигатели', 'PMIS_RES.GTable', 'VehicleEngineType', 
+ 'TableKey[HIDDEN], TableSeq, TableValue', 'TableSeq, TableValue', 'TableKey', 1, 1, 'PMIS_RES.Vehicles', 'PMIS_RES.Vehicles.VehicleEngineTypeID',
+ 'RES_Lists_VehicleEngineType', 'RES_Lists_VehicleEngineType_AddVehicleEngineType', 'RES_Lists_VehicleEngineType_EditVehicleEngineType', 'RES_Lists_VehicleEngineType_DeleteVehicleEngineType',
+ 'Lists_RES_VehicleEngineType', 'RES_LISTMAINT_VEHICLEENGINETYPE', 'RES_LISTMAINT_VEHICLEENGINETYPE_DELETE', 'RES_LISTMAINT_VEHICLEENGINETYPE_EDIT', 'RES_LISTMAINT_VEHICLEENGINETYPE_ADD',
+ (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'));
+
+
+ INSERT INTO PMIS_ADM.Maintenance(MaintKey, HeaderTitle, DataTable, GTableTableName,
+   FldList, UpdtList, KeyFld, CanDelete, CanAdd, MasterTable, MasterField,
+   ChangeTypeKey, InsertChangeEventTypeKey, UpdateChangeEventTypeKey, DeleteChangeEventTypeKey,
+   MenuItemKey, UIKeyMaintenance, UIKeyDelete, UIKeyEdit, UIKeyAdd, ModuleID)
+VALUES ('RES_VehicleBodyType', 'Видове автомобилни каросерии', 'PMIS_RES.GTable', 'VehicleBodyType', 
+ 'TableKey[HIDDEN], TableSeq, TableValue', 'TableSeq, TableValue', 'TableKey', 1, 1, 'PMIS_RES.Vehicles', 'PMIS_RES.Vehicles.VehicleBodyTypeID',
+ 'RES_Lists_VehicleBodyType', 'RES_Lists_VehicleBodyType_AddVehicleBodyType', 'RES_Lists_VehicleBodyType_EditVehicleBodyType', 'RES_Lists_VehicleBodyType_DeleteVehicleBodyType',
+ 'Lists_RES_VehicleBodyType', 'RES_LISTMAINT_VEHICLEBODYTYPE', 'RES_LISTMAINT_VEHICLEBODYTYPE_DELETE', 'RES_LISTMAINT_VEHICLEBODYTYPE_EDIT', 'RES_LISTMAINT_VEHICLEBODYTYPE_ADD',
+ (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'));
+ 
+ 
+ INSERT INTO PMIS_ADM.Maintenance(MaintKey, HeaderTitle, DataTable, GTableTableName,
+   FldList, UpdtList, KeyFld, CanDelete, CanAdd, MasterTable, MasterField,
+   ChangeTypeKey, InsertChangeEventTypeKey, UpdateChangeEventTypeKey, DeleteChangeEventTypeKey,
+   MenuItemKey, UIKeyMaintenance, UIKeyDelete, UIKeyEdit, UIKeyAdd, ModuleID)
+VALUES ('RES_VehicleMakeNames', 'Марки автомобили', 'PMIS_RES.VehicleMakes', NULL, 
+ 'VehicleMakeID[HIDDEN], VehicleMakeName', 'VehicleMakeName', 'VehicleMakeID', 1, 1, 'PMIS_RES.Vehicles', 'PMIS_RES.Vehicles.VehicleMakeID',
+ 'RES_Lists_VehicleMakeName', 'RES_Lists_VehicleMakes_AddVehicleMakeName', 'RES_Lists_VehicleMakes_EditVehicleMakeName', 'RES_Lists_VehicleMakes_DeleteVehicleMakeName',
+ 'Lists_RES_VehicleMakeName', 'RES_LISTMAINT_VEHICLEMAKENAMES', 'RES_LISTMAINT_VEHICLEMAKENAMES_DELETE', 'RES_LISTMAINT_VEHICLEMAKENAMES_EDIT', 'RES_LISTMAINT_VEHICLEMAKENAMES_ADD',
+ (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'));
+ 
+ 
+ 
+ INSERT INTO PMIS_ADM.Maintenance(MaintKey, HeaderTitle, DataTable, GTableTableName,
+   FldList, UpdtList, KeyFld, CanDelete, CanAdd, MasterTable, MasterField,
+   ChangeTypeKey, InsertChangeEventTypeKey, UpdateChangeEventTypeKey, DeleteChangeEventTypeKey,
+   MenuItemKey, UIKeyMaintenance, UIKeyDelete, UIKeyEdit, UIKeyAdd, ModuleID)
+VALUES ('RES_TractorKind', 'Видове трактори', 'PMIS_RES.GTable', 'TractorKind', 
+ 'TableKey[HIDDEN], TableSeq, TableValue', 'TableSeq, TableValue', 'TableKey', 1, 1, 'PMIS_RES.Tractors', 'PMIS_RES.Vehicles.TractorKindID',
+ 'RES_Lists_TractorKind', 'RES_Lists_TractorKind_AddTractorKind', 'RES_Lists_TractorKind_EditTractorKind', 'RES_Lists_TractorKind_DeleteTractorKind',
+ 'Lists_RES_TractorKind', 'RES_LISTMAINT_TRACTORKIND', 'RES_LISTMAINT_TRACTORKIND_DELETE', 'RES_LISTMAINT_TRACTORKIND_EDIT', 'RES_LISTMAINT_TRACTORKIND_ADD',
+ (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'));
+ 
+
+  INSERT INTO PMIS_ADM.Maintenance(MaintKey, HeaderTitle, DataTable, GTableTableName,
+   FldList, UpdtList, KeyFld, CanDelete, CanAdd, MasterTable, MasterField,
+   ChangeTypeKey, InsertChangeEventTypeKey, UpdateChangeEventTypeKey, DeleteChangeEventTypeKey,
+   MenuItemKey, UIKeyMaintenance, UIKeyDelete, UIKeyEdit, UIKeyAdd, ModuleID)
+VALUES ('RES_TractorType', 'Типове трактори', 'PMIS_RES.GTable', 'TractorType', 
+ 'TableKey[HIDDEN], TableSeq, TableValue', 'TableSeq, TableValue', 'TableKey', 1, 1, 'PMIS_RES.Tractors', 'PMIS_RES.Tractos.TractorTypeID',
+ 'RES_Lists_TractorType', 'RES_Lists_TractorType_AddTractorType', 'RES_Lists_TractorType_EditTractorType', 'RES_Lists_TractorType_DeleteTractorType',
+ 'Lists_RES_TractorType', 'RES_LISTMAINT_TRACTORTYPE', 'RES_LISTMAINT_TRACTORTYPE_DELETE', 'RES_LISTMAINT_TRACTORTYPE_EDIT', 'RES_LISTMAINT_TRACTORTYPE_ADD',
+ (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'));
+ 
+
+  INSERT INTO PMIS_ADM.Maintenance(MaintKey, HeaderTitle, DataTable, GTableTableName,
+   FldList, UpdtList, KeyFld, CanDelete, CanAdd, MasterTable, MasterField,
+   ChangeTypeKey, InsertChangeEventTypeKey, UpdateChangeEventTypeKey, DeleteChangeEventTypeKey,
+   MenuItemKey, UIKeyMaintenance, UIKeyDelete, UIKeyEdit, UIKeyAdd, ModuleID)
+VALUES ('RES_TractorMakeNames', 'Марки трактори', 'PMIS_RES.TractorMakes', NULL, 
+ 'TractorMakeID[HIDDEN], TractorMakeName', 'TractorMakeName', 'TractorMakeID', 1, 1, 'PMIS_RES.Tractors', 'PMIS_RES.Tractors.TractorMakeID',
+ 'RES_Lists_TractorMakeName', 'RES_Lists_TractorMakes_AddTractorMakeName', 'RES_Lists_TractorMakes_EditTractorMakeName', 'RES_Lists_TractorMakes_DeleteTractorMakeName',
+ 'Lists_RES_TractorMakeName', 'RES_LISTMAINT_TRACTORMAKENAMES', 'RES_LISTMAINT_TRACTORMAKENAMES_DELETE', 'RES_LISTMAINT_TRACTORMAKENAMES_EDIT', 'RES_LISTMAINT_TRACTORMAKENAMES_ADD',
+ (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'));
+
+ 
+ 
+INSERT INTO PMIS_ADM.Maintenance(MaintKey, HeaderTitle, DataTable, GTableTableName,
+   FldList, UpdtList, KeyFld, CanDelete, CanAdd, MasterTable, MasterField,
+   ChangeTypeKey, InsertChangeEventTypeKey, UpdateChangeEventTypeKey, DeleteChangeEventTypeKey,
+   MenuItemKey, UIKeyMaintenance, UIKeyDelete, UIKeyEdit, UIKeyAdd, ModuleID)
+VALUES ('RES_TrailerKind', 'Видове ремаркета', 'PMIS_RES.GTable', 'TrailerKind', 
+ 'TableKey[HIDDEN], TableSeq, TableValue', 'TableSeq, TableValue', 'TableKey', 1, 1, 'PMIS_RES.Trailers', 'PMIS_RES.Trailers.TrailerKindID',
+ 'RES_Lists_TrailerKind', 'RES_Lists_TrailerKind_AddTrailerKind', 'RES_Lists_TrailerKind_EditTrailerKind', 'RES_Lists_TrailerKind_DeleteTrailerKind',
+ 'Lists_RES_TrailerKind', 'RES_LISTMAINT_TRAILERKIND', 'RES_LISTMAINT_TRAILERKIND_DELETE', 'RES_LISTMAINT_TRAILERKIND_EDIT', 'RES_LISTMAINT_TRAILERKIND_ADD',
+ (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'));
+ 
+ 
+INSERT INTO PMIS_ADM.Maintenance(MaintKey, HeaderTitle, DataTable, GTableTableName,
+   FldList, UpdtList, KeyFld, CanDelete, CanAdd, MasterTable, MasterField,
+   ChangeTypeKey, InsertChangeEventTypeKey, UpdateChangeEventTypeKey, DeleteChangeEventTypeKey,
+   MenuItemKey, UIKeyMaintenance, UIKeyDelete, UIKeyEdit, UIKeyAdd, ModuleID)
+VALUES ('RES_TrailerType', 'Типове ремаркета', 'PMIS_RES.GTable', 'TrailerType', 
+ 'TableKey[HIDDEN], TableSeq, TableValue', 'TableSeq, TableValue', 'TableKey', 1, 1, 'PMIS_RES.Trailers', 'PMIS_RES.Trailers.TrailerTypeID',
+ 'RES_Lists_TrailerType', 'RES_Lists_TrailerType_AddTrailerType', 'RES_Lists_TrailerType_EditTrailerType', 'RES_Lists_TrailerType_DeleteTrailerType',
+ 'Lists_RES_TrailerType', 'RES_LISTMAINT_TRAILERTYPE', 'RES_LISTMAINT_TRAILERTYPE_DELETE', 'RES_LISTMAINT_TRAILERTYPE_EDIT', 'RES_LISTMAINT_TRAILERTYPE_ADD',
+ (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'));
+ 
+
+ 
+INSERT INTO PMIS_ADM.Maintenance(MaintKey, HeaderTitle, DataTable, GTableTableName,
+   FldList, UpdtList, KeyFld, CanDelete, CanAdd, MasterTable, MasterField,
+   ChangeTypeKey, InsertChangeEventTypeKey, UpdateChangeEventTypeKey, DeleteChangeEventTypeKey,
+   MenuItemKey, UIKeyMaintenance, UIKeyDelete, UIKeyEdit, UIKeyAdd, ModuleID)
+VALUES ('RES_EngEquipKind', 'Видове инж. техника', 'PMIS_RES.GTable', 'EngEquipKind', 
+ 'TableKey[HIDDEN], TableSeq, TableValue', 'TableSeq, TableValue', 'TableKey', 1, 1, 'PMIS_RES.EngEquipment', 'PMIS_RES.EngEquipment.EngEquipKindID',
+ 'RES_Lists_EngEquipKind', 'RES_Lists_EngEquipKind_AddEngEquipKind', 'RES_Lists_EngEquipKind_EditEngEquipKind', 'RES_Lists_EngEquipKind_DeleteEngEquipKind',
+ 'Lists_RES_EngEquipKind', 'RES_LISTMAINT_ENGEQUIPKIND', 'RES_LISTMAINT_ENGEQUIPKIND_DELETE', 'RES_LISTMAINT_ENGEQUIPKIND_EDIT', 'RES_LISTMAINT_ENGEQUIPKIND_ADD',
+ (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'));
+
+
+ 
+INSERT INTO PMIS_ADM.Maintenance(MaintKey, HeaderTitle, DataTable, GTableTableName,
+   FldList, UpdtList, KeyFld, CanDelete, CanAdd, MasterTable, MasterField,
+   ChangeTypeKey, InsertChangeEventTypeKey, UpdateChangeEventTypeKey, DeleteChangeEventTypeKey,
+   MenuItemKey, UIKeyMaintenance, UIKeyDelete, UIKeyEdit, UIKeyAdd, ModuleID)
+VALUES ('RES_EngEquipType', 'Типове инж. техника', 'PMIS_RES.GTable', 'EngEquipType', 
+ 'TableKey[HIDDEN], TableSeq, TableValue', 'TableSeq, TableValue', 'TableKey', 1, 1, 'PMIS_RES.EngEquipment', 'PMIS_RES.EngEquipment.EngEquipTypeID',
+ 'RES_Lists_EngEquipType', 'RES_Lists_EngEquipType_AddEngEquipType', 'RES_Lists_EngEquipType_EditEngEquipType', 'RES_Lists_EngEquipType_DeleteEngEquipType',
+ 'Lists_RES_EngEquipType', 'RES_LISTMAINT_ENGEQUIPTYPE', 'RES_LISTMAINT_ENGEQUIPTYPE_DELETE', 'RES_LISTMAINT_ENGEQUIPTYPE_EDIT', 'RES_LISTMAINT_ENGEQUIPTYPE_ADD',
+ (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'));
+
+ 
+
+INSERT INTO PMIS_ADM.Maintenance(MaintKey, HeaderTitle, DataTable, GTableTableName,
+   FldList, UpdtList, KeyFld, CanDelete, CanAdd, MasterTable, MasterField,
+   ChangeTypeKey, InsertChangeEventTypeKey, UpdateChangeEventTypeKey, DeleteChangeEventTypeKey,
+   MenuItemKey, UIKeyMaintenance, UIKeyDelete, UIKeyEdit, UIKeyAdd, ModuleID)
+VALUES ('RES_EngEquipBaseKind', 'Видове базови машини (инж. техника)', 'PMIS_RES.GTable', 'EngEquipBaseKind', 
+ 'TableKey[HIDDEN], TableSeq, TableValue', 'TableSeq, TableValue', 'TableKey', 1, 1, 'PMIS_RES.EngEquipment', 'PMIS_RES.EngEquipment.EngEquipBaseKindID',
+ 'RES_Lists_EngEquipBaseKind', 'RES_Lists_EngEquipBaseKind_AddEngEquipBaseKind', 'RES_Lists_EngEquipBaseKind_EditEngEquipBaseKind', 'RES_Lists_EngEquipBaseKind_DeleteEngEquipBaseKind',
+ 'Lists_RES_EngEquipBaseKind', 'RES_LISTMAINT_ENGEQUIPBASEKIND', 'RES_LISTMAINT_ENGEQUIPBASEKIND_DELETE', 'RES_LISTMAINT_ENGEQUIPBASEKIND_EDIT', 'RES_LISTMAINT_ENGEQUIPBASEKIND_ADD',
+ (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'));
+
+ 
+
+INSERT INTO PMIS_ADM.Maintenance(MaintKey, HeaderTitle, DataTable, GTableTableName,
+   FldList, UpdtList, KeyFld, CanDelete, CanAdd, MasterTable, MasterField,
+   ChangeTypeKey, InsertChangeEventTypeKey, UpdateChangeEventTypeKey, DeleteChangeEventTypeKey,
+   MenuItemKey, UIKeyMaintenance, UIKeyDelete, UIKeyEdit, UIKeyAdd, ModuleID)
+VALUES ('RES_EngEquipBaseType', 'Типове базови машини (инж. техника)', 'PMIS_RES.GTable', 'EngEquipBaseType', 
+ 'TableKey[HIDDEN], TableSeq, TableValue', 'TableSeq, TableValue', 'TableKey', 1, 1, 'PMIS_RES.EngEquipment', 'PMIS_RES.EngEquipment.EngEquipBaseTypeID',
+ 'RES_Lists_EngEquipBaseType', 'RES_Lists_EngEquipBaseType_AddEngEquipBaseType', 'RES_Lists_EngEquipBaseType_EditEngEquipBaseType', 'RES_Lists_EngEquipBaseType_DeleteEngEquipBaseType',
+ 'Lists_RES_EngEquipBaseType', 'RES_LISTMAINT_ENGEQUIPBASETYPE', 'RES_LISTMAINT_ENGEQUIPBASETYPE_DELETE', 'RES_LISTMAINT_ENGEQUIPBASETYPE_EDIT', 'RES_LISTMAINT_ENGEQUIPBASETYPE_ADD',
+ (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'));
+
+
+
+INSERT INTO PMIS_ADM.Maintenance(MaintKey, HeaderTitle, DataTable, GTableTableName,
+   FldList, UpdtList, KeyFld, CanDelete, CanAdd, MasterTable, MasterField,
+   ChangeTypeKey, InsertChangeEventTypeKey, UpdateChangeEventTypeKey, DeleteChangeEventTypeKey,
+   MenuItemKey, UIKeyMaintenance, UIKeyDelete, UIKeyEdit, UIKeyAdd, ModuleID)
+VALUES ('RES_EngEquipBaseEngineType', 'Видове гориво за базова машина (инж. техника)', 'PMIS_RES.GTable', 'EngEquipBaseEngineType', 
+ 'TableKey[HIDDEN], TableSeq, TableValue', 'TableSeq, TableValue', 'TableKey', 1, 1, 'PMIS_RES.EngEquipment', 'PMIS_RES.EngEquipment.EngEquipBaseEngineTypeID',
+ 'RES_Lists_EngEquipBaseEngineType', 'RES_Lists_EngEquipBaseEngineType_AddEngEquipBaseEngineType', 'RES_Lists_EngEquipBaseEngineType_EditEngEquipBaseEngineType', 'RES_Lists_EngEquipBaseEngineType_DeleteEngEquipBaseEngineType',
+ 'Lists_RES_EngEquipBaseEngineType', 'RES_LISTMAINT_ENGEQUIPBASEENGINETYPE', 'RES_LISTMAINT_ENGEQUIPBASEENGINETYPE_DELETE', 'RES_LISTMAINT_ENGEQUIPBASEENGINETYPE_EDIT', 'RES_LISTMAINT_ENGEQUIPBASEENGINETYPE_ADD',
+ (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'));
+
+ 
+
+INSERT INTO PMIS_ADM.Maintenance(MaintKey, HeaderTitle, DataTable, GTableTableName,
+   FldList, UpdtList, KeyFld, CanDelete, CanAdd, MasterTable, MasterField,
+   ChangeTypeKey, InsertChangeEventTypeKey, UpdateChangeEventTypeKey, DeleteChangeEventTypeKey,
+   MenuItemKey, UIKeyMaintenance, UIKeyDelete, UIKeyEdit, UIKeyAdd, ModuleID)
+VALUES ('RES_EngEquipWorkingBodyKind', 'Видове работни органи (инж. техника)', 'PMIS_RES.GTable', 'EngEquipWorkingBodyKind', 
+ 'TableKey[HIDDEN], TableSeq, TableValue', 'TableSeq, TableValue', 'TableKey', 1, 1, 'PMIS_RES.EngEquipment', 'PMIS_RES.EngEquipment.EngEquipWorkingBodyKindID',
+ 'RES_Lists_EngEquipWorkingBodyKind', 'RES_Lists_EngEquipWorkingBodyKind_AddEngEquipWorkingBodyKind', 'RES_Lists_EngEquipWorkingBodyKind_EditEngEquipWorkingBodyKind', 'RES_Lists_EngEquipWorkingBodyKind_DeleteEngEquipWorkingBodyKind',
+ 'Lists_RES_EngEquipWorkingBodyKind', 'RES_LISTMAINT_ENGEQUIPWORKINGBODYKIND', 'RES_LISTMAINT_ENGEQUIPWORKINGBODYKIND_DELETE', 'RES_LISTMAINT_ENGEQUIPWORKINGBODYKIND_EDIT', 'RES_LISTMAINT_ENGEQUIPWORKINGBODYKIND_ADD',
+ (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'));
+
+
+
+INSERT INTO PMIS_ADM.Maintenance(MaintKey, HeaderTitle, DataTable, GTableTableName,
+   FldList, UpdtList, KeyFld, CanDelete, CanAdd, MasterTable, MasterField,
+   ChangeTypeKey, InsertChangeEventTypeKey, UpdateChangeEventTypeKey, DeleteChangeEventTypeKey,
+   MenuItemKey, UIKeyMaintenance, UIKeyDelete, UIKeyEdit, UIKeyAdd, ModuleID)
+VALUES ('RES_EngEquipWorkBodyEngineType', 'Видове гориво за работен орган (инж. техника)', 'PMIS_RES.GTable', 'EngEquipWorkBodyEngineType', 
+ 'TableKey[HIDDEN], TableSeq, TableValue', 'TableSeq, TableValue', 'TableKey', 1, 1, 'PMIS_RES.EngEquipment', 'PMIS_RES.EngEquipment.EngEquipWorkBodyEngineTypeID',
+ 'RES_Lists_EngEquipWorkBodyEngineType', 'RES_Lists_EngEquipWorkBodyEngineType_AddEngEquipWorkBodyEngineType', 'RES_Lists_EngEquipWorkBodyEngineType_EditEngEquipWorkBodyEngineType', 'RES_Lists_EngEquipWorkBodyEngineType_DeleteEngEquipWorkBodyEngineType',
+ 'Lists_RES_EngEquipWorkBodyEngineType', 'RES_LISTMAINT_ENGEQUIPWORKBODYENGINETYPE', 'RES_LISTMAINT_ENGEQUIPWORKBODYENGINETYPE_DELETE', 'RES_LISTMAINT_ENGEQUIPWORKBODYENGINETYPE_EDIT', 'RES_LISTMAINT_ENGEQUIPWORKBODYENGINETYPE_ADD',
+ (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'));
+
+
+INSERT INTO PMIS_ADM.Maintenance(MaintKey, HeaderTitle, DataTable, GTableTableName,
+   FldList, UpdtList, KeyFld, CanDelete, CanAdd, MasterTable, MasterField,
+   ChangeTypeKey, InsertChangeEventTypeKey, UpdateChangeEventTypeKey, DeleteChangeEventTypeKey,
+   MenuItemKey, UIKeyMaintenance, UIKeyDelete, UIKeyEdit, UIKeyAdd, ModuleID)
+VALUES ('RES_MobileLiftingEquipKind', 'Видове подемно-транспортна техника', 'PMIS_RES.GTable', 'MobileLiftingEquipKind', 
+ 'TableKey[HIDDEN], TableSeq, TableValue', 'TableSeq, TableValue', 'TableKey', 1, 1, 'PMIS_RES.MobileLiftingEquip', 'PMIS_RES.MobileLiftingEquip.MobileLiftingEquipKindID',
+ 'RES_Lists_MobileLiftingEquipKind', 'RES_Lists_MobileLiftingEquipKind_AddMobileLiftingEquipKind', 'RES_Lists_MobileLiftingEquipKind_EditMobileLiftingEquipKind', 'RES_Lists_MobileLiftingEquipKind_DeleteMobileLiftingEquipKind',
+ 'Lists_RES_MobileLiftingEquipKind', 'RES_LISTMAINT_MOBILELIFTINGEQUIPKIND', 'RES_LISTMAINT_MOBILELIFTINGEQUIPKIND_DELETE', 'RES_LISTMAINT_MOBILELIFTINGEQUIPKIND_EDIT', 'RES_LISTMAINT_MOBILELIFTINGEQUIPKIND_ADD',
+ (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'));
+
+
+INSERT INTO PMIS_ADM.Maintenance(MaintKey, HeaderTitle, DataTable, GTableTableName,
+   FldList, UpdtList, KeyFld, CanDelete, CanAdd, MasterTable, MasterField,
+   ChangeTypeKey, InsertChangeEventTypeKey, UpdateChangeEventTypeKey, DeleteChangeEventTypeKey,
+   MenuItemKey, UIKeyMaintenance, UIKeyDelete, UIKeyEdit, UIKeyAdd, ModuleID)
+VALUES ('RES_MobileLiftingEquipType', 'Типове подемно-транспортна техника', 'PMIS_RES.GTable', 'MobileLiftingEquipType', 
+ 'TableKey[HIDDEN], TableSeq, TableValue', 'TableSeq, TableValue', 'TableKey', 1, 1, 'PMIS_RES.MobileLiftingEquip', 'PMIS_RES.MobileLiftingEquip.MobileLiftingEquipTypeID',
+ 'RES_Lists_MobileLiftingEquipType', 'RES_Lists_MobileLiftingEquipType_AddMobileLiftingEquipType', 'RES_Lists_MobileLiftingEquipType_EditMobileLiftingEquipType', 'RES_Lists_MobileLiftingEquipType_DeleteMobileLiftingEquipType',
+ 'Lists_RES_MobileLiftingEquipType', 'RES_LISTMAINT_MOBILELIFTINGEQUIPTYPE', 'RES_LISTMAINT_MOBILELIFTINGEQUIPTYPE_DELETE', 'RES_LISTMAINT_MOBILELIFTINGEQUIPTYPE_EDIT', 'RES_LISTMAINT_MOBILELIFTINGEQUIPTYPE_ADD',
+ (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'));
+
+ 
+INSERT INTO PMIS_ADM.Maintenance(MaintKey, HeaderTitle, DataTable, GTableTableName,
+   FldList, UpdtList, KeyFld, CanDelete, CanAdd, MasterTable, MasterField,
+   ChangeTypeKey, InsertChangeEventTypeKey, UpdateChangeEventTypeKey, DeleteChangeEventTypeKey,
+   MenuItemKey, UIKeyMaintenance, UIKeyDelete, UIKeyEdit, UIKeyAdd, ModuleID)
+VALUES ('RES_RailwayEquipKind', 'Видове специализиран железопътен състав', 'PMIS_RES.GTable', 'RailwayEquipKind', 
+ 'TableKey[HIDDEN], TableSeq, TableValue', 'TableSeq, TableValue', 'TableKey', 1, 1, 'PMIS_RES.RailwayEquips', 'PMIS_RES.RailwayEquips.RailwayEquipKindID',
+ 'RES_Lists_RailwayEquipKind', 'RES_Lists_RailwayEquipKind_AddRailwayEquipKind', 'RES_Lists_RailwayEquipKind_EditRailwayEquipKind', 'RES_Lists_RailwayEquipKind_DeleteRailwayEquipKind',
+ 'Lists_RES_RailwayEquipKind', 'RES_LISTMAINT_RAILWAYEQUIPKIND', 'RES_LISTMAINT_RAILWAYEQUIPKIND_DELETE', 'RES_LISTMAINT_RAILWAYEQUIPKIND_EDIT', 'RES_LISTMAINT_RAILWAYEQUIPKIND_ADD',
+ (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'));
+ 
+ 
+INSERT INTO PMIS_ADM.Maintenance(MaintKey, HeaderTitle, DataTable, GTableTableName,
+   FldList, UpdtList, KeyFld, CanDelete, CanAdd, MasterTable, MasterField,
+   ChangeTypeKey, InsertChangeEventTypeKey, UpdateChangeEventTypeKey, DeleteChangeEventTypeKey,
+   MenuItemKey, UIKeyMaintenance, UIKeyDelete, UIKeyEdit, UIKeyAdd, ModuleID)
+VALUES ('RES_RailwayEquipType', 'Типове специализиран железопътен състав', 'PMIS_RES.GTable', 'RailwayEquipType', 
+ 'TableKey[HIDDEN], TableSeq, TableValue', 'TableSeq, TableValue', 'TableKey', 1, 1, 'PMIS_RES.RailwayEquips', 'PMIS_RES.RailwayEquips.RailwayEquipTypeID',
+ 'RES_Lists_RailwayEquipType', 'RES_Lists_RailwayEquipType_AddRailwayEquipType', 'RES_Lists_RailwayEquipType_EditRailwayEquipType', 'RES_Lists_RailwayEquipType_DeleteRailwayEquipType',
+ 'Lists_RES_RailwayEquipType', 'RES_LISTMAINT_RAILWAYEQUIPTYPE', 'RES_LISTMAINT_RAILWAYEQUIPTYPE_DELETE', 'RES_LISTMAINT_RAILWAYEQUIPTYPE_EDIT', 'RES_LISTMAINT_RAILWAYEQUIPTYPE_ADD',
+ (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'));
+ 
+ 
+  INSERT INTO PMIS_ADM.Maintenance(MaintKey, HeaderTitle, DataTable, GTableTableName,
+   FldList, UpdtList, KeyFld, CanDelete, CanAdd, MasterTable, MasterField,
+   ChangeTypeKey, InsertChangeEventTypeKey, UpdateChangeEventTypeKey, DeleteChangeEventTypeKey,
+   MenuItemKey, UIKeyMaintenance, UIKeyDelete, UIKeyEdit, UIKeyAdd, ModuleID)
+VALUES ('RES_EngEquipBaseMakeNames', 'Марки инж. техника', 'PMIS_RES.EngEquipBaseMakes', NULL, 
+ 'EngEquipBaseMakeID[HIDDEN], EngEquipBaseMakeName', 'EngEquipBaseMakeName', 'EngEquipBaseMakeID', 1, 1, 'PMIS_RES.EngEquipment', 'PMIS_RES.EngEquipment.EngEquipBaseMakeID',
+ 'RES_Lists_EngEquipBaseMakeName', 'RES_Lists_EngEquipBaseMakes_AddEngEquipBaseMakeName', 'RES_Lists_EngEquipBaseMakes_EditEngEquipBaseMakeName', 'RES_Lists_EngEquipBaseMakes_DeleteEngEquipBaseMakeName',
+ 'Lists_RES_EngEquipBaseMakeName', 'RES_LISTMAINT_ENGEQUIPBASEMAKENAMES', 'RES_LISTMAINT_ENGEQUIPBASEMAKENAMES_DELETE', 'RES_LISTMAINT_ENGEQUIPBASEMAKENAMES_EDIT', 'RES_LISTMAINT_ENGEQUIPBASEMAKENAMES_ADD',
+ (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'));
+
+ 
+INSERT INTO PMIS_ADM.Maintenance(MaintKey, HeaderTitle, DataTable, GTableTableName,
+   FldList, UpdtList, KeyFld, CanDelete, CanAdd, MasterTable, MasterField,
+   ChangeTypeKey, InsertChangeEventTypeKey, UpdateChangeEventTypeKey, DeleteChangeEventTypeKey,
+   MenuItemKey, UIKeyMaintenance, UIKeyDelete, UIKeyEdit, UIKeyAdd, ModuleID)
+VALUES ('RES_AviationOtherBaseMachineMakeNames', 'Марки базови машини (спец. авиационна техника)', 'PMIS_RES.AviationOtherBaseMachineMakes', NULL, 
+ 'AviationOtherBaseMachineMakeID[HIDDEN], AviationOtherBaseMachineMake', 'AviationOtherBaseMachineMake', 'AviationOtherBaseMachineMakeID', 1, 1, 'PMIS_RES.AviationEquipment', 'PMIS_RES.AviationEquipment.AviationOtherBaseMachineMakeID',
+ 'RES_Lists_AviationOtherBaseMachineMakeName', 'RES_Lists_AviationOtherBaseMachineMakes_AddAviationOtherBaseMachineMakeName', 'RES_Lists_AviationOtherBaseMachineMakes_EditAviationOtherBaseMachineMakeName', 'RES_Lists_AviationOtherBaseMachineMakes_DeleteAviationOtherBaseMachineMakeName',
+ 'Lists_RES_AviationOtherBaseMachineMakeName', 'RES_LISTMAINT_AVIATIONOTHERBASEMACHINEMAKENAMES', 'RES_LISTMAINT_AVIATIONOTHERBASEMACHINEMAKENAMES_DELETE', 'RES_LISTMAINT_AVIATIONOTHERBASEMACHINEMAKENAMES_EDIT', 'RES_LISTMAINT_AVIATIONOTHERBASEMACHINEMAKENAMES_ADD',
+ (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'));
+ 
+
+INSERT INTO PMIS_ADM.Maintenance(MaintKey, HeaderTitle, DataTable, GTableTableName,
+   FldList, UpdtList, KeyFld, CanDelete, CanAdd, MasterTable, MasterField,
+   ChangeTypeKey, InsertChangeEventTypeKey, UpdateChangeEventTypeKey, DeleteChangeEventTypeKey,
+   MenuItemKey, UIKeyMaintenance, UIKeyDelete, UIKeyEdit, UIKeyAdd, ModuleID)
+VALUES ('RES_VesselKind', 'Видове кораби', 'PMIS_RES.GTable', 'VesselKind', 
+ 'TableKey[HIDDEN], TableSeq, TableValue', 'TableSeq, TableValue', 'TableKey', 1, 1, 'PMIS_RES.Vessels', 'PMIS_RES.Vessels.VesselKindID',
+ 'RES_Lists_VesselKind', 'RES_Lists_VesselKind_AddVesselKind', 'RES_Lists_VesselKind_EditVesselKind', 'RES_Lists_VesselKind_DeleteVesselKind',
+ 'Lists_RES_VesselKind', 'RES_LISTMAINT_VESSELKIND', 'RES_LISTMAINT_VESSELKIND_DELETE', 'RES_LISTMAINT_VESSELKIND_EDIT', 'RES_LISTMAINT_VESSELKIND_ADD',
+ (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'));
+
+
+INSERT INTO PMIS_ADM.Maintenance(MaintKey, HeaderTitle, DataTable, GTableTableName,
+   FldList, UpdtList, KeyFld, CanDelete, CanAdd, MasterTable, MasterField,
+   ChangeTypeKey, InsertChangeEventTypeKey, UpdateChangeEventTypeKey, DeleteChangeEventTypeKey,
+   MenuItemKey, UIKeyMaintenance, UIKeyDelete, UIKeyEdit, UIKeyAdd, ModuleID)
+VALUES ('RES_VesselType', 'Типове кораби', 'PMIS_RES.GTable', 'VesselType', 
+ 'TableKey[HIDDEN], TableSeq, TableValue', 'TableSeq, TableValue', 'TableKey', 1, 1, 'PMIS_RES.Vessels', 'PMIS_RES.Vessels.VesselTypeID',
+ 'RES_Lists_VesselType', 'RES_Lists_VesselType_AddVesselType', 'RES_Lists_VesselType_EditVesselType', 'RES_Lists_VesselType_DeleteVesselType',
+ 'Lists_RES_VesselType', 'RES_LISTMAINT_VESSELTYPE', 'RES_LISTMAINT_VESSELTYPE_DELETE', 'RES_LISTMAINT_VESSELTYPE_EDIT', 'RES_LISTMAINT_VESSELTYPE_ADD',
+ (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'));
+
+
+ 
+INSERT INTO PMIS_ADM.Maintenance(MaintKey, HeaderTitle, DataTable, GTableTableName,
+   FldList, UpdtList, KeyFld, CanDelete, CanAdd, MasterTable, MasterField,
+   ChangeTypeKey, InsertChangeEventTypeKey, UpdateChangeEventTypeKey, DeleteChangeEventTypeKey,
+   MenuItemKey, UIKeyMaintenance, UIKeyDelete, UIKeyEdit, UIKeyAdd, ModuleID)
+VALUES ('RES_FuelContainerKind', 'Видове съдове за ГСМ', 'PMIS_RES.GTable', 'FuelContainerKind', 
+ 'TableKey[HIDDEN], TableSeq, TableValue', 'TableSeq, TableValue', 'TableKey', 1, 1, 'PMIS_RES.FuelContainers', 'PMIS_RES.FuelContainers.FuelContainerID',
+ 'RES_Lists_FuelContainerKind', 'RES_Lists_FuelContainerKind_AddFuelContainerKind', 'RES_Lists_FuelContainerKind_EditFuelContainerKind', 'RES_Lists_FuelContainerKind_DeleteFuelContainerKind',
+ 'Lists_RES_FuelContainerKind', 'RES_LISTMAINT_FUELCONTAINERKIND', 'RES_LISTMAINT_FUELCONTAINERKIND_DELETE', 'RES_LISTMAINT_FUELCONTAINERKIND_EDIT', 'RES_LISTMAINT_FUELCONTAINERKIND_ADD',
+ (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'));
+ 
+ 
+INSERT INTO PMIS_ADM.Maintenance(MaintKey, HeaderTitle, DataTable, GTableTableName,
+   FldList, UpdtList, KeyFld, CanDelete, CanAdd, MasterTable, MasterField,
+   ChangeTypeKey, InsertChangeEventTypeKey, UpdateChangeEventTypeKey, DeleteChangeEventTypeKey,
+   MenuItemKey, UIKeyMaintenance, UIKeyDelete, UIKeyEdit, UIKeyAdd, ModuleID)
+VALUES ('RES_FuelContainerType', 'Типове съдове за ГСМ', 'PMIS_RES.GTable', 'FuelContainerType', 
+ 'TableKey[HIDDEN], TableSeq, TableValue', 'TableSeq, TableValue', 'TableKey', 1, 1, 'PMIS_RES.FuelContainers', 'PMIS_RES.FuelContainers.FuelContainerID',
+ 'RES_Lists_FuelContainerType', 'RES_Lists_FuelContainerType_AddFuelContainerType', 'RES_Lists_FuelContainerType_EditFuelContainerType', 'RES_Lists_FuelContainerType_DeleteFuelContainerType',
+ 'Lists_RES_FuelContainerType', 'RES_LISTMAINT_FUELCONTAINERTYPE', 'RES_LISTMAINT_FUELCONTAINERTYPE_DELETE', 'RES_LISTMAINT_FUELCONTAINERTYPE_EDIT', 'RES_LISTMAINT_FUELCONTAINERTYPE_ADD',
+ (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'));
+ 
+
+INSERT INTO PMIS_ADM.Maintenance(MaintKey, HeaderTitle, DataTable, GTableTableName,
+   FldList, UpdtList, KeyFld, CanDelete, CanAdd, MasterTable, MasterField,
+   ChangeTypeKey, InsertChangeEventTypeKey, UpdateChangeEventTypeKey, DeleteChangeEventTypeKey,
+   MenuItemKey, UIKeyMaintenance, UIKeyDelete, UIKeyEdit, UIKeyAdd, ModuleID)
+VALUES ('RES_AviationAirKind', 'Видове въздухоплавателни средства', 'PMIS_RES.GTable', 'AviationAirKind', 
+ 'TableKey[HIDDEN], TableSeq, TableValue', 'TableSeq, TableValue', 'TableKey', 1, 1, 'PMIS_RES.AviationEquipment', 'PMIS_RES.AviationEquipment.AviationAirKindID',
+ 'RES_Lists_AviationAirKind', 'RES_Lists_AviationAirKind_AddAviationAirKind', 'RES_Lists_AviationAirKind_EditAviationAirKind', 'RES_Lists_AviationAirKind_DeleteAviationAirKind',
+ 'Lists_RES_AviationAirKind', 'RES_LISTMAINT_AVIATIONAIRKIND', 'RES_LISTMAINT_AVIATIONAIRKIND_DELETE', 'RES_LISTMAINT_AVIATIONAIRKIND_EDIT', 'RES_LISTMAINT_AVIATIONAIRKIND_ADD',
+ (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'));
+
+
+INSERT INTO PMIS_ADM.Maintenance(MaintKey, HeaderTitle, DataTable, GTableTableName,
+   FldList, UpdtList, KeyFld, CanDelete, CanAdd, MasterTable, MasterField,
+   ChangeTypeKey, InsertChangeEventTypeKey, UpdateChangeEventTypeKey, DeleteChangeEventTypeKey,
+   MenuItemKey, UIKeyMaintenance, UIKeyDelete, UIKeyEdit, UIKeyAdd, ModuleID)
+VALUES ('RES_AviationAirType', 'Типове въздухоплавателни средства', 'PMIS_RES.GTable', 'AviationAirType', 
+ 'TableKey[HIDDEN], TableSeq, TableValue', 'TableSeq, TableValue', 'TableKey', 1, 1, 'PMIS_RES.AviationEquipment', 'PMIS_RES.AviationEquipment.AviationAirTypeID',
+ 'RES_Lists_AviationAirType', 'RES_Lists_AviationAirType_AddAviationAirType', 'RES_Lists_AviationAirType_EditAviationAirType', 'RES_Lists_AviationAirType_DeleteAviationAirType',
+ 'Lists_RES_AviationAirType', 'RES_LISTMAINT_AVIATIONAIRTYPE', 'RES_LISTMAINT_AVIATIONAIRTYPE_DELETE', 'RES_LISTMAINT_AVIATIONAIRTYPE_EDIT', 'RES_LISTMAINT_AVIATIONAIRTYPE_ADD',
+ (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'));
+
+ 
+INSERT INTO PMIS_ADM.Maintenance(MaintKey, HeaderTitle, DataTable, GTableTableName,
+   FldList, UpdtList, KeyFld, CanDelete, CanAdd, MasterTable, MasterField,
+   ChangeTypeKey, InsertChangeEventTypeKey, UpdateChangeEventTypeKey, DeleteChangeEventTypeKey,
+   MenuItemKey, UIKeyMaintenance, UIKeyDelete, UIKeyEdit, UIKeyAdd, ModuleID)
+VALUES ('RES_AviationAirModel', 'Модели въздухоплавателни средства', 'PMIS_RES.GTable', 'AviationAirModel', 
+ 'TableKey[HIDDEN], TableSeq, TableValue', 'TableSeq, TableValue', 'TableKey', 1, 1, 'PMIS_RES.AviationEquipment', 'PMIS_RES.AviationEquipment.AviationAirModelID',
+ 'RES_Lists_AviationAirModel', 'RES_Lists_AviationAirModel_AddAviationAirModel', 'RES_Lists_AviationAirModel_EditAviationAirModel', 'RES_Lists_AviationAirModel_DeleteAviationAirModel',
+ 'Lists_RES_AviationAirModel', 'RES_LISTMAINT_AVIATIONAIRMODEL', 'RES_LISTMAINT_AVIATIONAIRMODEL_DELETE', 'RES_LISTMAINT_AVIATIONAIRMODEL_EDIT', 'RES_LISTMAINT_AVIATIONAIRMODEL_ADD',
+ (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'));
+
+
+INSERT INTO PMIS_ADM.Maintenance(MaintKey, HeaderTitle, DataTable, GTableTableName,
+   FldList, UpdtList, KeyFld, CanDelete, CanAdd, MasterTable, MasterField,
+   ChangeTypeKey, InsertChangeEventTypeKey, UpdateChangeEventTypeKey, DeleteChangeEventTypeKey,
+   MenuItemKey, UIKeyMaintenance, UIKeyDelete, UIKeyEdit, UIKeyAdd, ModuleID)
+VALUES ('RES_AviationOtherKind', 'Видове специализирана авиац. техника', 'PMIS_RES.GTable', 'AviationOtherKind', 
+ 'TableKey[HIDDEN], TableSeq, TableValue', 'TableSeq, TableValue', 'TableKey', 1, 1, 'PMIS_RES.AviationEquipment', 'PMIS_RES.AviationEquipment.AviationOtherKindID',
+ 'RES_Lists_AviationOtherKind', 'RES_Lists_AviationOtherKind_AddAviationOtherKind', 'RES_Lists_AviationOtherKind_EditAviationOtherKind', 'RES_Lists_AviationOtherKind_DeleteAviationOtherKind',
+ 'Lists_RES_AviationOtherKind', 'RES_LISTMAINT_AVIATIONOTHERKIND', 'RES_LISTMAINT_AVIATIONOTHERKIND_DELETE', 'RES_LISTMAINT_AVIATIONOTHERKIND_EDIT', 'RES_LISTMAINT_AVIATIONOTHERKIND_ADD',
+ (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'));
+
+ 
+
+INSERT INTO PMIS_ADM.Maintenance(MaintKey, HeaderTitle, DataTable, GTableTableName,
+   FldList, UpdtList, KeyFld, CanDelete, CanAdd, MasterTable, MasterField,
+   ChangeTypeKey, InsertChangeEventTypeKey, UpdateChangeEventTypeKey, DeleteChangeEventTypeKey,
+   MenuItemKey, UIKeyMaintenance, UIKeyDelete, UIKeyEdit, UIKeyAdd, ModuleID)
+VALUES ('RES_AviationOtherType', 'Типове специализирана аивац. техника', 'PMIS_RES.GTable', 'AviationOtherType', 
+ 'TableKey[HIDDEN], TableSeq, TableValue', 'TableSeq, TableValue', 'TableKey', 1, 1, 'PMIS_RES.AviationEquipment', 'PMIS_RES.AviationEquipment.AviationOtherTypeID',
+ 'RES_Lists_AviationOtherType', 'RES_Lists_AviationOtherType_AddAviationOtherType', 'RES_Lists_AviationOtherType_EditAviationOtherType', 'RES_Lists_AviationOtherType_DeleteAviationOtherType',
+ 'Lists_RES_AviationOtherType', 'RES_LISTMAINT_AVIATIONOTHERTYPE', 'RES_LISTMAINT_AVIATIONOTHERTYPE_DELETE', 'RES_LISTMAINT_AVIATIONOTHERTYPE_EDIT', 'RES_LISTMAINT_AVIATIONOTHERTYPE_ADD',
+ (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'));
+
+
+INSERT INTO PMIS_ADM.Maintenance(MaintKey, HeaderTitle, DataTable, GTableTableName,
+   FldList, UpdtList, KeyFld, CanDelete, CanAdd, MasterTable, MasterField,
+   ChangeTypeKey, InsertChangeEventTypeKey, UpdateChangeEventTypeKey, DeleteChangeEventTypeKey,
+   MenuItemKey, UIKeyMaintenance, UIKeyDelete, UIKeyEdit, UIKeyAdd, ModuleID)
+VALUES ('RES_AviationOtherBaseMachineKind', 'Видове базови машини (спец. авиационна техника)', 'PMIS_RES.GTable', 'AviationOtherBaseMachineKind', 
+ 'TableKey[HIDDEN], TableSeq, TableValue', 'TableSeq, TableValue', 'TableKey', 1, 1, 'PMIS_RES.AviationEquipment', 'PMIS_RES.AviationEquipment.AviationOtherBaseMachineKindID',
+ 'RES_Lists_AviationOtherBaseMachineKind', 'RES_Lists_AviationOtherBaseMachineKind_AddAviationOtherBaseMachineKind', 'RES_Lists_AviationOtherBaseMachineKind_EditAviationOtherBaseMachineKind', 'RES_Lists_AviationOtherBaseMachineKind_DeleteAviationOtherBaseMachineKind',
+ 'Lists_RES_AviationOtherBaseMachineKind', 'RES_LISTMAINT_AVIATIONOTHERBASEMACHINEKIND', 'RES_LISTMAINT_AVIATIONOTHERBASEMACHINEKIND_DELETE', 'RES_LISTMAINT_AVIATIONOTHERBASEMACHINEKIND_EDIT', 'RES_LISTMAINT_AVIATIONOTHERBASEMACHINEKIND_ADD',
+ (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'));
+
+
+INSERT INTO PMIS_ADM.Maintenance(MaintKey, HeaderTitle, DataTable, GTableTableName,
+   FldList, UpdtList, KeyFld, CanDelete, CanAdd, MasterTable, MasterField,
+   ChangeTypeKey, InsertChangeEventTypeKey, UpdateChangeEventTypeKey, DeleteChangeEventTypeKey,
+   MenuItemKey, UIKeyMaintenance, UIKeyDelete, UIKeyEdit, UIKeyAdd, ModuleID)
+VALUES ('RES_AviationOtherBaseMachineType', 'Типове базови машини (спец. авиационна техника)', 'PMIS_RES.GTable', 'AviationOtherBaseMachineType', 
+ 'TableKey[HIDDEN], TableSeq, TableValue', 'TableSeq, TableValue', 'TableKey', 1, 1, 'PMIS_RES.AviationEquipment', 'PMIS_RES.AviationEquipment.AviationOtherBaseMachineTypeID',
+ 'RES_Lists_AviationOtherBaseMachineType', 'RES_Lists_AviationOtherBaseMachineType_AddAviationOtherBaseMachineType', 'RES_Lists_AviationOtherBaseMachineType_EditAviationOtherBaseMachineType', 'RES_Lists_AviationOtherBaseMachineType_DeleteAviationOtherBaseMachineType',
+ 'Lists_RES_AviationOtherBaseMachineType', 'RES_LISTMAINT_AVIATIONOTHERBASEMACHINETYPE', 'RES_LISTMAINT_AVIATIONOTHERBASEMACHINETYPE_DELETE', 'RES_LISTMAINT_AVIATIONOTHERBASEMACHINETYPE_EDIT', 'RES_LISTMAINT_AVIATIONOTHERBASEMACHINETYPE_ADD',
+ (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'));
+
+
+INSERT INTO PMIS_ADM.Maintenance(MaintKey, HeaderTitle, DataTable, GTableTableName,
+   FldList, UpdtList, KeyFld, CanDelete, CanAdd, MasterTable, MasterField,
+   ChangeTypeKey, InsertChangeEventTypeKey, UpdateChangeEventTypeKey, DeleteChangeEventTypeKey,
+   MenuItemKey, UIKeyMaintenance, UIKeyDelete, UIKeyEdit, UIKeyAdd, ModuleID)
+VALUES ('RES_AviationOtherEquipmentKind', 'Видове оборудване (спец. авиационна техника)', 'PMIS_RES.GTable', 'AviationOtherEquipmentKind', 
+ 'TableKey[HIDDEN], TableSeq, TableValue', 'TableSeq, TableValue', 'TableKey', 1, 1, 'PMIS_RES.AviationEquipment', 'PMIS_RES.AviationEquipment.AviationOtherEquipmentKindID',
+ 'RES_Lists_AviationOtherEquipmentKind', 'RES_Lists_AviationOtherEquipmentKind_AddAviationOtherEquipmentKind', 'RES_Lists_AviationOtherEquipmentKind_EditAviationOtherEquipmentKind', 'RES_Lists_AviationOtherEquipmentKind_DeleteAviationOtherEquipmentKind',
+ 'Lists_RES_AviationOtherEquipmentKind', 'RES_LISTMAINT_AVIATIONOTHEREQUIPMENTKIND', 'RES_LISTMAINT_AVIATIONOTHEREQUIPMENTKIND_DELETE', 'RES_LISTMAINT_AVIATIONOTHEREQUIPMENTKIND_EDIT', 'RES_LISTMAINT_AVIATIONOTHEREQUIPMENTKIND_ADD',
+ (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'));
+
+ 
+ 
+INSERT INTO PMIS_ADM.Maintenance(MaintKey, HeaderTitle, DataTable, GTableTableName,
+   FldList, UpdtList, KeyFld, CanDelete, CanAdd, MasterTable, MasterField,
+   ChangeTypeKey, InsertChangeEventTypeKey, UpdateChangeEventTypeKey, DeleteChangeEventTypeKey,
+   MenuItemKey, UIKeyMaintenance, UIKeyDelete, UIKeyEdit, UIKeyAdd, ModuleID)
+VALUES ('RES_TechnicsCategoryNames', 'Категории техника', 'PMIS_RES.TechnicsCategories', NULL, 
+ 'TechnicsCategoryID[HIDDEN], TechnicsCategoryName', 'TechnicsCategoryName', 'TechnicsCategoryID', 1, 1, 'PMIS_RES.Technics', 'PMIS_RES.Technics.TechnicsCategoryID',
+ 'RES_Lists_TechnicsCategoryName', 'RES_Lists_TechnicsCategories_AddTechnicsCategoryName', 'RES_Lists_TechnicsCategories_EditTechnicsCategoryName', 'RES_Lists_TechnicsCategories_DeleteTechnicsCategoryName',
+ 'Lists_RES_TechnicsCategoryName', 'RES_LISTMAINT_TECHNICSCATEGORYNAMES', 'RES_LISTMAINT_TECHNICSCATEGORYNAMES_DELETE', 'RES_LISTMAINT_TECHNICSCATEGORYNAMES_EDIT', 'RES_LISTMAINT_TECHNICSCATEGORYNAMES_ADD',
+ (SELECT ModuleID FROM PMIS_ADM.Modules WHERE ModuleKey = 'RES'));
+ 
+ 
+ 
+ 
+COMMIT;

@@ -1,0 +1,30 @@
+﻿CREATE TABLE PMIS_RES.TractorMakes(TractorMakeID number NOT NULL,
+                                   TractorMakeName varchar2(300)
+                                  );
+
+ALTER TABLE PMIS_RES.TractorMakes ADD CONSTRAINT TractorMakes_PK PRIMARY KEY(TractorMakeID);
+
+CREATE SEQUENCE PMIS_RES.TractorMakes_ID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+CREATE TRIGGER PMIS_RES.TRG_TractorMakes_INSERT
+BEFORE INSERT ON PMIS_RES.TractorMakes
+FOR EACH ROW
+BEGIN
+   SELECT PMIS_RES.TractorMakes_ID_SEQ.nextval INTO :new.TractorMakeID FROM dual;
+END;
+/
+
+INSERT INTO PMIS_RES.TractorMakes (TractorMakeName)
+VALUES ('Case');
+
+INSERT INTO PMIS_RES.TractorMakes (TractorMakeName)
+VALUES ('Claas');
+
+INSERT INTO PMIS_RES.TractorMakes (TractorMakeName)
+VALUES ('Ferguson');
+
+COMMIT;
+/

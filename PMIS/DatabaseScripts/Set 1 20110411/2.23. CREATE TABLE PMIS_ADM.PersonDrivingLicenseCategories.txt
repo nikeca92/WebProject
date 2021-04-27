@@ -1,0 +1,8 @@
+﻿CREATE TABLE PMIS_ADM.PersonDrivingLicenseCategories(PersonID number NOT NULL,
+                                                     DrivingLicenseCategoryID number NOT NULL
+                                                    );
+
+ALTER TABLE PMIS_ADM.PersonDrivingLicenseCategories ADD CONSTRAINT PersonDrivingLCategories_PK PRIMARY KEY(PersonID, DrivingLicenseCategoryID);
+ALTER TABLE PMIS_ADM.PersonDrivingLicenseCategories ADD CONSTRAINT PersonDrvLCat_Persons_FK FOREIGN KEY (PersonID) REFERENCES VS_OWNER.VS_LS (PersonID);
+ALTER TABLE PMIS_ADM.PersonDrivingLicenseCategories ADD CONSTRAINT PersonDrvLCat_Categories_FK FOREIGN KEY (DrivingLicenseCategoryID) REFERENCES PMIS_ADM.DrivingLicenseCategories (DrivingLicenseCategoryID);
+/

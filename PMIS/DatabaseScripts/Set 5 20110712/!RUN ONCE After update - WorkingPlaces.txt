@@ -1,0 +1,36 @@
+DECLARE
+  CURSOR WPlaces IS 
+  SELECT MAX(a.WorkingPlace) as WorkingPlace, b.MilitaryUnitID
+  FROM PMIS_HS.ProtocolItems a
+  INNER JOIN PMIS_HS.Protocols b on a.ProtocolID = b.ProtocolID
+  WHERE b.MilitaryUnitID IS NOT NULL AND a.WorkingPlace IS NOT NULL
+  GROUP BY UPPER(a.WorkingPlace), b.MilitaryUnitID; 
+  
+  WPlaceID number;
+  Cnt number;
+BEGIN
+  FOR CurRec in WPlaces 
+  LOOP
+    SELECT COUNT(*) INTO Cnt
+	FROM PMIS_HS.WorkingPlaces 
+	WHERE UPPER(WorkingPlace) = UPPER(CurRec.WorkingPlace) AND 
+          MilitaryUnitID = CurRec.MilitaryUnitID;
+		  
+    IF Cnt = 0 THEN
+       INSERT INTO PMIS_HS.WorkingPlaces (WorkingPlace, MilitaryUnitID) VALUES (CurRec.WorkingPlace, CurRec.MilitaryUnitID);    
+    
+	   SELECT PMIS_HS.WorkingPlaces_ID_SEQ.currval INTO WPlaceID FROM Dual;
+	ELSE
+	   SELECT WorkingPlaceID INTO WPlaceID
+	   FROM PMIS_HS.WorkingPlaces 
+	   WHERE UPPER(WorkingPlace) = UPPER(CurRec.WorkingPlace) AND 
+             MilitaryUnitID = CurRec.MilitaryUnitID;
+	END IF;
+	
+    UPDATE PMIS_HS.ProtocolItems SET
+	   WorkingPlaceID = WPlaceID
+	WHERE UPPER(WorkingPlace) = UPPER(CurRec.WorkingPlace) AND ProtocolID IN (SELECT ProtocolID FROM PMIS_HS.Protocols WHERE MilitaryUnitID = CurRec.MilitaryUnitID) AND
+	      WorkingPlaceID IS NULL;
+  END LOOP;
+END;
+/

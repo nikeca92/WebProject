@@ -1,0 +1,4 @@
+﻿ALTER TABLE PMIS_RES.Technics ADD ResidencePostCode varchar2(10);
+ALTER TABLE PMIS_RES.Technics ADD OwnershipPostCode varchar2(10);
+
+COMMIT;

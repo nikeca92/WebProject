@@ -1,0 +1,52 @@
+﻿CREATE TABLE PMIS_RES.MilitaryReportStatuses(MilitaryReportStatusID number NOT NULL,
+                                             MilitaryReportStatusKey varchar2(100),
+                                             MilitaryReportStatusName varchar2(250)
+                                            );
+
+ALTER TABLE PMIS_RES.MilitaryReportStatuses ADD CONSTRAINT MilitaryReportStatuses_PK PRIMARY KEY(MilitaryReportStatusID);
+
+CREATE SEQUENCE PMIS_RES.MilitaryReportStatuses_ID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+CREATE TRIGGER PMIS_RES.TRG_MilReportStatuses_INSERT
+BEFORE INSERT ON PMIS_RES.MilitaryReportStatuses
+FOR EACH ROW
+BEGIN
+   SELECT PMIS_RES.MilitaryReportStatuses_ID_SEQ.nextval INTO :new.MilitaryReportStatusID FROM dual;
+END;
+/
+
+INSERT INTO PMIS_RES.MilitaryReportStatuses (MilitaryReportStatusKey, MilitaryReportStatusName)
+VALUES ('FREE', 'Свободен');
+
+INSERT INTO PMIS_RES.MilitaryReportStatuses (MilitaryReportStatusKey, MilitaryReportStatusName)
+VALUES ('VOLUNTARY_RESERVE', 'Доброволен резерв');
+
+INSERT INTO PMIS_RES.MilitaryReportStatuses (MilitaryReportStatusKey, MilitaryReportStatusName)
+VALUES ('COMPULSORY_RESERVE', 'Задължителен резерв');
+
+INSERT INTO PMIS_RES.MilitaryReportStatuses (MilitaryReportStatusKey, MilitaryReportStatusName)
+VALUES ('COMPULSORY_RESERVE_MOB_APPOINTMENT', 'С МН от задължителния резерв');
+
+INSERT INTO PMIS_RES.MilitaryReportStatuses (MilitaryReportStatusKey, MilitaryReportStatusName)
+VALUES ('REMOVED', 'Изключен');
+
+INSERT INTO PMIS_RES.MilitaryReportStatuses (MilitaryReportStatusKey, MilitaryReportStatusName)
+VALUES ('MILITARY_EMPLOYED', 'Приет на ВС');
+
+INSERT INTO PMIS_RES.MilitaryReportStatuses (MilitaryReportStatusKey, MilitaryReportStatusName)
+VALUES ('TEMPORARY_REMOVED', 'Временно снет');
+
+INSERT INTO PMIS_RES.MilitaryReportStatuses (MilitaryReportStatusKey, MilitaryReportStatusName)
+VALUES ('POSTPONED', 'Отсрочен');
+
+INSERT INTO PMIS_RES.MilitaryReportStatuses (MilitaryReportStatusKey, MilitaryReportStatusName)
+VALUES ('DISCHARGED', 'Отчислен');
+
+INSERT INTO PMIS_RES.MilitaryReportStatuses (MilitaryReportStatusKey, MilitaryReportStatusName)
+VALUES ('AUXILIARY', 'Помощен апарат');
+
+COMMIT;
+/

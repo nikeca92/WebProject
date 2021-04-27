@@ -1,0 +1,140 @@
+﻿--Резерв -> Справки -> Справка за изпълнение на отсрочването на човешки ресурси 
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID, CanSetAccessOnlyOwnData)
+VALUES ('RES_REPORTS_POSTPONES', 'Справка за изпълнение на отсрочването на човешки ресурси', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS'), 1);
+
+--Резерв -> Справки -> Справка за изпълнение на отсрочването на човешки ресурси -> Месторабота
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_POSTPONES_COMPANY', 'Месторабота', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_POSTPONES'));
+
+--Резерв -> Справки -> Справка за изпълнение на отсрочването на човешки ресурси  -> Сумарно - общо
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_POSTPONES_CONTROLPOINTSTOTAL', 'Сумарно - общо->КЧ', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_POSTPONES'));
+
+--Резерв -> Справки -> Справка за изпълнение на отсрочването на човешки ресурси  -> Сумарно - в т.ч. безусловно
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_POSTPONES_CONTROLPOINTSABSOLUTELY', 'Сумарно - в т.ч. безусловно->КЧ', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_POSTPONES'));
+
+--Резерв -> Справки -> Справка за изпълнение на отсрочването на човешки ресурси  -> Ръководство->Офицери->Общо
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_POSTPONES_MANAGEOFFICERSTOTAL', 'Ръководство->Офицери->Общо->КЧ', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_POSTPONES'));
+
+--Резерв -> Справки -> Справка за изпълнение на отсрочването на човешки ресурси  -> Ръководство->Офицери->В т.ч. безусловно
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_POSTPONES_MANAGEOFFICERSABSOLUTELY', 'Ръководство->Офицери->В т.ч. безусловно->КЧ', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_POSTPONES'));
+
+--Резерв -> Справки -> Справка за изпълнение на отсрочването на човешки ресурси  -> Ръководство->Сержанти и войници ->Общо
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_POSTPONES_MANAGESOLDIERSTOTAL', 'Ръководство->Сержанти и войници ->Общо->КЧ', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_POSTPONES'));
+
+--Резерв -> Справки -> Справка за изпълнение на отсрочването на човешки ресурси  -> Ръководство->Сержанти и войници ->В т.ч. безусловно
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_POSTPONES_MANAGESOLDIERSABSOLUTELY', 'Ръководство->Сержанти и войници ->В т.ч. безусловно->КЧ', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_POSTPONES'));
+
+--Резерв -> Справки -> Справка за изпълнение на отсрочването на човешки ресурси  -> Експертен персонал->Офицери->Общо
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_POSTPONES_EXPERTOFFICERSTOTAL', 'Експертен персонал->Офицери->Общо->КЧ', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_POSTPONES'));
+
+--Резерв -> Справки -> Справка за изпълнение на отсрочването на човешки ресурси  -> Експертен персонал->Офицери->В т.ч. безусловно
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_POSTPONES_EXPERTOFFICERSABSOLUTELY', 'Експертен персонал->Офицери->В т.ч. безусловно->КЧ', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_POSTPONES'));
+
+--Резерв -> Справки -> Справка за изпълнение на отсрочването на човешки ресурси  -> Експертен персонал->Сержанти и войници ->Общо
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_POSTPONES_EXPERTSOLDIERSTOTAL', 'Експертен персонал->Сержанти и войници ->Общо->КЧ', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_POSTPONES'));
+
+--Резерв -> Справки -> Справка за изпълнение на отсрочването на човешки ресурси  -> Експертен персонал->Сержанти и войници ->В т.ч. безусловно
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_POSTPONES_EXPERTSOLDIERSABSOLUTELY', 'Експертен персонал->Сержанти и войници ->В т.ч. безусловно->КЧ', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_POSTPONES'));
+
+--Резерв -> Справки -> Справка за изпълнение на отсрочването на човешки ресурси  -> Технически персонал->Офицери->Общо
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_POSTPONES_TECHOFFICERSTOTAL', 'Технически персонал->Офицери->Общо->КЧ', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_POSTPONES'));
+
+--Резерв -> Справки -> Справка за изпълнение на отсрочването на човешки ресурси  -> Технически персонал->Офицери->В т.ч. безусловно
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_POSTPONES_TECHOFFICERSABSOLUTELY', 'Технически персонал->Офицери->В т.ч. безусловно->КЧ', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_POSTPONES'));
+
+--Резерв -> Справки -> Справка за изпълнение на отсрочването на човешки ресурси  -> Технически персонал->Сержанти и войници ->Общо
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_POSTPONES_TECHSOLDIERSTOTAL', 'Технически персонал->Сержанти и войници ->Общо->КЧ', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_POSTPONES'));
+
+--Резерв -> Справки -> Справка за изпълнение на отсрочването на човешки ресурси  -> Технически персонал->Сержанти и войници ->В т.ч. безусловно
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_POSTPONES_TECHSOLDIERSABSOLUTELY', 'Технически персонал->Сержанти и войници ->В т.ч. безусловно->КЧ', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_POSTPONES'));
+
+
+
+--Резерв -> Справки -> Справка за изпълнение на отсрочването на човешки ресурси  -> Сумарно - общо
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_POSTPONES_CONTROLPOINTSTOTALFULFIL', 'Сумарно - общо->Изп.', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_POSTPONES'));
+
+--Резерв -> Справки -> Справка за изпълнение на отсрочването на човешки ресурси  -> Сумарно - в т.ч. безусловно
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_POSTPONES_CONTROLPOINTSABSOLUTELYFULFIL', 'Сумарно - в т.ч. безусловно->Изп.', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_POSTPONES'));
+
+--Резерв -> Справки -> Справка за изпълнение на отсрочването на човешки ресурси  -> Ръководство->Офицери->Общо
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_POSTPONES_MANAGEOFFICERSTOTALFULFIL', 'Ръководство->Офицери->Общо->Изп.', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_POSTPONES'));
+
+--Резерв -> Справки -> Справка за изпълнение на отсрочването на човешки ресурси  -> Ръководство->Офицери->В т.ч. безусловно
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_POSTPONES_MANAGEOFFICERSABSOLUTELYFULFIL', 'Ръководство->Офицери->В т.ч. безусловно->Изп.', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_POSTPONES'));
+
+--Резерв -> Справки -> Справка за изпълнение на отсрочването на човешки ресурси  -> Ръководство->Сержанти и войници ->Общо
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_POSTPONES_MANAGESOLDIERSTOTALFULFIL', 'Ръководство->Сержанти и войници ->Общо->Изп.', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_POSTPONES'));
+
+--Резерв -> Справки -> Справка за изпълнение на отсрочването на човешки ресурси  -> Ръководство->Сержанти и войници ->В т.ч. безусловно
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_POSTPONES_MANAGESOLDIERSABSOLUTELYFULFIL', 'Ръководство->Сержанти и войници ->В т.ч. безусловно->Изп.', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_POSTPONES'));
+
+--Резерв -> Справки -> Справка за изпълнение на отсрочването на човешки ресурси  -> Експертен персонал->Офицери->Общо
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_POSTPONES_EXPERTOFFICERSTOTALFULFIL', 'Експертен персонал->Офицери->Общо->Изп.', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_POSTPONES'));
+
+--Резерв -> Справки -> Справка за изпълнение на отсрочването на човешки ресурси  -> Експертен персонал->Офицери->В т.ч. безусловно
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_POSTPONES_EXPERTOFFICERSABSOLUTELYFULFIL', 'Експертен персонал->Офицери->В т.ч. безусловно->Изп.', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_POSTPONES'));
+
+--Резерв -> Справки -> Справка за изпълнение на отсрочването на човешки ресурси  -> Експертен персонал->Сержанти и войници ->Общо
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_POSTPONES_EXPERTSOLDIERSTOTALFULFIL', 'Експертен персонал->Сержанти и войници ->Общо->Изп.', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_POSTPONES'));
+
+--Резерв -> Справки -> Справка за изпълнение на отсрочването на човешки ресурси  -> Експертен персонал->Сержанти и войници ->В т.ч. безусловно
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_POSTPONES_EXPERTSOLDIERSABSOLUTELYFULFIL', 'Експертен персонал->Сержанти и войници ->В т.ч. безусловно->Изп.', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_POSTPONES'));
+
+--Резерв -> Справки -> Справка за изпълнение на отсрочването на човешки ресурси  -> Технически персонал->Офицери->Общо
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_POSTPONES_TECHOFFICERSTOTALFULFIL', 'Технически персонал->Офицери->Общо->Изп.', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_POSTPONES'));
+
+--Резерв -> Справки -> Справка за изпълнение на отсрочването на човешки ресурси  -> Технически персонал->Офицери->В т.ч. безусловно
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_POSTPONES_TECHOFFICERSABSOLUTELYFULFIL', 'Технически персонал->Офицери->В т.ч. безусловно->Изп.', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_POSTPONES'));
+
+--Резерв -> Справки -> Справка за изпълнение на отсрочването на човешки ресурси  -> Технически персонал->Сержанти и войници ->Общо
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_POSTPONES_TECHSOLDIERSTOTALFULFIL', 'Технически персонал->Сержанти и войници ->Общо->Изп.', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_POSTPONES'));
+
+--Резерв -> Справки -> Справка за изпълнение на отсрочването на човешки ресурси  -> Технически персонал->Сержанти и войници ->В т.ч. безусловно
+INSERT INTO  PMIS_ADM.UIItems (UIKey, UIName, ParentUIItemID)
+VALUES ('RES_REPORTS_POSTPONES_TECHSOLDIERSABSOLUTELYFULFIL', 'Технически персонал->Сержанти и войници ->В т.ч. безусловно->Изп.', (SELECT UIItemID FROM PMIS_ADM.UIItems WHERE UIKey = 'RES_REPORTS_POSTPONES'));
+
+ 
+UPDATE PMIS_ADM.UIItems SET CanSetAccessOnlyOwnData = 1 WHERE UIKey='RES_HUMANRES' ;
+UPDATE PMIS_ADM.UIItems SET CanSetAccessOnlyOwnData = 1 WHERE UIKey='RES_HUMANRES_POSTPONE' ;
+
+
+UPDATE PMIS_ADM.UIItems SET 
+   UIName = 'Чужди езици'
+WHERE UIKey = 'RES_HUMANRES_EDITRESERVIST_EDUWORK_FRGNLNG';
+
+UPDATE PMIS_ADM.UIItems SET UIName = 'Типове специализирана авиац. техника' WHERE UIKey='RES_LISTMAINT_AVIATIONOTHERTYPE';
+UPDATE PMIS_ADM.UIItems SET UIName = 'Добавяне на тип специализирана авиац. техника' WHERE UIKey='RES_LISTMAINT_AVIATIONOTHERTYPE_ADD';
+UPDATE PMIS_ADM.UIItems SET UIName = 'Редактиране на тип специализирана авиац. техника' WHERE UIKey='RES_LISTMAINT_AVIATIONOTHERTYPE_EDIT';
+UPDATE PMIS_ADM.UIItems SET UIName = 'Изтриване на тип специализирана авиац. техника' WHERE UIKey='RES_LISTMAINT_AVIATIONOTHERTYPE_DELETE';
+
+COMMIT;
+/
+
+

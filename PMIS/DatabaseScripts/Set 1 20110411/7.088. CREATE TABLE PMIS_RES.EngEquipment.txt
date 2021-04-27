@@ -1,0 +1,37 @@
+﻿CREATE TABLE PMIS_RES.EngEquipment(EngEquipID number NOT NULL,
+                                   TechnicsID number NOT NULL,
+                                   RegNumber varchar2(20),
+                                   InventoryNumber varchar2(50),
+                                   EngEquipKindID number, /*GTable*/
+                                   EngEquipTypeID number, /*GTable*/
+                                   EngEquipBaseMakeID number,
+                                   EngEquipBaseModelID number,
+                                   EngEquipBaseKindID number, /*GTable*/
+                                   EngEquipBaseTypeID number, /*GTable*/
+                                   EngEquipBaseEngineTypeID number, /*GTable*/
+                                   BaseFirstRegDate date,
+                                   BaseMileage number,
+                                   WorkingBodyPerformancePerHour number,
+                                   EngEquipWorkingBodyKindID number, /*GTable*/
+                                   WorkingBodyFirstRegDate date,
+                                   EngEquipWorkBodyEngineTypeID number /*GTable*/
+                                   );
+
+ALTER TABLE PMIS_RES.EngEquipment ADD CONSTRAINT EngEquipment_PK PRIMARY KEY(EngEquipID);
+ALTER TABLE PMIS_RES.EngEquipment ADD CONSTRAINT EngEquipment_TechnicsID_UNQ UNIQUE (TechnicsID);
+ALTER TABLE PMIS_RES.EngEquipment ADD CONSTRAINT EngEquipment_RegNum_UNQ UNIQUE (RegNumber);
+ALTER TABLE PMIS_RES.EngEquipment ADD CONSTRAINT EngEquipment_EEquipMakes_FK FOREIGN KEY (EngEquipBaseMakeID) REFERENCES PMIS_RES.EngEquipBaseMakes (EngEquipBaseMakeID);
+ALTER TABLE PMIS_RES.EngEquipment ADD CONSTRAINT EngEquipment_EEquipModels_FK FOREIGN KEY (EngEquipBaseModelID) REFERENCES PMIS_RES.EngEquipBaseModels (EngEquipBaseModelID);
+
+CREATE SEQUENCE PMIS_RES.EngEquipment_ID_SEQ
+START WITH 1 
+INCREMENT BY 1 
+NOMAXVALUE;
+
+CREATE OR REPLACE TRIGGER PMIS_RES.TRG_EngEquipment_INSERT
+BEFORE INSERT ON PMIS_RES.EngEquipment
+FOR EACH ROW
+BEGIN
+   SELECT PMIS_RES.EngEquipment_ID_SEQ.nextval INTO :new.EngEquipID FROM dual;
+END;
+/
